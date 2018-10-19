@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="wrapper wrapper_service-page">
+        <header class="header">
+            <div class="container container_service-page">
+                <div class="logo-wrap">
+                    <a class="gpn-logo" title="Газпромнефть" href="main.html"></a>
+                    <span class="text-logo">Реализация <br>имущества Группы <br>«Газпром нефть»</span>
+                </div>
+            </div>
+            <section class="restore-section">
+                <div class="container container_service-page">
+                        {% include "@FOSUser/Resetting/reset_content.html.twig" %}
+                </div>
+            </section>
+        </header>
+    </div>
+{% endblock %}

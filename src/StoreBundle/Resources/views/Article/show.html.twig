@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <div class="breadcrumbs">
+                    <a href="{{ url('homepage') }}" class="breadcrumbs__item">Главная страница</a>
+                    <span class="breadcrumbs__divide"></span>
+                    <a class="breadcrumbs__item breadcrumbs__item_active">Статьи</a>
+                </div>
+                <span class="section-title__text section-title__text_in-product">{{ article.title }}</span>
+            </div>
+            <div class="center_no-left cards-container__center_no-left">
+                {{ article.text|raw }}
+            </div>
+        </div>
+    </section>
+{% endblock %}

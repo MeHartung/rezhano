@@ -1,0 +1,12 @@
+    {% for taxon in taxons %}
+        <a href="{{ path('taxon', {'slug': taxon.slug }) }}" class="catalog-item">
+            {% if image_url(taxon) is not empty %}
+                <div class="catalog-item__image" style="background: url({{ image_url(taxon) }}) center no-repeat; background-size: cover"></div>
+            {% else %}
+                <div class="catalog-item__image" style="background: url({{ ('/images/no_photo.png') }}) center no-repeat;"></div>
+            {% endif %}
+            <div class="catalog-item__info">
+                <span class="catalog-item__title">{{ taxon.name }}</span>
+            </div>
+        </a>
+    {% endfor %}

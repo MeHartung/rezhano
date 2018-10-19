@@ -1,0 +1,37 @@
+{% if product.isFreeDelivery %}
+<div class="free-shipping">
+    <img class="free-shipping__image" src="/images/curier_icon.png" alt="">
+    <span class="free-shipping__text">Бесплатная доставка</span>
+</div>
+{% endif %}
+<div class="addtocart-area">
+    <form class="product js-recalculate">
+        <div class="addtocart-bar">
+            <div class="addtocart-bar__wrap">
+                <label for="quantity646" class="quantity_box">Кол-во: </label>
+                <div  class="quantity-box-price">
+                    <span class="quantity-box">
+                        <input type="text" class="quantity-input js-recalculate" name="quantity[]" value="1">
+                    </span>
+                </div>
+
+            </div>
+            <span class="addtocart-button">
+                <input id="product-addtocart-button" type="submit" name="addtocart" class="addtocart-button button button-grey"
+                   rel="nofollow" data-product-id="{{ product.id }}" value="Добавить в корзину" title="Добавить в корзину">
+            </span>
+            {#<div class="clear"></div>#}
+        </div>
+    </form>
+    <div class="buy-one-product button" data-product-slug="{{ product.slug }}">Купить в один клик</div>
+    <div class="kupivkredit-button">
+        <div class="kupivkredit-button-content">В кредит от
+            <span class="kupivkredit-price">{{ (product.price * 0.0586)|round }}</span> руб в месяц <a class="kupivkredit-info"
+                                                                                                       rel="ppcredit"
+                                                                                                       itemprop="image"
+                                                                                                       href="/images/tkb-promo.png">?</a>
+            <br>- рассмотрим за 2 минуты<br>- без комиссии и первого взноса
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>

@@ -1,0 +1,29 @@
+<div class="expanded-menu" id="expandedMenu" style="display: none">
+
+    <button class="open-menu" id="closeMenu">
+        <span>Каталог товаров</span>
+        <span class="burger-icon"></span>
+    </button>
+
+    <div class="expanded-menu__items">
+        {% for catalog in root.children %}
+            {% if catalog.nbProducts %}
+            <div class="{% if catalog.nbProducts %}expanded-menu__items-item-wrap{% else %}expanded-menu__items{% endif %}">
+                <a href="{{ path('taxon', {'slug': catalog.slug}) }}"
+                   class="expanded-menu__items-item"><span>{{ catalog.name }}</span></a>
+                <div class="expanded-menu__items expanded-menu__items-level-two">
+                    {% if catalog.children|length %}
+                        {% for child in catalog.children %}
+                            {% if child.nbProducts %}
+                            <a href="{{ path('taxon', {'slug': child.slug}) }}"
+                               class="expanded-menu__items-level-two__item"><span>{{ child.name }}</span></a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <a href="{{ url('catalog_index') }}" class="expanded-menu__see-all">Смотреть все</a>
+</div>

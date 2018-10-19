@@ -1,0 +1,13 @@
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+
+{% block field%}
+    {% for role in value %}
+        {% if role == 'ROLE_INDIVIDUAL' %}
+            <span>Физическое лицо</span>
+        {% elseif role == 'ROLE_JURIDICAL' %}
+            <span>Юридическое лицо</span>
+        {% elseif role == 'ROLE_ENTREPRENEUR' %}
+            <span>Индивидуальный предприниматель</span>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,19 @@
+<div class="notice-list__item
+            {#notice-list__item_deployed#}
+            {% if not notice.read %}notice-list__item_new-message{% endif %}
+            ">
+    <div class="notice-list__row">
+        <span class="notice-item-author">От: {{ notice.author }}</span>
+        <span class="notice-item-icon notice-item-icon_order"></span>
+        <span class="notice-item-order">{{ notice.order.documentNumber }}</span>
+        <span class="notice-item-title">{{ notice.title }}</span>
+        <span class="notice-item-date">{{ notice.createdAt|date('d.m.Y H:i') }}</span>
+    </div>
+    <div class="notice-deployed-wrap">
+        <div class="notice-deployed">
+            <div class="incoming-message">
+                {{ notice.message }}
+            </div>
+        </div>
+    </div>
+</div>

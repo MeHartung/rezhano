@@ -1,0 +1,65 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <section class="gkContentTopBorder ">
+        <section id="gkBreadcrumb">
+            <div class="breadcrumbs">
+                <ul>
+                    <li class="pathway"><a href="{{ path('homepage') }}">Главная</a></li>
+                    <li class="pathway separator">/</li>
+                    <li class="pathway">Акции</li>
+                </ul>
+            </div>
+        </section>
+    </section>
+
+    <section id="gkContent">
+
+        <h1>Акции</h1>
+
+        <div class="article-list">
+            {% for SpecialOffer in specialOffers %}
+                <div class="article-list-item">
+                    <div class="article-announce">
+                        {%  if image_exists(SpecialOffer) %}
+                            <a href="{{ path('special_offers_show', { 'slug': SpecialOffer.slug }) }}" rel="nofollow" class="article-image">
+                                <img class="article-image" src="{{ image_url(SpecialOffer) }}" alt="">
+                            </a>
+                        {% endif %}
+                        <div class="article-heading">
+                            <h2><a href="{{  path('special_offers_show', { 'slug': SpecialOffer.slug }) }}">{{ SpecialOffer.title }}</a></h2>
+                            <span class="small grey">Действует до {{ SpecialOffer.dateEnd|date('d.m.Y') }}</span>
+                        </div>
+                        {{ SpecialOffer.announce|striptags('<br><strong><i><b><blockquote>')|raw }}
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            {% endfor %}
+
+            {% if expiredSpecialOffers|length %}
+                <h2>Завершённые акции</h2>
+                {% for expiredSpecialOffer in expiredSpecialOffers %}
+                    <div class="article-list-item">
+                        <div class="article-announce">
+                            <div class="article-heading">
+                                <a href="{{  path('special_offers_show', { 'slug': expiredSpecialOffer.slug }) }}">{{ expiredSpecialOffer.title }}</a><br/>
+                                <span class="small grey">Акция закончилась {{ expiredSpecialOffer.dateEnd|date('d.m.Y') }}</span>
+                            </div>
+                            {%  if image_exists(expiredSpecialOffer) %}
+                                <a href="{{ path('special_offers_show', { 'slug': expiredSpecialOffer.slug }) }}"
+                                   rel="nofollow"><img
+                                            class="article-image"
+                                            src="{{ image_url(expiredSpecialOffer) }}"
+                                            alt=""></a>
+                            {% endif %}
+                            {{ expiredSpecialOffer.announce|striptags('<br><strong><i><b><blockquote>')|raw }}
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                {% endfor %}
+              {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

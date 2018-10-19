@@ -1,0 +1,4 @@
+{#{% if object.checkoutStateId != constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_ONE_CLICK")#}
+   {#and object.checkoutStateId != constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_PRE_ORDER") %}#}
+    <a class="btn btn-sm btn-default edit_link" href="{{ admin.generateObjectUrl('edit', object) }}"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Редактировать</a>
+{#{% endif %}#}

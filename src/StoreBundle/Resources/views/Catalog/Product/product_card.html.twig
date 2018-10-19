@@ -1,0 +1,64 @@
+<div class="product-item{% if options.narrow|default(false) %} product-item_narrow{% endif %}">
+    {% if image_url(product.mainImage) is not empty %}
+    <a class="product-item__image" href="{{ path('product', { 'slug': product.slug }) }}"
+       style="background: url({{ image_url(product.mainImage) }}) center no-repeat; background-size: cover" title="{{ product.name|e('html_attr') }}" >
+    {% else %}
+        <a class="product-item__image" href="{{ path('product', { 'slug': product.slug }) }}"
+           style="background: url({{('/images/no_photo.png')}}) center no-repeat;" title="{{ product.name|e('html_attr') }}" >
+    {% endif %}
+        {% if product.sale %}
+            <div class="product-item__discount-ticket">
+                <span>-{{ product.discountLevel }}%</span>
+            </div>
+        {% endif %}
+    </a>
+    <div class="product-item__info">
+        <a href="{{ path('product', {'slug': product.slug}) }}" class="product-item__title" >{{ product.name }}</a>
+        <button class="addtocart-button button button_add-to-cart" data-product-id="{{ product.id }}"><span>{{ product|productPrice }}</span></button>
+    </div>
+</div>
+
+{#<div class="spacer-tip" title="">#}
+    {#{% if product.hasClubPrice %}#}
+        {#<div class="product_badge">#}
+            {#<div class="club-price__icon">#}
+                {#<span>Клубная<br>цена</span>#}
+                {#<img src="/images/club_price_icon.png" alt="">#}
+            {#</div>#}
+        {#</div>#}
+    {#{% endif %}#}
+  {#<a title="{{ product.name }} купить" rel="vm-additional-images nofollow" href="{{ path('product', { 'slug': product.slug }) }}">#}
+    {#{% include "@Store/Catalog/Product/product_badges.html.twig" %}#}
+  {#</a>#}
+  {#<div class="product-image-container">#}
+    {#<a title="{{ product.name }} купить" rel="vm-additional-images nofollow" href="{{ path('product', { 'slug': product.slug }) }}"></a>#}
+    {#<a rel="vm-additional-images nofollow" href="{{ path('product', { 'slug': product.slug }) }}">#}
+      {#{% if image %}#}
+        {#<img src="{{ image_url(image) }}" alt="Фотография товара {{ product.name }}" class="browseProductImage">#}
+      {#{% endif %}#}
+    {#</a>#}
+  {#</div>#}
+  {#<div>#}
+    {#<div class="catProductTitle"><a href="{{ path('product', { 'slug': product.slug }) }}">{{ product.name }}</a></div>#}
+    {#<div class="catProductPrice">#}
+      {#{% if not product.isPurchasable %}#}
+        {#Товар снят с производства#}
+      {#{% else %}#}
+        {#<div class="PricesalesPrice" style="display : block;"><span class="PricesalesPrice">{{ product.price|price }}</span></div>#}
+      {#{% endif %}#}
+    {#</div>#}
+    {#{% if product.isPurchasable %}#}
+      {#{% if product.preorder %}#}
+        {#<div class="preorder-wrap">#}
+          {#<div class="preorder button" data-product-slug="{{ product.slug }}">Предзаказ</div>#}
+        {#</div>#}
+      {#{% else %}#}
+        {#<form class="default-formButton">#}
+          {#<button href="#" class="addtocart-button button button-grey"#}
+                  {#rel="nofollow" title="{{ product.name }} купить" data-product-id="{{ product.id }}">Добавить в корзину</button>#}
+        {#</form>#}
+        {#<div class="buy-one button" data-product-slug="{{ product.slug }}">Купить в один клик</div>#}
+      {#{% endif %}#}
+    {#{% endif %}#}
+  {#</div>#}
+{#</div>#}

@@ -1,0 +1,98 @@
+{% extends '@Store/Checkout/step.html.twig' %}
+
+{% block javascripts %}
+    {{ paymentMethods|client_model_collection('payment.method', 'PaymentMethods', {'order': cart}) }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="section-title">
+        <div class="breadcrumbs">
+            <a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a href="{{ path('cart_index') }}" class="breadcrumbs__item">Корзина</a>
+            <span class="breadcrumbs__divide"></span>
+            <a href="{{ path('checkout_shipping') }}" class="breadcrumbs__item">Доставка и сервисы</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Оплата</a>
+        </div>
+        <span class="section-title__text section-title__text_in-product">Оплата</span>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <aside class="right">
+        <div class="cards-container__payment-info">
+            <span class="payment-info__title">К оплате:</span>
+            <span class="payment-info__value">{{ cart.total|number_format(0, '', ' ') }},<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</span>
+            <div class="value-details__wrap">
+                <div class="value-details value-details_product">
+                    <span class="card-icon card-icon__light-blue"></span>
+                    Товары — {{ cart.total|number_format(0, ',', ' ') }} ₽
+                </div>
+                <div class="value-details value-details_delivery">
+                    <span class="delivery-icon delivery-icon__light-blue"></span>
+                    <span class="delivery-message">Доставка — уточните у менеджера</span>
+                </div>
+            </div>
+        </div>
+        <label for="formSubmit"><a class="button"><span>Оформить заказ</span></a></label>
+    </aside>
+{% endblock %}
+
+{% block form %}
+    {{ form_start(form) }}
+    <div class="cards-container cards-container__payment-execution">
+        {{ form_errors(form) }}
+        <div class="cards-container__wrap">
+
+            <span class="cards-container__title">Получатель</span>
+
+            <div class="delivery-container__item">
+                <div class="delivery-container__header">
+                    <span>Номер телефона*</span>
+                </div>
+                <div class="delivery-container__item-info">
+                    {{ form_widget(form.customerPhone, {'attr':{ 'class' : 'input-text input-text_medium' }}) }}
+                </div>
+            </div>
+
+            <div class="delivery-container__item">
+                <div class="delivery-container__header">
+                    <span>ФИО*</span>
+                </div>
+                <div class="delivery-container__item-info">
+                    {{ form_widget(form.customerFirstName, {'attr':{ 'class' : 'input-text input-text_large' }}) }}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cards-container__wrap">
+            <div class="delivery-container__item">
+                <div class="payment-execution__type" id="tabs">
+                    {#{{ dump(paymentMethods) }}#}
+                    {% for choice in form.paymentMethod.vars.choices %}
+                        <label class="type-value__title payment-execution__type-value payment-execution__type-value_pickup" for="paymentMethod_{{ choice.value }}">
+                            <input class="{{ choice.attr['data-icon'] }}" name="payment_step[paymentMethod]" required="required" id="paymentMethod_{{ choice.value }}" type="radio"  value="{{ choice.value }}">
+                            {% if choice.attr['data-icon'] is defined %}
+                                <span class="{{ choice.attr['data-icon'] }} payment-icon"></span>
+                            {% endif %}
+                            <div class="payment-execution__type-name">
+                                <span class="type-value__title_name">{{ choice.label }}</span>
+                                {% if choice.attr['data-description'] is defined %}
+                                    <span class="type-value__title_name-aside">{{ choice.attr['data-description'] }}</span>
+                                {% endif %}
+                            </div>
+
+                        </label>
+                    {% endfor %}
+                    {% do form.paymentMethod.setRendered %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <input type="submit" style="display: none;" id="formSubmit" />
+    {{ form_end(form) }}
+{% endblock %}

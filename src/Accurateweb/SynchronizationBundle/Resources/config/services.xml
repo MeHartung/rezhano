@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="config.service" class="Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration">
+            <argument type="service" id="jms_serializer.event_dispatcher"/>
+            <argument type="string" id="%kernel.root_dir%" />
+        </service>
+    </services>
+</container>

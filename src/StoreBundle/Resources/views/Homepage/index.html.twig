@@ -1,0 +1,65 @@
+{% extends "::base.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ bestOffers|client_model_collection('product', 'BestOffers') }}
+    {{ viewedProducts|client_model_collection('product', 'ViewedProducts') }}
+    {#{{ notifications|client_model_collection('notification', 'Notifications') }}#}
+{% endblock %}
+
+{% block main %}
+    {% if banners|length %}
+      <section class="section-slider">
+        <div class="container container_no-padding">
+          <div class="section-slider__prev-slide"></div>
+          <div id="sliderMain" class="slider-main" style="font-size: 0; white-space: nowrap">
+              {% for banner in banners %}
+                <a href="{{ banner.url }}"><div style="background: url({{ image_url(banner) }}) no-repeat; width: 619px; height: 301px; display: inline-block;"></div></a>
+              {% endfor %}
+          </div>
+          <div class="section-slider__next-slide"></div>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if bestOffers|length %}
+      <section class="best-offers">
+        <div class="container">
+
+          <div class="section-title ">
+            <span class="section-title__text section-title__text_aside-line">Лучшие предложения</span>
+              <a href="{{ url('taxon', { slug: 'best-offers' }) }}" class="section-title__link-more">Смотреть все</a>
+          </div>
+
+          <div class="section-wrap">
+              {% for item in bestOffers %}
+                  {% include '@App/Common/product_item.html.twig' with {'product': item} %}
+              {% endfor %}
+          </div>
+
+        </div>
+      </section>
+    {% endif %}
+
+    {% if app.user and viewedProducts and viewedProducts|length %}
+      <section class="last-viewed-panel">
+        <div class="container">
+          <div class="section-title">
+            <span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>
+          </div>
+
+          <div class="section-wrap">
+              {% for product in viewedProducts %}
+                  {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}
+              {% endfor %}
+          </div>
+
+        </div>
+      </section>
+    {% endif %}
+{% endblock %}
+
+{% block head_javascripts %}
+  {{ parent() }}
+{% endblock %}

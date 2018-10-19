@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Профиль — Реализация имущества Группы «Газпром нефть»</title>
+  <!--<link rel="stylesheet" href="css/main.min.css"> - минифицированные стили для prod-окружения -->
+  <link rel="stylesheet" href="/js/vendor/slick/slick-theme.css">
+  <link rel="stylesheet" href="/js/vendor/slick/slick.css">
+  <link rel="stylesheet" href="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script type="text/javascript" src="/js/vendor/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery.jscrollpane.min.js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery.daterange/jquery.daterange.js"></script>
+
+  <script type="text/javascript" src="/js/vendor/slick/slick.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+
+</head>
+<body>
+
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <div class="logo-wrap">
+          <a class="gpn-logo" title="Газпромнефть" href="main.html"></a>
+          <span class="text-logo">Реализация <br>имущества Группы <br>«Газпром нефть»</span>
+        </div>
+        <span class="header-number">8 (800) 700-31-52 </span>
+        <div class="header-panel">
+          <!--/  -->
+          <!--<span class="header-panel__sign"><span class="user-icon"></span>Войти</span>-->
+          <!--/-->
+          <a href="profile-messages.html" class="js-messages header-panel__message new-message"><span class="mail-icon mail-icon_new-message"></span>2</a>
+          <a href="profile.html" class="header-panel__sign"><span class="user-icon"></span>Владимир Иванов</a>
+          <a href="favourites.html" class="header-panel__favorites"><span class="star-icon"></span>6</a>
+
+          <div class="notice-popup">
+
+            <div class="notice-popup__wrap">
+              <span class="notice-popup__title">Уведомления</span>
+
+              <div class="notice-popup__items">
+
+                <a href="profile-messages.html" class="notice-popup__item new-notice">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_auction"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">Ваша ставка по аукциону №213 была перебита на 500Р</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+              </div>
+            </div>
+
+            <a href="profile-messages.html" class="notice-popup__button-all">
+              Все уведомления
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-menu">
+        <div class="container">
+          <div class="header-menu__wrap">
+
+            <div class="menu-container">
+
+              <button class="open-menu" id="openMenu1">
+                <span>Каталог товаров</span>
+                <span class="burger-icon"></span>
+              </button>
+
+              <div class="expanded-menu" id="expandedMenu1" style="display: none">
+
+                <button class="open-menu" id="closeMenu1">
+                  <span>Каталог товаров</span>
+                  <span class="burger-icon"></span>
+                </button>
+
+                <div class="expanded-menu__items">
+                  <div class="expanded-menu__items-item-wrap">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Запорная арматура</span>
+                    </a>
+
+                    <div class="expanded-menu__items expanded-menu__items-level-two">
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                    </div>
+
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Запорная арматура</span>
+                    </a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Технологическое <br>и блочное оборудование</span>
+                    </a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Запорная арматура</span>
+                    </a>
+                  </div>
+
+                </div>
+                <a href="catalog.html" class="expanded-menu__see-all">Смотреть все</a>
+              </div>
+            </div>
+
+
+            <div class="header-menu__input">
+              <input type="text" placeholder="Найти в каталоге товаров">
+              <button class="button-search"></button>
+            </div>
+
+            <a href="cart.html" class="header-menu__info">
+              <span class="header-menu__info-amount-item"><span class="card-icon"></span>12</span>
+              <span class="header-menu__info-amount-payment">12 000 000 Р</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section>
+        <div class="container">
+
+          <div class="section-title">
+            <div class="breadcrumbs">
+              <a class="breadcrumbs__item">Главная страница</a>
+              <span class="breadcrumbs__divide"></span>
+              <a class="breadcrumbs__item breadcrumbs__item_active">Личный кабинет</a>
+            </div>
+            <span class="section-title__text">Личный кабинет</span>
+          </div>
+
+          <div class="center_no-right">
+
+            <aside class="left">
+              <div class="personal-office-aside">
+                <div class="personal-office-aside__userinfo">
+                  <span class="personal-office-aside__username">Иванов Владимир Иванович</span>
+                  <span class="personal-office-aside__mobile">8-900-800-23-33 </span>
+                  <a class="personal-office-aside__email">info@rambler.ru</a>
+                </div>
+
+                <div class="personal-office-aside__controls">
+                  <a href="" class="controls-button edit-user-info">Редактировать данные</a>
+                  <a href="" class="controls-button helpers">Нужна помощь</a>
+                </div>
+              </div>
+
+              <a href="profile-messages.html" class="notification-aside">
+                <span class="mail-icon mail-icon_new-message-big"></span>
+                <span class="notification-aside__message-title">
+                  2 новых <br>уведомления
+                </span>
+              </a>
+            </aside>
+
+            <div class="section-wrap">
+              <div class="personal-cabinet"  id="cabinetTabs">
+
+                <!--<ul class="nav-tabs__wrap">-->
+                <!--<li class="nav-tabs__item">-->
+                <!--<a href="#productInfo" class="button nav-tabs-description nav-characteristics nav-characteristics_active"><span>Характеристики</span></a>-->
+                <!--</li>-->
+                <!--<li class="nav-tabs__item">-->
+                <!--<a href="#productCalc" class="button nav-tabs-description nav-delivery"><span>Калькулятор доставки</span></a>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!---->
+
+                <ul class="nav-tabs__wrap">
+                  <li class="nav-tabs__item">
+                    <a href="#myOrders" class="button nav-tabs-description nav-delivery av-characteristics_active"><span>Мои заказы</span></a>
+                  </li>
+                  <li class="nav-tabs__item">
+                    <a href="#myAuctions" class="button nav-tabs-description nav-delivery"><span>Аукционы</span></a>
+                  </li>
+                  <li class="nav-tabs__item">
+                    <a href="#myAnalytics" class="button nav-tabs-description nav-delivery"><span>Аналитика</span></a>
+                  </li>
+                </ul>
+
+
+                <div class="personal-cabinet__filter" >
+                  <span class="filter-title">По дате:</span>
+                  <div class="filter-item">
+                    <!--<input type="date"  id="datePicker" >-->
+
+                    <div class="custom-datepicker custom-datepicker_wide" id="datePicker" >
+                      <label>
+                        <input type="text" class="input-text_medium" value="03.09.2018 - 02.10.2018">
+                      </label>
+                    </div>
+
+                  </div>
+
+                  <!--<div class="select-dropdown-wrap">-->
+                  <!--<div class="select-dropdown">-->
+                  <!--<select id="sort-type-select" style="display: none">-->
+                  <!--<option value="all">Все характеристики</option>-->
+                  <!--<option value="different">Только отличающиеся</option>-->
+                  <!--</select>-->
+                  <!--</div>-->
+                  <!--<span class="label">Показывать:</span>-->
+                  <!--</div>-->
+
+                  <div class="filter-item">
+
+                    <div class="custom-border-select">
+                      <!--<input type="text" value="Выбрать город">-->
+                      <label for="cityFilter">
+                        <select name="cityFilter" id="cityFilter">
+                          <option value="Екатеринбург">Екатеринбург</option>
+                          <option value="Москва">Москва</option>
+                          <option value="Новосибирск">Новосибирск</option>
+                        </select>
+                      </label>
+
+                    </div>
+                  </div>
+
+                  <div class="filter-item">
+
+                    <div class="custom-border-select">
+                      <!--<input type="text" value="Выбрать МТР">-->
+
+                      <label for="MTR">
+                        <select name="MTR" id="MTR">
+                          <option value="MTR">MTR</option>
+                          <option value="no-MTR">no-MTR</option>
+                        </select>
+                      </label>
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="personal-cabinet__order-list" id="myOrders">
+                  <div class="order-list-header">
+                    <span class="order-list-header__item-title order-list-item__number">Номер заказа</span>
+                    <span class="order-list-header__item-title order-list-item__status">Статус</span>
+                    <span class="order-list-header__item-title order-list-item__date">Дата</span>
+                    <span class="order-list-header__item-title order-list-item__value">Стоимость</span>
+                    <span class="order-list-header__item-title order-list-item__repeat">Повторить</span>
+                  </div>
+
+                  <div class="order-list-row">
+
+                    <div class="popup-layer popup-layer_cabinet">
+                      <div class="popup-layer__title">
+                        Трек-номер RA4538279911
+                        <a class="popup-layer__close"></a>
+                      </div>
+                      <div class="popup-layer__content">
+                        <div class="popup-order-status">
+                          <div class="popup-order-status__row passed-stage">
+                            <span class="popup-order-status__date">25.08</span>
+                            <span class="popup-order-status__info-tick"></span>
+                            <span class="popup-order-status__status-info">Заказ оплачен</span>
+                          </div>
+
+                          <div class="popup-order-status__row passed-stage">
+                            <span class="popup-order-status__date">25.08</span>
+                            <span class="popup-order-status__info-tick"></span>
+                            <span class="popup-order-status__status-info">Заказ оплачен</span>
+                          </div>
+
+                          <div class="popup-order-status__row">
+                            <span class="popup-order-status__date"></span>
+                            <span class="popup-order-status__info-tick"></span>
+                            <span class="popup-order-status__status-info">Доставлено в пункт получения товара</span>
+                          </div>
+
+                          <div class="popup-order-status__row">
+                            <span class="popup-order-status__date"></span>
+                            <span class="popup-order-status__info-tick"></span>
+                            <span class="popup-order-status__status-info">Получено покупателем</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <a href="" class="order-list-row__item order-list-item__number">243</a>
+                    <a href="" class="order-list-row__item order-list-item__status">В оформлении</a>
+                    <span class="order-list-row__item order-list-item__date">25.08.2018  14:00</span>
+                    <span class="order-list-row__item order-list-item__value">215 000 ₽</span>
+                    <a class="button button-buy_in-product "></a>
+                  </div>
+
+                  <div class="order-list-row">
+                    <a href="" class="order-list-row__item order-list-item__number">243</a>
+                    <a href="" class="order-list-row__item order-list-item__status">Заказ отгружен</a>
+                    <span class="order-list-row__item order-list-item__date">22.08.2018  12:00</span>
+                    <span class="order-list-row__item order-list-item__value">618 342 ₽</span>
+                    <a class="button button-buy_in-product "></a>
+                  </div>
+
+                  <div class="order-list-row">
+                    <a href="" class="order-list-row__item order-list-item__number">243</a>
+
+                    <div class="popup-layer popup-layer_cabinet popup-layer_order-info">
+                      <div class="popup-layer__title">
+                        Заказ №434
+                        <span class="popup-layer__sub-title">32 товара</span>
+                        <a class="popup-layer__close"></a>
+                      </div>
+                      <div class="popup-layer__content scroll-pane">
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                        <div class="popup-layer__order-row">
+                          <a href="#" class="order-row__name order-row__item">Арматура фонтанная АФК ХХХ</a>
+                          <span class="order-row__count order-row__item">2 шт.</span>
+                          <span class="order-row__value order-row__item">20 500,00 Р</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <a href="" class="order-list-row__item order-list-item__status">В пункте выдачи</a>
+                    <span class="order-list-row__item order-list-item__date">17.08.2018  19:00</span>
+                    <span class="order-list-row__item order-list-item__value">1 342 666 ₽</span>
+                    <a class="button button-buy_in-product "></a>
+                  </div>
+
+                </div>
+
+                <div class="personal-cabinet__auction" id="myAuctions">
+                  <div class="auction-list-header">
+                    <span class="auction-list-header__item-title auction-list-item__number">Номер</span>
+                    <span class="auction-list-header__item-title auction-list-item__date-expirtion">Дата окончания</span>
+                    <span class="auction-list-header__item-title auction-list-item__value-bet">Ставок</span>
+                    <span class="auction-list-header__item-title auction-list-item__last-price">Последняя цена</span>
+                    <span class="auction-list-header__item-title auction-list-item__my-price">Ваша цена</span>
+                  </div>
+
+                  <div class="auction-list-header-active">Активные</div>
+
+                  <div class="auction-row">
+                    <a href="" class="auction-row__item auction-list-item__number">243</a>
+                    <span class="auction-row__item auction-list-item__date-expirtion">17.08.2018  19:00</span>
+                    <span class="auction-row__item auction-list-item__value-bet">6</span>
+                    <span class="auction-row__item auction-list-item__last-price"><span class="price-status price-status_up"></span>215 000 ₽</span>
+                    <div class="auction-row__item auction-list-item__last-price">
+                      <div class="quantity-wrap">
+                        <input value="1 342 666" type="text">
+                        <a class="quantity-control quantity-control__up"></a>
+                      </div>₽
+                      <a class="button button-auction "></a>
+                      <span class="auction-list-item__last-price_instruction">Введите сумму 1 342 666 или больше</span>
+                    </div>
+                  </div>
+
+                  <div class="auction-row">
+                    <a href="" class="auction-row__item auction-list-item__number">243</a>
+                    <span class="auction-row__item auction-list-item__date-expirtion">17.08.2018  19:00</span>
+                    <span class="auction-row__item auction-list-item__value-bet">6</span>
+                    <span class="auction-row__item auction-list-item__last-price"><span class="price-status price-status_down"></span>215 000 ₽</span>
+                    <div class="auction-row__item auction-list-item__last-price">
+                      <div class="quantity-wrap">
+                        <input value="1 342 666" type="text">
+                        <a class="quantity-control quantity-control__up"></a>
+                      </div>₽
+                      <a class="button button-auction "></a>
+                      <span class="auction-list-item__last-price_instruction">Введите сумму 1 342 666 или больше</span>
+                    </div>
+                  </div>
+
+                  <div class="auction-row">
+                    <a href="" class="auction-row__item auction-list-item__number">243</a>
+                    <span class="auction-row__item auction-list-item__date-expirtion">17.08.2018  19:00</span>
+                    <span class="auction-row__item auction-list-item__value-bet">6</span>
+                    <span class="auction-row__item auction-list-item__last-price"><span class="price-status price-status_up"></span>215 000 ₽</span>
+                    <div class="auction-row__item auction-list-item__last-price">
+                      <div class="quantity-wrap">
+                        <input value="1 342 666" type="text">
+                        <a class="quantity-control quantity-control__up"></a>
+                      </div>₽
+                      <a class="button button-auction "></a>
+                      <span class="auction-list-item__last-price_instruction">Введите сумму 1 342 666 или больше</span>
+                    </div>
+                  </div>
+
+                  <div class="auction-list-header-past">Прошедшие</div>
+
+                  <div class="auction-row auction-row_past">
+                    <a href="" class="auction-row__item auction-list-item__number">243</a>
+                    <span class="auction-row__item auction-list-item__date-expirtion">17.08.2018  19:00</span>
+                    <span class="auction-row__item auction-list-item__value-bet">6</span>
+                    <span class="auction-row__item auction-list-item__last-price"><span class="price-status price-status_up"></span>215 000 ₽</span>
+                    <span class="auction-row__item auction-list-item__last-price">1 342 666 ₽</span>
+                  </div>
+
+                  <div class="auction-row auction-row_past">
+                    <a href="" class="auction-row__item auction-list-item__number">243</a>
+                    <span class="auction-row__item auction-list-item__date-expirtion">17.08.2018  19:00</span>
+                    <span class="auction-row__item auction-list-item__value-bet">6</span>
+                    <span class="auction-row__item auction-list-item__last-price"><span class="price-status price-status_up"></span>215 000 ₽</span>
+                    <span class="auction-row__item auction-list-item__last-price">1 342 666 ₽</span>
+                  </div>
+
+                  <div class="auction-row auction-row_past">
+                    <a href="" class="auction-row__item auction-list-item__number">243</a>
+                    <span class="auction-row__item auction-list-item__date-expirtion">17.08.2018  19:00</span>
+                    <span class="auction-row__item auction-list-item__value-bet">6</span>
+                    <span class="auction-row__item auction-list-item__last-price"><span class="price-status price-status_up"></span>215 000 ₽</span>
+                    <span class="auction-row__item auction-list-item__last-price">1 342 666 ₽</span>
+                  </div>
+
+                </div>
+
+                <div class="personal-cabinet__analytics" id="myAnalytics">
+                  <div class="chart__wrapper">
+                    <div class="chart__title">
+                      Аналитика продаж, тыс. руб.
+
+                      <div class="custom-checkbox chart__title-checkbox">
+                        <label>
+                          <input type="checkbox" class="checkbox">
+                          <span class="custom-checkbox__checkbox"></span>
+                          <span class="custom-checkbox__text">Разделение стоимости товара и доставки</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="chart">
+                      <div class="chart__rulers">
+                        <div class="chart__ruler">
+                          <div class="chart__ruler-grade">1 600</div>
+                        </div>
+                        <div class="chart__ruler"></div>
+                        <div class="chart__ruler">
+                          <div class="chart__ruler-grade">1 400</div>
+                        </div>
+                        <div class="chart__ruler"></div>
+                        <div class="chart__ruler">
+                          <div class="chart__ruler-grade">1 200</div>
+                        </div>
+                        <div class="chart__ruler"></div>
+                        <div class="chart__ruler">
+                          <div class="chart__ruler-grade">1 000</div>
+                        </div>
+                        <div class="chart__ruler"></div>
+                        <div class="chart__ruler">
+                          <div class="chart__ruler-grade">800</div>
+                        </div>
+                        <div class="chart__ruler"></div>
+                        <div class="chart__ruler">
+                          <div class="chart__ruler-grade">600</div>
+                        </div>
+                        <div class="chart__ruler"></div>
+                        <div class="chart__ruler">
+                          <div class="chart__ruler-grade">400</div>
+                        </div>
+                        <div class="chart__ruler"></div>
+                        <div class="chart__ruler">
+                          <div class="chart__ruler-grade">200</div>
+                        </div>
+                        <div class="chart__ruler"></div>
+                        <div class="chart__ruler-grade">0</div>
+                        <div class="chart__graph">
+                          <div class="chart__bar">
+                            <div class="chart__value" data-direction="1" style="background: #1572ba; height: 24.1%"></div>
+                            <div class="chart__value" data-direction="2" style="background: #183e6e; height: 18%"></div>
+                            <div class="chart__value" data-direction="3" style="background: #6e6e72; height: 12%"></div>
+                            <div class="chart__value" data-direction="6" style="background: #9aca3e; height: 7%"></div>
+                            <div class="chart__value" data-direction="8" style="background: #da462e; height: 5%"></div>
+                            <div class="chart__value" data-direction="7" style="background: #fac23d; height: 3%"></div>
+                            <div class="chart__ruler-grade">2014</div>
+                            <div class="chart__popup">
+                              <div class="chart__popup-traingle"></div>
+                              <div class="chart__popup-title">
+                                2014 год
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #33a5db;"></div>
+                                <div class="chart__popup-direction-name">Запорная арматура</div>
+                                <div class="chart__popup-direction-value">1406</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #1572ba;"></div>
+                                <div class="chart__popup-direction-name">Трубная продукция</div>
+                                <div class="chart__popup-direction-value">1270</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #183e6e;"></div>
+                                <div class="chart__popup-direction-name">Технологическое и блочное оборудование</div>
+                                <div class="chart__popup-direction-value">1150</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #6e6e72;"></div>
+                                <div class="chart__popup-direction-name">Нефтепромысловое оборудование</div>
+                                <div class="chart__popup-direction-value">1020</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #a2a4a7;"></div>
+                                <div class="chart__popup-direction-name">Металлопрокат</div>
+                                <div class="chart__popup-direction-value">730</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #cdd2dc;"></div>
+                                <div class="chart__popup-direction-name">КИП и А</div>
+                                <div class="chart__popup-direction-value">620</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #9aca3e;"></div>
+                                <div class="chart__popup-direction-name">Транспорт</div>
+                                <div class="chart__popup-direction-value">550</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #fac23d;"></div>
+                                <div class="chart__popup-direction-name">Строительные материалы</div>
+                                <div class="chart__popup-direction-value">380</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #da462e;"></div>
+                                <div class="chart__popup-direction-name">Прочее</div>
+                                <div class="chart__popup-direction-value">190</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="chart__bar">
+                            <div class="chart__value" data-direction="1" style="background: #1572ba; height: 46.6%"></div>
+                            <div class="chart__value" data-direction="2" style="background: #183e6e; height: 30%"></div>
+                            <div class="chart__value" data-direction="3" style="background: #6e6e72; height: 27%"></div>
+                            <div class="chart__value" data-direction="8" style="background: #da462e; height: 22%"></div>
+                            <div class="chart__value" data-direction="6" style="background: #9aca3e; height: 19%"></div>
+                            <div class="chart__value" data-direction="5" style="background: #cdd2dc; height: 8%"></div>
+                            <div class="chart__value" data-direction="7" style="background: #fac23d; height: 4%"></div>
+                            <div class="chart__ruler-grade">2015</div>
+                            <div class="chart__popup">
+                              <div class="chart__popup-traingle"></div>
+                              <div class="chart__popup-title">
+                                2015 год
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #33a5db;"></div>
+                                <div class="chart__popup-direction-name">Запорная арматура</div>
+                                <div class="chart__popup-direction-value">1406</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #1572ba;"></div>
+                                <div class="chart__popup-direction-name">Трубная продукция</div>
+                                <div class="chart__popup-direction-value">1270</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #183e6e;"></div>
+                                <div class="chart__popup-direction-name">Технологическое и блочное оборудование</div>
+                                <div class="chart__popup-direction-value">1150</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #6e6e72;"></div>
+                                <div class="chart__popup-direction-name">Нефтепромысловое оборудование</div>
+                                <div class="chart__popup-direction-value">1020</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #a2a4a7;"></div>
+                                <div class="chart__popup-direction-name">Металлопрокат</div>
+                                <div class="chart__popup-direction-value">730</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #cdd2dc;"></div>
+                                <div class="chart__popup-direction-name">КИП и А</div>
+                                <div class="chart__popup-direction-value">620</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #9aca3e;"></div>
+                                <div class="chart__popup-direction-name">Транспорт</div>
+                                <div class="chart__popup-direction-value">550</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #fac23d;"></div>
+                                <div class="chart__popup-direction-name">Строительные материалы</div>
+                                <div class="chart__popup-direction-value">380</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #da462e;"></div>
+                                <div class="chart__popup-direction-name">Прочее</div>
+                                <div class="chart__popup-direction-value">190</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="chart__bar">
+                            <div class="chart__value" data-direction="2" style="background: #183e6e; height: 70%"></div>
+                            <div class="chart__value" data-direction="1" style="background: #1572ba; height: 68%"></div>
+                            <div class="chart__value" data-direction="3" style="background: #6e6e72; height: 52%"></div>
+                            <div class="chart__value" data-direction="5" style="background: #cdd2dc; height: 40%"></div>
+                            <div class="chart__value" data-direction="6" style="background: #9aca3e; height: 25%"></div>
+                            <div class="chart__value" data-direction="8" style="background: #da462e; height: 9%"></div>
+                            <div class="chart__value" data-direction="7" style="background: #fac23d; height: 2%"></div>
+                            <div class="chart__ruler-grade">2016</div>
+                            <div class="chart__popup">
+                              <div class="chart__popup-traingle"></div>
+                              <div class="chart__popup-title">
+                                2016 год
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #33a5db;"></div>
+                                <div class="chart__popup-direction-name">Запорная арматура</div>
+                                <div class="chart__popup-direction-value">1406</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #1572ba;"></div>
+                                <div class="chart__popup-direction-name">Трубная продукция</div>
+                                <div class="chart__popup-direction-value">1270</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #183e6e;"></div>
+                                <div class="chart__popup-direction-name">Технологическое и блочное оборудование</div>
+                                <div class="chart__popup-direction-value">1150</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #6e6e72;"></div>
+                                <div class="chart__popup-direction-name">Нефтепромысловое оборудование</div>
+                                <div class="chart__popup-direction-value">1020</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #a2a4a7;"></div>
+                                <div class="chart__popup-direction-name">Металлопрокат</div>
+                                <div class="chart__popup-direction-value">730</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #cdd2dc;"></div>
+                                <div class="chart__popup-direction-name">КИП и А</div>
+                                <div class="chart__popup-direction-value">620</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #9aca3e;"></div>
+                                <div class="chart__popup-direction-name">Транспорт</div>
+                                <div class="chart__popup-direction-value">550</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #fac23d;"></div>
+                                <div class="chart__popup-direction-name">Строительные материалы</div>
+                                <div class="chart__popup-direction-value">380</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #da462e;"></div>
+                                <div class="chart__popup-direction-name">Прочее</div>
+                                <div class="chart__popup-direction-value">190</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="chart__bar">
+                            <div class="chart__value" data-direction="1" style="background: #1572ba; height: 85.7%"></div>
+                            <div class="chart__value" data-direction="2" style="background: #183e6e; height: 60%"></div>
+                            <div class="chart__value" data-direction="3" style="background: #6e6e72; height: 55%"></div>
+                            <div class="chart__value" data-direction="4" style="background: #a2a4a7; height: 47%"></div>
+                            <div class="chart__value" data-direction="5" style="background: #cdd2dc; height: 34%"></div>
+                            <div class="chart__value" data-direction="7" style="background: #fac23d; height: 21%"></div>
+                            <div class="chart__value" data-direction="8" style="background: #da462e; height: 19%"></div>
+                            <div class="chart__value" data-direction="6" style="background: #9aca3e; height: 5%"></div>
+                            <div class="chart__ruler-grade">2017</div>
+                            <div class="chart__popup">
+                              <div class="chart__popup-traingle"></div>
+                              <div class="chart__popup-title">
+                                2017 год
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #33a5db;"></div>
+                                <div class="chart__popup-direction-name">Запорная арматура</div>
+                                <div class="chart__popup-direction-value">1406</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #1572ba;"></div>
+                                <div class="chart__popup-direction-name">Трубная продукция</div>
+                                <div class="chart__popup-direction-value">1270</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #183e6e;"></div>
+                                <div class="chart__popup-direction-name">Технологическое и блочное оборудование</div>
+                                <div class="chart__popup-direction-value">1150</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #6e6e72;"></div>
+                                <div class="chart__popup-direction-name">Нефтепромысловое оборудование</div>
+                                <div class="chart__popup-direction-value">1020</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #a2a4a7;"></div>
+                                <div class="chart__popup-direction-name">Металлопрокат</div>
+                                <div class="chart__popup-direction-value">730</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #cdd2dc;"></div>
+                                <div class="chart__popup-direction-name">КИП и А</div>
+                                <div class="chart__popup-direction-value">620</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #9aca3e;"></div>
+                                <div class="chart__popup-direction-name">Транспорт</div>
+                                <div class="chart__popup-direction-value">550</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #fac23d;"></div>
+                                <div class="chart__popup-direction-name">Строительные материалы</div>
+                                <div class="chart__popup-direction-value">380</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #da462e;"></div>
+                                <div class="chart__popup-direction-name">Прочее</div>
+                                <div class="chart__popup-direction-value">190</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="chart__bar">
+                            <div class="chart__value" data-direction="0" style="background: #33a5db; height: 140.6%"></div>
+                            <div class="chart__value" data-direction="1" style="background: #1572ba; height: 127%"></div>
+                            <div class="chart__value" data-direction="2" style="background: #183e6e; height: 115%"></div>
+                            <div class="chart__value" data-direction="3" style="background: #6e6e72; height: 102%"></div>
+                            <div class="chart__value" data-direction="4" style="background: #a2a4a7; height: 73%"></div>
+                            <div class="chart__value" data-direction="5" style="background: #cdd2dc; height: 62%"></div>
+                            <div class="chart__value" data-direction="6" style="background: #9aca3e; height: 55%"></div>
+                            <div class="chart__value" data-direction="7" style="background: #fac23d; height: 38%"></div>
+                            <div class="chart__value" data-direction="8" style="background: #da462e; height: 19%"></div>
+                            <div class="chart__ruler-grade">2018</div>
+                            <div class="chart__popup">
+                              <div class="chart__popup-traingle"></div>
+                              <div class="chart__popup-title">
+                                2018 год
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #33a5db;"></div>
+                                <div class="chart__popup-direction-name">Запорная арматура</div>
+                                <div class="chart__popup-direction-value">1406</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #1572ba;"></div>
+                                <div class="chart__popup-direction-name">Трубная продукция</div>
+                                <div class="chart__popup-direction-value">1270</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #183e6e;"></div>
+                                <div class="chart__popup-direction-name">Технологическое и блочное оборудование</div>
+                                <div class="chart__popup-direction-value">1150</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #6e6e72;"></div>
+                                <div class="chart__popup-direction-name">Нефтепромысловое оборудование</div>
+                                <div class="chart__popup-direction-value">1020</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #a2a4a7;"></div>
+                                <div class="chart__popup-direction-name">Металлопрокат</div>
+                                <div class="chart__popup-direction-value">730</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #cdd2dc;"></div>
+                                <div class="chart__popup-direction-name">КИП и А</div>
+                                <div class="chart__popup-direction-value">620</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #9aca3e;"></div>
+                                <div class="chart__popup-direction-name">Транспорт</div>
+                                <div class="chart__popup-direction-value">550</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #fac23d;"></div>
+                                <div class="chart__popup-direction-name">Строительные материалы</div>
+                                <div class="chart__popup-direction-value">380</div>
+                              </div>
+                              <div class="chart__popup-direction">
+                                <div class="chart__popup-direction-mark" style="background-color: #da462e;"></div>
+                                <div class="chart__popup-direction-name">Прочее</div>
+                                <div class="chart__popup-direction-value">190</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="chart__legend">
+                        <div class="custom-checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" checked="">
+                            <span class="custom-checkbox__checkbox" style="background: #33a5db;"></span>
+                            <span class="custom-checkbox__text">Запорная арматура</span>
+                          </label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" checked="">
+                            <span class="custom-checkbox__checkbox" style="background: #1572ba;"></span>
+                            <span class="custom-checkbox__text">Трубная продукция</span>
+                          </label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" checked="">
+                            <span class="custom-checkbox__checkbox" style="background: #183e6e;"></span>
+                            <span class="custom-checkbox__text">Технологическое и блочное оборудование</span>
+                          </label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" checked="">
+                            <span class="custom-checkbox__checkbox" style="background: #6e6e72;"></span>
+                            <span class="custom-checkbox__text">Нефтепромысловое оборудование</span>
+                          </label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" checked="">
+                            <span class="custom-checkbox__checkbox" style="background: #a2a4a7;"></span>
+                            <span class="custom-checkbox__text">Металлопрокат</span>
+                          </label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" checked="">
+                            <span class="custom-checkbox__checkbox" style="background: #cdd2dc;"></span>
+                            <span class="custom-checkbox__text">КИП и А</span>
+                          </label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" checked="">
+                            <span class="custom-checkbox__checkbox" style="background: #9aca3e;"></span>
+                            <span class="custom-checkbox__text">Транспорт</span>
+                          </label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" checked="">
+                            <span class="custom-checkbox__checkbox" style="background: #fac23d;"></span>
+                            <span class="custom-checkbox__text">Строительные материалы</span>
+                          </label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" checked="">
+                            <span class="custom-checkbox__checkbox" style="background: #da462e;"></span>
+                            <span class="custom-checkbox__text">Прочее</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer class="footer">
+
+    <div class="container container_no-padding">
+      <div class="footer-links">
+        <a href="#" class="footer-links__item">О проекте</a>
+        <a href="#" class="footer-links__item">Помощь</a>
+        <a href="#" class="footer-links__item">Контакты</a>
+        <a href="#" class="footer-links__item">Доставка</a>
+        <a href="#" class="footer-links__item">Сервисы</a>
+        <a href="#" class="footer-links__item">Оплата</a>
+        <a href="#" class="footer-links__item">Коммерческая информация</a>
+
+        <div class="footer-links__mobile">
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_apple">
+            <span class="apple-icon"></span>
+          </a>
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_android">
+            <span class="android-icon"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container_no-padding">
+      <div class="footer-aside">
+        <div class="footer-aside__copyright">© ПАО «Газпром нефть», 2018</div>
+        <div class="footer-aside__contacts">
+          <span class="contact-number"><span class="phone">8 (800) 700-31-52</span><span class="phone">8 (812) 363-31-52</span></span>
+          <span class="contact-aside">Круглосуточная служба поддержки</span>
+        </div>
+        <a href="question.html" class="footer-aside__question"><span class="mail-icon"></span><span>Задать вопрос</span></a>
+      </div>
+    </div>
+  </footer>
+  <div class="layer user-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Вход</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="password-input-wrap">
+          <input class="layer__input" type="password" placeholder="Пароль">
+          <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+        </div>
+        <div class="user-layer__controls">
+          <span class="custom-checkbox">
+            <label>
+              <input type="checkbox" class="checkbox" checked>
+              <span class="custom-checkbox__checkbox"></span>
+              <span>Запомнить</span>
+            </label>
+          </span>
+          <a class="restore-link js-restore" href="">Забыли пароль?</a>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Войти</button>
+        </div>
+      </form>
+    </div>
+    <button class="button layer__button user-layer__button-register">Регистрация</button>
+  </div>
+  <div class="layer restore-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Восстановление пароля</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="user-layer__controls">
+          <span class="hint">
+            На указанную почту будет<br>
+            отправлено письмо со ссылкой<br>
+            для смены пароля
+          </span>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Восстановить пароль</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ui-widget-overlay"></div>
+</body>
+</html>

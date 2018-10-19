@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% if not filterForm is defined %}
+    {% set filterForm = null %}
+{% endif %}
+
+{% block metas %}
+  {{ parent() }}
+  {% if presentation.pagination is defined and presentation.pagination.page > 1 %}
+    <link rel="prev" href="{{ path('taxon', { slug: taxon.slug, page: presentation.pagination.page - 1 }) }}"/>
+    <link rel="canonical" href="{{ path('taxon', { slug: taxon.slug }) }}"/>
+  {% endif %}
+  {% if presentation.pagination is defined and  presentation.pagination.page < presentation.pagination.lastPage %}
+    <link rel="next" href="{{ path('taxon', { slug: taxon.slug, page: presentation.pagination.page + 1 }) }}"/>
+  {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('js/vendor/jquery-ui/jquery-ui.min.css') }}" media="all"/>
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block main %}
+    <section>
+        <div class="container">
+
+            <div class="section-title">
+                <div class="breadcrumbs">
+                    <a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>
+                    <span class="breadcrumbs__divide"></span>
+                    {% if taxon.taxonEntity and not taxon.taxonEntity.isRoot %}
+                    <a href="{{ path('catalog_index') }}" class="breadcrumbs__item">Каталог</a>
+                    <span class="breadcrumbs__divide"></span>
+                    {% endif %}
+                    <a class="breadcrumbs__item breadcrumbs__item_active">{{ taxon.name }}</a>
+                </div>
+                <span class="section-title__text">{{ taxon.name }}</span>
+            </div>
+
+            {{ renderTaxonPresentation(presentation, {'filterForm': filterForm}) }}
+        </div>
+    </section>
+{% endblock %}

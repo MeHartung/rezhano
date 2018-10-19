@@ -1,0 +1,30 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'restore-form' } }) }}
+    <div class="restore-form__title">
+        Восстановление пароля
+    </div>
+    <div class="restore-form__text">
+        Придумайте новый пароль —&nbsp;не менее <b>8 символов</b>, должен содержать буквы латинского алфавита и цифры
+    </div>
+
+    {{ form_errors(form) }}
+
+    <div class="password-input-wrap">
+        {{ form_widget(form.plainPassword.first, { attr: { placeholder: 'Новый пароль', class: 'restore-form__input layer__input-password'}}) }}
+        {#<input class="restore-form__input" type="password" placeholder="Новый пароль">#}
+        <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+    </div>
+    <div class="password-input-wrap">
+        {{ form_widget(form.plainPassword.second, { attr: { placeholder: 'Повторите пароль', class: 'restore-form__input layer__input-password'}}) }}
+        {#<input class="restore-form__input" type="password" placeholder="Повторите пароль">#}
+        <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+    </div>
+    <div class="form-errors">
+        {{ form_errors(form.plainPassword.first) }}
+        {{ form_errors(form.plainPassword.second) }}
+    </div>
+    <div class="buttons">
+        <button class="button restore-form__button" type="submit">Сохранить</button>
+    </div>
+{{ form_end(form) }}

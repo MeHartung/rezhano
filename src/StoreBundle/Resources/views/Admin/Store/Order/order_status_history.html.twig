@@ -1,0 +1,78 @@
+{% extends ":CRUD:base_edit.html.twig" %}
+
+{% block navbar_title %}
+    <i class="fa fa-history" aria-hidden="true"></i>
+    Журнал статусов заказа {{ object.documentNumber }}
+{% endblock %}
+
+{%- block tab_menu -%}
+
+{%- endblock -%}
+
+{% block form %}
+
+    {{ form_start(form, { attr: {
+        class: "form-horizontal"
+    }
+    }) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <div class="tab-content">
+                    <div class="box-body  container-fluid">
+                        <div class="supported-variable-list-container container">
+                            <label class="control-label">
+                                Журнал статусов заказа
+                            </label>
+                            {% if orderStatusHistory %}
+
+                                <table class="supported-variable-list table table-sm"
+                                       style="width:100%; margin: 0 auto;">
+                                    <thead>
+                                    <tr>
+                                        <td><b>Статус</b></td>
+                                        <td><b>Пользователь</b></td>
+                                        <td><b>Дата</b></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for record in orderStatusHistory %}
+                                        {% set userViewData = "-" %}
+                                        {% if record.user %}
+                                            {% if record.user.fio %}
+                                                {% set userViewData = record.user.fio %}
+                                            {% else %}
+                                                {% set userViewData = record.user.email %}
+                                            {% endif %}
+                                        {% endif %}
+                                        <tr>
+                                            <td>{{ record.status.name }}</td>
+                                            <td>{{ userViewData }}</td>
+                                            <td>{{ record.createdAt | date("d.m.Y H:m") }}</td>
+                                            {# <td>{{ record.reason }}</td> #}
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <br/>
+                                У данного заказа нет записией в журнале статусов
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <button class="btn btn-success" >
+            <a href="{{ admin.generateObjectUrl('list', object ) }}" style="color: white">
+                <i class="fa fa-edit" aria-hidden="true"></i> К заказу </a>
+        </button>
+        <button type="submit" class="btn btn-success" name="btn_update_and_edit">
+            <a href="{{ admin.generateObjectUrl('list', object ) }}" style="color: white">
+                <i class="fa fa-list" aria-hidden="true"></i> К списку  </a>
+        </button>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% if product.isPurchasable %}
+<div style="display:{% if product.sale or product.novice or product.hit or product.hasClubPrice %}block{% else %}none{% endif %};" class="product_badge">
+    {% if product.hasClubPrice and app.request.get('_route') != 'product' %}
+        <div class="club-price__icon">
+            <span>Клубная<br>цена</span>
+            <img src="/images/club_price_icon.png" alt="">
+        </div>
+    {% elseif product.sale %}
+        <div class="bit_badge_discount" style="top:-13px;right:-13px">
+            <img src="/plugins/system/bit_vm_product_badges/bitvmbadges/img/ex-skidka.png" alt="badge_discount">
+        </div>
+    {% elseif product.novice %}
+        <div class="bit_badge_new" style="top:-13px;right:-13px">
+            <img src="/plugins/system/bit_vm_product_badges/bitvmbadges/img/ex-new.png" alt="badge_new">
+        </div>
+    {% elseif product.hit %}
+        <div class="bit_badge_sale" style="top:-13px;right:-13px">
+            <img src="/plugins/system/bit_vm_product_badges/bitvmbadges/img/ex-recom.png" alt="badge_featured">
+        </div>
+    {% elseif product.withGift %}
+        <div class="bit_badge_product" style="top:-13px;right:-13px">
+            <img src="/plugins/system/bit_vm_product_badges/bitvmbadges/img/ex-podarok.png" alt="badge_product">
+        </div>
+    {% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,121 @@
+{% extends "@Store/Profile/index.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ orders|client_model_collection('order', 'Orders') }}
+{% endblock %}
+
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <div class="breadcrumbs">
+                    <a class="breadcrumbs__item" href="{{ url('homepage') }}">Главная страница</a>
+                    <span class="breadcrumbs__divide"></span>
+                    <a class="breadcrumbs__item breadcrumbs__item_active">Личный кабинет</a>
+                </div>
+                <span class="section-title__text">Личный кабинет</span>
+            </div>
+
+            {#<div class="center_no-left cards-container__center_no-left">#}
+            {#<a href="{{ path('fos_user_profile_edit')}}">Редактировать профиль</a><br />#}
+            {#<a href="{{ path('fos_user_security_logout')}}">Выйти из профиля</a><br />#}
+            {#</div>#}
+
+            <div class="center_no-right">
+                <aside class="left">
+                    <div class="personal-office-aside">
+                        <div class="personal-office-aside__userinfo">
+                            <span class="personal-office-aside__username">{% if app.user.fio %}{{ app.user.fio }}{% else %}{{ app.user.email }}{% endif %}</span>
+                            <span class="personal-office-aside__mobile">{{ app.user.phone }} </span>
+                            <a class="personal-office-aside__email">{{ app.user.email }}</a>
+                        </div>
+
+                        <div class="personal-office-aside__controls">
+                            <a href="{{ path('fos_user_profile_edit')}}" class="controls-button edit-user-info">Редактировать данные</a>
+                            <a href="" class="controls-button helpers">Нужна помощь</a>
+                        </div>
+                    </div>
+
+                    <a href="{{ path('fos_user_notice_show') }}" class="notification-aside">
+                        <span class="mail-icon {% if app.user.newNotifications|length %}mail-icon_new-message-big{% endif %}"></span>
+                        <span class="notification-aside__message-title">
+                            {% if app.user.newNotifications|length %}
+                                {{ app.user.newNotifications|length }} {{ app.user.newNotifications|length|ending_format([
+                                    'новое<br>уведомление',
+                                    'новых<br>уведомления',
+                                    'новых<br>уведомлений'
+                                ])|raw }}
+                            {% else %}
+                                Уведомления
+                            {% endif %}
+                        </span>
+                    </a>
+                </aside>
+
+                <div class="section-wrap">
+                    <div class="personal-cabinet"
+                            {#id="cabinetTabs"#}
+                    >
+                        <div class="personal-cabinet__filter" >
+                            {{ form_start(filterForm) }}
+                            <span class="filter-title">По дате:</span>
+                            <div class="filter-item">
+                                <div class="custom-datepicker custom-datepicker_wide" id="datePicker" >
+                                    <label>
+                                        {{ form_widget(filterForm.date, {'attr': {'class':'input-text_medium'}}) }}
+                                    </label>
+                                </div>
+                            </div>
+                            {% do filterForm.date.setRendered %}
+
+                            <div class="filter-item">
+                                <div class="custom-border-select">
+                                    <label for="{{ filterForm.city.vars.id }}">
+                                        {{ form_widget(filterForm.city) }}
+                                        {#<select name="cityFilter" id="cityFilter">#}
+                                            {#<option value="Екатеринбург">Екатеринбург</option>#}
+                                            {#<option value="Москва">Москва</option>#}
+                                            {#<option value="Новосибирск">Новосибирск</option>#}
+                                        {#</select>#}
+                                    </label>
+                                </div>
+                            </div>
+                            {% do filterForm.city.setRendered %}
+
+                            {#<div class="filter-item">#}
+
+                                {#<div class="custom-border-select">#}
+                                    {#<label for="{{ filterForm.mtr.vars.id }}">#}
+                                        {#{{ form_widget(filterForm.mtr) }}#}
+                                    {#</label>#}
+                                {#</div>#}
+                            {#</div>#}
+                            {% do filterForm.mtr.setRendered %}
+                            {{ form_end(filterForm) }}
+                        </div>
+
+                        <div class="personal-cabinet__order-list" id="myOrders">
+                            <div class="order-list-header">
+                                <span class="order-list-header__item-title order-list-item__number">Номер заказа</span>
+                                <span class="order-list-header__item-title order-list-item__status">Статус</span>
+                                <span class="order-list-header__item-title order-list-item__date">Дата</span>
+                                <span class="order-list-header__item-title order-list-item__value">Стоимость</span>
+                                {#<span class="order-list-header__item-title order-list-item__repeat">Повторить</span>#}
+                            </div>
+                            {% for order in orders %}
+                                <div class="order-list-row">
+                                    <a href="" class="order-list-row__item order-list-item__number">{{ order.documentNumber }}</a>
+                                    <a href="" class="order-list-row__item order-list-item__status">{{ order.orderStatus?order.orderStatus.name:'' }}</a>
+                                    <span class="order-list-row__item order-list-item__date">{{ order.checkoutAt|date('d.m.Y H:i') }}</span>
+                                    <span class="order-list-row__item order-list-item__value">{{ order.total|price }}</span>
+                                    {#<a class="button button-buy_in-product "></a>#}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

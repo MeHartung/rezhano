@@ -1,0 +1,218 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: "@StoreBundle/Resources/config/services.yml" }
+    - { resource: email_templates.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: ru
+
+    aw_email_template_admin.class: StoreBundle\Entity\Messaging\EmailTemplate
+    aw_email_template_admin.email_template_group: messaging
+    aw_email_template_admin.email_template_label: 'Шаблоны E-mail'
+    fos_user.registration.form.type: StoreBundle\Form\User\RegisterType
+    fos_user.profile.form.type: StoreBundle\Form\User\ProfileType
+    aw.settings.admin.group: settings
+    aw.settings.admin.label: Настройки
+    hotspot_entity: StoreBundle\Entity\Text\ContentHotspot
+    security_provider_name: main
+    aw.logistic.warehouse.entity: StoreBundle\Entity\Store\Logistics\Warehouse\Warehouse
+
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["ru"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+      - 'StoreBundle:Form:fields.html.twig'
+      - 'SonataCoreBundle:Form:datepicker.html.twig'
+      - 'StoreBundle:Catalog\Product:product_taxon.html.twig'
+      - 'StoreBundle:Form/Custom:custom_date_interval_widget.html.twig'
+      - 'StoreBundle:CRUD/Store/Product:product_attribute_value_widget.html.twig'
+
+    globals:
+      web_counters_enabled: "%web_counters_enabled%"
+      cart: '@user.cart'
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+        mapping_types:
+          enum: string
+        schema_filter: ~^(?!iumvy_)~
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        dql:
+          string_functions:
+             field: DoctrineExtensions\Query\Mysql\Field
+             date: DoctrineExtensions\Query\Mysql\Date
+             now: DoctrineExtensions\Query\Mysql\Now
+             regexp: DoctrineExtensions\Query\Mysql\Regexp
+
+#propel:
+#    database:
+#      connections:
+#        excam:
+#          adapter:              %database_driver%
+#          classname:            Propel\Runtime\Connection\PropelPDO
+#          user:                 %database_user%
+#          password:             %database_password%
+#          dsn:                  %database_driver%:host=%database_host%;dbname=%database_name%;charset=UTF8
+#          settings:
+#            charset: utf8
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport:  "%mailer_transport%"
+    host:       "%mailer_host%"
+    port:       "%mailer_port%"
+    encryption: "%mailer_encryption%"
+    username:   "%mailer_user%"
+    password:   "%mailer_password%"
+    spool:      { type: memory }
+
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/Doctrine/Migrations"
+    namespace: Application\Migrations
+    table_name: schema_versions
+    name: Application Migrations
+
+stof_doctrine_extensions:
+    default_locale: ru_RU
+    orm:
+      default:
+        tree: true
+        timestampable: true
+        sluggable: true
+        sortable: true
+
+sonata_admin:
+  title: Раздел администрирования
+  title_logo: images/logo.png
+  dashboard:
+    groups:
+        store:
+            label: "Интернет-магазин"
+        catalog:
+            label: "Каталог"
+        product:
+            label: "Товары"
+        messaging:
+            label: Настройки уведомлений
+        text:
+            label: "Текстовые разделы"
+        notify:
+            label: 'Уведомления'
+        document:
+            label: "Документы"
+        integration:
+            label: "Интеграция"
+        user:
+            label: "Пользователи"
+        settings:
+            label: "Настройки"
+        logistic:
+            label: "Логистика"
+  templates:
+    edit:   ':CRUD:edit.html.twig'
+#    html: 'StoreBundle:Catalog\Product:product_taxon.html.twig'
+
+  assets:
+    # Обновляем версию select2, в новой можно юзать опцию tags для селектов
+    remove_javascripts:
+      - 'bundles/sonatacore/vendor/select2/select2.min.js'
+    extra_javascripts:
+      - 'js/vendor/select2/select2.min.js'
+      - 'js/vendor/select2/ru.js'
+      - 'js/tinymce/custom_buttons.js'
+    extra_stylesheets:
+      - 'js/vendor/select2/select2.css'
+  options:
+    html5_validate: false
+    lock_protection: false
+    use_select2: true
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+
+        sonata.admin.block.search_result:
+            contexts: [admin]
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: StoreBundle\Entity\User\User
+    from_email:
+      address: "%mailer_from%"
+      sender_name: "%mailer_sender_name%"
+#    resetting:
+#      retry_ttl: 1
+    service:
+      mailer: store.mailer.fos_user_mailer
+
+accurateweb_sphinx_search:
+  searchd:
+    binary_path: ~
+    host: 127.0.0.1
+    port: 9312
+    limit: 1000
+
+#accurateweb_cdek_shipping:
+#  tariffs:
+#    courier: !php/const:AccurateCommerce\Component\CdekShipping\Api\CdekApiClient::TARIFF_PARCEL_STORAGE_DOOR
+#    pickup: !php/const:AccurateCommerce\Component\CdekShipping\Api\CdekApiClient::TARIFF_PARCEL_STORAGE_STORAGE
+
+accurateweb_logistic:
+  entities:
+    warehouse: StoreBundle\Entity\Store\Logistics\Warehouse\Warehouse
+    city: StoreBundle\Entity\Store\Logistics\Delivery\Cdek\CdekCity
+    pickup_point: StoreBundle\Entity\Store\Logistics\Delivery\Cdek\CdekPickupPoint
+    product_stock: StoreBundle\Entity\Store\Logistics\Warehouse\ProductStock
+    product_stockable: StoreBundle\Entity\Store\Catalog\Product\Product

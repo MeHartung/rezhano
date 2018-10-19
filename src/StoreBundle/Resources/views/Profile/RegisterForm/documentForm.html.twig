@@ -1,0 +1,9 @@
+<div class="document-item">
+    {% for child in form.children %}
+        {{ form_widget(child.name) }}
+        {#{{ form_widget(child.documentType) }}#}
+        <input type="hidden" name="{{ child.documentType.vars.full_name }}" value="{{ child.documentType.vars.value }}">
+        {% form_theme child.file '@Store/Profile/RegisterForm/documentFormTheme.html.twig' %}
+        {{ form_row(child.file, {'label': child.vars.label}) }}
+    {% endfor %}
+</div>

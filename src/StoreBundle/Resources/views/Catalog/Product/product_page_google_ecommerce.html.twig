@@ -1,0 +1,19 @@
+{% block ga_pre_init %}
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        'ecommerce': {
+          'detail': {
+            'actionsField': {/*'list' => ??? */},
+            'products': [{
+              'name': '{{ product.name }}',
+              'id': {{ product.id }},
+              'price': {{ product.price }},
+              'brand': '{{ product.brand }}',
+              'category': '{{ taxon }}'
+            }]
+          }
+        }
+      });
+    </script>
+{% endblock %}

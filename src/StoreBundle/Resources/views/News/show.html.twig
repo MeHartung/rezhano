@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block metas %}
+  <title>{{ news.title }} &mdash; Новости Интернет-магазина ЭКСКАМ</title>
+  <meta name="description" content="{{ news.announce }}">  
+{% endblock %}
+
+{% block body %}
+  
+<section class="gkContentTopBorder ">
+  <section id="gkBreadcrumb">											
+    <div class="breadcrumbs">
+      <ul>
+        <li class="pathway"><a href="{{ path('homepage') }}">Главная</a></li>
+        <li class="pathway separator">/</li>
+        <li class="pathway"><a href="{{ path('news_index') }}">Новости</a></li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<section id="gkContent">    
+  <article class="text-article">
+    <h1>{{ news.title }}</h1>      
+    <div class="article-properties">
+      <span class="article-date">{{ news.createdAt|localizeddate('long', 'none', app.request.locale) }}</span>
+    </div>
+
+      {%  if image_exists(news) %}
+        <a href="{{ path('news_show', { 'slug': news.slug }) }}"
+           class="nspImageWrapper tleft fleft"
+           style="margin:6px 14px 0 0;" rel="nofollow">
+          <img
+                  class="nspImage tleft fleft"
+                  src="{{ image_url(news) }}"
+                  alt="" ></a>
+      {% endif %}
+    <div>
+      {{ news.text|raw }}
+    </div>  
+  </article>  
+  <div class="text-article-bottom">
+    <a href="{{ path('news_index') }}">&larr; К списку новостей</a>
+  </div>
+</section>  
+{% endblock %}      

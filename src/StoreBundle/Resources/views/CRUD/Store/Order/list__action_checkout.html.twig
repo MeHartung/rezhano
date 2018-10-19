@@ -1,0 +1,4 @@
+{#{% if object.checkoutStateId == constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_ONE_CLICK")#}
+    {#or object.checkoutStateId == constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_PRE_ORDER") %}#}
+    {#<a class="btn btn-sm btn-default" href="{{ admin.generateObjectUrl('checkout', object) }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Оформить заказ</a>#}
+{#{% endif %}#}

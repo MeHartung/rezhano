@@ -1,0 +1,7 @@
+{#{% if object.checkoutStateId != constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_ONE_CLICK")#}
+{#and object.checkoutStateId != constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_PRE_ORDER") %}#}
+<a class="btn btn-sm btn-default"
+   href="{{ admin.generateObjectUrl('orderStatusHistory', object ) }}">
+    <i class="fa fa-history" aria-hidden="true"></i> Журнал статусов заказа
+</a>
+{#{% endif %}#}

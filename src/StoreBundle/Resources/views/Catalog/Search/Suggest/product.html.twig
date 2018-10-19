@@ -1,0 +1,18 @@
+
+<a class="suggest-product" href="{{ url }}">
+  {#<?php if ($thumb && $thumb->file()->exists()): ?>#}
+    {#<img style="float: left; padding-right: 8px;" src="<?php echo $thumb->web()->url() ?>" alt="" />#}
+  {#<?php endif ?>#}
+    {% set main_image = object.mainImage %}
+    {% set thumbnail_url = main_image ? image_thumbnail_url(main_image, null, '50x50') : null %}
+    {% if thumbnail_url %}
+    <img class="image-search" src="{{ thumbnail_url }}" alt="камера" >
+    {% endif %}
+    <b>{{ highlight_search_results(search, object.name, 'span', { class: 'highlight'})|raw }}</b>
+    <br/>
+  {% if object.isPurchasable %}
+    <span class="price-search">{{ object.price | price }}</span>
+  {% else %}
+    <span class="price-search grey">Нет в наличии</span>
+  {% endif %}
+</a>

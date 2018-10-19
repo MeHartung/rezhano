@@ -1,0 +1,38 @@
+<div class="notice-list__item
+            {#notice-list__item_deployed#}
+            {% if not notice.read %}notice-list__item_new-message{% endif %}
+            ">
+    <div class="notice-list__row">
+        <span class="notice-item-author">От: {{ notice.author }}</span>
+        <span class="notice-item-icon notice-item-icon_admin"></span>
+        <span class="notice-item-order"></span>
+        <span class="notice-item-title">{{ notice.title }}</span>
+        <span class="notice-item-date">{{ notice.dialog.updatedAt|date('d.m.Y H:i') }}</span>
+    </div>
+    <div class="notice-deployed-wrap">
+        <div class="notice-deployed">
+            <div class="incoming-message">
+                {{ notice.message|raw }}
+            </div>
+        </div>
+        {% if notice.dialog.messages|length > 1 %}
+        <div class="outgoing-question-form">
+            <span class="user-icon"></span>
+            <div class="custom-textarea">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Введите текст, чтобы ответить"></textarea>
+            </div>
+        </div>
+        {% endif %}
+        {% for message in notice.dialog.messages %}
+        <div class="previous-question">
+            <div class="previous-question__title">
+                <span class="previous-question__name">От: {{ message.userName }}</span>
+                <span class="previous-question__date">{{ message.createdAt|date('d.m.Y H:i') }}</span>
+            </div>
+            <div class="previous-question__text">
+                {{ message.message|raw }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

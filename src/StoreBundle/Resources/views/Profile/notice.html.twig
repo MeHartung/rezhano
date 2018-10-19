@@ -1,0 +1,55 @@
+{% extends "@Store/Profile/index.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ notifications|client_model_collection('notification', 'Notifications') }}
+{% endblock %}
+
+{% block main %}
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <div class="breadcrumbs">
+          <a class="breadcrumbs__item" href="{{ url('homepage') }}">Главная страница</a>
+          <span class="breadcrumbs__divide"></span>
+          <a class="breadcrumbs__item" href="{{ path('fos_user_profile_show') }}">Личный кабинет</a>
+          <span class="breadcrumbs__divide"></span>
+          <a class="breadcrumbs__item breadcrumbs__item_active">Уведомления</a>
+        </div>
+        <span class="section-title__text">Уведомления</span>
+      </div>
+
+      <div class="center_no-right">
+        <aside class="left">
+          <div class="personal-office-aside">
+            <div class="personal-office-aside__userinfo">
+              <span class="personal-office-aside__username">{% if app.user.fio %}{{ app.user.fio }}{% else %}{{ app.user.email }}{% endif %}</span>
+              <span class="personal-office-aside__mobile">{{app.user.phone }}</span>
+              <a class="personal-office-aside__email">{{ app.user.email }}</a>
+            </div>
+
+            <div class="personal-office-aside__controls">
+              <a href="{{ path('fos_user_profile_edit')}}" class="controls-button edit-user-info">Редактировать данные</a>
+              <a href="" class="controls-button helpers">Нужна помощь</a>
+            </div>
+          </div>
+
+        </aside>
+
+        <div class="section-wrap">
+          <div class="notice-list">
+            {% for notice in notifications %}
+                {% if notice.type == 'dialog' %}
+                  {% include '@Store/Profile/Notification/notification_dialog.html.twig' with {'notice' : notice} %}
+                {% elseif notice.type == 'order' %}
+                  {% include '@Store/Profile/Notification/notification_order.html.twig' with {'notice' : notice} %}
+                {% else %}
+                  {% include '@Store/Profile/Notification/notification_text.html.twig' with {'notice' : notice} %}
+                {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

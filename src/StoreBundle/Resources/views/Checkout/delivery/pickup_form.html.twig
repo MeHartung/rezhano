@@ -1,0 +1,48 @@
+<div class="delivery-type-pickup" id="typePickup">
+    {{ form_start(pickupForm) }}
+    {{ form_errors(pickupForm) }}
+    {{ form_errors(pickupForm.shippingMethodId) }}
+    <div class="cards-container__wrap">
+        <div class="delivery-container__item">
+
+            <div class="delivery-container__pickup-info">
+                <span class="pickup-info__date">Вы можете забрать заказ <br><strong>с {{ order.closestAvailablePickupDate|localizeddate('long', 'none') }}</strong></span>
+                {% if city.pickupPoint is defined and city.pickupPoint is not empty %}
+                <span class="pickup-info__address">{{ city.pickupPoint.postcode}}, {{ city.name }} <br><a href="#">{{ city.pickupPoint.address }} </a></span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="cards-container__wrap">
+        <div class="delivery-container__item">
+            {{ form_errors(pickupForm.shippingDate) }}
+            <div class="delivery-container__header">
+                <span>Когда удобно<br>забрать</span>
+            </div>
+            <div class="delivery-container__item-info">
+                <div class="custom-datepicker">
+                    {{ form_widget(pickupForm.shippingDate,{'attr':{'class':'input-text_small'}}) }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="cards-container cards-container_no-shadow">
+        <div class="cards-container__wrap">
+            {{ form_errors(pickupForm.customer_comment) }}
+            <div class="delivery-container__header">
+                <span>Комментарии</span>
+            </div>
+            <div class="delivery-container__item-info">
+                <div class="custom-textarea">
+                    {{ form_widget(pickupForm.customer_comment, {'attr':{'placeholder':'Указать желаемые услуги и сервисы', 'rows':30, 'cols':10}}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" style="display: none" id="submitTypePickup">
+    <input type="hidden" name="{{ pickupForm.shippingMethodId.vars.full_name }}" value="{{ pickupForm.shippingMethodId.vars.value }}">
+    {% do pickupForm.shippingMethodId.setRendered  %}
+    {{ form_end(pickupForm) }}
+</div>

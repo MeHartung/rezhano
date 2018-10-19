@@ -1,0 +1,86 @@
+{% extends '::base.html.twig' %}
+
+{% if currentStep is not defined %}
+  {% set currentStep = cart.checkoutStateId %}
+{% endif %}
+{% set cartStep = constant('StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_CART') %}
+{% set deliveryStep = constant('StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_DELIVERY') %}
+{% set paymentStep = constant('StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_PAYMENT') %}
+{% set completeStep = constant('StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_COMPLETE') %}
+{% set isCartStep = currentStep == cartStep %}
+{% set isDeliveryStep = currentStep == deliveryStep %}
+{% set isPaymentStep = currentStep == paymentStep %}
+{% set isCompleteStep = currentStep == completeStep %}
+
+{% block headerMenu %}
+  <div class="header-menu header-menu__container">
+    <div class="container">
+      <div class="header-menu__wrap">
+        <div class="header-menu__ordering">
+          <a href="{{ path('cart_index') }}"
+             class="ordering-item{% if isCartStep %} ordering-item_active{% endif %}{% if currentStep>cartStep %} ordering-item_past{% endif %}">
+            <span class="card-icon {% if currentStep<cartStep %}grey-icon{% else %}card-icon__blue blue-icon{% endif %}"></span>
+            <span class="ordering-item__name">Корзина</span>
+          </a>
+          <a href="{{ path('checkout_shipping') }}"
+             class="ordering-item{% if isDeliveryStep %} ordering-item_active{% endif %}{% if currentStep>deliveryStep %} ordering-item_past{% endif %}">
+            <span class="delivery-icon {% if currentStep<deliveryStep %}grey-icon{% else %}delivery-icon__blue blue-icon{% endif %}"></span>
+            <span class="ordering-item__name">Доставка и сервисы</span>
+          </a>
+          <a href="{{ path('checkout_payment') }}"
+             class="ordering-item{% if isPaymentStep %} ordering-item_active{% endif %}{% if currentStep>paymentStep %} ordering-item_past{% endif %}">
+            <span class="payment-icon {% if currentStep<paymentStep %}grey-icon{% else %}payment-icon__blue blue-icon{% endif %}"></span>
+            <span class="ordering-item__name">Оплата</span>
+          </a>
+          <a class="ordering-item{% if isCompleteStep %} ordering-item_active{% endif %}{% if currentStep>completeStep %} ordering-item_past{% endif %}">
+            <span class="order-icon grey-icon"></span>
+            <span class="ordering-item__name">Заказ</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block main %}
+  <section>
+    <div class="container">
+
+      {% block breadcrumbs %}
+        <div class="section-title">
+          <div class="breadcrumbs">
+            <a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a href="{{ path('cart_index') }}" class="breadcrumbs__item">Корзина</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Доставка и сервисы</a>
+          </div>
+          <span class="section-title__text section-title__text_in-product">Доставка и сервисы</span>
+        </div>
+      {% endblock %}
+
+      <div class="center_no-left cards-container__center_no-left">
+        {% block sidebar %}
+          <aside class="right">
+            <div class="cards-container__payment-info">
+              <span class="payment-info__title">К оплате:</span>
+              <span class="payment-info__value">{{ cart.total|number_format(0, '', ' ') }},<span
+                        class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</span>
+            </div>
+            <a href="{{ path('checkout_shipping') }}" class="button"><span>К оформлению заказа</span></a>
+            <a href="{{ path('catalog_index') }}" class="button white"><span>Продолжить покупки</span></a>
+          </aside>
+        {% endblock %}
+        <div class="section-wrap">
+
+          {% block form %}
+          {% endblock %}
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </section>
+{% endblock %}

@@ -1,0 +1,24 @@
+<h1>Личный кабинет</h1>
+<div class="label_wrap">
+    {% if app.request.get('_route') == 'profile_order_history' %}
+        <a class="type-section__user-info active-link" href="">Мои заказы</a>
+    {% else %}
+        <a class="type-section__user-info" href="{{ path('profile_order_history') }}">Мои заказы</a>
+    {% endif %}
+
+    {% if app.request.get('_route') == 'fos_user_profile_edit' or app.request.get('_route') == 'fos_user_change_password' %}
+        <a class="type-section__user-info active-link" href="">Личные данные</a>
+    {% else %}
+        <a class="type-section__user-info" href="{{ path('fos_user_profile_edit') }}">Личные данные</a>
+    {% endif %}
+</div>
+{#Профиль пользователя обновлен#}
+<div class="message">
+{% for label, flashes in app.session.flashbag.all %}
+  {% for flash in flashes %}
+    <div class="message-alert message-alert-{{ label }}">
+      {{ flash }}
+    </div>
+  {% endfor %}
+{% endfor %}
+</div>

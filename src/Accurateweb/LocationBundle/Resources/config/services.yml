@@ -1,0 +1,56 @@
+services:
+  aw.location.geo:
+    class: Accurateweb\LocationBundle\GeoLocation\GeoInterface
+    factory: ['Accurateweb\LocationBundle\GeoLocation\GeoLocationFactory', 'getGeo']
+    arguments: ['@request_stack', 'sypex']
+    shared: false
+    autowire: false
+
+  aw.location.resolver.geo:
+    class: Accurateweb\LocationBundle\LocationResolver\GeoLocationResolver
+    public: false
+    autowire: false
+    arguments:
+      - '@aw.location.geo'
+      - '@app.logistic.cdek_city.repository'
+    tags:
+      - { name: aw.location.resolver, priority: 50 }
+
+  aw.location.resolver.default:
+    class: Accurateweb\LocationBundle\LocationResolver\DefaultLocationResolver
+    public: false
+    autowire: false
+    arguments:
+      - 'Екатеринбург'
+      - '250'
+      - '1'
+    tags:
+      - { name: aw.location.resolver, priority: 100 }
+
+  aw.location.resolver.session:
+    class: Accurateweb\LocationBundle\LocationResolver\SessionLocationResolver
+    arguments: ['@session']
+    public: false
+    autowire: false
+    tags:
+      - { name: aw.location.resolver, priority: 10 }
+
+  aw.location.serializer:
+    class: Accurateweb\LocationBundle\EventListener\LocationSerializer
+    arguments: ['@aw.location']
+    tags:
+      - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+  aw.location:
+    class: Accurateweb\LocationBundle\Service\Location
+    public: true
+
+  aw.user_location.factory:
+    class: Accurateweb\LocationBundle\Model\UserLocationFactory
+    arguments: ['@app.logistic.cdek_city.repository']
+
+  aw.location.collector:
+    class: Accurateweb\LocationBundle\DataCollector\LocationCollector
+    arguments: ['@aw.location']
+    tags:
+      - { name: data_collector, template: '@AccuratewebLocation/DataCollector/location.html.twig', id: aw.location.collector }

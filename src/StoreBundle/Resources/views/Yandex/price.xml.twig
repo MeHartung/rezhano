@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE yml_catalog SYSTEM "shops.dtd">
+<yml_catalog date="{{ "now"|date("Y-m-d H:i") }}">
+    <shop>
+        <name>eXcam</name>
+        <company>Магазин ЭКСКАМ</company>
+        <url>{{ original_url }}</url>
+        <currencies>
+            <currency id="RUB" rate="1"/>
+        </currencies>
+        {{ include('StoreBundle::Yandex/_categories.xml.twig') }}
+        {{ include('StoreBundle::Yandex/_offers.xml.twig') }}
+    </shop>
+</yml_catalog>

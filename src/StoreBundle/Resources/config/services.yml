@@ -1,0 +1,1060 @@
+services:
+    app.admin.text.specialoffer:
+       class: StoreBundle\Admin\Text\SpecialOfferAdmin
+       arguments: [~, StoreBundle\Entity\Text\SpecialOffer, 'StoreBundle:Admin/Text/SpecialOfferAdmin', 'name']
+       tags:
+         - {name: sonata.admin, manager_type: orm, group: text, label: "Акции"}
+
+    app.admin.menu.menuitem:
+       class: StoreBundle\Admin\Menu\MenuItemAdmin
+       arguments: [~, StoreBundle\Entity\Menu\MenuItem, 'StoreBundle:Admin/Menu/MenuItemAdmin', 'name']
+       tags:
+         - {name: sonata.admin, manager_type: orm, group: text, label: "Меню"}
+
+    main.admin.news:
+        class: StoreBundle\Admin\Text\NewsAdmin
+        arguments: [~, StoreBundle\Entity\Text\News, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: text, label: "Новости" }
+
+    main.admin.article:
+        class: StoreBundle\Admin\Text\ArticleAdmin
+        arguments: [~, StoreBundle\Entity\Text\Article, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: text, label: "Статьи" }
+
+    main.admin.order:
+        class: StoreBundle\Admin\Store\Order\OrderAdmin
+        arguments:
+          - ~
+          - 'StoreBundle\Entity\Store\Order\Order'
+          - 'StoreBundle:Admin\Store\Order\OrderAdmin'
+        calls:
+          - [ setShippingManager, [ '@accurateweb.shipping.manager', '@doctrine.orm.entity_manager' ]]
+          - [ addChild, ['@main.admin.order_item']]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: store, label: Заказы }
+
+    main.admin.order_item:
+        class: StoreBundle\Admin\Store\Order\OrderItemAdmin
+        arguments: [~, StoreBundle\Entity\Store\Order\OrderItem, ~]
+        tags:
+          -  { name: sonata.admin, manager_type: orm }
+
+    main.admin.order_status:
+        class: StoreBundle\Admin\Store\Order\OrderStatusAdmin
+        arguments: [~, StoreBundle\Entity\Store\Order\Status\OrderStatus, ~ ]
+        tags:
+          -  { name: sonata.admin, group: store, manager_type: orm, label: 'Статусы заказов' }
+
+    main.admin.order_payment_status:
+        class: StoreBundle\Admin\Store\Order\PaymentStatus\OrderPaymentStatusAdmin
+        arguments: [~, StoreBundle\Entity\Store\Order\PaymentStatus\OrderPaymentStatus, ~]
+        tags:
+          -  { name: sonata.admin, group: store, manager_type: orm, label: 'Статусы оплаты заказов' }
+
+    main.admin.order_status_notification_template:
+        class: StoreBundle\Admin\Store\Order\OrderStatusTransitionNotificationTemplateAdmin
+        arguments: [~, StoreBundle\Entity\Store\Order\Status\OrderStatusTransitionNotificationTemplate, 'StoreBundle:Admin\Store\Order\OrderStatusTransitionNotificationTemplateAdmin' ]
+        tags:
+          -  { name: sonata.admin, group: messaging, manager_type: orm, label: 'Уведомления о смене статусов заказов' }
+
+    main.admin.brand:
+        class: StoreBundle\Admin\Store\Brand\BrandAdmin
+        arguments: [~, StoreBundle\Entity\Store\Brand\Brand, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: catalog, label: Бренды }
+
+    main.admin.catalog.product:
+        class: StoreBundle\Admin\Store\Catalog\ProductAdmin
+        arguments: [~, StoreBundle\Entity\Store\Catalog\Product\Product, 'StoreBundle:Admin/Store/Catalog/ProductAdmin']
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: catalog, label: Товары }
+
+    main.admin.user:
+        class: StoreBundle\Admin\User\UserAdmin
+        arguments: [~, StoreBundle\Entity\User\User, ~]
+        tags:
+          -  { name: sonata.admin, manager_type: orm, group: user, label: Пользователи }
+
+#    main.admin.setting:
+#        class: StoreBundle\Admin\Setting\SettingAdmin
+#        arguments: [~, StoreBundle\Entity\Setting, 'StoreBundle:Admin/SettingAdmin', '@accurateweb.service.setting']
+#        tags:
+#          -  { name: sonata.admin, manager_type: orm, group: settings, label: Настройки }
+
+    app.admin.catalog.taxon:
+        class: StoreBundle\Admin\Store\Catalog\TaxonAdmin
+        arguments: [~, StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon, 'StoreBundle:Admin/Store/Catalog/TaxonAdmin', 'name']
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: catalog, label: "Разделы каталога"}
+        calls:
+            - [setModelManager, ['@catalog_taxon.model_manager'] ]
+
+    catalog_taxon.model_manager:
+        class: StoreBundle\ModelManager\CatalogTaxonModelManager
+        arguments: [ '@doctrine', '@logger' ]
+
+     #main.admin.taxon:
+     #    class: StoreBundle\Admin\Store\Catalog\TaxonAdmin
+     #    arguments: [~, StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon, ~]
+    #     tags:
+     #       - { name: sonata.admin, manager_type: orm, group: store, label: Каталог }
+
+    app.admin.products.attributes:
+      class: StoreBundle\Admin\Products\ProductAttributeAdmin
+      arguments: [~, StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttribute, ~]
+      tags:
+        - {name: sonata.admin, manager_type: orm, group: catalog, label: "Свойства товаров"}
+
+    app.admin.products.type:
+      class: StoreBundle\Admin\Products\Type\ProductTypeAdmin
+      arguments: [~, StoreBundle\Entity\Store\Catalog\Product\Attributes\Type\ProductType, ~]
+      tags:
+        - {name: sonata.admin, manager_type: orm, group: catalog, label: "Типы товаров"}
+
+    app.admin.products.attributevalue:
+      class: StoreBundle\Admin\Products\ProductAttributeValueAdmin
+      arguments: [~, StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttributeValue, ~]
+      tags:
+        - {name: sonata.admin, manager_type: orm, group: hide, label: "Значения атрибутов"}
+
+#    app.admin.products.producttypeproductattribute:
+#       class: StoreBundle\Admin\Products\Type\ProductTypeProductAttributeAdmin
+#       arguments: [~, StoreBundle\Entity\Store\Catalog\Product\Attributes\Type\ProductTypeProductAttribute, ~]
+#       tags:
+#        - {name: sonata.admin, manager_type: orm, group: hide, label: "Значение свойств"}
+
+    app.admin.products.productattribute.valuetoproduct:
+      class: StoreBundle\Admin\Products\ProductAttributeValueToProductAdmin
+      arguments: [~,  StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttributeValueToProduct, ~]
+      tags:
+        - {name: sonata.admin, manager_type: orm, group: hide, label: "Delete" }
+
+#    main.admin.catalog.taxon:
+#        class: StoreBundle\Admin\Store\Catalog\TaxonAdmin
+#        arguments:
+#          - ~
+#          - StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon
+#          - 'StoreBundle:Admin\Store\Catalog\TaxonAdmin'
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: store, label: Разделы каталога }
+
+    main.admin.payment.method:
+        class: StoreBundle\Admin\Store\Payment\Method\PaymentMethodAdmin
+        arguments:
+          - ~
+          - 'StoreBundle\Entity\Store\Payment\Method\PaymentMethod'
+          - 'PixSortableBehaviorBundle:SortableAdmin'
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: store, label: Способы оплаты }
+
+    main.admin.payment.alfabanktaxon:
+        class: StoreBundle\Admin\Store\Payment\Method\AlfaBankTaxonAdmin
+        arguments: [~, StoreBundle\Entity\Store\Payment\Method\AlfaBankTaxon, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: integration, label: Категории товаров Альфа-Банка }
+
+    main.twig.currency:
+        class: StoreBundle\Twig\CurrencyExtension
+        public: false
+        arguments: ['@store.price.manager']
+        tags:
+            - { name: twig.extension }
+
+    main.twig.menu:
+        class: StoreBundle\Twig\MenuExtension
+        arguments:
+          - "@request_stack"
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.FrontendInterop:
+        class: StoreBundle\Twig\FrontendInteropTwigExtension
+        arguments: [%kernel.root_dir%]
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    store.geography.location:
+      class: StoreBundle\Service\Geography\Location
+      arguments: ["@doctrine.orm.entity_manager", "@aw.location"]
+
+    app.logistic.cdek_city.repository:
+      class: StoreBundle\Repository\Store\Logistics\Delivery\Cdek\CdekCityRepository
+      factory: ['@doctrine.orm.entity_manager', 'getRepository']
+      arguments: ['StoreBundle\Entity\Store\Logistics\Delivery\Cdek\CdekCity']
+
+    store.user.cart:
+      class: StoreBundle\Service\Order\CartService
+      arguments:
+       - "@session"
+       - "@doctrine.orm.entity_manager"
+       - "@security.token_storage"
+       - '@event_dispatcher'
+
+    accuratecommerce.shipping.service.excam:
+      class: AccurateCommerce\Shipping\Service\Excam\ExcamShippingService
+      arguments:
+        - '070b83d7-995e-4a41-97c2-ec01bb869fbd'
+      tags:
+        - { name: accuratecommerce.shipping.service, priority: 2000 }
+
+#    accuratecommerce.shipping.service.rupost:
+#      class: AccurateCommerce\Shipping\Service\RuPostShippingService
+#      arguments:
+#        - '703a6c0e-3485-420c-b76c-1894e58576e0'
+#      tags:
+#        - { name: accuratecommerce.shipping.service, priority: 1000 }
+
+#    accuratecommerce.shipping.service.cdek:
+#      class: AccurateCommerce\Shipping\Service\AccurateCommerce\ShippingServiceExcam
+#      arguments:
+#        uid: '703a6c0e-3485-420c-b76c-1894e58576e0'
+#      tags:
+#        - { name: accuratecommerce.shipping.service, priority: 2000 }
+
+
+    store.taxonomy.route.builder:
+      class: AccurateCommerce\Store\Catalog\View\TaxonFilteredRouteBuilder
+      arguments:
+        - "@router"
+
+    store.payment.availability.voter.always_available:
+      class: AccurateCommerce\Component\Payment\Method\Availability\Voter\AvailabilityVoterAlwaysAvailable
+
+    store.payment.availability.voter.cash_on_delivery:
+      class: Excam\Payment\Method\Availability\Voter\AvailabilityVoterCashOnDelivery
+
+    store.payment.availability.decision.always_available:
+      class: AccurateCommerce\Component\Payment\Method\Availability\AvailabilityDecisionManager
+      arguments:
+        - 'd2eb7c63-dd58-44a3-9520-8749d72e1e16'
+        - 'Доступен всегда'
+        -
+          - '@store.payment.availability.voter.always_available'
+      tags:
+        - { name: accuratecommerce.payment.method.availability.decision.manager }
+
+    availability.voter.juridical:
+      class: StoreBundle\Payment\Method\Availability\AvailabilityVoterJuridicalRoleUnavailable
+      arguments: ['@security.authorization_checker']
+
+    store.payment.availability.decision.cash_on_delivery:
+      class: AccurateCommerce\Component\Payment\Method\Availability\AvailabilityDecisionManager
+      arguments:
+        - 'a7e6486a-9016-4fd6-8ebc-1d3870f11782'
+        - 'Недоступен для юридических лиц'
+        -
+          - '@availability.voter.juridical'
+      tags:
+        - { name: accuratecommerce.payment.method.availability.decision.manager }
+
+    store.payment.fee.calculator.none:
+      class: AccurateCommerce\Component\Payment\Method\Fee\ZeroFeeCalculator
+      arguments:
+        - '56bbfffe-a97e-4ad5-ada5-7a3749fc8a15'
+        - 'Коммиссия отсутствует'
+        - ''
+      tags:
+        - { name: accuratecommerce.payment.method.fee.calculator}
+
+    store.payment.fee.calculator.cash_on_delivery:
+      class: Excam\Payment\Method\Fee\Calculator\CashOnDeliveryPaymentMethodFeeCalculator
+      arguments:
+        - '1f8312fb-f48f-443a-b915-bec36b7cc072'
+        - 'Коммиссия при оплате наложенным платежом'
+        - '6%% для доставки Почтой России, 3%% для остальных транспортных компаний'
+      tags:
+        - { name: accuratecommerce.payment.method.fee.calculator}
+
+    store.form.checkout:
+      class: StoreBundle\Form\Checkout\CheckoutType
+      arguments:
+        - '@accurateweb.shipping.manager'
+        - '@accuratecommerce.payment.method.manager'
+      tags: ['form.type']
+
+    store.form.checkout_admin:
+      class: StoreBundle\Form\Admin\Checkout\CheckoutAdminType
+      parent: 'store.form.checkout'
+      tags: ['form.type']
+
+    store.validator.payment_method:
+      class: StoreBundle\Validator\Constraints\PaymentMethodValidator
+      arguments:
+        - '@accuratecommerce.payment.method.manager'
+      tags: ['validator.constraint_validator']
+
+    store.validator.shipping_method:
+      class: StoreBundle\Validator\Constraints\ShippingMethodValidator
+      arguments:
+        - '@accurateweb.shipping.manager'
+        - '@doctrine.orm.entity_manager'
+      tags: ['validator.constraint_validator']
+
+    store.order.repository:
+      class: StoreBundle\Repository\Store\Order\OrderRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Store\Order\Order
+
+
+    store.order.document_number_generator:
+      class: AccurateCommerce\Component\Checkout\DocumentNumberGenerator
+      arguments:
+        - '@store.order.repository'
+
+    form.type.tinymce:
+      class: StoreBundle\Form\TinyMceType
+      tags:
+        - { name: 'form.type', alias: 'tinymce'}
+
+    store.gallery.provider.product_photo:
+      class: Excam\Media\Gallery\ProductPhoto\ProductPhotoMediaGalleryProvider
+      arguments:
+        - '@doctrine.orm.entity_manager'
+        - '@store.product.image.repository'
+        - '@store.product.repository'
+
+      tags:
+        - { name: "aw.media.gallery_provider", alias: "product-photo" }
+
+    store.product.image.repository:
+      class: StoreBundle\Repository\Store\Catalog\Product\ProductImageRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Store\Catalog\Product\ProductImage
+
+    store.product.repository:
+      class: StoreBundle\Repository\Store\Catalog\Product\ProductRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Store\Catalog\Product\Product
+
+    store.taxon.repository:
+      class: StoreBundle\Repository\Store\Catalog\Taxonomy\TaxonRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon
+
+    productattributebvaluetoproduct_form:
+      class: StoreBundle\Form\ProductAttributeValueToProductType
+      arguments: ['@doctrine.orm.entity_manager']
+      tags:
+        - { name: form.type }
+
+    producttaxon_form:
+      class: StoreBundle\Form\Catalog\Product\ProductTaxonType
+      arguments:
+        - '@doctrine.orm.entity_manager'
+        - '@idstomodel.transformer'
+      tags:
+        - { name: form.type }
+
+    idstomodel.transformer:
+        class: StoreBundle\Form\DataTransformer\IdsToModelTransformer
+        arguments:
+          - '@doctrine.orm.entity_manager'
+
+    store.order.shipping_method.listener:
+        class: StoreBundle\EventListener\OrderShippingMethodInjectionListener
+        arguments:
+          - '@accurateweb.shipping.manager'
+        tags:
+          - { name: doctrine.event_listener, event: postLoad }
+
+    store.seo.sitemap.loader.common:
+        class: Excam\Sitemap\Loader\StaticUrlLoader
+        arguments:
+          - '@router'
+        tags:
+          - { name: 'aw_seo.sitemap.loader' }
+
+    store.seo.sitemap.loader.static_taxon:
+        class: Excam\Sitemap\Loader\StaticTaxonLoader
+        arguments:
+          - '@store.taxon.repository'
+        tags:
+          - { name: 'aw_seo.sitemap.loader' }
+
+    store.seo.sitemap.loader.product:
+        class: Excam\Sitemap\Loader\ProductLoader
+        arguments:
+          - '@store.product.repository'
+        tags:
+          - { name: 'aw_seo.sitemap.loader' }
+
+    store.seo.sitemap.loader.article:
+        class: Excam\Sitemap\Loader\ArticleLoader
+        arguments:
+          - '@doctrine.orm.entity_manager'
+        tags:
+          - { name: 'aw_seo.sitemap.loader' }
+
+    store.seo.sitemap.loader.news:
+        class: Excam\Sitemap\Loader\NewsLoader
+        arguments:
+          - '@doctrine.orm.entity_manager'
+        tags:
+          - { name: 'aw_seo.sitemap.loader' }
+
+    store.seo.sitemap.loader.special_offer:
+        class: Excam\Sitemap\Loader\SpecialOfferLoader
+        arguments:
+          - '@doctrine.orm.entity_manager'
+        tags:
+          - { name: 'aw_seo.sitemap.loader' }
+
+    store.seo.sitemap.extractor.static_taxon:
+        class: Excam\Sitemap\Extractor\TaxonUrlExtractor
+        arguments:
+          - '@router'
+        tags:
+          - { name: 'aw_seo.sitemap.extractor' }
+
+    store.seo.sitemap.extractor.article:
+        class: Excam\Sitemap\Extractor\ArticleUrlExtractor
+        arguments:
+          - '@router'
+        tags:
+          - { name: 'aw_seo.sitemap.extractor' }
+
+    store.seo.sitemap.extractor.product:
+        class: Excam\Sitemap\Extractor\ProductUrlExtractor
+        arguments:
+          - '@router'
+        tags:
+          - { name: 'aw_seo.sitemap.extractor' }
+
+    store.seo.sitemap.extractor.news:
+        class: Excam\Sitemap\Extractor\NewsUrlExtractor
+        arguments:
+          - '@router'
+        tags:
+          - { name: 'aw_seo.sitemap.extractor' }
+
+    store.seo.sitemap.extractor.special_offer:
+        class: Excam\Sitemap\Extractor\SpecialOfferUrlExtractor
+        arguments:
+          - '@router'
+        tags:
+          - { name: 'aw_seo.sitemap.extractor' }
+
+    store.set.sitemap.extractor.common:
+        class: Accurateweb\SeoBundle\Model\Sitemap\PassiveSitemapUrlExtractor
+        tags:
+          - { name: 'aw_seo.sitemap.extractor' }
+
+    StoreBundle\Sluggable\SlugSubscriber:
+      arguments:
+        - '@accurateweb.slugifier.yandex'
+        - '@validator'
+      tags:
+        - { name: doctrine.event_subscriber, connection: default }
+
+
+    store.supervisor.product_publication:
+      class: StoreBundle\EventListener\ProductPublicationSupervisor
+      arguments: ['@store.product.publication.manager']
+      tags:
+        - { name: doctrine.event_subscriber, connection: default }
+
+    store.checkout.processor:
+      class: AccurateCommerce\Component\Checkout\Processor\CheckoutProcessor
+      lazy: true
+      arguments:
+        - '@event_dispatcher'
+        - '@accurateweb.shipping.manager'
+        - '@accuratecommerce.payment.method.manager'
+        - '@store.order.document_number_generator'
+        - '@doctrine.orm.entity_manager'
+
+    store.form.status_admin:
+      class: StoreBundle\Form\Admin\Status\StatusAdminType
+      tags: ['form.type']
+      arguments:
+        - '@doctrine.orm.entity_manager'
+
+    store.service.send_email_notification:
+      class: StoreBundle\Service\EmailNotification\SendEmailNotificationService
+      arguments:
+        - '@aw_email_templating.template.factory'
+        - '@mailer'
+        - '@monolog.logger'
+        - '%mailer_from%'
+        - '%mailer_sender_name%'
+        - '@doctrine.orm.entity_manager'
+        - '@twig'
+
+    store.user.credit:
+          class: StoreBundle\Service\Order\CreditService
+          arguments:
+            - '@doctrine.orm.entity_manager'
+
+    store.subscriber.checkout:
+      class: StoreBundle\EventListener\CheckoutSubscriber
+      arguments: ['@router', '@service_container']
+      tags:
+        - { name: kernel.event_listener, event: kernel.controller }
+
+    twig.extension.phone:
+        class: StoreBundle\Twig\PhoneExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    app.admin.store.order.status.reason:
+        class: StoreBundle\Admin\Store\Order\Status\Reason\OrderStatusReasonAdmin
+        arguments: [~, StoreBundle\Entity\Store\Order\Status\OrderStatusReason, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: messaging, label: "Примечания к статусам заказов"}
+
+#    store.geography.geo:
+#        class: AccurateCommerce\GeoLocation\Geo
+#        arguments: ['@request_stack']
+#
+#    store.listener.geo_listener:
+#        class: StoreBundle\EventListener\GeoBaseListener
+#        arguments: ['@store.geography.geo']
+#        tags:
+#          - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    store.repository.taxon:
+        class: StoreBundle\Repository\Store\Catalog\Taxonomy\TaxonRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments: ['StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon']
+
+    store.repository.product:
+        class: StoreBundle\Repository\Store\Catalog\Product\ProductRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments: ['StoreBundle\Entity\Store\Catalog\Product\Product']
+
+    store.data_export.yandexmarket:
+        class: StoreBundle\DataExport\YandexMarketXmlBuilder
+        arguments:
+          - '@store.repository.taxon'
+          - '@store.repository.product'
+          - '@router'
+          - '@aw.media.storage.file'
+          - '@twig'
+
+    store.listener.reset_password:
+        class: StoreBundle\EventListener\Security\PasswordResettingSubscriber
+        arguments:
+          - '@router'
+          - '%fos_user.resetting.retry_ttl%'
+          - '@store.mailer.fos_user_mailer'
+        tags:
+          - { name: kernel.event_subscriber }
+
+    store.subscriber.login:
+        class: StoreBundle\EventListener\Security\UserLoginSubscriber
+        arguments: ['@security.authorization_checker', '@store.user.cart', '@router']
+        tags:
+          - { name: kernel.event_subscriber }
+
+    store.order.order_status.service:
+        class: StoreBundle\Service\Order\OrderStatusService
+        arguments: ['@doctrine.orm.entity_manager']
+
+#    store.factory.product_client_adapter:
+#        class: StoreBundle\Factory\ProductClientModelAdapterFactory
+#        arguments:
+#          - '@router'
+#          - '@aw.media.storage.file'
+#          - '@security.token_storage'
+
+    store.subscriber.ordertotal:
+        class: StoreBundle\EventListener\OrderTotalCalculateSubscriber
+        arguments:
+          - '@store.price.manager'
+        tags:
+           - { name: doctrine.event_subscriber, connection: default }
+
+    store.voter.order:
+        class: StoreBundle\Voter\OrderVoter
+        public: false
+        tags:
+          - { name: security.voter }
+
+    twig.extension.EndingFormatter:
+        class: StoreBundle\Twig\EndingFormatTwigExtension
+        tags:
+          - { name: twig.extension }
+
+    store.security.authentication_handler:
+        class: StoreBundle\Service\Security\AuthenticationHandler
+        arguments:
+          - '@Symfony\Component\HttpKernel\HttpKernelInterface'
+          - '@security.http_utils'
+
+    store.registration.failure:
+        class: StoreBundle\EventListener\Security\RegistrationListener
+        arguments: ['@app.form_error.adapter', '@router', '@security.authorization_checker']
+        tags:
+            - { name: kernel.event_subscriber }
+
+#    store.password_resetting.listener:
+
+
+    app.order.pre_checkout:
+        class: StoreBundle\EventListener\OrderCheckoutListener
+        arguments:
+          - '@doctrine.orm.entity_manager'
+          - '@aw.settings.manager'
+        tags:
+            - { name: kernel.event_listener, event: store.order.checkout.pre, method: onOrderCheckoutPre }
+
+    store.product.image.move:
+       class: StoreBundle\Service\Product\ProductMovingService
+       arguments:
+          - '@doctrine.orm.entity_manager'
+
+#    excam.setting.abadoned.cart.resolver:
+#        class: StoreBundle\Setting\Resolver\AbadonedCartResolver
+#        tags:
+#          -  { name: "accurateweb.setting.resolver" }
+#
+#    excam.setting.default.order.status.resolver:
+#        class: StoreBundle\Setting\Resolver\DefaultOrderStatusResolver
+#        arguments: ["@accureteweb.service.setting.transformer"]
+#        tags:
+#          -  { name: "accurateweb.setting.resolver" }
+#
+#    excam.setting.default.order.paymentstatus.resolver:
+#        class: StoreBundle\Setting\Resolver\DefaultOrderPaymentStatusResolver
+#        arguments: ["@accureteweb.service.setting.transformer"]
+#        tags:
+#          -  { name: "accurateweb.setting.resolver" }
+
+    store.settings.repository:
+      class: Doctrine\ORM\EntityRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Setting
+
+    store.order_status.repository:
+      class: Doctrine\ORM\EntityRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Store\Order\Status\OrderStatus
+
+    store.order_payment_status.repository:
+      class: Doctrine\ORM\EntityRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Store\Order\PaymentStatus\OrderPaymentStatus
+
+    aw.settings.storage:
+        class: Accurateweb\SettingBundle\Model\Storage\DoctrineSettingStorage
+        arguments: ['@store.settings.repository', '@doctrine.orm.entity_manager']
+
+    store.setting.abandoned_cart:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - abandoned_cart_age
+       - Возраст корзины в днях, при котором она считается брошенной.
+       - 30
+      tags:
+        - { name: aw.setting }
+
+    store.setting.default_order_status:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+       - '@aw.settings.storage'
+       - '@store.order_status.repository'
+       - default_order_status
+       - Статус по умолчанию для нового заказа.
+      tags:
+        - { name: aw.setting }
+
+    store.setting.default_order_payment_status:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+       - '@aw.settings.storage'
+       - '@store.order_payment_status.repository'
+       - default_order_payment_status
+       - Статус оплаты по умолчанию для нового заказа.
+      tags:
+        - { name: aw.setting }
+
+    store.setting.ios_link:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'ios_link'
+        - 'Ссылка на приложение iOS'
+        - ~
+      tags:
+        - { name: aw.setting }
+
+    store.setting.android_link:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'android_link'
+        - 'Ссылка на приложение Android'
+        - ~
+      tags:
+        - { name: aw.setting }
+
+    aw.taxonomy.manager:
+      class: Accurateweb\TaxonomyBundle\Service\TaxonomyManager
+
+
+    aw.taxonomy.resolver.free_delivery:
+      class: Accurateweb\TaxonomyBundle\Model\Resolver\FreeDeliveryTaxonResolver
+      arguments: ['@store.product.repository']
+      tags:
+        - { name: aw.taxonomy.resolver }
+
+    aw.taxonomy.resolver.static:
+      class: Accurateweb\TaxonomyBundle\Model\Resolver\StaticTaxonResolver
+      arguments:
+        - '@store.taxon.repository'
+        - '@aw.taxon.factory'
+      tags:
+        - { name: aw.taxonomy.resolver }
+
+    aw.taxon.factory:
+      class: Accurateweb\TaxonomyBundle\Model\Taxon\TaxonFactory
+      arguments: ['@store.taxon.repository', '@store.product.repository']
+
+    store.taxon.assert.linked:
+      class: StoreBundle\Validator\Constraints\NotSelfLinkedTaxonValidator
+      tags:
+        - { name: validator.constraint_validator, alias: not_self_linked_taxon }
+
+    store.user.juridical.company_required:
+      class: StoreBundle\Validator\Constraints\JuridicalUserCompanyRequiredValidator
+      tags:
+        - { name: validator.constraint_validator, alias: juridical_company_required }
+
+    store.user.roles.validator:
+      class: StoreBundle\Validator\Constraints\UserRoles
+      tags:
+        - { name: validator.constraint_validator, alias: user_roles }
+
+    store.taxon_resolver.custom:
+      class: StoreBundle\Resolver\Taxonomy\CustomTaxonomyResolver
+      arguments: ['@store.product.repository']
+      tags:
+       - { name: aw.taxonomy.resolver }
+
+    twig.date.extension:
+      class: StoreBundle\Twig\DateExtension
+      tags:
+        - { name: twig.extension }
+
+    #backward compability for stfalcon tinymce
+    templating.helper.assets:
+      alias: assets.packages
+
+    store.order.checkout.stock.reserve:
+      class: StoreBundle\EventListener\OrderCheckoutProductStockReserve
+      arguments: ['@aw.logistic.stock.manager', '@doctrine.orm.entity_manager', '@logger']
+      tags:
+        - { name: kernel.event_listener, event: store.order.checkout, method: onCheckout }
+
+    store.location.resolver.stored:
+      class: StoreBundle\Location\StoredCityLocationResolver
+      public: false
+      autowire: false
+      arguments: ['@security.token_storage']
+      tags:
+        - { name: aw.location.resolver, priority: 5 }
+
+    store.mailer.fos_user_mailer:
+      class: StoreBundle\Mailer\FOSUserMailer
+      arguments:
+        - '@router'
+        - '@aw_email_templating.template.factory'
+        - '@mailer'
+        - '@monolog.logger'
+        - '%mailer_from%'
+        - '%mailer_sender_name%'
+
+    store.order_checkout.customer.mail:
+      class: StoreBundle\EventListener\EmailMessaging\OrderCheckoutCustomerMail
+      arguments:
+        - '@mailer'
+        - '@logger'
+        - '@aw_email_templating.template.factory'
+        - '@accurateweb.shipping.manager'
+        - '%mailer_from%'
+        - '%mailer_sender_name%'
+        - '@twig'
+      tags:
+       - { name: kernel.event_listener, event: store.order.checkout, method: onCheckout }
+
+    store.order_checkout.operator.mail:
+      class: StoreBundle\EventListener\EmailMessaging\OrderCheckoutOperatorMail
+      arguments:
+        - '@mailer'
+        - '@aw_email_templating.template.factory'
+        - '%mailer_from%'
+        - '%mailer_sender_name%'
+        - '%operator_email%'
+        - '@logger'
+      tags:
+        - { name: kernel.event_listener, event: store.order.checkout, method: onCheckout }
+
+    store.cart_to_orders.converter:
+      class: StoreBundle\Service\Order\CartToOrderConverter
+      arguments: ['@aw.logistic.stock.manager']
+
+    store.taxon_nb_products_aggregate:
+      class: StoreBundle\EventListener\TaxonNbProductsAggregate
+      tags:
+        - { name: doctrine.event_subscriber }
+
+    store.price.manager:
+      class: StoreBundle\Service\Product\ProductPrice\ProductPriceManager
+
+    store.price.modificator.floor:
+      class: StoreBundle\Service\Product\ProductPrice\ProductPriceModificator\PriceRounderModification
+      tags:
+        - { name: store.price.modificator }
+
+    store.admin.document:
+      class: StoreBundle\Admin\Document\RegistrationDocumentAdmin
+      arguments: [~, StoreBundle\Entity\Document\RegistrationDocument, ~]
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: document, label: "Страница регистрации" }
+
+    store.document.storage:
+      class: StoreBundle\Service\Uploader\DocumentStorage
+      arguments:
+        - '%kernel.root_dir%/../web'
+        - 'uploads/documents'
+        - '@router'
+
+    store.document.uploader:
+      class: StoreBundle\Service\Uploader\DocumentUploader
+      arguments: ['@store.document.storage']
+
+    store.document.upload.listener:
+      class: StoreBundle\EventListener\Upload\DocumentUploadListener
+      arguments: ['@store.document.uploader']
+      tags:
+        - { name: doctrine.event_listener, event: prePersist }
+        - { name: doctrine.event_listener, event: preUpdate }
+
+    store.document.twig.extension:
+      class: StoreBundle\Twig\DocumentExtension
+      arguments: ['@store.document.storage']
+      tags:
+        - { name: twig.extension }
+
+    store.event_listener_email_messaging.customer_question_create_mail:
+      class: StoreBundle\EventListener\EmailMessaging\CustomerQuestionCreateMail
+      arguments:
+        - '@mailer'
+        - '@aw_email_templating.template.factory'
+        - '%mailer_from%'
+        - '%mailer_sender_name%'
+        - '%operator_email%'
+        - '@logger'
+      tags:
+        - { name: kernel.event_listener, event: 'customer_question.create', method: 'onCreate' }
+        - { name: kernel.event_listener, event: 'customer_question.message', method: 'onNewMessage' }
+
+    store.admin_text.customer_question_admin:
+      class: StoreBundle\Admin\Text\CustomerQuestionAdmin
+      arguments: [~, StoreBundle\Entity\Text\Dialog\Dialog, ~]
+      tags:
+        - {name: sonata.admin, manager_type: orm, group: notify, label: "Вопросы покупателей"}
+
+    store.admin.customer_message:
+      class: StoreBundle\Admin\Text\CustomerMessageAdmin
+      arguments: [~, StoreBundle\Entity\Text\Dialog\DialogMessage, ~]
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: text, show_in_dashboard: false }
+
+    store.security.access_denied.referer:
+      class: StoreBundle\EventListener\Security\AccessDeniedRefererListener
+      tags:
+        - { name: kernel.event_listener, event: kernel.response, method: onResponse }
+
+    #Переопределяет сервис из Accurateweb\TaxonomyBundle
+    aw.product_sort.factory:
+      class: StoreBundle\Model\Product\Sort\ProductSortFactory
+      arguments:
+        - '@aw.location'
+
+    store.setting.rank_view_weight:
+      class: Accurateweb\SettingBundle\Model\Setting\NumericSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'rank_view_weight'
+        - 'Вес просмотра товара'
+        - '0.01'
+      tags:
+        - { name: aw.setting }
+
+    store.setting.rank_favorite_weight:
+      class: Accurateweb\SettingBundle\Model\Setting\NumericSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'rank_favorite_weight'
+        - 'Вес добавления товара в избранное'
+        - '0.1'
+      tags:
+        - { name: aw.setting }
+
+    store.setting.rank_cart_weight:
+      class: Accurateweb\SettingBundle\Model\Setting\NumericSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'rank_cart_weight'
+        - 'Вес добавления товара в корзину'
+        - '0.3'
+      tags:
+        - { name: aw.setting }
+
+    store.setting.rank_buy_weight:
+      class: Accurateweb\SettingBundle\Model\Setting\NumericSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'rank_buy_weight'
+        - 'Вес покупки товара'
+        - '1'
+      tags:
+        - { name: aw.setting }
+
+    store.repository.product_rank:
+      class: StoreBundle\Repository\Store\Catalog\Product\ProductRankRepository
+      factory: ['@doctrine.orm.entity_manager', 'getRepository']
+      arguments: ['StoreBundle\Entity\Store\Catalog\Product\ProductRank']
+
+    store.product.view.rank:
+      class: StoreBundle\EventListener\Ranking\ProductViewRankAdd
+      arguments: ['@store.product.repository', '@doctrine.orm.entity_manager']
+      tags:
+        - { name: kernel.event_listener, event: kernel.controller, method: onRequest }
+
+    store.product.favorite.rank:
+      class: StoreBundle\EventListener\Ranking\ProductFavoriteRankAdd
+      arguments: ['@doctrine.orm.entity_manager']
+      tags:
+        - { name: kernel.event_listener, event: store.favorite.product.add, method: onFavoriteAdd }
+
+    store.product.cart.rank:
+      class: StoreBundle\EventListener\Ranking\CartItemAddRankAdd
+      arguments: ['@doctrine.orm.entity_manager']
+      tags:
+        - { name: kernel.event_listener, event: cart.item.add, method: onAdd }
+
+    store.product.buy.rank:
+      class: StoreBundle\EventListener\Ranking\ProductBuyRankAdd
+      arguments: ['@doctrine.orm.entity_manager']
+      tags:
+        - { name: kernel.event_listener, event: store.order.checkout, method: onCheckout }
+
+    store.product.rank.aggregate:
+      class: StoreBundle\EventListener\Ranking\RankAggregate
+      autowire: false
+      arguments: ['@service_container']
+      tags:
+        - { name: doctrine.event_listener, event: postPersist }
+        - { name: doctrine.event_listener, event: postUpdate }
+
+    store.admin.user_document_type:
+      class: StoreBundle\Admin\Document\UserDocumentTypeAdmin
+      arguments: [~, StoreBundle\Entity\Document\UserDocumentType, 'StoreBundle:Admin/Document/UserDocumentTypeAdmin']
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: document, label: "Типы документов пользователя" }
+
+    store.document_type.repository:
+      class: StoreBundle\Repository\Document\UserDocumentTypeRepository
+      factory: ['@doctrine.orm.entity_manager', 'getRepository']
+      arguments: ['StoreBundle\Entity\Document\UserDocumentType']
+
+    StoreBundle\Form\Document\JuridicalUserDocumentFormType:
+      class: StoreBundle\Form\Document\JuridicalUserDocumentFormType
+      arguments: ['@store.document_type.repository']
+      tags: ['form.type']
+
+    StoreBundle\Form\Document\EntrepreneurUserDocumentFormType:
+      class: StoreBundle\Form\Document\EntrepreneurUserDocumentFormType
+      arguments: ['@store.document_type.repository']
+      tags: ['form.type']
+
+    StoreBundle\Form\Document\IndividualUserDocumentFormType:
+      class: StoreBundle\Form\Document\IndividualUserDocumentFormType
+      arguments: ['@store.document_type.repository']
+      tags: ['form.type']
+
+    store.document_type.position.listener:
+      class: StoreBundle\EventListener\UserDocumentTypePositionListener
+      tags:
+        - { name: doctrine.event_listener, event: prePersist }
+        - { name: doctrine.event_listener, event: preUpdate }
+        - { name: doctrine.event_listener, event: postRemove }
+
+    store.product.voter.publication_allowed:
+      class: StoreBundle\Resolver\Product\PublicationAllowedPublicationResolver
+      tags:
+        - { name: product.publication.resolver }
+
+    store.product.voter.stock:
+      class: StoreBundle\Resolver\Product\ProductStockPublicationResolver
+      tags:
+        - { name: product.publication.resolver }
+
+    store.product.publication_resolver.purchasable:
+      class: StoreBundle\Resolver\Product\PurchasablePublicationResolver
+      tags:
+        - { name: product.publication.resolver }
+
+    store.product.publication.manager:
+      class: StoreBundle\Resolver\Product\ProductPublicationManager
+
+    store.voter.product_publication:
+      class: StoreBundle\Voter\ProductPublicationVoter
+      arguments: ['@store.product.publication.manager']
+      tags:
+        - { name: security.voter }
+
+    store.dialog.update_at.updater:
+      class: StoreBundle\EventListener\Dialog\DialogUpdateAtUpdate
+      tags:
+        - { name: doctrine.event_listener, event: postPersist }
+
+    store.dialog.notification.listener:
+      class: StoreBundle\EventListener\Notification\DialogNotificationListener
+      tags:
+        - { name: doctrine.event_listener, event: postPersist }
+        - { name: doctrine.event_listener, event: postUpdate }
+
+    store.settings.operator_name:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'operator_name'
+        - 'Имя оператора по умолчанию для новых сообщений'
+        - 'Поддержка'
+      tags:
+        - { name: aw.setting }
+
+    store.order.checkout.notification:
+      class: StoreBundle\EventListener\Notification\OrderCheckoutNotification
+      arguments: ['@sonata.admin.entity_manager', '@twig']
+      tags:
+        - { name: kernel.event_listener, event: store.order.checkout, method: onCheckout }
+
+    store.customer_question.answer:
+      class: StoreBundle\EventListener\EmailMessaging\CustomerQuestionAnswer
+      arguments:
+        - '@mailer'
+        - '@aw_email_templating.template.factory'
+        - '%mailer_from%'
+        - '%mailer_sender_name%'
+        - '@logger'
+      tags:
+        - { name: kernel.event_listener, event: customer_question.answer, method: onAnswer }

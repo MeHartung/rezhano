@@ -1,0 +1,29 @@
+{{ client_model_collection('Region', regionClientModels) }}
+{{ client_model_collection('City', cityClientModels) }}
+{{ client_model(location) }}
+
+{#<div id="gkPopupCart" class="city-select-layer" style="display:none;">	#}
+  {#<div id="layer__close"></div>#}
+  {#<div class="gkPopupWrap">	#}
+    {#<div id="gkAjaxCart">#}
+      {#<h3>Выберите ваш город</h3>#}
+       {#<div class="region-select">#}
+          {#Область: <select>#}
+          {#{% for _region in regions %}#}
+            {#<option value="{{ _region }}"{% if _region == region %} selected="selected"{% endif %}>{{ _region }}</option>#}
+          {#{% endfor %}#}
+          {#</select>#}
+          {#<img class="ajax-loader" src="/web/images/ajax-loader.gif" alt="Загрузка..." title="Загрузка..." style="display:none;"/>#}
+       {#</div>#}
+      {#<ul class="list-stores">#}
+        {#{% for _city in cities %}#}
+          {#<li><a class="city-select-link{% if cityCode == _city.code %} checked{% endif %}" href="#" data-id="{{ _city.code }}">{{ _city.name }}</a></li>        #}
+        {#{% endfor %}#}
+      {#</ul>#}
+      {#<div class="buttons-wrap">#}
+        {# <a class="button" href="#">Выбрать</a> #}
+        {#<a class="button button-grey button-close" href="#">Закрыть</a>#}
+      {#</div>#}
+    {#</div>#}
+  {#</div>#}
+{#</div>#}

@@ -1,0 +1,21 @@
+<div class="footer-links">
+  {% for menuItem in menuItems  %}
+    {% if (menuItem.url) %}
+        <a href="{{ menuItem.url|menu_url }}" class="footer-links__item">{{ menuItem.name }}</a>
+    {% endif %}
+  {% endfor %}
+  {% if setting('ios_link') or setting('android_link') %}
+  <div class="footer-links__mobile">
+    {% if setting('ios_link') %}
+    <a href="{{ setting('ios_link') }}" class="footer-links__mobile_icon footer-links__mobile_apple">
+      <span class="apple-icon"></span>
+    </a>
+    {% endif %}
+    {% if setting('android_link') %}
+    <a href="{{ setting('android_link') }}" class="footer-links__mobile_icon footer-links__mobile_android">
+      <span class="android-icon"></span>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>

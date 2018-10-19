@@ -1,0 +1,15 @@
+/nbproject
+/log
+/cache
+/.htaccess
+/media/nextend/cache
+/images/stories/virtuemart
+/var/logs
+
+/vendor/
+/var/sessions
+/var/cache
+/configuration.php
+/logs
+/export
+/.idea

@@ -1,0 +1,12 @@
+{% block filter_range_slider_widget %}
+  <div class="values sliderbox slider-double-handle" id="{{ form.vars.id }}">
+    <div class="left" style="width:50%;">
+      <span class="small light-grey">от</span> {{ form_widget(form.min) }}
+    </div>
+    <div class="right" style="width:50%;">
+      <span class="small light-grey">до</span> {{ form_widget(form.max) }}
+    </div>
+    <div style="clear:both;"></div>
+    <div class="slider-line"></div>
+  </div>
+{% endblock %}

@@ -1,0 +1,146 @@
+
+.slick-initialized .slick-slide {
+  outline: none;
+  //
+  //&>div {
+  //  max-height: 280px;
+  //}
+}
+
+.section-slider {
+
+  .slick-dots {
+    bottom: -20px;
+  }
+  .slick-dots li {
+    margin: 0 2px;
+  }
+  .slick-dots li button {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+
+    &:before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background-color: @c_brand_dark;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .slick-dots li.slick-active button:before {
+    opacity: 1;
+  }
+
+  .slick-initialized {
+    overflow: visible !important;
+  }
+
+  .slick-initialized .slick-slide {
+    outline: none;
+    //
+    //&>div {
+    //  max-height: 280px;
+    //}
+  }
+
+  .slick-prev {
+    background: url("../images/svg/arrow-left.svg") no-repeat;
+    width: 25px;
+    height: 49px;
+    z-index: 1;
+    top: 48%;
+    left: 23px;
+
+    &:before {
+      content: '';
+      color: transparent;
+    }
+
+    &:hover {
+      background: url("../images/svg/arrow-left.svg") no-repeat;
+    }
+  }
+
+  .slick-next {
+    background: url("../images/svg/arrow-right.svg") no-repeat;
+    width: 25px;
+    height: 49px;
+    z-index: 1;
+    top: 48%;
+    right: 25px;
+
+    &:before {
+      content: '';
+      color: transparent;
+    }
+
+    &:hover {
+      background: url("../images/svg/arrow-right.svg") no-repeat;
+    }
+  }
+
+  .slick-dotted.slick-slider {
+    margin-bottom: 40px;
+  }
+
+  .slick-dots li button:hover {
+    opacity: 0.6 !important;
+  }
+}
+
+
+.product-image__gallery__additional {
+  overflow: hidden;
+
+  &.slick-initialized {
+    overflow: visible;
+  }
+
+  .slick-arrow {
+    display: block;
+    width: 18px;
+    height: 18px;
+    //border-radius: 50%;
+    //background-color: @grey_lightest;
+
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      content: '';
+      width: 10px;
+      height: 11px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .slick-prev {
+
+    &:after {
+      content: url("../images/c_slick-prev-hover.png");
+    }
+  }
+
+  .slick-next {
+
+    &:after {
+      content: url("../images/c_slick-next-hover.png");
+    }
+  }
+}

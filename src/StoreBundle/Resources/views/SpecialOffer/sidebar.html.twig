@@ -1,0 +1,92 @@
+{%  if special_offers|length %}
+{#<div class="box-border">
+  <div class="box "><h3 class="header"><a href="{{ path('special_offers_index') }}">Акции</a></h3>
+    <div class="content">
+      <div class="nspMain autoanim" id="nsp-nsp-672" data-config="{
+				'animation_speed': 400,
+				'animation_interval': 5000,
+				'animation_function': 'Fx.Transitions.Expo.easeIn',
+				'news_column': 1,
+				'news_rows': 1,
+				'links_columns_amount': 0,
+				'links_amount': 0
+			}">
+        <div class="nspArts bottom" style="width:100%;">
+          <div class="nspTopInterface">
+            <span class="nspPrev">Prev</span>
+            <span class="nspNext">Next</span>
+          </div>
+          <div class="nspArtScroll1">
+            <div class="nspArtScroll2 nspPages5" style="margin-left: -200%;">
+              {% for special_offer in special_offers %}
+              <div class="nspArtPage nspCol5 ">
+                <div class="nspArt nspCol1" style="padding:0 0 0 0;">
+                  <h4 class="nspHeader tcenter fnone"><a
+                        href="{{ path('special_offers_show', { slug: special_offer.slug }) }}"
+                        title="{{ special_offer.title }}" rel="nofollow">{{ special_offer.title }}</a></h4>
+                  {%  if special_offer.image %}
+                  <div class="center tcenter fnone"><a
+                        href="{{ path('special_offers_show', { slug: special_offer.slug }) }}"
+                        class="nspImageWrapper tcenter fnone"
+                        style="margin:6px 14px 0 0;" rel="nofollow"><img
+                          class="nspImage" src="{{ image_url(special_offer.image) }}"
+                          alt="" style="width:250px;height:120px;"></a></div>
+                    {% endif %}
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>#}
+  <div class="box-border">
+    <div class="box "><h4 class="header">Акции</h4>
+      <div class="content">
+          <div class="nspMain autoanim" data-config="{
+				'animation_speed': 400,
+				'animation_interval': 5000,
+				'animation_function': 'Fx.Transitions.Expo.easeIn',
+				'news_column': 1,
+				'news_rows': 1,
+				'links_columns_amount': 0,
+				'links_amount': 0
+			}">
+              <div class="nspArts bottom" style="width:100%;">
+                  <div class="nspArtScroll1">
+                      <div class="nspArtScroll2 nspPages{{ special_offers|length }}">
+                          {% for special_offer in special_offers %}
+                              <div class="nspArtPage active nspCol{{ special_offers|length }}">
+                                  <div class="nspArt nspCol1" style="padding:0 0 0 0;">
+                                      <h4
+                                              class="nspHeader tleft fnone"><a
+                                                  href="{{ path('special_offers_show', { 'slug': special_offer.slug }) }}"
+                                                  title="{{ special_offer.title }}"
+                                                  rel="nofollow">{{ special_offer.title }}</a>
+                                      </h4>
+                                      {%  if image_exists(special_offer) %}
+                                          <a href="{{ path('special_offers_show', { 'slug': special_offer.slug }) }}"
+                                             class="nspImageWrapper tleft fleft"
+                                             style="margin:6px 14px 0 0;" rel="nofollow"><img
+                                                      class="nspImage tleft fleft"
+                                                      src="{{ image_url(special_offer) }}"
+                                                      alt="" style="width:250px;height:250px;"></a>
+                                      {% endif %}
+                                      {#<p class="nspText tleft fleft"><a#}
+                                                  {#href="{{ path('special_offers_show', { 'slug': special_offer.slug }) }}"#}
+                                                  {#rel="nofollow">{{ special_offer.announce|striptags('<br><strong><i><b><blockquote>')|raw }}</a>#}
+                                      {#</p>#}
+                                      <p class="nspInfo nspInfo2 tleft fleft"></p>
+                                  </div>
+                              </div>
+                          {% endfor %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endif %}

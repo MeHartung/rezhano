@@ -1,0 +1,5 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    {% if object.shippingMethod is not empty %}{{ object.shippingMethod.name(object.shippingCityName) }}{% endif %}
+{% endblock %}

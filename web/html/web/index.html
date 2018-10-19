@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Реализация имущества Группы «Газпром нефть»</title>
+  <!--<link rel="stylesheet" href="css/main.min.css"> - минифицированные стили для prod-окружения -->
+  <link rel="stylesheet" href="/js/vendor/slick/slick-theme.css">
+  <link rel="stylesheet" href="/js/vendor/slick/slick.css">
+  <link rel="stylesheet" href="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script type="text/javascript" src="/js/vendor/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+  <script type="text/javascript" src="/js/vendor/slick/slick.js"></script>
+  <script>
+    $(function () {
+      $('#openMenu').on('click', function () {
+        $('#expandedMenu').css({'display': 'block'})
+      });
+      $('#closeMenu').on('click', function () {
+        $('#expandedMenu').css({'display': 'none'})
+      });
+      // $('#sliderMain').slick({
+      //   infinite: true,
+      //   dots: true,
+      //   arrows: true
+      // });
+      // $('.custom-datepicker').datepicker();
+    });
+  </script>
+</head>
+<body>
+<div class="wrapper">
+  <header class="header">
+    <div class="container">
+      <div class="logo-wrap">
+        <a class="gpn-logo" title="Газпромнефть" href="#"></a>
+        <span class="text-logo">Реализация <br>имущества Группы <br>«Газпром нефть»</span>
+      </div>
+      <span class="header-number">8 (800) 700-31-52 </span>
+      <div class="header-panel">
+        <!--/  -->
+          <!--<span class="header-panel__sign"><span class="user-icon"></span>Войти</span>-->
+        <!--/-->
+        <a class="header-panel__message new-message"><span class="mail-icon mail-icon_new-message"></span>2</a>
+        <a class="header-panel__sign"><span class="user-icon"></span>Владимир Иванов</a>
+        <a class="header-panel__favorites"><span class="star-icon"></span>6</a>
+      </div>
+    </div>
+
+    <div class="header-menu">
+      <div class="container">
+        <div class="header-menu__wrap">
+
+          <div class="menu-container">
+
+            <button class="open-menu" id="openMenu">
+              <span>Каталог товаров</span>
+              <span class="burger-icon"></span>
+            </button>
+
+            <div class="expanded-menu" id="expandedMenu" style="display: none">
+
+              <button class="open-menu" id="closeMenu">
+                <span>Каталог товаров</span>
+                <span class="burger-icon"></span>
+              </button>
+
+              <div class="expanded-menu__items">
+                <div class="expanded-menu__items-item-wrap">
+                  <a href="#" class="expanded-menu__items-item">
+                    <span>Запорная арматура</span>
+                  </a>
+
+                  <div class="expanded-menu__items expanded-menu__items-level-two">
+                    <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                    <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                    <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                    <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                    <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                  </div>
+
+                </div>
+
+                <div class="expanded-menu__items">
+                  <a href="#" class="expanded-menu__items-item"><span>Запорная арматура</span></a>
+                </div>
+
+                <div class="expanded-menu__items">
+                  <a href="#" class="expanded-menu__items-item"><span>Технологическое <br>и блочное оборудование</span></a>
+                </div>
+
+                <div class="expanded-menu__items">
+                  <a href="#" class="expanded-menu__items-item"><span>Запорная арматура</span></a>
+                </div>
+
+              </div>
+              <a href="#" class="expanded-menu__see-all">Смотреть все</a>
+            </div>
+          </div>
+
+
+          <div class="header-menu__input">
+            <input type="text" placeholder="Найти в каталоге товаров">
+            <button class="button-search"></button>
+          </div>
+
+          <div class="header-menu__info">
+            <span class="header-menu__info-amount-item"><span class="card-icon"></span>12</span>
+            <span class="header-menu__info-amount-payment">12 000 000 Р</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-slider">
+      <div class="container container_no-padding">
+        <div class="section-slider__prev-slide"></div>
+        <div id="sliderMain">
+          <div style="background: url('/images/TEST_delete/slider.png') no-repeat; width: 1235px; height: 301px; float: left; "></div>
+          <div style="background: url('/images/TEST_delete/slider.png') no-repeat; width: 1235px; height: 301px; float: left;"></div>
+          <div style="background: url('/images/TEST_delete/slider.png') no-repeat; width: 1235px; height: 301px; float: left;"></div>
+        </div>
+        <div class="section-slider__next-slide"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="section-title ">
+          <span class="section-title__text section-title__text_aside-line">Лучшие предложения</span>
+          <a href="#" class="section-title__link-more">Смотреть все</a>
+        </div>
+
+        <div class="section-wrap">
+          <div class="product-item">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+          <div class="product-item">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/2.png') center no-repeat; background-size: cover"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+          <div class="product-item">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/3.png') center no-repeat; background-size: cover"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+          <div class="product-item">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/4.png') center no-repeat; background-size: cover"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="section-title">
+          <span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>
+        </div>
+
+        <div class="section-wrap">
+
+          <div class="product-item product-item_narrow">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/small/1.png') center no-repeat; background-size: contain"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+
+          <div class="product-item product-item_narrow">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/small/2.png') center no-repeat; background-size: contain"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+
+          <div class="product-item product-item_narrow">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/small/3.png') center no-repeat; background-size: contain"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+
+          <div class="product-item product-item_narrow">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/small/1.png') center no-repeat; background-size: contain"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+
+          <div class="product-item product-item_narrow">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/small/2.png') center no-repeat; background-size: contain"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+
+          <div class="product-item product-item_narrow">
+            <a class="product-item__image" style="background: url('/images/TEST_delete/small/3.png') center no-repeat; background-size: contain"></a>
+            <div class="product-item__info">
+              <a class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+              <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-title">
+          <div class="breadcrumbs">
+            <a class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Каталог</a>
+          </div>
+          <span class="section-title__text">Каталог</span>
+        </div>
+
+        <div class="section-wrap">
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/1.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/2.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/3.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/1.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/3.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/2.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/1.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/3.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/2.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/1.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/3.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/2.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+
+          <a class="catalog-item">
+            <div class="catalog-item__image" style="background: url('/images/TEST_delete/catalog/1.png') center no-repeat; background-size: cover"></div>
+            <div class="catalog-item__info">
+              <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="section-title">
+          <div class="breadcrumbs">
+            <a class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item">Каталог</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Фонтанная арматура</a>
+          </div>
+          <span class="section-title__text">Арматура фонтанная АФК ХХХ</span>
+        </div>
+
+          <div class="center_no-right">
+
+            <aside class="left">
+              <div class="product-list-filter">
+                <div class="filter-section">
+                  <a class="filter-section__title">Цена, ₽</a>
+                  <div class="filter-section__content">
+                    <input type="text" placeholder="от">
+                    <input type="text" placeholder="до">
+                  </div>
+                </div>
+
+                <div class="filter-section filter-section_collapse">
+                  <a class="filter-section__title">Группа МТР</a>
+                  <div class="filter-section__content" style="display: none">
+
+                  </div>
+                </div>
+
+                <div class="filter-section filter-section_collapse">
+                  <a class="filter-section__title">Год поставки</a>
+                  <div class="filter-section__content" style="display: none">
+
+                  </div>
+                </div>
+
+                <div class="filter-section filter-section_collapse">
+                  <a class="filter-section__title">Местонахождение</a>
+                  <div class="filter-section__content" style="display: none">
+
+                  </div>
+                </div>
+
+                <div class="filter-section filter-section_collapse">
+                  <a class="filter-section__title">Группа МТР</a>
+                  <div class="filter-section__content" style="display: none">
+
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <div class="section-wrap">
+
+              <div class="product-list-sort">
+                <span class="product-list-sort__title">Сортировать:</span>
+                <a class="product-list-sort__type">по популярности</a>
+                <a class="product-list-sort__type product-list-sort__type_active product-list-sort__type_price">по цене</a>
+                <span class="product-list-sort__my-region custom-checkbox">
+                  <label>
+                    <input type="checkbox" class="checkbox" checked>
+                    <span class="product-list-sort__checkbox custom-checkbox__checkbox"></span>
+                    <span>Сначала предложения в моём регионе</span>
+                  </label>
+                </span>
+              </div>
+
+              <div class="product-list-item">
+
+                <div class="product-item">
+                  <a class="product-item__image" style="background: url('/images/TEST_delete/2.png') center no-repeat; background-size: cover">
+                    <div class="product-item__discount-ticket">
+                      <span>-30%</span>
+                    </div>
+                  </a>
+                  <div class="product-item__info">
+                    <a href="#" class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+                    <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+                  </div>
+                </div>
+
+                <div class="product-item">
+                  <a class="product-item__image" style="background: url('/images/TEST_delete/2.png') center no-repeat; background-size: cover"></a>
+                  <div class="product-item__info">
+                    <a href="#" class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+                    <button class="button button-auction "><span>14 770 Р</span></button>
+                  </div>
+                </div>
+
+                <div class="product-item">
+                  <a class="product-item__image" style="background: url('/images/TEST_delete/2.png') center no-repeat; background-size: cover">
+                    <div class="product-item__discount-ticket">
+                      <span>-30%</span>
+                    </div>
+                  </a>
+                  <div class="product-item__info">
+                    <a href="#" class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+                    <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+                  </div>
+                </div>
+
+                <div class="product-item">
+                  <a class="product-item__image" style="background: url('/images/TEST_delete/2.png') center no-repeat; background-size: cover">
+                    <div class="product-item__discount-ticket">
+                      <span>-30%</span>
+                    </div>
+                  </a>
+                  <div class="product-item__info">
+                    <a href="#" class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+                    <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+                  </div>
+                </div>
+
+                <div class="product-item">
+                  <a class="product-item__image" style="background: url('/images/TEST_delete/2.png') center no-repeat; background-size: cover">
+                    <div class="product-item__discount-ticket">
+                      <span>-30%</span>
+                    </div>
+                  </a>
+                  <div class="product-item__info">
+                    <a href="#" class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+                    <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+                  </div>
+                </div>
+
+                <div class="product-item">
+                  <a class="product-item__image" style="background: url('/images/TEST_delete/2.png') center no-repeat; background-size: cover">
+                    <div class="product-item__discount-ticket">
+                      <span>-30%</span>
+                    </div>
+                  </a>
+                  <div class="product-item__info">
+                    <a href="#" class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+                    <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+                  </div>
+                </div>
+
+                <div class="product-item">
+                  <a class="product-item__image" style="background: url('/images/TEST_delete/2.png') center no-repeat; background-size: cover">
+                    <div class="product-item__discount-ticket">
+                      <span>-30%</span>
+                    </div>
+                  </a>
+                  <div class="product-item__info">
+                    <a href="#" class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+                    <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <a class="product-list-item__show-more">
+                <span class="product-list-item__show-more__text">Показать ещё</span>
+              </a>
+
+              <div class="pagination">
+                <span class="pagination__prev">Назад</span>
+                <div class="pagination__wrap-item">
+                  <span class="pagination__item">1</span>
+                  <span class="pagination__item">2</span>
+                  <span class="pagination__item">3</span>
+                  <span class="pagination__item">4</span>
+                </div>
+                <span class="pagination__next">Вперед</span>
+
+                <span class="pagination__show-count">Показывать по 16</span>
+              </div>
+
+              <div class="maybe-interested">
+                <!--/ ^ модификатор для catalog-item -->
+                <div class="section-title">
+                  <span class="section-title__text section-title__text_small section-title__text_aside-line">Вас также может заинтересовать</span>
+                </div>
+
+                <div class="maybe-interested__wrap">
+                  <a class="catalog-item">
+                    <div class="catalog-item__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="catalog-item__info">
+                      <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+                    </div>
+                  </a>
+
+                  <a class="catalog-item">
+                    <div class="catalog-item__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="catalog-item__info">
+                      <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+                    </div>
+                  </a>
+
+                  <a class="catalog-item">
+                    <div class="catalog-item__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="catalog-item__info">
+                      <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+                    </div>
+                  </a>
+
+                  <a class="catalog-item">
+                    <div class="catalog-item__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="catalog-item__info">
+                      <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="section-title">
+          <div class="breadcrumbs">
+            <a class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item">Фонтанная арматура</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Арматура фонтанная АФК ХХХ</a>
+          </div>
+          <span class="section-title__text section-title__text_in-product">
+            Арматура фонтанная АФК ХХХ
+            <span class="add-favorites"></span>
+          </span>
+        </div>
+
+        <div class="product-container">
+
+          <div class="center_no-left">
+
+            <aside class="right">
+              <div class="this-product-buy__wrap">
+                <span class="this-product-buy__wrap-title">
+                  С этим товаром покупают
+                </span>
+                <a class="this-product-buy__item">
+                  <div class="this-product-buy__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="this-product-buy__info">
+                    <span class="this-product-buy__title">Технологическое и блочное оборудование</span>
+                  </div>
+                </a>
+
+                <a class="this-product-buy__item">
+                  <div class="this-product-buy__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="this-product-buy__info">
+                    <span class="this-product-buy__title">Технологическое и блочное оборудование</span>
+                  </div>
+                </a>
+
+                <a class="this-product-buy__item">
+                  <div class="this-product-buy__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="this-product-buy__info">
+                    <span class="this-product-buy__title">Технологическое и блочное оборудование</span>
+                  </div>
+                </a>
+
+              </div>
+            </aside>
+
+            <div class="section-wrap">
+
+              <div class="product-image__gallery">
+                <a class="gallery-image">
+                  <img src="/images/TEST_delete/arm.png" alt="">
+                </a>
+                <div class="product-image__gallery__additional">
+
+                  <a class="gallery-image gallery-image__additional gallery-image__additional_active">
+                    <img src="/images/TEST_delete/arm.png" alt="">
+                  </a>
+
+                  <a class="gallery-image gallery-image__additional">
+                    <img src="/images/TEST_delete/arm.png" alt="">
+                  </a>
+
+                  <a class="gallery-image gallery-image__additional">
+                    <img src="/images/TEST_delete/arm.png" alt="">
+                  </a>
+
+                  <a class="gallery-image gallery-image__additional">
+                    <img src="/images/TEST_delete/arm.png" alt="">
+                  </a>
+
+                </div>
+              </div>
+
+              <div class="product-container__info-wrap">
+                <div class="product-container__info">
+                  <div class="product-container__price">
+                    410 900 ₽
+                  </div>
+                  <div class="product-container__count">
+                    <div class="quantity-wrap">
+                      <a class="quantity-control quantity-control__down"></a>
+                      <input value="1" type="text">
+                      <a class="quantity-control quantity-control__up"></a>
+                    </div>
+
+                    <button class="button-buy_in-product"></button>
+
+                    <span class="product-container__quantity">
+                      всего 50 шт.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="product-brief-characteristics">
+                  <div class="product-brief-characteristics_col-left">
+                    <span class="product-brief-characteristics__location">Ростов-На-Дону</span>
+
+                    <span class="product-brief-characteristics__item">Длина<span class="product-brief-characteristics__item_count">5 м</span></span>
+                    <span class="product-brief-characteristics__item">Ширина<span class="product-brief-characteristics__item_count">0.5 м</span></span>
+                  </div>
+                  <div class="product-brief-characteristics_col-right">
+                    <div class="product-brief-characteristics__article">Артикул – 448201335</div>
+
+                    <span class="product-brief-characteristics__item">Вес<span class="product-brief-characteristics__item_count">55 кг</span></span>
+                    <span class="product-brief-characteristics__item">Объем<span class="product-brief-characteristics__item_count">0.5 м</span></span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="product-description">
+            <div class="product-description__nav">
+              <button class="nav-characteristics nav-characteristics_active"><span>Характеристики</span></button>
+              <button class="nav-delivery"><span>Калькулятор доставки</span></button>
+            </div>
+
+            <div class="product-description__col">
+              <div class="product-description__col-item">
+                <div class="col-item__name">ГОСТ/ТУ</div>
+                <div class="col-item__value">Не подлежит сертификации</div>
+              </div>
+
+              <div class="product-description__col-item">
+                <div class="col-item__name">Дата поступления</div>
+                <div class="col-item__value">01.09.2017</div>
+              </div>
+
+              <div class="product-description__col-item">
+                <div class="col-item__name">Размеры</div>
+                <div class="col-item__value">350х506х450/850 мм (в раб. положении) 120х506х580 мм ( в транспортном положении)</div>
+              </div>
+
+              <div class="product-description__col-item">
+                <div class="col-item__name">Вес</div>
+                <div class="col-item__value">2,80 кг</div>
+              </div>
+            </div>
+
+            <div class="product-description__col">
+
+              <div class="product-description__col-item">
+                <div class="col-item__name">Производитель </div>
+                <div class="col-item__value">ООО «Тонар Плюс»</div>
+              </div>
+
+              <div class="product-description__col-item">
+                <div class="col-item__name">Документация</div>
+                <div class="col-item__value">Отсутствует</div>
+              </div>
+
+              <div class="product-description__col-item">
+                <div class="col-item__name">Тех состояние</div>
+                <div class="col-item__value">Новый</div>
+              </div>
+
+              <div class="product-description__col-item">
+                <div class="col-item__name">Условия хранения</div>
+                <div class="col-item__value">Крытый, отапливаемый склад</div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-title">
+          <div class="breadcrumbs">
+            <a class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Избранное</a>
+          </div>
+          <span class="section-title__text section-title__text_in-product">Избранное</span>
+        </div>
+
+        <div class="favorites-container">
+          <div class="favorites-container__header">
+            <div class="favorites-container__item favorites-container__item_header"></div>
+            <div class="quantity-wrap quantity-wrap_header"><span>Кол-во</span></div>
+            <div class="favorites-container__location favorites-container__location_header"><span>Местонахождение</span></div>
+            <div class="favorites-container__price favorites-container__price_header"><span>Цена</span></div>
+          </div>
+
+          <div class="favorites-container__wrap">
+
+            <div class="favorites-container__item">
+              <div class="favorites-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+              <div class="favorites-container__item-info">
+                <a class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                <span class="item-info__title-aside">Артикул – 448201335</span>
+              </div>
+            </div>
+
+            <div class="quantity-wrap">
+              <a class="quantity-control quantity-control__down"></a>
+              <input value="20" type="text">
+              <a class="quantity-control quantity-control__up"></a>
+            </div>
+
+            <div class="favorites-container__location">Волгоград</div>
+            <div class="favorites-container__price">1 000,00 Р</div>
+            <div class="favorites-container__controls">
+              <button class="button-del-favorites"></button>
+              <button class="button-buy_in-product"></button>
+            </div>
+
+            <div class="favorites-container__amount-total">
+              <div class="total-value">
+                Сумма:
+                <span>5 000,00 </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="favorites-container__wrap">
+
+            <div class="favorites-container__item">
+              <div class="favorites-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+              <div class="favorites-container__item-info">
+                <a class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                <span class="item-info__title-aside">Артикул – 448201335</span>
+              </div>
+            </div>
+
+            <div class="quantity-wrap">
+              <a class="quantity-control quantity-control__down"></a>
+              <input value="20" type="text">
+              <a class="quantity-control quantity-control__up"></a>
+            </div>
+
+            <div class="favorites-container__location">Волгоград</div>
+            <div class="favorites-container__price">1 000,00 Р</div>
+            <div class="favorites-container__controls">
+              <button class="button-del-favorites"></button>
+              <button class="button-buy_in-product"></button>
+            </div>
+
+            <div class="favorites-container__amount-total">
+              <div class="total-value">
+                Сумма:
+                <span>5 000,00 </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <button class="white">
+          <span>Очистить избранное</span>
+        </button>
+      </div>
+    </section>
+
+
+    <header class="header">
+      <div class="container">
+        <div class="logo-wrap">
+          <a class="gpn-logo" title="Газпромнефть" href="#"></a>
+          <span class="text-logo">Реализация <br>имущества Группы <br>«Газпром нефть»</span>
+        </div>
+        <span class="header-number">8 (800) 700-31-52 </span>
+        <div class="header-panel">
+          <!--/  -->
+          <!--<span class="header-panel__sign"><span class="user-icon"></span>Войти</span>-->
+          <!--/-->
+          <a class="header-panel__message new-message"><span class="mail-icon mail-icon_new-message"></span>2</a>
+          <a class="header-panel__sign"><span class="user-icon"></span>Владимир Иванов</a>
+          <a class="header-panel__favorites"><span class="star-icon"></span>6</a>
+        </div>
+      </div>
+
+      <div class="header-menu">
+        <div class="container">
+          <div class="header-menu__wrap">
+
+            <div class="menu-container">
+
+              <button class="open-menu" id="openMenu">
+                <span>Каталог товаров</span>
+                <span class="burger-icon"></span>
+              </button>
+
+              <div class="expanded-menu" id="expandedMenu" style="display: none">
+
+                <button class="open-menu" id="closeMenu">
+                  <span>Каталог товаров</span>
+                  <span class="burger-icon"></span>
+                </button>
+
+                <div class="expanded-menu__items">
+                  <div class="expanded-menu__items-item-wrap">
+                    <a href="#" class="expanded-menu__items-item">
+                      <span>Запорная арматура</span>
+                    </a>
+
+                    <div class="expanded-menu__items expanded-menu__items-level-two">
+                      <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                    </div>
+
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="#" class="expanded-menu__items-item"><span>Запорная арматура</span></a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="#" class="expanded-menu__items-item"><span>Технологическое <br>и блочное оборудование</span></a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="#" class="expanded-menu__items-item"><span>Запорная арматура</span></a>
+                  </div>
+
+                </div>
+                <a href="#" class="expanded-menu__see-all">Смотреть все</a>
+              </div>
+            </div>
+
+
+            <div class="header-menu__input">
+              <input type="text" placeholder="Найти в каталоге товаров">
+              <button class="button-search"></button>
+            </div>
+
+            <div class="header-menu__info">
+              <span class="header-menu__info-amount-item"><span class="card-icon"></span>12</span>
+              <span class="header-menu__info-amount-payment">12 000 000 Р</span>
+            </div>
+
+          </div>
+
+          <div class="header-menu__ordering">
+            <a class="ordering-item ordering-item_past">
+              <span class="card-icon card-icon__blue"></span>
+              <span class="ordering-item__name">Корзина</span>
+            </a>
+            <a class="ordering-item ordering-item_active">
+              <span class="delivery-icon grey-icon"></span>
+              <span class="delivery-icon delivery-icon__blue blue-icon"></span>
+              <span class="ordering-item__name">Доставка и сервисы</span>
+            </a>
+            <a class="ordering-item">
+              <span class="payment-icon grey-icon"></span>
+              <span class="payment-icon payment-icon__blue blue-icon"></span>
+              <span class="ordering-item__name">Оплата</span>
+            </a>
+            <a class="ordering-item">
+              <span class="order-icon grey-icon"></span>
+              <span class="order-icon order-icon__blue blue-icon"></span>
+              <span class="ordering-item__name">Заказ</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-title">
+          <div class="breadcrumbs">
+            <a class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Корзина</a>
+          </div>
+          <span class="section-title__text section-title__text_in-product">Корзина</span>
+        </div>
+
+        <div class="center_no-left cards-container__center_no-left">
+          <aside class="right">
+            <div class="cards-container__payment-info">
+              <span class="payment-info__title">К оплате:</span>
+              <span class="payment-info__value">45 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+            </div>
+            <button class=""><span>К оформлению заказа</span></button>
+            <button class="white"><span>Продолжить покупки</span></button>
+          </aside>
+          <div class="section-wrap">
+
+
+            <div class="cards-container">
+              <div class="cards-container__header">
+                <div class="cards-container__item cards-container__item_header"></div>
+                <div class="quantity-wrap quantity-wrap_header"><span>Кол-во</span></div>
+                <div class="cards-container__location cards-container__location_header"><span>Местонахождение</span></div>
+                <div class="cards-container__price cards-container__price_header"><span>Цена</span></div>
+              </div>
+
+              <div class="cards-container__wrap">
+
+                <div class="cards-container__item">
+                  <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="cards-container__item-info">
+                    <a class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул – 448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <a class="quantity-control quantity-control__down"></a>
+                  <input value="20" type="text">
+                  <a class="quantity-control quantity-control__up"></a>
+                </div>
+
+                <div class="cards-container__location">Волгоград</div>
+                <div class="cards-container__price">1 000,00 Р</div>
+                <div class="cards-container__controls">
+                  <button class="button-del-favorites"></button>
+                </div>
+
+                <div class="cards-container__amount-total">
+                  <div class="total-value">
+                    Сумма:
+                    <span>5 000,00 </span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="cards-container__wrap">
+
+                <div class="cards-container__item">
+                  <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="cards-container__item-info">
+                    <a class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул – 448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <a class="quantity-control quantity-control__down"></a>
+                  <input value="20" type="text">
+                  <a class="quantity-control quantity-control__up"></a>
+                </div>
+
+                <div class="cards-container__location">Волгоград</div>
+                <div class="cards-container__price">1 000,00 Р</div>
+                <div class="cards-container__controls">
+                  <button class="button-del-favorites"></button>
+                </div>
+
+                <div class="cards-container__amount-total">
+                  <div class="total-value">
+                    Сумма:
+                    <span>5 000,00 </span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <button class="white">
+              <span>Очистить корзину</span>
+            </button>
+
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+.......................................................................
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-title">
+          <div class="breadcrumbs">
+            <a class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item">Корзина</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Доставка и сервисы</a>
+          </div>
+          <span class="section-title__text section-title__text_in-product">Доставка и сервисы</span>
+        </div>
+
+        <div class="center_no-left cards-container__center_no-left">
+          <aside class="right">
+            <div class="cards-container__payment-info">
+              <span class="payment-info__title">К оплате:</span>
+              <span class="payment-info__value">45 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+            </div>
+            <button class=""><span>К оформлению заказа</span></button>
+            <button class="white"><span>Продолжить покупки</span></button>
+          </aside>
+          <div class="section-wrap">
+
+
+            <div class="cards-container cards-container__delivery-services">
+              <div class="cards-container__header">
+                <div class="cards-container__delivery-type">
+                  <form action="">
+                    <input id="pickup" type="radio" checked>
+                    <label for="pickup" value="Самовывоз">
+                      <span class="delivery-type__name">Самовывоз</span>
+                    </label>
+
+                    <input id="delivery" type="radio">
+                    <label for="delivery" value="Доставка">
+                      <span class="delivery-type__name">Доставка</span>
+                      <span class="delivery-type__estimated">15 рабочих дней</span>
+                    </label>
+                  </form>
+                </div>
+              </div>
+              <form action="" class="">
+                <div class="cards-container__wrap">
+                  <div class="delivery-container__item">
+
+                    <div class="delivery-container__header">
+                      <span>Состав груза</span>
+                    </div>
+                    <div class="delivery-container__item-info">
+
+                        <input id="pickup" type="radio" checked>
+                        <label for="pickup" value="Самовывоз">
+                          <span class="delivery-type__name">1 место</span>
+                        </label>
+
+                        <input id="delivery" type="radio">
+                        <label for="delivery" value="Доставка">
+                          <span class="delivery-type__name">Несколько мест</span>
+                        </label>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cards-container__wrap">
+                  <div class="delivery-container__item">
+
+                    <div class="delivery-container__header">
+                      <span>Габариты груза</span>
+                    </div>
+                    <div class="delivery-container__item-info">
+
+                      <input class="input-text_small" type="text">
+                      <input class="input-text_small" type="text">
+                      <input class="input-text_small" type="text">
+
+                      <div class="custom-select">
+                        <select name="" id="">
+                          <option value="м">м</option>
+                          <option value="см">см</option>
+                          <option value="мм">мм</option>
+                        </select>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+                  <div class="delivery-container__item">
+
+                    <div class="delivery-container__header">
+                      <span>Вес груза</span>
+                    </div>
+                    <div class="delivery-container__item-info">
+
+                      <input class="input-text_small" type="text">
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+
+            <button class="white">
+              <span>Очистить корзину</span>
+            </button>
+
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+......................................................................
+
+    <section>
+      <div class="container">
+
+        <div class="section-title">
+          <div class="breadcrumbs">
+            <a class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item">Корзина</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Доставка и сервисы</a>
+          </div>
+          <span class="section-title__text section-title__text_in-product">Доставка и сервисы</span>
+        </div>
+
+        <div class="center_no-left cards-container__center_no-left">
+          <aside class="right">
+            <div class="cards-container__payment-info">
+              <span class="payment-info__title">К оплате:</span>
+              <span class="payment-info__value">45 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+              <div class="value-details__wrap">
+                <div class="value-details value-details_product">
+                  <span class="card-icon card-icon__light-blue"></span>
+                   Товары — 45 000 ₽
+                </div>
+                <div class="value-details value-details_delivery">
+                  <span class="delivery-icon delivery-icon__light-blue"></span>
+                  Доставка — 45 000 ₽
+                </div>
+              </div>
+            </div>
+            <button class=""><span>Перейти к оплате</span></button>
+          </aside>
+          <div class="section-wrap">
+
+            <div class="cards-container cards-container__delivery-services">
+              <div class="cards-container__header">
+                <div class="cards-container__delivery-type">
+                  <form action="">
+                    <input id="pickup" type="radio" checked>
+                    <label for="pickup" value="Самовывоз">
+                      <span class="delivery-type__name">Самовывоз</span>
+                    </label>
+
+                    <input id="delivery" type="radio">
+                    <label for="delivery" value="Доставка">
+                      <span class="delivery-type__name">Доставка</span>
+                      <span class="delivery-type__estimated">15 рабочих дней</span>
+                    </label>
+                  </form>
+                </div>
+              </div>
+              <form action="" class="">
+                <div class="cards-container__wrap">
+                  <div class="delivery-container__item">
+
+                    <div class="delivery-container__pickup-info">
+                      <span class="pickup-info__date">Вы можете забрать заказ <br><strong>с 3 августа 2018</strong></span>
+                      <span class="pickup-info__address">123022, Россия, Ноябрьск, <br><a href="">ул. 1905 года, дом 7, стр. 1 </a></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cards-container__wrap">
+                  <div class="delivery-container__item">
+
+                    <div class="delivery-container__header">
+                      <span>Когда удобно<br>забрать</span>
+                    </div>
+                    <div class="delivery-container__item-info">
+
+                      <div class="custom-datepicker">
+                        <input class="input-text_small" type="text">
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+
+            <button class="white">
+              <span>Очистить корзину</span>
+            </button>
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+////////////////////////////////////////////////////
+
+    <section>
+      <div class="container">
+
+        <div class="section-title">
+          <div class="breadcrumbs">
+            <a class="breadcrumbs__item">Главная страница</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item">Корзина</a>
+            <span class="breadcrumbs__divide"></span>
+            <a class="breadcrumbs__item breadcrumbs__item_active">Доставка и сервисы</a>
+          </div>
+          <span class="section-title__text section-title__text_in-product">Доставка и сервисы</span>
+        </div>
+
+        <div class="center_no-left cards-container__center_no-left">
+          <aside class="right">
+            <div class="cards-container__payment-info">
+              <span class="payment-info__title">К оплате:</span>
+              <span class="payment-info__value">45 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+            </div>
+            <button class=""><span>Оплатить</span></button>
+          </aside>
+          <div class="section-wrap">
+
+            <div class="cards-container cards-container__payment-execution">
+              <div class="cards-container__wrap">
+
+                <span class="cards-container__title">Получатель</span>
+
+                <div class="delivery-container__item">
+
+                  <div class="delivery-container__header">
+                    <span>Номер телефона*</span>
+                  </div>
+                  <div class="delivery-container__item-info">
+
+                    <input class="input-text input-text_medium" type="text">
+
+                  </div>
+                </div>
+
+                <div class="delivery-container__item">
+
+                  <div class="delivery-container__header">
+                    <span>ФИО*</span>
+                  </div>
+                  <div class="delivery-container__item-info">
+
+                    <input class="input-text input-text_large" type="text">
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+//////////////////////////////////////////////////
+    <div class="content">
+      <div class="container">
+
+        <button class="button button_add-to-cart"><span>313 770 Р</span></button>
+        <button class="button button_add-to-cart button-auction"><span>313 770 Р</span></button>
+
+        <a class="catalog-item">
+          <div class="catalog-item__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+          <div class="catalog-item__info">
+            <span class="catalog-item__title">Технологическое и блочное оборудование</span>
+          </div>
+        </a>
+
+        <div class="product-item">
+          <a class="product-item__image" style="background: url('/images/TEST_delete/2.png') center no-repeat; background-size: cover">
+            <div class="product-item__discount-ticket">
+              <span>-30%</span>
+            </div>
+          </a>
+          <div class="product-item__info">
+            <a href="#" class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+            <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+          </div>
+        </div>
+
+        <div class="product-item product-item_narrow">
+          <a href="#" class="product-item__image" style="background: url('/images/TEST_delete/3.png') center no-repeat; background-size: contain"></a>
+          <div class="product-item__info">
+            <a href="#" class="product-item__title">Переводник нижней секции ЗТС5Б-240.1.1</a>
+            <button class="button button_add-to-cart"><span>14 770 Р</span></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </main>
+</div>
+<footer class="footer">
+
+  <div class="container container_no-padding">
+    <div class="footer-links">
+      <a href="#" class="footer-links__item">О проекте</a>
+      <a href="#" class="footer-links__item">Помощь</a>
+      <a href="#" class="footer-links__item">Контакты</a>
+      <a href="#" class="footer-links__item">Доставка</a>
+      <a href="#" class="footer-links__item">Сервисы</a>
+      <a href="#" class="footer-links__item">Оплата</a>
+      <a href="#" class="footer-links__item">Коммерческая информация</a>
+
+      <div class="footer-links__mobile">
+        <a href="#" class="footer-links__mobile_icon footer-links__mobile_apple">
+          <span class="apple-icon"></span>
+        </a>
+        <a href="#" class="footer-links__mobile_icon footer-links__mobile_android">
+          <span class="android-icon"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container container_no-padding">
+    <div class="footer-aside">
+      <div class="footer-aside__copyright">© ПАО «Газпром нефть», 2018</div>
+      <div class="footer-aside__contacts">
+        <span class="contact-number"><span class="phone">8 (800) 700-31-52</span><span class="phone">8 (812) 363-31-52</span></span>
+        <span class="contact-aside">Круглосуточная служба поддержки</span>
+      </div>
+      <a href="#" class="footer-aside__question"><span class="mail-icon"></span><span>Задать вопрос</span></a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

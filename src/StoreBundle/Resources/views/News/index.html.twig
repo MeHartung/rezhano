@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+  
+<section class="gkContentTopBorder ">
+  <section id="gkBreadcrumb">											
+    <div class="breadcrumbs">
+      <ul>
+        <li class="pathway"><a href="{{ path('homepage') }}">Главная</a></li>
+        <li class="pathway separator">/</li>
+        <li class="pathway">Новости</li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<section id="gkContent">
+  
+  <h1>Новости</h1>
+
+  <div class="article-list">
+    {% for news_item in news %}
+      <div class="article-list-item">
+
+        <div class="article-announce">
+          {%  if image_exists(news_item) %}
+            <div class="media-left">
+              <a href="{{ path('news_show', { 'slug': news_item.slug }) }}" rel="nofollow">
+                <img class="article-image" src="{{ image_url(news_item) }}" alt="">
+              </a>
+            </div>
+          {% endif %}
+          <div class="media-right">
+            <div class="article-heading">
+              <h2><a href="{{ path('news_show', { 'slug': news_item.slug }) }}">{{ news_item.title }}</a></h2>
+              <span class="small grey">{{ news_item.createdAt| localizeddate('long', 'none', 'ru', null, "d MMMM Y") }}</span>
+            </div>
+            {{ news_item.announce|striptags('<br><strong><i><b><blockquote>')|raw }}
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div>  
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

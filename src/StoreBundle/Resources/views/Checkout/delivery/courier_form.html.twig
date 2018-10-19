@@ -1,0 +1,231 @@
+<div class="delivery-type-delivery" id="typeDelivery">
+    {{ form_start(courierForm) }}
+    {{ form_errors(courierForm) }}
+    {{ form_errors(courierForm.shippingMethodId) }}
+    {#<div class="cards-container__wrap">#}
+        {#<div class="delivery-container__item">#}
+
+            {#<div class="delivery-container__header">#}
+                {#<span>Состав груза</span>#}
+            {#</div>#}
+            {#<div class="delivery-container__item-info">#}
+
+                        {#<span class="custom-radio">#}
+                          {#<input id="pickup" type="radio" checked>#}
+                          {#<label for="pickup" value="Самовывоз">#}
+                            {#<span class="delivery-type__name">1 место</span>#}
+                          {#</label>#}
+                        {#</span>#}
+
+                {#<span class="custom-radio">#}
+                          {#<input id="delivery" type="radio">#}
+                          {#<label for="delivery" value="Доставка">#}
+                            {#<span class="delivery-type__name">Несколько мест</span>#}
+                          {#</label>#}
+                        {#</span>#}
+
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+    {#<div class="cards-container__wrap">#}
+        {#<div class="delivery-container__item">#}
+            {#<div class="delivery-container__header">#}
+                {#<span>Габариты груза</span>#}
+            {#</div>#}
+            {#<div class="delivery-container__item-info">#}
+                {#<div class="input-title-aside">#}
+                    {#<input class="input-text_small" type="text" placeholder="100">#}
+                    {#<span class="input-title-aside__text">Длина</span>#}
+                {#</div>#}
+
+                {#<div class="input-title-aside">#}
+                    {#<input class="input-text_small" type="text" placeholder="50">#}
+                    {#<span class="input-title-aside__text">Ширина</span>#}
+                {#</div>#}
+
+                {#<div class="input-title-aside">#}
+                    {#<input class="input-text_small" type="text" placeholder="10">#}
+                    {#<span class="input-title-aside__text">Высота</span>#}
+                {#</div>#}
+
+                {#<div class="custom-select">#}
+                    {#<select name="" id="">#}
+                        {#<option value="м">м</option>#}
+                        {#<option value="см">см</option>#}
+                        {#<option value="мм">мм</option>#}
+                    {#</select>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+
+        {#<div class="delivery-container__item">#}
+            {#<div class="delivery-container__header">#}
+                {#<span>Вес груза</span>#}
+            {#</div>#}
+            {#<div class="delivery-container__item-info">#}
+                {#<input class="input-text_small" type="text" placeholder="300">#}
+                {#<span class="item-info-unit">кг</span>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+    <div class="cards-container__wrap">
+        {#<div class="delivery-container__item">#}
+            {#<div class="delivery-container__header">#}
+                {#<span>Откуда*</span>#}
+            {#</div>#}
+            {#<div class="delivery-container__item-info">#}
+                {#<input type="text" class="input-text_biggest" value="Москва">#}
+                {#<div class="checkbox-aside">#}
+                    {#<div class="checkbox-aside__item">#}
+                            {#<span class="custom-radio">#}
+                              {#<input id="delivery" type="radio" >#}
+                              {#<label for="delivery" value="Доставка">#}
+                                {#<span class="delivery-type__name">Самостоятельно привезти <br>груз на терминал</span>#}
+                              {#</label>#}
+                            {#</span>#}
+
+                    {#</div>#}
+
+                    {#<div class="checkbox-aside__item">#}
+                            {#<span class="custom-radio">#}
+                              {#<input id="delivery" type="radio" checked>#}
+                              {#<label for="delivery" value="Доставка">#}
+                                {#<span class="delivery-type__name">Забрать груз <br>от адреса отправителя</span>#}
+                              {#</label>#}
+                            {#</span>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+        <div class="delivery-container__item">
+            <div class="delivery-container__header">
+                <span>Куда*</span>
+            </div>
+            <div class="delivery-container__item-info">
+                {{ form_widget(courierForm.shippingAddress, {'attr':{'class':'input-text_biggest'}}) }}
+                {#<div class="checkbox-aside">#}
+                    {#<div class="checkbox-aside__item">#}
+                            {#<span class="custom-radio">#}
+                              {#<input id="delivery" type="radio">#}
+                              {#<label for="delivery" value="Доставка">#}
+                                {#<span class="delivery-type__name">Самостоятельно забрать<br>груз на терминал</span>#}
+                              {#</label>#}
+                            {#</span>#}
+                    {#</div>#}
+                    {#<div class="checkbox-aside__item">#}
+                            {#<span class="custom-radio">#}
+                              {#<input id="delivery" type="radio" checked>#}
+                              {#<label for="delivery" value="Доставка">#}
+                                {#<span class="delivery-type__name">Доставить груз <br>от адреса получателя</span>#}
+                              {#</label>#}
+                            {#</span>#}
+                    {#</div>#}
+                {#</div>#}
+            </div>
+        </div>
+    </div>
+    <div class="cards-container__wrap">
+        <div class="delivery-container__item">
+            <div class="delivery-container__header">
+                <span>Когда*</span>
+            </div>
+            <div class="delivery-container__item-info">
+                <div class="custom-datepicker">
+                    {{ form_widget(courierForm.shippingDate, {'attr':{'class':'input-text_medium'}}) }}
+                </div>
+            </div>
+            {#<div class="delivery-container__item-info">#}
+                {#<div class="cards-container__order-estimate-delivery">#}
+                    {#Срок доставки#}
+                    {#<span class="cards-container__order-estimate-delivery_day">#}
+                            {#4–5 дней#}
+                          {#</span>#}
+                {#</div>#}
+            {#</div>#}
+        </div>
+        {#<div class="delivery-container__item">#}
+            {#<div class="delivery-container__header">#}
+                {#<span>Объявленная<br>стоимость*</span>#}
+            {#</div>#}
+            {#<div class="delivery-container__item-info">#}
+                {#<input type="text" class="input-text_medium" value="1 034 000">#}
+            {#</div>#}
+            {#<span class="delivery-container__ruble">₽</span>#}
+        {#</div>#}
+    </div>
+    {#<div class="cards-container__wrap">#}
+        {#<div class="delivery-container__item">#}
+            {#<div class="delivery-container__header">#}
+                {#<span>Услуги<br>на терминале<br>отправителе</span>#}
+            {#</div>#}
+            {#<div class="delivery-container__item-info">#}
+                {#<div class="radiobox">#}
+                          {#<span class="custom-checkbox">#}
+                            {#<label>#}
+                              {#<input type="checkbox" class="checkbox" checked="">#}
+                              {#<span class="custom-checkbox__checkbox"></span>#}
+                              {#<span>Упаковать в паллетный борт (только до терминала-получателя)</span>#}
+                            {#</label>#}
+
+                            {#<label>#}
+                              {#<input type="checkbox" class="checkbox" checked="">#}
+                              {#<span class="custom-checkbox__checkbox"></span>#}
+                              {#<span>Упаковать в жёсткую упаковку</span>#}
+                            {#</label>#}
+
+                            {#<label>#}
+                              {#<input type="checkbox" class="checkbox" checked="">#}
+                              {#<span class="custom-checkbox__checkbox"></span>#}
+                              {#<span>Упаковать в жёсткий короб</span>#}
+                            {#</label>#}
+                          {#</span>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+    {#<div class="cards-container__wrap">#}
+        {#<div class="delivery-container__item">#}
+            {#<div class="delivery-container__header">#}
+                {#<span>Сопроводительные<br>документы</span>#}
+            {#</div>#}
+
+            {#<div class="delivery-container__item-info">#}
+                {#<div class="radiobox">#}
+                          {#<span class="custom-checkbox">#}
+                            {#<label>#}
+                              {#<input type="checkbox" class="checkbox" checked="">#}
+                              {#<span class="custom-checkbox__checkbox"></span>#}
+                              {#<span>Отправка сопроводительных документов</span>#}
+                            {#</label>#}
+
+                            {#<label>#}
+                              {#<input type="checkbox" class="checkbox" checked="">#}
+                              {#<span class="custom-checkbox__checkbox"></span>#}
+                              {#<span>Возврат сопроводительных документов</span>#}
+                            {#</label>#}
+
+                          {#</span>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+    <div class="cards-container cards-container_no-shadow">
+        <div class="cards-container__wrap">
+            <div class="delivery-container__header">
+                <span>Комментарии</span>
+            </div>
+            <div class="delivery-container__item-info">
+                <div class="custom-textarea">
+                    {{ form_widget(courierForm.customer_comment, {'attr':{'placeholder':'Указать желаемые услуги и сервисы', 'rows':30, 'cols':10}}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" style="display: none" id="submitTypeDelivery">
+    <input type="hidden" name="{{ courierForm.shippingMethodId.vars.full_name }}" value="{{ courierForm.shippingMethodId.vars.value }}">
+    {% do courierForm.shippingMethodId.setRendered  %}
+    {{ form_end(courierForm) }}
+</div>

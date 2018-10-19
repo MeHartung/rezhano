@@ -1,0 +1,74 @@
+services:
+    aw.taxonomy.manager:
+      class: Accurateweb\TaxonomyBundle\Service\TaxonomyManager
+
+    aw.taxon_presentation.manager:
+      class: Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Resolver\TaxonPresentationManager
+
+    aw.taxon_presentaion.resolver.stored:
+      class: Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Resolver\TaxonPresentationResolverStored
+      public: false
+      arguments:
+        - '@aw.product_sort.factory'
+      tags:
+        - { name: aw.taxon_presentaion.resolver }
+
+    aw.taxon_presentaion.resolver.search:
+      class: Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Resolver\TaxonPresentationResolverSearch
+      arguments:
+        - '@aw.product_sort.factory'
+      public: false
+      tags:
+        - { name: aw.taxon_presentaion.resolver }
+
+    aw.taxon_renderer.child_sections:
+      public: true
+      autowire: false
+      class: Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Renderer\TaxonPresentationChildSectionsRenderer
+      arguments: ['@twig', '@store.taxon.repository']
+      tags:
+      - { name: aw.taxon_renderer }
+
+    aw.taxon_renderer.twig:
+      public: true
+      autowire: false
+      class: Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Renderer\ProductListPresentationRenderer
+      arguments: ['@twig']
+      tags:
+        - { name: aw.taxon_renderer }
+
+    aw.taxon_renderer.search:
+      public: true
+      autowire: false
+      class: Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Renderer\SearchTaxonPresentationRenderer
+      arguments: ['@twig']
+      tags:
+        - { name: aw.taxon_renderer }
+
+    aw.taxon_renderer.manager:
+      class: Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Renderer\TaxonPresentationRendererManager
+
+    aw.twig.render.presentation:
+      class: Accurateweb\TaxonomyBundle\Twig\TwigRenderExtension
+      arguments: ['@aw.taxon_renderer.manager']
+      tags:
+        - { name: twig.extension }
+
+
+
+    aw.admin.extension.products:
+      class: Accurateweb\TaxonomyBundle\Admin\Extension\TaxonPresentationProductsAdminExtension
+      tags:
+        - { name: sonata.admin.extension, target: app.admin.catalog.taxon }
+
+    aw.taxon_resolver.root:
+      class: Accurateweb\TaxonomyBundle\Model\Resolver\RootCatalogResolver
+      arguments: ['@store.taxon.repository', '@aw.taxon.factory']
+      tags: { name: aw.taxonomy.resolver }
+
+    aw.search.taxon_factory:
+      class: Accurateweb\TaxonomyBundle\Model\Taxon\SearchTaxonFactory
+      arguments: ['@store.taxon.repository', '@store.product.repository', '@accurateweb.sphinxsearch']
+
+    aw.product_sort.factory:
+      class: AccurateCommerce\Sort\ProductSortFactory

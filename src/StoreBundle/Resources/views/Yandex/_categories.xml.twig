@@ -1,0 +1,5 @@
+<categories>
+    {% for taxon in taxons %}
+        <category id="{{ taxon.id }}" parentId="{% if taxon.parent and taxon.parent.treeleft > 1 %}{{ taxon.parent.id }}{% else %}0{% endif %}">{{ taxon.name }}</category>
+    {% endfor %}
+</categories>

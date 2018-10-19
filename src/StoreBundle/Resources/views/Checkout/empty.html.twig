@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <section class="gkContentTopBorder "></section>
+    <h1>Корзина</h1>
+    <div class="cart-empty">
+        <p>Корзина пуста</p>
+        <p><a href="{{ path('catalog_index') }}">Продолжить покупки</a> </p>
+    </div>
+{% endblock %}

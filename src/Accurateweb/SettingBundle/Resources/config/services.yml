@@ -1,0 +1,30 @@
+services:
+    aw.settings.storage:
+      class: Accurateweb\SettingBundle\Model\Storage\DoctrineSettingStorage
+      arguments: ['@store.settings.repository', '@doctrine.orm.entity_manager']
+
+    aw.settings.manager:
+      class: Accurateweb\SettingBundle\Model\Manager\SettingManager
+
+    aw.twig.settings:
+      class: Accurateweb\SettingBundle\Twig\SettingsExtension
+      arguments: ['@aw.settings.manager']
+      public: false
+      autowire: false
+      tags:
+        - { name: twig.extension }
+
+    aw.settings.model_manager:
+      class: Accurateweb\SettingBundle\Model\Manager\ModelManager
+      arguments:
+        - "@doctrine"
+        - "@aw.settings.manager"
+
+    main.admin.settings:
+      class: Accurateweb\SettingBundle\Admin\SettingsAdmin
+      arguments: [~,'StoreBundle\Entity\Setting',~, '@aw.settings.manager']
+      calls:
+        - [ setTemplate, [base_list_field, AccuratewebSettingBundle::list_field.html.twig]]
+        - [ setModelManager, ['@aw.settings.model_manager'] ]
+      tags:
+        -  { name: sonata.admin, group: %aw.settings.admin.group%, manager_type: orm, label: %aw.settings.admin.label% }

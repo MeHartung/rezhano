@@ -1,0 +1,7 @@
+{#{% if object.checkoutStateId != constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_ONE_CLICK")#}
+   {#and object.checkoutStateId != constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_PRE_ORDER") %}#}
+    <a class="btn btn-sm btn-default" href="{{ admin.generateObjectUrl('status', object) }}">
+    <i class="fa fa-edit" aria-hidden="true"></i>&nbsp;
+    Изменить статус
+{#</a>#}
+{#{% endif %}#}

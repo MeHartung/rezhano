@@ -1,0 +1,27 @@
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tbody>
+    <tr align="left">
+        <th>&nbsp;</th>
+        <th align="left">Артикул</th>
+        <th align="left">Кол-во</th>
+        <th align="left">Название товара</th>
+        <th align="right">Цена</th>
+        <th align="right">Скидка</th>
+        <th align="right">Всего</th>
+    </tr>
+    {% for item in items %}
+        <tr valign="top">
+            <td><a href="{{ url('product', { slug: item.product.slug }) }}"><img width="100" src=""></a></td>
+            <td align="left">{{ item.product.sku }}</td>
+            <td align="left">{{ item.quantity }}</td>
+            <td align="left">
+                <a href="{{ url('product', { slug: item.product.slug }) }}" target="_blank">{{ item.product.name }}</a>
+            </td>
+            <td align="right">{{ item.price }} руб</td>
+            <td align="right">&nbsp;</td>
+            <td align="right">{{ item.cost }} руб</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

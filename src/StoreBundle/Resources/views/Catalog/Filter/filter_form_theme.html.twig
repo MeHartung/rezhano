@@ -1,0 +1,48 @@
+{% use 'form_div_layout.html.twig' with form_label as base_form_label %}
+
+{% block form_row %}
+    {#filter-section_collapse#}
+    <div class="filter-field filter-section" data-field-id="{{ form.vars.name }}" data-field-name="{{ form.vars.full_name }}">
+        <div class="heading filter-section__title">
+            <span class="filter-heading-triangle">&nbsp;</span>
+            {{ block('base_form_label') }}
+        </div>
+        <div class="filter-section__content">
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{%- block form_end -%}
+    {%- if not render_rest is defined or render_rest -%}
+        {{ form_rest(form) }}
+    {%- endif -%}
+        {#<div class="form-buttons center">#}
+            {#<input class="button button-red" type="submit" value="Показать">#}
+            {#<a class="fullreset dashed" href="{{ path('taxon', { slug: form.vars.taxon.slug }) }}">Сбросить</a>#}
+        {#</div>#}
+    </form>
+{%- endblock form_end -%}
+
+{% block filter_range_slider_widget %}
+    <div class="values sliderbox slider-double-handle" id="{{ form.vars.id }}">
+        {{ form_widget(form.min, { attr: { placeholder: "от" }}) }}
+        {{ form_widget(form.max, { attr: { placeholder: "до" }}) }}
+        <div class="slider-line"></div>
+    </div>
+{% endblock %}
+
+
+{% block choice_widget_expanded %}
+      {% for child in form %}
+          <span class="custom-checkbox custom-checkbox_bg-blue">
+            <label>
+                {{ form_widget(child, { attr: { class: 'checkbox' }}) }}
+                <span class="custom-checkbox__checkbox"></span>
+                <span>{{ child.vars.label }}</span>
+            </label>
+
+          </span>
+      {% endfor %}
+{% endblock %}

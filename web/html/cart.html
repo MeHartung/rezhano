@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Корзина — Реализация имущества Группы «Газпром нефть»</title>
+  <!--<link rel="stylesheet" href="css/main.min.css"> - минифицированные стили для prod-окружения -->
+  <link rel="stylesheet" href="/js/vendor/slick/slick-theme.css">
+  <link rel="stylesheet" href="/js/vendor/slick/slick.css">
+  <link rel="stylesheet" href="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script type="text/javascript" src="/js/vendor/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+  <script type="text/javascript" src="/js/vendor/slick/slick.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <div class="logo-wrap">
+          <a class="gpn-logo" title="Газпромнефть" href="main.html"></a>
+          <span class="text-logo">Реализация <br>имущества Группы <br>«Газпром нефть»</span>
+        </div>
+        <span class="header-number">8 (800) 700-31-52 </span>
+        <div class="header-panel">
+          <!--/  -->
+          <!--<span class="header-panel__sign"><span class="user-icon"></span>Войти</span>-->
+          <!--/-->
+          <a href="profile-messages.html" class="js-messages header-panel__message new-message"><span class="mail-icon mail-icon_new-message"></span>2</a>
+          <a href="profile.html" class="header-panel__sign"><span class="user-icon"></span>Владимир Иванов</a>
+          <a href="favourites.html" class="header-panel__favorites"><span class="star-icon"></span>6</a>
+
+          <div class="notice-popup">
+            <div class="notice-popup__wrap">
+              <span class="notice-popup__title">Уведомления</span>
+              <div class="notice-popup__items">
+
+                <a href="profile-messages.html" class="notice-popup__item new-notice">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_auction"></span>
+                  </div>
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">Ваша ставка по аукциону №213 была перебита на 500Р</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+              </div>
+            </div>
+
+            <a href="profile-messages.html" class="notice-popup__button-all">
+              Все уведомления
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-menu">
+        <div class="container">
+          <div class="header-menu__wrap">
+
+            <div class="menu-container">
+
+              <button class="open-menu" id="openMenu1">
+                <span>Каталог товаров</span>
+                <span class="burger-icon"></span>
+              </button>
+
+              <div class="expanded-menu" id="expandedMenu1" style="display: none">
+
+                <button class="open-menu" id="closeMenu1">
+                  <span>Каталог товаров</span>
+                  <span class="burger-icon"></span>
+                </button>
+
+                <div class="expanded-menu__items">
+                  <div class="expanded-menu__items-item-wrap">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span>Запорная арматура</span>
+                    </a>
+
+                    <div class="expanded-menu__items expanded-menu__items-level-two">
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                    </div>
+
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item"><span>Запорная арматура</span></a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item"><span>Технологическое <br>и блочное оборудование</span></a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item"><span>Запорная арматура</span></a>
+                  </div>
+
+                </div>
+                <a href="catalog.html" class="expanded-menu__see-all">Смотреть все</a>
+              </div>
+            </div>
+
+
+            <div class="header-menu__input">
+              <input type="text" placeholder="Найти в каталоге товаров">
+              <button class="button-search"></button>
+            </div>
+
+            <a href="cart.html" class="header-menu__info">
+              <span class="header-menu__info-amount-item"><span class="card-icon"></span>12</span>
+              <span class="header-menu__info-amount-payment">12 000 000 Р</span>
+            </a>
+
+          </div>
+
+          <div class="header-menu__ordering">
+            <a class="ordering-item ordering-item_active">
+              <span class="card-icon card-icon__blue"></span>
+              <span class="ordering-item__name">Корзина</span>
+            </a>
+            <a class="ordering-item">
+              <span class="delivery-icon grey-icon"></span>
+              <span class="delivery-icon delivery-icon__blue blue-icon"></span>
+              <span class="ordering-item__name">Доставка и сервисы</span>
+            </a>
+            <a class="ordering-item">
+              <span class="payment-icon grey-icon"></span>
+              <span class="payment-icon payment-icon__blue blue-icon"></span>
+              <span class="ordering-item__name">Оплата</span>
+            </a>
+            <a class="ordering-item">
+              <span class="order-icon grey-icon"></span>
+              <span class="order-icon order-icon__blue blue-icon"></span>
+              <span class="ordering-item__name">Заказ</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </header>
+    <main>
+      <section>
+        <div class="container">
+
+          <div class="section-title">
+            <div class="breadcrumbs">
+              <a href="main.html" class="breadcrumbs__item">Главная страница</a>
+              <span class="breadcrumbs__divide"></span>
+              <span class="breadcrumbs__item breadcrumbs__item_active">Корзина</span>
+            </div>
+            <span class="section-title__text section-title__text_in-product">Корзина</span>
+          </div>
+
+          <div class="center_no-left cards-container__center_no-left">
+            <aside class="right">
+              <div class="cards-container__payment-info">
+                <span class="payment-info__title">К оплате:</span>
+                <span class="payment-info__value">55 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+              </div>
+              <a href="checkout-delivery.html" class="button"><span>К оформлению заказа</span></a>
+              <a href="catalog.html" class="button white"><span>Продолжить покупки</span></a>
+            </aside>
+            <div class="section-wrap">
+
+
+              <div class="cards-container">
+                <div class="cards-container__header">
+                  <div class="cards-container__item cards-container__item_header"></div>
+                  <div class="quantity-wrap quantity-wrap_header"><span>Кол-во</span></div>
+                  <div class="cards-container__location cards-container__location_header"><span>Местонахождение</span></div>
+                  <div class="cards-container__price cards-container__price_header"><span>Цена</span></div>
+                </div>
+
+                <div class="cards-container__wrap">
+
+                  <div class="cards-container__item">
+                    <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="cards-container__item-info">
+                      <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                      <span class="item-info__title-aside">Артикул – 448201335</span>
+                    </div>
+                  </div>
+
+                  <div class="quantity-wrap">
+                    <a class="quantity-control quantity-control__down"></a>
+                    <input value="20" type="text">
+                    <a class="quantity-control quantity-control__up"></a>
+                    <span class="quantity-balance">всего 50 шт.</span>
+                  </div>
+
+                  <div class="cards-container__location">Волгоград</div>
+                  <div class="cards-container__price">1 000,00 ₽</div>
+                  <div class="cards-container__controls">
+                    <a class="button button-remove-from-favorites"></a>
+                  </div>
+
+                  <div class="cards-container__amount-total">
+                    <div class="total-value">
+                      Сумма:
+                      <span class="total-value__payment">5 000,00 ₽</span>
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div class="cards-container__wrap">
+
+                  <div class="cards-container__item">
+                    <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="cards-container__item-info">
+                      <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                      <span class="item-info__title-aside">Артикул – 448201335</span>
+                    </div>
+                  </div>
+
+                  <div class="quantity-wrap">
+                    <a class="quantity-control quantity-control__down"></a>
+                    <input value="20" type="text">
+                    <a class="quantity-control quantity-control__up"></a>
+                    <span class="quantity-balance">всего 50 шт.</span>
+                  </div>
+
+                  <div class="cards-container__location">Волгоград</div>
+                  <div class="cards-container__price">1 000,00 ₽</div>
+                  <div class="cards-container__controls">
+                    <a class="button button-remove-from-favorites"></a>
+                  </div>
+
+                  <div class="cards-container__amount-total">
+                    <div class="total-value">
+                      Сумма:
+                      <span class="total-value__payment">5 000,00 ₽</span>
+                    </div>
+                  </div>
+
+                </div><div class="cards-container__wrap">
+
+                <div class="cards-container__item">
+                  <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="cards-container__item-info">
+                    <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул – 448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <a class="quantity-control quantity-control__down"></a>
+                  <input value="20" type="text">
+                  <a class="quantity-control quantity-control__up"></a>
+                  <span class="quantity-balance">всего 50 шт.</span>
+                </div>
+
+                <div class="cards-container__location">Волгоград</div>
+                <div class="cards-container__price">1 000,00 ₽</div>
+                <div class="cards-container__controls">
+                  <a class="button button-remove-from-favorites"></a>
+                </div>
+
+                <div class="cards-container__amount-total">
+                  <div class="total-value">
+                    Сумма:
+                    <span class="total-value__payment">5 000,00 ₽</span>
+                  </div>
+                </div>
+
+              </div><div class="cards-container__wrap">
+
+                <div class="cards-container__item">
+                  <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="cards-container__item-info">
+                    <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул – 448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <a class="quantity-control quantity-control__down"></a>
+                  <input value="20" type="text">
+                  <a class="quantity-control quantity-control__up"></a>
+                  <span class="quantity-balance">всего 50 шт.</span>
+                </div>
+
+                <div class="cards-container__location">Волгоград</div>
+                <div class="cards-container__price">1 000,00 ₽</div>
+                <div class="cards-container__controls">
+                  <a class="button button-remove-from-favorites"></a>
+                </div>
+
+                <div class="cards-container__amount-total">
+                  <div class="total-value">
+                    Сумма:
+                    <span class="total-value__payment">5 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+                  </div>
+                </div>
+
+              </div><div class="cards-container__wrap">
+
+                <div class="cards-container__item">
+                  <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="cards-container__item-info">
+                    <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул – 448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <a class="quantity-control quantity-control__down"></a>
+                  <input value="20" type="text">
+                  <a class="quantity-control quantity-control__up"></a>
+                  <span class="quantity-balance">всего 50 шт.</span>
+                </div>
+
+                <div class="cards-container__location">Волгоград</div>
+                <div class="cards-container__price">1 000,00 ₽</div>
+                <div class="cards-container__controls">
+                  <a class="button button-remove-from-favorites"></a>
+                </div>
+
+                <div class="cards-container__amount-total">
+                  <div class="total-value">
+                    Сумма:
+                    <span class="total-value__payment">5 000,00 ₽</span>
+                  </div>
+                </div>
+
+              </div><div class="cards-container__wrap">
+
+                <div class="cards-container__item">
+                  <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="cards-container__item-info">
+                    <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул – 448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <a class="quantity-control quantity-control__down"></a>
+                  <input value="20" type="text">
+                  <a class="quantity-control quantity-control__up"></a>
+                  <span class="quantity-balance">всего 50 шт.</span>
+                </div>
+
+                <div class="cards-container__location">Волгоград</div>
+                <div class="cards-container__price">1 000,00 ₽</div>
+                <div class="cards-container__controls">
+                  <a class="button button-remove-from-favorites"></a>
+                </div>
+
+                <div class="cards-container__amount-total">
+                  <div class="total-value">
+                    Сумма:
+                    <span class="total-value__payment">5 000,00 ₽</span>
+                  </div>
+                </div>
+
+              </div><div class="cards-container__wrap">
+
+                <div class="cards-container__item">
+                  <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="cards-container__item-info">
+                    <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул – 448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <a class="quantity-control quantity-control__down"></a>
+                  <input value="20" type="text">
+                  <a class="quantity-control quantity-control__up"></a>
+                  <span class="quantity-balance">всего 50 шт.</span>
+                </div>
+
+                <div class="cards-container__location">Волгоград</div>
+                <div class="cards-container__price">1 000,00 ₽</div>
+                <div class="cards-container__controls">
+                  <a class="button button-remove-from-favorites"></a>
+                </div>
+
+                <div class="cards-container__amount-total">
+                  <div class="total-value">
+                    Сумма:
+                    <span class="total-value__payment">5 000,00 ₽</span>
+                  </div>
+                </div>
+
+              </div><div class="cards-container__wrap">
+
+                <div class="cards-container__item">
+                  <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="cards-container__item-info">
+                    <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул – 448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <a class="quantity-control quantity-control__down"></a>
+                  <input value="20" type="text">
+                  <a class="quantity-control quantity-control__up"></a>
+                  <span class="quantity-balance">всего 50 шт.</span>
+                </div>
+
+                <div class="cards-container__location">Волгоград</div>
+                <div class="cards-container__price">1 000,00 ₽</div>
+                <div class="cards-container__controls">
+                  <a class="button button-remove-from-favorites"></a>
+                </div>
+
+                <div class="cards-container__amount-total">
+                  <div class="total-value">
+                    Сумма:
+                    <span class="total-value__payment">5 000,00 ₽</span>
+                  </div>
+                </div>
+
+              </div>
+
+
+                <div class="cards-container__wrap">
+
+                  <div class="cards-container__item">
+                    <div class="cards-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="cards-container__item-info">
+                      <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                      <span class="item-info__title-aside">Артикул – 448201335</span>
+                    </div>
+                  </div>
+
+                  <div class="quantity-wrap">
+                    <a class="quantity-control quantity-control__down"></a>
+                    <input value="20" type="text">
+                    <a class="quantity-control quantity-control__up"></a>
+                    <span class="quantity-balance">всего 50 шт.</span>
+                  </div>
+
+                  <div class="cards-container__location">Волгоград</div>
+                  <div class="cards-container__price">1 000,00 ₽</div>
+                  <div class="cards-container__controls">
+                    <a class="button button-remove-from-favorites"></a>
+                  </div>
+
+                  <div class="cards-container__amount-total">
+                    <div class="total-value">
+                      Сумма:
+                      <span class="total-value__payment">5 000,00 ₽</span>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+
+              <button class="white">
+                <span>Очистить корзину</span>
+              </button>
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+      </section>
+    </main>
+  </div>
+  <footer class="footer">
+
+    <div class="container container_no-padding">
+      <div class="footer-links">
+        <a href="#" class="footer-links__item">О проекте</a>
+        <a href="#" class="footer-links__item">Помощь</a>
+        <a href="#" class="footer-links__item">Контакты</a>
+        <a href="#" class="footer-links__item">Доставка</a>
+        <a href="#" class="footer-links__item">Сервисы</a>
+        <a href="#" class="footer-links__item">Оплата</a>
+        <a href="#" class="footer-links__item">Коммерческая информация</a>
+
+        <div class="footer-links__mobile">
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_apple">
+            <span class="apple-icon"></span>
+          </a>
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_android">
+            <span class="android-icon"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container_no-padding">
+      <div class="footer-aside">
+        <div class="footer-aside__copyright">© ПАО «Газпром нефть», 2018</div>
+        <div class="footer-aside__contacts">
+          <span class="contact-number"><span class="phone">8 (800) 700-31-52</span><span class="phone">8 (812) 363-31-52</span></span>
+          <span class="contact-aside">Круглосуточная служба поддержки</span>
+        </div>
+        <a href="question.html" class="footer-aside__question"><span class="mail-icon"></span><span>Задать вопрос</span></a>
+      </div>
+    </div>
+  </footer>
+  <div class="layer user-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Вход</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="password-input-wrap">
+          <input class="layer__input" type="password" placeholder="Пароль">
+          <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+        </div>
+        <div class="user-layer__controls">
+          <span class="custom-checkbox">
+            <label>
+              <input type="checkbox" class="checkbox" checked>
+              <span class="custom-checkbox__checkbox"></span>
+              <span>Запомнить</span>
+            </label>
+          </span>
+          <a class="restore-link js-restore" href="">Забыли пароль?</a>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Войти</button>
+        </div>
+      </form>
+    </div>
+    <button class="button layer__button user-layer__button-register">Регистрация</button>
+  </div>
+  <div class="layer restore-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Восстановление пароля</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="user-layer__controls">
+          <span class="hint">
+            На указанную почту будет<br>
+            отправлено письмо со ссылкой<br>
+            для смены пароля
+          </span>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Восстановить пароль</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ui-widget-overlay"></div>
+</body>
+</html>

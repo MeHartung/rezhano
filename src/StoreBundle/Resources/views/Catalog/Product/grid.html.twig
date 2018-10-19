@@ -1,0 +1,10 @@
+{% for i, row in pagination.iterator|batch(4) %}
+    {% if i > 0 %}<div class="horizontal-separator"></div>{% endif %}
+    <div class="row">
+        {%  for j, product in row %}
+            <div class="product width25 {%  if j < row|length - 1 %}vertical-separator{% endif %}{% if not product.isPurchasable %} product-unavailable{% endif %}">
+                {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage }) }}
+            </div>
+        {%  endfor %}
+    </div>
+{% endfor %}

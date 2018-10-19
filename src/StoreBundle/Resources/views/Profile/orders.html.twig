@@ -1,0 +1,108 @@
+<div class="order-table">
+    <span class="order-table__fix"></span>
+    <span class="order-table__status">Статус</span>
+    <span class="order-table__quantity">Кол-во</span>
+    <span class="order-table__amount">Итоговая сумма</span>
+</div>
+
+{% for order in orders %}
+    <div class="order-wrap">
+
+        <div class="order-wrap__header">
+
+            <div class="order-date">
+                {% if not order.preorder %}<span class="order-number">№ {{ order.documentNumber }}</span>{% endif %}от {{ order.createdAt | localizeddate('long', 'none', 'ru', null, "d MMMM Y") }}
+            </div>
+
+            <div class="order-status">
+                {% if order.preorder %}
+                    Предзаказ
+                {% elseif order.paymentStatus %}
+
+                    {% if order.paymentStatus.isPaid %}
+                        {% set paidClass = 'paid' %}
+                    {% else %}
+                        {% set paidClass = 'paid_not' %}
+                    {% endif %}
+
+                    <span class="{{ paidClass }}">{{ order.paymentStatus }}</span>{% if order.orderStatus %}, {{ order.orderStatus.name | lower }}{% endif %}
+                {% else %}
+                    {% if order.orderStatus %}
+                        {{ order.orderStatus.name | capitalize }}
+                    {% endif %}
+                {% endif %}
+
+            </div>
+
+            <div class="order-quantity">
+                {{ order.orderItems | length }} {{ order.orderItems |length|ending_format(['товар', 'товара', 'товаров']) }}
+            </div>
+
+            <div class="other">
+                <span class="other-amount-pay">{{ order.total | price }}</span>
+                <i class="triangle-icon__down"></i>
+                <i class="triangle-icon__down_red"></i>
+                <i class="triangle-icon__up"></i>
+            </div>
+        </div>
+
+
+        <div class="order-details">
+            <div class="order-items">
+                {% for orderItem in order.orderItems %}
+
+                    {% if orderItem.product.firstImage %}
+                        {% set imgSrc = orderItem.product.firstImage %}
+                    {% else %}
+                        {% set  imgSrc = "/images/no_photo.png" %}
+                    {% endif %}
+
+                    <div class="order-item">
+                        <a href="#" class="order-item__link">
+                            <img class="order-item__image" src="{{ imgSrc }}" alt="">
+                            <span class="order-item__name">{{ orderItem.product.name }}</span>
+                        </a>
+                        <span class="order-quantity">{{ orderItem.quantity }}</span>
+                        <span class="order-item__price">{{ orderItem.cost }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="order-wrap__total">
+                <div class="total-item">
+                    {% set address = '' %}
+                    {% if order.shippingAddress %}
+                        {% set address = 'по адресу ' ~ order.shippingAddress %}
+                    {% endif %}
+
+                    <img src="/images/curier_icon.png" alt="" class="order-courier">
+                    <span class="order-adress">{% if not order.preorder %} {% if order.shippingMethod %} {{ order.shippingMethod.name }} {{ address }} {% endif %} {% else %}Предзаказ{% endif %}</span>
+                </div>
+
+                <div class="total-item">
+                    <img src="/images/cash_icon.png" alt="" class="order-cash">
+                    <span class="order-payment">{% if not order.preorder %} {% if order.paymentMethod %} {{ order.paymentMethod.name }}{% endif %}{% endif %}</span>
+                </div>
+                <div class="total-more">
+                    <span class="total-delivery">
+                        Стоимость доставки <i> {{ order.shippingCost | replace({".00" : ""}) }}₽</i>
+                    </span>
+
+                    {% if order.fee != 0 and order.fee is not null %}
+                        <span class="total-commission">Комиссия наложенного платежа <i>{{ order.fee }} ₽</i></span>
+                    {% endif %}
+
+                    {% if order.discountSum != 0 and order.discountSum is not null %}
+                        <span class="total-discount">
+                            Скидка постоянного клиента - {{ order.discountPercentage }}% <i>{{ order.discountSum }}₽</i>
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="total-amount">
+                <span class="amount-pay">ИТОГО: <i>{{ order.total }} ₽</i></span>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}

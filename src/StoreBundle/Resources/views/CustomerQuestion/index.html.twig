@@ -1,0 +1,81 @@
+{% extends "::base.html.twig" %}
+
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <div class="breadcrumbs">
+                    <a class="breadcrumbs__item">Главная страница</a>
+                    <span class="breadcrumbs__divide"></span>
+                    <a class="breadcrumbs__item breadcrumbs__item_active">Задать вопрос</a>
+                </div>
+                <span class="section-title__text section-title__text_in-product">Задать вопрос</span>
+            </div>
+
+            <div class="center_no-left cards-container__center_no-left">
+                <aside class="right">
+                    <div class="ask-question-aside">
+                        <p>Мы отправим вам ответ<br>по электронной почте.</p>
+                        {% if not app.user %}
+                            <p><a href="{{ path('fos_user_registration_register') }}"
+                                  class="ask-question-aside__registration">Пройдите регистрацию</a><br> и получайте
+                                быстрые<br> ответы в личном кабинете.</p>
+                        {% endif %}
+                    </div>
+                </aside>
+
+                {% form_theme form '@Store/CustomerQuestion/form_theme.html.twig' %}
+                <div class="section-wrap">
+                    <div class="cards-container ask-question">
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        {% if form.userName is defined or form.userEmail is defined %}
+                        <div class="cards-container__wrap">
+                            {% if form.userName is defined %}
+                            {{ form_row(form.userName) }}
+                            {% endif %}
+                            {% if form.userEmail is defined %}
+                            {{ form_row(form.userEmail) }}
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        <div class="cards-container__wrap cards-container__wrap_second">
+                            {#{{ form_row(form.question, {'attr':{'cols':30, 'rows':10}}) }}#}
+                            <div class="delivery-container__item">
+                                <div class="delivery-container__header">
+                                    {{ form_label(form.message) }}
+                                </div>
+                                <div class="delivery-container__item-info">
+                                    <div class="custom-textarea">
+                                        {{ form_widget(form.message, {'attr':{'cols':30, 'rows':10}}) }}
+                                    </div>
+                                    {% if  form_errors(form) %}
+                                        <div class="error-list">{{ form_errors(form) }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cards-container__confirm">
+                            <div class="cards-container__wrap">
+                                <div class="delivery-container__item">
+                                    <div class="delivery-container__header">
+
+                                    </div>
+                                    <div class="delivery-container__item-info">
+                                        <button class="button">
+                                            <span>Отправить вопрос</span>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

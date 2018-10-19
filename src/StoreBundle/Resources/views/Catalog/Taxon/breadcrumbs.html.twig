@@ -1,0 +1,15 @@
+<section id="gkBreadcrumb">
+    <div class="breadcrumbs">
+        <ul>
+            <li class="pathway"><a href="{{ path('homepage') }}">Каталог</a></li>
+            <li class="pathway separator">/</li>
+            {% for ancestor in path %}
+                {% if not ancestor.isRoot and not (ancestor.id == taxon.id) %}
+                    <li class="pathway"><a href="{{ path('taxon', { 'slug': ancestor.slug }) }}">{{ ancestor.shortName }}</a></li>
+                    <li class="pathway separator">/</li>
+                {% endif %}
+            {% endfor %}
+            <li class="pathway">{{ taxon.shortName }}</li>
+        </ul>
+    </div>
+</section>

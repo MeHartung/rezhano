@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{#{% block stylesheets %}#}
+    {#{{ parent() }}#}
+    {#<link rel="stylesheet" href="{{ asset('css/error.css') }}" media="all"/>#}
+{#{% endblock %}#}
+
+
+
+{% block main %}
+    <div class="error-page">
+        <div class="container container_narrow">
+            <div class="error-page__image">
+                <span class="error-page__code">403</span>
+            </div>
+            <div class="error-page__message">
+                <span class="error-page__title">Доступ заперещен</span>
+                <p class="error-page__text">
+                    У вас недостаточно прав <br> для просмотра этой страницы.
+                </p>
+                <p class="error-page__text">
+                    Вернитесь на <a href="{{ url('homepage') }}" class="error-page__index-page">главную</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{#{% block body %}#}
+{#<div id="gkPage">#}
+  {#<div id="gkPageWrap">#}
+    {#<div id="frame">#}
+      {#<div id="errorDescription">#}
+        {#<h2><span>404</span>Запрашиваемая Вами страница не найдена </h2>#}
+        {#<h3>Свяжитесь с нами для уточнения необходимой Вам информации</h3>#}
+      {#</div>#}
+    {#</div>#}
+
+    {#<div id="errorboxbody">#}
+      {#<script type="text/javascript">#}
+        {#<!--#}
+        {#var prefix = '&#109;a' + 'i&#108;' + '&#116;o';#}
+        {#var path = 'hr' + 'ef' + '=';#}
+        {#var addy8137 = '&#105;nb&#111;x' + '&#64;';#}
+        {#addy8137 = addy8137 + '&#101;xc&#97;m' + '&#46;' + 'r&#117;';#}
+        {#var addy_text8137 = 'E-MAIL';#}
+        {#document.write('<a ' + path + '\'' + prefix + ':' + addy8137 + '\'>');#}
+        {#document.write(addy_text8137);#}
+        {#document.write('<\/a>');#}
+        {#//-->\n </script>#}
+        {#<script type="text/javascript">#}
+        {#<!--#}
+        {#document.write('<span style=\'display: none;\'>');#}
+        {#//-->#}
+      {#</script>#}
+        {#Этот адрес электронной почты защищен от спам-ботов. У вас должен быть включен JavaScript для просмотра.#}
+      {#<script type="text/javascript">#}
+         {#<!--#}
+         {#document.write('</');#}
+         {#document.write('span>');#}
+         {#//-->#}
+      {#</script>#}
+    {#</div>#}
+  {#</div>#}
+{#</div>#}
+{#{% endblock %}#}

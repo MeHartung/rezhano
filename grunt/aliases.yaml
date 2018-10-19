@@ -1,0 +1,18 @@
+default:
+  description: 'Default (production) build'
+  tasks:
+    - 'less'
+    - 'postcss'
+    - 'cssmin'
+    - 'requirejs'
+#    - 'uglify'
+    - 'clean:versionedAssets'
+    - 'versioning'
+    - 'clean:nonVersionedAssets'
+css:
+  description: 'CSS tasks'
+  tasks:
+    - 'less'
+    - 'postcss'
+    - 'cssmin'
+    - 'watch'

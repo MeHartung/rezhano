@@ -1,0 +1,88 @@
+{% form_theme individualForm 'form/register.html.twig' %}
+{{ form_start(individualForm) }}
+<div class="cards-container cards-container__registration cards-container__registration_first">
+    <div class="registration-container__wrap">
+        <div class="registration-container__title">
+            Личные данные
+        </div>
+        <div class="registration-container__step">
+            {{ form_row(individualForm.lastname, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'Фамилия'}) }}
+            {{ form_row(individualForm.firstname, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'Имя'}) }}
+            {{ form_row(individualForm.middlename, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'Отчество'}) }}
+            {{ form_row(individualForm.phone, {'inline':true, 'attr':{'class':'input-text_200', 'placeholder':'+7 (___) ___ - __ - __'}, 'label':'Номер телефона'}) }}
+            {{ form_row(individualForm.email, {'inline':true, 'attr':{'class':'input-text_290'}, 'label':'Электронная почта'}) }}
+            <div class="password-wrap">
+                <div class="step-item step-item_inline">
+                    <span class="field-description">Пароль*</span>
+                    <div class="password-input-wrap">
+                        <input id="{{ individualForm.plainPassword.first.vars.id }}" name="{{ individualForm.plainPassword.first.vars.full_name }}" type="password" class="input-text_200">
+                        <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+                    </div>
+                    {% if  form_errors(individualForm.plainPassword.first) %}
+                        <div class="error-list">{{ form_errors(individualForm.plainPassword.first) }}</div>
+                    {% endif %}
+                </div>
+                {% do individualForm.plainPassword.first.setRendered %}
+
+                <div class="step-item step-item_inline">
+                    <span class="field-description">Повтор пароля*</span>
+                    <div class="password-input-wrap">
+                        <input id="{{ individualForm.plainPassword.second.vars.id }}" name="{{ individualForm.plainPassword.second.vars.full_name }}"  type="password" class="input-text_200">
+                        <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+                    </div>
+                    {% if  form_errors(individualForm.plainPassword.second) %}
+                        <div class="error-list">{{ form_errors(individualForm.plainPassword.second) }}</div>
+                    {% endif %}
+                </div>
+                {% do individualForm.plainPassword.second.setRendered %}
+            </div>
+            {{ form_row(individualForm.city, {'inline':false, 'label':'Город'}) }}
+        </div>
+    </div>
+</div>
+<div class="cards-container cards-container__registration cards-container__registration_document">
+    <div class="registration-container__wrap">
+        <div class="cards-container__registration">
+              <span class="custom-checkbox custom-checkbox_biggest custom-checkbox_bg-blue">
+                <label>
+                {{ form_widget(individualForm.contragent, {'attr': {'class':'checkbox'}}) }}
+                    <input type="checkbox" class="checkbox" checked="">
+                    <span class="custom-checkbox__checkbox"></span>
+                  <span>Я контрагент ПАО «Газпромнефть»</span>
+                </label>
+              </span>
+            {% if  form_errors(individualForm.contragent) %}
+                <div class="error-list">{{ form_errors(individualForm.contragent) }}</div>
+            {% endif %}
+        </div>
+
+        <div class="registration-container__title">
+            Документы
+            <span class="registration-container__title-aside">— необходимо загрузить все документы</span>
+        </div>Пароль*
+
+        Повтор пароля*
+
+        Документы — необходимо загрузить все документы
+        <div class="document-list">
+          {% include '@Store/Profile/RegisterForm/documentForm.html.twig' with {'form' : juridicalForm.documents} %}
+        </div>
+    </div>
+</div>
+<div class="cart-block-aside cart-block-aside_left-alignment">
+    <div class="cart-block-aside__wrap">
+        <div class="custom-checkbox custom-checkbox_bg-blue">
+            <label>
+                {{ form_widget(individualForm.tos, {'attr': {'class':'checkbox'}}) }}
+                <input type="checkbox" class="checkbox" checked="">
+                <span class="custom-checkbox__checkbox"></span>
+                <span>Я ознакомился и согласен с <a href="">Политикой Компании</a> и <a href="">условиями сотрудничества</a></span>
+            </label>
+            {% if  form_errors(individualForm.tos) %}
+                <div class="error-list">{{ form_errors(individualForm.tos) }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="button">Зарегистрироваться</button>
+    </div>
+</div>
+{{ form_end(individualForm) }}

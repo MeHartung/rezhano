@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Набор тестовых данных для проверки работы синхронизации -->
+<product_list>
+    <product>
+        <sku>CHDHS-102</sku>
+        <retail_price>77778</retail_price>
+    </product>
+    <product>
+        <sku>karkam-q2-be</sku>
+        <retail_price>999999</retail_price>
+    </product>
+</product_list>

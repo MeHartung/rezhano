@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<section id="gkBreadcrumb">
+    <div class="breadcrumbs">
+        <ul>
+            <li class="pathway"><a href="{{ path('homepage') }}">Каталог</a></li>
+            <li class="pathway separator">/</li>
+            <li class="pathway">Поиск</li>
+        </ul>
+    </div>
+</section>
+<section id="gkContent">
+    <div id="gkContentWrap">
+        <div id="gkMainbody">
+            {#&#65279;#}
+            <h1>Результаты поиска по запросу &laquo;{{ query }}&raquo;</h1>
+            <p>Нет результатов по Вашему запросу</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

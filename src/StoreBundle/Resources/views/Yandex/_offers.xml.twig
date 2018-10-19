@@ -1,0 +1,23 @@
+<offers>
+    {% for product in products %}
+        <offer id="{{ product.id }}" available="{% if product.preorder %}false{% else %}true{% endif %}">
+            <url>{{ original_url ~ path('product', {
+                    'slug': product.slug,
+                    'utm_source': 'market.yandex.ru',
+                    'utm_term': product.id
+                }, false)|e }}</url>
+            <price>{{ product.price }}</price>
+            <purchase_price>{% if product.purchasePrice %}{{ product.purchasePrice }}{% endif %}</purchase_price>
+            <currencyId>RUB</currencyId>
+            <categoryId>{{ product.primaryTaxon.id }}</categoryId>
+            {% if product.mainImage %}
+                {% set img = image_url(product.mainImage) %}
+                {% if img %}
+                    <picture>{{ original_url ~ img}}</picture>
+                {% endif %}
+            {% endif %}
+            <name>{{ product.name|e }}</name>
+            <description>{{ product.description|e }}</description>
+        </offer>
+    {% endfor %}
+</offers>

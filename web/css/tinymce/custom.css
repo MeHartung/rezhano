@@ -1,0 +1,8 @@
+.incoming-message__quote {
+    font-size: 13px;
+    color: #000000;
+    opacity: 0.7;
+    border-left: 3px solid #d4d9e4;
+    padding-left: 8px;
+    padding-right: 25px;
+}

@@ -1,0 +1,101 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('js/vendor/jquery-ui/jquery-ui.min.css') }}">
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ juridicalDocumentTypes|client_model_collection('document.type', 'JuridicalDocumentTypes') }}
+    {{ individualDocumentTypes|client_model_collection('document.type', 'IndividualDocumentTypes') }}
+    {{ enterpreneurDocumentTypes|client_model_collection('document.type', 'EnterpreneurDocumentTypes') }}
+{% endblock %}
+
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <div class="breadcrumbs">
+                    <a class="breadcrumbs__item">Главная страница</a>
+                    <span class="breadcrumbs__divide"></span>
+                    <a class="breadcrumbs__item breadcrumbs__item_active">Регистрация</a>
+                </div>
+                <span class="section-title__text section-title__text_in-product">Регистрация</span>
+            </div>
+
+            <div class="center_no-left">
+                <aside class="right">
+                    <div class="registrations-aside">
+                        {% if documents|length %}
+                            <div class="registrations-aside__title">Условия сотрудничества</div>
+                            {% for document in documents %}
+                                {% if document_exists(document) %}
+                                    {% set ext = document_extension(document) %}
+                                    {% if ext == 'pdf' %}
+                                      {% set ext = 'pdf' %}
+                                    {% elseif ext == 'docx' %}
+                                      {% set ext = 'doc' %}
+                                    {% elseif ext == 'xlsx' %}
+                                      {% set ext = 'xls' %}
+                                    {% endif %}
+                                    {% if ext not in ['doc','xls','pdf'] %}{% set ext='empty' %}{% endif %}
+                                    <a href="{{ document_url(document) }}" class="registrations-aside__item">
+                                        <span class="registrations-aside__type-icon file-icon file-icon_{{ ext }}"></span>
+                                        <span class="registrations-aside__name">{{ document.name|raw }}</span>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </aside>
+                <div class="registrations-wrap ui-tabs ui-corner-all ui-widget ui-widget-content" id="registerTabs">
+                    <ul class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+                        <li data-role="ROLE_JURIDICAL" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab">
+                            <a href="#registerJuridical" class="ui-tabs-anchor">
+                                <span class="ui-tabs-anchor__name">Юридические лица</span>
+                            </a>
+                        </li>
+                        <li data-role="ROLE_INDIVIDUAL" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab">
+                            <a href="#registerIndividual" class="ui-tabs-anchor">
+                                <span class="ui-tabs-anchor__name">Физическое лицо</span>
+                            </a>
+                        </li>
+                        <li data-role="ROLE_ENTREPRENEUR" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab">
+                            <a href="#registerEnterpreneur" class="ui-tabs-anchor">
+                                <span class="ui-tabs-anchor__name">Индивидуальный предприниматель</span>
+                            </a>
+                        </li>
+                    </ul>
+
+
+                    <div class="registrations-container" id="registerJuridical">
+                        {% include '@Store/Profile/RegisterForm/juridicalForm.html.twig' with {'form':juridicalForm} %}
+                    </div>
+                    <div class="registrations-container" id="registerIndividual">
+                        {% include '@Store/Profile/RegisterForm/individualForm.html.twig' with {'form':individualForm} %}
+                    </div>
+                    <div class="registrations-container" id="registerEnterpreneur">
+                        {% include '@Store/Profile/RegisterForm/enterpreneurForm.html.twig' with {'form':enterpreneurForm} %}
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            {#<div class="center_no-left cards-container__center_no-left">#}
+                {#{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}#}
+                {#{{ form_widget(form) }}#}
+                {#<div>#}
+                    {#<input type="submit" value="Сохранить" />#}
+                {#</div>#}
+                {#{{ form_end(form) }}#}
+
+            {#</div>#}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{#{% import '@SonataAdmin/CRUD/base_array_macro.html.twig' as show %}#}
+
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+
+{% block field%}
+    {% for document in value %}
+        <span>{{ document.name }}&nbsp;<a href="{{ document_url(document) }}">Скачать</a></span>
+        {% if not loop.last %}<br />{% endif %}
+    {% else %}
+        Пользователь не загружал документы
+    {% endfor %}
+    {#{{ show.render_array(value, field_description.options.inline|default(false)) }}#}
+{% endblock %}

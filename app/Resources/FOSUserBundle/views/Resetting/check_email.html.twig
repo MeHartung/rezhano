@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <div class="breadcrumbs">
+                    <a class="breadcrumbs__item">Главная страница</a>
+                    <span class="breadcrumbs__divide"></span>
+                    <a class="breadcrumbs__item breadcrumbs__item_active">Восстановление пароля</a>
+                </div>
+                <span class="section-title__text">Восстановление пароля</span>
+            </div>
+            <div class="center_no-left cards-container__center_no-left">
+                <p>
+                    {#{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}#}
+                    Ссылка для сброса пароля отправлена на указанный Вами E-mail.<br/> Если Вы не получили письмо, пожалуйста, в папке для спама или <a href="{{ path('fos_user_resetting_request') }}">попробуйте еще раз</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

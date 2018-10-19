@@ -1,0 +1,68 @@
+  {% import _self as tree %}
+
+{% macro level3(nodes) %}
+  <div class="menu-item-children level2 parent first">
+    <div class="menu-list level3 ">
+      {%  for i, node in nodes %}
+        {% set cls = "menu-item level3" %}
+        {% if node.__children|length %}{% set cls = cls ~ " parent" %}{% else %}{%  set cls = cls ~ " notparent" %}{% endif %}
+        {% if 0 == i %}{%  set cls = cls ~ " first" %}{% endif %}
+        {% if nodes|length - 1 >= i %}{%  set cls = cls ~ " last" %}{% endif %}
+        <div class="{{ cls }}">
+          <a href="{{ path('taxon', { 'slug': node.slug }) }}"><span>{{ node.shortName }}</span></a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro level2(nodes) %}
+  {% import _self as tree %}
+
+  <div class="menu-item-children level1 parent first">
+    <div class="menu-list level2 ">
+      {% for i, node in nodes %}
+      {% set cls = "menu-item level2" %}
+      {% if node.__children|length %}{% set cls = cls ~ " parent" %}{% else %}{%  set cls = cls ~ " notparent" %}{% endif %}
+      {% if 0 == i %}{%  set cls = cls ~ " first" %}{% endif %}
+      {% if nodes|length - 1 >= i %}{%  set cls = cls ~ " last" %}{% endif %}
+      <div class="{{ cls }}">
+        <a href="{{ path('taxon', { 'slug': node.slug }) }}"><span>{{ node.shortName }}</span></a>
+        {% if node.__children|length %}
+          {{ tree.level3(node.__children) }}
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}
+
+<div id="nextend-accordion-menu-664" class="">
+  <div class="nextend-accordion-menu-inner ">
+    <div class="nextend-accordion-menu-inner-container">
+      <div class="menu-list level1">
+        <div class="menu-item level1 notparent first">
+          <a href="{{ path('special_offers_index') }}">
+            <img src="/images/percent.png" alt=""><span>Акции</span>
+          </a>
+        </div>
+        {% for i, node in nodes %}
+          {% set cls = "menu-item level1" %}
+          {% if node.__children|length %}{% set cls = cls ~ " parent" %}{% else %}{%  set cls = cls ~ " notparent" %}{% endif %}
+          {% if 0 == i %}{%  set cls = cls ~ " first" %}{% endif %}
+          {% if (not nodes_rest|length) and (nodes|length - 1 == i) %}{%  set cls = cls ~ " last" %}{% endif %}
+          <div class="{{ cls }}">
+            <a href="{{ path('taxon', { 'slug': node.slug }) }}"><span>{{ node.name }}</span></a>
+            {{ tree.level2(node.__children) }}
+          </div>
+        {% endfor %}
+        {%  if (nodes_rest|length) %}
+          <div class="menu-item level1 parent last">
+            <a class="no-underline" href="#"><span class="dashed">Ещё</span><div class="triangle-down"></div></a>
+            {{ tree.level2(nodes_rest) }}
+          </div>
+        {%  endif %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <div class="breadcrumbs">
+                    <a class="breadcrumbs__item">Главная страница</a>
+                    <span class="breadcrumbs__divide"></span>
+                    <a class="breadcrumbs__item breadcrumbs__item_active">Регистрация</a>
+                </div>
+                {#<span class="section-title__text section-title__text_in-product">Вы успешно зарегестрированы</span>#}
+            </div>
+            <div class="section-wrap">
+                <div class="cards-container cards-container__register-success cards-container__order">
+                    <div class="cards-container__header">
+                        <div class="cards-container__delivery-type">
+                            <span class="cards-container__order-title">Вы успешно зарегестрированы!</span>
+                            <span class="cards-container__order-details">{{ hotspot('register_success') }}</span>
+                        </div>
+
+                        <div class="cards-container__header-buttons">
+                            {#{% if cart.orderItems|length %}#}
+                                {#<a href="{{ path('cart_index') }}">Перейти в<br/>корзину</a>#}
+                                {#<a href="{{ path('catalog_index') }}">Продолжить<br>покупки</a>#}
+                            {#{% else %}#}
+                                <a href="{{ path('catalog_index') }}">Начать<br/>покупки</a>
+                            {#{% endif %}#}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends ":CRUD:edit.html.twig" %}
+
+{%- block title -%}
+    Оформление заказа
+{%- endblock -%}
+
+{% block form %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <div class="tab-content">
+                    <div class="box-body  container-fluid">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Товар</th>
+                                <th>Цена</th>
+                                <th>Количество</th>
+                                <th>Стоимость</th>
+                            </tr>
+                            </thead>
+                            <tbody class="sonata-ba-tbody">
+                            {% for item in object.orderItems %}
+                                <tr>
+                                    <td class="control-group">
+                                        {{ item.product.name }}
+                                    </td>
+                                    <td class="control-group">
+                                        {{ item.price }}
+                                    </td>
+                                    <td class="control-group">
+                                        {{ item.quantity }}
+                                    </td>
+                                    <td class="control-group">
+                                        {{ item.cost }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_start(form, { attr: {
+        class: "form-horizontal"
+    }
+    }) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <div class="tab-content">
+                    <div class="box-body  container-fluid">
+                        {% for child in form.children %}
+                            {{ form_row(child) }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sonata-ba-form-actions well well-small form-actions">
+        <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-shopping-cart"
+                                                                                    aria-hidden="true"></i>&nbsp;Оформить
+            заказ
+        </button>
+    </div>
+
+    {{ form_rest(form) }}
+{% endblock %}
+
+{% block formactions %}{% endblock %}

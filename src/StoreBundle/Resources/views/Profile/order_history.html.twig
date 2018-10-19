@@ -1,0 +1,43 @@
+{% extends "@Store/Profile/index.html.twig" %}
+
+{% block head_javascripts %}
+    {{ parent() }}
+    {{ activeOrders|client_model_collection('order', 'ActiveOrders') }}
+    {{ finishedOrders|client_model_collection('order', 'FinishedOrders') }}
+{% endblock head_javascripts %}
+
+{% block main %}
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <div class="breadcrumbs">
+                    <a class="breadcrumbs__item">Главная страница</a>
+                    <span class="breadcrumbs__divide"></span>
+                    <a href="{{ path('fos_user_profile_show') }}" class="breadcrumbs__item">Личный кабинет</a>
+                    <span class="breadcrumbs__divide"></span>
+                    <a class="breadcrumbs__item breadcrumbs__item_active">История заказов</a>
+                </div>
+                <span class="section-title__text">История заказов</span>
+            </div>
+
+            <div class="center_no-left cards-container__center_no-left">
+                {% include "@Store/Profile/header.html.twig" %}
+
+                {% if activeOrders|length %}
+                    <span class="order-title js-show-active {% if finishedOrders|length %}deployed{% endif %}">Актуальные заказы<i class="triangle-icon__down"></i><i class="triangle-icon__down_red"></i><i class="triangle-icon__up"></i></span>
+                    <div class="active-orders" {% if not activeOrders|length %}style="display: none"{% endif %}>
+                        {{ include('@Store/Profile/orders.html.twig', { orders: activeOrders }) }}
+                    </div>
+                {% endif %}
+
+                {% if finishedOrders|length %}
+                    <span class="order-title {% if activeOrders|length %}collapsed{% endif %} js-show-finished">Завершенные заказы<i class="triangle-icon__down"></i><i class="triangle-icon__down_red"></i><i class="triangle-icon__up"></i></span>
+                    <div class="finished-orders" {% if not activeOrders|length %}style="display: none"{% endif %}>
+                        {{ include('@Store/Profile/orders.html.twig', { orders: finishedOrders }) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

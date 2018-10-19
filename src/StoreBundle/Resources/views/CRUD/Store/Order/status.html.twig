@@ -1,0 +1,87 @@
+{% extends ":CRUD:edit.html.twig" %}
+
+{%- block title -%}
+    Статус заказа
+{%- endblock -%}
+
+{% block navbar_title %}
+    {% if form.vars.value.active != true %}
+        {#{% if object.checkoutStateId == constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_ONE_CLICK") %}#}
+            {#Отмена заказа в 1 клик от {{ object.createdAt | date('m.d.Y') }} на номер {{ object.customerPhone }}#}
+        {#{% elseif object.checkoutStateId == constant("StoreBundle\\Entity\\Store\\Order\\Order::CHECKOUT_STATE_PRE_ORDER") %}#}
+            {#Отмена предзаказа от {{ object.createdAt | date('m.d.Y') }} на номер {{ object.customerPhone }}#}
+        {#{% else %}#}
+            Отмена заказа {{ object.documentNumber }}
+        {#{% endif %}#}
+    {% else %}
+        <i class="fa fa-exchange" aria-hidden="true"></i>
+        Сменить статус
+    {% endif %}
+
+{% endblock %}
+
+{%- block actions -%}
+    {# Если в этом блоке нет ни одного символа, то блок не рендерится (в т.ч. блок с навбаром) #}
+    &nbsp;
+{%- endblock -%}
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <ul>
+                {% for error in errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block form %}
+    {{ form_start(form, { attr: {
+        class: "form-horizontal"
+    }
+    }) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <div class="tab-content">
+                    <div class="box-body  container-fluid">
+
+                        {{ form_label(form.status) }}
+                        {{ form_widget(form.status) }}
+
+                        {{ form_label(form.notification) }}
+                        {{ form_widget(form.notification) }}
+
+                        {{ form_label(form.reasonChoice) }}
+                        {{ form_widget(form.reasonChoice) }}
+
+                        {{ form_label(form.reason) }} <br/>
+                        {{ form_widget(form.reason) }}
+                       {# {% for child in form.children %}
+                            {{ form_row(child) }}
+                        {% endfor %}#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sonata-ba-form-actions well well-small form-actions">
+        <button type="submit" class="btn btn-success" name="btn_update_and_edit">
+
+            {% if form.vars.value.active != true %}
+                <i class="fa fa-ban" aria-hidden="true"></i>
+                Отменить заказ
+            {% else %}
+                <i class="fa fa-exchange" aria-hidden="true"></i>
+                Сменить статус
+            {% endif %}
+
+        </button>
+    </div>
+
+    {{ form_rest(form) }}
+{% endblock %}
+
+{% block formactions %}{% endblock %}

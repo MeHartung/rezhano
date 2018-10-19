@@ -1,0 +1,11 @@
+{% block form_row %}
+    {% spaceless %}
+        <div class="step-item{% if inline is defined and inline %} step-item_inline{% endif %}">
+            {#<span class="field-description">{{ form_label(form) }}{% if required %}*{% endif %}</span>#}
+            {#{{ form_widget(form) }}#}
+            {% if  form_errors(form) %}
+                <div class="error-list">{{ form_errors(form) }}</div>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}

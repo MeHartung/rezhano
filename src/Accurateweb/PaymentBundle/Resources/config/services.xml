@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="accuratecommerce.payment.method.manager" class="AccurateCommerce\Component\Payment\Model\PaymentMethodManager">
+            <argument type="service" id="accuratecommerce.payment.method.repository"/>
+            <argument type="service" id="accuratecommerce.payment.method.fee.calculator.repository"/>
+        </service>
+
+        <service id="accuratecommerce.payment.method.repository" class="StoreBundle\Repository\Store\Payment\Method\PaymentMethodRepository">
+            <factory service="doctrine.orm.default_entity_manager" method="getRepository"></factory>
+            <argument>StoreBundle\Entity\Store\Payment\Method\PaymentMethod</argument>
+        </service>
+
+        <service id="accuratecommerce.payment.method.fee.calculator.repository" class="AccurateCommerce\Component\Payment\Method\Fee\FeeCalculatorRepository"/>
+    </services>
+</container>

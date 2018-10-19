@@ -1,0 +1,237 @@
+aw_email_templating:
+  templating:
+    loader: aw_email_templating.template.loader.doctrine
+    entity: StoreBundle\Entity\Messaging\EmailTemplate
+  email_templates:
+    checkout:
+      description: 'Уведомление покупателю об успешном оформлении заказа'
+      variables:
+        customer_name: { description: "ФИО покупателя" }
+        order_number: { description: "Номер заказа" }
+        customer_phone: { description: "Телефон покупателя" }
+        customer_email: { description: "Email покупателя" }
+        payment_method: { description: "Способ оплаты" }
+        shipping_method: { description: "Способ доставки" }
+        shipping_address: { description: "Адрес доставки (включая город и индекс)" }
+        subtotal: { description: "Стоимость товаров в заказе" }
+        shipping_cost: { description: "Стоимость доставки" }
+        fee: { description: "Комиссия" }
+        total: { description: "Стоимость заказа" }
+        order_items: { description: "Состав заказа" }
+      defaults:
+        subject: "Заказ в Интернет-магазине НВИ"
+        body: |
+          <table style="width: 100%%; min-width: 700px; background: #f6f6f6;" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tbody>
+          <tr align="center">
+          <td align="center">
+          <table style="width: 700px; background-color: #dbdbdb; color: #ffffff; font-family: Arial, Helvetica, sans-serif;" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tbody>
+          <tr>
+          <td style="padding: 30px 0 30px 20px; color: #ffffff;" valign="top" width="285">
+          <p style="margin: 0; font-size: 24px; color: #4e3174;"><span style="color: #ff0000;">Ваш заказ</span></p>
+          <p style="margin: 0; font-size: 30px; font-weight: bold; color: #4e3174;"><span style="color: #ff0000;">%%order_number%%</span></p>
+          <p style="margin: 0; font-size: 24px; color: #4e3174;"><span style="color: #ff0000;">принят!</span></p>
+          <p>&nbsp;</p>
+          </td>
+          <td style="vertical-align: bottom; padding: 0;" align="center" valign="bottom" width="215">&nbsp;</td>
+          </tr>
+          </tbody>
+          </table>
+          <table style="width: 500px; font-family: Arial, Helvetica, sans-serif;" border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+          <tr>
+          <td>
+          <table style="border: 1px solid lightgrey; margin: 5px; padding: 5px; width: 700px;" border="0" cellspacing="1" cellpadding="1" align="center" bgcolor="#fff">
+          <tbody>
+          <tr>
+          <td>
+          <p><span style="background-color: #ffffff;">&nbsp;</span></p>
+          <table style="width: 100%%;" border="0" cellspacing="2" cellpadding="2">
+          <tbody>
+          <tr class="sectiontableheader" bgcolor="#cccccc">
+          <td class="Stil2" colspan="2"><strong>&nbsp;</strong></td>
+          </tr>
+          <tr class="sectiontableheader" bgcolor="#cccccc">
+          <td class="Stil2" colspan="2"><strong class="Stil2">Информация о покупателе</strong></td>
+          </tr>
+          <tr class="Stil1">
+          <td>Покупатель:</td>
+          <td>%%customer_name%%</td>
+          </tr>
+          <tr class="Stil1">
+          <td>Контактный телефон:</td>
+          <td>%%customer_phone%%</td>
+          </tr>
+          <tr class="Stil1">
+          <td>Адрес доставки:&nbsp;</td>
+          <td>%%shipping_address%%</td>
+          </tr>
+          <tr class="Stil2" bgcolor="#cccccc">
+          <td colspan="2"><strong>Ваш заказ</strong></td>
+          </tr>
+          <tr>
+          <td colspan="2">%%order_items%%</td>
+          </tr>
+          <tr class="sectiontableheader" bgcolor="#cccccc">
+          <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+          <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr class="sectiontableheader" bgcolor="#cccccc">
+          <td><strong class="Stil2">Способ оплаты</strong></td>
+          <td><strong class="Stil2">Способ доставки</strong></td>
+          </tr>
+          <tr>
+          <td>%%payment_method%%</td>
+          <td>%%shipping_method%%</td>
+          </tr>
+          </tbody>
+          </table>
+          <p>&nbsp;</p>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+          </td>
+          </tr>
+          <tr>
+          <td>&nbsp;</td>
+          </tr>
+          <tr>
+          <td>
+          <table style="width: 100%%; background-color: #dfe4e8; color: #000000; font-family: Arial, Helvetica, sans-serif;" border="0" cellspacing="0" cellpadding="20" align="left">
+          <tbody>
+          </tbody>
+          </table>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+
+    checkout_operator:
+      description: 'Уведомление оператору об успешном оформлении заказа'
+      variables:
+        customer_name: { description: "ФИО покупателя" }
+        order_number: { description: "Номер заказа" }
+        customer_phone: { description: "Телефон покупателя" }
+        customer_email: { description: "Email покупателя" }
+        payment_method: { description: "Способ оплаты" }
+        shipping_method: { description: "Способ доставки" }
+        shipping_address: { description: "Адрес доставки (включая город и индекс)" }
+        subtotal: { description: "Стоимость товаров в заказе" }
+        shipping_cost: { description: "Стоимость доставки" }
+        fee: { description: "Комиссия" }
+        total: { description: "Стоимость заказа" }
+        order_items: { description: "Состав заказа" }
+      defaults:
+        subject: "Заказ в Интернет-магазине eXcam"
+        body: |
+          %%customer_name%% оформил(а) заказ %%order_number%%.
+
+    product_question_operator:
+      description: "Уведомление оператору о вопросе к товару"
+      variables:
+        product_name: { description: "Название товара" }
+        product_sku: { description: "Артикул товара" }
+        customer_name: { description: "ФИО клиента" }
+        customer_email: { description: "Email клиента" }
+        question: { description: "Текст вопроса" }
+      defaults:
+        subject: "Вопрос о товаре «%%product_name%%»"
+        body: |
+          От %%customer_name%% (%%customer_email%%) получен вопрос о товаре «%%product_name%%» (артикул %%product_sku%%)
+
+          Текст вопроса: «%%question%%».
+
+#    checkout_1click_operator:
+#      description: "Уведомление оператору о заказе в «1 клик»"
+#      variables:
+#        product_name: { description: "Название товара" }
+#        product_sku: { description: "Артикул товара" }
+#        product_url: { description: "URL страницы товара" }
+#        product_phone: { description: "Телефон покупателя" }
+#      defaults:
+#        subject: "Заказ «1 клик»"
+#        body: |
+#          Оформлен заказ в «1 клик» на товар %%product_sku%% <a href="%%product_url%%">%%product_name%%</a>. Номер телефона покупателя %%customer_phone%%.
+#
+#    checkout_preorder_operator:
+#      description: "Уведомление оператору о предзаказе"
+#      variables:
+#        product_name: { description: "Название товара" }
+#        product_sku: { description: "Артикул товара" }
+#        product_url: { description: "URL страницы товара" }
+#        product_phone: { description: "Телефон покупателя" }
+#      defaults:
+#        subject: "Предзаказ"
+#        body: |
+#          Оформлен предзаказ на товар %%product_sku%% <a href="%%product_url%%">%%product_name%%</a>. Номер телефона покупателя %%customer_phone%%.
+
+    user_registration_confirm:
+      description: "Подтверждение регистрации"
+      variables:
+        username: { description: "Имя пользователя" }
+        confirmation_url: { description: "Ссылка на страницу подтверждения сброса пароля" }
+      defaults:
+        body: |
+          Здравствуйте, %%username%%.
+
+          Чтобы подтвердить регистрацию, пройдите по ссылке: <a href="%%confirmation_url%%">%%confirmation_url%%</a>
+        subject: "Подтверждение регистрации"
+
+    user_password_reset_request:
+      description: "Запрос восстановления пароля"
+      variables:
+        username: { description: "Имя пользователя" }
+        confirmation_url: { description: "Ссылка на страницу подтверждения сброса пароля" }
+      defaults:
+        body: |
+          Здравствуйте, %%username%%.
+
+          Чтобы сбросить Ваш пароль, пройдите по ссылке: <a href="%%confirmation_url%%">%%confirmation_url%%</a>
+        subject: "Восстановление пароля"
+
+    user_password_reset_completed:
+      description: "Уведомление об успешном сбросе пароля"
+      variables:
+        username: { description: "Имя пользователя" }
+      defaults:
+        body: |
+          Здравствуйте, %%username%%.
+
+          Ваш пароль был успешно изменен.
+        subject: "Ваш пароль был изменен"
+
+    customer_question_operator:
+      description: 'Уведомление о новом вопросе покупателя'
+      variables:
+        fio: { description: 'Имя пользователя' }
+        question: { description: 'Вопрос' }
+        date: { description: 'Дата создания' }
+      defaults:
+        body: |
+          <h3>Покупатель %%fio%% задал вопрос:<h3>
+          <p>%%question%%</p>
+        subject: 'Покупатель %%fio%% задал вопрос'
+
+    customer_question_answer:
+      description: 'Уведомление пользователя об ответе на его вопрос'
+      variables:
+        question: { description: 'Вопрос' }
+        date_create: { description: 'Дата создания вопроса' }
+        message: { description: 'Ответ' }
+        date_answer: { description: 'Дата ответа' }
+        fio: { description: 'ФИО пользователя' }
+        email: { description: 'Email пользователя' }
+      defaults:
+        body: |
+          <h3>%%fio%%, на ваш вопрос был дан ответ<h3>
+          <p>%%question%%</p>
+          <p>%%message%%</p>
+        subject: 'На ваш вопрос был дан ответ'

@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            var button = document.getElementById("alfa-credit");
+
+                setTimeout(function () {
+                    $("#alfa-credit").click();
+                }, 5000);
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <h1>Ваша заказ принят</h1>
+    <p>Благодарим Вас за Ваш заказ. Номер вашего заказа: <b>{{ documentNumber }}</b>.</p>
+    <p>Вы можете выбрать еще что-нибудь в <a href="{{ path('homepage') }}">каталоге</a></p>
+    <p> Если страница оформления кредита не открылась автоматически в течение 5 секунд, нажмите кнопку
+    <form method="post" action="{{ alfa_url }}"
+          enctype="application/x-www-form-urlencoded"
+          target="_blank"
+          id="alfa-bank"
+    >
+        <textarea name="InXML" style="visibility: hidden"> {{ alfa }} </textarea>
+        <input type="submit" id="alfa-credit" value="Перейти к оформлению кредита">
+    </form>
+    </p>
+{% endblock %}

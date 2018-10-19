@@ -1,0 +1,73 @@
+
+services:
+  aw.logistic.warehouse.admin:
+    class: Accurateweb\LogisticBundle\Admin\WarehouseAdmin
+    arguments: [~, ~, ~]
+    public: false
+    autowire: false
+    tags:
+     - {name: sonata.admin, manager_type: orm, group: logistic, label: "Склады"}
+
+  aw.logistic.city.admin:
+    class: Accurateweb\LogisticBundle\Admin\CityAdmin
+    arguments: [~, ~, ~]
+    public: false
+    autowire: false
+    tags:
+     - {name: sonata.admin, manager_type: orm, group: logistic, label: "Города"}
+
+  aw.logistic.pickup_point.admin:
+    class: Accurateweb\LogisticBundle\Admin\PickupPointAdmin
+    arguments: [~, ~, ~]
+    public: false
+    autowire: false
+    tags:
+     - {name: sonata.admin, manager_type: orm, label: "Пункты выдачи заказов"}
+
+  aw.logistic.product_stock.admin:
+    class: Accurateweb\LogisticBundle\Admin\ProductStockAdmin
+    arguments: [~, ~, ~]
+    public: false
+    autowire: false
+    tags:
+     - {name: sonata.admin, manager_type: orm, group: logistic, show_in_dashboard: false }
+
+  aw.repository.warehouse:
+    class: Accurateweb\LogisticBundle\Model\WarehouseRepositoryInterface
+    autowire: false
+    factory: ['@doctrine.orm.entity_manager', 'getRepository']
+    arguments: [~]
+
+  aw.stockable.extension:
+    class: Accurateweb\LogisticBundle\Admin\Extension\StockableAdminExtension
+    arguments: ['@aw.repository.warehouse', ~]
+    public: false
+    autowire: false
+    tags:
+      - { name: sonata.admin.extension, global: true }
+
+  aw.logistic.product_stock.aggregate:
+    class: Accurateweb\LogisticBundle\EventListener\ProductStockAggregate
+    tags:
+      - { name: doctrine.event_listener, event: preUpdate }
+      - { name: doctrine.event_listener, event: postPersist }
+
+  aw.logistic.stock.manager:
+    class: Accurateweb\LogisticBundle\Service\ProductStockManager\ProductStockManager
+    arguments: ['@aw.location', '@aw.logistic.availability.manager']
+
+  aw.logistic.availability.validator.total_stock:
+    class: Accurateweb\LogisticBundle\Service\ProductAvailabilityManager\TotalStockAvailabilityValidator
+    public: false
+    tags:
+      - { name: aw.logistic.availability.validator }
+
+  aw.logistic.availability.validator.reserved:
+    class: Accurateweb\LogisticBundle\Service\ProductAvailabilityManager\ReservedAvailabilityValidator
+    public: false
+    tags:
+      - { name: aw.logistic.availability.validator }
+
+  aw.logistic.availability.manager:
+    class: Accurateweb\LogisticBundle\Service\ProductAvailabilityManager\ProductAvailabilityManager
+    public: true

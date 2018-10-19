@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block main %}
+    <section>
+    {% for product in products %}
+        {% include '@App/Common/product_item.html.twig' with {'product': product} %}
+
+        {#<form action="{{ path('favorite_toggle', {'productId': product.id}) }}" method="post">#}
+            {#<input type="submit" value="Удалить из избранного">#}
+        {#</form>#}
+
+    {% endfor %}
+    </section>
+{% endblock %}

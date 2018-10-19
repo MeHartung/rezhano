@@ -1,0 +1,30 @@
+{% extends ':CRUD:base_edit.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/js/vendor/tinymce/tinymce.min.js" type="text/javascript"></script>
+    <script src="{{ asset('js/modernizr-custom.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/vendor/prettyphoto/js/jquery.prettyPhoto.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/vendor/jquery.damnuploader/jquery.damnUploader.js') }}" type="text/javascript"></script>
+    {% include "@AccuratewebMedia/Asset/gallery.html.twig" %}
+    <script src="{{ asset('js/vendor/jstree/jquery.ui.jstree-choice.js') }}"></script>
+    <script src="{{ asset('js/vendor/jstree/jstree/jquery.jstree.js') }}"></script>
+    <script src="{{ asset('js/app/admin/admin.js') }}"></script>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('js/vendor/prettyphoto/css/prettyPhoto.css') }}"/>
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{%- block actions -%}
+    {% if (action == "edit") and (admin.classnameLabel == "Order") %}
+        {% include 'StoreBundle:CRUD/Store/Order:list__action_status_edit.html.twig' %}
+    {% endif %}
+    {% include 'SonataAdminBundle:CRUD:action_buttons.html.twig' %}
+{%- endblock -%}

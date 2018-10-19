@@ -1,0 +1,33 @@
+{% block ga_pre_init %}
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'purchase',
+        ecommerce: {
+          purchase: {
+            actionField: {
+              id: {{ order.documentNumber }},
+              affiliation: '',
+              'revenue': {{ order.total }},
+//            'tax' => '4.90',
+//            'shipping' => '5.99',
+//            'coupon' => 'SUMMER_SALE'
+            },
+            products: [
+
+              {% for item in order.getOrderItems %}
+                {
+                  'name': '{{ item.getProduct.name }}',
+                  'id': {{ item.getProduct.id }},
+                  'price': {{ item.getProduct.price }},
+                  'brand': '{{ item.getProduct.brand }}',
+                  'category': '{{ item.getProduct.getPrimaryTaxon }}',
+                  'quantity': {{ item.quantity }}
+                },
+              {% endfor %}
+            ]
+          }
+        }
+      });
+    </script>
+{% endblock %}

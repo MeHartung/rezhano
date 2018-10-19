@@ -1,0 +1,49 @@
+services:
+  aw.meta.manager:
+    class: Accurateweb\MetaBundle\Manager\MetaManager
+
+  aw.meta.og_manager:
+    class: Accurateweb\MetaBundle\Manager\MetaOpenGraphManager
+
+  aw.meta.route_resolver:
+    class: 'Accurateweb\MetaBundle\Resolver\RouteMetaResolver'
+    arguments: ['@request_stack']
+    tags:
+      - { name: aw.meta.resolver }
+
+  aw.meta.og_route_resolver:
+    class: 'Accurateweb\MetaBundle\Resolver\RouteMetaOpenGraphResolver'
+    arguments: ['@request_stack']
+    tags:
+      - { name: aw.meta.og_resolver }
+
+  aw.meta.default_resolver:
+    class: 'Accurateweb\MetaBundle\Resolver\DefaultMetaResolver'
+    arguments:
+      - 'Реализация имущества Группы «Газпром нефть»'
+      - 'Реализация имущества Группы «Газпром нефть»'
+      - 'Газпром нефть
+         Реализация имущества'
+    tags:
+      - { name: aw.meta.resolver, priority: 100 }
+
+  aw.meta.og_default_resolver:
+    class: 'Accurateweb\MetaBundle\Resolver\DefaultMetaOpenGraphResolver'
+    arguments:
+      - 'Реализация имущества Группы «Газпром нефть»'
+      - 'Реализация имущества Группы «Газпром нефть»'
+      - 'Реализация имущества Группы «Газпром нефть»'
+    tags:
+      - { name: aw.meta.og_resolver, priority: 100 }
+
+  aw.meta.twig_extension:
+    class: Accurateweb\MetaBundle\Twig\MetaExtension
+    arguments: ['@aw.meta.manager']
+    tags:
+      - { name: twig.extension }
+
+  aw.meta.og_twig_extension:
+    class: Accurateweb\MetaBundle\Twig\MetaOpenGraphExtension
+    arguments: ['@aw.meta.og_manager']
+    tags:
+      - { name: twig.extension }

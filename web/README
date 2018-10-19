@@ -1,0 +1,9 @@
+deploy:
+>composer install
+
+dev:
+>"vendor/bin/doctrine.bat" orm:generate-entities src
+>"vendor/bin/doctrine.bat" orm:schema-tool:update --force
+
+загрузка pvzlist:
+>php bin/console.php cdek:load-pvzlist

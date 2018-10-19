@@ -1,0 +1,49 @@
+<div class="box-border">
+  <div class="box "><h4 class="header"><a href="{{ path('news_index') }}">Новости</a></h4>
+    <div class="content">
+      <div class="nspMain" id="nsp-nsp-678" data-config="{
+				'animation_speed': 400,
+				'animation_interval': 5000,
+				'animation_function': 'Fx.Transitions.Expo.easeIn',
+				'news_column': 1,
+				'news_rows': 3,
+				'links_columns_amount': 1,
+				'links_amount': 3
+			}">
+        <div class="nspArts bottom" style="width:100%;">
+          <div class="nspArtScroll1">
+            <div class="nspArtScroll2 nspPages1">
+              {% for news_item in recentNews %}
+                <div class="nspArtPage active nspCol1">
+                  <div class="nspArt nspCol1 new-sidebar" style="padding:0 0 0 0;">
+                    <h4 class="nspHeader tleft fnone new-sidebar__title">
+                      <a href="{{ path('news_show', { 'slug': news_item.slug }) }}"
+                          title="{{ news_item.title }}"
+                          rel="nofollow"
+                          class="new-sidebar__title_link">
+                        {{ news_item.title }}
+                      </a>
+                    </h4>
+                    <span class="nspInfo1 new-sidebar__title_date">{{ news_item.createdAt| localizeddate('long', 'none', 'ru', null, "d MMMM Y")}}</span>
+                    {%  if image_exists(news_item) %}
+                      <a href="{{ path('news_show', { 'slug': news_item.slug }) }}"
+                            class="nspImageWrapper tleft fleft"
+                            style="margin:6px 14px 0 0;" rel="nofollow"><img
+                          class="nspImage tleft fleft"
+                          src="{{ image_url(news_item) }}"
+                          alt=""></a>
+                    {% endif %}
+                    <p class="nspText tleft fleft"><a
+                          href="{{ path('news_show', { 'slug': news_item.slug }) }}"
+                          rel="nofollow">{{ news_item.announce|raw }}</a> {#striptags('<br><strong><i><b><blockquote>')|#}
+                    </p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

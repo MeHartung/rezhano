@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Уведомления — Реализация имущества Группы «Газпром нефть»</title>
+  <!--<link rel="stylesheet" href="css/main.min.css"> - минифицированные стили для prod-окружения -->
+  <link rel="stylesheet" href="/js/vendor/slick/slick-theme.css">
+  <link rel="stylesheet" href="/js/vendor/slick/slick.css">
+  <link rel="stylesheet" href="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script type="text/javascript" src="/js/vendor/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+  <script type="text/javascript" src="/js/vendor/slick/slick.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <div class="logo-wrap">
+          <a class="gpn-logo" title="Газпромнефть" href="main.html"></a>
+          <span class="text-logo">Реализация <br>имущества Группы <br>«Газпром нефть»</span>
+        </div>
+        <span class="header-number">8 (800) 700-31-52 </span>
+        <div class="header-panel">
+          <!--/  -->
+          <!--<span class="header-panel__sign"><span class="user-icon"></span>Войти</span>-->
+          <!--/-->
+          <a href="profile-messages.html" class="js-messages header-panel__message new-message"><span class="mail-icon mail-icon_new-message"></span>2</a>
+          <a href="profile.html" class="header-panel__sign"><span class="user-icon"></span>Владимир Иванов</a>
+          <a href="favourites.html" class="header-panel__favorites"><span class="star-icon"></span>6</a>
+
+          <div class="notice-popup">
+
+            <div class="notice-popup__wrap">
+              <span class="notice-popup__title">Уведомления</span>
+
+              <div class="notice-popup__items">
+
+                <a href="profile-messages.html" class="notice-popup__item new-notice">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_auction"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">Ваша ставка по аукциону №213 была перебита на 500Р</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+              </div>
+            </div>
+
+            <a href="profile-messages.html" class="notice-popup__button-all">
+              Все уведомления
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-menu">
+        <div class="container">
+          <div class="header-menu__wrap">
+
+            <div class="menu-container">
+
+              <button class="open-menu" id="openMenu1">
+                <span>Каталог товаров</span>
+                <span class="burger-icon"></span>
+              </button>
+
+              <div class="expanded-menu" id="expandedMenu1" style="display: none">
+
+                <button class="open-menu" id="closeMenu1">
+                  <span>Каталог товаров</span>
+                  <span class="burger-icon"></span>
+                </button>
+
+                <div class="expanded-menu__items">
+                  <div class="expanded-menu__items-item-wrap">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Запорная арматура</span>
+                    </a>
+
+                    <div class="expanded-menu__items expanded-menu__items-level-two">
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                    </div>
+
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Запорная арматура</span>
+                    </a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Технологическое <br>и блочное оборудование</span>
+                    </a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Запорная арматура</span>
+                    </a>
+                  </div>
+
+                </div>
+                <a href="catalog.html" class="expanded-menu__see-all">Смотреть все</a>
+              </div>
+            </div>
+
+            <div class="header-menu__input">
+              <input type="text" placeholder="Найти в каталоге товаров">
+              <button class="button-search"></button>
+            </div>
+
+            <a href="cart.html" class="header-menu__info">
+              <span class="header-menu__info-amount-item"><span class="card-icon"></span>12</span>
+              <span class="header-menu__info-amount-payment">12 000 000 Р</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section>
+        <div class="container">
+
+          <div class="section-title">
+            <div class="breadcrumbs">
+              <a class="breadcrumbs__item">Главная страница</a>
+              <span class="breadcrumbs__divide"></span>
+              <a class="breadcrumbs__item breadcrumbs__item_active">Личный кабинет</a>
+            </div>
+            <span class="section-title__text">Уведомления</span>
+          </div>
+
+          <div class="center_no-right">
+
+            <aside class="left">
+              <div class="personal-office-aside">
+                <div class="personal-office-aside__userinfo">
+                  <span class="personal-office-aside__username">Иванов Владимир Иванович</span>
+                  <span class="personal-office-aside__mobile">8-900-800-23-33 </span>
+                  <a class="personal-office-aside__email">info@rambler.ru</a>
+                </div>
+
+                <div class="personal-office-aside__controls">
+                  <a href="" class="controls-button edit-user-info">Редактировать данные</a>
+                  <a href="" class="controls-button helpers">Нужна помощь</a>
+                </div>
+              </div>
+
+              <a href="" class="notification-aside">
+                <span class="mail-icon mail-icon_new-message-big"></span>
+                <span class="notification-aside__message-title">
+                  2 новых <br>уведомления
+                </span>
+              </a>
+            </aside>
+
+            <div class="section-wrap">
+              <div class="notice-list">
+
+                <div class="notice-list__item notice-list__item_deployed notice-list__item_new-message">
+
+                  <div class="notice-list__row">
+                    <span class="notice-item-author">От: Поддержка</span>
+                    <span class="notice-item-icon notice-item-icon_auction"></span>
+                    <span class="notice-item-order">312</span>
+                    <span class="notice-item-title">Информационное сообщение по договору</span>
+                    <span class="notice-item-date">25.08.2018  18:00</span>
+                  </div>
+
+                  <div class="notice-deployed">
+
+                    <div class="incoming-message">
+                      <p>Доводим до вашего сведения, что в ночь с субботы на воскресенье (с 11 на 12 августа) будут проведены работы по обновлению версии ядра на серверах виртуального хостинга.</p>
+                      <p>Возможен перерыв в работе ресурсов, длительностью до 5 минут. Приносим извинения за временные трудности.</p>
+
+                      <div class="incoming-message__quote">
+                        Не могу понять почему не работает аукцион? Выбираю товар, ставлю ставку и ничего не происходит. Возможно, я что-то делаю не так?
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="outgoing-question-form">
+                    <span class="user-icon"></span>
+                    <div class="custom-textarea">
+                      <textarea name="" id="" cols="30" rows="10" placeholder="Введите текст, чтобы ответить"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="previous-question">
+                    <div class="previous-question__title">
+                      <span class="previous-question__name">От: Иванов Владимир Иванович</span>
+                      <span class="previous-question__date">25.08.2018  15:05</span>
+                    </div>
+
+                    <div class="previous-question__text">
+                      Не могу понять почему не работает аукцион? Выбираю товар, ставлю ставку и ничего не происходит. Возможно, я что-то делаю не так?
+                    </div>
+                  </div>
+
+                </div>
+                <div class="notice-list__item notice-list__item_new-message">
+
+                  <div class="notice-list__row">
+                    <span class="notice-item-author">От: Поддержка</span>
+                    <span class="notice-item-icon notice-item-icon_admin"></span>
+                    <span class="notice-item-order">312</span>
+                    <span class="notice-item-title">Информационное сообщение по договору</span>
+                    <span class="notice-item-date">25.08.2018  18:00</span>
+                  </div>
+                  <div class="notice-deployed">
+
+                  </div>
+
+                </div>
+                <div class="notice-list__item notice-list__item_new-message">
+                  <div class="notice-list__row">
+                    <span class="notice-item-author">От: Поддержка</span>
+                    <span class="notice-item-icon notice-item-icon_document"></span>
+                    <span class="notice-item-order">312</span>
+                    <span class="notice-item-title">Информационное сообщение по договору</span>
+                    <span class="notice-item-date">25.08.2018  18:00</span>
+                  </div>
+
+                  <div class="notice-deployed">
+
+                  </div>
+                </div>
+                <div class="notice-list__item">
+                  <div class="notice-list__row">
+                    <span class="notice-item-author">От: Поддержка</span>
+                    <span class="notice-item-icon notice-item-icon_document"></span>
+                    <span class="notice-item-order">312</span>
+                    <span class="notice-item-title">Информационное сообщение по договору</span>
+                    <span class="notice-item-date">25.08.2018  18:00</span>
+                  </div>
+
+                  <div class="notice-deployed">
+
+                  </div>
+                </div>
+                <div class="notice-list__item">
+                  <div class="notice-list__row">
+                    <span class="notice-item-author">От: Поддержка</span>
+                    <span class="notice-item-icon notice-item-icon_document"></span>
+                    <span class="notice-item-order">312</span>
+                    <span class="notice-item-title">Информационное сообщение по договору</span>
+                    <span class="notice-item-date">25.08.2018  18:00</span>
+                  </div>
+
+                  <div class="notice-deployed">
+
+                  </div>
+                </div>
+                <div class="notice-list__item">
+                  <div class="notice-list__row">
+                    <span class="notice-item-author">От: Поддержка</span>
+                    <span class="notice-item-icon notice-item-icon_document"></span>
+                    <span class="notice-item-order">312</span>
+                    <span class="notice-item-title">Информационное сообщение по договору</span>
+                    <span class="notice-item-date">25.08.2018  18:00</span>
+                  </div>
+
+                  <div class="notice-deployed">
+                    <div class="incoming-message">
+                      <p>Доводим до вашего сведения, что в ночь с субботы на воскресенье (с 11 на 12 августа) будут проведены работы по обновлению версии ядра на серверах виртуального хостинга.</p>
+                      <p>Возможен перерыв в работе ресурсов, длительностью до 5 минут. Приносим извинения за временные трудности.</p>
+
+                      <div class="incoming-message__quote">
+                        Не могу понять почему не работает аукцион? Выбираю товар, ставлю ставку и ничего не происходит. Возможно, я что-то делаю не так?
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="notice-list__item">
+                  <div class="notice-list__row">
+                    <span class="notice-item-author">От: Поддержка</span>
+                    <span class="notice-item-icon notice-item-icon_document"></span>
+                    <span class="notice-item-order">312</span>
+                    <span class="notice-item-title">Информационное сообщение по договору</span>
+                    <span class="notice-item-date">25.08.2018  18:00</span>
+                  </div>
+
+                  <div class="notice-deployed">
+
+                  </div>
+                </div>
+                <div class="notice-list__item">
+                  <div class="notice-list__row">
+                    <span class="notice-item-author">От: Поддержка</span>
+                    <span class="notice-item-icon notice-item-icon_document"></span>
+                    <span class="notice-item-order">312</span>
+                    <span class="notice-item-title">Информационное сообщение по договору</span>
+                    <span class="notice-item-date">25.08.2018  18:00</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer class="footer">
+
+    <div class="container container_no-padding">
+      <div class="footer-links">
+        <a href="#" class="footer-links__item">О проекте</a>
+        <a href="#" class="footer-links__item">Помощь</a>
+        <a href="#" class="footer-links__item">Контакты</a>
+        <a href="#" class="footer-links__item">Доставка</a>
+        <a href="#" class="footer-links__item">Сервисы</a>
+        <a href="#" class="footer-links__item">Оплата</a>
+        <a href="#" class="footer-links__item">Коммерческая информация</a>
+
+        <div class="footer-links__mobile">
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_apple">
+            <span class="apple-icon"></span>
+          </a>
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_android">
+            <span class="android-icon"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container_no-padding">
+      <div class="footer-aside">
+        <div class="footer-aside__copyright">© ПАО «Газпром нефть», 2018</div>
+        <div class="footer-aside__contacts">
+          <span class="contact-number"><span class="phone">8 (800) 700-31-52</span><span class="phone">8 (812) 363-31-52</span></span>
+          <span class="contact-aside">Круглосуточная служба поддержки</span>
+        </div>
+        <a href="question.html" class="footer-aside__question"><span class="mail-icon"></span><span>Задать вопрос</span></a>
+      </div>
+    </div>
+  </footer>
+  <div class="layer user-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Вход</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="password-input-wrap">
+          <input class="layer__input" type="password" placeholder="Пароль">
+          <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+        </div>
+        <div class="user-layer__controls">
+          <span class="custom-checkbox">
+            <label>
+              <input type="checkbox" class="checkbox" checked>
+              <span class="custom-checkbox__checkbox"></span>
+              <span>Запомнить</span>
+            </label>
+          </span>
+          <a class="restore-link js-restore" href="">Забыли пароль?</a>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Войти</button>
+        </div>
+      </form>
+    </div>
+    <button class="button layer__button user-layer__button-register">Регистрация</button>
+  </div>
+  <div class="layer restore-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Восстановление пароля</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="user-layer__controls">
+          <span class="hint">
+            На указанную почту будет<br>
+            отправлено письмо со ссылкой<br>
+            для смены пароля
+          </span>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Восстановить пароль</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ui-widget-overlay"></div>
+</body>
+</html>

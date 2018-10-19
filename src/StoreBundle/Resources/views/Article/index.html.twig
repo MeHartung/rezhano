@@ -1,0 +1,43 @@
+{% extends "::base.html.twig" %}
+
+{% block main %}
+    <div>
+        <div class="container">
+            <div class="section-title">
+                <div class="breadcrumbs">
+                    <a href="{{ url('homepage') }}" class="breadcrumbs__item">Главная страница</a>
+                    <span class="breadcrumbs__divide"></span>
+                    <a class="breadcrumbs__item breadcrumbs__item_active">Статьи</a>
+                </div>
+                <span class="section-title__text section-title__text_in-product">Корзина</span>
+            </div>
+
+            <div class="center_no-left cards-container__center_no-left">
+
+                <h1>Статьи</h1>
+
+                <div class="article-list">
+                    {% for article in articles %}
+                        <div class="article-list-item">
+                            <div class="article-announce">
+                                <div class="article-heading">
+                                    <a href="{{ path('article_show', { 'slug': article.slug }) }}">{{ article.title }}</a><br/>
+                                    <span class="small grey">{{ article.createdAt|date('d.m.Y') }}</span>
+                                </div>
+                                {% if image_exists(article) %}
+                                    <a href="{{ path('article_show', { 'slug': article.slug }) }}"
+                                       class="nspImageWrapper tleft fleft"
+                                       style="margin:6px 14px 0 0;" rel="nofollow"><img
+                                                class="nspImage tleft fleft"
+                                                src="{{ image_url(article) }}"
+                                                alt="" style="width:250px;height:250px;"></a>
+                                {% endif %}
+                                {{ article.announce|striptags('<br><strong><i><b><blockquote>')|raw }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% block taxon_jstree_widget %}
+    {% block product_taxons_widget %}
+        <div id="product_taxons">
+
+        <script type="text/javascript">
+        (function($){
+            $(function(){
+                $({{ jstree.id }}).jstree_choice({
+                        json_data: {{ jstree.data|raw }},
+                    name: '{{ sonata_admin.admin.uniqid }}[taxons]',
+                    multiple: {{ jstree.multiple}}
+            })
+            }) })(jQuery)
+        </script>
+
+        </div>
+    {% endblock %}
+
+{% endblock %}

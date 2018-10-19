@@ -1,0 +1,25 @@
+<div class="pagination">
+    {%  if pagination.page > 1 %}
+        <a class="pagination__prev" href="{{ path(taxon.routeName, taxon.urlParameters|merge({ f: filter.routeParameters })|merge({ page: pagination.page - 1 })) }}">Назад</a>
+    {% else %}
+        <span class="pagination__prev">Назад</span>
+    {% endif %}
+
+    <div class="pagination__wrap-item">
+        {%  for i in range(low=max(1, pagination.page - 3), high=min(max(1, pagination.page - 3) + 4, pagination.lastPage), step=1) %}
+            {% if i != pagination.page %}
+                <a title="{{ i }}" href="{{ path(taxon.routeName, taxon.urlParameters|merge({ f: filter.routeParameters })|merge({ page: i })) }}" class="pagination__item">{{ i }}</a>
+            {% else %}
+                <span class="pagination__item">{{ i }}</span>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% if pagination.page < pagination.lastPage %}
+        <a class="pagination__next" href="{{ path(taxon.routeName, taxon.urlParameters|merge({ f: filter.routeParameters })|merge({ page: pagination.page + 1 })) }}">Вперед</a>
+    {% else %}
+        <span class="pagination__next">Вперед</span>
+    {% endif %}
+
+    <span class="pagination__show-count">Показывать по 16</span>
+</div>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service
+                id="aw.client_application.manager"
+                class="Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterManager"
+                public="true"
+                autowire="false">
+        </service>
+        <service
+                id="aw.client_application.twig_extension"
+                class="Accurateweb\ClientApplicationBundle\Twig\ClientApplicationExtension"
+                public="false"
+                autowire="false">
+            <argument type="service" id="aw.client_application.manager" />
+            <tag name="twig.extension" />
+        </service>
+        <service
+                id="aw.client_application.transformer"
+                class="Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelTransformer"
+                public="true"
+                autowire="false">
+            <argument  type="service" id="aw.client_application.manager" />
+        </service>
+    </services>
+</container>

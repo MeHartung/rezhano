@@ -1,0 +1,26 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        <span class="sf-toolbar-value">{{ collector.location.cityName }}</span>
+    {% endset %}
+
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { 'link': true }) }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block menu %}
+    {# This left-hand menu appears when using the full-screen profiler. #}
+    <span class="label">
+        <span class="icon">{{ include('@Security/Collector/icon.svg') }}</span>
+        <strong>Location</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>Location</h2>
+    <div>Current Location: {{ collector.location.cityName }}, {{ collector.location.cityCode }}, {{ collector.location.countryCode }}</div>
+{% endblock %}

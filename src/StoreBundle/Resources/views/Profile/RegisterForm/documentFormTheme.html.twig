@@ -1,0 +1,20 @@
+{% block form_label %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+
+        <span>{{ label|trans({}, translation_domain)|raw }}</span>
+    {% endspaceless %}
+{% endblock form_label %}
+{% block form_row %}
+    {% spaceless %}
+        {{ form_errors(form) }}
+        <span class="custom-input-file custom-input-file_empty">
+            <label>
+                {{ form_widget(form, {'attr': {'onchange': 'getFileName(this)'}}) }}
+            </label>
+            <a class="custom-input-file__title" href="#">{{ form_label(form) }}</a>
+        </span>
+    {% endspaceless %}
+{% endblock form_row %}

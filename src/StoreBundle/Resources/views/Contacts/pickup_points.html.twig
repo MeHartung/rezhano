@@ -1,0 +1,42 @@
+<div class="cities">
+  <a href="#" class="active" id="reset_cities"><span>Все пункты выдачи</span></a>
+  {% for city in found_cities %}
+  &nbsp;&nbsp;<span><a href="#" class="select_city" data-city_id="{{ city.id }}">{{ city.name }}</a></span>&nbsp;&nbsp;
+  {% endfor %}
+  <span class="show_all">
+        <a href="#" id="show_all_link">Показать все на карте<i class="fa fa-hand-o-down"></i></a>
+    </span>
+</div>
+<div id="block_map_all"></div>
+<div id="points_all">
+  <script type="text/javascript">var points_array = [];</script>
+  {% for point in found_points %}
+  <div class="span12 contacts_block_p points points_{{ point.CityCode }}">
+    <div class="span6 contacts_block">
+      <br><span class="name">Пункт выдачи заказов {{ point.Name }}</span><br>
+      {{ point.Note }}
+    </div>
+    <div class="span6 contacts_block">
+      Адрес: {{ point.CityName }}, {{ point.Address }}
+      <br>Телефон: {{ point.Phone }}
+      <br>Время работы: {{ point.WorkTime }}<br />
+    </div>
+    {% if point.coordY != "0.0000" and point.coordY != "0.0000" %}
+    <div class="map_title">Расположение на карте - <a href="#"  onclick="return toggleMap('{{ point.Code }}')" class="expand_desc_block expanded" id="map_link<?= $point['Code']; ?>">Развернуть <span> ↓</span></a></div>
+    <div class="points_map" id="block_map{{ point.Code }}"></div>
+    <script type="text/javascript">
+      points_array.push({
+        code: '{{ point.Code }}',
+        coord_y: {{ point.coordY }},
+        coord_x: {{ point.coordX }},
+        city: '{{ point.CityName }}',
+        object_name: 'Пункт выдачи заказов {{ point.Name }}',
+        object_description: '<b>Пункт выдачи заказов {{ point.Name }}</b></div><br><span style="color:#757575;">Адрес: {{ point.CityName }}, {{ point.Address }}<br>Телефон: {{ point.Phone }}<br />Время работы: {{ point.WorkTime }}</span>'
+      });
+      drawYMap('block_map{{ point.Code }}', points_array.slice(-1)[0]);
+    </script>
+    {% endif %}
+    <br/>
+  </div>
+  {% endfor %}
+</div>

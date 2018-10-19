@@ -1,0 +1,10 @@
+<div class="custom address-panel" style="width:290px;">
+
+    <h3>{{ phone|calltouchPhone(type)|raw }}</h3>
+
+    {% if isPresenceCity %}
+        <p>{{ address|raw }}</p>
+    {% else %}
+        <a href="/contacts#pvz-list">{{ nbPvz }} {{ nbPvzStr }}{% if nbPostomats %}, {{ nbPostomats }} {{ nbPostomatStr }}{% endif %}</a>
+    {% endif %}
+</div>

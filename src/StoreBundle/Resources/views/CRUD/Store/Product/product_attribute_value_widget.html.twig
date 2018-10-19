@@ -1,0 +1,27 @@
+{% block product_attribute_value_widget %}
+    {% for productType in form.children %}
+        {{ form_row(productType) }}
+        {% spaceless %}
+            <script type="text/javascript">
+              jQuery(function ($) {
+                var select2FormatColorSelect = function format(state) {
+                  if (!state.id || state.disabled) {
+                    return state.text;
+                  }
+
+                  return ' <i class="fa fa-square" style="color: '+ state.id +'"></i> ' + state.text;
+                };
+
+                $('#{{ productType.vars.id }}').select2({
+                  formatResult:    select2FormatColorSelect,
+                  formatSelection: select2FormatColorSelect,
+                  width:           '100%',
+                  escapeMarkup:    function(m) { return m; },
+                  multiple: true,
+                  tags: true,
+                });
+              });
+            </script>
+        {% endspaceless %}
+    {% endfor %}
+{% endblock %}

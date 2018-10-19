@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ presentation.products|client_model_collection('product', 'ProductList') }}
+{% endblock %}
+
+{% block main %}
+    <section>
+    <div class="container">
+        <div class="section-title">
+            <div class="breadcrumbs">
+                <a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>
+                <span class="breadcrumbs__divide"></span>
+                <a class="breadcrumbs__item breadcrumbs__item_active">Поиск</a>
+            </div>
+            <span class="section-title__text">{{ presentation.taxon.name|raw }}</span>
+        </div>
+        {{ renderTaxonPresentation(presentation) }}
+    </div>
+    </section>
+{% endblock %}

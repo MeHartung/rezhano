@@ -1,0 +1,102 @@
+<table style="width: 100%; min-width: 700px; background: #f6f6f6;" border="0" cellspacing="0" cellpadding="0"
+       align="center">
+    <tbody>
+    <tr align="center">
+        <td align="center">
+            <table style="width: 700px; background-color: #dbdbdb; color: #ffffff; font-family: Arial, Helvetica, sans-serif;"
+                   border="0" cellspacing="0" cellpadding="0" align="center">
+                <tbody>
+                <tr>
+                    <td style="padding: 30px 0 30px 20px; color: #ffffff;" valign="top" width="285">
+                        <p style="margin: 0; font-size: 24px; color: #4e3174;"><span
+                                    style="color: #ff0000;">Ваш заказ</span></p>
+                        <p style="margin: 0; font-size: 30px; font-weight: bold; color: #4e3174;"><span
+                                    style="color: #ff0000;">{{ order.documentNumber }}</span></p>
+                        <p style="margin: 0; font-size: 24px; color: #4e3174;"><span
+                                    style="color: #ff0000;">принят!</span></p>
+                        <p>&nbsp;</p>
+                    </td>
+                    <td style="vertical-align: bottom; padding: 0;" align="center" valign="bottom" width="215">&nbsp;
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table style="width: 500px; font-family: Arial, Helvetica, sans-serif;" border="0" cellspacing="0"
+                   cellpadding="0">
+                <tbody>
+                <tr>
+                    <td>
+                        <table style="border: 1px solid lightgrey; margin: 5px; padding: 5px; width: 700px;" border="0"
+                               cellspacing="1" cellpadding="1" align="center" bgcolor="#fff">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <p><span style="background-color: #ffffff;">&nbsp;</span></p>
+                                    <table style="width: 100%;" border="0" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr class="sectiontableheader" bgcolor="#cccccc">
+                                            <td class="Stil2" colspan="2"><strong>&nbsp;</strong></td>
+                                        </tr>
+                                        <tr class="sectiontableheader" bgcolor="#cccccc">
+                                            <td class="Stil2" colspan="2"><strong class="Stil2">Информация о
+                                                    покупателе</strong></td>
+                                        </tr>
+                                        <tr class="Stil1">
+                                            <td>Покупатель:</td>
+                                            <td>{{ order.customerFullName }}</td>
+                                        </tr>
+                                        <tr class="Stil1">
+                                            <td>Контактный телефон:</td>
+                                            <td>{{ order.customerPhone }}</td>
+                                        </tr>
+                                        <tr class="Stil1">
+                                            <td>Адрес доставки:&nbsp;</td>
+                                            <td>{{ order.shippingAddress }}</td>
+                                        </tr>
+                                        <tr class="Stil2" bgcolor="#cccccc">
+                                            <td colspan="2"><strong>Ваш заказ</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">{% include '@Store/Common/order_notification_items.html.twig' with {'items': order.orderItems} %}</td>
+                                        </tr>
+                                        <tr class="sectiontableheader" bgcolor="#cccccc">
+                                            <td colspan="2">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">&nbsp;</td>
+                                        </tr>
+                                        <tr class="sectiontableheader" bgcolor="#cccccc">
+                                            <td><strong class="Stil2">Способ оплаты</strong></td>
+                                            <td><strong class="Stil2">Способ доставки</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ order.paymentMethod.name }}</td>
+                                            <td>{{ order.shippingMethod.name }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p>&nbsp;</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <table style="width: 100%; background-color: #dfe4e8; color: #000000; font-family: Arial, Helvetica, sans-serif;"
+                               border="0" cellspacing="0" cellpadding="20" align="left">
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>

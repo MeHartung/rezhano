@@ -1,0 +1,55 @@
+{% import _self as tree %}
+{# вывод детей второго уровня #}
+{% macro level2(nodes) %}
+    {% import _self as tree %}
+            {% for i, node in nodes %}
+                {% set cls = "menu-item level2" %}
+                {% if node.__children|length %}{% set cls = cls ~ " parent" %}{% else %}{%  set cls = cls ~ " notparent" %}{% endif %}
+                {% if 0 == i %}{%  set cls = cls ~ " first" %}{% endif %}
+                {% if nodes|length - 1 >= i %}{%  set cls = cls ~ " last" %}{% endif %}
+                <div class="{{ cls }}">
+                  {% if (node.url) %}
+                      <a href="{{ node.url|menu_url }}"><span>{{ node.name }}</span></a>
+                  {% else %}
+                      <span>{{ node.name }}</span>
+                  {% endif %}
+                </div>
+            {% endfor %}
+{% endmacro %}
+
+{% for i, node in nodes %}
+    {% set cls = "box  gkmod-4" %}
+        {% if node.__children|length %}
+            {% set cls = cls ~ " parent" %}
+                {% else %}
+                    {%  set cls = cls ~ " notparent" %}
+        {% endif %}
+
+    {#Задаём класс для 1 и послед. элемента#}
+        {% if 0 == i %}
+            {%  set cls = cls ~ " first" %}
+        {% endif %}
+
+        {% if (not nodes_rest|length) and (nodes|length - 1 == i) %}
+            {%  set cls = cls ~ " last" %}
+        {% endif %}
+
+    <div class="box  gkmod-4">
+        <h4 class="header">
+            {% if (node.url) %}
+                <a href="{{ node.url|menu_url }}"><span>{{ node.name }}</span></a>
+            {% else %}
+                <span>{{ node.name }}</span>
+            {% endif %}
+        </h4>
+
+        <div class="content">
+            <div class="custom">
+                <ul>
+                    <li> {{ tree.level2(node.__children) }} </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+

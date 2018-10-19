@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Арматура фонтанная АФК ХХХ — Реализация имущества Группы «Газпром нефть»</title>
+  <!--<link rel="stylesheet" href="css/main.min.css"> - минифицированные стили для prod-окружения -->
+  <link rel="stylesheet" href="/js/vendor/slick/slick-theme.css">
+  <link rel="stylesheet" href="/js/vendor/slick/slick.css">
+  <link rel="stylesheet" href="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script type="text/javascript" src="/js/vendor/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+  <script type="text/javascript" src="/js/vendor/slick/slick.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <div class="logo-wrap">
+          <a class="gpn-logo" title="Газпромнефть" href="main.html"></a>
+          <span class="text-logo">Реализация <br>имущества Группы <br>«Газпром нефть»</span>
+        </div>
+        <span class="header-number">8 (800) 700-31-52 </span>
+        <div class="header-panel">
+          <!--/  -->
+          <!--<span class="header-panel__sign"><span class="user-icon"></span>Войти</span>-->
+          <!--/-->
+          <a href="profile-messages.html" class="js-messages header-panel__message new-message"><span class="mail-icon mail-icon_new-message"></span>2</a>
+          <a href="profile.html" class="header-panel__sign"><span class="user-icon"></span>Владимир Иванов</a>
+          <a href="favourites.html" class="header-panel__favorites"><span class="star-icon"></span>6</a>
+
+          <div class="notice-popup">
+
+            <div class="notice-popup__wrap">
+              <span class="notice-popup__title">Уведомления</span>
+
+              <div class="notice-popup__items">
+
+                <a href="profile-messages.html" class="notice-popup__item new-notice">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_auction"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">Ваша ставка по аукциону №213 была перебита на 500Р</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+              </div>
+            </div>
+
+            <a href="profile-messages.html" class="notice-popup__button-all">
+              Все уведомления
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-menu">
+        <div class="container">
+          <div class="header-menu__wrap">
+
+            <div class="menu-container">
+
+              <button class="open-menu" id="openMenu1">
+                <span>Каталог товаров</span>
+                <span class="burger-icon"></span>
+              </button>
+
+              <div class="expanded-menu" id="expandedMenu1" style="display: none">
+
+                <button class="open-menu" id="closeMenu1">
+                  <span>Каталог товаров</span>
+                  <span class="burger-icon"></span>
+                </button>
+
+                <div class="expanded-menu__items">
+                  <div class="expanded-menu__items-item-wrap">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Запорная арматура</span>
+                    </a>
+
+                    <div class="expanded-menu__items expanded-menu__items-level-two">
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span class="expanded-menu__item-title">Пункт меню второго уровня каталога</span></a>
+                    </div>
+
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Запорная арматура</span>
+                    </a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Технологическое <br>и блочное оборудование</span>
+                    </a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span class="expanded-menu__item-icon">
+                        <img src="/images/catalog-menu-icon.png" alt="">
+                      </span>
+                      <span class="expanded-menu__item-title">Запорная арматура</span>
+                    </a>
+                  </div>
+
+                </div>
+                <a href="catalog.html" class="expanded-menu__see-all">Смотреть все</a>
+              </div>
+            </div>
+
+
+            <div class="header-menu__input">
+              <input type="text" placeholder="Найти в каталоге товаров">
+              <button class="button-search"></button>
+            </div>
+
+            <a href="cart.html" class="header-menu__info">
+              <span class="header-menu__info-amount-item"><span class="card-icon"></span>12</span>
+              <span class="header-menu__info-amount-payment">12 000 000 Р</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="container">
+
+          <div class="section-title">
+            <div class="breadcrumbs">
+              <a href="main.html" class="breadcrumbs__item">Главная страница</a>
+              <span class="breadcrumbs__divide"></span>
+              <a href="section.html" class="breadcrumbs__item">Фонтанная арматура</a>
+              <span class="breadcrumbs__divide"></span>
+              <span class="breadcrumbs__item breadcrumbs__item_active">Арматура фонтанная АФК ХХХ</span>
+            </div>
+            <span class="section-title__text section-title__text_in-product">
+              Арматура фонтанная АФК ХХХ
+              <span class="add-favorites"></span>
+              <span class="add-comparison"></span>
+            </span>
+          </div>
+
+          <div class="product-container">
+
+            <div class="center_no-left">
+
+              <aside class="right">
+                <div class="this-product-buy__wrap">
+                  <span class="this-product-buy__wrap-title">
+                    С этим товаром покупают
+                  </span>
+                  <a href="section.html" class="this-product-buy__item">
+                    <div class="this-product-buy__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="this-product-buy__info">
+                      <span class="this-product-buy__title">Технологическое и блочное оборудование</span>
+                    </div>
+                  </a>
+
+                  <a href="section.html" class="this-product-buy__item">
+                    <div class="this-product-buy__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="this-product-buy__info">
+                      <span class="this-product-buy__title">Технологическое и блочное оборудование</span>
+                    </div>
+                  </a>
+
+                  <a href="section.html" class="this-product-buy__item">
+                    <div class="this-product-buy__image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                    <div class="this-product-buy__info">
+                      <span class="this-product-buy__title">Технологическое и блочное оборудование</span>
+                    </div>
+                  </a>
+
+                </div>
+              </aside>
+
+              <div class="section-wrap">
+
+                <div class="product-image__gallery">
+                  <a class="gallery-image">
+                    <img src="/images/TEST_delete/arm.png" alt="">
+                  </a>
+                  <div class="product-image__gallery__additional">
+
+                    <a class="gallery-image gallery-image__additional gallery-image__additional_active">
+                      <img src="/images/TEST_delete/arm.png" alt="">
+                    </a>
+
+                    <a class="gallery-image gallery-image__additional">
+                      <img src="/images/TEST_delete/arm.png" alt="">
+                    </a>
+
+                    <a class="gallery-image gallery-image__additional">
+                      <img src="/images/TEST_delete/arm.png" alt="">
+                    </a>
+
+                    <a class="gallery-image gallery-image__additional">
+                      <img src="/images/TEST_delete/arm.png" alt="">
+                    </a>
+
+                  </div>
+                </div>
+
+                <div class="product-container__info-wrap">
+                  <div class="product-container__info">
+
+                    <div class="current-rate">
+                      <span class="current-rate__title">Текущая ставка</span>
+                      <a class="current-rate__rate">Ставок: 3</a>
+                    </div>
+
+                    <div class="product-container__price  product-container__price_auction">
+                      41 090 ₽
+                    </div>
+
+                    <div class="estimate-rate">
+                      <span class="estimate-rate__title">Осталось времени</span>
+                      <span class="estimate-rate__value">5дн. 04ч.</span>
+                    </div>
+
+                    <div class="make-bid">
+                      <span class="make-bid__title">
+                        Предложите <br>вашу цену
+                      </span>
+
+                      <div class="input-rate">
+                        <div class="quantity-wrap">
+                          <!--<a class="quantity-control quantity-control__down"></a>-->
+                          <input value="41 500" type="text" >
+                          <a class="quantity-control quantity-control__up"></a>
+                        </div>
+
+                        <a class="button button-auction_in-product"></a>
+                      </div>
+
+                      <a href="" class="make-bid__reglament">Правила участия в аукционе</a>
+
+                    </div>
+
+                    <div class="buy-oneclick">
+                      <span class="buy-oneclick__title">Купить сейчас</span>
+                      <span class="buy-oneclick__value">105 090 ₽</span>
+
+                      <a href="" class="button button-buy_in-product"></a>
+
+                    </div>
+
+                    <!--<div class="product-container__count">-->
+                      <!--<div class="quantity-wrap">-->
+                        <!--<a class="quantity-control quantity-control__down"></a>-->
+                        <!--<input value="1" type="text">-->
+                        <!--<a class="quantity-control quantity-control__up"></a>-->
+                      <!--</div>-->
+
+                      <!--<a class="button button-buy_in-product"></a>-->
+
+                      <!--<span class="product-container__quantity">-->
+                        <!--всего 50 шт.-->
+                      <!--</span>-->
+                    <!--</div>-->
+                  </div>
+
+                  <div class="product-brief-characteristics">
+                    <div class="product-brief-characteristics_col-left">
+                      <span class="product-brief-characteristics__location">Ростов-На-Дону</span>
+
+                      <span class="product-brief-characteristics__item">Длина<span class="product-brief-characteristics__item_count">5 м</span></span>
+                      <span class="product-brief-characteristics__item">Ширина<span class="product-brief-characteristics__item_count">0.5 м<sup>3</sup></span></span>
+                    </div>
+                    <div class="product-brief-characteristics_col-right">
+                      <div class="product-brief-characteristics__article">Артикул – 448201335</div>
+
+                      <span class="product-brief-characteristics__item">Вес<span class="product-brief-characteristics__item_count">55 кг</span></span>
+                      <span class="product-brief-characteristics__item">Объем<span class="product-brief-characteristics__item_count">0.5 м<sup>3</sup></span></span>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="product-description" id="tabsDescription">
+              <!--<div class="product-description__nav">-->
+                <!--<button class="nav-characteristics nav-characteristics_active"><span>Характеристики</span></button>-->
+                <!--<button class="nav-delivery"><span>Калькулятор доставки</span></button>-->
+              <!--</div>-->
+
+              <ul class="nav-tabs__wrap">
+                <li class="nav-tabs__item">
+                  <a href="#productInfo" class="button nav-tabs-description nav-characteristics nav-characteristics_active"><span>Характеристики</span></a>
+                </li>
+                <li class="nav-tabs__item">
+                  <a href="#productCalc" class="button nav-tabs-description nav-delivery"><span>Калькулятор доставки</span></a>
+                </li>
+              </ul>
+
+              <div class="product-description__calc" id="productCalc">
+                <div class="product-description__col">
+                  <div class="delivery-container__item">
+                    <div class="delivery-container__header">
+                      <span>Откуда*</span>
+                    </div>
+                    <div class="delivery-container__item-info">
+                      <input type="text" class="input-text_biggest">
+                      <div class="checkbox-aside">
+                        <div class="checkbox-aside__item">
+                          <span class="custom-radio">
+                            <input id="delivery" type="radio">
+                            <label for="delivery" value="Доставка">
+                              <span class="delivery-type__name">Самостоятельно привезти <br>груз на терминал</span>
+                            </label>
+                          </span>
+
+                        </div>
+
+                        <div class="checkbox-aside__item">
+                          <span class="custom-radio">
+                            <input id="delivery" type="radio" checked="">
+                            <label for="delivery" value="Доставка">
+                              <span class="delivery-type__name">Забрать груз <br>от адреса отправителя</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="delivery-container__item">
+                    <div class="delivery-container__header">
+                      <span>Куда*</span>
+                    </div>
+                    <div class="delivery-container__item-info">
+                      <input type="text" class="input-text_biggest">
+                      <div class="checkbox-aside">
+                        <div class="checkbox-aside__item">
+                          <span class="custom-radio">
+                            <input id="delivery" type="radio">
+                            <label for="delivery" value="Доставка">
+                              <span class="delivery-type__name">Самостоятельно забрать<br>груз на терминал</span>
+                            </label>
+                          </span>
+                        </div>
+                        <div class="checkbox-aside__item">
+                          <span class="custom-radio">
+                            <input id="delivery" type="radio" checked="">
+                            <label for="delivery" value="Доставка">
+                              <span class="delivery-type__name">Доставить груз <br>от адреса получателя</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-description__col product-description__col_right">
+                  <div class="delivery-container__item">
+                    <div class="delivery-container__header delivery-container__header_profile">
+                      <span>Габариты груза</span>
+                    </div>
+                    <div class="delivery-container__item-info">
+                      <div class="input-title-aside">
+                        <input class="input-text_small" type="text" placeholder="100">
+                        <span class="input-title-aside__text">Длина</span>
+                      </div>
+
+                      <div class="input-title-aside">
+                        <input class="input-text_small" type="text" placeholder="100">
+                        <span class="input-title-aside__text">Ширина</span>
+                      </div>
+
+                      <div class="input-title-aside">
+                        <input class="input-text_small" type="text" placeholder="50">
+                        <span class="input-title-aside__text">Высота</span>
+                      </div>
+
+                      <div class="custom-select">
+                        <select name="" id="">
+                          <option value="м">м</option>
+                          <option value="см">см</option>
+                          <option value="мм">мм</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="delivery-container__item">
+                    <div class="delivery-container__header">
+                      <span>Вес груза</span>
+                    </div>
+                    <div class="delivery-container__item-info">
+                      <input class="input-text_small" type="text">
+                      <span class="item-info-unit">кг</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calculate-delivery">
+                  <a href="" class="button">
+                    <span>Рассчитать</span>
+                  </a>
+
+                  <div class="calculate-delivery__location">
+                    <span class="delivery-icon delivery-icon__blue blue-icon"></span>
+
+                    <div class="location-wrap">
+                      <span class="location-title">
+                        Стоимость доставки:
+                      </span>
+                      <br>
+                      <span class="location-locations">
+                        Москва — Нижний Новгород
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="calculate-delivery__value">
+                    <span class="payment-info__value">90 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="product-description__info" id="productInfo">
+
+                <div class="product-description__col">
+                  <div class="product-description__col-item">
+                    <div class="col-item__name">ГОСТ/ТУ</div>
+                    <div class="col-item__value">Не подлежит сертификации</div>
+                  </div>
+
+                  <div class="product-description__col-item">
+                    <div class="col-item__name">Дата поступления</div>
+                    <div class="col-item__value">01.09.2017</div>
+                  </div>
+
+                  <div class="product-description__col-item">
+                    <div class="col-item__name">Размеры</div>
+                    <div class="col-item__value">350х506х450/850 мм (в раб. положении) 120х506х580 мм ( в транспортном положении)</div>
+                  </div>
+
+                  <div class="product-description__col-item">
+                    <div class="col-item__name">Вес</div>
+                    <div class="col-item__value">2,80 кг</div>
+                  </div>
+                </div>
+
+                <div class="product-description__col">
+
+                  <div class="product-description__col-item">
+                    <div class="col-item__name">Производитель </div>
+                    <div class="col-item__value">ООО «Тонар Плюс»</div>
+                  </div>
+
+                  <div class="product-description__col-item">
+                    <div class="col-item__name">Документация</div>
+                    <div class="col-item__value">Отсутствует</div>
+                  </div>
+
+                  <div class="product-description__col-item">
+                    <div class="col-item__name">Тех состояние</div>
+                    <div class="col-item__value">Новый</div>
+                  </div>
+
+                  <div class="product-description__col-item">
+                    <div class="col-item__name">Условия хранения</div>
+                    <div class="col-item__value">Крытый, отапливаемый склад</div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer class="footer">
+
+    <div class="container container_no-padding">
+      <div class="footer-links">
+        <a href="#" class="footer-links__item">О проекте</a>
+        <a href="#" class="footer-links__item">Помощь</a>
+        <a href="#" class="footer-links__item">Контакты</a>
+        <a href="#" class="footer-links__item">Доставка</a>
+        <a href="#" class="footer-links__item">Сервисы</a>
+        <a href="#" class="footer-links__item">Оплата</a>
+        <a href="#" class="footer-links__item">Коммерческая информация</a>
+
+        <div class="footer-links__mobile">
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_apple">
+            <span class="apple-icon"></span>
+          </a>
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_android">
+            <span class="android-icon"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container_no-padding">
+      <div class="footer-aside">
+        <div class="footer-aside__copyright">© ПАО «Газпром нефть», 2018</div>
+        <div class="footer-aside__contacts">
+          <span class="contact-number"><span class="phone">8 (800) 700-31-52</span><span class="phone">8 (812) 363-31-52</span></span>
+          <span class="contact-aside">Круглосуточная служба поддержки</span>
+        </div>
+        <a href="question.html" class="footer-aside__question"><span class="mail-icon"></span><span>Задать вопрос</span></a>
+      </div>
+    </div>
+  </footer>
+  <div class="layer user-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Вход</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="password-input-wrap">
+          <input class="layer__input" type="password" placeholder="Пароль">
+          <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+        </div>
+        <div class="user-layer__controls">
+          <span class="custom-checkbox">
+            <label>
+              <input type="checkbox" class="checkbox" checked>
+              <span class="custom-checkbox__checkbox"></span>
+              <span>Запомнить</span>
+            </label>
+          </span>
+          <a class="restore-link js-restore" href="">Забыли пароль?</a>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Войти</button>
+        </div>
+      </form>
+    </div>
+    <button class="button layer__button user-layer__button-register">Регистрация</button>
+  </div>
+  <div class="layer restore-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Восстановление пароля</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="user-layer__controls">
+          <span class="hint">
+            На указанную почту будет<br>
+            отправлено письмо со ссылкой<br>
+            для смены пароля
+          </span>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Восстановить пароль</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ui-widget-overlay"></div>
+</body>
+</html>

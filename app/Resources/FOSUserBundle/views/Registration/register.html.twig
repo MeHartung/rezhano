@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block main %}
+
+<section>
+    <div class="container">
+        <div class="section-title">
+            <div class="breadcrumbs">
+                <a class="breadcrumbs__item">Главная страница</a>
+                <span class="breadcrumbs__divide"></span>
+                <a class="breadcrumbs__item breadcrumbs__item_active">Регистрация</a>
+            </div>
+            <span class="section-title__text section-title__text_in-product">Регистрация</span>
+        </div>
+
+        <div class="center_no-left cards-container__center_no-left">
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+            {{ form_widget(form) }}
+            <div>
+                <input type="submit" value="Сохранить" />
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+</section>
+{% endblock %}

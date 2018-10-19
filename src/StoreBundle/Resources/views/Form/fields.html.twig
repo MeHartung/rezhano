@@ -1,0 +1,38 @@
+{% block tiny_mce_widget %}
+  {% spaceless %}
+    <script type="text/javascript">
+      tinymce.remove('textarea#{{ form.vars.id }}');
+      tinymce.init({
+        selector:'textarea#{{ form.vars.id }}',
+//        width: 700,
+        height: 250,
+        language_url : '/js/vendor/tinymce/langs/ru.js',
+        branding: false,
+        plugins: [
+          "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+          "save table contextmenu directionality emoticons template paste textcolor responsivefilemanager"
+        ],
+        toolbar1: 'undo redo | styleselect | bold italic strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+        toolbar2: 'link image video responsivefilemanager {% for name, attrs in form.vars.custom_buttons %}{{ name }} {% endfor %}',
+        image_advtab: true ,
+        external_filemanager_path:"/fm/",
+        filemanager_title: "Файловый менеджер" ,
+        filemanager_access_key: "83a2de51cdff498a8c68c04a44d49045",
+        external_plugins: { "filemanager" : "/fm/plugin.min.js"},
+        content_css: '/css/tinymce/custom.css',
+        setup: function (editor) {
+          {% for name, attrs in form.vars.custom_buttons %}
+          editor.addButton('{{ name }}', {
+            {% if attrs.icon is defined %}icon: '{{ attrs.icon }}',{% endif %}
+            {% if attrs.image is defined %}image: '{{ attrs.image }}',{% endif %}
+            tooltip: "{{ attrs.label?attrs.label:name }}",
+            onclick: function(){tinymce_button_{{ name }}(editor)}
+          });
+          {% endfor %}
+        }
+      });
+    </script>
+    {{ form_widget(form) }}
+  {% endspaceless %}
+{% endblock %}

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Оформление заказа — завершение</title>
+  <!--<link rel="stylesheet" href="css/main.min.css"> - минифицированные стили для prod-окружения -->
+  <link rel="stylesheet" href="/js/vendor/slick/slick-theme.css">
+  <link rel="stylesheet" href="/js/vendor/slick/slick.css">
+  <link rel="stylesheet" href="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script type="text/javascript" src="/js/vendor/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="/js/vendor/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+  <script type="text/javascript" src="/js/vendor/slick/slick.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <div class="logo-wrap">
+          <a class="gpn-logo" title="Газпромнефть" href="main.html"></a>
+          <span class="text-logo">Реализация <br>имущества Группы <br>«Газпром нефть»</span>
+        </div>
+        <span class="header-number">8 (800) 700-31-52 </span>
+        <div class="header-panel">
+          <!--/  -->
+          <!--<span class="header-panel__sign"><span class="user-icon"></span>Войти</span>-->
+          <!--/-->
+          <a href="profile-messages.html" class="js-messages header-panel__message new-message"><span class="mail-icon mail-icon_new-message"></span>2</a>
+          <a href="profile.html" class="header-panel__sign"><span class="user-icon"></span>Владимир Иванов</a>
+          <a href="favourites.html" class="header-panel__favorites"><span class="star-icon"></span>6</a>
+
+          <div class="notice-popup">
+
+            <div class="notice-popup__wrap">
+              <span class="notice-popup__title">Уведомления</span>
+
+              <div class="notice-popup__items">
+
+                <a href="profile-messages.html" class="notice-popup__item new-notice">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_auction"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">Ваша ставка по аукциону №213 была перебита на 500Р</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+                <a href="profile-messages.html" class="notice-popup__item">
+                  <div class="notice-popup__icon">
+                    <span class="icon-notice icon-notice_order"></span>
+                  </div>
+
+                  <span class="notice-popup__item-date">25.08.2018 14:00</span>
+                  <span class="notice-popup__item-text">По заказу 243 изменен статус на «Заказ оплачен»</span>
+                </a>
+
+              </div>
+            </div>
+
+            <a href="profile-messages.html" class="notice-popup__button-all">
+              Все уведомления
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-menu">
+        <div class="container">
+          <div class="header-menu__wrap">
+
+            <div class="menu-container">
+
+              <button class="open-menu" id="openMenu1">
+                <span>Каталог товаров</span>
+                <span class="burger-icon"></span>
+              </button>
+
+              <div class="expanded-menu" id="expandedMenu1" style="display: none">
+
+                <button class="open-menu" id="closeMenu1">
+                  <span>Каталог товаров</span>
+                  <span class="burger-icon"></span>
+                </button>
+
+                <div class="expanded-menu__items">
+                  <div class="expanded-menu__items-item-wrap">
+                    <a href="section.html" class="expanded-menu__items-item">
+                      <span>Запорная арматура</span>
+                    </a>
+
+                    <div class="expanded-menu__items expanded-menu__items-level-two">
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                      <a href="section.html" class="expanded-menu__items-level-two__item"><span>Пункт меню второго уровня каталога</span></a>
+                    </div>
+
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item"><span>Запорная арматура</span></a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item"><span>Технологическое <br>и блочное оборудование</span></a>
+                  </div>
+
+                  <div class="expanded-menu__items">
+                    <a href="section.html" class="expanded-menu__items-item"><span>Запорная арматура</span></a>
+                  </div>
+
+                </div>
+                <a href="catalog.html" class="expanded-menu__see-all">Смотреть все</a>
+              </div>
+            </div>
+
+
+            <div class="header-menu__input">
+              <input type="text" placeholder="Найти в каталоге товаров">
+              <button class="button-search"></button>
+            </div>
+
+            <a href="cart.html" class="header-menu__info">
+              <span class="header-menu__info-amount-item"><span class="card-icon"></span>12</span>
+              <span class="header-menu__info-amount-payment">12 000 000 Р</span>
+            </a>
+
+          </div>
+
+          <div class="header-menu__ordering">
+            <a href="cart.html" class="ordering-item ordering-item_past">
+              <span class="card-icon card-icon__blue"></span>
+              <span class="ordering-item__name">Корзина</span>
+            </a>
+            <a href="checkout-delivery.html" class="ordering-item ordering-item_past">
+              <span class="delivery-icon grey-icon"></span>
+              <span class="delivery-icon delivery-icon__blue blue-icon"></span>
+              <span class="ordering-item__name">Доставка и сервисы</span>
+            </a>
+            <a href="checkout-payment.html" class="ordering-item ordering-item_past">
+              <span class="payment-icon grey-icon"></span>
+              <span class="payment-icon payment-icon__blue blue-icon"></span>
+              <span class="ordering-item__name">Оплата</span>
+            </a>
+            <a class="ordering-item ordering-item_active">
+              <span class="order-icon grey-icon"></span>
+              <span class="order-icon order-icon__blue blue-icon"></span>
+              <span class="ordering-item__name">Заказ</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </header>
+    <main>
+      <section>
+        <div class="container">
+
+          <div class="section-title">
+            <div class="breadcrumbs">
+              <a href="main.html" class="breadcrumbs__item">Главная страница</a>
+              <span class="breadcrumbs__divide"></span>
+              <a href="cart.html" class="breadcrumbs__item">Корзина</a>
+              <span class="breadcrumbs__divide"></span>
+              <a href="checkout-delivery.html" class="breadcrumbs__item">Доставка и сервисы</a>
+              <span class="breadcrumbs__divide"></span>
+              <a href="checkout-payment.html" class="breadcrumbs__item">Оплата</a>
+              <span class="breadcrumbs__divide"></span>
+              <span class="breadcrumbs__item breadcrumbs__item_active">Заказ</span>
+            </div>
+            <span class="section-title__text section-title__text_in-product">Заказ</span>
+          </div>
+
+          <div class="section-wrap">
+            <div class="cards-container cards-container__order">
+
+              <div class="cards-container__header">
+                <div class="cards-container__delivery-type">
+                  <span class="cards-container__order-title">Завка принята</span>
+                  <span class="cards-container__order-details">Номер вашего заказа 243. Детали заказа <br>уже отправлены на вашу почту <a href="">lostfilm@yandex.ru</a></span>
+                </div>
+
+                <div class="cards-container__header-buttons">
+                  <!--<a href="#">Отправить<br>подтверждение</a>-->
+                  <a href="catalog.html">Продолжить<br>покупки</a>
+                </div>
+
+                <div class="cards-container__documents">
+                  <div class="cards-container__documents-download">
+                    <span class="document-icon"></span>
+
+                    <div class="document-download__text">
+                      <a class="document-download__link">Скачать счет</a>
+                      <span class="document-download__name">№ 23153/К от 18.08.2018</span>
+                    </div>
+
+                  </div>
+                  <div class="cards-container__documents-email">
+                    <div class="custom-checkbox custom-checkbox_bg-blue">
+                      <label>
+                        <input type="checkbox" class="checkbox" checked="">
+                        <span class="custom-checkbox__checkbox"></span>
+                        <span>Отправить счет на почту</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="cards-container__wrap">
+                <div class="delivery-container__item">
+                  <div class="delivery-container__header"></div>
+                  <div class="delivery-container__item-info">
+                    <div class="cards-container__order-number">
+                      Номер заказа
+                      <span class="cards-container__order-number_count">
+                            243
+                          </span>
+                    </div>
+                    <div class="cards-container__order-received">
+                      Заказ получен
+                      <span class="cards-container__order-received_date">
+                            21 июля 2018 18:05
+                          </span>
+                    </div>
+                    <div class="cards-container__order-value">
+                      Сумма заказа и доставки
+                      <span class="cards-container__order-value_count">
+                            90 000 ₽
+                          </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cards-container__wrap">
+                <div class="delivery-container__item">
+                  <div class="delivery-container__header">
+                    <span><strong>Доставка</strong></span>
+                  </div>
+                  <div class="delivery-container__item-info">
+                    <div class="cards-container__order-buyer-info">
+                      Иванов Виталий Владимирович
+                      620056, Российская Федерация
+                      Екатеринбург
+                      Черняховского 86
+                    </div>
+
+                    <div class="cards-container__order-estimate-delivery">
+                      Срок доставки
+                      <span class="cards-container__order-estimate-delivery_day">
+                            4–5 дней
+                          </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="favorites-container confirm-order__list-items">
+              <div class="favorites-container__header">
+                <div class="favorites-container__item favorites-container__item_header"></div>
+                <div class="quantity-wrap quantity-wrap_header"><span>Кол-во</span></div>
+                <div class="favorites-container__location favorites-container__location_header"><span>Местонахождение</span></div>
+                <div class="favorites-container__price favorites-container__price_header"><span>Цена</span></div>
+              </div>
+
+              <div class="favorites-container__wrap">
+                <div class="favorites-container__item">
+                  <div class="favorites-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="favorites-container__item-info">
+                    <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул –&nbsp;448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <span class="quantity-wrap__value">5670</span>
+                </div>
+
+                <div class="favorites-container__location">Волгоград</div>
+                <div class="favorites-container__price">1 000,00 Р</div>
+              </div>
+
+              <div class="favorites-container__wrap">
+                <div class="favorites-container__item">
+                  <div class="favorites-container__item-image" style="background: url('/images/TEST_delete/1.png') center no-repeat; background-size: cover"></div>
+                  <div class="favorites-container__item-info">
+                    <a href="product.html" class="item-info__title">Арматура фонтанная АФК ХХХ</a>
+                    <span class="item-info__title-aside">Артикул –&nbsp;448201335</span>
+                  </div>
+                </div>
+
+                <div class="quantity-wrap">
+                  <span class="quantity-wrap__value">22</span>
+                </div>
+
+                <div class="favorites-container__location">Волгоград</div>
+                <div class="favorites-container__price">1 000,00 Р</div>
+              </div>
+            </div>
+
+            <div class="cart-block-aside cart-block-aside_right-alignment">
+              <div class="order-total">
+                <div class="order-total__product">
+                  <span class="order-total__product_name">Товары:</span>
+                  <span class="order-total__product_value">90 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+                </div>
+                <div class="order-total__delivery">
+                  <span class="order-total__delivery_name">Доставка:</span>
+                  <span class="order-total__delivery_value">90 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+                </div>
+
+                <div class="order-total__payment">
+                  <span class="order-total__payment_name">К оплате:</span>
+                  <span class="order-total__payment_value">180 000,<span class="payment-info__value_fraction">00</span> ₽</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer class="footer">
+
+    <div class="container container_no-padding">
+      <div class="footer-links">
+        <a href="#" class="footer-links__item">О проекте</a>
+        <a href="#" class="footer-links__item">Помощь</a>
+        <a href="#" class="footer-links__item">Контакты</a>
+        <a href="#" class="footer-links__item">Доставка</a>
+        <a href="#" class="footer-links__item">Сервисы</a>
+        <a href="#" class="footer-links__item">Оплата</a>
+        <a href="#" class="footer-links__item">Коммерческая информация</a>
+
+        <div class="footer-links__mobile">
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_apple">
+            <span class="apple-icon"></span>
+          </a>
+          <a href="#" class="footer-links__mobile_icon footer-links__mobile_android">
+            <span class="android-icon"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container_no-padding">
+      <div class="footer-aside">
+        <div class="footer-aside__copyright">© ПАО «Газпром нефть», 2018</div>
+        <div class="footer-aside__contacts">
+          <span class="contact-number"><span class="phone">8 (800) 700-31-52</span><span class="phone">8 (812) 363-31-52</span></span>
+          <span class="contact-aside">Круглосуточная служба поддержки</span>
+        </div>
+        <a href="question.html" class="footer-aside__question"><span class="mail-icon"></span><span>Задать вопрос</span></a>
+      </div>
+    </div>
+  </footer>
+  <div class="layer user-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Вход</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="password-input-wrap">
+          <input class="layer__input" type="password" placeholder="Пароль">
+          <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+        </div>
+        <div class="user-layer__controls">
+          <span class="custom-checkbox">
+            <label>
+              <input type="checkbox" class="checkbox" checked>
+              <span class="custom-checkbox__checkbox"></span>
+              <span>Запомнить</span>
+            </label>
+          </span>
+          <a class="restore-link js-restore" href="">Забыли пароль?</a>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Войти</button>
+        </div>
+      </form>
+    </div>
+    <button class="button layer__button user-layer__button-register">Регистрация</button>
+  </div>
+  <div class="layer restore-layer">
+    <div class="layer__close"></div>
+    <div class="layer__container">
+      <div class="layer__title">Восстановление пароля</div>
+      <form class="layer__form" action="">
+        <input class="layer__input" type="text" placeholder="Почта">
+        <div class="user-layer__controls">
+          <span class="hint">
+            На указанную почту будет<br>
+            отправлено письмо со ссылкой<br>
+            для смены пароля
+          </span>
+        </div>
+        <div class="buttons">
+          <button class="button layer__button">Восстановить пароль</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ui-widget-overlay"></div>
+</body>
+</html>

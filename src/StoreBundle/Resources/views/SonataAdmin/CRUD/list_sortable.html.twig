@@ -1,0 +1,6 @@
+{% extends "SonataAdminBundle:CRUD:list.html.twig"  %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" src="{{ asset('bundles/pixsortablebehavior/js/init.js') }}"></script>
+{% endblock %}

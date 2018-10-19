@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link type="text/css" href="/js/vendor/com_cdek_catalogue/css/default.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" src="//api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+  <script type="text/javascript" src="/js/vendor/com_cdek_catalogue/js/main.js"></script>
+{% endblock %}
+
+{% block body %}
+  <div id="gkMainBodyTop">
+    <table border="0">
+      <tbody>
+      <tr>
+        <td>
+          <h2><strong>Москва</strong></h2>
+          <p>адрес: г. Москва, ул. Зюзинская, д.6, к.2</p>
+          <p>телефон: {{ phoneMsk|calltouchPhone('msk')|raw }}</p>
+          <p>e-mail: <a href="mailto:inbox@excam.ru">inbox@excam.ru</a></p>
+          <p>Время работы: с 10-00 до 18-00</p>
+          <p>С Понедельника по Пятницу</p>
+        </td>
+        <td> 
+          <script charset="utf-8" type="text/javascript" src="//api-maps.yandex.ru/services/constructor/1.0/js/?sid=HkLBtBm9cpEhA9hEoAtPhMTxmuhU-sYG&amp;width=450&amp;height=250"></script>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h2>Екатеринбург</h2>
+          <p>адрес: г. Екатеринбург, ул. К.Либкнехта д.23Б, ТЦ &laquo;Sila Voli&raquo;, 1 этаж</p>
+          <p>телефон: {{ phoneEkb|calltouchPhone('ekb')|raw }}</p>
+          <p>e-mail: <a href="mailto:inbox@excam.ru">inbox@excam.ru</a></p>
+          <p>Время работы: с 10-00 до 21-00</p>
+          <p>Без выходных и перерывов</p>
+        </td>
+        <td> 
+          <script charset="utf-8" type="text/javascript" src="//api-maps.yandex.ru/services/constructor/1.0/js/?sid=WPO9GeFB_pt5vJwVThMrv97Aux2CDGT_&amp;width=450&amp;height=250"></script>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="gkMainBody">
+    <div class="item-page" id="pvz-list">
+      <h2>Список пунктов выдачи заказов</h2>
+      <div id="points_description">
+        <p>В пунктах выдачи товаров вы можете оплатить и забрать свои заказы, а также оформить возврат.</p>
+        <p>Доставку по городу уточняйте у менеджера нашей компании!</p>
+      </div>
+      <div class="row-fluid" id="cities_filter">
+        Укажите свой регион:
+        <select onchange="submitRegionsPage()" class="inputbox" name="region" id="region">
+          {% for key, region_name in mainRegions %}
+          <option {% if current_region_id == key %} selected="selected" {% endif %} value="{{ key }}">{{ region_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div id="points_loader">
+        <img src="/components/com_cdek_catalogue/views/cdekcatalogue/img/loading1.gif" />
+      </div>
+      <div id="points_container">
+      </div>
+  </div>
+{% endblock %}

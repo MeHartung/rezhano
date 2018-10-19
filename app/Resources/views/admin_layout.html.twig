@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=Edge" />
+    <title>{% block title %}Accuratecommerce{% endblock %}</title>
+    {% block stylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+</head>
+<body>
+<div id="gkMainWrap" class="gkPage">
+    <div id="gkPageContent">
+        {% block body %}{% endblock %}
+    </div>
+</div>
+{#<footer id="gkFooter">#}
+    {#<div id="gkFooterNav">#}
+
+    {#<ul class="menu">#}
+    {#<li class="item-710"><a href="#" title="login" id="btnLogin">Вход / Регистрация</a></li>#}
+    {#<li class="item-469"><a href="/map">Карта сайта</a></li>#}
+    {#</ul>#}
+
+    {#</div>#}
+    {#<div id="gkFooterNav">#}
+        {#<p>Все права защищены © 2010 - {{ 'now'|date('Y') }} гг. ИП Безруков А.А.</p>#}
+    {#</div>#}
+    {#<p id="gkCopyrights">Разработка <a href="https://accurateweb.ru" target="_blank">Accurateweb</a></p>#}
+{#</footer>#}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

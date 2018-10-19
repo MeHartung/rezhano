@@ -1,0 +1,16 @@
+<div class="current-city" id="current-city">
+  {% if not isConfirmed %}
+  <div class="hint_city">
+    <div class="hint_city_content">Выбран ваш город?</div>
+    <div class="hint_button">
+      <a href="#" class="hint_button_close button" type="button">Да</a>
+      <a href="#" class="button button-grey hint_change_city">Нет</a>
+    </div>
+    <i class="corner"></i>
+  </div>
+  {% endif %}
+  <img src="/images/city.png" />
+  <a href="#" val="{{ alias }}" class="dropdown cityselect">
+    {{ cityName }}
+  </a>
+</div>

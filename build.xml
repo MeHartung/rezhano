@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="gpn_values" default="release">
+    <property environment="env"/>
+    <property name="peardir" value="${env.PHP_PEAR_BIN_DIR}"/>
+    <property name="composer" value="${basedir}/composer.phar"/>
+    <property name="php_bin" value="/usr/bin/php7.2"/>
+    <property name="symfony_console" value="bin/console"/>
+
+    <target name="release"
+            depends="test,deploy-to-staging"/>
+
+    <target name="build"
+            depends="prepare,composer-install,cc"/>
+
+    <target name="test"
+            depends="build,update-test-database,phpunit"/>
+
+    <target name="cleanup" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/logs"/>
+    </target>
+
+    <target name="prepare" depends="cleanup"
+            description="Prepare for build">
+        <mkdir dir="${basedir}/build/logs"/>
+    </target>
+
+
+    <!-- ============================================ -->
+    <!-- чистка symfony-кэша            			  -->
+    <!-- ============================================ -->
+    <target name="cc" description="Symfony clear cache">
+        <exec executable="${php_bin}">
+            <arg value="${symfony_console}"/>
+            <arg value="cache:clear"/>
+            <arg value="--no-warmup"/>
+            <arg value="--env=test"/>
+        </exec>
+    </target>
+
+    <target name="create-test-database">
+        <exec executable="${php_bin}">
+            <arg value="${symfony_console}"/>
+            <arg value="doctrine:database:create"/>
+            <arg value="--if-not-exists"/>
+            <arg value="--env=test"/>
+        </exec>
+    </target>
+    <target name="update-test-database" depends="create-test-database">
+        <exec executable="${php_bin}">
+            <arg value="${symfony_console}"/>
+            <arg value="doctrine:schema:update"/>
+            <arg value="--force"/>
+            <arg value="--env=test"/>
+        </exec>
+    </target>
+
+
+    <target name="composer-download">
+        <property name="composer.noselfupdate" value="true"/>
+        <get src="https://getcomposer.org/composer.phar" dest="${composer}"/>
+    </target>
+
+    <target name="composer-install" depends="composer-download" description="composer install">
+        <exec executable="${php_bin}">
+            <arg value="${composer}"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="deploy-to-staging">
+        <exec executable="${php_bin}">
+            <arg value="vendor/deployer/deployer/bin/dep"/>
+            <arg value="deploy"/>
+            <arg value="staging"/>
+        </exec>
+    </target>
+
+    <!-- ============================================ -->
+    <!-- phpunit-тесты				      			  -->
+    <!-- ============================================ -->
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec executable="${basedir}/vendor/phpunit/phpunit/phpunit">
+            <arg value="--stderr"/>
+            <arg value="--log-junit"/>
+            <arg value="${project.basedir}/build/logs/phpunit.xml"/>
+        </exec>
+    </target>
+</project>

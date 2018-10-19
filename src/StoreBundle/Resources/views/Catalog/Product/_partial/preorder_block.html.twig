@@ -1,0 +1,17 @@
+<div class="preorder-area">
+    {#<button class="preorder-product button" data-product-slug="{{ product.slug }}">Предзаказ</button>#}
+    <form class="product js-recalculate">
+        <div class="addtocart-bar">
+            <div class="addtocart-bar__wrap">
+                <label for="quantity646" class="quantity_box">Кол-во: </label>
+                <div  class="quantity-box-price">
+                    <span class="quantity-box">
+                       <input type="text" class="quantity-input js-recalculate" name="quantity[]" value="1">
+                    </span>
+                </div>
+            </div>
+            <div class="preorder-product button" data-product-slug="{{ product.slug }}">Предзаказ</div>
+            <div class="clear"></div>
+        </div>
+    </form>
+</div>

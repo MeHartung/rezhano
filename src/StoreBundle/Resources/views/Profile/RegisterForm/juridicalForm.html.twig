@@ -1,0 +1,113 @@
+{% form_theme juridicalForm 'form/register.html.twig' %}
+{{ form_start(juridicalForm) }}
+<div class="cards-container cards-container__registration cards-container__registration_first">
+    <div class="registration-container__wrap">
+        <div class="registration-container__step">
+            <div class="step-item">
+                <span class="field-description">ИНН или полное название организации</span>
+                <input type="text" class="input-text_biggest" placeholder="Название или ИНН в свободной форме">
+            </div>
+
+            {{ form_row(juridicalForm.company.name, {'inline':false, 'attr':{'class':'input-text_biggest'}, 'label':'Название организации'}) }}
+        </div>
+    </div>
+    <div class="registration-container__wrap">
+        <div class="registration-container__title">
+            Личные данные
+        </div>
+        <div class="registration-container__step">
+            {{ form_row(juridicalForm.company.inn, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'ИНН'}) }}
+            {{ form_row(juridicalForm.company.kpp, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'КПП'}) }}
+            {{ form_row(juridicalForm.company.ogrn, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'ОГРН / ОГРНиП'}) }}
+            {{ form_row(juridicalForm.company.country, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'Страна регистрации'}) }}
+            {{ form_row(juridicalForm.company.address, {'inline':true, 'attr':{'class':'input-text_540'}, 'label':'Юридический адрес'}) }}
+        </div>
+    </div>
+    <div class="registration-container__wrap">
+        <div class="registration-container__step">
+            {{ form_row(juridicalForm.company.director, {'inline':false, 'attr':{'class':'input-text_biggest'}, 'label':'ФИО руководителя организации'}) }}
+            {{ form_row(juridicalForm.company.phone, {'inline':true, 'attr':{'class':'input-text_200', 'placeholder':'+7 (___) ___ - __ - __'}, 'label':'Номер телефона'}) }}
+            {{ form_row(juridicalForm.company.email, {'inline':true, 'attr':{'class':'input-text_290'}, 'label':'Электронная почта (является логином)'}) }}
+        </div>
+    </div>
+    <div class="registration-container__wrap">
+        <div class="registration-container__title">
+            Данные ответственного лица
+        </div>
+        <div class="registration-container__step">
+            {{ form_row(juridicalForm.lastname, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'Фамилия'}) }}
+            {{ form_row(juridicalForm.firstname, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'Имя'}) }}
+            {{ form_row(juridicalForm.middlename, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'Отчество'}) }}
+            {{ form_row(juridicalForm.phone, {'inline':true, 'attr':{'class':'input-text_200'}, 'label':'Номер телефона'}) }}
+            {{ form_row(juridicalForm.email, {'inline':true, 'attr':{'class':'input-text_290'}, 'label':'Электронная почта'}) }}
+            <div class="password-wrap">
+                <div class="step-item step-item_inline">
+                    <span class="field-description">Пароль*</span>
+                    <div class="password-input-wrap">
+                        <input id="{{ juridicalForm.plainPassword.first.vars.id }}" name="{{ juridicalForm.plainPassword.first.vars.full_name }}" type="password" class="input-text_200">
+                        <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+                    </div>
+                    {% if  form_errors(juridicalForm.plainPassword.first) %}
+                        <div class="error-list">{{ form_errors(juridicalForm.plainPassword.first) }}</div>
+                    {% endif %}
+                </div>
+                {% do juridicalForm.plainPassword.first.setRendered %}
+
+                <div class="step-item step-item_inline">
+                    <span class="field-description">Повтор пароля*</span>
+                    <div class="password-input-wrap">
+                        <input id="{{ juridicalForm.plainPassword.second.vars.id }}" name="{{ juridicalForm.plainPassword.second.vars.full_name }}"  type="password" class="input-text_200">
+                        <div class="password-input-wrap__toggle" title="Показать пароль"></div>
+                    </div>
+                    {% if  form_errors(juridicalForm.plainPassword.second) %}
+                        <div class="error-list">{{ form_errors(juridicalForm.plainPassword.second) }}</div>
+                    {% endif %}
+                </div>
+                {% do juridicalForm.plainPassword.second.setRendered %}
+            </div>
+            {{ form_row(juridicalForm.city, {'inline':false, 'label':'Город'}) }}
+        </div>
+    </div>
+</div>
+<div class="cards-container cards-container__registration cards-container__registration_document">
+    <div class="registration-container__wrap">
+        <div class="cards-container__registration">
+          <span class="custom-checkbox custom-checkbox_biggest custom-checkbox_bg-blue">
+            <label>
+            {{ form_widget(juridicalForm.contragent, {'attr': {'class':'checkbox'}}) }}
+                <input type="checkbox" class="checkbox" checked="">
+                <span class="custom-checkbox__checkbox"></span>
+              <span>Я контрагент ПАО «Газпромнефть»</span>
+            </label>
+          </span>
+          {% if  form_errors(juridicalForm.contragent) %}
+              <div class="error-list">{{ form_errors(juridicalForm.contragent) }}</div>
+          {% endif %}
+        </div>
+        <div class="registration-container__title">
+            Документы
+            <span class="registration-container__title-aside">— необходимо загрузить все документы</span>
+        </div>
+
+        <div class="document-list">
+            {% include '@Store/Profile/RegisterForm/documentForm.html.twig' with {'form' : juridicalForm.documents} %}
+        </div>
+    </div>
+</div>
+<div class="cart-block-aside cart-block-aside_left-alignment">
+    <div class="cart-block-aside__wrap">
+        <div class="custom-checkbox custom-checkbox_bg-blue">
+            <label>
+                {{ form_widget(juridicalForm.tos, {'attr': {'class':'checkbox'}}) }}
+                <input type="checkbox" class="checkbox" checked="">
+                <span class="custom-checkbox__checkbox"></span>
+                <span>Я ознакомился и согласен с <a href="">Политикой Компании</a> и <a href="">условиями сотрудничества</a></span>
+            </label>
+            {% if  form_errors(juridicalForm.tos) %}
+                <div class="error-list">{{ form_errors(juridicalForm.tos) }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="button">Зарегистрироваться</button>
+    </div>
+</div>
+{{ form_end(juridicalForm) }}

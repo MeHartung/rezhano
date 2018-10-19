@@ -1,0 +1,20 @@
+{% extends '@SonataAdmin/CRUD/show_array.html.twig' %}
+
+{% block field%}
+    <table class="table">
+        <thead>
+        <tr>
+          <th>Время</th>
+          <th>Имя</th>
+          <th>Сообщение</th>
+        </tr>
+        </thead>
+    {% for message in object.messages %}
+        <tr>
+            <td>{{ message.createdAt|date('d.m.Y H:i') }}</td>
+            <td>{{ message.userName }}({{ message.userEmail }})</td>
+            <td>{{ message|raw }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,21 @@
+<form>
+    <div class="orderby-displaynumber">
+        <div class="orderlistcontainer">
+            <div class="title">Сортировать по:</div>
+            <div class="activeOrder">
+                {% if sort.column == 'price' and sort.order == 'desc' %}
+                    <a title="-/+" href="#">Цена товара -/+</a>
+                {% else %}
+                    <a title="+/-" href="#">Цена товара +/-</a>
+                {% endif %}
+            </div>
+        </div>						<div class="display-number">
+            Показано {{ pagination.firstResult }} - {{ pagination.lastResult }} из {{ pagination.nbResults }}
+            <select class="inputbox per-page-select" size="1" onchange="window.top.location.href=this.options[this.selectedIndex].value">
+                <option value="24" {% if pagination.maxPerPage == 24 %}selected{% endif %}>24</option>
+                <option value="48" {% if pagination.maxPerPage == 48 %}selected{% endif %}>48</option>
+                <option value="72" {% if pagination.maxPerPage == 72 %}selected{% endif %}>72</option>
+            </select>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,419 @@
+.filter_category a.next_depth {
+  text-decoration: none;
+}
+
+.paramfilter a.reset {
+  text-decoration: none;
+  font-size: 80%;
+  float: right;
+}
+
+/*.paramfilter a.fullreset { display:block; float:right; padding:5px; margin-top:27px }*/
+.mcf_button {
+  margin-top: 20px;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.paramfilter ul {
+  margin: 0;
+  padding: 0;
+}
+
+.paramfilter li {
+  list-style: none outside none;
+}
+
+.paramfilter .disable {
+  color: #ccc;
+}
+
+.paramfilter .values span.count {
+  color: #666;
+  font-size: 90%;
+}
+
+.paramfilter .values label * {
+  vertical-align: middle;
+}
+
+.range-slider {
+  input.slider-min-value {
+    /*float:left;*/
+    text-align: left;
+    border: 1px solid #d2d2d2;
+    background: #fff;
+    box-shadow: inset 0 1px 3px #dcdcdc;
+    width: 84px;
+  }
+
+  input.slider-max-value {
+    /*float:right;*/
+    text-align: right;
+    border: 1px solid #d2d2d2;
+    background: #fff;
+    box-shadow: inset 0 1px 3px #dcdcdc;
+    width: 84px;
+  }
+
+  .slider-double-handle {
+    /*margin-bottom:-10px;*/
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .slider-text {
+    font-size: 90%;
+    color: @light-grey;
+  }
+  .slider-line {
+    clear: both;
+  }
+  .line {
+    display: none;
+  }
+}
+
+/*.heading { font-size:120%; font-weight:bold; }*/
+.heading img {
+  margin-left: 5px;
+  vertical-align: middle;
+  max-height: 100%;
+}
+
+.paramfilter .values input {
+  margin-right: 3px;
+  cursor: pointer;
+}
+
+table.horizontbox {
+  width: 100%;
+  border: 0;
+}
+
+table.horizontbox td, table.horizontbox tr {
+  vertical-align: middle;
+  text-align: center;
+  border: 0;
+}
+
+table.horizontbox td li {
+  text-align: left;
+}
+
+div.horizontbox {
+  float: left;
+  width: 24.4%;
+}
+
+.horizontbox select {
+  width: 90%;
+}
+
+.mcf_form select {
+  max-width: 100%;
+}
+
+.mcf_tip {
+  font-size: 80%;
+  line-height: 80%;
+  cursor: pointer;
+  color: #666;
+  vertical-align: text-top;
+}
+
+form.mcf_mod_ajax_div input[type=submit] {
+  display: none;
+}
+
+/*!
+ * jQuery UI Slider 1.8.20
+ *
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Slider#theming
+ */
+.slider_active {
+  height: 10px;
+  top: -1px;
+  position: absolute;
+  z-index: 1;
+  min-width: 2%;
+}
+
+.slider_active.count-0 {
+  min-width: 0%;
+}
+
+.ui-slider {
+  position: relative;
+  text-align: left;
+}
+
+.ui-slider .ui-slider-handle {
+  position: absolute;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  cursor: default;
+  background-color: #fdfdfd;
+  background-image: linear-gradient(#fdfdfd, #e9e9e9); /*border:1px solid #f0f0f0;*/
+  box-shadow: inset 0px -1px 2px #868788;
+  border-radius: 10px;
+}
+
+.ui-slider .ui-slider-range {
+  position: absolute;
+  z-index: 1;
+  font-size: 7px;
+  display: block;
+  border: 0;
+  background-position: 0 0;
+  background: #9c0000;
+  background-image: linear-gradient(#9c0000, #ff0000);
+}
+
+.ui-slider-horizontal {
+  height: 8px;
+  border: 1px solid #e4e4e2;
+  border-radius: 3px;
+  margin: 5px 0;
+  background-color: #fdfdfd;
+  box-shadow: inset 0px 1px 3px #868788;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+  top: -5px;
+  margin-left: -8px;
+}
+
+.ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 100%;
+}
+
+.ui-slider-horizontal .ui-slider-range-min {
+  left: 0;
+}
+
+.ui-slider-horizontal .ui-slider-range-max {
+  right: 0;
+}
+
+.ui-slider-vertical {
+  width: 8px;
+  height: 100px;
+}
+
+.ui-slider-vertical .ui-slider-handle {
+  left: -3px;
+  margin-left: 0;
+  margin-bottom: -8px;
+}
+
+.ui-slider-vertical .ui-slider-range {
+  left: 0;
+  width: 100%;
+}
+
+.ui-slider-vertical .ui-slider-range-min {
+  bottom: 0;
+}
+
+.ui-slider-vertical .ui-slider-range-max {
+  top: 0;
+}
+
+/* Colors */
+.values-named::before, .values-named::after {
+  content: "";
+  display: table;
+}
+
+.values-named::after {
+  clear: both;
+}
+
+.values-named {
+}
+
+.values-named li {
+  float: left;
+  margin: 0 0 0px 5px;
+  padding-left: 0;
+  list-style: none outside none;
+  background: none;
+}
+
+.values-named li label {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  position: relative;
+}
+
+.values-named li label.checked {
+  border: 1px solid #000;
+}
+
+.values-named li label * {
+  display: none;
+}
+
+.values-named li.hover label span.f-title {
+  display: block;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  z-index: 3;
+  text-align: center;
+}
+
+.values-named li.hover label span.f-title b {
+  display: block;
+  padding: 0 2px;
+  margin-left: -50%;
+  margin-top: -10px;
+  background: #fff;
+  width: 100%;
+  border: 1px solid #eee;
+}
+
+.values-named li label span.color {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 1px;
+}
+
+.values-named label.raznotsvetnyj span.color {
+  background: url(multicolors.jpg) no-repeat center center;
+}
+
+.values-named label.belyj span.color {
+  background-color: #fff;
+}
+
+.values-named label.chernyj span.color {
+  background-color: #000;
+}
+
+.values-named label.yellow span.color {
+  background-color: #ff0;
+}
+
+.values-named label.red span.color {
+  background-color: #f00
+}
+
+.values-named label.green span.color {
+  background-color: #090;
+}
+
+.values-named label.blue span.color {
+  background-color: #0CF;
+}
+
+.values-named label.black span.color {
+  background-color: #000;
+}
+
+/*	.values-named label.COLOR span.color { background-color:#; } */
+/*	template css */
+
+.mcf_form {
+  .heading {
+    padding-top: 10px;
+    /*padding-bottom:10px; */
+    /*color: #1B1B1B; */
+    color: #000;
+    /*font-family: 'Open Sans',sans-serif; font-weight:normal;*/
+    /*border-bottom: 1px dashed #000080;*/
+    font-weight: bold;
+    border-bottom: 1px dashed #000;
+    display: inline-block;
+    padding-bottom: 0px;
+    cursor: pointer;
+    position: relative;
+    margin-left: 10px;
+
+    label {
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
+  .filter-field {
+    input[type="checkbox"].disabled {
+      &~label {
+        color: #ccc;
+      }
+    }
+    .filter-section-content {
+      margin: 15px 0 15px 10px;
+    }
+  }
+
+  /*.mcf_form .slider-double-handle input { width:36%;}*/
+  .ui-slider-horizontal {
+    margin: 15px 3px 5px 0px;
+  }
+
+  .chzn-container-multi .chzn-choices .search-field input {
+    height: 16px;
+    width: 98% !important;
+  }
+
+  .heading.closed .filter-heading-triangle {
+    background-position: 0 -5px;
+  }
+  .filter-collapse {
+    &.collapse {
+      .filter-heading-triangle {
+        background-position: 0px -5px;
+      }
+    }
+  }
+
+  .filter-heading-triangle {
+    background: no-repeat url('/templates/gk_storebox/images/filter-triangles.png') 0 0px;
+    height: 5px;
+    width: 5px;
+    top: 22px;
+    left: -8px;
+    position: absolute;
+  }
+}
+
+.chzn-container {
+  width: 98% !important;
+}
+
+.chzn-drop {
+  width: 99% !important;
+  padding-left: 0px;
+}
+
+.paramfilter {
+  overflow: hidden;
+  border: 1px solid #dcdcdc;
+  padding: 10px 15px 10px 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #dcdcdc;
+
+  background: #efefef;
+}
+
+.mcf_prepend_text p {
+  text-align: center;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.mcf_form .values {
+  margin: 15px 0 15px 10px;
+}
+
