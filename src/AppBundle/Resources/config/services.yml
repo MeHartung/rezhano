@@ -155,3 +155,10 @@ services:
     arguments: ['@app.order_status.adapter']
     tags:
       - { name: aw.client_application.adapter, alias: order.status_history }
+
+  gedmo.listener.sortable:
+         class: Gedmo\Sortable\SortableListener
+         tags:
+             - { name: doctrine.event_subscriber, connection: default }
+         calls:
+             - [ setAnnotationReader, [ "@annotation_reader" ] ]
