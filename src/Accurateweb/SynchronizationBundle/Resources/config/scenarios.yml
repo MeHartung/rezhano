@@ -1,0 +1,14 @@
+services:
+  aw.synchronization.scenario_manager:
+    class: Accurateweb\SynchronizationBundle\Model\Scenario\ScenarioManager
+
+  aw.synchronization.sync.moy_sklad:
+    class:  Accurateweb\SynchronizationBundle\Model\Scenario\MoySkladScenario
+    arguments:
+      - "@event_dispatcher"
+      - 'moy_sklad'
+      - { moy_sklad: '@aw.synchronization.subject.moy_sklad' }
+      - "@doctrine.orm.default_entity_manager"
+      - "@logger"
+    tags:
+      - { name: 'aw.synchronization.scenario' }

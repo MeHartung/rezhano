@@ -1,0 +1,25 @@
+imports:
+    - { resource: parsers.yml }
+    - { resource: scenarios.yml }
+    - { resource: datasources.yml }
+    - { resource: subjects.yml }
+    - { resource: schemas.yml }
+    - { resource: sync_config.yml }
+    - { resource: handlers.yml }
+services:
+
+  aw.serrvice.synchronization:
+    class: Accurateweb\SynchronizationBundle\Model\SynchronizationService
+    arguments:
+      - ~
+      - '@aw.synchronization.configuration.moy_sklad'
+      - ~
+
+  aw.synchronization.entity_factory.moy_sklad:
+    class: Accurateweb\SynchronizationBundle\Model\Entity\EntityFactory
+    arguments:
+      - AppBundle\Synchronization\MoySkladToCdek\Model\Entity\JsonEntity
+
+  aw.synchronization.entity_manager:
+    class: Accurateweb\SynchronizationBundle\Model\Entity\SynchronizationEntityManager
+

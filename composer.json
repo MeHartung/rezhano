@@ -50,7 +50,8 @@
         "twig/twig": "2.*",
         "accurateweb/content-hotspot-bundle": "dev-development",
         "stfalcon/tinymce-bundle": "1.0",
-        "ext-intl": "^1.1"
+        "ext-intl": "^1.1",
+        "tooyz/moysklad": "0.4.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

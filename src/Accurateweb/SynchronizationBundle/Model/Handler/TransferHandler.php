@@ -5,7 +5,7 @@ namespace Accurateweb\SynchronizationBundle\Model\Handler;
 use Accurateweb\SynchronizationBundle\Model\Handler\Base\BaseDataHandler;
 use Accurateweb\SynchronizationBundle\Model\Schema\Base\BaseSchema;
 
-class TransferHandler extends BaseDataHandler
+class TransferHandler extends BaseDataHandler implements TransferHandlerInterface
 {
   private $keyIsNotNull;
   
@@ -85,6 +85,7 @@ class TransferHandler extends BaseDataHandler
 
         }
     }
+    
   }
 
   protected function getTransferKeyField()
@@ -179,7 +180,7 @@ WHERE $joinConditionSql;
 EOF;
   }
 
-  private function processTemplate($template)
+  protected function processTemplate($template)
   {
     $schema = $this->getSchema();
     $transferMap = $schema->getTransferMap();

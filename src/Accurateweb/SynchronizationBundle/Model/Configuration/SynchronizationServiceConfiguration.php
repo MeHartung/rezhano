@@ -2,15 +2,22 @@
 
 namespace Accurateweb\SynchronizationBundle\Model\Configuration;
 
+use Accurateweb\SynchronizationBundle\Model\Datasource\DatasourceInterface;
+use Accurateweb\SynchronizationBundle\Model\Datasource\DatasourceManagerInterface;
+use Accurateweb\SynchronizationBundle\Model\Scenario\ScenarioManagerInterface;
+use Accurateweb\SynchronizationBundle\Model\Scenario\SynchronizationScenarioInterface;
+use Accurateweb\SynchronizationBundle\Model\Subject\SubjectManagerInterface;
+use Accurateweb\SynchronizationBundle\Model\Subject\SynchronizationSubjectInterface;
 use Accurateweb\SynchronizationBundle\Model\SynchronizationScenario;
 use Accurateweb\SynchronizationBundle\Model\SynchronizationSubject;
+use Doctrine\DBAL\Connection;
 use Gedmo\Exception\InvalidArgumentException;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Yaml\Yaml;
 
-class SynchronizationServiceConfiguration
+class SynchronizationServiceConfiguration implements SynchronizationConfigurationInterface
 {
 
   private $datasources = array();
@@ -21,19 +28,56 @@ class SynchronizationServiceConfiguration
   private $sql_temp_dir;
   private $db_connection;
   private $kernelRootDir;
+  
+  private $scenarioManager, $subject, $datasource, $name;
 
-  public function __construct($dispatcher = null, $kernelRootDir = null)
+  # connectionManager
+  # subjectManager
+  # scenariosManager
+/*  public function __construct($dispatcher = null, $kernelRootDir = null)
   {
     $this->kernelRootDir = $kernelRootDir;
     $this->working_dir = str_replace('\\', '/', $this->kernelRootDir . '/../synchronization');
     $this->sql_temp_dir = $this->working_dir . '/sql';
     $this->dispatcher = $dispatcher;
     $this->setDbConnection($this->getDbConnection());
+  } */
+  
+  /**
+   * SynchronizationServiceConfiguration constructor.
+   *
+   * @param EventDispatcherInterface $dispatcher
+   * @param Connection $connection
+   * @param ScenarioManagerInterface $scenarioManager
+   * @param SubjectManagerInterface $subject
+   * @param DatasourceManagerInterface $datasource
+   * @param $kernelRootDir string - не используется тип у параметра для совместимости с php 5.4
+   */
+  public function __construct(EventDispatcherInterface $dispatcher, Connection $connection,
+                              SynchronizationSubjectInterface $subject,
+                              DatasourceInterface $datasource, $kernelRootDir, $name)
+  {
+    $this->dispatcher = $dispatcher;
+    
+    $this->db_connection =   $connection;
+   # $this->scenarioManager = $scenarioManager;
+    $this->subject = $subject;
+    $this->datasource = $datasource;
+  
+    $this->kernelRootDir = $kernelRootDir;
+    $this->working_dir = str_replace('\\', '/', $this->kernelRootDir . '/../synchronization');
+    $this->sql_temp_dir = $this->working_dir . '/sql';
+    $this->name = $name;
   }
 
+  public function getName()
+  {
+    return $this->name;
+  }
+  
   public function load($filename = null)
   {
-    $finder = new Finder();
+/*    $finder = new Finder();
     $finder->files()->in($this->kernelRootDir."/config/")->name('parser.yml');
 
     foreach ($finder->files() as $file)
@@ -44,19 +88,23 @@ class SynchronizationServiceConfiguration
     $configuration = Yaml::parse($filename);
     $this->loadConnections($configuration);
     $this->loadSubjects($configuration);
-    $this->loadScenarios($configuration);
+    $this->loadScenarios($configuration);*/
   }
-
-  public function getDatasource($alias)
+  
+  /**
+   * @param $alias string
+   * @return \Accurateweb\SynchronizationBundle\Model\Datasource\DatasourceInterface
+   */
+  public function getDatasource()
   {
-    return isset($this->datasources[$alias]) ? $this->datasources[$alias] : null;
+    return $this->datasource;
   }
 
   private function loadConnections($configuration)
   {
-    $this->datasources = array();
+    $this->datasources = array($this->datasource);
 
-    $datasourceList = isset($configuration['datasources']) ? $configuration['datasources'] : array();
+/*    $datasourceList = isset($configuration['datasources']) ? $configuration['datasources'] : array();
     foreach ($datasourceList as $name => $datasourceConfiguration)
     {
 
@@ -72,9 +120,9 @@ class SynchronizationServiceConfiguration
       {
         $options = array_merge($options, $datasourceConfiguration['options']);
       }
-
+      
       $this->datasources[$name] = new $className($options);
-    }
+    }*/
   }
 
   private function loadSubjects($configuration)
@@ -88,7 +136,7 @@ class SynchronizationServiceConfiguration
 
   private function loadScenarios($configuration)
   {
-    $scenarioConfigurations = isset($configuration['scenarios']) ? $configuration['scenarios'] : array();
+    /*$scenarioConfigurations = isset($configuration['scenarios']) ? $configuration['scenarios'] : array();
     foreach ($scenarioConfigurations as $scenarioName => $scenarioConfiguration)
     {
 
@@ -105,17 +153,25 @@ class SynchronizationServiceConfiguration
       }
 
       $this->scenarios[$scenarioName] = $scenario;
-    }
+    }*/
   }
 
   public function getScenario($name)
   {
-    return isset($this->scenarios[$name]) ? $this->scenarios[$name] : null;
+    return $this->scenarioManager->get($name);
+  #  return isset($this->scenarios[$name]) ? $this->scenarios[$name] : null;
+  }
+  
+  public function getScenarios()
+  {
+    return $this->scenarioManager->getAll();
+  #  return isset($this->scenarios[$name]) ? $this->scenarios[$name] : null;
   }
 
   public function getSubject($name)
   {
-    return isset($this->subjects[$name]) ? $this->subjects[$name] : null;
+    return $this->subject;
+    #return isset($this->subjects[$name]) ? $this->subjects[$name] : null;
   }
 
   public function getSubjects()
@@ -123,29 +179,21 @@ class SynchronizationServiceConfiguration
     return $this->subjects;
   }
 
-  public function getParser($subject)
+  public function getParser()
   {
-    $parser = null;
-    $subject = $this->getSubject($subject);
-
-    if ($subject)
-    {
-      $parser = $subject->getParser();
-    }
-
-    return $parser;
+    return $this->subject->getParser();
   }
 
   public function getDefaultOf($subject, $name)
   {
     $result = null;
-
+/*
     $subject = $this->getSubject($subject);
 
     if ($subject)
     {
       $result = $subject->getDefault($name);
-    }
+    }*/
 
     return $result;
   }

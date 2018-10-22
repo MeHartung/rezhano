@@ -4,7 +4,7 @@ namespace Accurateweb\SynchronizationBundle\Model\Engine;
 
 use Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration;
 
-abstract class BaseSynchronizationEngine
+abstract class BaseSynchronizationEngine implements SynchronizationEngineInterface
 {
   /**
    * @var SynchronizationServiceConfiguration

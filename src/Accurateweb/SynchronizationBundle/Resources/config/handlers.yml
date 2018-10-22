@@ -1,0 +1,33 @@
+services:
+  aw.synchronization.handler.manager:
+    class: Accurateweb\SynchronizationBundle\Model\Handler\SynchronizationHandlerManager
+
+  aw.synchronization.handler.transfer:
+    class: Accurateweb\SynchronizationBundle\Model\Handler\TransferHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@aw.synchronization.schema.common"
+      - "@event_dispatcher"
+      - {}
+    tags:
+      - { name: 'aw.synchronization.handler.transfer' }
+
+  aw.synchronization.handler.transfer_moy_sklad:
+    class: AppBundle\Synchronization\MoySkladToCdek\Model\Handler\TransferHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@aw.synchronization.schema.common"
+      - "@event_dispatcher"
+      - { key: external_code }
+    tags:
+      - { name: 'aw.synchronization.handler.transfer' }
+
+  aw.synchronization.handler.insert_moy_sklad:
+    class: \Accurateweb\SynchronizationBundle\Model\Handler\InsertHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@aw.synchronization.schema.common"
+      - "@event_dispatcher"
+      - {}
+    tags:
+      - { name: 'aw.synchronization.handler.insert' }

@@ -53,6 +53,8 @@ class AppKernel extends Kernel
 
             new StoreBundle\StoreBundle(),
             new AppBundle\AppBundle(),
+  
+            new Accurateweb\MoyskladIntegrationBundle\AccuratewebMoyskladIntegrationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

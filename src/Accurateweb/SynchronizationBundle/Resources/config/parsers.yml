@@ -1,0 +1,11 @@
+services:
+  aw.synchronization.parser.json_parser:
+      class: AppBundle\Synchronization\Parser\JsonParser
+      arguments:
+        - ~
+        - ~
+        - '@aw.synchronization.entity_factory.moy_sklad'
+        - '@aw.synchronization.schema.common'
+        - {}
+      tags:
+        - { name: 'aw.parser' }

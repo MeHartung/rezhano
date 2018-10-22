@@ -3,14 +3,12 @@
 namespace Accurateweb\SynchronizationBundle\Model\Engine;
 
 use Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration;
-use Accurateweb\SynchronizationBundle\Model\Engine\BaseSynchronizationEngine;
 use Accurateweb\SynchronizationBundle\Model\Entity\EntityCollection;
 use Accurateweb\SynchronizationBundle\Model\Handler\InsertHandler;
 use Accurateweb\SynchronizationBundle\Model\Handler\TransferHandler;
+use Accurateweb\SynchronizationBundle\Model\Parser\BaseParser;
+use Accurateweb\SynchronizationBundle\Model\Subject\SynchronizationSubjectInterface;
 use Accurateweb\SynchronizationBundle\Model\SynchronizationDirection;
-use Accurateweb\SynchronizationBundle\Model\SynchronizationSubject;
-use StoreBundle\Synchronization\Parser\SimpleXMLParser;
-use Monolog\Logger;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 class FullSynchronizationEngine extends BaseSynchronizationEngine
@@ -29,7 +27,14 @@ class FullSynchronizationEngine extends BaseSynchronizationEngine
 
     $this->dispatcher = $configuration->getEventDispatcher();
   }
-
+  
+  /**
+   * @param $subject SynchronizationSubjectInterface
+   * @param $direction
+   * @param $local_filename
+   * @param array $options
+   * @throws \Exception
+   */
   public function execute($subject, $direction, $local_filename, $options = array())
   {
     if ($direction != SynchronizationDirection::INCOMING)
@@ -38,8 +43,9 @@ class FullSynchronizationEngine extends BaseSynchronizationEngine
     }
 
     $this->handlers = array();
-    /** @var SimpleXMLParser $parser */
-    $parser = $this->configuration->getParser($subject);
+    /** @var BaseParser $parser */
+    #$parser = $this->configuration->getParser($subject);
+    $parser = $subject->getParser();
 
     if (!$parser)
     {
@@ -51,11 +57,15 @@ class FullSynchronizationEngine extends BaseSynchronizationEngine
     {
       $logger->info(sprintf('Parsing: %s', $local_filename));
     }*/
-
-    $entityCollections = $parser->getEntities();
+    $entityCollections = $parser->getEntities($local_filename);
+  
+    if($entityCollections->count() < 1)
+    {
+      throw new \Exception('Нет объектов для синхронизации - в Моём складе не произошло изменений. ' . __DIR__ . '\\'.__CLASS__ . ':' . __LINE__);
+    }
     if (!is_array($entityCollections))
     {
-      $entityCollections = array($subject => $entityCollections);
+      $entityCollections = array($subject->getName() => $entityCollections);
     }
 
     //$this->dispatcher->connect('entitycollection.limit', array($this, 'onEntityCollectionLimit'));
@@ -79,32 +89,35 @@ class FullSynchronizationEngine extends BaseSynchronizationEngine
         $sql = $entityCollection->getPreSql() . PHP_EOL;
 
         file_put_contents($sqlFileName, $sql, FILE_APPEND);
-
         /** @var InsertHandler $insertHandler */
         $insertHandler = $this->configuration->getInsertHandler($collectionSubject);
         $insertHandler->query($sql);
 
         $this->handlers[$collectionSubject] = array('insert' => $insertHandler);
       }
+    
+      #$parser->parseFile($local_filename);
 
-      $parser->parseFile($local_filename);
-
+      
       foreach ($entityCollections as $collectionSubject => $collectionEntities)
       {
         //Сброс последних распарсенных записей во временную таблицу
         //$this->dispatcher->notify(new sfEvent($collectionEntities, 'entitycollection.limit', array('subjectName' => $collectionSubject)));
-
+  
         $this->onEntityLimit($collectionEntities, $collectionSubject);
 
         $transferHandler = $this->configuration->getTransferHandler($collectionSubject);
-/** @var $transferHandler TransferHandler */
+
+        /** @var $transferHandler TransferHandler */
         if (null !== $transferHandler)
         {
           $transferHandler->transfer();
         }
       }
-
-    //  $this->dispatcher->disconnect('entitycollection.limit', array($this, 'onEntityCollectionLimit'));
+  
+  
+  
+      //  $this->dispatcher->disconnect('entitycollection.limit', array($this, 'onEntityCollectionLimit'));
     }
     catch (\Exception $e)
     {
