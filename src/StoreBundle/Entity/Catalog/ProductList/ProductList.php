@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity\Catalog\ProductList;
+namespace StoreBundle\Entity\Catalog\ProductList;
 
 use Deployer\Collection\PersistentCollection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,7 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\InheritanceType(value="SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="list_type")
  * @ORM\DiscriminatorMap(value={"view" = "ViewedProductList", "favorite"="FavoriteProductList"})
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Catalog\ProductList\ProductListRepository")
+ * @ORM\Entity(repositoryClass="StoreBundle\Repository\Catalog\ProductList\ProductListRepository")
  * @ORM\Table(name="product_lists")
  */
 abstract class ProductList
@@ -38,7 +38,7 @@ abstract class ProductList
 
   /**
    * @var ProductListProduct[]
-   * @ORM\OneToMany(targetEntity="AppBundle\Entity\Catalog\ProductList\ProductListProduct", mappedBy="productList",cascade={"persist", "remove"})
+   * @ORM\OneToMany(targetEntity="StoreBundle\Entity\Catalog\ProductList\ProductListProduct", mappedBy="productList",cascade={"persist", "remove"})
    */
   protected $productListProducts;
 

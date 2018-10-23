@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Logistic;
+namespace StoreBundle\DataAdapter\Logistic;
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
 use StoreBundle\Entity\Store\Logistics\Warehouse\Warehouse;

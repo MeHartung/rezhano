@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\DataAdapter\Order;
+namespace StoreBundle\DataAdapter\Order;
 
-use AppBundle\DataAdapter\Cart\CartDataAdapter;
+use StoreBundle\DataAdapter\Cart\CartDataAdapter;
 
 class OrderDataAdapter extends CartDataAdapter
 {

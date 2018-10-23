@@ -1,6 +1,6 @@
 services:
     app.admin.cheese_story:
-      class: AppBundle\Admin\Text\CheeseStoryAdmin
+      class: StoreBundle\Admin\Text\CheeseStoryAdmin
       tags:
         -
           name: sonata.admin
@@ -9,5 +9,5 @@ services:
           label: Сырные заметки
       arguments:
         - null
-        - AppBundle\Entity\Text\CheeseStory
+        - StoreBundle\Entity\Text\CheeseStory
         - 'PixSortableBehaviorBundle:SortableAdmin'

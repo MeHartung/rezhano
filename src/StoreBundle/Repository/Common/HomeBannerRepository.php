@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Repository\Common;
+namespace StoreBundle\Repository\Common;
 
 /**
  * HomeBannerRepository

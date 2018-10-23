@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity\Catalog\ProductList;
+namespace StoreBundle\Entity\Catalog\ProductList;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -14,7 +14,7 @@ class ProductListProduct
 {
   /**
    * @var ProductList
-   * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Catalog\ProductList\ProductList")ProductViewListener
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Catalog\ProductList\ProductList")ProductViewListener
    * @ORM\JoinColumn(name="product_list_id")
    * @ORM\Id()
    */

@@ -1,167 +1,167 @@
 services:
-app.meta.home:
-    class: Accurateweb\MetaBundle\Model\Meta
-    arguments:
-      - 'Реализация имущества Группы «Газпром нефть»'
-      - 'Реализация имущества Группы «Газпром нефть»'
-      - ~
-    tags:
-      - { name: aw.meta.route, route: homepage }
+    app.meta.home:
+      class: Accurateweb\MetaBundle\Model\Meta
+      arguments:
+        - 'Реализация имущества Группы «Газпром нефть»'
+        - 'Реализация имущества Группы «Газпром нефть»'
+        - ~
+      tags:
+        - { name: aw.meta.route, route: homepage }
 
-  app.meta.taxon:
-    class: AppBundle\Meta\MetaTaxon
-    arguments: ['@request_stack', '@aw.taxonomy.manager', '@router']
-    autowire: false
-    tags:
-      - { name: aw.meta.route, route: taxon }
+    app.meta.taxon:
+      class: StoreBundle\Meta\MetaTaxon
+      arguments: ['@request_stack', '@aw.taxonomy.manager', '@router']
+      autowire: false
+      tags:
+        - { name: aw.meta.route, route: taxon }
 
-  app.meta.product:
-    class: AppBundle\Meta\MetaProduct
-    arguments: ['@request_stack', '@store.product.repository', '@aw.media.storage.file', '@router']
-    tags:
-      - { name: aw.meta.route, route: product }
+    app.meta.product:
+      class: StoreBundle\Meta\MetaProduct
+      arguments: ['@request_stack', '@store.product.repository', '@aw.media.storage.file', '@router']
+      tags:
+        - { name: aw.meta.route, route: product }
 
-  app.home_banner.admin:
-    class: AppBundle\Admin\HomeBannerAdmin
-    arguments: [~, AppBundle\Entity\Common\HomeBanner, 'PixSortableBehaviorBundle:SortableAdmin']
-    tags:
-      - {name: sonata.admin, manager_type: orm, group: store, label: "Тизерные блоки"}
+    app.home_banner.admin:
+      class: StoreBundle\Admin\HomeBannerAdmin
+      arguments: [~, StoreBundle\Entity\Common\HomeBanner, 'PixSortableBehaviorBundle:SortableAdmin']
+      tags:
+        - {name: sonata.admin, manager_type: orm, group: store, label: "Тизерные блоки"}
 
-  app.user.adapter:
-    class: AppBundle\DataAdapter\User\UserDataAdapter
-    tags:
-      - { name: aw.client_application.adapter, alias: user }
+    app.user.adapter:
+      class: StoreBundle\DataAdapter\User\UserDataAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: user }
 
-  app.cart_item.adapter:
-    class: AppBundle\DataAdapter\Cart\CartItemDataAdapter
-    arguments:
-      - '@router'
-      - '@aw.logistic.stock.manager'
-      - '@app.warehouse.adapter'
-      - '@app.product.adapter'
-      - '@store.price.manager'
-    tags:
-      - { name: aw.client_application.adapter, alias: cartItem }
+    app.cart_item.adapter:
+      class: StoreBundle\DataAdapter\Cart\CartItemDataAdapter
+      arguments:
+        - '@router'
+        - '@aw.logistic.stock.manager'
+        - '@app.warehouse.adapter'
+        - '@app.product.adapter'
+        - '@store.price.manager'
+      tags:
+        - { name: aw.client_application.adapter, alias: cartItem }
 
-  app.cart.adapter:
-    class: AppBundle\DataAdapter\Cart\CartDataAdapter
-    arguments: ['@app.cart_item.adapter']
-    tags:
-      - { name: aw.client_application.adapter, alias: cart }
+    app.cart.adapter:
+      class: StoreBundle\DataAdapter\Cart\CartDataAdapter
+      arguments: ['@app.cart_item.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: cart }
 
-  app.order.adapter:
-    class: AppBundle\DataAdapter\Order\OrderDataAdapter
-    arguments: ['@app.cart_item.adapter']
-    tags:
-      - { name: aw.client_application.adapter, alias: order }
+    app.order.adapter:
+      class: StoreBundle\DataAdapter\Order\OrderDataAdapter
+      arguments: ['@app.cart_item.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: order }
 
-  user.cart:
-    class: StoreBundle\Entity\Store\Order\Order
-    public: false
-    factory: ['@store.user.cart', 'getCart']
+    user.cart:
+      class: StoreBundle\Entity\Store\Order\Order
+      public: false
+      factory: ['@store.user.cart', 'getCart']
 
-  app.product.adapter:
-    class: AppBundle\DataAdapter\Product\ProductDataAdapter
-    arguments: ['@router', '@aw.media.storage.file', '@security.token_storage', '@store.price.manager']
-    tags:
-      - { name: aw.client_application.adapter, alias: product }
+    app.product.adapter:
+      class: StoreBundle\DataAdapter\Product\ProductDataAdapter
+      arguments: ['@router', '@aw.media.storage.file', '@security.token_storage', '@store.price.manager']
+      tags:
+        - { name: aw.client_application.adapter, alias: product }
 
-  app.filter.schema.adapter:
-    class: AppBundle\DataAdapter\Taxon\Filter\FilterFieldSchemaDataAdapter
-    arguments: ['@router']
-    tags:
-      - { name: aw.client_application.adapter, alias: filter }
+    app.filter.schema.adapter:
+      class: StoreBundle\DataAdapter\Taxon\Filter\FilterFieldSchemaDataAdapter
+      arguments: ['@router']
+      tags:
+        - { name: aw.client_application.adapter, alias: filter }
 
-  app.product.viewed:
-    class: AppBundle\EventListener\ProductViewListener
-    arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
-    tags:
-      - { name: kernel.event_listener, event: kernel.controller, method: onRequest }
+    app.product.viewed:
+      class: StoreBundle\EventListener\ProductViewListener
+      arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
+      tags:
+        - { name: kernel.event_listener, event: kernel.controller, method: onRequest }
 
-  pix_sortable_behavior.position.orm:
-    class: AppBundle\Services\PositionORMHandler
-    public: false
-    arguments:
-        - "@doctrine.orm.entity_manager"
-    calls:
-        - [ 'setPositionField', ["%pix.sortable.behavior.position.field%"]]
-        - [ 'setSortableGroups', ["%pix.sortable.behavior.sortable_groups%"]]
+    pix_sortable_behavior.position.orm:
+      class: StoreBundle\Services\PositionORMHandler
+      public: false
+      arguments:
+          - "@doctrine.orm.entity_manager"
+      calls:
+          - [ 'setPositionField', ["%pix.sortable.behavior.position.field%"]]
+          - [ 'setSortableGroups', ["%pix.sortable.behavior.sortable_groups%"]]
 
-  app.form_error.adapter:
-    class: AppBundle\DataAdapter\Form\FormErrorAdapter
-    tags:
-      - { name: aw.client_application.adapter, alias: form.error }
+    app.form_error.adapter:
+      class: StoreBundle\DataAdapter\Form\FormErrorAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: form.error }
 
-  app.warehouse.adapter:
-    class: AppBundle\DataAdapter\Logistic\WarehouseDataAdapter
-    tags:
-      - { name: aw.client_application.adapter, alias: warehouse }
+    app.warehouse.adapter:
+      class: StoreBundle\DataAdapter\Logistic\WarehouseDataAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: warehouse }
 
-  app.shipping_choice.adapter:
-    class: AppBundle\DataAdapter\Logistic\ShippingChoiceAdapter
-    tags:
-      - { name: aw.client_application.adapter, alias: shipping.choice }
+    app.shipping_choice.adapter:
+      class: StoreBundle\DataAdapter\Logistic\ShippingChoiceAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: shipping.choice }
 
-  app.shipping_choice_pickup.adapter:
-    class: AppBundle\DataAdapter\Logistic\ShippingChoicePickupAdapter
-    arguments: ['@doctrine.orm.entity_manager']
-    tags:
-      - { name: aw.client_application.adapter, alias: shipping.choice_pickup }
+    app.shipping_choice_pickup.adapter:
+      class: StoreBundle\DataAdapter\Logistic\ShippingChoicePickupAdapter
+      arguments: ['@doctrine.orm.entity_manager']
+      tags:
+        - { name: aw.client_application.adapter, alias: shipping.choice_pickup }
 
-  app.shipping_method.adapter:
-    class: AppBundle\DataAdapter\Logistic\ShippingMethodDataAdapter
-    arguments: ['@app.shipping_choice.adapter', '@app.shipping_choice_pickup.adapter']
-    tags:
-      - { name: aw.client_application.adapter, alias: shipping.method }
+    app.shipping_method.adapter:
+      class: StoreBundle\DataAdapter\Logistic\ShippingMethodDataAdapter
+      arguments: ['@app.shipping_choice.adapter', '@app.shipping_choice_pickup.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: shipping.method }
 
-  app.payment_method.adapter:
-    class: AppBundle\DataAdapter\Order\PaymentMethodDataAdapter
-    arguments: ['@accuratecommerce.payment.method.manager']
-    tags:
-      - { name: aw.client_application.adapter, alias: payment.method }
+    app.payment_method.adapter:
+      class: StoreBundle\DataAdapter\Order\PaymentMethodDataAdapter
+      arguments: ['@accuratecommerce.payment.method.manager']
+      tags:
+        - { name: aw.client_application.adapter, alias: payment.method }
 
-  app.document_type.adapter:
-    class: AppBundle\DataAdapter\Document\DocumentTypeDataAdapter
-    arguments: ['@store.document.storage']
-    tags:
-      - { name: aw.client_application.adapter, alias: document.type }
+    app.document_type.adapter:
+      class: StoreBundle\DataAdapter\Document\DocumentTypeDataAdapter
+      arguments: ['@store.document.storage']
+      tags:
+        - { name: aw.client_application.adapter, alias: document.type }
 
-  app.dialog_message.adapter:
-    class: AppBundle\DataAdapter\Notification\DialogMessageDataAdapter
-    arguments:
-      - '@aw.settings.manager'
-    tags:
-      - { name: aw.client_application.adapter, alias: dialog.message }
+    app.dialog_message.adapter:
+      class: StoreBundle\DataAdapter\Notification\DialogMessageDataAdapter
+      arguments:
+        - '@aw.settings.manager'
+      tags:
+        - { name: aw.client_application.adapter, alias: dialog.message }
 
-  app.dialog.adapter:
-    class: AppBundle\DataAdapter\Notification\DialogDataAdapter
-    arguments: ['@app.dialog_message.adapter']
-    tags:
-      - { name: aw.client_application.adapter, alias: dialog }
+    app.dialog.adapter:
+      class: StoreBundle\DataAdapter\Notification\DialogDataAdapter
+      arguments: ['@app.dialog_message.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: dialog }
 
-  app.notification.adapter:
-    class: AppBundle\DataAdapter\Notification\NotificationAdater
-    arguments: ['@app.dialog.adapter']
-    tags:
-      - { name: aw.client_application.adapter, alias: notification }
+    app.notification.adapter:
+      class: StoreBundle\DataAdapter\Notification\NotificationAdater
+      arguments: ['@app.dialog.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: notification }
 
-  app.order_status.adapter:
-    class: AppBundle\DataAdapter\Order\OrderStatusDataAdapter
-    tags:
-      - { name: aw.client_application.adapter, alias: order.status }
+    app.order_status.adapter:
+      class: StoreBundle\DataAdapter\Order\OrderStatusDataAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: order.status }
 
-  app.order_status_history.adapter:
-    class: AppBundle\DataAdapter\Order\OrderStatusHistoryDataAdapter
-    arguments: ['@app.order_status.adapter']
-    tags:
-      - { name: aw.client_application.adapter, alias: order.status_history }
+    app.order_status_history.adapter:
+      class: StoreBundle\DataAdapter\Order\OrderStatusHistoryDataAdapter
+      arguments: ['@app.order_status.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: order.status_history }
 
-  gedmo.listener.sortable:
-         class: Gedmo\Sortable\SortableListener
-         tags:
-             - { name: doctrine.event_subscriber, connection: default }
-         calls:
-             - [ setAnnotationReader, [ "@annotation_reader" ] ]
+    gedmo.listener.sortable:
+           class: Gedmo\Sortable\SortableListener
+           tags:
+               - { name: doctrine.event_subscriber, connection: default }
+           calls:
+               - [ setAnnotationReader, [ "@annotation_reader" ] ]
 
     app.admin.text.specialoffer:
        class: StoreBundle\Admin\Text\SpecialOfferAdmin

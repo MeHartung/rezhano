@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Taxon\Filter;
+namespace StoreBundle\DataAdapter\Taxon\Filter;
 
 
 use AccurateCommerce\Model\Taxonomy\TaxonInterface;

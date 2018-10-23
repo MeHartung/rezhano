@@ -4,10 +4,10 @@ namespace Deployer;
 require 'recipe/symfony3.php';
 
 // Project name
-set('application', 'gpnnvi');
+set('application', 'rezhano');
 
 // Project repository
-set('repository', 'git@git.accurateweb.ru:gpn/gpn_nvi.git');
+set('repository', 'git@git.accurateweb.ru:accurateweb/rezhano.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 //set('git_tty', true);
@@ -32,7 +32,7 @@ set('allow_anonymous_stats', false);
 host('192.168.1.4')
     ->stage('staging')
     ->user('deployer')
-    ->set('deploy_path', '/var/www/sites/gpnnvi')
+    ->set('deploy_path', '/var/www/sites/rezhano')
     ->set('bin/php', '/usr/bin/php71')
     ->set('branch', 'development');
 

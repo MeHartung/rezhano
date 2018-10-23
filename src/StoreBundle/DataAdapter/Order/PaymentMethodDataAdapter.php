@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Order;
+namespace StoreBundle\DataAdapter\Order;
 
 
 use AccurateCommerce\Component\Payment\Model\PaymentMethodManager;

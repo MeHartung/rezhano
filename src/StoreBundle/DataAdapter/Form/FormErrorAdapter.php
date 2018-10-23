@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Form;
+namespace StoreBundle\DataAdapter\Form;
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
 use Symfony\Component\Form\FormInterface;

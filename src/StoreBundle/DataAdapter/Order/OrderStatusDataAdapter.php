@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Order;
+namespace StoreBundle\DataAdapter\Order;
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
 use StoreBundle\Entity\Store\Order\Status\OrderStatus;

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Cart;
+namespace StoreBundle\DataAdapter\Cart;
 
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;

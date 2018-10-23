@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity\Catalog\ProductList;
+namespace StoreBundle\Entity\Catalog\ProductList;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;

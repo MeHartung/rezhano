@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\DataAdapter\Cart;
+namespace StoreBundle\DataAdapter\Cart;
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
 use Accurateweb\LogisticBundle\Service\ProductStockManager\ProductStockManagerInterface;
 use Accurateweb\MediaBundle\Model\Image\Image;
-use AppBundle\DataAdapter\Logistic\WarehouseDataAdapter;
-use AppBundle\DataAdapter\Product\ProductDataAdapter;
+use StoreBundle\DataAdapter\Logistic\WarehouseDataAdapter;
+use StoreBundle\DataAdapter\Product\ProductDataAdapter;
 use StoreBundle\Entity\Store\Order\OrderItem;
 use Symfony\Component\Routing\Router;
 

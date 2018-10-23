@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Synchronization\Parser;
+namespace StoreBundle\Synchronization\Parser;
 
 use Accurateweb\SynchronizationBundle\Model\Entity\Base\BaseEntity;
 use Accurateweb\SynchronizationBundle\Model\Parser\BaseParser;

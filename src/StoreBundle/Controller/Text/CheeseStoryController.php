@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Controller\Text;
+namespace StoreBundle\Controller\Text;
 
-use AppBundle\DataAdapter\Text\CheeseStoryAdapter;
+use StoreBundle\DataAdapter\Text\CheeseStoryAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +14,7 @@ class CheeseStoryController extends Controller
    */
   public function indexAction(Request $request)
   {
-    $stories = $this->getDoctrine()->getRepository('AppBundle:Text\CheeseStory')->findBy([], [
+    $stories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findBy([], [
       'position' => 'ASC'
     ]);
     

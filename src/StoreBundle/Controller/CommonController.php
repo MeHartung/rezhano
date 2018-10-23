@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace StoreBundle\Controller;
 
 use StoreBundle\Entity\User\User;
 use StoreBundle\Exception\Catalog\RootNodeNotFoundException;
@@ -12,7 +12,7 @@ class CommonController extends Controller
 {
   public function homepageAction (Request $request)
   {
-    $banners = $this->getDoctrine()->getRepository('AppBundle:Common\HomeBanner')
+    $banners = $this->getDoctrine()->getRepository('StoreBundle:Common\HomeBanner')
       ->findBy(['enabled' => true], ['position' => 'ASC']);
 
     $bestOffers = $this->getDoctrine()->getRepository('StoreBundle:Store\Catalog\Product\Product')

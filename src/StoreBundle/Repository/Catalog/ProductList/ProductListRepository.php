@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Repository\Catalog\ProductList;
+namespace StoreBundle\Repository\Catalog\ProductList;
 
 
 use Doctrine\ORM\EntityRepository;

@@ -4,7 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: "@StoreBundle/Resources/config/services.yml" }
     - { resource: email_templates.yml }
-    - { resource: '@AppBundle/Resources/config/admin.yml' }
+    - { resource: '@StoreBundle/Resources/config/admin.yml' }
     - { resource: "@SynchronizationBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed

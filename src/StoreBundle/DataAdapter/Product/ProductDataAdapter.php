@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Product;
+namespace StoreBundle\DataAdapter\Product;
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
 use Accurateweb\MediaBundle\Model\Media\Resource\MediaResource;

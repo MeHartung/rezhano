@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\User;
+namespace StoreBundle\DataAdapter\User;
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
 use StoreBundle\Entity\User\User;

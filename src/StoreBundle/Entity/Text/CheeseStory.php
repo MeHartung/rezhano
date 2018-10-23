@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Entity\Text;
+namespace StoreBundle\Entity\Text;
 
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
-use AppBundle\Media\Text\CheeseStoryImage;
+use StoreBundle\Media\Text\CheeseStoryImage;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;

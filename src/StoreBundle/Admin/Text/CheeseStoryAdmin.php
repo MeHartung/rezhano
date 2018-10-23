@@ -1,11 +1,11 @@
 <?php
 
 
-namespace AppBundle\Admin\Text;
+namespace StoreBundle\Admin\Text;
 
 
 use Accurateweb\MediaBundle\Form\ImageType;
-use AppBundle\Entity\Text\CheeseStory;
+use StoreBundle\Entity\Text\CheeseStory;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;

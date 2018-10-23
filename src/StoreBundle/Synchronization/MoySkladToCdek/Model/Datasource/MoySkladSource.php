@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Synchronization\MoySkladToCdek\Model\Datasource;
+namespace StoreBundle\Synchronization\MoySkladToCdek\Model\Datasource;
 
 use Accurateweb\SlugifierBundle\Model\SlugifierInterface;
 use Accurateweb\SynchronizationBundle\Model\Datasource\Base\BaseDataSource;

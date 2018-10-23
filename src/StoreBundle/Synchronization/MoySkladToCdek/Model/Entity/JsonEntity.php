@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Synchronization\MoySkladToCdek\Model\Entity;
+namespace StoreBundle\Synchronization\MoySkladToCdek\Model\Entity;
 
 use Accurateweb\SynchronizationBundle\Model\Entity\Base\BaseEntity;
 

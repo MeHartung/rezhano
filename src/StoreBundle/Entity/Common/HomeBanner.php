@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity\Common;
+namespace StoreBundle\Entity\Common;
 
 use Accurateweb\ImagingBundle\Filter\CropFilterOptionsResolver;
 use Accurateweb\ImagingBundle\Filter\FilterChain;
@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * HomeBanner
  *
  * @ORM\Table(name="common_home_banner")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Common\HomeBannerRepository")
+ * @ORM\Entity(repositoryClass="StoreBundle\Repository\Common\HomeBannerRepository")
  */
 class HomeBanner implements ImageAwareInterface, ImageInterface
 {

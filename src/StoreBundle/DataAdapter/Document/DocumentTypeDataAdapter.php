@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Document;
+namespace StoreBundle\DataAdapter\Document;
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
 use StoreBundle\Entity\Document\UserDocumentType;

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Meta;
+namespace StoreBundle\Meta;
 
 use Accurateweb\MetaBundle\Model\MetaInterface;
 use Accurateweb\TaxonomyBundle\Exception\TaxonNotFoundException;

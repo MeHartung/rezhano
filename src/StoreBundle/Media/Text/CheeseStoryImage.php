@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Media\Text;
+namespace StoreBundle\Media\Text;
 
 
 use Accurateweb\ImagingBundle\Filter\CropFilterOptionsResolver;

@@ -18,7 +18,7 @@ services:
   aw.synchronization.entity_factory.moy_sklad:
     class: Accurateweb\SynchronizationBundle\Model\Entity\EntityFactory
     arguments:
-      - AppBundle\Synchronization\MoySkladToCdek\Model\Entity\JsonEntity
+      - StoreBundle\Synchronization\MoySkladToCdek\Model\Entity\JsonEntity
 
   aw.synchronization.entity_manager:
     class: Accurateweb\SynchronizationBundle\Model\Entity\SynchronizationEntityManager

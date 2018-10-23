@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Meta;
+namespace StoreBundle\Meta;
 
 use Accurateweb\MediaBundle\Model\Media\Storage\MediaStorageInterface;
 use Accurateweb\MetaBundle\Model\MetaInterface;

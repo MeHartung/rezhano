@@ -1,10 +1,10 @@
 <?php
 
 
-namespace AppBundle\DataAdapter\Text;
+namespace StoreBundle\DataAdapter\Text;
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
-use AppBundle\Entity\Text\CheeseStory;
+use StoreBundle\Entity\Text\CheeseStory;
 
 class CheeseStoryAdapter implements ClientApplicationModelAdapterInterface
 {

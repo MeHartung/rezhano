@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Notification;
+namespace StoreBundle\DataAdapter\Notification;
 
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;

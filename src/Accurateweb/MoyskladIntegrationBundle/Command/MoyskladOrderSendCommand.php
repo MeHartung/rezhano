@@ -3,7 +3,7 @@
 namespace Accurateweb\MoyskladIntegrationBundle\Command;
 
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
-use AppBundle\Entity\Store\Integration\MoyskladQueue;
+use StoreBundle\Entity\Store\Integration\MoyskladQueue;
 use MoySklad\Exceptions\RequestFailedException;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,7 +22,7 @@ class MoyskladOrderSendCommand extends ContainerAwareCommand
   {
     $moysklad_sender = $this->getContainer()->get('moysklad.sender');
     $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-    $queue = $em->getRepository('AppBundle:Store\Integration\MoyskladQueue')->findNotSuccessfullySent();
+    $queue = $em->getRepository('StoreBundle:Store\Integration\MoyskladQueue')->findNotSuccessfullySent();
 
     /** @var MoyskladQueue $item */
     foreach ($queue as $item)

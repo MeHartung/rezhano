@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataAdapter\Logistic;
+namespace StoreBundle\DataAdapter\Logistic;
 
 use AccurateCommerce\Shipping\Estimate\ShippingEstimate;
 use AccurateCommerce\Shipping\Method\ShippingMethod;

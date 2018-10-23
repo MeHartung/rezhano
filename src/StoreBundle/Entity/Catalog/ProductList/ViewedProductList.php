@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity\Catalog\ProductList;
+namespace StoreBundle\Entity\Catalog\ProductList;
 
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;

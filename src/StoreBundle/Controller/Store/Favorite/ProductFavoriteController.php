@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Controller\Store\Favorite;
+namespace StoreBundle\Controller\Store\Favorite;
 
-use AppBundle\Entity\Catalog\ProductList\FavoriteProductList;
+use StoreBundle\Entity\Catalog\ProductList\FavoriteProductList;
 use StoreBundle\Entity\User\User;
 use StoreBundle\Event\FavoriteProductEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,7 +17,7 @@ class ProductFavoriteController extends Controller
     /** @var FavoriteProductList $list */
     $list = $this->getUser()->getFavoriteProductList();
 
-    return $this->render('AppBundle:ProductFavorite:index.html.twig', [
+    return $this->render('StoreBundle:ProductFavorite:index.html.twig', [
       'products' => $list->getProducts(),
     ]);
   }

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Services;
+namespace StoreBundle\Services;
 
 use Doctrine\Common\Util\ClassUtils;
 use Pix\SortableBehaviorBundle\Services\PositionORMHandler as BasePositionORMHandler;

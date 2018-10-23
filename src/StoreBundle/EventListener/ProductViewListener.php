@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\EventListener;
+namespace StoreBundle\EventListener;
 
-use AppBundle\Entity\Catalog\ProductList\ProductListProduct;
+use StoreBundle\Entity\Catalog\ProductList\ProductListProduct;
 use Doctrine\ORM\EntityManager;
 use StoreBundle\Entity\User\User;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
@@ -52,7 +52,7 @@ class ProductViewListener
     $list = $user->getViewedProductList();
     $product = $this->entityManager
       ->getRepository('StoreBundle:Store\Catalog\Product\Product')->findOneBy(['slug' => $event->getRequest()->get('slug')]);
-    $productListProduct = $this->entityManager->getRepository('AppBundle:Catalog\ProductList\ProductListProduct')
+    $productListProduct = $this->entityManager->getRepository('StoreBundle:Catalog\ProductList\ProductListProduct')
       ->findOneBy(['productList' => $list, 'product' => $product]);
 
     if ($productListProduct)
