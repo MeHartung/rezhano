@@ -1,13 +1,16 @@
 <?php
 
-namespace StoreBundle\Synchronization\MoySkladToCdek\Model\Datasource;
+namespace StoreBundle\Synchronization\FromMoySklad\Model\Datasource;
 
+use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
 use Accurateweb\SlugifierBundle\Model\SlugifierInterface;
 use Accurateweb\SynchronizationBundle\Model\Datasource\Base\BaseDataSource;
 use Doctrine\ORM\EntityManagerInterface;
 use MoySklad\Entities\Products\Product;
+use MoySklad\Exceptions\RequestFailedException;
 use MoySklad\Lists\EntityList;
 use MoySklad\MoySklad;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
@@ -15,7 +18,8 @@ class MoySkladSource extends BaseDataSource
 {
   private
     $em, $moySkladLogin, $moySkladPassword,
-    $kernelRootDir, $dispatcher, $slugifierYandex;
+    $kernelRootDir, $dispatcher, $slugifierYandex,
+    $logger;
   
   /**
    * MoySkladSource constructor.
@@ -31,7 +35,7 @@ class MoySkladSource extends BaseDataSource
                               EntityManagerInterface $entityManager,
                               string $moySkladLogin, string $moySkladPassword,
                               $kernelRootDir, EventDispatcherInterface $dispatcher,
-                              SlugifierInterface $sluggable)
+                              SlugifierInterface $sluggable, LoggerInterface $logger)
   {
     parent::__construct($options);
     $this->em = $entityManager;
@@ -43,6 +47,7 @@ class MoySkladSource extends BaseDataSource
     $this->dispatcher = $dispatcher;
     
     $this->slugifierYandex = $sluggable;
+    $this->logger = $logger;
   }
   
   /**
@@ -68,14 +73,33 @@ class MoySkladSource extends BaseDataSource
     
     /**
      * Все товары с моего склада
+     *
      * @var EntityList $moySkladProducts
      */
     try
     {
       $moySkladProducts = Product::query($sklad)->getList();
+    } catch (MoyskladException $e)
+    {
+      $this->dispatcher->dispatch(
+        'aw.sync.order_event.message',
+        new GenericEvent((sprintf('%s.', $e->getMessage())))
+      );
+      $this->logger->error(sprintf('[%s]%s. %s', $e->getCode(), $e->getMessage(), $e->getInfo()));
+      
+      return null;
+    } catch (RequestFailedException $e)
+    {
+      $this->dispatcher->dispatch(
+        'aw.sync.order_event.message',
+        new GenericEvent((sprintf('%s. %s', $e->getMessage(), $e->getDump())))
+      );
+      
+      $this->logger->error(sprintf('[%s]%s. %s', $e->getCode(), $e->getMessage(), $e->getDump()));
+      
     } catch (\Exception $exception)
     {
-      #$this->logger->addError('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
+      $this->logger->error('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
         new GenericEvent('Products list not uploaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
@@ -97,26 +121,89 @@ class MoySkladSource extends BaseDataSource
      */
     foreach ($moySkladProducts->toArray() as $key => $product)
     {
+      # нельзя взять и отфильтовать по папке
+      # возможно, стоит заменить на FilterIterator
+      $folderDataHref = null;
+      
+      if (isset($product->relations->productFolder->fields->meta->href))
+      {
+        $folderDataHref = $product->relations->productFolder->fields->meta->href;
+        
+      } else
+      {
+        continue;
+      }
+      
+      try
+      {
+        $folderData = $sklad->getClient()->get($folderDataHref);
+      } catch (MoyskladException $e)
+      {
+        $this->dispatcher->dispatch(
+          'aw.sync.order_event.message',
+          new GenericEvent((sprintf('%s.', $e->getMessage())))
+        );
+        $this->logger->error(sprintf('[%s]%s. %s', $e->getCode(), $e->getMessage(), $e->getInfo()));
+        continue;
+      } catch (RequestFailedException $e)
+      {
+        $this->dispatcher->dispatch(
+          'aw.sync.order_event.message',
+          new GenericEvent((sprintf('%s. %s', $e->getMessage(), $e->getDump())))
+        );
+        $this->logger->error(sprintf('[%s]%s. %s', $e->getCode(), $e->getMessage(), $e->getDump()));
+        continue;
+      } catch (\Exception $exception)
+      {
+        $this->logger->error('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
+        $this->dispatcher->dispatch(
+          'aw.sync.order_event.message',
+          new GenericEvent('Products list not uploaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
+        );
+        continue;
+      }
+      
+      if ($folderData->name !== 'Сыр в кг') continue;
+      
       $now = new \DateTime('now');
+      
+      $salePrice = 0;
+      $wholesalePrice = 0;
+      
+      foreach ($product->salePrices as $price)
+      {
+        if ($price->priceType == 'Цена продажи')
+        {
+          $salePrice = $price->value / 100;
+        }
+        
+        if ($price->priceType == 'Оптовый')
+        {
+          $wholesalePrice = $price->value / 100;
+        }
+      }
+      
       $moySkladProductsAsArray[$key] = [
         'external_code' => $product->code,
         'name' => $product->name,
-        'price' => $product->salePrices[0]->value / 100,
+        'wholesale_price' => $wholesalePrice,  # оптовая
+        'price' => $salePrice,
+        'purchase_price' => $product->buyPrice->value,
         'slug' => $this->slugifierYandex->slugify($product->name),
         'created_at' => $now->format('Y-m-d H:i:s'),
         'is_with_gift' => 0,
         'is_publication_allowed' => 1,
         'published' => 1,
         'total_stock' => 100,
-        'reserved_stock' => 0,
+        'reserved_stock' => 10,
         'is_free_delivery' => 0,
         'rank' => 0.00,
       ];
-
+      
       if (isset($product->article))
       {
         $moySkladProductsAsArray[$key]['sku'] = $product->article;
-      }else
+      } else
       {
         $moySkladProductsAsArray[$key]['sku'] = $moySkladProductsAsArray[$key]['slug'];
       }
@@ -131,7 +218,7 @@ class MoySkladSource extends BaseDataSource
         $moySkladProductsAsArray[$key]['short_description'] = $product->description; #$short_description;
         $moySkladProductsAsArray[$key]['description'] = $product->description;
         
-      }else
+      } else
       {
         $moySkladProductsAsArray[$key]['description'] = '...';
         $moySkladProductsAsArray[$key]['short_description'] = '...';
@@ -142,14 +229,15 @@ class MoySkladSource extends BaseDataSource
         new GenericEvent('Product ' . $product->name . ' uploaded from MoySklad.')
       );
     }
-    $productsAsJson = json_encode($moySkladProductsAsArray);
     
-    if($productsAsJson === false)
+    $productsAsJson = json_encode($moySkladProductsAsArray);
+
+    if ($productsAsJson === false)
     {
       echo $short_description;
       throw new \Exception('Невалидный, написать ошибку!');
     }
-  
+    
     file_put_contents($to, $productsAsJson);
     
     return $to;

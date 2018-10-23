@@ -6,11 +6,13 @@ use StoreBundle\DataAdapter\Text\CheeseStoryAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CheeseStoryController extends Controller
 {
   /**
    * @param Request $request
+   * @return Response|JsonResponse
    */
   public function indexAction(Request $request)
   {

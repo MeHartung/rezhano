@@ -71,8 +71,9 @@ Call it with:
   {
     # 1. Получим сценрий
     $scenario = $this->getContainer()->get('aw.synchronization.scenario_manager')->get('moy_sklad');
-    $syncService = $this->getContainer()->get('aw.serrvice.synchronization');
-  
+    #$syncService = $this->getContainer()->get('aw.serrvice.synchronization');
+    #$syncService = $this->getContainer()->get('aw.serrvice.synchronization');
+    
     $output->writeln('Pre execute started');
   
     $dispatcher = $this->getContainer()->get('event_dispatcher');
@@ -94,6 +95,8 @@ Call it with:
     /** @var SynchronizationSubjectInterface $subject */
     foreach ($scenario as $subject)
     {
+      $config = $this->getContainer()->get('aw.synchronization.configuration_manager')->get($subject->getName());
+      $syncService = new SynchronizationService(null, $config, null);
       try
       {
         $output->writeln($subject->getName() . ' synchronization start');

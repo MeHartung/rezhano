@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@StoreBundle/Resources/config/settings.yml" }
     - { resource: "@StoreBundle/Resources/config/services.yml" }
     - { resource: email_templates.yml }
     - { resource: '@StoreBundle/Resources/config/admin.yml' }

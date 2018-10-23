@@ -7,11 +7,11 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class SynchronizationScenario implements SynchronizationScenarioInterface
 {
-  private $subjects = [],
+  private #$subjects = [],
           $iterator = null,
           $name;
-
-  protected $dispatcher;
+  
+  protected $dispatcher, $subjects = [];
   
   /**
    * SynchronizationScenario constructor.
