@@ -10,9 +10,9 @@ namespace StoreBundle\Controller\Admin\Store\Catalog;
 
 
 use StoreBundle\Entity\Store\Catalog\Product\Product;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class ProductAdminControllerTest extends ExcamWebTestCase
+class ProductAdminControllerTest extends StoreWebTestCase
 {
   public function setUp()
   {
@@ -23,7 +23,7 @@ class ProductAdminControllerTest extends ExcamWebTestCase
   /**
    * Проверим, что админ скопирует товар и увидит сообщение,
    * что всё прошло хорошо
-   * https://jira.accurateweb.ru/browse/EXCAM-173
+   * https://jira.accurateweb.ru/browse/Store-173
    */
   public function testCloneAction()
   {

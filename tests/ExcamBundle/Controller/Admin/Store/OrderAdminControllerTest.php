@@ -13,9 +13,9 @@ use StoreBundle\DataFixtures\OrderFixtures;
 use StoreBundle\DataFixtures\OrderStatusFixture;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Order\Status\OrderOrderStatus;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class OrderAdminControllerTest extends ExcamWebTestCase
+class OrderAdminControllerTest extends StoreWebTestCase
 {
   public function setUp()
   {

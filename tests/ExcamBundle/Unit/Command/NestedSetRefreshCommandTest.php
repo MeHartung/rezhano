@@ -15,9 +15,9 @@ use StoreBundle\DataFixtures\Taxon\InvalidTaxonFixtures;
 use StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 use Symfony\Component\Console\Tester\CommandTester;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class NestedSetRefreshCommandTest extends ExcamWebTestCase
+class NestedSetRefreshCommandTest extends StoreWebTestCase
 {
 
   public function setUp()

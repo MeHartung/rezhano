@@ -3,9 +3,9 @@
 namespace Tests\StoreBundle\Controller\Catalog;
 
 use StoreBundle\Entity\Store\Catalog\Product\Product;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class ProductControllerTest extends ExcamWebTestCase
+class ProductControllerTest extends StoreWebTestCase
 {
   /**
    * https://jira.accurateweb.ru/browse/EXCAM-184

@@ -6,12 +6,12 @@
  * Time: 20:32
  */
 
-namespace AccurateCommerce\Shipping\Method\Excam;
+namespace AccurateCommerce\Shipping\Method\Store;
 
 use AccurateCommerce\Shipping\Method\ShippingMethod;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 
-abstract class ShippingMethodExcam extends ShippingMethod
+abstract class ShippingMethodStore extends ShippingMethod
 {
 //  protected $cityName = 'Екатеринбург';
 

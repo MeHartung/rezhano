@@ -3,12 +3,12 @@
 namespace StoreBundle\Unit\Service\Order;
 
 use StoreBundle\Service\Order\CartService;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
 /**
  * @see CartService
  */
-class CartServiceTest extends ExcamWebTestCase
+class CartServiceTest extends StoreWebTestCase
 {
   public function testCreateCart()
   {

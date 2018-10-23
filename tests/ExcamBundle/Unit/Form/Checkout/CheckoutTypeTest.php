@@ -2,14 +2,14 @@
 
 namespace Tests\StoreBundle\Unit\Form\Checkout;
 
-use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamPickup;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStorePickup;
 use StoreBundle\DataFixtures\OrderFixtures;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Form\Checkout\CheckoutType;
 use Symfony\Component\Form\FormFactoryInterface;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class CheckoutTypeTest extends ExcamWebTestCase
+class CheckoutTypeTest extends StoreWebTestCase
 {
   /**
    * @var FormFactoryInterface
@@ -44,7 +44,7 @@ class CheckoutTypeTest extends ExcamWebTestCase
       'shipping_post_code' => '620000',
       'shipping_address' => 'ул. Ленина д.1',
       'tos_agreement' => '1',
-      'shipping_method_id' => ShippingMethodExcamPickup::UID,
+      'shipping_method_id' => ShippingMethodStorePickup::UID,
       'payment_method' => $this->getByReference('payment-cash')->getId()
     ];
 

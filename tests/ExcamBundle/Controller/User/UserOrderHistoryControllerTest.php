@@ -5,9 +5,9 @@ namespace Tests\StoreBundle\Controller\User;
 
 use StoreBundle\DataFixtures\OrderFixtures;
 use StoreBundle\Entity\Store\Order\Order;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class UserOrderHistoryControllerTest extends ExcamWebTestCase
+class UserOrderHistoryControllerTest extends StoreWebTestCase
 {
   protected function setUp ()
   {

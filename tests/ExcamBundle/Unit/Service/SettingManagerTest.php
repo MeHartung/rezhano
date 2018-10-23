@@ -13,9 +13,9 @@ use Accurateweb\SettingBundle\Model\Manager\SettingManagerInterface;
 use Accurateweb\SettingBundle\Service\SettingServiceInterface;
 use StoreBundle\DataFixtures\Setting\SettingFixtures;
 use StoreBundle\Entity\Setting;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class SettingManagerTest extends ExcamWebTestCase
+class SettingManagerTest extends StoreWebTestCase
 {
   /** @var  SettingManagerInterface */
   protected $settingService;

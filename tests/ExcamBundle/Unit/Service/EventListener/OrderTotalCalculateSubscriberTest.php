@@ -5,12 +5,12 @@ namespace Tests\StoreBundle\Unit\Service\EventListener;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Order\OrderItem;
 use StoreBundle\Entity\User\User;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
 /**
  * @see OrderTotalCalculateSubscriber
  */
-class OrderTotalCalculateSubscriberTest extends ExcamWebTestCase
+class OrderTotalCalculateSubscriberTest extends StoreWebTestCase
 {
   public function testAddItem()
   {

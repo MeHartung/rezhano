@@ -17,9 +17,9 @@ use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Order\Status\OrderStatusHistory;
 use StoreBundle\Entity\User\User;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class OrderAdminTest extends ExcamWebTestCase
+class OrderAdminTest extends StoreWebTestCase
 {
   public function setUp()
   {
@@ -112,7 +112,7 @@ class OrderAdminTest extends ExcamWebTestCase
     /**
      * Ставим тип оплачен
      */
-    $link = sprintf("/admin/excam/store-order-order/%s/edit", $order->getId());
+    $link = sprintf("/admin/Store/store-order-order/%s/edit", $order->getId());
     $crawler = $this->client->request('GET', $link);
 
     $tokenSonata = str_replace('_document_number', '',
@@ -171,7 +171,7 @@ class OrderAdminTest extends ExcamWebTestCase
         ]
     ];
 
-    $crawler = $this->client->request('GET', '/admin/excam/store-order-order/list');
+    $crawler = $this->client->request('GET', '/admin/Store/store-order-order/list');
     $filterForm = $crawler->filter(".btn.btn-primary")->form($filter);
 
     /**
@@ -230,7 +230,7 @@ class OrderAdminTest extends ExcamWebTestCase
 
     $this->client->submit($form);
 
-    $this->client->request("GET", "/admin/excam/store-order-order/".$order->getId()."/orderStatusHistory");
+    $this->client->request("GET", "/admin/Store/store-order-order/".$order->getId()."/orderStatusHistory");
     $response = $this->client->getResponse()->getContent();
     $this->assertContains($status->getName(), $response);
     $this->assertContains($usr->getFio(), $response);

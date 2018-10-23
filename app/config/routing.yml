@@ -2,7 +2,7 @@ accurateweb_logistic:
     resource: "@AccuratewebLogisticBundle/Resources/config/routing.yml"
     prefix:   /
 
-excam:
+Store:
   resource: "@StoreBundle/Resources/config/routing.yml"
   prefix:   /
 

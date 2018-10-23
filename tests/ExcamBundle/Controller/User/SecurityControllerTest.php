@@ -2,12 +2,12 @@
 
 namespace Tests\StoreBundle\Controller\User;
 
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
 /**
  * @see \FOS\UserBundle\Controller\SecurityController
  */
-class SecurityControllerTest extends ExcamWebTestCase
+class SecurityControllerTest extends StoreWebTestCase
 {
   public function testAdminSection()
   {

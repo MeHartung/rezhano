@@ -10,9 +10,9 @@ namespace StoreBundle\Admin\Order\Product;
 
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Entity\User\User;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class ProductAdminTest extends ExcamWebTestCase
+class ProductAdminTest extends StoreWebTestCase
 {
   public function setUp()
   {

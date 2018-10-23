@@ -1,6 +1,6 @@
 <?php
 
-namespace AccurateCommerce\Shipping\Method\Excam;
+namespace AccurateCommerce\Shipping\Method\Store;
 
 use AccurateCommerce\Shipping\Estimate\ShippingEstimate;
 use AccurateCommerce\Shipping\Method\ShippingMethod;
@@ -10,7 +10,7 @@ use StoreBundle\Entity\Store\Order\OrderItem;
 /**
  * Способ доставки "Бесплатная доставка"
  */
-class ShippingMethodExcamFree extends ShippingMethod
+class ShippingMethodStoreFree extends ShippingMethod
 {
   const UID = 'afb69151-962a-4a34-895a-3418b8a78682';
 

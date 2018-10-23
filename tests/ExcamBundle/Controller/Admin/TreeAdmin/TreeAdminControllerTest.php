@@ -13,9 +13,9 @@ use StoreBundle\DataFixtures\Taxon\LastChildTestTaxonFixtures;
 use StoreBundle\DataFixtures\Taxon\TaxonMoveNodeTestFixture;
 use StoreBundle\DataFixtures\UserFixtures;
 use StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class TreeAdminControllerTest extends ExcamWebTestCase
+class TreeAdminControllerTest extends StoreWebTestCase
 {
     public function setUp()
     {

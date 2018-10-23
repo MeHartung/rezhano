@@ -16,9 +16,9 @@ use StoreBundle\Entity\Store\Catalog\Product\ProductImage;
 use StoreBundle\Service\Product\ProductMovingService;
 use PHPUnit\Runner\Exception;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class ProductMovingServiceTest extends ExcamWebTestCase
+class ProductMovingServiceTest extends StoreWebTestCase
 {
   /**
    * @var ProductMovingService

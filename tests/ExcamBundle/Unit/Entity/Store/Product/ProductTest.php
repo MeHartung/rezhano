@@ -10,9 +10,9 @@ namespace Tests\StoreBundle\Unit\Entity;
 
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use Tests\StoreBundle\Controller\preparationForTest;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class ProductTest extends ExcamWebTestCase
+class ProductTest extends StoreWebTestCase
 {
   /**
    * Проверям, становится ли созданный товар новинкой

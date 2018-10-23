@@ -12,14 +12,14 @@ use StoreBundle\DataFixtures\ImageFixtures;
 use StoreBundle\Entity\Store\Catalog\Product\ProductImage;
 use StoreBundle\Entity\User\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
 /**
  *
  * Class ImageControllerTest
  * @package Tests\StoreBundle\Controller
  */
-class ImageControllerTest extends ExcamWebTestCase
+class ImageControllerTest extends StoreWebTestCase
 {
   public function setUp()
   {

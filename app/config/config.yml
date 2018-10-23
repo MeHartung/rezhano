@@ -95,7 +95,7 @@ doctrine:
 #propel:
 #    database:
 #      connections:
-#        excam:
+#        Store:
 #          adapter:              %database_driver%
 #          classname:            Propel\Runtime\Connection\PropelPDO
 #          user:                 %database_user%

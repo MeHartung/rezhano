@@ -11,9 +11,9 @@ namespace Tests\StoreBundle\Controller;
 
 use StoreBundle\DataFixtures\OrderFixtures;
 use StoreBundle\Entity\Store\Order\Order;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class CreditControllerTest extends ExcamWebTestCase
+class CreditControllerTest extends StoreWebTestCase
 {
 
   public function setUp()

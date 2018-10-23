@@ -4,18 +4,18 @@
  *  @author Denis N. Ragozin <dragozin at accurateweb.ru>
  */
 
-namespace AccurateCommerce\Shipping\Method\Excam;
+namespace AccurateCommerce\Shipping\Method\Store;
 
 use AccurateCommerce\Shipping\Estimate\ShippingEstimate;
 use AccurateCommerce\Shipping\Method\ShippingMethod;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 
 /**
- * Класс-заглушка для курьерской доставки "Excam"
+ * Класс-заглушка для курьерской доставки "Store"
  *
  * @author Denis N. Ragozin <dragozin at accurateweb.ru>
  */
-class ShippingMethodExcamCourier extends ShippingMethodExcam
+class ShippingMethodStoreCourier extends ShippingMethodStore
 {
   const UID = 'eac20e0f-056a-4c10-9f43-7bee5c47167a';
 

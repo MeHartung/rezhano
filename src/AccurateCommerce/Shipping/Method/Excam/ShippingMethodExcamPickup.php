@@ -1,6 +1,6 @@
 <?php
 
-namespace AccurateCommerce\Shipping\Method\Excam;
+namespace AccurateCommerce\Shipping\Method\Store;
 
 use AccurateCommerce\Shipping\Estimate\ShippingEstimate;
 use AccurateCommerce\Shipping\Pickup\PickupPointCollectionInterface;
@@ -14,7 +14,7 @@ use AccurateCommerce\Shipping\Shipment\Shipment;
  *
  * @author Denis N. Ragozin <dragozin at accurateweb.ru>
  */
-class ShippingMethodExcamPickup extends ShippingMethodExcam implements PickupPointCollectionInterface
+class ShippingMethodStorePickup extends ShippingMethodStore implements PickupPointCollectionInterface
 {
   const UID = '8dc7ee8f-18f0-40af-964f-d10c3ab091a3';
 

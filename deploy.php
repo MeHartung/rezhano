@@ -39,7 +39,7 @@ host('192.168.1.4')
 /*host('94.130.148.164')
     ->stage('prod')
     ->user('deployer')
-    ->set('deploy_path', '/var/www/excam');*/
+    ->set('deploy_path', '/var/www/Store');*/
 
 // Tasks
 

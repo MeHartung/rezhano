@@ -75,7 +75,7 @@ define(function(require){
           purchase: {
             actionField: {
               id: today + ' - ' + this.model.get('product_id') + ' - ' + this.checkoutForm.model.get('phone'),
-              affiliation: 'www.excam.ru',
+              affiliation: 'www.Store.ru',
               'revenue': this.model.get('price'),
 //            'tax' => '4.90',
 //            'shipping' => '5.99',

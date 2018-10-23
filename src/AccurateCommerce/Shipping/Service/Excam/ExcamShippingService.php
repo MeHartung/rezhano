@@ -6,21 +6,21 @@
  * Time: 14:42
  */
 
-namespace AccurateCommerce\Shipping\Service\Excam;
+namespace AccurateCommerce\Shipping\Service\Store;
 
-use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamCourier;
-use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamFree;
-use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamPickup;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreCourier;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreFree;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStorePickup;
 use AccurateCommerce\Shipping\Method\ShippingMethodUserDefined;
 use AccurateCommerce\Shipping\Service\ShippingService;
 
-class ExcamShippingService extends ShippingService
+class StoreShippingService extends ShippingService
 {
   public function configure()
   {
-    $this->addShippingMethod(new ShippingMethodExcamPickup());
-    $this->addShippingMethod(new ShippingMethodExcamCourier());
+    $this->addShippingMethod(new ShippingMethodStorePickup());
+    $this->addShippingMethod(new ShippingMethodStoreCourier());
 //    $this->addShippingMethod(new ShippingMethodUserDefined());
-//    $this->addShippingMethod(new ShippingMethodExcamFree());
+//    $this->addShippingMethod(new ShippingMethodStoreFree());
   }
 }

@@ -2,15 +2,15 @@
 
 namespace Tests\StoreBundle\Service;
 
-use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamFree;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreFree;
 use AccurateCommerce\Shipping\Shipment\Address;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 use AccurateCommerce\Shipping\ShippingManager;
 use StoreBundle\DataFixtures\OrderFixtures;
 use StoreBundle\Entity\Store\Order\Order;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class ShippingManagerTest extends ExcamWebTestCase
+class ShippingManagerTest extends StoreWebTestCase
 {
   /** @var ShippingManager */
   private $shipping_manager;
@@ -32,7 +32,7 @@ class ShippingManagerTest extends ExcamWebTestCase
     $shipment = new Shipment($order, $order->getOrderItems(), $address, $address_to);
     $methods = $this->shipping_manager->getAvailableShippingMethodsForShipment($shipment);
 
-    $this->assertArrayHasKey(ShippingMethodExcamFree::UID, $methods, 'Нет бесплатной доставки');
+    $this->assertArrayHasKey(ShippingMethodStoreFree::UID, $methods, 'Нет бесплатной доставки');
 
     $order = $this->getByReference('order');
     $address = new Address('620000', 'Екатеринбург', '', 'ул. Ленина д. 1');
@@ -40,6 +40,6 @@ class ShippingManagerTest extends ExcamWebTestCase
     $shipment = new Shipment($order, $order->getOrderItems(), $address, $address_to);
     $methods = $this->shipping_manager->getAvailableShippingMethodsForShipment($shipment);
 
-    $this->assertArrayNotHasKey(ShippingMethodExcamFree::UID, $methods, 'Есть бесплатная доставка, хотя не должно быть');
+    $this->assertArrayNotHasKey(ShippingMethodStoreFree::UID, $methods, 'Есть бесплатная доставка, хотя не должно быть');
   }
 }

@@ -358,8 +358,8 @@ services:
        - "@security.token_storage"
        - '@event_dispatcher'
 
-    accuratecommerce.shipping.service.excam:
-      class: AccurateCommerce\Shipping\Service\App\ExcamShippingService
+    accuratecommerce.shipping.service.Store:
+      class: AccurateCommerce\Shipping\Service\App\StoreShippingService
       arguments:
         - '070b83d7-995e-4a41-97c2-ec01bb869fbd'
       tags:
@@ -373,7 +373,7 @@ services:
 #        - { name: accuratecommerce.shipping.service, priority: 1000 }
 
 #    accuratecommerce.shipping.service.cdek:
-#      class: AccurateCommerce\Shipping\Service\AccurateCommerce\ShippingServiceExcam
+#      class: AccurateCommerce\Shipping\Service\AccurateCommerce\ShippingServiceStore
 #      arguments:
 #        uid: '703a6c0e-3485-420c-b76c-1894e58576e0'
 #      tags:
@@ -776,18 +776,18 @@ services:
        arguments:
           - '@doctrine.orm.entity_manager'
 
-#    excam.setting.abadoned.cart.resolver:
+#    Store.setting.abadoned.cart.resolver:
 #        class: StoreBundle\Setting\Resolver\AbadonedCartResolver
 #        tags:
 #          -  { name: "accurateweb.setting.resolver" }
 #
-#    excam.setting.default.order.status.resolver:
+#    Store.setting.default.order.status.resolver:
 #        class: StoreBundle\Setting\Resolver\DefaultOrderStatusResolver
 #        arguments: ["@accureteweb.service.setting.transformer"]
 #        tags:
 #          -  { name: "accurateweb.setting.resolver" }
 #
-#    excam.setting.default.order.paymentstatus.resolver:
+#    Store.setting.default.order.paymentstatus.resolver:
 #        class: StoreBundle\Setting\Resolver\DefaultOrderPaymentStatusResolver
 #        arguments: ["@accureteweb.service.setting.transformer"]
 #        tags:
