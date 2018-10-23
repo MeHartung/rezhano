@@ -25,7 +25,7 @@ class CommonController extends Controller
       $viewedProducts = $this->getUser()->getViewedProductList()->getProducts(6);
     }
 
-    return $this->render('@App/Common/index.html.twig', [
+    return $this->render('@Store/Common/index.html.twig', [
       'banners' => $banners,
       'bestOffers' => $bestOffers,
       'viewedProducts' => $viewedProducts,
@@ -45,7 +45,7 @@ class CommonController extends Controller
       return new Response();
     }
 
-    return $this->render('@App/Common/menu.html.twig', [
+    return $this->render('@Store/Common/menu.html.twig', [
       'root' => $root,
       'repository' => $taxonRepository
     ]);

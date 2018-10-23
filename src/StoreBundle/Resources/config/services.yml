@@ -358,8 +358,8 @@ services:
        - "@security.token_storage"
        - '@event_dispatcher'
 
-    accuratecommerce.shipping.service.Store:
-      class: AccurateCommerce\Shipping\Service\App\StoreShippingService
+    accuratecommerce.shipping.service.store:
+      class: AccurateCommerce\Shipping\Service\Store\StoreShippingService
       arguments:
         - '070b83d7-995e-4a41-97c2-ec01bb869fbd'
       tags:

@@ -8,9 +8,9 @@
 
 namespace AccurateCommerce\Shipping\Service\Store;
 
-use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreCourier;
-use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreFree;
-use AccurateCommerce\Shipping\Method\App\ShippingMethodStorePickup;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStoreCourier;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStoreFree;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStorePickup;
 use AccurateCommerce\Shipping\Method\ShippingMethodUserDefined;
 use AccurateCommerce\Shipping\Service\ShippingService;
 
