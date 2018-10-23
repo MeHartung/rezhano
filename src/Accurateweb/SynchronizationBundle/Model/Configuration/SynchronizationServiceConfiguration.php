@@ -65,7 +65,7 @@ class SynchronizationServiceConfiguration implements SynchronizationConfiguratio
     $this->datasource = $datasource;
   
     $this->kernelRootDir = $kernelRootDir;
-    $this->working_dir = str_replace('\\', '/', $this->kernelRootDir . '/../synchronization');
+    $this->working_dir = str_replace('\\', '/', $this->kernelRootDir . '/../var/synchronization');
     $this->sql_temp_dir = $this->working_dir . '/sql';
     $this->name = $name;
   }
