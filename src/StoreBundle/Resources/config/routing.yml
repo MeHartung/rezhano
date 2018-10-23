@@ -261,3 +261,7 @@ customer_question:
 customer_question_success:
   path: /question/success
   defaults: { _controller: StoreBundle:Text\CustomerQuestion:success }
+
+cheese_story:
+  path: /syrnye-zametki
+  defaults: { _controller: AppBundle:Text\CheeseStory:index }

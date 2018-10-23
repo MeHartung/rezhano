@@ -6,8 +6,8 @@
 namespace StoreBundle\Controller\Order;
 
 use AccurateCommerce\DataAdapter\OrderClientApplicationAdapter;
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamCourier;
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamPickup;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamCourier;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamPickup;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Service\Geography\Location;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

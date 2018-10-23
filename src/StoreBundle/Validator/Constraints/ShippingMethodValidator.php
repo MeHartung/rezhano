@@ -5,7 +5,7 @@
 
 namespace StoreBundle\Validator\Constraints;
 
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamCourier;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamCourier;
 use AccurateCommerce\Shipping\ShippingManager;
 use Doctrine\ORM\EntityManagerInterface;
 use StoreBundle\Entity\Store\Order\Order;

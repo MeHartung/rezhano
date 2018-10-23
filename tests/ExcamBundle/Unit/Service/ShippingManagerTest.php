@@ -2,7 +2,7 @@
 
 namespace Tests\StoreBundle\Service;
 
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamFree;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamFree;
 use AccurateCommerce\Shipping\Shipment\Address;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 use AccurateCommerce\Shipping\ShippingManager;

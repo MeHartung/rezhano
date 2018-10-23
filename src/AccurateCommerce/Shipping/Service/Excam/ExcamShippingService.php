@@ -8,9 +8,9 @@
 
 namespace AccurateCommerce\Shipping\Service\Excam;
 
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamCourier;
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamFree;
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamPickup;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamCourier;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamFree;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamPickup;
 use AccurateCommerce\Shipping\Method\ShippingMethodUserDefined;
 use AccurateCommerce\Shipping\Service\ShippingService;
 

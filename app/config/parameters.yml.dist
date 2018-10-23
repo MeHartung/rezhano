@@ -36,5 +36,3 @@ parameters:
     moysklad_password: 123456
     moysklad_organisation_id: 6d0c7ffe-7df4-11e8-9107-5048000d493a #Идентификатор организации в системе Мой склад
     service_desc_email: operator@local #почта для отправки сообщений об ошибках синхронизации Мой склад
-    seven_seconds_api_key: 123
-    seven_second_shipment_status_api: 123

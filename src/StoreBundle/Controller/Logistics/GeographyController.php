@@ -7,7 +7,7 @@
 namespace StoreBundle\Controller\Logistics;
 
 use AccurateCommerce\DataAdapter\ClientApplicationModelCollection;
-use Excam\Logistics\Legacy\CdekCatalogue;
+use App\Logistics\Legacy\CdekCatalogue;
 use StoreBundle\DataAdapter\CityClientModelAdapter;
 use StoreBundle\DataAdapter\LocationClientModelAdapter;
 use StoreBundle\DataAdapter\RegionClientModelAdapter;

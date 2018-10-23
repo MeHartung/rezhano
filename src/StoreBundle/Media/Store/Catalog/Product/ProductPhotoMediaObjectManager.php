@@ -8,7 +8,7 @@ namespace StoreBundle\Media\Store\Catalog\Product;
 use Accurateweb\MediaBundle\Model\Gallery\MediaObjectManager;
 use Accurateweb\MediaBundle\Model\Media\MediaInterface;
 use Doctrine\ORM\EntityManager;
-use Excam\Media\Gallery\ProductPhoto\ProductPhotoRepository;
+use App\Media\Gallery\ProductPhoto\ProductPhotoRepository;
 
 class ProductPhotoMediaObjectManager implements MediaObjectManager
 {

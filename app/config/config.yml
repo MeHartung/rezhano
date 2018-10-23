@@ -11,7 +11,6 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: ru
-    DATABASE_PASSWORD: null
     aw_email_template_admin.class: StoreBundle\Entity\Messaging\EmailTemplate
     aw_email_template_admin.email_template_group: messaging
     aw_email_template_admin.email_template_label: 'Шаблоны E-mail'

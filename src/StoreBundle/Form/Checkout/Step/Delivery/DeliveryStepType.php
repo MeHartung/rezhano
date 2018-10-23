@@ -2,7 +2,7 @@
 
 namespace StoreBundle\Form\Checkout\Step\Delivery;
 
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamPickup;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamPickup;
 use AccurateCommerce\Shipping\Method\ShippingMethod;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

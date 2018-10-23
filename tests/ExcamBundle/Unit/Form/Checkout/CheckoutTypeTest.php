@@ -2,7 +2,7 @@
 
 namespace Tests\StoreBundle\Unit\Form\Checkout;
 
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamPickup;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodExcamPickup;
 use StoreBundle\DataFixtures\OrderFixtures;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Form\Checkout\CheckoutType;
