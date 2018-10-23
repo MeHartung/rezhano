@@ -22,3 +22,16 @@ services:
       - '@accurateweb.slugifier.yandex'
     tags:
       - { name: 'aw.datasource' }
+
+  aw.synchronization.datasource.moy_sklad.products.image:
+    class: AppBundle\Synchronization\MoySkladToCdek\Model\Datasource\MoySklad\MoySkladProductImageDataSource
+    arguments:
+      - {}
+      - ~
+      - "@doctrine.orm.default_entity_manager"
+      - '%moysklad_username%'
+      - '%moysklad_password%'
+      - '%kernel.root_dir%'
+      - '@event_dispatcher'
+    tags:
+      - { name: 'aw.datasource' }

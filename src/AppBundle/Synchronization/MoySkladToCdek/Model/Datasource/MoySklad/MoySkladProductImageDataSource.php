@@ -1,17 +1,19 @@
 <?php
 
-namespace AppBundle\Synchronization\MoySkladToCdek\Model\Datasource;
+
+namespace AppBundle\Synchronization\MoySkladToCdek\Model\Datasource\MoySklad;
 
 use Accurateweb\SlugifierBundle\Model\SlugifierInterface;
 use Accurateweb\SynchronizationBundle\Model\Datasource\Base\BaseDataSource;
 use Doctrine\ORM\EntityManagerInterface;
+use MoySklad\Components\FilterQuery;
 use MoySklad\Entities\Products\Product;
 use MoySklad\Lists\EntityList;
 use MoySklad\MoySklad;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
-class MoySkladSource extends BaseDataSource
+class MoySkladProductImageDataSource extends BaseDataSource
 {
   private
     $em, $moySkladLogin, $moySkladPassword,
@@ -27,11 +29,10 @@ class MoySkladSource extends BaseDataSource
    * @param string $moySkladPassword
    * @param string $sevenSecondsApiKey
    */
-  public function __construct(array $options = array(), $to,
+  public function __construct($options = array(), $to,
                               EntityManagerInterface $entityManager,
                               string $moySkladLogin, string $moySkladPassword,
-                              $kernelRootDir, EventDispatcherInterface $dispatcher,
-                              SlugifierInterface $sluggable)
+                              $kernelRootDir, EventDispatcherInterface $dispatcher)
   {
     parent::__construct($options);
     $this->em = $entityManager;
@@ -41,8 +42,6 @@ class MoySkladSource extends BaseDataSource
     
     $this->kernelRootDir = $kernelRootDir;
     $this->dispatcher = $dispatcher;
-    
-    $this->slugifierYandex = $sluggable;
   }
   
   /**
@@ -53,6 +52,7 @@ class MoySkladSource extends BaseDataSource
    */
   public function get($from, $to = null, $em = null)
   {
+    
     try
     {
       $sklad = MoySklad::getInstance($this->moySkladLogin, $this->moySkladPassword);
@@ -66,13 +66,29 @@ class MoySkladSource extends BaseDataSource
       return null;
     }
     
+    
     /**
-     * Все товары с моего склада
-     * @var EntityList $moySkladProducts
+     * Список внешних кодов продуктов, относящихся к моему складу
+     * @var EntityList $moySkladProductsImages
      */
+    $productsQb = $this->em->getRepository('StoreBundle:Store\Catalog\Product\Product')->createQueryBuilder('p');
+    $productsCodes = $productsQb->select('p.externalCode')
+                           ->where('p.externalCode IS NOT NULL')
+                           ->getQuery()->getResult();
+  
+    $filter = new FilterQuery();
+    $codes = [];
+    # фильтр работает по типу IN()
+    # нельзя сделать выборку по тем, у которых есть фото
+    foreach ($productsCodes as $productsCode)
+    {
+      $filter->eq('code', $productsCode['externalCode']);
+      $codes[] =  $productsCode;
+    }
+    
     try
     {
-      $moySkladProducts = Product::query($sklad)->getList();
+      $moySkladProductsImages = Product::query($sklad)->filter($filter);
     } catch (\Exception $exception)
     {
       #$this->logger->addError('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
@@ -83,73 +99,46 @@ class MoySkladSource extends BaseDataSource
       return null;
     }
     
-    if ($moySkladProducts->count() === 0)
+    if ($moySkladProductsImages->count() === 0)
     {
       return;
     }
     
-    $moySkladProductsAsArray = [];
+    $photoUrls = [];
     
     /**
      * Преобразуем в массив
      *
-     * @var Product $product
+     * @var Product $productImage
      */
-    foreach ($moySkladProducts->toArray() as $key => $product)
+    foreach ($moySkladProductsImages->toArray() as $key => $productImage)
     {
-      $now = new \DateTime('now');
-      $moySkladProductsAsArray[$key] = [
-        'external_code' => $product->code,
-        'name' => $product->name,
-        'price' => $product->salePrices[0]->value / 100,
-        'slug' => $this->slugifierYandex->slugify($product->name),
-        'created_at' => $now->format('Y-m-d H:i:s'),
-        'is_with_gift' => 0,
-        'is_publication_allowed' => 1,
-        'published' => 1,
-        'total_stock' => 100,
-        'reserved_stock' => 10,
-        'is_free_delivery' => 0,
-        'rank' => 0.00,
-      ];
-
-      if (isset($product->article))
-      {
-        $moySkladProductsAsArray[$key]['sku'] = $product->article;
-      }else
-      {
-        $moySkladProductsAsArray[$key]['sku'] = $moySkladProductsAsArray[$key]['slug'];
-      }
+      if (!isset($productImage->image)) continue;
+      var_dump($productImage);die;
+      $urls = $productImage->image;
       
-      if (isset($product->image)) $moySkladProductsAsArray[$key]['image'] = $product->image->meta->href;
-      if (isset($product->description))
+      $product = $this->em->getRepository('StoreBundle:Store\Catalog\Product\Product')->findOneBy(
+        [
+          'externalCode' => $productImage->code
+        ]
+      );
+      
+      foreach ($urls as $url)
       {
-        # этот костыль необходимо убрать
-        # substr что-то непонятное делает со сторкой, после чего из массива не хотит создаваться json
-        $short_description = substr($product->description, 0, 50);
-        
-        $moySkladProductsAsArray[$key]['short_description'] = $product->description; #$short_description;
-        $moySkladProductsAsArray[$key]['description'] = $product->description;
-        
-      }else
-      {
-        $moySkladProductsAsArray[$key]['description'] = '...';
-        $moySkladProductsAsArray[$key]['short_description'] = '...';
+        $path = $this->kernelRootDir . '/../web/uploads/product-photo/' . $product->getId();
+        file_put_contents($path, file_get_contents($url));
+        $photoUrls[] = [
+          'product_id' => $product->getId(),
+          'filename' => ''];
       }
       
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent('Product ' . $product->name . ' uploaded from MoySklad.')
+        new GenericEvent('Product ' . $productImage->name . ' uploaded from MoySklad.')
       );
     }
-    $productsAsJson = json_encode($moySkladProductsAsArray);
     
-    if($productsAsJson === false)
-    {
-      echo $short_description;
-      throw new \Exception('Невалидный, написать ошибку!');
-    }
-  
+    $productsAsJson = json_encode($photoUrls);
     file_put_contents($to, $productsAsJson);
     
     return $to;
