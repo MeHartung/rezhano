@@ -3,7 +3,7 @@
 namespace Accurateweb\MoyskladIntegrationBundle\EventListener;
 
 use AccurateCommerce\Component\Checkout\Event\OrderCheckoutEvent;
-use AppBundle\Entity\Store\Integration\MoyskladQueue;
+use StoreBundle\Entity\Store\Integration\MoyskladQueue;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class OrderCheckoutMoyskladQueue

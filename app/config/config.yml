@@ -4,14 +4,13 @@ imports:
     - { resource: services.yml }
     - { resource: "@StoreBundle/Resources/config/services.yml" }
     - { resource: email_templates.yml }
-    - { resource: '@AppBundle/Resources/config/admin.yml' }
+    - { resource: '@StoreBundle/Resources/config/admin.yml' }
     - { resource: "@SynchronizationBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: ru
-    DATABASE_PASSWORD: null
     aw_email_template_admin.class: StoreBundle\Entity\Messaging\EmailTemplate
     aw_email_template_admin.email_template_group: messaging
     aw_email_template_admin.email_template_label: 'Шаблоны E-mail'
@@ -96,7 +95,7 @@ doctrine:
 #propel:
 #    database:
 #      connections:
-#        excam:
+#        Store:
 #          adapter:              %database_driver%
 #          classname:            Propel\Runtime\Connection\PropelPDO
 #          user:                 %database_user%

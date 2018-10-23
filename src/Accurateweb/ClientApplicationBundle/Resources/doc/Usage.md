@@ -2,7 +2,7 @@
 ```yml
 #services.yml
 app.cart_summary.adapter:
-    class: AppBundle\DataAdapter\Cart\CartSummaryAdapter
+    class: StoreBundle\DataAdapter\Cart\CartSummaryAdapter
     tags:
       - { name: aw.client_application.adapter, alias: cart.summary }
 ```

@@ -13,9 +13,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use StoreBundle\DataFixtures\News\NewsFixtures;
 use StoreBundle\Entity\Text\News;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class NewsTest extends ExcamWebTestCase
+class NewsTest extends StoreWebTestCase
 {
   public function setUp()
   {

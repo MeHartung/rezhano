@@ -15,9 +15,9 @@ use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Tests\StoreBundle\Controller\preparationForTest;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class TaxonomyControllerTest extends ExcamWebTestCase
+class TaxonomyControllerTest extends StoreWebTestCase
 {
   public function setUp()
   {

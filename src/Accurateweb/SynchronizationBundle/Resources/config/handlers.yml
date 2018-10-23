@@ -13,7 +13,7 @@ services:
       - { name: 'aw.synchronization.handler.transfer' }
 
   aw.synchronization.handler.transfer_moy_sklad:
-    class: AppBundle\Synchronization\MoySkladToCdek\Model\Handler\TransferHandler
+    class: StoreBundle\Synchronization\MoySkladToCdek\Model\Handler\TransferHandler
     arguments:
       - "@doctrine.dbal.default_connection"
       - "@aw.synchronization.schema.common"

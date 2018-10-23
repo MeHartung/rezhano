@@ -32,7 +32,7 @@ monolog:
 #propel:
 #    database:
 #      connections:
-#        excam:
+#        Store:
 #          classname:            Propel\Runtime\Connection\DebugPDO
           
 #swiftmailer:

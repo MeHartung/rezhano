@@ -10,7 +10,7 @@ services:
       - { name: 'aw.datasource' }
 
   aw.synchronization.datasource.moy_sklad:
-    class: AppBundle\Synchronization\MoySkladToCdek\Model\Datasource\MoySkladSource
+    class: StoreBundle\Synchronization\MoySkladToCdek\Model\Datasource\MoySkladSource
     arguments:
       - {}
       - ~

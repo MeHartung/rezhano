@@ -1,4 +1,168 @@
 services:
+    app.meta.home:
+      class: Accurateweb\MetaBundle\Model\Meta
+      arguments:
+        - 'Реализация имущества Группы «Газпром нефть»'
+        - 'Реализация имущества Группы «Газпром нефть»'
+        - ~
+      tags:
+        - { name: aw.meta.route, route: homepage }
+
+    app.meta.taxon:
+      class: StoreBundle\Meta\MetaTaxon
+      arguments: ['@request_stack', '@aw.taxonomy.manager', '@router']
+      autowire: false
+      tags:
+        - { name: aw.meta.route, route: taxon }
+
+    app.meta.product:
+      class: StoreBundle\Meta\MetaProduct
+      arguments: ['@request_stack', '@store.product.repository', '@aw.media.storage.file', '@router']
+      tags:
+        - { name: aw.meta.route, route: product }
+
+    app.home_banner.admin:
+      class: StoreBundle\Admin\HomeBannerAdmin
+      arguments: [~, StoreBundle\Entity\Common\HomeBanner, 'PixSortableBehaviorBundle:SortableAdmin']
+      tags:
+        - {name: sonata.admin, manager_type: orm, group: store, label: "Тизерные блоки"}
+
+    app.user.adapter:
+      class: StoreBundle\DataAdapter\User\UserDataAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: user }
+
+    app.cart_item.adapter:
+      class: StoreBundle\DataAdapter\Cart\CartItemDataAdapter
+      arguments:
+        - '@router'
+        - '@aw.logistic.stock.manager'
+        - '@app.warehouse.adapter'
+        - '@app.product.adapter'
+        - '@store.price.manager'
+      tags:
+        - { name: aw.client_application.adapter, alias: cartItem }
+
+    app.cart.adapter:
+      class: StoreBundle\DataAdapter\Cart\CartDataAdapter
+      arguments: ['@app.cart_item.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: cart }
+
+    app.order.adapter:
+      class: StoreBundle\DataAdapter\Order\OrderDataAdapter
+      arguments: ['@app.cart_item.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: order }
+
+    user.cart:
+      class: StoreBundle\Entity\Store\Order\Order
+      public: false
+      factory: ['@store.user.cart', 'getCart']
+
+    app.product.adapter:
+      class: StoreBundle\DataAdapter\Product\ProductDataAdapter
+      arguments: ['@router', '@aw.media.storage.file', '@security.token_storage', '@store.price.manager']
+      tags:
+        - { name: aw.client_application.adapter, alias: product }
+
+    app.filter.schema.adapter:
+      class: StoreBundle\DataAdapter\Taxon\Filter\FilterFieldSchemaDataAdapter
+      arguments: ['@router']
+      tags:
+        - { name: aw.client_application.adapter, alias: filter }
+
+    app.product.viewed:
+      class: StoreBundle\EventListener\ProductViewListener
+      arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
+      tags:
+        - { name: kernel.event_listener, event: kernel.controller, method: onRequest }
+
+    pix_sortable_behavior.position.orm:
+      class: StoreBundle\Services\PositionORMHandler
+      public: false
+      arguments:
+          - "@doctrine.orm.entity_manager"
+      calls:
+          - [ 'setPositionField', ["%pix.sortable.behavior.position.field%"]]
+          - [ 'setSortableGroups', ["%pix.sortable.behavior.sortable_groups%"]]
+
+    app.form_error.adapter:
+      class: StoreBundle\DataAdapter\Form\FormErrorAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: form.error }
+
+    app.warehouse.adapter:
+      class: StoreBundle\DataAdapter\Logistic\WarehouseDataAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: warehouse }
+
+    app.shipping_choice.adapter:
+      class: StoreBundle\DataAdapter\Logistic\ShippingChoiceAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: shipping.choice }
+
+    app.shipping_choice_pickup.adapter:
+      class: StoreBundle\DataAdapter\Logistic\ShippingChoicePickupAdapter
+      arguments: ['@doctrine.orm.entity_manager']
+      tags:
+        - { name: aw.client_application.adapter, alias: shipping.choice_pickup }
+
+    app.shipping_method.adapter:
+      class: StoreBundle\DataAdapter\Logistic\ShippingMethodDataAdapter
+      arguments: ['@app.shipping_choice.adapter', '@app.shipping_choice_pickup.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: shipping.method }
+
+    app.payment_method.adapter:
+      class: StoreBundle\DataAdapter\Order\PaymentMethodDataAdapter
+      arguments: ['@accuratecommerce.payment.method.manager']
+      tags:
+        - { name: aw.client_application.adapter, alias: payment.method }
+
+    app.document_type.adapter:
+      class: StoreBundle\DataAdapter\Document\DocumentTypeDataAdapter
+      arguments: ['@store.document.storage']
+      tags:
+        - { name: aw.client_application.adapter, alias: document.type }
+
+    app.dialog_message.adapter:
+      class: StoreBundle\DataAdapter\Notification\DialogMessageDataAdapter
+      arguments:
+        - '@aw.settings.manager'
+      tags:
+        - { name: aw.client_application.adapter, alias: dialog.message }
+
+    app.dialog.adapter:
+      class: StoreBundle\DataAdapter\Notification\DialogDataAdapter
+      arguments: ['@app.dialog_message.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: dialog }
+
+    app.notification.adapter:
+      class: StoreBundle\DataAdapter\Notification\NotificationAdater
+      arguments: ['@app.dialog.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: notification }
+
+    app.order_status.adapter:
+      class: StoreBundle\DataAdapter\Order\OrderStatusDataAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: order.status }
+
+    app.order_status_history.adapter:
+      class: StoreBundle\DataAdapter\Order\OrderStatusHistoryDataAdapter
+      arguments: ['@app.order_status.adapter']
+      tags:
+        - { name: aw.client_application.adapter, alias: order.status_history }
+
+    gedmo.listener.sortable:
+           class: Gedmo\Sortable\SortableListener
+           tags:
+               - { name: doctrine.event_subscriber, connection: default }
+           calls:
+               - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
     app.admin.text.specialoffer:
        class: StoreBundle\Admin\Text\SpecialOfferAdmin
        arguments: [~, StoreBundle\Entity\Text\SpecialOffer, 'StoreBundle:Admin/Text/SpecialOfferAdmin', 'name']
@@ -194,8 +358,8 @@ services:
        - "@security.token_storage"
        - '@event_dispatcher'
 
-    accuratecommerce.shipping.service.excam:
-      class: AccurateCommerce\Shipping\Service\Excam\ExcamShippingService
+    accuratecommerce.shipping.service.store:
+      class: AccurateCommerce\Shipping\Service\Store\StoreShippingService
       arguments:
         - '070b83d7-995e-4a41-97c2-ec01bb869fbd'
       tags:
@@ -209,7 +373,7 @@ services:
 #        - { name: accuratecommerce.shipping.service, priority: 1000 }
 
 #    accuratecommerce.shipping.service.cdek:
-#      class: AccurateCommerce\Shipping\Service\AccurateCommerce\ShippingServiceExcam
+#      class: AccurateCommerce\Shipping\Service\AccurateCommerce\ShippingServiceStore
 #      arguments:
 #        uid: '703a6c0e-3485-420c-b76c-1894e58576e0'
 #      tags:
@@ -225,7 +389,7 @@ services:
       class: AccurateCommerce\Component\Payment\Method\Availability\Voter\AvailabilityVoterAlwaysAvailable
 
     store.payment.availability.voter.cash_on_delivery:
-      class: Excam\Payment\Method\Availability\Voter\AvailabilityVoterCashOnDelivery
+      class: App\Payment\Method\Availability\Voter\AvailabilityVoterCashOnDelivery
 
     store.payment.availability.decision.always_available:
       class: AccurateCommerce\Component\Payment\Method\Availability\AvailabilityDecisionManager
@@ -261,7 +425,7 @@ services:
         - { name: accuratecommerce.payment.method.fee.calculator}
 
     store.payment.fee.calculator.cash_on_delivery:
-      class: Excam\Payment\Method\Fee\Calculator\CashOnDeliveryPaymentMethodFeeCalculator
+      class: App\Payment\Method\Fee\Calculator\CashOnDeliveryPaymentMethodFeeCalculator
       arguments:
         - '1f8312fb-f48f-443a-b915-bec36b7cc072'
         - 'Коммиссия при оплате наложенным платежом'
@@ -312,7 +476,7 @@ services:
         - { name: 'form.type', alias: 'tinymce'}
 
     store.gallery.provider.product_photo:
-      class: Excam\Media\Gallery\ProductPhoto\ProductPhotoMediaGalleryProvider
+      class: App\Media\Gallery\ProductPhoto\ProductPhotoMediaGalleryProvider
       arguments:
         - '@doctrine.orm.entity_manager'
         - '@store.product.image.repository'
@@ -366,77 +530,77 @@ services:
           - { name: doctrine.event_listener, event: postLoad }
 
     store.seo.sitemap.loader.common:
-        class: Excam\Sitemap\Loader\StaticUrlLoader
+        class: App\Sitemap\Loader\StaticUrlLoader
         arguments:
           - '@router'
         tags:
           - { name: 'aw_seo.sitemap.loader' }
 
     store.seo.sitemap.loader.static_taxon:
-        class: Excam\Sitemap\Loader\StaticTaxonLoader
+        class: App\Sitemap\Loader\StaticTaxonLoader
         arguments:
           - '@store.taxon.repository'
         tags:
           - { name: 'aw_seo.sitemap.loader' }
 
     store.seo.sitemap.loader.product:
-        class: Excam\Sitemap\Loader\ProductLoader
+        class: App\Sitemap\Loader\ProductLoader
         arguments:
           - '@store.product.repository'
         tags:
           - { name: 'aw_seo.sitemap.loader' }
 
     store.seo.sitemap.loader.article:
-        class: Excam\Sitemap\Loader\ArticleLoader
+        class: App\Sitemap\Loader\ArticleLoader
         arguments:
           - '@doctrine.orm.entity_manager'
         tags:
           - { name: 'aw_seo.sitemap.loader' }
 
     store.seo.sitemap.loader.news:
-        class: Excam\Sitemap\Loader\NewsLoader
+        class: App\Sitemap\Loader\NewsLoader
         arguments:
           - '@doctrine.orm.entity_manager'
         tags:
           - { name: 'aw_seo.sitemap.loader' }
 
     store.seo.sitemap.loader.special_offer:
-        class: Excam\Sitemap\Loader\SpecialOfferLoader
+        class: App\Sitemap\Loader\SpecialOfferLoader
         arguments:
           - '@doctrine.orm.entity_manager'
         tags:
           - { name: 'aw_seo.sitemap.loader' }
 
     store.seo.sitemap.extractor.static_taxon:
-        class: Excam\Sitemap\Extractor\TaxonUrlExtractor
+        class: App\Sitemap\Extractor\TaxonUrlExtractor
         arguments:
           - '@router'
         tags:
           - { name: 'aw_seo.sitemap.extractor' }
 
     store.seo.sitemap.extractor.article:
-        class: Excam\Sitemap\Extractor\ArticleUrlExtractor
+        class: App\Sitemap\Extractor\ArticleUrlExtractor
         arguments:
           - '@router'
         tags:
           - { name: 'aw_seo.sitemap.extractor' }
 
     store.seo.sitemap.extractor.product:
-        class: Excam\Sitemap\Extractor\ProductUrlExtractor
+        class: App\Sitemap\Extractor\ProductUrlExtractor
         arguments:
           - '@router'
         tags:
           - { name: 'aw_seo.sitemap.extractor' }
 
     store.seo.sitemap.extractor.news:
-        class: Excam\Sitemap\Extractor\NewsUrlExtractor
+        class: App\Sitemap\Extractor\NewsUrlExtractor
         arguments:
           - '@router'
         tags:
           - { name: 'aw_seo.sitemap.extractor' }
 
     store.seo.sitemap.extractor.special_offer:
-        class: Excam\Sitemap\Extractor\SpecialOfferUrlExtractor
+        class: App\Sitemap\Extractor\SpecialOfferUrlExtractor
         arguments:
           - '@router'
         tags:
@@ -612,18 +776,18 @@ services:
        arguments:
           - '@doctrine.orm.entity_manager'
 
-#    excam.setting.abadoned.cart.resolver:
+#    Store.setting.abadoned.cart.resolver:
 #        class: StoreBundle\Setting\Resolver\AbadonedCartResolver
 #        tags:
 #          -  { name: "accurateweb.setting.resolver" }
 #
-#    excam.setting.default.order.status.resolver:
+#    Store.setting.default.order.status.resolver:
 #        class: StoreBundle\Setting\Resolver\DefaultOrderStatusResolver
 #        arguments: ["@accureteweb.service.setting.transformer"]
 #        tags:
 #          -  { name: "accurateweb.setting.resolver" }
 #
-#    excam.setting.default.order.paymentstatus.resolver:
+#    Store.setting.default.order.paymentstatus.resolver:
 #        class: StoreBundle\Setting\Resolver\DefaultOrderPaymentStatusResolver
 #        arguments: ["@accureteweb.service.setting.transformer"]
 #        tags:

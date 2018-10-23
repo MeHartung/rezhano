@@ -3,8 +3,8 @@
 namespace Accurateweb\SynchronizationBundle\Model\Scenario;
 
 use Accurateweb\SynchronizationBundle\Model\SynchronizationScenario;
-#use AppBundle\Entity\Event\OrderEvent;
-#use AppBundle\EventListener\Synchronization\MoySklad\MoySkladSyncOrderEvent;
+#use StoreBundle\Entity\Event\OrderEvent;
+#use StoreBundle\EventListener\Synchronization\MoySklad\MoySkladSyncOrderEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;

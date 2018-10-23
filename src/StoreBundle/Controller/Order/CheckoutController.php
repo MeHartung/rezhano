@@ -6,8 +6,8 @@
 namespace StoreBundle\Controller\Order;
 
 use AccurateCommerce\DataAdapter\OrderClientApplicationAdapter;
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamCourier;
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamPickup;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreCourier;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStorePickup;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Service\Geography\Location;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -54,12 +54,12 @@ class CheckoutController extends Controller
 
     $pickupForm = $this->createForm('StoreBundle\Form\Checkout\Step\Delivery\PickupDeliveryStepType', $cart, [
       'shippingMethods' => $shippingMethods,
-      'shippingMethodId' => ShippingMethodExcamPickup::UID,
+      'shippingMethodId' => ShippingMethodStorePickup::UID,
       'csrf_protection' => !$request->isXmlHttpRequest(),
     ]);
     $courierForm = $this->createForm('StoreBundle\Form\Checkout\Step\Delivery\CourierDeliveryStepType', $cart, [
       'shippingMethods' => $shippingMethods,
-      'shippingMethodId' => ShippingMethodExcamCourier::UID,
+      'shippingMethodId' => ShippingMethodStoreCourier::UID,
       'csrf_protection' => !$request->isXmlHttpRequest(),
     ]);
 
@@ -71,10 +71,10 @@ class CheckoutController extends Controller
       {
         switch ($data['shippingMethodId'])
         {
-          case ShippingMethodExcamPickup::UID:
+          case ShippingMethodStorePickup::UID:
             $pickupForm->submit($data);
             break;
-          case ShippingMethodExcamCourier::UID:
+          case ShippingMethodStoreCourier::UID:
             $courierForm->submit($data);
             break;
         }

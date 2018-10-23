@@ -12,7 +12,7 @@ use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use Accurateweb\MediaBundle\Model\Media\MediaInterface;
 use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
 use Accurateweb\MediaBundle\Model\Thumbnail\ThumbnailDefinition;
-use Excam\Media\Gallery\ProductPhoto\ProductPhotoImage;
+use App\Media\Gallery\ProductPhoto\ProductPhotoImage;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 

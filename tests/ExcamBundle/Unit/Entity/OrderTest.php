@@ -6,9 +6,9 @@ namespace StoreBundle\Unit\Entity;
 use StoreBundle\DataFixtures\OrderFixtures;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Order\Status\OrderOrderStatus;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class OrderTest extends ExcamWebTestCase
+class OrderTest extends StoreWebTestCase
 {
   protected function setUp()
   {

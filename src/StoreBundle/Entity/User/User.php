@@ -5,8 +5,8 @@
 
 namespace StoreBundle\Entity\User;
 
-use AppBundle\Entity\Catalog\ProductList\FavoriteProductList;
-use AppBundle\Entity\Catalog\ProductList\ViewedProductList;
+use StoreBundle\Entity\Catalog\ProductList\FavoriteProductList;
+use StoreBundle\Entity\Catalog\ProductList\ViewedProductList;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use FOS\UserBundle\Model\User as BaseUser;
@@ -101,13 +101,13 @@ class User extends BaseUser
 
   /**
    * @var ViewedProductList[]
-   * @ORM\OneToMany(targetEntity="AppBundle\Entity\Catalog\ProductList\ViewedProductList", mappedBy="user", cascade={"persist"})
+   * @ORM\OneToMany(targetEntity="StoreBundle\Entity\Catalog\ProductList\ViewedProductList", mappedBy="user", cascade={"persist"})
    */
   private $viewedProductLists;
 
   /**
    * @var FavoriteProductList[]
-   * @ORM\OneToMany(targetEntity="AppBundle\Entity\Catalog\ProductList\FavoriteProductList", mappedBy="user", cascade={"persist"})
+   * @ORM\OneToMany(targetEntity="StoreBundle\Entity\Catalog\ProductList\FavoriteProductList", mappedBy="user", cascade={"persist"})
    */
   private $favoriteProductLists;
 

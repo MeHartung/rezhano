@@ -1,7 +1,0 @@
-#homepage:
-#  path: /
-#  defaults: { _controller: AppBundle:Common:homepage }
-
-cheese_story:
-  path: /syrnye-zametki
-  defaults: { _controller: AppBundle:Text\CheeseStory:index }

@@ -57,7 +57,7 @@ class YandexMarketXmlBuilder
     return $this->twig->render('@Store/Yandex/price.xml.twig', [
       'taxons' => $taxons,
       'products' => $products,
-      'original_url' => 'https://www.excam.ru'
+      'original_url' => 'https://www.Store.ru'
     ]);
   }
 }

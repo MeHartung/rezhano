@@ -1,6 +1,6 @@
 services:
   aw.synchronization.parser.json_parser:
-      class: AppBundle\Synchronization\Parser\JsonParser
+      class: StoreBundle\Synchronization\Parser\JsonParser
       arguments:
         - ~
         - ~

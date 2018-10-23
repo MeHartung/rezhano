@@ -33,7 +33,7 @@ use Symfony\Component\Routing\Router;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Tests\FixtureAwareWebTestCase;
 
-class ExcamWebTestCase extends FixtureAwareWebTestCase
+class StoreWebTestCase extends FixtureAwareWebTestCase
 {
   /** @var Client */
   protected $client = null;

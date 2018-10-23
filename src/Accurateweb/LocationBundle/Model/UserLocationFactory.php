@@ -2,8 +2,8 @@
 
 namespace Accurateweb\LocationBundle\Model;
 
-use AppBundle\Entity\Store\Logistics\Delivery\Cdek\CdekCity;
-use AppBundle\Repository\Store\Logistics\Delivery\Cdek\CdekCityRepository;
+use StoreBundle\Entity\Store\Logistics\Delivery\Cdek\CdekCity;
+use StoreBundle\Repository\Store\Logistics\Delivery\Cdek\CdekCityRepository;
 
 class UserLocationFactory
 {

@@ -52,8 +52,7 @@ class AppKernel extends Kernel
             new Accurateweb\LogisticBundle\AccuratewebLogisticBundle(),
 
             new StoreBundle\StoreBundle(),
-            new AppBundle\AppBundle(),
-  
+
             new Accurateweb\MoyskladIntegrationBundle\AccuratewebMoyskladIntegrationBundle(),
         ];
 

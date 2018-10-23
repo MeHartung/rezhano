@@ -130,7 +130,7 @@ aw_email_templating:
         total: { description: "Стоимость заказа" }
         order_items: { description: "Состав заказа" }
       defaults:
-        subject: "Заказ в Интернет-магазине eXcam"
+        subject: "Заказ в Интернет-магазине Store"
         body: |
           %%customer_name%% оформил(а) заказ %%order_number%%.
 

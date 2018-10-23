@@ -5,7 +5,7 @@
 
 namespace StoreBundle\Validator\Constraints;
 
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamCourier;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreCourier;
 use AccurateCommerce\Shipping\ShippingManager;
 use Doctrine\ORM\EntityManagerInterface;
 use StoreBundle\Entity\Store\Order\Order;
@@ -64,7 +64,7 @@ class ShippingMethodValidator extends ConstraintValidator
       }
 
       $cityName = null;
-      if($selectedShippingMethod->getUid() === ShippingMethodExcamCourier::UID)
+      if($selectedShippingMethod->getUid() === ShippingMethodStoreCourier::UID)
       {
         $this->em->clear();
         $dbOrder = $this->em->getRepository(Order::class)->find($order->getId());

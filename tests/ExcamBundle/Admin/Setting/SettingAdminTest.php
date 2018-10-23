@@ -11,9 +11,9 @@ namespace StoreBundle\Admin\Setting;
 
 use StoreBundle\DataFixtures\Setting\SettingFixtures;
 use StoreBundle\Entity\Setting;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class SettingAdminTest extends ExcamWebTestCase
+class SettingAdminTest extends StoreWebTestCase
 {
   public function setUp()
   {
@@ -99,7 +99,7 @@ class SettingAdminTest extends ExcamWebTestCase
   {
     $this->logIn();
 
-    $this->client->request('GET', "/admin/excam/setting/create");
+    $this->client->request('GET', "/admin/Store/setting/create");
     $this->assertSame(404, $this->client->getResponse()->getStatusCode(), "Админ смог создать настройку.");
   }
 

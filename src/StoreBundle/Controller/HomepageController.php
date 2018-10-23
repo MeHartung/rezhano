@@ -17,7 +17,7 @@ class HomepageController extends Controller
    */
   public function indexAction()
   {
-    $banners = $this->getDoctrine()->getRepository('AppBundle:Common\HomeBanner')
+    $banners = $this->getDoctrine()->getRepository('StoreBundle:Common\HomeBanner')
       ->findBy(['enabled' => true], ['position' => 'ASC']);
 
     $bestOffers = $this->getDoctrine()->getRepository('StoreBundle:Store\Catalog\Product\Product')

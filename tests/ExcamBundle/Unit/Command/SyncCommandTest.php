@@ -12,9 +12,9 @@ namespace StoreBundle\Unit\Command;
 use Accurateweb\SynchronizationBundle\Command\SynchronizationRunCommand;
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use Symfony\Component\Console\Tester\CommandTester;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class SyncCommandTest extends ExcamWebTestCase
+class SyncCommandTest extends StoreWebTestCase
 {
   public function setUp()
   {

@@ -2,7 +2,7 @@
 
 namespace StoreBundle\Form\Checkout\Step\Delivery;
 
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamPickup;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStorePickup;
 use AccurateCommerce\Shipping\Method\ShippingMethod;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +27,7 @@ abstract class DeliveryStepType extends AbstractType
       ->add('shippingMethodId', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
         'choices' => $shippingChoices,
         'expanded' => true,
-        'empty_data' => ShippingMethodExcamPickup::UID,
+        'empty_data' => ShippingMethodStorePickup::UID,
         'invalid_message' => 'К сожалению, сейчас вы не можете выбрать этот способ доставки',
         'constraints' => [
           new NotNull(),

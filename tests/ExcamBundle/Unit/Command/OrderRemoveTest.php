@@ -16,9 +16,9 @@ use StoreBundle\DataFixtures\Setting\SettingFixtures;
 use StoreBundle\Entity\Setting;
 use StoreBundle\Entity\Store\Order\Order;
 use Symfony\Component\Console\Tester\CommandTester;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class OrderRemoveTest extends ExcamWebTestCase
+class OrderRemoveTest extends StoreWebTestCase
 {
   /** @var  SettingManagerInterface */
   private $settings;

@@ -11,9 +11,9 @@ namespace Tests\StoreBundle\Controller;
 
 use StoreBundle\DataFixtures\News\AllNewsNotPublishedFixtures;
 use StoreBundle\DataFixtures\News\NewsFixtures;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class NewsControllerTest extends ExcamWebTestCase
+class NewsControllerTest extends StoreWebTestCase
 {
   public function setUp()
   {

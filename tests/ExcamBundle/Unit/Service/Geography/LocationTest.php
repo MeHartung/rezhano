@@ -6,12 +6,12 @@ use AccurateCommerce\GeoLocation\Geo;
 use StoreBundle\Service\Geography\Location;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
 /**
  * @see Location
  */
-class LocationTest extends ExcamWebTestCase
+class LocationTest extends StoreWebTestCase
 {
   protected function setUp ()
   {
