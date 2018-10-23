@@ -247,11 +247,11 @@ redcode_tree_data:
 
 favorites:
   path: /favorites
-  defaults: { _controller: AppBundle:Store\Favorite\ProductFavorite:index }
+  defaults: { _controller: StoreBundle:Store\Favorite\ProductFavorite:index }
 
 #favorite_toggle:
 #  path: /favorites/{productId}
-#  defaults: { _controller: AppBundle:Store\Favorite\ProductFavorite:toggle }
+#  defaults: { _controller: StoreBundle:Store\Favorite\ProductFavorite:toggle }
 #  methods: [POST]
 
 customer_question:
@@ -261,3 +261,7 @@ customer_question:
 customer_question_success:
   path: /question/success
   defaults: { _controller: StoreBundle:Text\CustomerQuestion:success }
+
+cheese_story:
+  path: /syrnye-zametki
+  defaults: { _controller: StoreBundle:Text\CheeseStory:index }

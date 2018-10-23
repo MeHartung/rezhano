@@ -11,7 +11,7 @@ namespace Tests\TaxonomyBundle\Unit;
 
 use AccurateCommerce\Model\Taxonomy\FreeDeliveryTaxon;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 use Tests\TaxonomyBundle\TaxonomyWebTestCase;
 
 class TaxonomyResolverTest extends TaxonomyWebTestCase

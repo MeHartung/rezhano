@@ -1,0 +1,24 @@
+services:
+
+  aw.moysklad:
+    class: Accurateweb\MoyskladIntegrationBundle\Model\MoyskladManager
+    arguments:
+      - '%moysklad_username%'
+      - '%moysklad_password%'
+    public: false
+
+  moysklad.order.checkout.moysklad_queue:
+    class: Accurateweb\MoyskladIntegrationBundle\EventListener\OrderCheckoutMoyskladQueue
+    arguments:
+      - '@doctrine.orm.entity_manager'
+    tags:
+      - { name: kernel.event_listener, event: store.order.checkout, method: onOrderCheckout }
+
+  moysklad.sender:
+    class: Accurateweb\MoyskladIntegrationBundle\Service\MoyskladOrderSender
+    arguments:
+      - '@aw.moysklad'
+      - '@event_dispatcher'
+      - '%moysklad_organisation_id%'
+      - '@app.logistic.cdek_pvz.repository'
+      - '@aw.settings.manager'

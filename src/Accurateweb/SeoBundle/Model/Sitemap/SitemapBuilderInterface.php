@@ -6,7 +6,7 @@
  * Time: 18:40
  */
 
-namespace Excam\Sitemap;
+namespace App\Sitemap;
 
 interface SitemapBuilderInterface
 {

@@ -2,19 +2,34 @@
 
 namespace Accurateweb\SynchronizationBundle\Model;
 
-class SynchronizationScenario implements \Iterator, \ArrayAccess
-{
+use Accurateweb\SynchronizationBundle\Model\Scenario\SynchronizationScenarioInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+class SynchronizationScenario implements SynchronizationScenarioInterface
+{
   private $subjects = [],
-          $iterator = null;
+          $iterator = null,
+          $name;
 
   protected $dispatcher;
-
-  function __construct($dispatcher = null)
+  
+  /**
+   * SynchronizationScenario constructor.
+   *
+   * @param EventDispatcherInterface|null $dispatcher
+   * @param $name string
+   */
+  function __construct(EventDispatcherInterface $dispatcher = null, $name = '')
   {
     $this->setEventDispatcher($dispatcher);
+    $this->name = $name;
   }
 
+  public function getName()
+  {
+    return $this->name;
+  }
+  
   function addSubject($subject)
   {
     $this->subjects[] = $subject;
@@ -90,7 +105,7 @@ class SynchronizationScenario implements \Iterator, \ArrayAccess
   {    
   }
 
-  public function setEventDispatcher($dispatcher = null)
+  public function setEventDispatcher(EventDispatcherInterface $dispatcher = null)
   {
     $this->dispatcher = $dispatcher;
   }

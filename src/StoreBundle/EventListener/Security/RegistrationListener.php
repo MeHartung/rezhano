@@ -2,7 +2,7 @@
 
 namespace StoreBundle\EventListener\Security;
 
-use AppBundle\DataAdapter\Form\FormErrorAdapter;
+use StoreBundle\DataAdapter\Form\FormErrorAdapter;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\FOSUserEvents;
 use StoreBundle\Entity\User\User;

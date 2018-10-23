@@ -7,7 +7,7 @@ use Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationService
 use Accurateweb\SynchronizationBundle\Model\Entity\EntityCollection;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
-abstract class BaseParser
+abstract class BaseParser implements SynchronizationParserInterface
 {
   /** @var $entityFactory \Accurateweb\SynchronizationBundle\Model\Entity\EntityFactory */
   private $entityFactory;
@@ -29,7 +29,7 @@ abstract class BaseParser
     $this->serviceConfiguration = $configuration;
   }
 
-  public function getEntities()
+  public function getEntities($local_filename = null)
   {
     return $this->entities;
   }

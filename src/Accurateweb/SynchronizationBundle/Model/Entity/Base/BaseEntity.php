@@ -2,7 +2,9 @@
 
 namespace Accurateweb\SynchronizationBundle\Model\Entity\Base;
 
-abstract class BaseEntity
+use Accurateweb\SynchronizationBundle\Model\Entity\SynchronizationEntityInterface;
+
+abstract class BaseEntity implements SynchronizationEntityInterface
 {
 
   private $values;

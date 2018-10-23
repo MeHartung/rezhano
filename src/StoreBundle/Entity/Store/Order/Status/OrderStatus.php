@@ -22,7 +22,7 @@
 namespace StoreBundle\Entity\Store\Order\Status;
 
 use Doctrine\ORM\Mapping as ORM;
-use StoreBundle\Validator\Constraints as ExcamAssert;
+use StoreBundle\Validator\Constraints as StoreAssert;
 
 
 /**

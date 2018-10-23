@@ -11,9 +11,9 @@ namespace Tests\StoreBundle\Unit\Entity\Store\Catalog\Taxonomy;
 
 use StoreBundle\DataFixtures\Taxon\TaxonSortTestFixtures;
 use StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class TaxonomyTest extends ExcamWebTestCase
+class TaxonomyTest extends StoreWebTestCase
 {
     /**
      * https://jira.accurateweb.ru/browse/EXCAM-176

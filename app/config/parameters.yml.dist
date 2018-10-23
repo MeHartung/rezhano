@@ -31,3 +31,8 @@ parameters:
 
     operator_email:    ~
     web_counters_enabled:   false
+
+    moysklad_username: admin@moysklad
+    moysklad_password: 123456
+    moysklad_organisation_id: 6d0c7ffe-7df4-11e8-9107-5048000d493a #Идентификатор организации в системе Мой склад
+    service_desc_email: operator@local #почта для отправки сообщений об ошибках синхронизации Мой склад

@@ -2,7 +2,9 @@
 
 namespace Accurateweb\SynchronizationBundle\Model\Schema\Base;
 
-class BaseSchema
+use Accurateweb\SynchronizationBundle\Model\Schema\SynchronizationSchemaInterface;
+
+class BaseSchema implements SynchronizationSchemaInterface
 {
 
   private $columns = null;

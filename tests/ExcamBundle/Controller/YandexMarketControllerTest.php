@@ -5,9 +5,9 @@
 
 namespace Tests\StoreBundle\Controller;
 
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class YandexMarketControllerTest extends ExcamWebTestCase
+class YandexMarketControllerTest extends StoreWebTestCase
 {
   /**
    * https://jira.accurateweb.ru/browse/EXCAM-229

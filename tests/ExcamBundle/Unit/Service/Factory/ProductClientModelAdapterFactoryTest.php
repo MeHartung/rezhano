@@ -2,9 +2,9 @@
 
 namespace Tests\StoreBundle\Unit\Service\Factory;
 
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class ProductClientModelAdapterFactoryTest extends ExcamWebTestCase
+class ProductClientModelAdapterFactoryTest extends StoreWebTestCase
 {
   /**
    * @dataProvider dataRolesPrices

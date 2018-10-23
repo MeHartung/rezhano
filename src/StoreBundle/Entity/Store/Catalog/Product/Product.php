@@ -294,6 +294,14 @@ class Product implements SluggableInterface, StockableInterface
    * @ORM\OneToOne(targetEntity="StoreBundle\Entity\Store\Catalog\Product\ProductRank", mappedBy="product", cascade={"persist"})
    */
   private $productRank;
+  
+  /**
+   * Внешний код товара в Моём Складе
+   *
+   * @var string
+   * @ORM\Column(type="string", unique=true)
+   */
+  private $externalCode;
 
   public function __construct()
   {
@@ -1119,5 +1127,21 @@ class Product implements SluggableInterface, StockableInterface
     }
 
     return $this->productRank;
+  }
+  
+  /**
+   * @return string
+   */
+  public function getExternalCode(): string
+  {
+    return $this->externalCode;
+  }
+  
+  /**
+   * @param string $externalCode
+   */
+  public function setExternalCode(string $externalCode): void
+  {
+    $this->externalCode = $externalCode;
   }
 }

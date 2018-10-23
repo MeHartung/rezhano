@@ -1,0 +1,24 @@
+services:
+  aw.synchronization.datasource_manager:
+    class: Accurateweb\SynchronizationBundle\Model\Datasource\DatasourceManager
+
+  aw.synchronization.datasource.ftp:
+    class: Accurateweb\SynchronizationBundle\Model\Datasource\FTPDataSource
+    arguments:
+      - { host: speedtest.tele2.net, username: anonymous, password: user@example.com }
+    tags:
+      - { name: 'aw.datasource' }
+
+  aw.synchronization.datasource.moy_sklad:
+    class: StoreBundle\Synchronization\MoySkladToCdek\Model\Datasource\MoySkladSource
+    arguments:
+      - {}
+      - ~
+      - "@doctrine.orm.default_entity_manager"
+      - '%moysklad_username%'
+      - '%moysklad_password%'
+      - '%kernel.root_dir%'
+      - '@event_dispatcher'
+      - '@accurateweb.slugifier.yandex'
+    tags:
+      - { name: 'aw.datasource' }

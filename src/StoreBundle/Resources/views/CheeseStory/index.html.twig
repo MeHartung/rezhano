@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if stories | length > 0 %}
+        <div>
+            {% for story in stories %}
+                <h1> {{ story.title }} </h1>
+                <div class="text"> {{ story.text | raw }} </div>
+                <img src=" {{ image_url(story) }}" />
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

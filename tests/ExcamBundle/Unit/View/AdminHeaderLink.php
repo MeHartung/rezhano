@@ -10,15 +10,15 @@ namespace StoreBundle\Unit\View;
 
 
 use StoreBundle\Entity\User\User;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
 /**
  * Class AdminHeaderLink
  * @package StoreBundle\Unit\View
- * https://jira.accurateweb.ru/browse/EXCAM-199
+ * https://jira.accurateweb.ru/browse/Store-199
  * Логика отображения лежит в twig шаблоне (исп. app.user)
  */
-class AdminHeaderLink extends ExcamWebTestCase
+class AdminHeaderLink extends StoreWebTestCase
 {
 
   public function setUp()

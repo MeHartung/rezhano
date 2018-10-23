@@ -2,10 +2,11 @@
 
 namespace Accurateweb\SynchronizationBundle\Model\Handler\Base;
 
+use Accurateweb\SynchronizationBundle\Model\Handler\HandlerInterface;
 use Accurateweb\SynchronizationBundle\Model\Schema\Base\BaseSchema;
 use Doctrine\DBAL\Connection;
 
-class BaseDataHandler
+class BaseDataHandler #implements HandlerInterface
 {
 
   protected $schema = null;
@@ -50,6 +51,7 @@ class BaseDataHandler
    */
   public function query($sql)
   {
+ 
     if ($this->getOption('debug_sql'))
     {
     //  $this->logger->info(sprintf('SQL Query: %s', $sql));

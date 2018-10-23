@@ -1,0 +1,13 @@
+services:
+    app.admin.cheese_story:
+      class: StoreBundle\Admin\Text\CheeseStoryAdmin
+      tags:
+        -
+          name: sonata.admin
+          manager_type: orm
+          group: text
+          label: Сырные заметки
+      arguments:
+        - null
+        - StoreBundle\Entity\Text\CheeseStory
+        - 'PixSortableBehaviorBundle:SortableAdmin'

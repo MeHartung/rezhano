@@ -27,5 +27,5 @@ Disallow: /*askquestion*
 Disallow: /*search*
 Disallow: /cart
 Allow: /component/content/article/
-Host: www.excam.ru
-Sitemap: http://www.excam.ru/sitemap.xml
+Host: www.Store.ru
+Sitemap: http://www.Store.ru/sitemap.xml

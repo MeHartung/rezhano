@@ -2,7 +2,7 @@
 
 namespace Tests\StoreBundle\Controller\Order;
 
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamPickup;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStorePickup;
 use AccurateCommerce\Shipping\Method\Rupost\ShippingMethodRuPost;
 use StoreBundle\Controller\Order\CheckoutController;
 use StoreBundle\DataFixtures\OrderFixtures;
@@ -10,12 +10,12 @@ use StoreBundle\DataFixtures\Setting\SettingFixtures;
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Payment\Method\PaymentMethod;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
 /**
  * @see CheckoutController
  */
-class CheckoutControllerTest extends ExcamWebTestCase
+class CheckoutControllerTest extends StoreWebTestCase
 {
   const ALFA_TYPE_GUID = '536591a3-7641-4afe-86b8-8fc5572fce58';
   const TINKOFF_TYPE_GUID = '2fe5f594-ddb8-4542-acda-e7b273df8e66';
@@ -64,7 +64,7 @@ class CheckoutControllerTest extends ExcamWebTestCase
         'shipping_post_code' => '620000',
         'shipping_address' => 'ул. Ленина д.1',
         'tos_agreement' => '1',
-        'shipping_method_id' => ShippingMethodExcamPickup::UID,
+        'shipping_method_id' => ShippingMethodStorePickup::UID,
         'payment_method' => $this->getByReference('payment-cash')->getId(),
         '_token' => $csrf
       ]
@@ -177,7 +177,7 @@ class CheckoutControllerTest extends ExcamWebTestCase
         'shipping_post_code' => '620000',
         'shipping_address' => 'ул. Ленина д.1',
         'tos_agreement' => '1',
-        'shipping_method_id' => ShippingMethodExcamPickup::UID,
+        'shipping_method_id' => ShippingMethodStorePickup::UID,
         'payment_method' => $this->getByReference('payment-alfa')->getId(),
         '_token' => $csrf
       ]
@@ -234,7 +234,7 @@ class CheckoutControllerTest extends ExcamWebTestCase
         'shipping_post_code' => '620000',
         'shipping_address' => 'ул. Ленина д.1',
         'tos_agreement' => '1',
-        'shipping_method_id' => ShippingMethodExcamPickup::UID,
+        'shipping_method_id' => ShippingMethodStorePickup::UID,
         'payment_method' => $this->getByReference('payment-tinkoff')->getId(),
         '_token' => $csrf
       ]

@@ -55,7 +55,7 @@ class EntityCollection implements \Iterator
     $sql = sprintf('INSERT INTO %s (`%s`) VALUES' . PHP_EOL, $this->schema->getTempTableName(), implode('`, `', $columnNames));
     $sqlParts = array();
     foreach ($this->entities as $entity)
-    {
+    {#var_dump($entity);die;
       $processedValues = array();
       $values = $entity->getValues();
       foreach ($columnNames as $columnName)

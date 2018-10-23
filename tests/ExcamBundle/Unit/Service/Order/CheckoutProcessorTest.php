@@ -5,12 +5,12 @@ namespace StoreBundle\Unit\Service\Order;
 use AccurateCommerce\Component\Checkout\Processor\CheckoutProcessor;
 use StoreBundle\DataFixtures\OrderFixtures;
 use StoreBundle\Entity\Store\Order\Order;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
 /**
  * @see CheckoutProcessor
  */
-class CheckoutProcessorTest extends ExcamWebTestCase
+class CheckoutProcessorTest extends StoreWebTestCase
 {
   protected function setUp ()
   {

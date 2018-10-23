@@ -2,7 +2,9 @@
 
 namespace Accurateweb\SynchronizationBundle\Model\Datasource\Base;
 
-abstract class BaseDataSource
+use Accurateweb\SynchronizationBundle\Model\Datasource\DatasourceInterface;
+
+abstract class BaseDataSource implements  DatasourceInterface
 {
   private $options = array();
   

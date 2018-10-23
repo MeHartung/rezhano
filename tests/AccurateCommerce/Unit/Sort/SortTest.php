@@ -11,9 +11,9 @@ namespace AccurateCommerce\Sort;
 
 use AccurateCommerce\Model\Taxonomy\StaticTaxon;
 use AccurateCommerce\Store\Catalog\Filter\ProductFilter;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class SortTest extends ExcamWebTestCase
+class SortTest extends StoreWebTestCase
 {
   public function setUp()
   {

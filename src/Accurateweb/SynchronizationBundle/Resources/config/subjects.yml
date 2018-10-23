@@ -1,0 +1,17 @@
+services:
+  aw.synchronization.subject_manager:
+    class: Accurateweb\SynchronizationBundle\Model\Subject\SubjectManager
+
+  aw.synchronization.subject.moy_sklad:
+    class: Accurateweb\SynchronizationBundle\Model\Subject\MoySkladSubject
+    arguments:
+      - '@aw.synchronization.parser.json_parser'
+      - '@aw.synchronization.schema.common'
+      - '@aw.synchronization.entity_manager'
+      - '@aw.synchronization.datasource.moy_sklad'
+      - '@aw.synchronization.handler.insert_moy_sklad'
+      - '@aw.synchronization.handler.transfer_moy_sklad'
+      #- '@aw.synchronization.configuration.moy_sklad'
+      - 'moy_sklad'
+    tags:
+      - { name: 'aw.synchronization.subject' }

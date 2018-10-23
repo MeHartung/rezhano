@@ -4,9 +4,9 @@ namespace Accurateweb\SynchronizationBundle\Model\Handler;
 
 use Accurateweb\SynchronizationBundle\Model\Handler\Base\BaseDataHandler;
 
-class InsertHandler extends BaseDataHandler
+class InsertHandler extends BaseDataHandler #implements InsertHandlerInterface
 {
-  function insert($sql)
+  function insert(string $sql)
   {
     $con = $this->getConnection();
     $con->beginTransaction();

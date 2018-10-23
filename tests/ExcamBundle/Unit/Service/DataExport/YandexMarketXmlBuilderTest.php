@@ -2,14 +2,14 @@
 
 namespace Tests\StoreBundle\Service\DataExport;
 
-use AccurateCommerce\Shipping\Method\Excam\ShippingMethodExcamFree;
+use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreFree;
 use AccurateCommerce\Shipping\Shipment\Address;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 use StoreBundle\DataExport\YandexMarketXmlBuilder;
 use StoreBundle\Entity\Store\Order\Order;
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
-class YandexMarketXmlBuilderTest extends ExcamWebTestCase
+class YandexMarketXmlBuilderTest extends StoreWebTestCase
 {
   /** @var YandexMarketXmlBuilder */
   private $yandex_builder;

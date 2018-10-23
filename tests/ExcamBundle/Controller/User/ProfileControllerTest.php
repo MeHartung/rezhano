@@ -2,12 +2,12 @@
 
 namespace Tests\StoreBundle\Controller\User;
 
-use Tests\StoreBundle\ExcamWebTestCase;
+use Tests\StoreBundle\StoreWebTestCase;
 
 /**
  * @see \FOS\UserBundle\Controller\ProfileController
  */
-class ProfileControllerTest extends ExcamWebTestCase
+class ProfileControllerTest extends StoreWebTestCase
 {
   protected function setUp ()
   {
