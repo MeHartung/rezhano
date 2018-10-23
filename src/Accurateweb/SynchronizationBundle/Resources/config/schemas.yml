@@ -2,6 +2,14 @@ services:
   aw.synchronization.schema_manager:
     class: Accurateweb\SynchronizationBundle\Model\Schema\SynchronizationSchemaManager
 
+  aw.synchronization.schema.moy_sklad.product_folders:
+    class: Accurateweb\SynchronizationBundle\Model\Schema\CommonSchema
+    arguments:
+      - { tableName: moy_sklad_catalog, columns: {
+                                         guid: { type: VARCHAR, size: 36 },
+                                         parent_guid: { type: VARCHAR, size: 36 },
+                                         name: { type: VARCHAR, size: 255 }
+                                        }}
   aw.synchronization.schema.common:
     class: Accurateweb\SynchronizationBundle\Model\Schema\CommonSchema
     arguments:
@@ -9,6 +17,8 @@ services:
                                           external_code: { type: VARCHAR, size: 255 },
                                           name: { type: VARCHAR, size: 1000},
                                           price: { type: DECIMAL, size: 10},
+                                          wholesale_price: { type: DECIMAL, size: 10},
+                                          purchase_price: { type: DECIMAL, size: 10},
                                           sku: { type: VARCHAR, size: 1000, mapped_with: sku },
                                           slug: { type: VARCHAR, size: 1000 },
                                           description: { type: longtext },
@@ -23,8 +33,11 @@ services:
                                           rank: { type: DOUBLE }
                                           }}
 
-                                           #weight` double DEFAULT NULL,1
-                                           #length` double DEFAULT NULL,
-                                           #width` double DEFAULT NULL,
-                                           #height` double DEFAULT NULL,
-                                           #volume` double DEFAULT NULL,
+  aw.synchronization.schema.moy_sklad.product_images:
+    class: Accurateweb\SynchronizationBundle\Model\Schema\CommonSchema
+    arguments:
+      - { tableName: product_images, columns: {
+                                          product_id: { type: INT, size: 11 },
+                                          filename: { type: VARCHAR, size: 1000},
+                                          position: { type: INT, size: 10 }
+                                          }}

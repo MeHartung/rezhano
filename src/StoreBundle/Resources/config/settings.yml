@@ -1,0 +1,62 @@
+services:
+    store.setting.abandoned_cart:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - abandoned_cart_age
+       - Возраст корзины в днях, при котором она считается брошенной.
+       - 30
+      tags:
+        - { name: aw.setting }
+
+    store.setting.default_order_status:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+       - '@aw.settings.storage'
+       - '@store.order_status.repository'
+       - default_order_status
+       - Статус по умолчанию для нового заказа.
+      tags:
+        - { name: aw.setting }
+
+    store.setting.default_order_payment_status:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+       - '@aw.settings.storage'
+       - '@store.order_payment_status.repository'
+       - default_order_payment_status
+       - Статус оплаты по умолчанию для нового заказа.
+      tags:
+        - { name: aw.setting }
+
+    store.setting.ios_link:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'ios_link'
+        - 'Ссылка на приложение iOS'
+        - ~
+      tags:
+        - { name: aw.setting }
+
+    store.setting.android_link:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'android_link'
+        - 'Ссылка на приложение Android'
+        - ~
+      tags:
+        - { name: aw.setting }
+
+    #store.setting.synchronization.moy_sklad.products.folder:
+    #  class: Accurateweb\SettingBundle\Model\Setting\JsonArraySetting
+    #  arguments:
+    #    - '@aw.settings.storage'
+    #    - 'moy_sklad.products.folders'
+    #    - 'Папки, из которых будут извелкаться товары при синхронизации'
+    #    - { 0: 'Сыр в КГ' }
+    #  tags:
+    #    - { name: aw.setting }

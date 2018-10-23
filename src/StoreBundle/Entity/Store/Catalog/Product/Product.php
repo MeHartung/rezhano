@@ -302,6 +302,12 @@ class Product implements SluggableInterface, StockableInterface
    * @ORM\Column(type="string", unique=true)
    */
   private $externalCode;
+  
+  /**
+   * @var float
+   * @ORM\Column(type="decimal", scale=2)
+   */
+  private $wholesalePrice;
 
   public function __construct()
   {
@@ -1144,4 +1150,28 @@ class Product implements SluggableInterface, StockableInterface
   {
     $this->externalCode = $externalCode;
   }
+  
+  /**
+   * @return float
+   */
+  public function getWholesalePrice()
+  {
+    return $this->wholesalePrice;
+  }
+  
+  /**
+   * @param float $wholesalePrice
+   */
+  public function setWholesalePrice($wholesalePrice)
+  {
+    if (null === $wholesalePrice)
+    {
+      $this->wholesalePrice = null;
+    }
+    else
+    {
+      $this->wholesalePrice = (float)$wholesalePrice;
+    }
+  }
+  
 }

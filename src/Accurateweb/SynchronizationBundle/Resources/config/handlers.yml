@@ -13,7 +13,7 @@ services:
       - { name: 'aw.synchronization.handler.transfer' }
 
   aw.synchronization.handler.transfer_moy_sklad:
-    class: StoreBundle\Synchronization\MoySkladToCdek\Model\Handler\TransferHandler
+    class: StoreBundle\Synchronization\FromMoySklad\Model\Handler\TransferHandler
     arguments:
       - "@doctrine.dbal.default_connection"
       - "@aw.synchronization.schema.common"
@@ -22,11 +22,51 @@ services:
     tags:
       - { name: 'aw.synchronization.handler.transfer' }
 
+  aw.synchronization.handler.insert_moy_sklad.product.folders:
+    class: \Accurateweb\SynchronizationBundle\Model\Handler\InsertHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@aw.synchronization.schema.moy_sklad.product_folders"
+      - "@event_dispatcher"
+      - {}
+    tags:
+      - { name: 'aw.synchronization.handler.insert' }
+
+  aw.synchronization.handler.transfer_moy_sklad.product.folders:
+    class: StoreBundle\Synchronization\FromMoySklad\Model\Handler\TransferHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@aw.synchronization.schema.moy_sklad.product_folders"
+      - "@event_dispatcher"
+      - { key: guid }
+    tags:
+      - { name: 'aw.synchronization.handler.transfer' }
+
   aw.synchronization.handler.insert_moy_sklad:
     class: \Accurateweb\SynchronizationBundle\Model\Handler\InsertHandler
     arguments:
       - "@doctrine.dbal.default_connection"
       - "@aw.synchronization.schema.common"
+      - "@event_dispatcher"
+      - {}
+    tags:
+      - { name: 'aw.synchronization.handler.insert' }
+
+  aw.synchronization.handler.transfer_moy_sklad.product_images:
+    class: StoreBundle\Synchronization\FromMoySklad\Model\Handler\TransferHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@aw.synchronization.schema.moy_sklad.product_images"
+      - "@event_dispatcher"
+      - { key: filename }
+    tags:
+      - { name: 'aw.synchronization.handler.transfer' }
+
+  aw.synchronization.handler.insert_moy_sklad.product_images:
+    class: \Accurateweb\SynchronizationBundle\Model\Handler\InsertHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@aw.synchronization.schema.moy_sklad.product_images"
       - "@event_dispatcher"
       - {}
     tags:

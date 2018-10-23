@@ -41,6 +41,9 @@ class ProductAdmin extends AbstractAdmin
       ->add('oldPrice', 'text', [
         'editable' => true,
       ])
+      ->add('wholesalePrice', 'text', [
+        'editable' => true,
+      ])
 //      ->add('hit')
 //      ->add('sale')
 //      ->add('novice')
