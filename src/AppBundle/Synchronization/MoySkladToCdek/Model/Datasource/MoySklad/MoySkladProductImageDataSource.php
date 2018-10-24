@@ -211,17 +211,16 @@ class MoySkladProductImageDataSource extends BaseDataSource
     }*/
     
     $mkDirResult = TRUE;
-    
-    if (is_dir($path) === false)
+    $realpath = realpath($path);
+    if (is_dir($realpath) === false)
     {
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent('Try create folder ' . $path . '...')
+        new GenericEvent('Try create folder ' . $realpath . '...')
       );
   
-      $mkDirResult = $this->createDir($path);
+      $mkDirResult = $this->createDir($realpath);
     }
-  
     
     return $mkDirResult;
   }
