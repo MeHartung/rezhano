@@ -61,7 +61,8 @@ class FullSynchronizationEngine extends BaseSynchronizationEngine
   
     if($entityCollections->count() < 1)
     {
-      throw new \Exception('Нет объектов для синхронизации - в Моём складе не произошло изменений. ' . __DIR__ . '\\'.__CLASS__ . ':' . __LINE__);
+     return'Нет объектов для синхронизации - в Моём складе не произошло изменений. ' . __DIR__ . '\\'.__CLASS__ . ':' . __LINE__;
+      #throw new \Exception('Нет объектов для синхронизации - в Моём складе не произошло изменений. ' . __DIR__ . '\\'.__CLASS__ . ':' . __LINE__);
     }
     if (!is_array($entityCollections))
     {
@@ -80,7 +81,7 @@ class FullSynchronizationEngine extends BaseSynchronizationEngine
         $entityCollection->setSubjectName($collectionSubject);
 
         $sqlFileName = $this->getSqlFilename($collectionSubject);
-
+    
         if (file_exists($sqlFileName))
         {
           file_put_contents($sqlFileName, '');

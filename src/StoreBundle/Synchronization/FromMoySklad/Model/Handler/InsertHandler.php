@@ -1,6 +1,6 @@
 <?php
 
-namespace StoreBundle\Synchronization\MoySkladToCdek\Model\Handler;
+namespace StoreBundle\Synchronization\FromMoySklad\Model\Handler;
 
 use Accurateweb\SynchronizationBundle\Model\Handler\Base\BaseDataHandler;
 

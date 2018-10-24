@@ -2,21 +2,26 @@
 
 namespace Accurateweb\SynchronizationBundle\Model\Scenario;
 
+use Accurateweb\SynchronizationBundle\Model\Subject\SynchronizationSubjectInterface;
 use Accurateweb\SynchronizationBundle\Model\SynchronizationScenario;
 #use StoreBundle\Entity\Event\OrderEvent;
 #use StoreBundle\EventListener\Synchronization\MoySklad\MoySkladSyncOrderEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
+use StoreBundle\Entity\Store\Catalog\Product\ProductImage;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class MoySkladScenario extends SynchronizationScenario
 {
-  private $em, $dumpResult = true, $logger;
+  private $em, $dumpResult = true, $logger, $kernelRootDir;
   protected $dispatcher;
   
   
   public function __construct(?EventDispatcherInterface $dispatcher = null, string $name = '', $subjects,
-                              EntityManagerInterface $em, LoggerInterface $logger)
+                              EntityManagerInterface $em, LoggerInterface $logger, $kernelRootDir)
   {
     parent::__construct($dispatcher, $name);
     
@@ -28,6 +33,7 @@ class MoySkladScenario extends SynchronizationScenario
     $this->dispatcher = $dispatcher;
     $this->em = $em;
     $this->logger = $logger;
+    $this->kernelRootDir = $kernelRootDir;
   }
   
   public function preExecute()
@@ -71,22 +77,53 @@ class MoySkladScenario extends SynchronizationScenario
   
   public function postExecute()
   {
-  /*  $orderEvents = $this->em->getRepository(OrderEvent::class)->findBy(['updatedAt' => null]);
+    $isUseImageSubject = false;
     
-    foreach ($orderEvents as $event)
+    /**
+     * Если была синхронизация картинок
+     * @var SynchronizationSubjectInterface $subject
+     */
+    foreach ($this->subjects as $subject)
     {
-      try
+      if($subject->getName() == 'moy_sklad_image')
       {
-        $data = json_decode($event->getData(), true);
-        $this->dispatcher->dispatch($event->getEventName(), new MoySkladSyncOrderEvent($data));
-        $event->setUpdatedAt(new \DateTime());
-        
-        $this->em->persist($event);
-        $this->em->flush();
-      }catch (\Exception $exception)
-      {
-        $this->logger->error($exception->getMessage() . $exception->getTraceAsString());
+        $isUseImageSubject = true;
+        break;
       }
-    }*/
+    }
+    
+    if($isUseImageSubject === true)
+    {
+      $this->dispatcher->dispatch(
+        'aw.sync.order_event.message',
+        new GenericEvent("Try create ProductImage thumbnails, use media:thumbnails:generate command")
+      );
+      
+      # ибо консоль в bin
+      $kernel = $this->kernelRootDir . '\\..\\bin';
+      $className = ProductImage::class;
+      $process = new Process("php $kernel/console media:thumbnails:generate $className");
+      $process->run();
+
+// executes after the command finishes
+      if (!$process->isSuccessful())
+      {
+        $errorText = $process->getErrorOutput();
+        $errorCode = $process->getExitCode();
+        $this->dispatcher->dispatch(
+          'aw.sync.order_event.message',
+          new GenericEvent("Can't create thumbnail. Error code: $errorCode. Text: \n $errorText")
+        );
+        
+        $this->logger->error("Can't create thumbnail. Error code: $errorCode. Text: \n $errorText");
+      }
+      
+      $this->dispatcher->dispatch(
+        'aw.sync.order_event.message',
+        new GenericEvent("Thumbnails generated!")
+      );
+      
+    }
+   
   }
 }

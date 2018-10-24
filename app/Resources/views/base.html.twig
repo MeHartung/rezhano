@@ -38,144 +38,69 @@
 {% block body %}
   <div class="wrapper">
     {% if app.user is not null %}
-      <script>
-        (function ($) {
-          $(function () {
-            $('.show-admin-controls').on('click', function () {
-              var $adminControl = $(this).parent().find('.admin-controls');
-              $adminControl.addClass('deployed')
-            });
-            $('.hide-admin-controls').on('click', function () {
-              var $adminControl = $(this).parent();
-              $adminControl.removeClass('deployed')
-            })
-          })
-        })(jQuery)
-      </script>
-
-    {% if "ROLE_ADMIN" in app.user.roles %}
-      <div class="control-panel">
-        <a class="show-admin-controls" title="Показать панель администрирования"></a>
-
-        <div class="admin-controls">
-          <a class="hide-admin-controls" title="Скрыть панель администрирования"></a>
-          <a class="control-panel__link" href="{{ path('sonata_admin_dashboard') }}">
-            Перейти в раздел администрирования
-          </a>
-          {% if app.request.get('_route') %}
-            <a class="control-panel__link"
-               href="{{ path(app.request.get('_route'),app.request.get('_route_params',{})|merge({'hotspots':not app.request.get('hotspots')})) }}">
-              {% if app.request.get('hotspots') %}Скрыть{% else %}Показать{% endif %} клик-зоны
-            </a>
-          {% endif %}
-        </div>
-      </div>
-    {% endif %}
+      {% include "@Store/Common/admin_control_panel.html.twig" %}
     {% endif %}
     <header class="header">
       {% block header %}
-        <div class="container">
-          <div class="logo-wrap">
-            <a class="gpn-logo" title="Газпромнефть"
-               {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
-            <span class="text-logo">Реализация <br>имущества Группы <br>«Газпром нефть»</span>
-          </div>
-          <span class="header-number">{{ hotspot('header_phone_number', '8 (800) 700-31-52') }}</span>
-          <div class="header-panel">
-            {% if app.user %}
-              <a class="header-panel__icon header-panel__message {% if app.user.newNotifications|length > 0 %}new-message{% endif %}" href="{{ path('fos_user_notice_show') }}">
-                <span class="mail-icon {% if app.user.newNotifications|length > 0 %}mail-icon_new-message{% endif %}"></span>{{ app.user.newNotifications|length }}
-              </a>
+        <a class="header-logo" title="Режано"
+           {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
+            <div class="header-menu">
+                <a href="#" class="header-menu__item">О нас</a>
+                <a href="#" class="header-menu__item">Магазин</a>
+                <a href="#" class="header-menu__item">Подарки</a>
+                <a href="#" class="header-menu__item">Экскурсии</a>
+                <a href="#" class="header-menu__item">Оптом</a>
+                <a href="#" class="header-menu__item">Контакты</a>
+            </div>
 
-              <div class="notice-popup">
-                <div class="notice-popup__wrap">
-                  <span class="notice-popup__title">Уведомления</span>
-                  <div class="notice-popup__items">
-                    {% for notice in app.user.notifications(3) %}
-                      {% set icon = 'admin' %}
-                      {% if notice.type == 'auction' %}
-                        {% set icon = 'auction' %}
-                      {% elseif notice.type == 'info' %}
-                        {% set icon = 'document' %}
-                      {% elseif notice.type == 'tech' %}
-                        {% set icon = 'admin' %}
-                      {% elseif notice.type == 'order' %}
-                        {% set icon = 'order' %}
-                      {% endif %}
-
-                      <a href="{{ path('fos_user_notice_show') }}" class="notice-popup__item {% if not notice.read %}new-notice{% endif %}">
-                        <div class="notice-popup__icon">
-                          <span class="icon-notice icon-notice_{{ icon }}"></span>
-                        </div>
-                        <span class="notice-popup__item-date">{{ notice.createdAt|date('d.m.Y H:i') }}</span>
-                        <span class="notice-popup__item-text">{{ notice.title }}</span>
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
-                <a href="{{ path('fos_user_notice_show') }}" class="notice-popup__button-all">Все уведомления</a>
-              </div>
-
-              {#<div class="notice-popup">#}
-                {#<div class="notice-popup__wrap">#}
-                  {#<span class="notice-popup__title">Уведомления</span>#}
-                  {#<div class="notice-popup__items">#}
-                    {#<a href="{{ path('fos_user_notice_show') }}" class="notice-popup__item new-notice">#}
-                      {#<div class="notice-popup__icon">#}
-                        {#<span class="icon-notice icon-notice_auction"></span>#}
-                      {#</div>#}
-                      {#<span class="notice-popup__item-date">25.08.2018 14:00</span>#}
-                      {#<span class="notice-popup__item-text">Ваша ставка по аукциону №213 была перебита на 500Р</span>#}
-                    {#</a>#}
-                  {#</div>#}
-                {#</div>#}
-                {#<a href="{{ path('fos_user_notice_show') }}" class="notice-popup__button-all">Все уведомления</a>#}
-              {#</div>#}
-
-              <a class="header-panel__icon header-panel__sign" href="{{ path('fos_user_profile_show') }}">
-                <span class="user-icon"></span>{% if app.user.fio %}{{ app.user.fio }}{% else %}{{ app.user.email }}{% endif %}
-              </a>
-              <a href="{{ path('favorites') }}" class="header-panel__icon header-panel__favorites"><span
-                        class="star-icon"></span>{{ app.user.favoriteProductList.products|length }}</a>
-              <a href="{{ path('fos_user_security_logout') }}" class="header-panel__logout"><span
-                        class="logout-icon"></span>Выйти</a>
-            {% else %}
-              <a href="{{ path('fos_user_security_login') }}" class="header-panel__icon header-panel__sign">
-                <span class="user-icon"></span>Войти
-              </a>
-            {% endif %}
-          </div>
-
-        </div>
+            <div class="header-controls">
+                <a href="" class="header-controls__item header-controls__cabinet">
+        <span class="header-controls__notice">
+          <span class="notice-count">1</span>
+        </span>
+                </a>
+            <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
+                {% if cart.orderItems|length %}
+                <span class="header-controls__notice">
+                  <span class="notice-count">{{ cart.orderItems|length }}</span>
+                </span>
+                {% endif %}
+                </a>
+            </div>
+          {#<a class="header-panel__icon header-panel__sign" href="{{ path('fos_user_profile_show') }}">#}
+            {#<span class="user-icon"></span>{% if app.user.fio %}{{ app.user.fio }}{% else %}{{ app.user.email }}{% endif %}#}
+          {#</a>#}
+          {#<a href="{{ path('favorites') }}" class="header-panel__icon header-panel__favorites"><span#}
+                    {#class="star-icon"></span>{{ app.user.favoriteProductList.products|length }}</a>#}
+          {#<a href="{{ path('fos_user_security_logout') }}" class="header-panel__logout"><span#}
+                    {#class="logout-icon"></span>Выйти</a>#}
+        {#{% else %}#}
+          {#<a href="{{ path('fos_user_security_login') }}" class="header-panel__icon header-panel__sign">#}
+            {#<span class="user-icon"></span>Войти#}
+          {#</a>#}
+        {#{% endif %}#}
         {% block menu %}
           {% block headerMenu %}
-            <div class="header-menu">
-              <div class="container">
-                <div class="header-menu__wrap">
-                  <div class="menu-container">
+            {#<div class="header-menu">#}
+              {#<div class="container">#}
+                {#<div class="header-menu__wrap">#}
+                  {#<div class="menu-container">#}
 
-                    <button class="open-menu" id="openMenu">
-                      <span>Каталог товаров</span>
-                      <span class="burger-icon"></span>
-                    </button>
+                    {#<button class="open-menu" id="openMenu">#}
+                      {#<span>Каталог товаров</span>#}
+                      {#<span class="burger-icon"></span>#}
+                    {#</button>#}
 
-                    {{ render(controller('StoreBundle:Common:catalogMenu')) }}
-                  </div>
+                    {#{{ render(controller('StoreBundle:Common:catalogMenu')) }}#}
+                  {#</div>#}
 
-                  <form class="header-menu__input" action="{{ url('catalog_search') }}">
-                    <input type="text" placeholder="Найти в каталоге товаров" name="q" autocomplete="off">
-                    <button class="button-search" type="submit"></button>
-                  </form>
-
-                  <a href="{{ url('cart_index') }}" class="header-menu__info">
-                    <span class="header-menu__info-amount-item"><span
-                              class="card-icon"></span>{{ cart.orderItems|length }}</span>
-                    <span class="header-menu__info-amount-payment">{{ cart.total|price }}</span>
-                  </a>
-
-                </div>
-              </div>
-            </div>
+                  {#<form class="header-menu__input" action="{{ url('catalog_search') }}">#}
+                    {#<input type="text" placeholder="Найти в каталоге товаров" name="q" autocomplete="off">#}
+                    {#<button class="button-search" type="submit"></button>#}
+                  {#</form>#}
+                {#</div>#}
+              {#</div>#}
+            {#</div>#}
           {% endblock %}
         {% endblock menu %}
       {% endblock header %}
@@ -188,24 +113,89 @@
       {% endblock main %}
     </main>
   </div>
-  <footer class="footer">
-    {% block footer %}
-      <div class="container container_no-padding">
-        {{ render(controller('StoreBundle:Menu/MenuItem:footerMenu')) }}
-      </div>
+  {#<footer class="footer">#}
+    {#{% block footer %}#}
+      {#<div class="container container_no-padding">#}
+        {#{{ render(controller('StoreBundle:Menu/MenuItem:footerMenu')) }}#}
+      {#</div>#}
 
-      <div class="container container_no-padding">
-        <div class="footer-aside">
-          <div class="footer-aside__copyright">© ПАО «Газпром нефть», 2018</div>
-          <div class="footer-aside__contacts">
-            <span class="contact-number"><span class="phone">{{ hotspot('footer_phone_number-first', '8 (800) 700-31-52') }}</span><span class="phone">{{ hotspot('footer_phone_number-second', '8 (812) 363-31-52') }}</span></span>
-            <span class="contact-aside">Круглосуточная служба поддержки</span>
-          </div>
-          <a href="{{ path('customer_question') }}" class="footer-aside__question"><span class="mail-icon"></span><span>Задать вопрос</span></a>
+      {#<div class="container container_no-padding">#}
+        {#<div class="footer-aside">#}
+          {#<div class="footer-aside__copyright">© ПАО «Газпром нефть», 2018</div>#}
+          {#<div class="footer-aside__contacts">#}
+            {#<span class="contact-number"><span class="phone">{{ hotspot('footer_phone_number-first', '8 (800) 700-31-52') }}</span><span class="phone">{{ hotspot('footer_phone_number-second', '8 (812) 363-31-52') }}</span></span>#}
+            {#<span class="contact-aside">Круглосуточная служба поддержки</span>#}
+          {#</div>#}
+          {#<a href="{{ path('customer_question') }}" class="footer-aside__question"><span class="mail-icon"></span><span>Задать вопрос</span></a>#}
+        {#</div>#}
+      {#</div>#}
+    {#{% endblock footer %}#}
+  {#</footer>#}
+    <footer>
+        <div class="container">
+            <a href="#" class="header-logo"></a>
+            <div class="footer-wrap">
+                <div class="footer-contacts">
+                    <div class="contact-item">+7 (343) 207-76-66
+                        <span class="contact-item-separator">/</span>
+                        заказ сыров
+                    </div>
+                    <div class="contact-item">+7 (343) 207-76-66
+                        <span class="contact-item-separator">/</span>
+                        сотрудничество
+                    </div>
+                    <div class="contact-item">+7 (343) 207-76-66
+                        <span class="contact-item-separator">/</span>
+                        экскурсии
+                    </div>
+                    <div class="contact-item">
+                        info@rezhano.ru
+                    </div>
+
+                    <div class="footer-social">
+                        <a href="" class="footer-social__item footer-social__facebook"></a>
+                        <a href="" class="footer-social__item footer-social__vkontakte"></a>
+                        <a href="" class="footer-social__item footer-social__instagram"></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    {{ render(controller('StoreBundle:Menu/MenuItem:footerMenu')) }}
+                    {#<a href="" class="footer-links__item">О нас</a>#}
+                    {#<a href="" class="footer-links__item">Продукция</a>#}
+                    {#<a href="" class="footer-links__item">Подарки</a>#}
+                    {#<a href="" class="footer-links__item">Экскурсии</a>#}
+                    {#<a href="" class="footer-links__item">Оптом</a>#}
+                    {#<a href="" class="footer-links__item">Контакты</a>#}
+                </div>
+
+                <div class="footer-maps">
+                    <div class="footer-maps__item">
+                        Сырная лавка в Екатеринбурге
+                        <a href="" class="footer-maps__link">ул. Красноармейская, 68 (с 10:00 до 21:00)</a>
+                    </div>
+
+                    <div class="footer-maps__item">
+                        Экскурсии и продажа сыра в городе Реж
+                        <a href="" class="footer-maps__link">ул. Олега Кошевого, 16</a>
+                    </div>
+
+                    <a href="#" class="button">
+                        <span>задать вопрос</span>
+                    </a>
+                </div>
+
+                <div class="footer-aside">
+                    <div class="footer-aside__copyright">© 2015–2018 Сыроварня «Режано»</div>
+
+                    <a href="" class="footer-aside__link link_frukt">Дизайн сайта</a>
+                    <a href="https://accurateweb.ru" class="footer-aside__link link_accurateweb" target="_blank">Разработка
+                        <span>ACCURATEWEB</span></a>
+                </div>
+
+            </div>
         </div>
-      </div>
-    {% endblock footer %}
-  </footer>
+    </footer>
 {% endblock body %}
 
 {% block javascripts %}

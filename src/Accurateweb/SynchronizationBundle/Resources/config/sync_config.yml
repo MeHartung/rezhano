@@ -2,15 +2,41 @@ services:
   aw.synchronization.configuration_manager:
     class: Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationConfigurationManager
 
+  aw.synchronization.configuration.moy_sklad.products.folders:
+    class: Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration
+    arguments:
+      - '@event_dispatcher'
+      - '@doctrine.dbal.default_connection'
+   #   - '@aw.synchronization.sync.moy_sklad'
+      - '@aw.synchronization.subject.moy_sklad.products_folders'
+      - '@aw.synchronization.datasource.moy_sklad.products.folders'
+      - '%kernel.root_dir%'
+      - 'moy_sklad_folder'
+    tags:
+      - { name: 'aw.synchronization.config' }
+
   aw.synchronization.configuration.moy_sklad:
     class: Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration
     arguments:
       - '@event_dispatcher'
       - '@doctrine.dbal.default_connection'
    #   - '@aw.synchronization.sync.moy_sklad'
-      - '@aw.synchronization.subject.moy_sklad'
+      - '@aw.synchronization.subject.moy_sklad.products'
       - '@aw.synchronization.datasource.moy_sklad'
       - '%kernel.root_dir%'
       - 'moy_sklad'
+    tags:
+      - { name: 'aw.synchronization.config' }
+
+  aw.synchronization.configuration.moy_sklad.product.images:
+    class: Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration
+    arguments:
+      - '@event_dispatcher'
+      - '@doctrine.dbal.default_connection'
+   #   - '@aw.synchronization.sync.moy_sklad'
+      - '@aw.synchronization.subject.moy_sklad.products.images'
+      - '@aw.synchronization.datasource.moy_sklad.products.image'
+      - '%kernel.root_dir%'
+      - 'moy_sklad_image'
     tags:
       - { name: 'aw.synchronization.config' }

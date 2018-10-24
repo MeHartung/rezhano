@@ -2,7 +2,21 @@ services:
   aw.synchronization.subject_manager:
     class: Accurateweb\SynchronizationBundle\Model\Subject\SubjectManager
 
-  aw.synchronization.subject.moy_sklad:
+  aw.synchronization.subject.moy_sklad.products_folders:
+    class: Accurateweb\SynchronizationBundle\Model\Subject\MoySkladSubject
+    arguments:
+      - '@aw.synchronization.parser.json_parser.product_folders'
+      - '@aw.synchronization.schema.moy_sklad.product_folders'
+      - '@aw.synchronization.entity_manager'
+      - '@aw.synchronization.datasource.moy_sklad.products.folders'
+      - '@aw.synchronization.handler.insert_moy_sklad.product.folders'
+      - '@aw.synchronization.handler.transfer_moy_sklad.product.folders'
+      #- '@aw.synchronization.configuration.moy_sklad'
+      - 'moy_sklad_folder'
+    tags:
+      - { name: 'aw.synchronization.subject' }
+
+  aw.synchronization.subject.moy_sklad.products:
     class: Accurateweb\SynchronizationBundle\Model\Subject\MoySkladSubject
     arguments:
       - '@aw.synchronization.parser.json_parser'
@@ -13,5 +27,19 @@ services:
       - '@aw.synchronization.handler.transfer_moy_sklad'
       #- '@aw.synchronization.configuration.moy_sklad'
       - 'moy_sklad'
+    tags:
+      - { name: 'aw.synchronization.subject' }
+
+  aw.synchronization.subject.moy_sklad.products.images:
+    class: Accurateweb\SynchronizationBundle\Model\Subject\MoySkladImageSubject
+    arguments:
+      - '@aw.synchronization.parser.json_parser.product_images'
+      - '@aw.synchronization.schema.moy_sklad.product_images' # not
+      - '@aw.synchronization.entity_manager'
+      - '@aw.synchronization.datasource.moy_sklad.products.image'
+      - '@aw.synchronization.handler.insert_moy_sklad.product_images'
+      - '@aw.synchronization.handler.transfer_moy_sklad.product_images'
+      #- '@aw.synchronization.configuration.moy_sklad'
+      - 'moy_sklad_image'
     tags:
       - { name: 'aw.synchronization.subject' }
