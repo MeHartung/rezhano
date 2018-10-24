@@ -161,14 +161,6 @@ api_image_move:
   path:     /admin/api/image_move
   defaults: { _controller: StoreBundle:Image:move }
 
-credit_alfabank:
-  path: /checkout/{documentNumber}/complete/credit-alfa-bank
-  defaults: { _controller: StoreBundle:Credit:alfaBankCredit }
-
-credit_tinkoff:
-  path: /checkout/{documentNumber}/complete/credit-tinkoff
-  defaults: { _controller: StoreBundle:Credit:tinkoffCredit }
-
 api_admin_cancel_status:
   path: /api/admin/template/status/cancel
   defaults: { _controller: StoreBundle:Order\OrderStatus:cancelStatusTemplate }

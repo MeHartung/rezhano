@@ -18,8 +18,6 @@ use AccurateCommerce\Component\Payment\Model\PaymentMethod as BasePaymentMethod;
  */
 class PaymentMethod extends BasePaymentMethod
 {
-  const ALFA_TYPE_GUID = '536591a3-7641-4afe-86b8-8fc5572fce58';
-  const TINKOFF_TYPE_GUID = '2fe5f594-ddb8-4542-acda-e7b273df8e66';
   /**
    * @var int
    *

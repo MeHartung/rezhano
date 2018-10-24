@@ -39,8 +39,6 @@ class PaymentMethodAdmin extends AbstractAdmin
            'choices' =>
            [
              'Обычный платёж' => '6cdec659-199f-43b6-ac05-f87a3a552f51',
-             'Кредит Альфа-банк' => '536591a3-7641-4afe-86b8-8fc5572fce58',
-             'Кредит Тинькофф' => '2fe5f594-ddb8-4542-acda-e7b273df8e66',
            ]
          ])
     ;

@@ -102,11 +102,6 @@ class Taxon implements SluggableInterface, ImageAwareInterface
    */
   private $children;
 
-  /**
-   * @var $alfaBankTaxon
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Payment\Method\AlfaBankTaxon", inversedBy="taxons")
-   */
-  private $alfaBankTaxon;
 
   /**
    * @ORM\ManyToMany(targetEntity="StoreBundle\Entity\Store\Catalog\Product\Product", cascade={"persist", "remove"}, orphanRemoval=true, mappedBy="taxons")
@@ -443,22 +438,6 @@ class Taxon implements SluggableInterface, ImageAwareInterface
   public function getShortName()
   {
     return $this->shortName;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getAlfaBankTaxon()
-  {
-    return $this->alfaBankTaxon;
-  }
-
-  /**
-   * @param mixed $alfaBankTaxon
-   */
-  public function setAlfaBankTaxon($alfaBankTaxon)
-  {
-    $this->alfaBankTaxon = $alfaBankTaxon;
   }
 
   /**
