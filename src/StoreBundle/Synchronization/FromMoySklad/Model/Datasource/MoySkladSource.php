@@ -111,6 +111,28 @@ class MoySkladSource extends BaseDataSource
     {
       return;
     }
+  
+    $fromMySkladProductsInDb = $this->em->getRepository('StoreBundle:Store\Catalog\Product\Product')
+      ->createQueryBuilder('p')
+      ->select('p.externalCode')
+      ->where('p.externalCode IS NOT NULL')
+      ->getQuery()->getResult();
+    
+    $foundInDbProductsCodes = [];
+    if($fromMySkladProductsInDb !== null)
+    {
+      if(is_array($fromMySkladProductsInDb))
+      {
+        if(count($fromMySkladProductsInDb) > 0)
+        {
+          /** @var array $item */
+          foreach ($fromMySkladProductsInDb as $item)
+          {
+            $foundInDbProductsCodes[] = $item['externalCode'];
+          }
+        }
+      }
+    }
     
     $moySkladProductsAsArray = [];
     
@@ -165,10 +187,10 @@ class MoySkladSource extends BaseDataSource
         throw new \Exception($errorsMessage);
       } catch (\Exception $exception)
       {
-        $this->logger->error('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
+        $this->logger->error('Products list not loaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
         $this->dispatcher->dispatch(
           'aw.sync.order_event.message',
-          new GenericEvent('Products list not uploaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
+          new GenericEvent('Products list not loaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
         );
         continue;
       }
@@ -192,51 +214,83 @@ class MoySkladSource extends BaseDataSource
           $wholesalePrice = $price->value / 100;
         }
       }
-      
-      $moySkladProductsAsArray[$key] = [
-        'external_code' => $product->code,
-        'name' => $product->name,
-        'wholesale_price' => $wholesalePrice,  # оптовая
-        'price' => $salePrice,
-        'purchase_price' => $product->buyPrice->value,
-        'slug' => $this->slugifierYandex->slugify($product->name),
-        'created_at' => $now->format('Y-m-d H:i:s'),
-        'is_with_gift' => 0,
-        'is_publication_allowed' => 1,
-        'published' => 1,
-        'total_stock' => 100,
-        'reserved_stock' => 10,
-        'is_free_delivery' => 0,
-        'rank' => 0.00,
-      ];
-      
-      if (isset($product->article))
+      # если есть такой товар, то не трогать:
+      # Наименование, описание, краткое описание и артикул
+      if(in_array($product->code, $foundInDbProductsCodes) === true)
       {
-        $moySkladProductsAsArray[$key]['sku'] = $product->article;
-      } else
-      {
-        $moySkladProductsAsArray[$key]['sku'] = $moySkladProductsAsArray[$key]['slug'];
-      }
-      
-      if (isset($product->image)) $moySkladProductsAsArray[$key]['image'] = $product->image->meta->href;
-      if (isset($product->description))
-      {
-        # этот костыль необходимо убрать
-        # substr что-то непонятное делает со сторкой, после чего из массива не хотит создаваться json
-        $short_description = substr($product->description, 0, 50);
+        $productDb = $this->em->getRepository('StoreBundle:Store\Catalog\Product\Product')->findOneBy(
+          [
+            'externalCode' => $product->code
+          ]
+        );
         
-        $moySkladProductsAsArray[$key]['short_description'] = $product->description; #$short_description;
-        $moySkladProductsAsArray[$key]['description'] = $product->description;
-        
-      } else
+        $moySkladProductsAsArray[$key] = [
+          'name' => $productDb->getName(),
+          'external_code' => $product->code,
+          'wholesale_price' => $wholesalePrice,  # оптовая
+          'price' => $salePrice,
+          'purchase_price' => $product->buyPrice->value,
+          'slug' => $this->slugifierYandex->slugify($product->name),
+          'created_at' => $now->format('Y-m-d H:i:s'),
+          'is_with_gift' => 0,
+          'is_publication_allowed' => 1,
+          'published' => 1,
+          'total_stock' => 100,
+          'reserved_stock' => 10,
+          'is_free_delivery' => 0,
+          'rank' => 0.00,
+          'sku' => $productDb->getSku(),
+          'short_description' => $productDb->getShortDescription(),
+          'description' => $productDb->getDescription(),
+        ];
+      }else
       {
-        $moySkladProductsAsArray[$key]['description'] = '...';
-        $moySkladProductsAsArray[$key]['short_description'] = '...';
+        $moySkladProductsAsArray[$key] = [
+          'external_code' => $product->code,
+          'name' => $product->name,
+          'wholesale_price' => $wholesalePrice,  # оптовая
+          'price' => $salePrice,
+          'purchase_price' => $product->buyPrice->value,
+          'slug' => $this->slugifierYandex->slugify($product->name),
+          'created_at' => $now->format('Y-m-d H:i:s'),
+          'is_with_gift' => 0,
+          'is_publication_allowed' => 1,
+          'published' => 1,
+          'total_stock' => 100,
+          'reserved_stock' => 10,
+          'is_free_delivery' => 0,
+          'rank' => 0.00,
+        ];
+  
+        if (isset($product->article))
+        {
+          $moySkladProductsAsArray[$key]['sku'] = $product->article;
+        } else
+        {
+          $moySkladProductsAsArray[$key]['sku'] = $moySkladProductsAsArray[$key]['slug'];
+        }
+  
+        if (isset($product->image)) $moySkladProductsAsArray[$key]['image'] = $product->image->meta->href;
+        if (isset($product->description))
+        {
+          # этот костыль необходимо убрать
+          # substr что-то непонятное делает со сторкой, после чего из массива не хотит создаваться json
+          $short_description = substr($product->description, 0, 50);
+    
+          $moySkladProductsAsArray[$key]['short_description'] = $product->description; #$short_description;
+          $moySkladProductsAsArray[$key]['description'] = $product->description;
+    
+        } else
+        {
+          $moySkladProductsAsArray[$key]['description'] = '...';
+          $moySkladProductsAsArray[$key]['short_description'] = '...';
+        }
+  
       }
-      
+     
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent('Product ' . $product->name . ' uploaded from MoySklad.')
+        new GenericEvent('Product ' . $product->name . ' was loaded from MoySklad.')
       );
     }
     
@@ -244,7 +298,6 @@ class MoySkladSource extends BaseDataSource
 
     if ($productsAsJson === false)
     {
-      echo $short_description;
       throw new \Exception('Невалидный, написать ошибку!');
     }
     

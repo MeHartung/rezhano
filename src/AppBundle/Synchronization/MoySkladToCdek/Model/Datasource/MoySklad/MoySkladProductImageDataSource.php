@@ -80,10 +80,10 @@ class MoySkladProductImageDataSource extends BaseDataSource
       $moySkladProductsImages = Product::query($sklad)->getList();
     } catch (\Exception $exception)
     {
-      #$this->logger->addError('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
+      #$this->logger->addError('Products list not loaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent('Products list not uploaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
+        new GenericEvent('Products list not loaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
       );
       return null;
     }
@@ -161,7 +161,7 @@ class MoySkladProductImageDataSource extends BaseDataSource
         
         $this->dispatcher->dispatch(
           'aw.sync.order_event.message',
-          new GenericEvent("Image for product $productImage->name uploaded from MoySklad to $webPathProducts$fileName and $varPathProducts$fileName")
+          new GenericEvent("Image for product $productImage->name loaded from MoySklad to $webPathProducts$fileName and $varPathProducts$fileName")
         );
       } else
       {

@@ -98,10 +98,10 @@ class CatalogDataSource extends BaseDataSource
       throw new \Exception($errorsMessage);
     } catch (\Exception $exception)
     {
-      $this->logger->error('Products list not uploaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
+      $this->logger->error('Products list not loaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent('Products list not uploaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
+        new GenericEvent('Products list not loaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
       );
       return null;
     }
@@ -112,7 +112,7 @@ class CatalogDataSource extends BaseDataSource
     }
     $this->dispatcher->dispatch(
       'aw.sync.order_event.message',
-      new GenericEvent($moySkladFolders->count() . ' folders from MoySklad was upload')
+      new GenericEvent($moySkladFolders->count() . ' folders from MoySklad was loaded')
     );
     $moySkladFoldersAsArray = [];
     
@@ -145,7 +145,7 @@ class CatalogDataSource extends BaseDataSource
         ];
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent($folder->name . ' was upload')
+        new GenericEvent($folder->name . ' was loaded from MoySklad')
       );
     }
     
