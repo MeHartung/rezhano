@@ -1,5 +1,7 @@
 {% extends "::base.html.twig" %}
 
+{% block header_class %}header__fixed{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
 
@@ -25,6 +27,15 @@
         </div>
       </section>
     {% endif %}
+
+    <section class="choice">
+        <div class="container container_no-padding">
+            <h2 class="choice__title">Сложный выбор?</h2>
+
+            <a href="{{ url('taxon', { slug: 'syr', "f[type]": "casual"}) }}" class="choice__link choice__everyday"></a>
+            <a href="{{ url('taxon', { slug: 'syr', "f[type]": "gourmet"}) }}" class="choice__link choice__gourmet"></a>
+        </div>
+    </section>
 
     {% if bestOffers|length %}
       <section class="best-offers">
