@@ -38,12 +38,58 @@
       </section>
     {% endif %}
 
+    <section class="first-slide">
+        <div class="container">
+
+            <div class="first-slide__title">{{ hotspot('сыр-это-наше-призвание-заголовок', "Сыр — это наше призвание") }}</div>
+
+            <p class="first-slide__text">{{ hotspot('сыр-это-наше-призвание-абзац-1', "«Режано» — ремесленная сыроварня, построенная<br>по европейскому  образцу. Мы производим натуральные<br>сыры ручной работы из цельного молока.") }}</p>
+            <p class="first-slide__text">{{ hotspot('сыр-это-наше-призвание-абзац-2', "Абсолютно прозрачное производство — любой желающий может приехать на экскурсию и посмотреть через стеклянную стену на работу сыроваров.") }}</p>
+
+            <div class="first-slide__image first-slide__image_left">
+                <img src="/images/first-image_1.png" alt="">
+
+                <div class="image-name">
+                    <span class="image-name__arrow"></span>
+                    <span class="image-name__text">Сыр «Буратта»</span>
+                </div>
+
+            </div>
+
+            <div class="first-slide__image first-slide__image_right">
+                <img src="/images/first-image_2.png" alt="">
+
+                <div class="image-name">
+                    <span class="image-name__arrow"></span>
+                    <span class="image-name__text">Сыр «Шемудин»</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <section class="choice">
         <div class="container container_no-padding">
             <h2 class="choice__title">Сложный выбор?</h2>
 
             <a href="{{ url('taxon', { slug: 'syr', "f[type]": "casual"}) }}" class="choice__link choice__everyday"></a>
             <a href="{{ url('taxon', { slug: 'syr', "f[type]": "gourmet"}) }}" class="choice__link choice__gourmet"></a>
+        </div>
+    </section>
+
+    <section class="tour">
+        <div class="container">
+            <div class="tour__wrap">
+                <div class="tour__image"></div>
+                <span class="tour__contacts">{{ hotspot('tour_phone', '+7 (922) 145-62-37') }}</span>
+                <a href="/tours" class="button">
+                    <span>подробности</span>
+                </a>
+            </div>
+
+            <div class="tour__image-bg">
+                <div class="image-bg__item image-bg__right"></div>
+            </div>
         </div>
     </section>
 
