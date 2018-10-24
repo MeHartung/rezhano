@@ -302,42 +302,33 @@
         </div>
     </section>
 
-    <section class="notes">
-        <div class="container">
-            <h2 class="notes__title">Сырные заметки</h2>
-            <div class="notes__image-top"></div>
+    {% if cheeseStories|length > 0 %}
 
-            <div class="notes-slider">
-                <div class="notes__text">
-                    <p>Нам часто задают вопросы по сочетаниям сыра и вина.</p>
-                    <p>В целом алгоритм не сложный. К насыщенным винам мы рекомендуем выдержанные сыры с яркими вкусами,
-                        чтобы они взаимодополняли друг друга и создавались интересные сочетания. А вот свежий сыр и
-                        классический повседневный уже будет не так интересен на фоне выдержанного алкоголя.</p>
-                    <p>К легким винам, как раз наоборот, лучше подобрать свежие сыры, из того же принципа
-                        взаимодополнения. А дальше уже дело вкуса и предпочтений :)</p>
+        <section class="notes">
+            <div class="container">
+                <h2 class="notes__title">Сырные заметки</h2>
+                <div class="notes__image-top"></div>
+
+                <div class="notes-slider">
+                    {% for story in cheeseStories %}
+                        <div class="notes__text">
+                            {{ story.text | raw }}
+                        </div>
+                    {% endfor %}
                 </div>
 
-                <div class="notes__text">
-                    <p>Нам часто задают вопросы по сочетаниям сыра и вина.</p>
-                    <p>В целом алгоритм не сложный. К насыщенным винам мы рекомендуем выдержанные сыры с яркими вкусами,
-                        чтобы они взаимодополняли друг друга и создавались интересные сочетания. А вот свежий сыр и
-                        классический повседневный уже будет не так интересен на фоне выдержанного алкоголя.</p>
-                    <p>К легким винам, как раз наоборот, лучше подобрать свежие сыры, из того же принципа
-                        взаимодополнения. А дальше уже дело вкуса и предпочтений :)</p>
+                <div class="notes-images-gallery">
+                    <img class="notes-image-gallery__item" src="/images/Anna.png" alt="">
+
+                    <span class="notes-image-gallery__text-aside">Анна — хозяйка сыроварни</span>
                 </div>
+
+                <a href="" class="notes__go-instagram">
+                    <span>ещё больше интересного здесь</span>
+                    <i class="icon-instagram"></i>
+                </a>
             </div>
-
-            <div class="notes-images-gallery">
-                <img class="notes-image-gallery__item" src="/images/Anna.png" alt="">
-
-                <span class="notes-image-gallery__text-aside">Анна — хозяйка сыроварни</span>
-            </div>
-
-            <a href="" class="notes__go-instagram">
-                <span>ещё больше интересного здесь</span>
-                <i class="icon-instagram"></i>
-            </a>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
 {% endblock %}
