@@ -65,9 +65,6 @@ class TaxonAdmin extends AbstractTreeAdmin
       ->add('linkedTaxons', null, [
         'label' => 'Сопутствующие разделы',
       ])
-      ->add('alfaBankTaxon', null, [
-        'label' => 'Категория для Альфа-Банка'
-      ])
     ->end()
     ->end()
       ->tab('Фото')
