@@ -27,20 +27,21 @@
 
 {% block main %}
     <section>
-        <div class="container">
+        <div class="container container_no-padding">
 
-            <div class="section-title">
-                <div class="breadcrumbs">
-                    <a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>
-                    <span class="breadcrumbs__divide"></span>
-                    {% if taxon.taxonEntity and not taxon.taxonEntity.isRoot %}
-                    <a href="{{ path('catalog_index') }}" class="breadcrumbs__item">Каталог</a>
-                    <span class="breadcrumbs__divide"></span>
-                    {% endif %}
-                    <a class="breadcrumbs__item breadcrumbs__item_active">{{ taxon.name }}</a>
-                </div>
-                <span class="section-title__text">{{ taxon.name }}</span>
-            </div>
+            {#<div class="section-title">#}
+                {#<div class="breadcrumbs">#}
+                    {#<a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>#}
+                    {#<span class="breadcrumbs__divide"></span>#}
+                    {#{% if taxon.taxonEntity and not taxon.taxonEntity.isRoot %}#}
+                    {#<a href="{{ path('catalog_index') }}" class="breadcrumbs__item">Каталог</a>#}
+                    {#<span class="breadcrumbs__divide"></span>#}
+                    {#{% endif %}#}
+                    {#<a class="breadcrumbs__item breadcrumbs__item_active">{{ taxon.name }}</a>#}
+                {#</div>#}
+                {#<span class="section-title__text">{{ taxon.name }}</span>#}
+            {#</div>#}
+            <h1>{{ taxon.name }}</h1>
 
             {{ renderTaxonPresentation(presentation, {'filterForm': filterForm}) }}
         </div>

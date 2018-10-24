@@ -31,7 +31,10 @@ class CurrencyExtension extends \Twig_Extension
   {
     $price = number_format(floor($value), $decimals, $decPoint, $thousandsSep);
     $cops = round($value - floor($value), 2) * 100;
-    $price .= sprintf(',<span class="payment-info__value_fraction">%02d</span>', $cops);
+    if ($cops)
+    {
+      $price .= sprintf(',<span class="payment-info__value_fraction">%02d</span>', $cops);
+    }
     $price = $price.' ₽';
 
     return $price;

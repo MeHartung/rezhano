@@ -44,7 +44,8 @@ h2 {
 }
 
 .header {
-  background: url(../images/header-bg.jpg) no-repeat 50%;
+  background: black;
+  //background: url(../images/header-bg.jpg) no-repeat 50%;
   color: @c_white;
 
   &__title {
@@ -62,6 +63,13 @@ h2 {
     width: 137px;
     height: 67px;
     margin-top: 23px;
+  }
+
+  &__fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
   .clearfix();
@@ -133,10 +141,7 @@ button, a.button {
 
 header {
   height: 120px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+
   text-align: right;
 
   padding: 37px 50px;
@@ -515,12 +520,17 @@ header {
   }
 }
 
+h1, .popular-products__title {
+  font-size: 65px;
+  font-family: Catorze27style1-bold;
+  display: block;
+  text-align: center;
+  padding-top: 45px;
+  padding-bottom: 115px;
+}
+
 //
-
 .popular-products {
-  position: relative;
-  overflow: visible;
-
   &:before {
     content: '';
     top: -100px;
@@ -537,6 +547,21 @@ header {
     width: 100%;
 
   }
+
+  &__show-more {
+    background: url("../images/product-more.png") center no-repeat;
+    width: 430px;
+    height: 120px;
+    padding: 45px;
+    margin: 0 auto;
+    margin-top: 8px;
+    margin-bottom: 60px;
+  }
+}
+
+.product-list {
+  position: relative;
+  overflow: visible;
 
   &__title {
     font-size: 65px;
@@ -712,16 +737,6 @@ header {
         }
       }
     }
-  }
-
-  &__show-more {
-    background: url("../images/product-more.png") center no-repeat;
-    width: 430px;
-    height: 120px;
-    padding: 45px;
-    margin: 0 auto;
-    margin-top: 8px;
-    margin-bottom: 60px;
   }
 }
 

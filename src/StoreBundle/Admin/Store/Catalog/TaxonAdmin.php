@@ -60,14 +60,11 @@ class TaxonAdmin extends AbstractTreeAdmin
       ])
       ->add('description', TinyMceType::class)
       ->add('shortName', null, [
-        'label' => 'Сокращённое имя'
+        'label' => 'Сокращённое название'
       ])
-      ->add('linkedTaxons', null, [
-        'label' => 'Сопутствующие разделы',
-      ])
-      ->add('alfaBankTaxon', null, [
-        'label' => 'Категория для Альфа-Банка'
-      ])
+//      ->add('linkedTaxons', null, [
+//        'label' => 'Сопутствующие разделы',
+//      ])
     ->end()
     ->end()
       ->tab('Фото')

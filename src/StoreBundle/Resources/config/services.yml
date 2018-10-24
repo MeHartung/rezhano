@@ -2,8 +2,8 @@ services:
     app.meta.home:
       class: Accurateweb\MetaBundle\Model\Meta
       arguments:
-        - 'Реализация имущества Группы «Газпром нефть»'
-        - 'Реализация имущества Группы «Газпром нефть»'
+        - '%meta_default_title%'
+        - '%meta_default_title%'
         - ~
       tags:
         - { name: aw.meta.route, route: homepage }
@@ -1114,15 +1114,15 @@ services:
       tags:
         - { name: product.publication.resolver }
 
-    store.product.voter.stock:
-      class: StoreBundle\Resolver\Product\ProductStockPublicationResolver
-      tags:
-        - { name: product.publication.resolver }
+#    store.product.voter.stock:
+#      class: StoreBundle\Resolver\Product\ProductStockPublicationResolver
+#      tags:
+#        - { name: product.publication.resolver }
 
-    store.product.publication_resolver.purchasable:
-      class: StoreBundle\Resolver\Product\PurchasablePublicationResolver
-      tags:
-        - { name: product.publication.resolver }
+#    store.product.publication_resolver.purchasable:
+#      class: StoreBundle\Resolver\Product\PurchasablePublicationResolver
+#      tags:
+#        - { name: product.publication.resolver }
 
     store.product.publication.manager:
       class: StoreBundle\Resolver\Product\ProductPublicationManager
