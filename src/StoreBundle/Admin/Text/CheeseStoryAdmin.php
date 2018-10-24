@@ -29,9 +29,8 @@ class CheeseStoryAdmin extends AbstractAdmin
   
   protected function configureListFields(ListMapper $list)
   {
-    $text = substr($this->getSubject()->getText(), 0, 50);
     $list
-      ->add('text', null, ['data' => $text])
+      ->add('title', null)
       ->add('_action', null, array(
           'actions' => array(
             'edit' => null,
@@ -49,7 +48,7 @@ class CheeseStoryAdmin extends AbstractAdmin
     /** @var CheeseStory $subject */
     $subject = $this->getSubject();
     $form
-      #->add('title')
+      ->add('title')
       ->add('text', TinyMceType::class)
     #  ->add('teaser', ImageType::class, array(
     #    'required' => $subject->getTeaser() === null

@@ -2,6 +2,16 @@
 
 {% block header_class %}header__fixed{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="js/vendor/slick/slick.css">
+{% endblock %}
+
+{% block head_javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="js/vendor/slick/slick.js"></script>
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
 
@@ -36,6 +46,34 @@
             <a href="{{ url('taxon', { slug: 'syr', "f[type]": "gourmet"}) }}" class="choice__link choice__gourmet"></a>
         </div>
     </section>
+
+    {% if cheeseStories|length > 0 %}
+        <section class="notes">
+            <div class="container">
+                <h2 class="notes__title">Сырные заметки</h2>
+                <div class="notes__image-top"></div>
+
+                <div class="notes-slider">
+                    {% for story in cheeseStories %}
+                        <div class="notes__text">
+                            {{ story.text | raw }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="notes-images-gallery">
+                    <img class="notes-image-gallery__item" src="/images/Anna.png" alt="">
+
+                    <span class="notes-image-gallery__text-aside">Анна — хозяйка сыроварни</span>
+                </div>
+
+                <a href="" class="notes__go-instagram">
+                    <span>ещё больше интересного здесь</span>
+                    <i class="icon-instagram"></i>
+                </a>
+            </div>
+        </section>
+    {% endif %}
 
     {% if bestOffers|length %}
       <section class="best-offers">
@@ -72,8 +110,4 @@
         </div>
       </section>
     {% endif %}
-{% endblock %}
-
-{% block head_javascripts %}
-  {{ parent() }}
 {% endblock %}
