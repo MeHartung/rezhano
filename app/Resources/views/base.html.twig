@@ -40,18 +40,20 @@
     {% if app.user is not null %}
       {% include "@Store/Common/admin_control_panel.html.twig" %}
     {% endif %}
-    <header class="header">
+      {# не заворачивает в header при наследовании #}
+    <header style="">
       {% block header %}
         <a class="header-logo" title="Режано"
            {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
-            <div class="header-menu">
+           {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
+{#            <div class="header-menu">
                 <a href="#" class="header-menu__item">О нас</a>
                 <a href="#" class="header-menu__item">Магазин</a>
                 <a href="#" class="header-menu__item">Подарки</a>
                 <a href="#" class="header-menu__item">Экскурсии</a>
                 <a href="#" class="header-menu__item">Оптом</a>
                 <a href="#" class="header-menu__item">Контакты</a>
-            </div>
+            </div>#}
 
             <div class="header-controls">
                 <a href="" class="header-controls__item header-controls__cabinet">
@@ -159,15 +161,7 @@
                     </div>
                 </div>
 
-                <div class="footer-links">
-                    {{ render(controller('StoreBundle:Menu/MenuItem:footerMenu')) }}
-                    {#<a href="" class="footer-links__item">О нас</a>#}
-                    {#<a href="" class="footer-links__item">Продукция</a>#}
-                    {#<a href="" class="footer-links__item">Подарки</a>#}
-                    {#<a href="" class="footer-links__item">Экскурсии</a>#}
-                    {#<a href="" class="footer-links__item">Оптом</a>#}
-                    {#<a href="" class="footer-links__item">Контакты</a>#}
-                </div>
+                {{ render(controller('StoreBundle:Menu/MenuItem:footerMenu')) }}
 
                 <div class="footer-maps">
                     <div class="footer-maps__item">
@@ -205,6 +199,7 @@
   <script type="text/javascript">window.require = {waitSeconds: 600};</script>
   <script src="{{ asset('js/vendor/requirejs/require.js') }}" data-main="/js/app/frontend/app.js"></script>
   <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+  {#<script type="text/javascript" src="{{ asset('js/vendor/slick/slick.js') }}"></script>#}
   {% endif %}
   <script>
     $(function () {

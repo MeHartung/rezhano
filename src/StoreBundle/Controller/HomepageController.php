@@ -30,7 +30,7 @@ class HomepageController extends Controller
       $viewedProducts = $this->getUser()->getViewedProductList()->getProducts(6);
     }
 
-    return $this->render('StoreBundle:Homepage:index.html.twig', array(
+    return $this->render('StoreBundle:Homepage:_index.html.twig', array(
       'banners' => $banners,
       'bestOffers' => $bestOffers,
       'viewedProducts' => $viewedProducts,
