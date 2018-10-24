@@ -313,12 +313,6 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: store, label: Способы оплаты }
 
-    main.admin.payment.alfabanktaxon:
-        class: StoreBundle\Admin\Store\Payment\Method\AlfaBankTaxonAdmin
-        arguments: [~, StoreBundle\Entity\Store\Payment\Method\AlfaBankTaxon, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: integration, label: Категории товаров Альфа-Банка }
-
     main.twig.currency:
         class: StoreBundle\Twig\CurrencyExtension
         public: false
@@ -619,11 +613,11 @@ services:
         - { name: doctrine.event_subscriber, connection: default }
 
 
-    store.supervisor.product_publication:
-      class: StoreBundle\EventListener\ProductPublicationSupervisor
-      arguments: ['@store.product.publication.manager']
-      tags:
-        - { name: doctrine.event_subscriber, connection: default }
+    #store.supervisor.product_publication:
+    #  class: StoreBundle\EventListener\ProductPublicationSupervisor
+    #  arguments: ['@store.product.publication.manager']
+    #  tags:
+    #    - { name: doctrine.event_subscriber, connection: default }
 
     store.checkout.processor:
       class: AccurateCommerce\Component\Checkout\Processor\CheckoutProcessor
@@ -651,17 +645,6 @@ services:
         - '%mailer_sender_name%'
         - '@doctrine.orm.entity_manager'
         - '@twig'
-
-    store.user.credit:
-          class: StoreBundle\Service\Order\CreditService
-          arguments:
-            - '@doctrine.orm.entity_manager'
-
-    store.subscriber.checkout:
-      class: StoreBundle\EventListener\CheckoutSubscriber
-      arguments: ['@router', '@service_container']
-      tags:
-        - { name: kernel.event_listener, event: kernel.controller }
 
     twig.extension.phone:
         class: StoreBundle\Twig\PhoneExtension

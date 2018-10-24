@@ -1,0 +1,334 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>$(function () {
+            $('.header-slider__wrap').slick({
+                infinite: true,
+                // autoplay: true,
+                // autoplaySpeed: 2000,
+                dots: true,
+                arrows: false
+            });
+
+            $('.notes-slider').slick({
+                dots: true,
+                arrows: true
+            });
+        })</script>
+{% endblock %}
+{% block main %}
+    <section class="header-section">
+        <div class="container">
+            <div class="header-section__wrap">
+                <div class="header-section__image"></div>
+                <div class="header-section__text">
+                    Настоящий, вкусный, по европейской традиции
+                </div>
+                <button>
+                    <span>хочу купить!</span>
+                </button>
+            </div>
+
+            <div class="header-slider">
+                <div class="header-slider__wrap">
+                    <div class="header-slider__item"></div>
+                    <div class="header-slider__item"></div>
+                    <div class="header-slider__item"></div>
+                    <div class="header-slider__item"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="first-slide">
+        <div class="container">
+
+            <div class="first-slide__title">Сыр — это наше призвание</div>
+
+            <p class="first-slide__text">«Режано» — ремесленная сыроварня, построенная<br>по европейскому образцу. Мы
+                производим натуральные<br>сыры ручной работы из цельного молока.</p>
+            <p class="first-slide__text">Абсолютно прозрачное производство — любой желающий может приехать на экскурсию
+                и посмотреть через стеклянную стену на работу сыроваров.</p>
+
+            <div class="first-slide__image first-slide__image_left">
+                <img src="/images/first-image_1.png" alt="">
+
+                <div class="image-name">
+                    <span class="image-name__arrow"></span>
+                    <span class="image-name__text">Сыр «Буратта»</span>
+                </div>
+
+            </div>
+
+            <div class="first-slide__image first-slide__image_right">
+                <img src="/images/first-image_2.png" alt="">
+
+                <div class="image-name">
+                    <span class="image-name__arrow"></span>
+                    <span class="image-name__text">Сыр «Шемудин»</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="advantages">
+        <div class="container">
+            <div class="advantages-step advantages-first">
+                <div class="advantages-text">
+                    <div class="advantages-text__image"></div>
+                    <span class="advantages-text__text">На Урале теперь есть сыр. И не просто сыр,<br>а  сваренный по всем итальянским традициям<br>в сыроварне в городе Реж</span>
+                    <a href="#" class="button">
+                        <span>подробности о нашей сыроварне</span>
+                    </a>
+                </div>
+                <div class="advantages-image"></div>
+            </div>
+
+            <div class="advantages-step advantages-second">
+                <div class="advantages-image"></div>
+                <div class="advantages-text">
+                    <div class="advantages-text__image"></div>
+                    <span class="advantages-text__text">Мы используем только цельное молоко коров<br>из частных хозяйств, не добавляем консерванты<br>и прочие пищевые добавки</span>
+                </div>
+            </div>
+
+            <div class="advantages-step advantages-third">
+
+                <div class="advantages-text">
+                    <div class="advantages-text__image"></div>
+                    <span class="advantages-text__text">Вы можете своими глазами увидеть процесс сыроварения, приехав на экскурсию</span>
+                    <a href="#" class="button">
+                        <span>как приехать?</span>
+                    </a>
+                </div>
+                <div class="advantages-image"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="popular-products">
+        <div class="container container_no-padding">
+            <span class="popular-products__title">Популярные сыры</span>
+
+            <div class="product-items">
+
+                <div class="product-item">
+                    <a href="#" class="product-item__image">
+                        <img src="/images/TEST_DELETE.png" alt="">
+                    </a>
+                    <a href="#" class="product-item__name">Моцарелла</a>
+                    <span class="product-item__type">мягкий сыр</span>
+                    <div class="product-item__characteristics">
+                        <span class="product-item__quantity">300 г  / </span>
+                        <span class="product-item__price">149 ₽</span>
+                    </div>
+                    <a href="" class="button button_black"><span>В корзину</span></a>
+                    <div class="product-item__controls">
+                        <span class="controls-title">количество</span>
+                        <span class="controls-item controls-item__increase"></span>
+                        <input type="text" class="custom-input" value="0">
+                        <span class="controls-item controls-item__reduce"></span>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <a class="product-item__image"><img src="/images/TEST_DELETE_1.png" alt=""></a>
+                    <a class="product-item__name">Моцарелла</a>
+                    <span class="product-item__type">мягкий сыр</span>
+                    <div class="product-item__characteristics">
+                        <span class="product-item__quantity">300 г  / </span>
+                        <span class="product-item__price">149 ₽</span>
+                    </div>
+                    <a href="" class="button button_black"><span>В корзину</span></a>
+                    <div class="product-item__controls">
+                        <span class="controls-title">количество</span>
+                        <span class="controls-item controls-item__increase"></span>
+                        <input type="text" class="custom-input" value="0">
+                        <span class="controls-item controls-item__reduce"></span>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <a class="product-item__image"><img src="/images/TEST_DELETE_1.png" alt=""></a>
+                    <a class="product-item__name">Моцарелла</a>
+                    <span class="product-item__type">мягкий сыр</span>
+                    <div class="product-item__characteristics">
+                        <span class="product-item__quantity">300 г  / </span>
+                        <span class="product-item__price">149 ₽</span>
+                    </div>
+                    <a href="" class="button button_black"><span>В корзину</span></a>
+                    <div class="product-item__controls">
+                        <span class="controls-title">количество</span>
+                        <span class="controls-item controls-item__increase"></span>
+                        <input type="text" class="custom-input" value="0">
+                        <span class="controls-item controls-item__reduce"></span>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <a class="product-item__image"><img src="/images/TEST_DELETE_1.png" alt=""></a>
+                    <a class="product-item__name">Моцарелла</a>
+                    <span class="product-item__type">мягкий сыр</span>
+                    <div class="product-item__characteristics">
+                        <span class="product-item__quantity">300 г  / </span>
+                        <span class="product-item__price">149 ₽</span>
+                    </div>
+                    <a href="" class="button button_black"><span>В корзину</span></a>
+                    <div class="product-item__controls">
+                        <span class="controls-title">количество</span>
+                        <span class="controls-item controls-item__increase"></span>
+                        <input type="text" class="custom-input" value="0">
+                        <span class="controls-item controls-item__reduce"></span>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <a class="product-item__image"><img src="/images/TEST_DELETE_1.png" alt=""></a>
+                    <a class="product-item__name">Моцарелла</a>
+                    <span class="product-item__type">мягкий сыр</span>
+                    <div class="product-item__characteristics">
+                        <span class="product-item__quantity">300 г  / </span>
+                        <span class="product-item__price">149 ₽</span>
+                    </div>
+                    <a href="" class="button button_black"><span>В корзину</span></a>
+                    <div class="product-item__controls">
+                        <span class="controls-title">количество</span>
+                        <span class="controls-item controls-item__increase"></span>
+                        <input type="text" class="custom-input" value="0">
+                        <span class="controls-item controls-item__reduce"></span>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <a class="product-item__image"><img src="/images/TEST_DELETE_1.png" alt=""></a>
+                    <a class="product-item__name">Моцарелла</a>
+                    <span class="product-item__type">мягкий сыр</span>
+                    <div class="product-item__characteristics">
+                        <span class="product-item__quantity">300 г  / </span>
+                        <span class="product-item__price">149 ₽</span>
+                    </div>
+                    <a href="" class="button button_black"><span>В корзину</span></a>
+                    <div class="product-item__controls">
+                        <span class="controls-title">количество</span>
+                        <span class="controls-item controls-item__increase"></span>
+                        <input type="text" class="custom-input" value="0">
+                        <span class="controls-item controls-item__reduce"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="popular-products__show-more">
+                <a href="" class="button button_black">
+                    <span>У нас ещё много вкусного и интересного</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="presents">
+        <div class="container">
+            <div class="presents__wrap">
+                <div class="presents__image"></div>
+                <p class="presents__text">
+                    Знаете как порадовать<br>близких или себя?
+                </p>
+                <p class="presents__text">
+                    «Режано» знает — закажи<br>сырную корзинку в подарок
+                </p>
+                <a href="#" class="button button_on-yellow">
+                    <span>подарки здесь</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="choice">
+        <div class="container container_no-padding">
+            <h2 class="choice__title">Сложный выбор?</h2>
+
+            <a href="#" class="choice__link choice__everyday"></a>
+            <a href="#" class="choice__link choice__gourmet"></a>
+        </div>
+    </section>
+
+    <section class="wholesale">
+        <div class="container container_no-padding">
+
+            <div class="wholesale__image">
+            </div>
+            <div class="wholesale__text">
+                <p>Ты оптовый покупатель?<br>Сделай заказ в специальном<br> разделе сайта</p>
+                <a href="#" class="button button_on-yellow">
+                    <span>купить оптом</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners">
+        <div class="container">
+            <h2 class="partners__title">Наши партнёры</h2>
+
+            <div class="partners-wrap">
+                <a class="partner-item partner-auchan"></a>
+                <a class="partner-item partner-metro"></a>
+                <a class="partner-item partner-lenta"></a>
+                <a class="partner-item partner-5-shop"></a>
+                <a class="partner-item partner-perek"></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="tour">
+        <div class="container">
+            <div class="tour__wrap">
+                <div class="tour__image"></div>
+                <span class="tour__contacts">+7 (922) 145-62-37</span>
+                <a href="#" class="button">
+                    <span>подробности</span>
+                </a>
+            </div>
+
+            <div class="tour__image-bg">
+                <div class="image-bg__item image-bg__right"></div>
+            </div>
+        </div>
+    </section>
+
+    {% if cheeseStories|length > 0 %}
+
+        <section class="notes">
+            <div class="container">
+                <h2 class="notes__title">Сырные заметки</h2>
+                <div class="notes__image-top"></div>
+
+                <div class="notes-slider">
+                    {% for story in cheeseStories %}
+                        <div class="notes__text">
+                            {{ story.text | raw }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="notes-images-gallery">
+                    <img class="notes-image-gallery__item" src="/images/Anna.png" alt="">
+
+                    <span class="notes-image-gallery__text-aside">Анна — хозяйка сыроварни</span>
+                </div>
+
+                <a href="" class="notes__go-instagram">
+                    <span>ещё больше интересного здесь</span>
+                    <i class="icon-instagram"></i>
+                </a>
+            </div>
+        </section>
+    {% endif %}
+
+{% endblock %}

@@ -14,6 +14,7 @@ use MoySklad\MoySklad;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class CatalogDataSource extends BaseDataSource
 {
@@ -84,14 +85,23 @@ class CatalogDataSource extends BaseDataSource
         new GenericEvent((sprintf('%s.', $e->getMessage())))
       );
       
-      $this->logger->error(sprintf('[%s]%s.', $e->getCode(), $e->getMessage()));
+      $errorsMessage = '';
+      if (isset($e->getDump()['response']->errors))
+      {
+        foreach ($e->getDump()['response']->errors as $error)
+        {
+          $errorsMessage .= sprintf('[%s]%s.', $error->code, $error->error). "\n";
+        }
+      }
       
+      $this->logger->error(sprintf('[%s]%s.', $e->getCode(), $errorsMessage));
+      throw new \Exception($errorsMessage);
     } catch (\Exception $exception)
     {
-      $this->logger->error('Products list not uploaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
+      $this->logger->error('Products list not loaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent('Products list not uploaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
+        new GenericEvent('Products list not loaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
       );
       return null;
     }
@@ -102,7 +112,7 @@ class CatalogDataSource extends BaseDataSource
     }
     $this->dispatcher->dispatch(
       'aw.sync.order_event.message',
-      new GenericEvent($moySkladFolders->count() . ' folders from MoySklad was upload')
+      new GenericEvent($moySkladFolders->count() . ' folders from MoySklad was loaded')
     );
     $moySkladFoldersAsArray = [];
     
@@ -115,30 +125,30 @@ class CatalogDataSource extends BaseDataSource
     {
       $parentId = null;
       
-      if(strlen($folder->pathName) > 1)
+      if (strlen($folder->pathName) > 1)
       {
         $parentHref = $folder->relations->productFolder->fields->meta->href;
         
         $parent = $sklad->getClient()->get($parentHref);
         
-        if($parent !== null)
+        if ($parent !== null)
         {
           $parentId = $parent->id;
         }
       }
-  
+      
       $moySkladFoldersAsArray[] =
-      [
-        'guid' => $folder->id,
-        'parent_guid' => $parentId,
-        'name' => $folder->name
-      ];
+        [
+          'guid' => $folder->id,
+          'parent_guid' => $parentId,
+          'name' => $folder->name
+        ];
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent($folder->name . ' was upload')
+        new GenericEvent($folder->name . ' was loaded from MoySklad')
       );
     }
-
+    
     $productsAsJson = json_encode($moySkladFoldersAsArray);
     
     if ($productsAsJson === false)

@@ -80,10 +80,10 @@ class MoySkladProductImageDataSource extends BaseDataSource
       $moySkladProductsImages = Product::query($sklad)->getList();
     } catch (\Exception $exception)
     {
-      #$this->logger->addError('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
+      #$this->logger->addError('Products list not loaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent('Products list not uploaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
+        new GenericEvent('Products list not loaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
       );
       return null;
     }
@@ -119,8 +119,12 @@ class MoySkladProductImageDataSource extends BaseDataSource
 
       if($product == null) continue;
       
-      $varPathProducts = $this->kernelRootDir . '\\..\\var\\uploads\\product-photo\\';
-      $webPathProducts = $this->kernelRootDir . '\\..\\web\\uploads\\product-photo\\';
+      $varDir = $this->kernelRootDir . '\\..\\var\\uploads\\';
+      $webDir = $this->kernelRootDir . '\\..\\web\\uploads\\';
+      
+      $varPathProducts = $varDir.'product-photo\\';
+      $webPathProducts = $webDir.'product-photo\\';
+      
       $fileName = $product->getId() . '\\' . $productImage->image->filename;
       
       $varMkDirResult = $this->checkDir($varPathProducts);
@@ -134,8 +138,8 @@ class MoySkladProductImageDataSource extends BaseDataSource
         );
       }
   
-      $varPathProduct = $this->kernelRootDir . '\\..\\var\\uploads\\product-photo\\'.$product->getId();
-      $webPathProduct = $this->kernelRootDir . '\\..\\web\\uploads\\product-photo\\'.$product->getId();
+      $varPathProduct = $this->kernelRootDir . '\\..\\var\\uploads\\product-photo\\'.$product->getId().'\\';
+      $webPathProduct = $this->kernelRootDir . '\\..\\web\\uploads\\product-photo\\'.$product->getId().'\\';
   
       $varMkDirResult = $this->checkDir($varPathProduct);
       $webMkDirResult = $this->checkDir($webPathProduct);
@@ -146,6 +150,7 @@ class MoySkladProductImageDataSource extends BaseDataSource
           'aw.sync.order_event.message',
           new GenericEvent("Product with id " . $product->getId() . " was skipped, because can't create folders.")
         );
+        continue;
       }
       
       $dbPath = 'product-photo/' . $product->getId() . '/' . $productImage->image->filename;
@@ -161,7 +166,7 @@ class MoySkladProductImageDataSource extends BaseDataSource
         
         $this->dispatcher->dispatch(
           'aw.sync.order_event.message',
-          new GenericEvent("Image for product $productImage->name uploaded from MoySklad to $webPathProducts$fileName and $varPathProducts$fileName")
+          new GenericEvent("Image for product $productImage->name loaded from MoySklad to ".realpath($webPathProducts.$fileName)." and " . realpath($varPathProducts.$fileName))
         );
       } else
       {
@@ -195,24 +200,10 @@ class MoySkladProductImageDataSource extends BaseDataSource
   
   private function checkDir($path)
   {
-    # очистить кеш состояния прав для указанной папки
-    /*clearstatcache($path.'\\..\\');
-    
-    $perms = is_writable($path);
-    
-    if(false === $perms)
-    {
-      $this->dispatcher->dispatch(
-        'aw.sync.order_event.message',
-        new GenericEvent("$path not writable!")
-      );
-      
-      return false;
-    }*/
-    
     $mkDirResult = TRUE;
-    
-    if (is_dir($path) === false)
+    $realpath = realpath($path);
+
+    if($realpath === false)
     {
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
@@ -221,7 +212,6 @@ class MoySkladProductImageDataSource extends BaseDataSource
   
       $mkDirResult = $this->createDir($path);
     }
-  
     
     return $mkDirResult;
   }
