@@ -613,11 +613,11 @@ services:
         - { name: doctrine.event_subscriber, connection: default }
 
 
-    store.supervisor.product_publication:
-      class: StoreBundle\EventListener\ProductPublicationSupervisor
-      arguments: ['@store.product.publication.manager']
-      tags:
-        - { name: doctrine.event_subscriber, connection: default }
+    #store.supervisor.product_publication:
+    #  class: StoreBundle\EventListener\ProductPublicationSupervisor
+    #  arguments: ['@store.product.publication.manager']
+    #  tags:
+    #    - { name: doctrine.event_subscriber, connection: default }
 
     store.checkout.processor:
       class: AccurateCommerce\Component\Checkout\Processor\CheckoutProcessor

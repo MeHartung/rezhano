@@ -51,22 +51,12 @@ class MenuItemController extends Controller
   
   public function footerMenuAction()
   {
-    $repository = $this->getDoctrine()->getRepository('StoreBundle:Menu\MenuItem');
-  
-    $root = $repository->getRootNode();
-  
-    $nodeQb = $repository->childrenQueryBuilder($root);
-    $nodes = $nodeQb->andWhere('node.treeLevel < :maxTreeLevel')
-      ->andWhere('node.isFooterDisplay = 1')
-      ->setParameter('maxTreeLevel', 3)
-      ->getQuery()
-      ->getArrayResult();
-  
-    $tree = $repository->buildTreeArray($nodes);
+    $headerMenuItems = $this->getDoctrine()
+      ->getRepository('StoreBundle:Menu\MenuItem')
+      ->findBy(array('isFooterDisplay' => true), array('treeLeft' => 'ASC'));;
 
     return $this->render('StoreBundle:Menu:footerMenu.html.twig', array(
-      'nodes' => array_splice($tree, 0, 6),
-      'nodes_rest' => $tree
+      'nodes' => $headerMenuItems,
     ));
   }
 }
