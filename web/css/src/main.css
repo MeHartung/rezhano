@@ -842,6 +842,7 @@ header .header-controls__cart {
 .advantages .advantages-step .advantages-text {
   width: 500px;
   text-align: center;
+  position: relative;
 }
 .advantages .advantages-step .advantages-text__image {
   margin-bottom: 45px;
@@ -937,6 +938,20 @@ header .header-controls__cart {
   width: 370px;
   text-align: center;
   margin-bottom: 90px;
+}
+.popular-products .product-item__label {
+  display: inline-block;
+  width: 93px;
+  height: 93px;
+  position: absolute;
+  top: -30px;
+  right: -12px;
+}
+.popular-products .product-item__label.label-action {
+  background: url("../images/icons/action-icon.png") center no-repeat;
+}
+.popular-products .product-item__label.label-news {
+  background: url("../images/icons/news-icon.png") center no-repeat;
 }
 .popular-products .product-item__image {
   width: 230px;
@@ -1520,11 +1535,20 @@ footer .footer-social .footer-social__item {
 footer .footer-social .footer-social__facebook {
   background-position: 0 0;
 }
+footer .footer-social .footer-social__facebook:hover {
+  background-position: 0 39px;
+}
 footer .footer-social .footer-social__vkontakte {
   background-position: 90px 0;
 }
+footer .footer-social .footer-social__vkontakte:hover {
+  background-position: 90px 39px;
+}
 footer .footer-social .footer-social__instagram {
   background-position: 39px 0;
+}
+footer .footer-social .footer-social__instagram:hover {
+  background-position: 39px 39px;
 }
 footer .footer-links {
   display: inline-block;

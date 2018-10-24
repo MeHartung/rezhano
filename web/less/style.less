@@ -495,6 +495,7 @@ header {
     .advantages-text {
       width: 500px;
       text-align: center;
+      position: relative;
 
       &__image {
         margin-bottom: 45px;
@@ -627,6 +628,24 @@ header {
     width: 370px;
     text-align: center;
     margin-bottom: 90px;
+
+    &__label {
+      display: inline-block;
+      width: 93px;
+      height: 93px;
+
+      position: absolute;
+      top: -30px;
+      right: -12px;
+
+      &.label-action {
+        background: url("../images/icons/action-icon.png") center no-repeat;
+      }
+
+      &.label-news {
+        background: url("../images/icons/news-icon.png") center no-repeat;
+      }
+    }
 
     &__image {
       width: 230px;
@@ -1375,14 +1394,26 @@ footer {
 
     .footer-social__facebook {
       background-position: 0 0;
+
+      &:hover {
+        background-position: 0 39px;
+      }
     }
 
     .footer-social__vkontakte {
       background-position: 90px 0;
+
+      &:hover {
+        background-position: 90px 39px;
+      }
     }
 
     .footer-social__instagram {
       background-position: 39px 0;
+
+      &:hover {
+        background-position: 39px 39px;
+      }
     }
   }
 
