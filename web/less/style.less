@@ -138,7 +138,7 @@ header {
   left: 0;
   right: 0;
   text-align: right;
-
+  z-index: 100;
   padding: 37px 50px;
 
   //
@@ -264,8 +264,83 @@ header {
   background: url("../images/section_bg.png") center no-repeat;
   background-size: cover;
   height: 953px;
-
   padding-top: @header_height;
+
+  &__wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-slider {
+    //position: absolute;
+    //top: -195px;
+    //right: -195px;
+
+    position: relative;
+    top: -605px;
+    //right: -240px;
+
+    &__item {
+      background: url("../images/header-slider1.png") center no-repeat;
+      width: 956px;
+      height: 942px;
+    }
+
+    .slick-list {
+      right: -240px;
+    }
+
+    .slick-dots {
+      list-style: none;
+      padding: 0;
+      position: absolute;
+      bottom: 155px;
+      left: 50%;
+      z-index: 2;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+      li {
+        display: inline-block;
+        padding: 15px;
+        cursor: pointer;
+
+        &:hover {
+          button {
+            background-color: @rc_yellow;
+          }
+        }
+
+
+        button {
+          position: relative;
+          width: 39px;
+          height: 2px;
+          background-color: @c_white;
+          font-size: 0;
+          border: none;
+          outline: none;
+          padding: 0;
+
+          &:after {
+            content: '';
+          }
+
+
+        }
+
+        &.slick-active {
+
+          button {
+            background-color: @rc_yellow;
+
+          }
+        }
+      }
+    }
+  }
 
   &__image {
     background: url("../images/header-section-image.png") top no-repeat;
@@ -733,6 +808,15 @@ header {
   padding-top: 120px;
   padding-bottom: 155px;
 
+  &__image {
+    background: url("../images/presents-image.png") center no-repeat;
+    width: 718px;
+    height: 563px;
+    position: absolute;
+    bottom: -280px;
+    right: -104px;
+  }
+
   &__wrap {
     margin-left: 33px;
   }
@@ -1036,6 +1120,80 @@ header {
   position: relative;
   padding-top: 145px;
   overflow: initial;
+
+  .notes-slider {
+    width: 471px;
+    margin-bottom: 55px;
+
+    .slick-dots {
+      position: absolute;
+      list-style: none;
+      padding: 0;
+      margin: 24px 0;
+
+      li {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: @c_black;
+
+        cursor: pointer;
+        padding: 5px;
+        margin-right: 10px;
+
+        &:hover {
+          background-color: @rc_yellow;
+        }
+
+        &.slick-active {
+          background-color: @rc_yellow;
+        }
+
+        button {
+          display: none;
+        }
+      }
+    }
+
+    button {
+
+      &.slick-arrow {
+        font-size: 0;
+        border: none;
+        outline: none;
+        background: url("../images/icons/arrows_quote.png") no-repeat;
+        width: 26px;
+        height: 46px;
+        
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+
+      &.slick-prev {
+        background-position: -23px 0;
+        left: -68px;
+
+        &:hover {
+          background-position: 4px 0;
+        }
+      }
+
+      &.slick-next {
+        background-position: -49px 0 ;
+        right: -40px;
+
+        &:hover {
+          background-position: -76px 0;
+        }
+      }
+    }
+  }
 
   &__image-top {
     background: url("../images/tour-bottom-image.png") center no-repeat;
