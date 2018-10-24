@@ -8,6 +8,23 @@
   <title>Режано</title>
 
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="js/vendor/slick/slick.css">
+  <script type="text/javascript" src="js/vendor/jquery/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="js/vendor/slick/slick.js"></script>
+  <script>$(function () {
+    $('.header-slider__wrap').slick({
+      infinite: true,
+      // autoplay: true,
+      // autoplaySpeed: 2000,
+      dots: true,
+      arrows: false
+    });
+
+    $('.notes-slider').slick({
+      dots: true,
+      arrows: true
+    });
+  })</script>
 </head>
 <body>
   <header style="">
@@ -40,15 +57,25 @@
 
     <section class="header-section">
       <div class="container">
-        <div class="header-section__image"></div>
-
-        <div class="header-section__text">
-          Настоящий, вкусный, по европейской традиции
+        <div class="header-section__wrap">
+          <div class="header-section__image"></div>
+          <div class="header-section__text">
+            Настоящий, вкусный, по европейской традиции
+          </div>
+          <button>
+            <span>хочу купить!</span>
+          </button>
         </div>
 
-        <button>
-          <span>хочу купить!</span>
-        </button>
+        <div class="header-slider">
+          <div class="header-slider__wrap">
+            <div class="header-slider__item"></div>
+            <div class="header-slider__item"></div>
+            <div class="header-slider__item"></div>
+            <div class="header-slider__item"></div>
+          </div>
+
+        </div>
 
       </div>
     </section>
@@ -243,6 +270,7 @@
     <section class="presents">
       <div class="container">
         <div class="presents__wrap">
+          <div class="presents__image"></div>
           <p class="presents__text">
             Знаете как порадовать<br>близких или себя?
           </p>
@@ -313,10 +341,19 @@
       <div class="container">
         <h2 class="notes__title">Сырные заметки</h2>
         <div class="notes__image-top"></div>
-        <div class="notes__text">
-          <p>Нам часто задают вопросы по сочетаниям сыра и вина.</p>
-          <p>В целом алгоритм не сложный. К насыщенным винам мы рекомендуем выдержанные сыры с яркими вкусами, чтобы они взаимодополняли друг друга и создавались интересные сочетания. А вот свежий сыр и классический повседневный уже будет не так интересен на фоне выдержанного алкоголя.</p>
-          <p>К легким винам, как раз наоборот, лучше подобрать свежие сыры, из того же принципа взаимодополнения. А дальше уже дело вкуса и предпочтений :)</p>
+
+        <div class="notes-slider">
+          <div class="notes__text">
+            <p>Нам часто задают вопросы по сочетаниям сыра и вина.</p>
+            <p>В целом алгоритм не сложный. К насыщенным винам мы рекомендуем выдержанные сыры с яркими вкусами, чтобы они взаимодополняли друг друга и создавались интересные сочетания. А вот свежий сыр и классический повседневный уже будет не так интересен на фоне выдержанного алкоголя.</p>
+            <p>К легким винам, как раз наоборот, лучше подобрать свежие сыры, из того же принципа взаимодополнения. А дальше уже дело вкуса и предпочтений :)</p>
+          </div>
+
+          <div class="notes__text">
+            <p>Нам часто задают вопросы по сочетаниям сыра и вина.</p>
+            <p>В целом алгоритм не сложный. К насыщенным винам мы рекомендуем выдержанные сыры с яркими вкусами, чтобы они взаимодополняли друг друга и создавались интересные сочетания. А вот свежий сыр и классический повседневный уже будет не так интересен на фоне выдержанного алкоголя.</p>
+            <p>К легким винам, как раз наоборот, лучше подобрать свежие сыры, из того же принципа взаимодополнения. А дальше уже дело вкуса и предпочтений :)</p>
+          </div>
         </div>
 
         <div class="notes-images-gallery">
