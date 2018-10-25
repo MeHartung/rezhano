@@ -85,11 +85,11 @@
 
               <div class="product-brief-characteristics">
                 <div class="product-brief-characteristics_col-left">
-                  <span class="product-brief-characteristics__location">
-                    {% if stockManager.getAvailableWarehouse(product) %}
-                      {{ stockManager.getAvailableWarehouse(product).city.name }}
-                    {% endif %}
-                  </span>
+                  {#<span class="product-brief-characteristics__location">#}
+                    {#{% if stockManager.getAvailableWarehouse(product) %}#}
+                      {#{{ stockManager.getAvailableWarehouse(product).city.name }}#}
+                    {#{% endif %}#}
+                  {#</span>#}
                   {% if product.length %}
                     <span class="product-brief-characteristics__item">Длина<span
                               class="product-brief-characteristics__item_count">{{ product.length }} м</span></span>
