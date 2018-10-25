@@ -6,18 +6,21 @@ define(function(require){
       $ = require('jquery'),
       CartDialogView = require('view/cart/cart-dialog');
 
-  require('lib/string')
+  require('lib/string');
 
   var template = _.template('\
-    <span class="header-menu__info-amount-item"><span class="card-icon"></span><%= quantity %></span>\
-    <span class="header-menu__info-amount-payment"><%= total %></span>\
-');
+    <% if (quantity) { %>\
+      <span class="header-controls__notice">\n' +
+'         <span class="notice-count"><%= quantity %></span>\n' +
+'     </span>' +
+'   <% } %>');
 
   return Backbone.View.extend({
     events: {
       'click': 'onClick'
     },
-    id: "btnCart",
+    tagName: 'a',
+    className: 'header-controls__item header-controls__cart',
     initialize: function(){
       this.cartDialog = null;
       // $(window).on('scroll.'+this.cid, $.proxy(this.onWindowScroll, this));
@@ -28,9 +31,14 @@ define(function(require){
     render: function(){
       this.$el.html(template({
         quantity: this.model.items.length,
-        total: Number(this.model.get('total')).toCurrencyString(),
+        total: Number(this.model.get('total')).toCurrencyString()
       }));
 
+      if (this.model.items.length) {
+        this.$el.removeAttr('disabled');
+      } else {
+        this.$el.attr('disabled', 'disabled');
+      }
       return this;
     },
     onClick: function(){

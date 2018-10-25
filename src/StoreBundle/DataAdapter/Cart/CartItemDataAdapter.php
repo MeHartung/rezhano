@@ -34,7 +34,7 @@ class CartItemDataAdapter implements ClientApplicationModelAdapterInterface
   public function transform ($subject, $options = array())
   {
     $product = $subject->getProduct();
-    $warehouse = $this->stockManager->getAvailableWarehouse($product);
+//    $warehouse = $this->stockManager->getAvailableWarehouse($product);
 
     return [
       'id' => $subject->getId(),
@@ -43,7 +43,7 @@ class CartItemDataAdapter implements ClientApplicationModelAdapterInterface
       'product_id' => $subject->getPurchasableId(),
       'name' => $subject->getProduct()->getName(),
       'cost' => $subject->getCost(),
-      'warehouse' => $warehouse ? $this->warehouseDataAdapter->transform($warehouse): null,
+//      'warehouse' => $warehouse ? $this->warehouseDataAdapter->transform($warehouse): null,
       'product' => $product ? $this->productDataAdapter->transform($product) : null
     ];
   }

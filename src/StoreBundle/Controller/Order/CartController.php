@@ -51,14 +51,14 @@ class CartController extends Controller
 
     $cartItem = $cartService->resolve($product);
 
-    try
-    {
-      $this->get('aw.logistic.availability.manager')->validate($product, $cartItem->getQuantity() + $itemData['quantity']);
-    }
-    catch (StockableNotAvailableException $e)
-    {
-      return new JsonResponse(['error' => $e->getMessage()], 400);
-    }
+//    try
+//    {
+//      $this->get('aw.logistic.availability.manager')->validate($product, $cartItem->getQuantity() + $itemData['quantity']);
+//    }
+//    catch (StockableNotAvailableException $e)
+//    {
+//      return new JsonResponse(['error' => $e->getMessage()], 400);
+//    }
 
     $cartItem->setQuantity($cartItem->getQuantity() + $itemData['quantity']);
 

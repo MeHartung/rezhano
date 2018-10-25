@@ -25,7 +25,7 @@ define(function(require){
 
       CommonView.prototype.render.apply(this, arguments);
 
-      this.bestOffersView.setElement(this.$('.popular-products .product-items'));
+      this.bestOffersView.setElement(this.$('.popular-products'));
       this.bestOffersView.render();
 
       // this.lastVisitedView.setElement(this.$('.last-viewed-panel'));

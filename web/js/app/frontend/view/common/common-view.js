@@ -27,7 +27,7 @@ define(function(require){
       if (this.options.cartWidget){
         this.cartWidget = new CartWidgetView({
           model: this.cart,
-          el: $('.header-menu__info')
+          el: $('.header-controls__cart')
         });
       }
 
