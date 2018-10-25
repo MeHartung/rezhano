@@ -21,7 +21,11 @@ class ProductStockManager implements ProductStockManagerInterface
   /**
    * @inheritdoc
    */
-  public function getAvailableWarehouse(StockableInterface $product, $quantity=1)
+  public function getAvailableWarehouse($product, $quantity=1)
+  {
+    return null;
+  }
+  /*  public function getAvailableWarehouse(StockableInterface $product, $quantity=1)
   {
     $stocks = $product->getStocks();
     $warehouse = null;
@@ -43,7 +47,7 @@ class ProductStockManager implements ProductStockManagerInterface
     }
 
     return $warehouse;
-  }
+  }*/
 
   /**
    * @inheritdoc

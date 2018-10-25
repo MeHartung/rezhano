@@ -21,7 +21,7 @@ class ShippingMethodStoreCourier extends ShippingMethodStore
 
   public function __construct()
   {
-    parent::__construct(self::UID, ShippingMethod::CLSID_SHIPPING, 'Доставка');
+    parent::__construct(self::UID, ShippingMethod::CLSID_SHIPPING, 'Доставка', 'Доставка курьером интернет-магазина «Режано»');
   }
 
   /**

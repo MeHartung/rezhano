@@ -50,6 +50,7 @@ class MenuExtension extends \Twig_Extension
     
     $currentRoutePrefix = substr($menuRoute, 0, strpos($menuRoute, '_'));
     
-    return $menuRoute == $currentRoute || strpos($currentRoute, $currentRoutePrefix) !== false;
+    return $menuRoute == $currentRoute || strpos($currentRoute, $currentRoutePrefix) !== false ||
+      ($menuRoute == 'catalog_index' && $currentRoute == 'taxon');
   }
 }

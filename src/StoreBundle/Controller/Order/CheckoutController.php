@@ -6,10 +6,9 @@
 namespace StoreBundle\Controller\Order;
 
 use AccurateCommerce\DataAdapter\OrderClientApplicationAdapter;
-use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreCourier;
-use AccurateCommerce\Shipping\Method\App\ShippingMethodStorePickup;
 use StoreBundle\Entity\Store\Order\Order;
-use StoreBundle\Service\Geography\Location;
+use StoreBundle\Form\Checkout\CheckoutType;
+use StoreBundle\Validator\Constraints\PaymentMethod;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -262,7 +261,113 @@ class CheckoutController extends Controller
   public function checkoutAction (Request $request)
   {
     /** @var Order $order */
+    /** @var Order $order */
     $order = $this->get('store.user.cart')->getCart();
+    $items = $order->getOrderItems();
+  
+    if (!count($items))
+    {
+      if ($this->get('session')->getFlashBag()->has('order'))
+      {
+        /*
+         * Если посетитель после оформления заказа не был отправлен на страницу complete, отправим его
+         */
+        $or = $this->get('session')->getFlashBag()->get('order');
+        return $this->redirectToRoute('checkout_complete', [
+          'documentNumber' => $or[0],
+        ]);
+      }
+    
+      return $this->render('@Store/Checkout/empty.html.twig');
+    }
+  
+    $em = $this->getDoctrine()->getManager();
+  
+    $em->persist($order);
+    $em->flush();
+    
+    $payment = $this->getDoctrine()->getRepository(\StoreBundle\Entity\Store\Payment\Method\PaymentMethod::class)->findOneBy(
+      [
+        'type' => '6cdec659-199f-43b6-ac05-f87a3a552f51',
+        'enabled' => true
+      ]
+    );
+    $order->setPaymentMethod($payment);
+  
+    $shipments = $order->getShipments();
+    $form = $this->createForm(CheckoutType::class, $order/*, [
+      'action' => $this->generateUrl('checkout'),
+      'location' => $this->get('aw.location')->getLocation(),
+   
+      'city_repository' => $this->getDoctrine()->getRepository('StoreBundle:Store\Logistics\Delivery\Cdek\CdekCity'),
+    ]*/);
+  
+    $form->handleRequest($request);
+  
+    if ($form->isSubmitted())
+    {
+      if($form->getData()->getShippingCityName() !== null)
+      {
+        $data = $form->getData();
+        $data->setShippingCityName($form->getData()->getShippingCityName());
+        $form->setData($data);
+      }
+      if ($form->isValid())
+      {
+        $order = $form->getData();
+      
+        $payment = $this->getDoctrine()->getRepository('StoreBundle:Store\Payment\Method\PaymentMethod')->find($order->getPaymentMethod()->getId());
+        $order->setPaymentMethod($payment);
+      
+        /** @var $order Order */
+        $this->get('store.checkout.processor')->process($order);
+      
+        $this->get('store.user.cart')->invalidateCart();
+        $completedOrders = $this->get('session')->get('store.user.completed_orders');
+      
+        if (!$completedOrders)
+        {
+          $completedOrders = [];
+        }
+      
+        $completedOrders[] = $order->getDocumentNumber();
+        $this->get('session')->set('store.user.completed_orders', $completedOrders);
+        # $this->addFlash('order', $order->getDocumentNumber());
+      
+        return $this->redirectToRoute('checkout_complete', [
+          'documentNumber' => $order->getDocumentNumber(),
+        ]);
+      }
+    }
+  
+   # $countries = $this->getDoctrine()->getRepository('StoreBundle:Store\Logistics\Delivery\Cdek\CdekCountry')->findUsedCountries();
+  #  $cities = $this->getDoctrine()->getRepository('StoreBundle:Store\Logistics\Delivery\Cdek\CdekCity')->findBy([
+  #    'country' => $this->get('aw.location')->getLocation()->getCountryCode()
+#    ], ['name' => 'ASC']);
+  
+    $countryCode = $this->get('aw.location')->getLocation()->getCountryCode();
+    $cityName = $this->get('aw.location')->getLocation()->getCityName();
+  
+    #$country = $this->getDoctrine()->getRepository(CdekCountry::class)
+    #  ->findOneBy(["id" => $countryCode]);
+  
+   # $city = $this->getDoctrine()->getRepository(CdekCity::class)
+   #   ->findOneBy(['country' => $country, 'name' => $cityName]);
+  
+   # $duration = $this->get('app.shipping.service')->getDurationTime($city, $country);
+  
+    return $this->render('@Store/Checkout/index.html.twig', array(
+      'form' => $form->createView(),
+      'items' => $items,
+      'order' => $order,
+  #    'countries' => $countries,
+   #   'cities' => $cities,
+  #    'duration' => $duration,
+    ));
+    /**
+     * TODO это от НВИ, удалить после того как стр. заработает
+     */
+    /*$order = $this->get('store.user.cart')->getCart();
     $items = $order->getOrderItems();
 
     if ($items->isEmpty())
@@ -283,12 +388,8 @@ class CheckoutController extends Controller
         break;
     }
 
-    return $this->redirectToRoute('cart_index');
-
-    /**
-     * Установим город пользователя по умолчанию в соответствии с выбранным городом
-     * @var Location $location
-     */
+    return $this->redirectToRoute('cart_index');*/
+    
 //    $location = $this->get('store.geography.location');
 //
 //    $order->setShippingCityName($location->getCityName());
@@ -450,7 +551,7 @@ class CheckoutController extends Controller
      * Корзина нам нужна для полного списка товаров, а заказы для получения их номеров и сумм оплаты
      * @TODO связать корзину и ее заказы в бд
      */
-    $orders = [];
+ /*   $orders = [];
     $completeOrders = $request->getSession()->get('store.user.orders.complete');
     $order = $this->getDoctrine()->getRepository(Order::class)->findOneBy(['documentNumber' => $documentNumber]);
 
@@ -471,7 +572,6 @@ class CheckoutController extends Controller
       $orders[] = $this->getDoctrine()->getRepository('StoreBundle:Store\Order\Order')->find($completeOrder);
     }
 
-    /** @var \DateTime $createDate */
     $createDate = $order->getCheckoutAt();
 
     if (!$createDate || $createDate < new \DateTime('-10 minutes'))
@@ -483,6 +583,23 @@ class CheckoutController extends Controller
       'cart' => $order,
       'orders' => $orders,
       'stockManager' => $this->get('aw.logistic.stock.manager'),
+    ]);*/
+    $order = $this->getDoctrine()->getRepository(Order::class)->findOneBy(['documentNumber' => $documentNumber]);
+  
+    if (!$order)
+    {
+      throw $this->createNotFoundException(sprintf('Заказ "%s" не найден', $documentNumber));
+    }
+  
+    $completedOrders = $this->get('session')->get('store.user.completed_orders');
+  
+    if (!is_array($completedOrders) || !in_array($documentNumber, $completedOrders))
+    {
+      throw $this->createNotFoundException(sprintf('Заказ "%s" не был оформлен пользователем в рамках сессии', $documentNumber));
+    }
+    
+    return $this->render('@Store/Checkout/complete.html.twig', [
+      'order' => $order,
     ]);
   }
 }

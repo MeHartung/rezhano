@@ -851,11 +851,11 @@ services:
     templating.helper.assets:
       alias: assets.packages
 
-    store.order.checkout.stock.reserve:
-      class: StoreBundle\EventListener\OrderCheckoutProductStockReserve
-      arguments: ['@aw.logistic.stock.manager', '@doctrine.orm.entity_manager', '@logger']
-      tags:
-        - { name: kernel.event_listener, event: store.order.checkout, method: onCheckout }
+    #store.order.checkout.stock.reserve:
+    # class: StoreBundle\EventListener\OrderCheckoutProductStockReserve
+    #  arguments: ['@aw.logistic.stock.manager', '@doctrine.orm.entity_manager', '@logger']
+    #  tags:
+    #    - { name: kernel.event_listener, event: store.order.checkout, method: onCheckout }
 
     store.location.resolver.stored:
       class: StoreBundle\Location\StoredCityLocationResolver

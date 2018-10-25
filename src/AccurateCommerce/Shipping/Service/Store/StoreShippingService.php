@@ -19,8 +19,9 @@ class StoreShippingService extends ShippingService
   public function configure()
   {
     $this->addShippingMethod(new ShippingMethodStorePickup());
+    $this->addShippingMethod(new ShippingMethodStorePickup());
     $this->addShippingMethod(new ShippingMethodStoreCourier());
-//    $this->addShippingMethod(new ShippingMethodUserDefined());
-//    $this->addShippingMethod(new ShippingMethodStoreFree());
+    $this->addShippingMethod(new ShippingMethodUserDefined());
+   # $this->addShippingMethod(new ShippingMethodStoreFree());
   }
 }

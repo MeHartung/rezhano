@@ -6,9 +6,13 @@
 namespace StoreBundle\Form\Checkout;
 
 
+use AccurateCommerce\Shipping\Method\ShippingMethodUserDefined;
+use Doctrine\ORM\EntityRepository;
+use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Order\OrderItem;
 use StoreBundle\Entity\Store\Payment\Method\PaymentMethod;
+use StoreBundle\Entity\Store\Shipping\ShippingMethod;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -32,6 +36,7 @@ class CheckoutType extends AbstractType
    */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
+    $data = $builder->getForm()->getData();
     $builder
       ->add('customer_phone', TextType::class, [
         'required' => true,
@@ -63,13 +68,26 @@ class CheckoutType extends AbstractType
           new Email()
         ]
       ])
+      ->add('shipping_city_name', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, [
+        'choices' => [
+          'Екатеринбург' => 'Екатеринбург',
+          'Реж' => 'Реж',
+          'Другой город' => ''
+        ],
+        'required' => true,
+       # 'expanded' => true,
+        'label' => 'Город доставки',
+        'constraints' => [
+          new NotBlank(['message' => 'Пожалуйста, укажите город доставки']),
+        ],
+      ])/*
       ->add('shipping_city_name', TextType::class, [
         'required' => true,
         'label' => false,
         'constraints' => [
           new NotBlank(['message' => 'Пожалуйста, укажите город доставки']),
         ]
-      ])
+      ])*/
       ->add('shipping_post_code', TextType::class, [
         'required' => false,
         'label' => false
@@ -82,11 +100,32 @@ class CheckoutType extends AbstractType
         'label' => false,
         'required' => false
       ])
-      ->add('shipping_method_id', HiddenType::class, [
+      ->add('shipping_method_id', EntityType::class, [
+        'class' => ShippingMethod::class,
+        'query_builder' => function (EntityRepository $er) use ($data)
+        {
+          /** @var Order $data */
+          $city = $data->getShippingCityName();
+
+          if($city === 'Реж' || $city === 'Екатеринбург')
+          {
+            return $er->createQueryBuilder('sm')
+              ->where('sm.uid != :uid')
+              ->orderBy('sm.position')
+              ->setParameter('uid', ShippingMethodUserDefined::UID);
+          }else
+          {
+            return $er->createQueryBuilder('sm')
+              ->where('sm.uid = :uid')
+              ->orderBy('sm.position')
+              ->setParameter('uid', ShippingMethodUserDefined::UID);
+          }
+        }
+        ,
         'required' => true,
         'error_bubbling' => false,
         'constraints' => [
-          new NotBlank(['message' => 'Пожалуйста, укажите способ доставки заказа']),
+          new NotBlank(['message' => 'Пожалуйста, укажите способ оплаты заказа'])
         ]
       ])
       ->add('payment_method', EntityType::class, [
@@ -114,14 +153,16 @@ class CheckoutType extends AbstractType
         ]
       ]);
   }
-
-
+  
+  
+  /**
+   * @param $order
+   * @param ExecutionContext $context
+   */
   public function hasNotPreorderProducts($order, ExecutionContext $context)
   {
-    /** @var Order $order */
-    $orderItems = $order->getOrderItems();
-
-    /** @var OrderItem $orderItem */
+    return;
+/*    $orderItems = $order->getOrderItems();
     foreach ($orderItems as $orderItem)
     {
       if ($orderItem->getProduct()->isPreorder())
@@ -129,7 +170,7 @@ class CheckoutType extends AbstractType
         $context->addViolation(sprintf('Товар %s доступен только для предзаказа', $orderItem->getProduct()->getName()));
         return;
       }
-    }
+    }*/
   }
 
 

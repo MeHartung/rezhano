@@ -24,3 +24,16 @@ services:
         - null
         - StoreBundle\Entity\Text\Partner
         - 'PixSortableBehaviorBundle:SortableAdmin'
+
+    app.admin.ship:
+      class: StoreBundle\Admin\Store\Shipping\ShippingAdmin
+      tags:
+        -
+          name: sonata.admin
+          manager_type: orm
+          group: store
+          label: Доставка
+      arguments:
+        - null
+        -  StoreBundle\Entity\Store\Shipping\ShippingMethod
+        - 'PixSortableBehaviorBundle:SortableAdmin'

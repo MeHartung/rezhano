@@ -1,3 +1,4 @@
+{#
 {% extends "::base.html.twig" %}
 
 {% block javascripts %}
@@ -68,7 +69,9 @@
             </div>
 
             <div class="cards-container__header-buttons">
-              {#<a href="">Отправить<br>подтверждение</a>#}
+              #}
+{#<a href="">Отправить<br>подтверждение</a>#}{#
+
               <a href="{{ path('catalog_index') }}">Продолжить<br>покупки</a>
             </div>
 
@@ -137,7 +140,9 @@
                   <div class="cards-container__order-estimate-delivery">
                     Срок доставки
                     <span class="cards-container__order-estimate-delivery_day">
-                          {#4–5 дней#}
+                          #}
+{#4–5 дней#}{#
+
                       {{ hotspot('delivery_time', '4-5 дней   ') }}
                         </span>
                   </div>
@@ -201,4 +206,23 @@
       </div>
     </div>
   </section>
+{% endblock %}#}
+{% extends "base.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block main %}
+  <div class="container main content">
+    <div class="collection_nav">
+      <h1 class="collection_title">Заказ оформлен</h1>
+    </div>
+
+    <div class="section clearfix">
+      <p>Благодарим Вас за заказ. Номер Вашего заказа <b>{{ order.documentNumber }}</b>.</p>
+      <p>В ближайшее время наши сотрудники свяжутся с вами.</p>
+      <a class="button button_primary" href="{{ path('catalog_index') }}">Продолжить покупки</a>
+    </div>
+  </div>
 {% endblock %}

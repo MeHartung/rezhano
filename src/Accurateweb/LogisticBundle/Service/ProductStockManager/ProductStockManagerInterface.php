@@ -13,7 +13,8 @@ interface ProductStockManagerInterface
    * @param int $quantity
    * @return WarehouseInterface|null
    */
-  public function getAvailableWarehouse(StockableInterface $product, $quantity=1);
+  #public function getAvailableWarehouse(StockableInterface $product, $quantity=1);
+  public function getAvailableWarehouse($product, $quantity=1);
 
   /**
    * Количество товара в указанном городе
