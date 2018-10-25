@@ -60,11 +60,11 @@ class TaxonAdmin extends AbstractTreeAdmin
       ])
       ->add('description', TinyMceType::class)
       ->add('shortName', null, [
-        'label' => 'Сокращённое имя'
+        'label' => 'Сокращённое название'
       ])
-      ->add('linkedTaxons', null, [
-        'label' => 'Сопутствующие разделы',
-      ])
+//      ->add('linkedTaxons', null, [
+//        'label' => 'Сопутствующие разделы',
+//      ])
     ->end()
     ->end()
       ->tab('Фото')

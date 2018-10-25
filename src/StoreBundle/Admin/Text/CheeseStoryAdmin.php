@@ -30,7 +30,7 @@ class CheeseStoryAdmin extends AbstractAdmin
   protected function configureListFields(ListMapper $list)
   {
     $list
-      ->add('title')
+      ->add('title', null)
       ->add('_action', null, array(
           'actions' => array(
             'edit' => null,
@@ -50,19 +50,19 @@ class CheeseStoryAdmin extends AbstractAdmin
     $form
       ->add('title')
       ->add('text', TinyMceType::class)
-      ->add('teaser', ImageType::class, array(
-        'required' => $subject->getTeaser() === null
-      ));
-  
-    $form->getFormBuilder()->addEventListener(FormEvents::POST_SUBMIT,
-      function (\Symfony\Component\Form\FormEvent $event) use ($subject)
-      {
-        if ($subject->getTeaser() === null)
-        {
-          $nullPhotoError = new FormError("У истории должно быть фото!");
-          $event->getForm()->get('teaser')->addError($nullPhotoError);
-        }
-      });
+    #  ->add('teaser', ImageType::class, array(
+    #    'required' => $subject->getTeaser() === null
+    #  ));
+  ;
+   # $form->getFormBuilder()->addEventListener(FormEvents::POST_SUBMIT,
+   #   function (\Symfony\Component\Form\FormEvent $event) use ($subject)
+   #   {
+   #     if ($subject->getTeaser() === null)
+   #     {
+   #       $nullPhotoError = new FormError("У истории должно быть фото!");
+   #       $event->getForm()->get('teaser')->addError($nullPhotoError);
+   #     }
+   #   });
   }
   
   

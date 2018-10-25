@@ -40,24 +40,28 @@
     {% if app.user is not null %}
       {% include "@Store/Common/admin_control_panel.html.twig" %}
     {% endif %}
-    <header class="header">
+    {# не заворачивает в header при наследовании #}
+    <header style="" class="{% block header_class %}header{% endblock %}">
       {% block header %}
         <a class="header-logo" title="Режано"
            {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
-            <div class="header-menu">
+           {% block headerMenu %}
+             {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
+           {% endblock %}
+{#            <div class="header-menu">
                 <a href="#" class="header-menu__item">О нас</a>
                 <a href="#" class="header-menu__item">Магазин</a>
                 <a href="#" class="header-menu__item">Подарки</a>
                 <a href="#" class="header-menu__item">Экскурсии</a>
                 <a href="#" class="header-menu__item">Оптом</a>
                 <a href="#" class="header-menu__item">Контакты</a>
-            </div>
+            </div>#}
 
             <div class="header-controls">
                 <a href="" class="header-controls__item header-controls__cabinet">
-        <span class="header-controls__notice">
-          <span class="notice-count">1</span>
-        </span>
+                    <span class="header-controls__notice">
+                      <span class="notice-count">1</span>
+                    </span>
                 </a>
             <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
                 {% if cart.orderItems|length %}
@@ -79,30 +83,6 @@
             {#<span class="user-icon"></span>Войти#}
           {#</a>#}
         {#{% endif %}#}
-        {% block menu %}
-          {% block headerMenu %}
-            {#<div class="header-menu">#}
-              {#<div class="container">#}
-                {#<div class="header-menu__wrap">#}
-                  {#<div class="menu-container">#}
-
-                    {#<button class="open-menu" id="openMenu">#}
-                      {#<span>Каталог товаров</span>#}
-                      {#<span class="burger-icon"></span>#}
-                    {#</button>#}
-
-                    {#{{ render(controller('StoreBundle:Common:catalogMenu')) }}#}
-                  {#</div>#}
-
-                  {#<form class="header-menu__input" action="{{ url('catalog_search') }}">#}
-                    {#<input type="text" placeholder="Найти в каталоге товаров" name="q" autocomplete="off">#}
-                    {#<button class="button-search" type="submit"></button>#}
-                  {#</form>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-          {% endblock %}
-        {% endblock menu %}
       {% endblock header %}
     </header>
 
@@ -131,6 +111,7 @@
       {#</div>#}
     {#{% endblock footer %}#}
   {#</footer>#}
+    {% block footer %}
     <footer>
         <div class="container">
             <a href="#" class="header-logo"></a>
@@ -159,15 +140,7 @@
                     </div>
                 </div>
 
-                <div class="footer-links">
-                    {{ render(controller('StoreBundle:Menu/MenuItem:footerMenu')) }}
-                    {#<a href="" class="footer-links__item">О нас</a>#}
-                    {#<a href="" class="footer-links__item">Продукция</a>#}
-                    {#<a href="" class="footer-links__item">Подарки</a>#}
-                    {#<a href="" class="footer-links__item">Экскурсии</a>#}
-                    {#<a href="" class="footer-links__item">Оптом</a>#}
-                    {#<a href="" class="footer-links__item">Контакты</a>#}
-                </div>
+                {{ render(controller('StoreBundle:Menu/MenuItem:footerMenu')) }}
 
                 <div class="footer-maps">
                     <div class="footer-maps__item">
@@ -196,6 +169,7 @@
             </div>
         </div>
     </footer>
+    {% endblock footer %}
 {% endblock body %}
 
 {% block javascripts %}
@@ -205,17 +179,8 @@
   <script type="text/javascript">window.require = {waitSeconds: 600};</script>
   <script src="{{ asset('js/vendor/requirejs/require.js') }}" data-main="/js/app/frontend/app.js"></script>
   <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+  {#<script type="text/javascript" src="{{ asset('js/vendor/slick/slick.js') }}"></script>#}
   {% endif %}
-  <script>
-    $(function () {
-      $('#openMenu').on('click', function () {
-        $('#expandedMenu').css({'display': 'block'})
-      });
-      $('#closeMenu').on('click', function () {
-        $('#expandedMenu').css({'display': 'none'})
-      })
-    });
-  </script>
 {% endblock %}
 </body>
 </html>

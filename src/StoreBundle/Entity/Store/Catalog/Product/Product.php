@@ -32,7 +32,7 @@ use Accurateweb\LogisticBundle\Validator\Constraints as LogisticAssert;
  * @ORM\Entity(repositoryClass="StoreBundle\Repository\Store\Catalog\Product\ProductRepository")
  *
  */
-class Product implements SluggableInterface, StockableInterface
+class Product implements SluggableInterface//, StockableInterface
 {
   /**
    * @var int
@@ -817,18 +817,19 @@ class Product implements SluggableInterface, StockableInterface
    */
   public function isPurchasable()
   {
-    return $this->isPurchasable;
+    //return $this->isPurchasable;
+    return $this->isPublished();
   }
 
   /**
    * @param bool $isPurchasable
    * @return Product
    */
-  public function setIsPurchasable($isPurchasable)
-  {
-    $this->isPurchasable = $isPurchasable;
-    return $this;
-  }
+//  public function setIsPurchasable($isPurchasable)
+//  {
+//    $this->isPurchasable = $isPurchasable;
+//    return $this;
+//  }
 
   public function setSphinxWeight($v)
   {

@@ -29,11 +29,14 @@ class HomepageController extends Controller
     {
       $viewedProducts = $this->getUser()->getViewedProductList()->getProducts(6);
     }
+    
+    $cheeseStories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findAll();
 
     return $this->render('StoreBundle:Homepage:index.html.twig', array(
       'banners' => $banners,
       'bestOffers' => $bestOffers,
       'viewedProducts' => $viewedProducts,
+      'cheeseStories' => $cheeseStories
     ));
   }
 

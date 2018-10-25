@@ -20,8 +20,8 @@ services:
   aw.meta.default_resolver:
     class: 'Accurateweb\MetaBundle\Resolver\DefaultMetaResolver'
     arguments:
-      - 'Реализация имущества Группы «Газпром нефть»'
-      - 'Реализация имущества Группы «Газпром нефть»'
+      - '%meta_default_title%'
+      - '%meta_default_title%'
       - 'Газпром нефть
          Реализация имущества'
     tags:
@@ -30,9 +30,9 @@ services:
   aw.meta.og_default_resolver:
     class: 'Accurateweb\MetaBundle\Resolver\DefaultMetaOpenGraphResolver'
     arguments:
-      - 'Реализация имущества Группы «Газпром нефть»'
-      - 'Реализация имущества Группы «Газпром нефть»'
-      - 'Реализация имущества Группы «Газпром нефть»'
+      - '%meta_default_title%'
+      - '%meta_default_title%'
+      - '%meta_default_title%'
     tags:
       - { name: aw.meta.og_resolver, priority: 100 }
 
