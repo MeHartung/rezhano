@@ -24,37 +24,54 @@
       dots: true,
       arrows: true
     });
+
+    var $headerMenu = $('header');
+    var headerMenuHeight = $('header').height();
+    var headerSectionHeight = $('.header-section').height() - headerMenuHeight;
+
+    $(window).scroll(function () {
+
+      if ( $(this).scrollTop()>headerSectionHeight ) {
+        $headerMenu.addClass('fixed');
+      } else if ( $(this).scrollTop()<headerSectionHeight ) {
+        $headerMenu.removeClass('fixed');
+      }
+    });
+
+
   })</script>
 </head>
 <body>
   <header style="">
-    <a href="#" class="header-logo"></a>
+    <div class="header-menu-wrap">
+      <a href="#" class="header-logo"></a>
 
-    <div class="header-menu">
-      <a href="#" class="header-menu__item">О нас</a>
-      <a href="#" class="header-menu__item">Магазин</a>
-      <a href="#" class="header-menu__item">Подарки</a>
-      <a href="#" class="header-menu__item">Экскурсии</a>
-      <a href="#" class="header-menu__item">Оптом</a>
-      <a href="#" class="header-menu__item">Контакты</a>
-    </div>
+      <div class="header-menu">
+        <a href="#" class="header-menu__item">О нас</a>
+        <a href="#" class="header-menu__item">Магазин</a>
+        <a href="#" class="header-menu__item">Подарки</a>
+        <a href="#" class="header-menu__item">Экскурсии</a>
+        <a href="#" class="header-menu__item">Оптом</a>
+        <a href="#" class="header-menu__item">Контакты</a>
+      </div>
 
-    <div class="header-controls">
-      <a href="" class="header-controls__item header-controls__cabinet">
+      <div class="header-controls">
+        <a href="" class="header-controls__item header-controls__cabinet">
         <span class="header-controls__notice">
           <span class="notice-count">1</span>
         </span>
-      </a>
-      <a href="" class="header-controls__item header-controls__cart">
+        </a>
+        <a href="" class="header-controls__item header-controls__cart">
         <span class="header-controls__notice">
           <span class="notice-count">1</span>
         </span>
-      </a>
+        </a>
+      </div>
     </div>
+
   </header>
 
   <main>
-
     <section class="header-section">
       <div class="container">
         <div class="header-section__wrap">
