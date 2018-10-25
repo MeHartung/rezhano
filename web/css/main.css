@@ -585,11 +585,18 @@ a.button_on-yellow:hover {
 }
 header {
   height: 120px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   text-align: right;
   z-index: 100;
   padding: 37px 50px;
+}
+header .header-menu-wrap {
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
 }
 header .header-logo {
   display: inline-block;
@@ -599,7 +606,7 @@ header .header-logo {
   height: 45px;
   position: absolute;
   left: 50px;
-  top: 37px;
+  top: 3px;
 }
 header .header-menu {
   display: inline-block;
@@ -673,6 +680,12 @@ header .header-controls__cabinet {
 header .header-controls__cart {
   background: url("../images/icons/basket.png") center no-repeat;
   width: 22px;
+}
+header.fixed {
+  background-color: #101010;
+  position: fixed;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 .header-section {
   background: url("../images/section_bg.png") center no-repeat;
