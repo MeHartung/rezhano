@@ -494,37 +494,6 @@ h2 {
 .header {
   background: black;
   color: #ffffff;
-  *zoom: 1;
-}
-.header__title {
-  float: left;
-  font-size: 52px;
-  font-weight: 500;
-  line-height: 121px;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-.header__logo {
-  display: block;
-  float: right;
-  width: 137px;
-  height: 67px;
-  margin-top: 23px;
-}
-.header__fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.header:before,
-.header:after {
-  content: " ";
-  display: table;
-  line-height: 0;
-}
-.header:after {
-  clear: both;
 }
 .footer {
   border-top: 1px solid #dcdcdc;
@@ -642,6 +611,13 @@ header .header-menu__item:hover:before {
   bottom: -6px;
   left: 0;
 }
+header .header-menu__item.active {
+  color: #ffcf40;
+  cursor: default;
+}
+header .header-menu__item.active:hover:before {
+  display: none;
+}
 header .header-controls {
   display: inline-block;
   vertical-align: top;
@@ -655,23 +631,21 @@ header .header-controls__item {
   position: relative;
 }
 header .header-controls__notice {
-  width: 19px;
-  height: 19px;
   border-radius: 50%;
   background-color: #ffcf40;
   position: absolute;
   top: -10px;
-  right: -10px;
-}
-header .header-controls__notice .notice-count {
+  left: 10px;
   font-size: 18px;
   font-family: alegreyasans-regular;
   color: #000000;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+}
+header .header-controls__notice .notice-count {
+  background-color: #ffcf40;
+  border-radius: 15px;
+  padding: 0 6px;
+  display: block;
+  min-width: 21px;
 }
 header .header-controls__cabinet {
   background: url("../images/icons/room.png") center no-repeat;
@@ -956,6 +930,7 @@ h1,
 }
 .product-list .product-item {
   display: inline-block;
+  vertical-align: top;
   width: 370px;
   text-align: center;
   margin-bottom: 90px;
@@ -1014,6 +989,7 @@ h1,
   display: block;
   text-align: center;
   margin-top: 8px;
+  max-width: 350px;
 }
 .product-list .product-item__characteristics {
   text-align: center;

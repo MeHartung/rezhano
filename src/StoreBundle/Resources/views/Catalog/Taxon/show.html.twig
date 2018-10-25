@@ -25,8 +25,38 @@
 
 {% endblock %}
 
+{% block header %}
+  <header class="header-catalog">
+    <div class="header-menu-wrap header-menu-wrap">
+      <a class="header-logo" title="Режано"
+         {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
+      {% block headerMenu %}
+        {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
+      {% endblock %}
+
+      <div class="header-controls">
+        <a href="" class="header-controls__item header-controls__cabinet">
+        <span class="header-controls__notice">
+          <span class="notice-count">1</span>
+        </span>
+        </a>
+        <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
+          {% if cart.orderItems|length %}
+            <span class="header-controls__notice">
+            <span class="notice-count">{{ cart.orderItems|length }}</span>
+          </span>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+{% endblock header %}
+
+
 {% block main %}
-    <section>
+    <section class="catalog-section">
         <div class="container container_no-padding">
 
             {#<div class="section-title">#}
