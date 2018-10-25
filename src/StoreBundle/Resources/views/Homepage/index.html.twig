@@ -1,25 +1,23 @@
 {% extends "::base.html.twig" %}
 
+{% block header_class %}header__fixed{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="js/vendor/slick/slick.css">
+{% endblock %}
+
+{% block head_javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="js/vendor/slick/slick.js"></script>
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
 
     {{ bestOffers|client_model_collection('product', 'BestOffers') }}
     {{ viewedProducts|client_model_collection('product', 'ViewedProducts') }}
     {#{{ notifications|client_model_collection('notification', 'Notifications') }}#}
-    <script>$(function () {
-            $('.header-slider__wrap').slick({
-                infinite: true,
-                // autoplay: true,
-                // autoplaySpeed: 2000,
-                dots: true,
-                arrows: false
-            });
-
-            $('.notes-slider').slick({
-                dots: true,
-                arrows: true
-            });
-        })</script>
 {% endblock %}
 
 {% block main %}
@@ -27,73 +25,106 @@
 
     </section>
     {% if banners|length %}
-      <section class="section-slider">
+        <section class="section-slider">
+            <div class="container container_no-padding">
+                <div class="section-slider__prev-slide"></div>
+                <div id="sliderMain" class="slider-main" style="font-size: 0; white-space: nowrap">
+                    {% for banner in banners %}
+                        <a href="{{ banner.url }}"><div style="background: url({{ image_url(banner) }}) no-repeat; width: 619px; height: 301px; display: inline-block;"></div></a>
+                    {% endfor %}
+                </div>
+                <div class="section-slider__next-slide"></div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="first-slide">
+        <div class="container">
+
+            <div class="first-slide__title">{{ hotspot('сыр-это-наше-призвание-заголовок', "Сыр — это наше призвание") }}</div>
+
+            <p class="first-slide__text">{{ hotspot('сыр-это-наше-призвание-абзац-1', "«Режано» — ремесленная сыроварня, построенная<br>по европейскому  образцу. Мы производим натуральные<br>сыры ручной работы из цельного молока.") }}</p>
+            <p class="first-slide__text">{{ hotspot('сыр-это-наше-призвание-абзац-2', "Абсолютно прозрачное производство — любой желающий может приехать на экскурсию и посмотреть через стеклянную стену на работу сыроваров.") }}</p>
+
+            <div class="first-slide__image first-slide__image_left">
+                <img src="/images/first-image_1.png" alt="">
+
+                <div class="image-name">
+                    <span class="image-name__arrow"></span>
+                    <span class="image-name__text">Сыр «Буратта»</span>
+                </div>
+
+            </div>
+
+            <div class="first-slide__image first-slide__image_right">
+                <img src="/images/first-image_2.png" alt="">
+
+                <div class="image-name">
+                    <span class="image-name__arrow"></span>
+                    <span class="image-name__text">Сыр «Шемудин»</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="presents">
+        <div class="container">
+            <div class="presents__wrap">
+                <div class="presents__image"></div>
+                <p class="presents__text">
+                    Знаете как порадовать<br>близких или себя?
+                </p>
+                <p class="presents__text">
+                    «Режано» знает — закажи<br>сырную корзинку в подарок
+                </p>
+                <a href="{{ url('taxon', { slug: 'podarki' }) }}" class="button button_on-yellow">
+                    <span>подарки здесь</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="choice">
         <div class="container container_no-padding">
-          <div class="section-slider__prev-slide"></div>
-          <div id="sliderMain" class="slider-main" style="font-size: 0; white-space: nowrap">
-              {% for banner in banners %}
-                <a href="{{ banner.url }}"><div style="background: url({{ image_url(banner) }}) no-repeat; width: 619px; height: 301px; display: inline-block;"></div></a>
-              {% endfor %}
-          </div>
-          <div class="section-slider__next-slide"></div>
+            <h2 class="choice__title">Сложный выбор?</h2>
+
+            <a href="{{ url('taxon', { slug: 'syr', "f[type]": "casual"}) }}" class="choice__link choice__everyday"></a>
+            <a href="{{ url('taxon', { slug: 'syr', "f[type]": "gourmet"}) }}" class="choice__link choice__gourmet"></a>
         </div>
-      </section>
-    {% endif %}
-
-    {% if bestOffers|length %}
-      <section class="best-offers">
-        <div class="container">
-
-          <div class="section-title ">
-            <span class="section-title__text section-title__text_aside-line">Лучшие предложения</span>
-              <a href="{{ url('taxon', { slug: 'best-offers' }) }}" class="section-title__link-more">Смотреть все</a>
-          </div>
-
-          <div class="section-wrap">
-              {% for item in bestOffers %}
-                  {% include '@App/Common/product_item.html.twig' with {'product': item} %}
-              {% endfor %}
-          </div>
-
-        </div>
-      </section>
-    {% endif %}
-
-    {% if app.user and viewedProducts and viewedProducts|length %}
-      <section class="last-viewed-panel">
-        <div class="container">
-          <div class="section-title">
-            <span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>
-          </div>
-
-          <div class="section-wrap">
-              {% for product in viewedProducts %}
-                  {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}
-              {% endfor %}
-          </div>
-
-        </div>
-      </section>
-    {% endif %}
-
+    </section>
     {% if partners | length > 0 %}
         <section class="partners">
             <div class="container">
                 <h2 class="partners__title">Наши партнёры</h2>
                 <div class="partners-wrap">
-                {% for partner in partners %}
-                    <a class="partner-item" style=" background: url('{{ image_url(partner) }}') center no-repeat;  width: 310px; height: 83px;"></a>
-{#                    <a class="partner-item partner-auchan"></a>
-                    <a class="partner-item partner-metro"></a>
-                    <a class="partner-item partner-lenta"></a>
-                    <a class="partner-item partner-5-shop"></a>
-                    <a class="partner-item partner-perek"></a>#}
-                {% endfor %}
+                    {% for partner in partners %}
+                        <a class="partner-item" style=" background: url('{{ image_url(partner) }}') center no-repeat;  width: 310px; height: 83px;"></a>
+                        {#                    <a class="partner-item partner-auchan"></a>
+                                            <a class="partner-item partner-metro"></a>
+                                            <a class="partner-item partner-lenta"></a>
+                                            <a class="partner-item partner-5-shop"></a>
+                                            <a class="partner-item partner-perek"></a>#}
+                    {% endfor %}
                 </div>
             </div>
         </section>
     {% endif %}
+    <section class="tour">
+        <div class="container">
+            <div class="tour__wrap">
+                <div class="tour__image"></div>
+                <span class="tour__contacts">{{ hotspot('tour_phone', '+7 (922) 145-62-37') }}</span>
+                <a href="/tours" class="button">
+                    <span>подробности</span>
+                </a>
+            </div>
 
+            <div class="tour__image-bg">
+                <div class="image-bg__item image-bg__right"></div>
+            </div>
+        </div>
+    </section>
 
     {% if cheeseStories|length > 0 %}
 
@@ -123,8 +154,40 @@
             </div>
         </section>
     {% endif %}
-{% endblock %}
 
-{% block head_javascripts %}
-  {{ parent() }}
+    {% if bestOffers|length %}
+        <section class="best-offers">
+            <div class="container">
+
+                <div class="section-title ">
+                    <span class="section-title__text section-title__text_aside-line">Лучшие предложения</span>
+                    <a href="{{ url('taxon', { slug: 'best-offers' }) }}" class="section-title__link-more">Смотреть все</a>
+                </div>
+
+                <div class="section-wrap">
+                    {% for item in bestOffers %}
+                        {% include '@App/Common/product_item.html.twig' with {'product': item} %}
+                    {% endfor %}
+                </div>
+
+            </div>
+        </section>
+    {% endif %}
+
+    {% if app.user and viewedProducts and viewedProducts|length %}
+        <section class="last-viewed-panel">
+            <div class="container">
+                <div class="section-title">
+                    <span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>
+                </div>
+
+                <div class="section-wrap">
+                    {% for product in viewedProducts %}
+                        {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}
+                    {% endfor %}
+                </div>
+
+            </div>
+        </section>
+    {% endif %}
 {% endblock %}
