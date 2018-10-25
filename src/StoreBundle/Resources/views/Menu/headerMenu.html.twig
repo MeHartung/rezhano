@@ -2,7 +2,12 @@
     {% if menuItems|length > 0 %}
         {% for menuItem in menuItems %}
             {% if (menuItem.url) %}
-                <a href="{{ menuItem.url|menu_url }}" class="header-menu__item">{{ menuItem.name }}</a>
+                {% if menuItem.url | is_active %}
+                    <a href="#" class="header-menu__item active">{{ menuItem.name }}</a>
+                {% else %}
+                    <a href="{{ menuItem.url|menu_url }}"
+                       class="header-menu__item">{{ menuItem.name }}</a>
+                {% endif %}
             {% endif %}
         {% endfor %}
     {% endif %}

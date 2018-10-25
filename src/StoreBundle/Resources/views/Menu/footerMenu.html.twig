@@ -24,6 +24,10 @@
 </div>#}
 <div class="footer-links">
     {% for i, node in nodes %}
-        <a href="{{ node.url }}"  class="footer-links__item">{{ node.name }}</a>
+        {% if node.url | is_active %}
+            <a href="#" class="footer-links__item active">{{ node.name }}</a>
+        {% else %}
+            <a href="{{ node.url }}" class="footer-links__item">{{ node.name }}</a>
+        {% endif %}
     {% endfor %}
 </div>

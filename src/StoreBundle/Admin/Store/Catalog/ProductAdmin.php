@@ -89,6 +89,8 @@ class ProductAdmin extends AbstractAdmin
         ]
       ])
       ->add('oldPrice', NumberType::class)
+      ->add('wholesalePrice', NumberType::class)
+      ->add('purchasePrice', NumberType::class)
       ->add('publicationAllowed', BooleanType::class, array(
         'transform' => true
       ))
