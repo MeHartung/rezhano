@@ -324,6 +324,7 @@ services:
         class: StoreBundle\Twig\MenuExtension
         arguments:
           - "@request_stack"
+          - "@router"
         public: false
         tags:
             - { name: twig.extension }
