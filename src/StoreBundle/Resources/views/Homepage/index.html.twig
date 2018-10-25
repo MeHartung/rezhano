@@ -94,10 +94,10 @@
             <div class="presents__wrap">
                 <div class="presents__image"></div>
                 <p class="presents__text">
-                    Знаете как порадовать<br>близких или себя?
+                    {{ hotspot('подарки-абзац-1', 'Знаете, как порадовать<br>близких или себя?') }}
                 </p>
                 <p class="presents__text">
-                    «Режано» знает — закажи<br>сырную корзинку в подарок
+                    {{ hotspot('подарки-абзац-2', '«Режано» знает — закажи<br>сырную корзинку в подарок!') }}
                 </p>
                 <a href="{{ url('taxon', { slug: 'podarki' }) }}" class="button button_on-yellow">
                     <span>подарки здесь</span>

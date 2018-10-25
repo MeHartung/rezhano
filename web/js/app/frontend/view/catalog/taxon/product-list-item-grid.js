@@ -1,7 +1,10 @@
 define(function(require){
   var ListItemView = require('view/base/list-item-view'),
       //Buy1ClickButton = require('view/checkout/1click/1click-order-button'),
-      User = require('model/user/user');//,
+      User = require('model/user/user'),
+      QuantityWidget = require('view/cart/widget/quantity-widget'),
+      ProductQuickViewDialog = require('view/catalog/product/product-quick-view-dialog')
+      ;//,
       //PreorderButton = require('view/checkout/preorder/preorder-button');
 
   require('lib/string');
@@ -11,18 +14,24 @@ define(function(require){
   return ListItemView.extend({
     className: 'product-item',
     events: {
-      'click .button_add-to-cart': 'onAddToCartButtonClick'
+      'click .button_add-to-cart': 'onAddToCartButtonClick',
+      'click .product-page-link': 'onProductPageLinkClick'
     },
     initialize: function(options){
       ListItemView.prototype.initialize.apply(this, arguments);
 
       this.options = _.extend({
-        isNarrow: false
       }, options);
 
       // this.buy1clickButton = new Buy1ClickButton();
       // this.preorderButton = new PreorderButton();
       this.cart = options.cart;
+      this.quantityWidget = new QuantityWidget({
+        model: this.cart.createItem({
+          productId: this.model.get('id')
+        })
+      });
+      this.productQuickViewDialog = null;
     },
     render: function(){
       var isUserAuth = User.getCurrentUser().isNew() == false;
@@ -49,14 +58,9 @@ define(function(require){
         // } else {
         //   this.buy1clickButton.setElement(this.$('.buy-one')).render();
         // }
+          this.quantityWidget.setElement(this.$('.product-item__controls')).render();
       } else {
         this.$el.addClass('product-unavailable');
-      }
-
-      if (this.options.isNarrow){
-        this.$el.addClass('product-item_narrow');
-      } else {
-        this.$el.removeClass('product-item_narrow');
       }
 
       return this;
@@ -69,7 +73,8 @@ define(function(require){
         cart = this.cart;
 
       var cartItem = this.cart.createItem({
-        product_id: productId
+        product_id: productId,
+        quantity: this.quantityWidget.model.get('quantity')
       });
 
       cartItem
@@ -78,8 +83,22 @@ define(function(require){
           cart.items.set(cartItem, {
             remove: false
           });
-          cart.trigger('item:add', cartItem, 1);
+          cart.trigger('item:add', cartItem, cartItem.quantity);
+          self.quantityWidget.model.set({ quantity: 1 });
         });
+    },
+    onProductPageLinkClick: function(e){
+      e.preventDefault();
+
+      if (null === this.productQuickViewDialog){
+        this.productQuickViewDialog = new ProductQuickViewDialog({
+            model: this.model,
+            cart: this.cart
+        });
+        this.productQuickViewDialog.render().$el.appendTo($('body'));
+      }
+
+      this.productQuickViewDialog.open();
     }
   })
-})
+});
