@@ -1,5 +1,5 @@
 define(function(){
-  var _ = require('underscore');
+  //var _ = require('underscore');
 
   return _.template('\
   <a class="product-item__image" title="<%= name %> купить" href="<%= url %>"> \
@@ -24,9 +24,9 @@ define(function(){
     <a class="addtocart-button button button_black button_add-to-cart" data-product-id="<%= id %>"><span>В корзину</span></a>\
     <div class="product-item__controls">\n' +
 '        <span class="controls-title">количество</span>\n' +
-'        <span class="controls-item controls-item__increase"></span>\n' +
-'        <input type="text" class="custom-input" value="0">\n' +
-'        <span class="controls-item controls-item__reduce"></span>\n' +
+'        <a class="controls-item controls-item__increase"></a>\n' +
+'        <input type="text" class="custom-input" value="1">\n' +
+'        <a class="controls-item controls-item__reduce"></a>\n' +
 '    </div>\
   <% } %>\n')
 });
