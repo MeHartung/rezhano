@@ -44,7 +44,20 @@ define(function(require){
 
         self.$('.notes-slider').slick({
           dots: true,
-          arrows: true
+          arrows: true,
+        });
+
+        var $headerMenu = $('header');
+        var headerMenuHeight = $('header').height();
+        var headerSectionHeight = $('.header-section').height() - headerMenuHeight;
+
+        $(window).scroll(function () {
+
+          if ( $(this).scrollTop()>headerSectionHeight ) {
+            $headerMenu.addClass('fixed');
+          } else if ( $(this).scrollTop()<headerSectionHeight ) {
+            $headerMenu.removeClass('fixed');
+          }
         });
       });
 

@@ -13,33 +13,28 @@
 {% set isCompleteStep = currentStep == completeStep %}
 
 {% block headerMenu %}
-  <div class="header-menu header-menu__container">
-    <div class="container">
+  <header>
+    <div class="header-menu">
       <div class="header-menu__wrap">
-        <div class="header-menu__ordering">
-          <a href="{{ path('cart_index') }}"
-             class="ordering-item{% if isCartStep %} ordering-item_active{% endif %}{% if currentStep>cartStep %} ordering-item_past{% endif %}">
-            <span class="card-icon {% if currentStep<cartStep %}grey-icon{% else %}card-icon__blue blue-icon{% endif %}"></span>
-            <span class="ordering-item__name">Корзина</span>
-          </a>
-          <a href="{{ path('checkout_shipping') }}"
-             class="ordering-item{% if isDeliveryStep %} ordering-item_active{% endif %}{% if currentStep>deliveryStep %} ordering-item_past{% endif %}">
-            <span class="delivery-icon {% if currentStep<deliveryStep %}grey-icon{% else %}delivery-icon__blue blue-icon{% endif %}"></span>
-            <span class="ordering-item__name">Доставка и сервисы</span>
-          </a>
-          <a href="{{ path('checkout_payment') }}"
-             class="ordering-item{% if isPaymentStep %} ordering-item_active{% endif %}{% if currentStep>paymentStep %} ordering-item_past{% endif %}">
-            <span class="payment-icon {% if currentStep<paymentStep %}grey-icon{% else %}payment-icon__blue blue-icon{% endif %}"></span>
-            <span class="ordering-item__name">Оплата</span>
-          </a>
-          <a class="ordering-item{% if isCompleteStep %} ordering-item_active{% endif %}{% if currentStep>completeStep %} ordering-item_past{% endif %}">
-            <span class="order-icon grey-icon"></span>
-            <span class="ordering-item__name">Заказ</span>
-          </a>
-        </div>
+        <a href="{{ path('cart_index') }}"
+           class="header-menu__item ordering-item{% if isCartStep %} active{% endif %}{% if currentStep>cartStep %} ordering-item_past{% endif %}">
+          Корзина
+        </a>
+        <a href="{{ path('checkout_shipping') }}"
+           class="header-menu__item ordering-item{% if isDeliveryStep %} active{% endif %}{% if currentStep>deliveryStep %} ordering-item_past{% endif %}">
+          Доставка и сервисы
+        </a>
+        <a href="{{ path('checkout_payment') }}"
+           class="header-menu__item ordering-item{% if isPaymentStep %} active{% endif %}{% if currentStep>paymentStep %} ordering-item_past{% endif %}">
+          Оплата
+        </a>
+        <a class="header-menu__item ordering-item{% if isCompleteStep %} active{% endif %}{% if currentStep>completeStep %} ordering-item_past{% endif %}">
+          Заказ
+        </a>
       </div>
     </div>
-  </div>
+  </header>
+
 {% endblock %}
 
 {% block main %}
