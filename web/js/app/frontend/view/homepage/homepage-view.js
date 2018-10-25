@@ -41,6 +41,11 @@ define(function(require){
           slidesToShow: 2,
           slidesToScroll: 2
         });
+
+        self.$('.notes-slider').slick({
+          dots: true,
+          arrows: true
+        });
       });
 
       return this;

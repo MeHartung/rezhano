@@ -16,7 +16,7 @@ define(function(require){
     initialize: function(options){
       this.options = $.extend({
         cartWidget: true,
-        search: true
+        search: false
       }, options);
 
       this.cart = options.cart;

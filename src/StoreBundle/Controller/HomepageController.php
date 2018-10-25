@@ -32,7 +32,7 @@ class HomepageController extends Controller
     
     $cheeseStories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findBy([],['position' => 'ASC']);
 
-    return $this->render('StoreBundle:Homepage:_index.html.twig', array(
+    return $this->render('StoreBundle:Homepage:index.html.twig', array(
       'banners' => $banners,
       'bestOffers' => $bestOffers,
       'viewedProducts' => $viewedProducts,

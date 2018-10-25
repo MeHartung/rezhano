@@ -51,22 +51,22 @@
 
     <div class="section-wrap">
 
-        {% if sort is defined %}
-        <div class="product-list-sort">
-            <span class="product-list-sort__title">Сортировать:</span>
-            <a class="product-list-sort__type">по популярности</a>
-            <a class="product-list-sort__type product-list-sort__type_active product-list-sort__type_price">по цене</a>
-            <span class="product-list-sort__my-region custom-checkbox">
-                  <label>
-                    <input type="checkbox" class="checkbox" checked>
-                    <span class="product-list-sort__checkbox custom-checkbox__checkbox"></span>
-                    <span>Сначала предложения в моём регионе</span>
-                  </label>
-                </span>
-        </div>
-        {% endif %}
+        {#{% if sort is defined %}#}
+        {#<div class="product-list-sort">#}
+            {#<span class="product-list-sort__title">Сортировать:</span>#}
+            {#<a class="product-list-sort__type">по популярности</a>#}
+            {#<a class="product-list-sort__type product-list-sort__type_active product-list-sort__type_price">по цене</a>#}
+            {#<span class="product-list-sort__my-region custom-checkbox">#}
+                  {#<label>#}
+                    {#<input type="checkbox" class="checkbox" checked>#}
+                    {#<span class="product-list-sort__checkbox custom-checkbox__checkbox"></span>#}
+                    {#<span>Сначала предложения в моём регионе</span>#}
+                  {#</label>#}
+                {#</span>#}
+        {#</div>#}
+        {#{% endif %}#}
 
-        <div class="product-list-item" id="product-listview">
+        <div class="product-list" id="product-listview">
             {% for product in products %}
                 {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage }) }}
             {% endfor %}
@@ -75,19 +75,19 @@
         {#<a class="product-list-item__show-more">#}
             {#<span class="product-list-item__show-more__text">Показать ещё</span>#}
         {#</a>#}
-        {% include '@Store/Catalog/Taxon/pagination.html.twig' with { 'pagination': pagination } %}
+        {#{% include '@Store/Catalog/Taxon/pagination.html.twig' with { 'pagination': pagination } %}#}
 
-        {% if linkedTaxons is defined and linkedTaxons|length %}
-        <div class="maybe-interested">
-            <!--/ ^ модификатор для catalog-item -->
-            <div class="section-title">
-                <span class="section-title__text section-title__text_small section-title__text_aside-line">Вас также может заинтересовать</span>
-            </div>
+        {#{% if linkedTaxons is defined and linkedTaxons|length %}#}
+        {#<div class="maybe-interested">#}
+            {#<!--/ ^ модификатор для catalog-item -->#}
+            {#<div class="section-title">#}
+                {#<span class="section-title__text section-title__text_small section-title__text_aside-line">Вас также может заинтересовать</span>#}
+            {#</div>#}
 
-            <div class="maybe-interested__wrap">
-                {% include '@Store/Catalog/Taxon/children.html.twig' with {'taxons': linkedTaxons} %}
-            </div>
-        </div>
-        {% endif %}
+            {#<div class="maybe-interested__wrap">#}
+                {#{% include '@Store/Catalog/Taxon/children.html.twig' with {'taxons': linkedTaxons} %}#}
+            {#</div>#}
+        {#</div>#}
+        {#{% endif %}#}
     </div>
 </div>

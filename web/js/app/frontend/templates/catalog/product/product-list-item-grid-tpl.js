@@ -2,11 +2,11 @@ define(function(){
   //var _ = require('underscore');
 
   return _.template('\
-  <a class="product-item__image" title="<%= name %> купить" href="<%= url %>" \
+  <a class="product-item__image" title="<%= name %> купить" href="<%= url %>"> \
     <% if (image) { %>\n\
-      style="background: url(\'<%= image %>\') center no-repeat; background-size: cover">\n\
+      <img src="<%= image %>" alt="Фотография товара <%= name %>"/>\n\
     <% } else { %>\n\
-     style="background: url(/images/no_photo.png) center no-repeat">\n\
+     <img src="/images/no_photo.png" alt="Нет фотографии"/>\n\
     <% } %>\n\
     <% if (isSale) { %>\
       <div class="product-item__discount-ticket">\
@@ -14,11 +14,19 @@ define(function(){
       </div>\
     <% } %>\
   </a>\
-  <div class="product-item__info">\
-    <a href="<%= url %>" class="product-item__title" ><%= name %></a>\
-    <% if (isPurchasable) { %>\
-        <button class="addtocart-button button button_add-to-cart" data-product-id="<%= id %>"><span><%= price %></span></button>\
-    <% } %>\
+  <a href="<%= url %>" class="product-item__name" ><%= name %></a>\n\
+  <span class="product-item__type">мягкий сыр</span>\n\
+  <div class="product-item__characteristics">\
+    <span class="product-item__quantity">300 г  / </span>\n' +
+'   <span class="product-item__price"><%= price %></span>\
   </div>\
-')
+  <% if (isPurchasable) { %>\
+    <a class="addtocart-button button button_black button_add-to-cart" data-product-id="<%= id %>"><span>В корзину</span></a>\
+    <div class="product-item__controls">\n' +
+'        <span class="controls-title">количество</span>\n' +
+'        <span class="controls-item controls-item__increase"></span>\n' +
+'        <input type="text" class="custom-input" value="0">\n' +
+'        <span class="controls-item controls-item__reduce"></span>\n' +
+'    </div>\
+  <% } %>\n')
 });

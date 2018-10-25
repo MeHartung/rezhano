@@ -47,7 +47,7 @@ class ProductAdmin extends AbstractAdmin
 //      ->add('hit')
 //      ->add('sale')
 //      ->add('novice')
-      ->add('isPurchasable')
+//      ->add('isPurchasable')
       ->add('publicationAllowed')
       ->add('published')
       ->add('_action', null, [
@@ -92,14 +92,14 @@ class ProductAdmin extends AbstractAdmin
       ->add('publicationAllowed', BooleanType::class, array(
         'transform' => true
       ))
-      ->add('isPurchasable', BooleanType::class, array(
-        'transform' => true,
-        'help' => 'Если нет, товар будет отображен, как «Снят с производства»'
-      ))
-      ->add('length')
-      ->add('width')
-      ->add('weight')
-      ->add('volume')
+//      ->add('isPurchasable', BooleanType::class, array(
+//        'transform' => true,
+//        'help' => 'Если нет, товар будет отображен, как «Снят с производства»'
+//      ))
+//      ->add('length')
+//      ->add('width')
+//      ->add('weight')
+//      ->add('volume')
       ->end()
       ->end()
       ->tab('Описание')

@@ -1,20 +1,24 @@
 <div class="product-item{% if options.narrow|default(false) %} product-item_narrow{% endif %}">
-    {% if image_url(product.mainImage) is not empty %}
-    <a class="product-item__image" href="{{ path('product', { 'slug': product.slug }) }}"
-       style="background: url({{ image_url(product.mainImage) }}) center no-repeat; background-size: cover" title="{{ product.name|e('html_attr') }}" >
-    {% else %}
-        <a class="product-item__image" href="{{ path('product', { 'slug': product.slug }) }}"
-           style="background: url({{('/images/no_photo.png')}}) center no-repeat;" title="{{ product.name|e('html_attr') }}" >
-    {% endif %}
-        {% if product.sale %}
-            <div class="product-item__discount-ticket">
-                <span>-{{ product.discountLevel }}%</span>
-            </div>
-        {% endif %}
+    <a class="product-item__image" href="{{ path('product', { 'slug': product.slug }) }}">
+        <img src="{% if image_url(product.mainImage) is not empty %}{{ image_url(product.mainImage) }}{% else %}{{ asset('/images/no_photo.png')}}{% endif %}" title="{{ product.name|e('html_attr') }}" />
     </a>
-    <div class="product-item__info">
-        <a href="{{ path('product', {'slug': product.slug}) }}" class="product-item__title" >{{ product.name }}</a>
-        <button class="addtocart-button button button_add-to-cart" data-product-id="{{ product.id }}"><span>{{ product|productPrice }}</span></button>
+    {% if product.sale %}
+        <div class="product-item__discount-ticket">
+            <span>-{{ product.discountLevel }}%</span>
+        </div>
+    {% endif %}
+    <a href="{{ path('product', {'slug': product.slug}) }}" class="product-item__name" >{{ product.name }}</a>
+    <span class="product-item__type">мягкий сыр</span>
+    <div class="product-item__characteristics">
+      <span class="product-item__quantity">300 г  / </span>
+      <span class="product-item__price">{{ product.price|price }}</span>
+    </div>
+    <a class="addtocart-button button button_black button_add-to-cart" data-product-id="{{ product.id }}"><span>В корзину</span></a>
+    <div class="product-item__controls">
+        <span class="controls-title">количество</span>
+        <span class="controls-item controls-item__increase"></span>
+        <input type="text" class="custom-input" value="0">
+        <span class="controls-item controls-item__reduce"></span>
     </div>
 </div>
 
