@@ -39,14 +39,14 @@
                     <a class="quantity-control quantity-control__down"></a>
                     <input class="quantity-control__input" value="{{ item.quantity }}" type="text">
                     <a class="quantity-control quantity-control__up"></a>
-                    <span class="quantity-balance">всего {{ item.product.availableStock }} шт.</span>
+                    {#<span class="quantity-balance">всего {{ item.product.availableStock }} шт.</span>#}
                 </div>
 
-                <div class="cards-container__location">
-                    {% if stockManager.getAvailableWarehouse(item.product) %}
-                        {{ stockManager.getAvailableWarehouse(item.product).city.name }}
-                    {% endif %}
-                </div>
+                {#<div class="cards-container__location">#}
+                    {#{% if stockManager.getAvailableWarehouse(item.product) %}#}
+                        {#{{ stockManager.getAvailableWarehouse(item.product).city.name }}#}
+                    {#{% endif %}#}
+                {#</div>#}
                 <div class="cards-container__price">{{ item.price|price }}</div>
                 <div class="cards-container__controls">
                     <a href="{{ path('cart_remove', { id: item.id }) }}" class="button button-remove-from-favorites"></a>

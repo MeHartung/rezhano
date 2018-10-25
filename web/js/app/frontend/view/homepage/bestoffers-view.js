@@ -12,10 +12,10 @@ define(function(require){
     },
     render: function () {
 
-      this.listView.setElement(this.$('.section-wrap'));
+      this.listView.setElement(this.$('.product-items'));
       this.listView.render();
 
       return this;
-    },
+    }
   })
-})
+});
