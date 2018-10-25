@@ -1,5 +1,5 @@
 define(function(){
-  //var _ = require('underscore');
+  var _ = require('underscore');
 
   return _.template('\
   <a class="product-item__image" title="<%= name %> купить" href="<%= url %>"> \

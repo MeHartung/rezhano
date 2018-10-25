@@ -5,7 +5,7 @@ parameters:
     database_driver:   mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     gpn_nvi
+    database_name:     rezhano
     database_user:     '%env(DATABASE_USER)%'
     database_password: '%env(DATABASE_PASSWORD)%'
 

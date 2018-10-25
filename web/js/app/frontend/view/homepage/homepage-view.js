@@ -9,28 +9,28 @@ define(function(require){
     initialize: function () {
       CommonView.prototype.initialize.apply(this, arguments);
       this.bestOffers = new ProductCollection(ObjectCache.BestOffers || []);
-      this.lastVisitedProducts = new ProductCollection(ObjectCache.ViewedProducts || []);
+//      this.lastVisitedProducts = new ProductCollection(ObjectCache.ViewedProducts || []);
 
       this.bestOffersView = new BestOffersView({
         collection: this.bestOffers,
-        cart: this.cart,
+        cart: this.cart
       });
-      this.lastVisitedView = new LastVisitedPanelView({
-        collection: this.lastVisitedProducts,
-        cart: this.cart,
-      });
+      // this.lastVisitedView = new LastVisitedPanelView({
+      //   collection: this.lastVisitedProducts,
+      //   cart: this.cart,
+      // });
     },
     render: function (){
       var self = this;
 
       CommonView.prototype.render.apply(this, arguments);
 
-      this.bestOffersView.setElement(this.$('.best-offers'));
+      this.bestOffersView.setElement(this.$('.popular-products .product-items'));
       this.bestOffersView.render();
 
-      this.lastVisitedView.setElement(this.$('.last-viewed-panel'));
-      this.lastVisitedView.render();
-
+      // this.lastVisitedView.setElement(this.$('.last-viewed-panel'));
+      // this.lastVisitedView.render();
+      //
       $(function () {
         self.$('#sliderMain').slick({
           infinite: true,
@@ -49,6 +49,6 @@ define(function(require){
       });
 
       return this;
-    },
+    }
   })
 });
