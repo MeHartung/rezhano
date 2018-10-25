@@ -51,7 +51,7 @@ define(function (require) {
                     </div>\
                   </div>\
                    <div class="buttons">\
-                     <a class="button" href="<%= urlPrefix %>/cart">Перейти в корзину</a>\
+                     <a class="button" н>Перейти в корзину</a>\
                      <a class="button white continue-shopping" href="#">Продолжить покупки</a>\n        </div>\
                   </div>\
         ');
