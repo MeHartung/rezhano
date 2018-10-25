@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AppBundle\Synchronization\MoySkladToCdek\Model\Datasource\MoySklad;
+namespace StoreBundle\Synchronization\FromMoySklad\Model\Datasource;
 
 use Accurateweb\SlugifierBundle\Model\SlugifierInterface;
 use Accurateweb\SynchronizationBundle\Model\Datasource\Base\BaseDataSource;
@@ -119,13 +119,13 @@ class MoySkladProductImageDataSource extends BaseDataSource
 
       if($product == null) continue;
       
-      $varDir = $this->kernelRootDir . '\\..\\var\\uploads\\';
-      $webDir = $this->kernelRootDir . '\\..\\web\\uploads\\';
+      $varDir = $this->kernelRootDir . '/../var/uploads/';
+      $webDir = $this->kernelRootDir . '/../web/uploads/';
       
-      $varPathProducts = $varDir.'product-photo\\';
-      $webPathProducts = $webDir.'product-photo\\';
+      $varPathProducts = $varDir.'product-photo/';
+      $webPathProducts = $webDir.'product-photo/';
       
-      $fileName = $product->getId() . '\\' . $productImage->image->filename;
+      $fileName = $product->getId() . '/' . $productImage->image->filename;
       
       $varMkDirResult = $this->checkDir($varPathProducts);
       $webMkDirResult = $this->checkDir($webPathProducts);
@@ -138,8 +138,8 @@ class MoySkladProductImageDataSource extends BaseDataSource
         );
       }
   
-      $varPathProduct = $this->kernelRootDir . '\\..\\var\\uploads\\product-photo\\'.$product->getId().'\\';
-      $webPathProduct = $this->kernelRootDir . '\\..\\web\\uploads\\product-photo\\'.$product->getId().'\\';
+      $varPathProduct = $this->kernelRootDir . '/../var/uploads/product-photo/'.$product->getId().'/';
+      $webPathProduct = $this->kernelRootDir . '/../web/uploads/product-photo/'.$product->getId().'/';
   
       $varMkDirResult = $this->checkDir($varPathProduct);
       $webMkDirResult = $this->checkDir($webPathProduct);

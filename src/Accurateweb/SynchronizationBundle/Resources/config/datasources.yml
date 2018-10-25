@@ -40,7 +40,7 @@ services:
       - { name: 'aw.datasource' }
 
   aw.synchronization.datasource.moy_sklad.products.image:
-    class: AppBundle\Synchronization\MoySkladToCdek\Model\Datasource\MoySklad\MoySkladProductImageDataSource
+    class: StoreBundle\Synchronization\FromMoySklad\Model\Datasource\MoySkladProductImageDataSource
     arguments:
       - {}
       - ~
