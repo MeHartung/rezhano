@@ -41,48 +41,42 @@
       {% include "@Store/Common/admin_control_panel.html.twig" %}
     {% endif %}
     {# не заворачивает в header при наследовании #}
-    <header style="" class="{% block header_class %}header{% endblock %}">
+    <header class="{% block header_class %}header{% endblock %}">
       {% block header %}
-        <a class="header-logo" title="Режано"
-           {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
-           {% block headerMenu %}
-             {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
-           {% endblock %}
-{#            <div class="header-menu">
-                <a href="#" class="header-menu__item">О нас</a>
-                <a href="#" class="header-menu__item">Магазин</a>
-                <a href="#" class="header-menu__item">Подарки</a>
-                <a href="#" class="header-menu__item">Экскурсии</a>
-                <a href="#" class="header-menu__item">Оптом</a>
-                <a href="#" class="header-menu__item">Контакты</a>
-            </div>#}
+          <div class="header-menu-wrap">
+              <a class="header-logo" title="Режано"
+                 {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
+              {% block headerMenu %}
+                  {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
+              {% endblock %}
 
-            <div class="header-controls">
-                <a href="" class="header-controls__item header-controls__cabinet">
-                    <span class="header-controls__notice">
-                      <span class="notice-count">1</span>
-                    </span>
-                </a>
-            <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
-                {% if cart.orderItems|length %}
-                <span class="header-controls__notice">
-                  <span class="notice-count">{{ cart.orderItems|length }}</span>
-                </span>
-                {% endif %}
-                </a>
-            </div>
-          {#<a class="header-panel__icon header-panel__sign" href="{{ path('fos_user_profile_show') }}">#}
-            {#<span class="user-icon"></span>{% if app.user.fio %}{{ app.user.fio }}{% else %}{{ app.user.email }}{% endif %}#}
-          {#</a>#}
-          {#<a href="{{ path('favorites') }}" class="header-panel__icon header-panel__favorites"><span#}
-                    {#class="star-icon"></span>{{ app.user.favoriteProductList.products|length }}</a>#}
-          {#<a href="{{ path('fos_user_security_logout') }}" class="header-panel__logout"><span#}
-                    {#class="logout-icon"></span>Выйти</a>#}
-        {#{% else %}#}
-          {#<a href="{{ path('fos_user_security_login') }}" class="header-panel__icon header-panel__sign">#}
-            {#<span class="user-icon"></span>Войти#}
-          {#</a>#}
-        {#{% endif %}#}
+              <div class="header-controls">
+                  {#<a href="" class="header-controls__item header-controls__cabinet">#}
+                  {#<span class="header-controls__notice">#}
+                  {#<span class="notice-count">1</span>#}
+                  {#</span>#}
+                  {#</a>#}
+                  <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
+                      {% if cart.orderItems|length %}
+                            <span class="header-controls__notice">
+                                  <span class="notice-count">{{ cart.orderItems|length }}</span>
+                            </span>
+                      {% endif %}
+                  </a>
+              </div>
+              {#<a class="header-panel__icon header-panel__sign" href="{{ path('fos_user_profile_show') }}">#}
+              {#<span class="user-icon"></span>{% if app.user.fio %}{{ app.user.fio }}{% else %}{{ app.user.email }}{% endif %}#}
+              {#</a>#}
+              {#<a href="{{ path('favorites') }}" class="header-panel__icon header-panel__favorites"><span#}
+              {#class="star-icon"></span>{{ app.user.favoriteProductList.products|length }}</a>#}
+              {#<a href="{{ path('fos_user_security_logout') }}" class="header-panel__logout"><span#}
+              {#class="logout-icon"></span>Выйти</a>#}
+              {#{% else %}#}
+              {#<a href="{{ path('fos_user_security_login') }}" class="header-panel__icon header-panel__sign">#}
+              {#<span class="user-icon"></span>Войти#}
+              {#</a>#}
+              {#{% endif %}#}
+          </div>
       {% endblock header %}
     </header>
 

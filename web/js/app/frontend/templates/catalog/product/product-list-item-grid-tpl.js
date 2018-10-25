@@ -2,7 +2,7 @@ define(function(){
   //var _ = require('underscore');
 
   return _.template('\
-  <a class="product-item__image" title="<%= name %> купить" href="<%= url %>"> \
+  <a class="product-item__image product-page-link" title="<%= name %> купить" href="<%= url %>"> \
     <% if (image) { %>\n\
       <img src="<%= image %>" alt="Фотография товара <%= name %>"/>\n\
     <% } else { %>\n\
@@ -14,7 +14,7 @@ define(function(){
       </div>\
     <% } %>\
   </a>\
-  <a href="<%= url %>" class="product-item__name" ><%= name %></a>\n\
+  <a href="<%= url %>" class="product-item__name  product-page-link"><%= name %></a>\n\
   <span class="product-item__type">мягкий сыр</span>\n\
   <div class="product-item__characteristics">\
     <span class="product-item__quantity">300 г  / </span>\n' +

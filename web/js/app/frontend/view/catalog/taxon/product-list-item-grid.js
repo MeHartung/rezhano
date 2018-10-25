@@ -2,7 +2,8 @@ define(function(require){
   var ListItemView = require('view/base/list-item-view'),
       //Buy1ClickButton = require('view/checkout/1click/1click-order-button'),
       User = require('model/user/user'),
-      QuantityWidget = require('view/cart/widget/quantity-widget')
+      QuantityWidget = require('view/cart/widget/quantity-widget'),
+      ProductQuickViewDialog = require('view/catalog/product/product-quick-view-dialog')
       ;//,
       //PreorderButton = require('view/checkout/preorder/preorder-button');
 
@@ -13,7 +14,8 @@ define(function(require){
   return ListItemView.extend({
     className: 'product-item',
     events: {
-      'click .button_add-to-cart': 'onAddToCartButtonClick'
+      'click .button_add-to-cart': 'onAddToCartButtonClick',
+      'click .product-page-link': 'onProductPageLinkClick'
     },
     initialize: function(options){
       ListItemView.prototype.initialize.apply(this, arguments);
@@ -29,7 +31,7 @@ define(function(require){
           productId: this.model.get('id')
         })
       });
-
+      this.productQuickViewDialog = null;
     },
     render: function(){
       var isUserAuth = User.getCurrentUser().isNew() == false;
@@ -84,6 +86,19 @@ define(function(require){
           cart.trigger('item:add', cartItem, cartItem.quantity);
           self.quantityWidget.model.set({ quantity: 1 });
         });
+    },
+    onProductPageLinkClick: function(e){
+      e.preventDefault();
+
+      if (null === this.productQuickViewDialog){
+        this.productQuickViewDialog = new ProductQuickViewDialog({
+            model: this.model,
+            cart: this.cart
+        });
+        this.productQuickViewDialog.render().$el.appendTo($('body'));
+      }
+
+      this.productQuickViewDialog.open();
     }
   })
 });
