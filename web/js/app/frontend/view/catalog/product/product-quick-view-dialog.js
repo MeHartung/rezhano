@@ -16,6 +16,10 @@ define(function(require){
           this.contentView.setElement(this.$('.layer__container')).render();
 
           return this;
+      },
+      show: function(){
+          this.$overlay.stop().fadeIn();
+          this.$el.stop().fadeIn();
       }
    });
 });

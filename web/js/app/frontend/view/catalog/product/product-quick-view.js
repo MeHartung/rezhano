@@ -22,6 +22,7 @@ define(function(require){
       },
       render: function(){
           this.$el.html(template({
+            name: this.model.get('name'),
             isPurchasable: this.model.get('isPurchasable')
           }));
 
