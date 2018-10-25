@@ -6,6 +6,20 @@
     {{ bestOffers|client_model_collection('product', 'BestOffers') }}
     {{ viewedProducts|client_model_collection('product', 'ViewedProducts') }}
     {#{{ notifications|client_model_collection('notification', 'Notifications') }}#}
+    <script>$(function () {
+            $('.header-slider__wrap').slick({
+                infinite: true,
+                // autoplay: true,
+                // autoplaySpeed: 2000,
+                dots: true,
+                arrows: false
+            });
+
+            $('.notes-slider').slick({
+                dots: true,
+                arrows: true
+            });
+        })</script>
 {% endblock %}
 
 {% block main %}
@@ -60,6 +74,35 @@
 
         </div>
       </section>
+    {% endif %}
+
+    {% if cheeseStories|length > 0 %}
+
+        <section class="notes">
+            <div class="container">
+                <h2 class="notes__title">Сырные заметки</h2>
+                <div class="notes__image-top"></div>
+
+                <div class="notes-slider">
+                    {% for story in cheeseStories %}
+                        <div class="notes__text">
+                            {{ story.text | raw }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="notes-images-gallery">
+                    <img class="notes-image-gallery__item" src="/images/Anna.png" alt="">
+
+                    <span class="notes-image-gallery__text-aside">Анна — хозяйка сыроварни</span>
+                </div>
+
+                <a href="" class="notes__go-instagram">
+                    <span>ещё больше интересного здесь</span>
+                    <i class="icon-instagram"></i>
+                </a>
+            </div>
+        </section>
     {% endif %}
 {% endblock %}
 

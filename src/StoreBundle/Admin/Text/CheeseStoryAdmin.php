@@ -29,7 +29,7 @@ class CheeseStoryAdmin extends AbstractAdmin
   
   protected function configureListFields(ListMapper $list)
   {
-    $text = substr($this->getSubject()->getText(), 0, 50);
+    #$text = substr($this->getSubject()->getText(), 0, 50);
     $list
       ->add('__toString', null, ['label' => 'Текст'])
       #->add('title', null)
