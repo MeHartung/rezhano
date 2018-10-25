@@ -31,12 +31,14 @@ class HomepageController extends Controller
     }
     
     $cheeseStories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findBy([],['position' => 'ASC']);
+    $partners = $this->getDoctrine()->getRepository('StoreBundle:Text\Partner')->findBy([],['position' => 'ASC']);
 
     return $this->render('StoreBundle:Homepage:index.html.twig', array(
       'banners' => $banners,
       'bestOffers' => $bestOffers,
       'viewedProducts' => $viewedProducts,
-      'cheeseStories' => $cheeseStories
+      'cheeseStories' => $cheeseStories,
+      'partners' => $partners
     ));
   }
 

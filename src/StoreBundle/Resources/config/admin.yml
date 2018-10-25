@@ -11,3 +11,16 @@ services:
         - null
         - StoreBundle\Entity\Text\CheeseStory
         - 'PixSortableBehaviorBundle:SortableAdmin'
+
+    app.admin.partner:
+      class: StoreBundle\Admin\Text\PartnerAdmin
+      tags:
+        -
+          name: sonata.admin
+          manager_type: orm
+          group: text
+          label: Партнёры
+      arguments:
+        - null
+        - StoreBundle\Entity\Text\Partner
+        - 'PixSortableBehaviorBundle:SortableAdmin'

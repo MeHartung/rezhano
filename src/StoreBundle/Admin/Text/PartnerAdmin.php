@@ -7,6 +7,7 @@ use Accurateweb\MediaBundle\Form\ImageType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use StoreBundle\Entity\Text\Partner;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormError;
@@ -16,7 +17,18 @@ class PartnerAdmin extends AbstractAdmin
 {
   public function configureListFields(ListMapper $list)
   {
-    $list->add('name');
+    $list
+      ->add('name')
+      ->add('_action', null, array(
+          'actions' => array(
+            'edit' => null,
+            'move' => array(
+              'template' => 'PixSortableBehaviorBundle:Default:_sort_drag_drop.html.twig'
+            ),
+            'delete' => null
+          )
+        )
+      );
   }
   
   public function configureFormFields(FormMapper $form)
@@ -37,5 +49,10 @@ class PartnerAdmin extends AbstractAdmin
           $event->getForm()->get('teaser')->addError($error);
         }
       });
+  }
+  
+  protected function configureRoutes(RouteCollection $collection)
+  {
+    $collection->add('move', $this->getRouterIdParameter() . '/move/{position}');
   }
 }
