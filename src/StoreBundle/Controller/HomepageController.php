@@ -30,7 +30,7 @@ class HomepageController extends Controller
       $viewedProducts = $this->getUser()->getViewedProductList()->getProducts(6);
     }
     
-    $cheeseStories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findAll();
+    $cheeseStories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findBy([],['position' => 'ASC']);
 
     return $this->render('StoreBundle:Homepage:_index.html.twig', array(
       'banners' => $banners,
