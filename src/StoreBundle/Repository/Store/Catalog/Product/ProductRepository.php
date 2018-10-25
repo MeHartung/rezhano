@@ -14,9 +14,7 @@ class ProductRepository extends EntityRepository
   {
     return $this->createQueryBuilder('p')
       ->where('p.published = true')
-      ->andWhere('p.isPurchasable = true')
       ->andWhere('p.hit = true')
-      ->andWhere('(p.totalStock - p.reservedStock) > 0')
       ->orderBy('p.rank', 'DESC')
       ->getQuery()
       ->getResult();

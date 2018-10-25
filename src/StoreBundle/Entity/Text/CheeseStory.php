@@ -200,6 +200,8 @@ class CheeseStory implements ImageAwareInterface
 
   public function __toString()
   {
-    return $this->getTitle() === null ? '' : $this->getTitle();
+    return $this->getText() === null ? '' :
+      (strlen($this->getText()) > 250 ?
+      strip_tags(substr($this->getText(), 0, 250)) . '...' : strip_tags($this->getText()));
   }
 }

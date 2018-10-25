@@ -25,17 +25,17 @@
 
     </section>
     {% if banners|length %}
-      <section class="section-slider">
-        <div class="container container_no-padding">
-          <div class="section-slider__prev-slide"></div>
-          <div id="sliderMain" class="slider-main" style="font-size: 0; white-space: nowrap">
-              {% for banner in banners %}
-                <a href="{{ banner.url }}"><div style="background: url({{ image_url(banner) }}) no-repeat; width: 619px; height: 301px; display: inline-block;"></div></a>
-              {% endfor %}
-          </div>
-          <div class="section-slider__next-slide"></div>
-        </div>
-      </section>
+        <section class="section-slider">
+            <div class="container container_no-padding">
+                <div class="section-slider__prev-slide"></div>
+                <div id="sliderMain" class="slider-main" style="font-size: 0; white-space: nowrap">
+                    {% for banner in banners %}
+                        <a href="{{ banner.url }}"><div style="background: url({{ image_url(banner) }}) no-repeat; width: 619px; height: 301px; display: inline-block;"></div></a>
+                    {% endfor %}
+                </div>
+                <div class="section-slider__next-slide"></div>
+            </div>
+        </section>
     {% endif %}
 
     <section class="first-slide">
@@ -68,6 +68,27 @@
         </div>
     </section>
 
+    {% if bestOffers|length %}
+        <section class="popular-products product-list">
+            <div class="container container_no-padding">
+                <span class="popular-products__title">Популярные сыры</span>
+
+                <div class="product-items">
+                    {% for item in bestOffers %}
+                        {% include '@Store/Catalog/Product/product_card.html.twig' with {'product': item} %}
+                    {% endfor %}
+                </div>
+
+                <div class="popular-products__show-more">
+                    <a href="{{ url("taxon", { slug: "syr" }) }}" class="button button_black">
+                        <span>У нас ещё много вкусного и интересного</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    {% endif %}
+
     <section class="presents">
         <div class="container">
             <div class="presents__wrap">
@@ -93,7 +114,18 @@
             <a href="{{ url('taxon', { slug: 'syr', "f[type]": "gourmet"}) }}" class="choice__link choice__gourmet"></a>
         </div>
     </section>
-
+    {% if partners | length > 0 %}
+        <section class="partners">
+            <div class="container">
+                <h2 class="partners__title">Наши партнёры</h2>
+                <div class="partners-wrap">
+                    {% for partner in partners %}
+                        <a class="partner-item" style=" background: url('{{ image_url(partner) }}') center no-repeat;  width: 310px; height: 83px;"></a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
     <section class="tour">
         <div class="container">
             <div class="tour__wrap">
@@ -111,6 +143,7 @@
     </section>
 
     {% if cheeseStories|length > 0 %}
+
         <section class="notes">
             <div class="container">
                 <h2 class="notes__title">Сырные заметки</h2>
@@ -138,39 +171,20 @@
         </section>
     {% endif %}
 
-    {% if bestOffers|length %}
-      <section class="best-offers">
-        <div class="container">
-
-          <div class="section-title ">
-            <span class="section-title__text section-title__text_aside-line">Лучшие предложения</span>
-              <a href="{{ url('taxon', { slug: 'best-offers' }) }}" class="section-title__link-more">Смотреть все</a>
-          </div>
-
-          <div class="section-wrap">
-              {% for item in bestOffers %}
-                  {% include '@App/Common/product_item.html.twig' with {'product': item} %}
-              {% endfor %}
-          </div>
-
-        </div>
-      </section>
-    {% endif %}
-
     {% if app.user and viewedProducts and viewedProducts|length %}
-      <section class="last-viewed-panel">
-        <div class="container">
-          <div class="section-title">
-            <span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>
-          </div>
+        <section class="last-viewed-panel">
+            <div class="container">
+                <div class="section-title">
+                    <span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>
+                </div>
 
-          <div class="section-wrap">
-              {% for product in viewedProducts %}
-                  {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}
-              {% endfor %}
-          </div>
+                <div class="section-wrap">
+                    {% for product in viewedProducts %}
+                        {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}
+                    {% endfor %}
+                </div>
 
-        </div>
-      </section>
+            </div>
+        </section>
     {% endif %}
 {% endblock %}
