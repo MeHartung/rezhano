@@ -18,7 +18,7 @@ class ShippingMethodUserDefined extends ShippingMethod3rdPartyCompany
    */
   public function __construct()
   {
-    parent::__construct(self::UID, ShippingMethod::CLSID_PICKUP, 'Доставка транспортной компанией');
+    parent::__construct(self::UID, ShippingMethod::CLSID_PICKUP, 'Доставка по России');
   }  
   
   /**

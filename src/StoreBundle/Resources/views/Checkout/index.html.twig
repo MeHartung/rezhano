@@ -31,7 +31,7 @@
       <div id="vmMainPageOPC"><div class="opc_unlogged_wrapper" id="opc_unlogged_wrapper" ><div id="top_basket_wrapper">
         <div id="opc_basket"><div id="basket_container">
             <h1>Оформление заказа</h1>
-            <table>
+            {#<table>
               <tr>
                 <td class="op_greybox">Название</td>
                 <td class="op_greybox">Артикул</td>
@@ -53,7 +53,7 @@
                 </tr>
               {% endfor %}
             </table>
-            {{ form_errors(form.orderItems) }}
+            {{ form_errors(form.orderItems) }}#}
           </div>
         </div>
 
@@ -172,21 +172,37 @@
                               {{ form_label(form.shipping_city_name) }}
                               {{ form_widget(form.shipping_city_name) }}
                               {{ form_errors(form.shipping_city_name) }}
-                            </div>{#
+                            </div>
+                            <div class="formField text-input" id="city_input">
+                                {{ form_widget(form.shipping_method_id) }}
+
+                              <div>
+                                <b>это появляется если выбран самовывоз </b>
+                                Тут должна быть карта с пунктами выдачи магазина <br />
+                                Пункты выдачи в формате JSON получить  можно тут: GET /internal-pickups
+                              </div>
+                            </div>
+                            <div>
+                                <b> это появляется если выбран другой город вместо способов доставки </b>
+                                {{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}
+                            </div>
+                              {#
                             <div class="formField text-input" id="city_input">
                               {{ form_label(form.shipping_city_name) }}
                               {{ form_widget(form.shipping_city_name, { attr: { placeholder: "Город *", size: "30", disabledmaxlength: "32", autocomplete: "off", class: "email" }}) }}
                               {{ form_errors(form.shipping_city_name) }}
-                            </div>#}
+                            </div>#}{#
                             <div class="formField text-input" id="zip_input">
                               {{ form_label(form.shipping_post_code) }}
                               {{ form_widget(form.shipping_post_code, { attr: { placeholder: "Почтовый индекс", size: "30", disabledmaxlength: "32", autocomplete: "off", class: "email" }}) }}
                               {{ form_errors(form.shipping_post_code) }}
-                            </div>
+                            </div>#}
                             <div class="formField text-input" id="address_1_input">
+                              {# мне кажется, что не нужно выводить это поле, если самовывоз #}
                               {{ form_label(form.shipping_address) }}
                               {{ form_widget(form.shipping_address, { attr: { placeholder: "Адрес доставки", size: "30", disabledmaxlength: "64", autocomplete: "off", class: "email" }}) }}
                               {{ form_errors(form.shipping_address) }}
+
                             </div>
                           </div>
                         </div>
@@ -204,6 +220,7 @@
                       </div>
                       <table style="width: 100%;">
                         <tr>
+                            {{ form_widget(form.shipping_method_id) }}
                          {# <td class="op_whitebox" >
                             <h3>Способ доставки <img class="shipping-ajax-loader" src="/media/system/images/mootree_loader.gif" style="display: none;"/></h3>
                             <div id="ajaxshipping" class="op_whitebox_content">{{ form_widget(form.shipping_method_id) }}</div>
@@ -354,10 +371,12 @@
 
 
       </section>
-  <script>
+  {#<script>
       var $sport = $('#checkout_shipping_city_name');
+
       // When sport gets selected ...
       $sport.change(function() {
+          console.log( $sport.val());
           var $form = $(this).closest('form');
           var data = {};
           data[$sport.attr('name')] = $sport.val();
@@ -367,13 +386,13 @@
               data : data,
               success: function(html) {
                   console.log(html)
-                  $('#adminForm').replaceWith(
-                      $(html).find('#adminForm')
+                  $('#checkout_shipping_city_name').replaceWith(
+                      $(html).find('#checkout_shipping_city_name')
                   );
               }
           });
       });
-  </script>
+  </script>#}
 {% endblock %}
 
 

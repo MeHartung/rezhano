@@ -76,18 +76,18 @@ class CheckoutProcessor
 
       /** @var  $shippingMethod ShippingMethod*/
 
-      $shippingMethod = $this->shippingManager->getShippingMethodByUid($order->getShippingMethodId());
-      #$shippingEstimate = $shippingMethod->estimate($shipments[0]);
+      $shippingMethod = $this->shippingManager->getShippingMethodByUid($order->getShippingMethodId()->getUid());
+      $shippingEstimate = $shippingMethod->estimate($shipments[0]);
 
       $order->setShippingCost(0.00);
       $order->setShippingMethod(null);
       $order->setFee(0.00);
-      /*$shippingEstimate = $shippingMethod->estimate($shipments[0]);
+      $shippingEstimate = $shippingMethod->estimate($shipments[0]);
 
       $order->setShippingCost($shippingEstimate ? $shippingEstimate->getCost() : null);
       $order->setShippingMethod($shippingMethod);
       $order->setFee($this->paymentMethodManager->calculateFee($order,
-        $order->getPaymentMethod()));*/
+        $order->getPaymentMethod()));
     }
 
     $documentNumberGenerator = $this->documentNumberGenerator;
