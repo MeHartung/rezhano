@@ -227,6 +227,7 @@ class ShippingManager
       return -1;
     }
     return 0;
-  }}
+  }
+}
 
 

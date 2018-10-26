@@ -24,7 +24,7 @@ class ShippingMethodStorePickup extends ShippingMethodStore implements PickupPoi
   
   public function __construct()
   {
-    parent::__construct(self::UID, ShippingMethod::CLSID_PICKUP, 'Самовывоз', 'Самовывоз из магазина «Экскам»');
+    parent::__construct(self::UID, ShippingMethod::CLSID_PICKUP, 'Самовывоз', 'Самовывоз из магазина «Режано»');
   }
   
   public function estimate(Shipment $shipment)

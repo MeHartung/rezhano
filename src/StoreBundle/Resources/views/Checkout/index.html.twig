@@ -170,9 +170,14 @@
                             </div>
                             <div class="formField text-input" id="city_input">
                               {{ form_label(form.shipping_city_name) }}
+                              {{ form_widget(form.shipping_city_name) }}
+                              {{ form_errors(form.shipping_city_name) }}
+                            </div>{#
+                            <div class="formField text-input" id="city_input">
+                              {{ form_label(form.shipping_city_name) }}
                               {{ form_widget(form.shipping_city_name, { attr: { placeholder: "Город *", size: "30", disabledmaxlength: "32", autocomplete: "off", class: "email" }}) }}
                               {{ form_errors(form.shipping_city_name) }}
-                            </div>
+                            </div>#}
                             <div class="formField text-input" id="zip_input">
                               {{ form_label(form.shipping_post_code) }}
                               {{ form_widget(form.shipping_post_code, { attr: { placeholder: "Почтовый индекс", size: "30", disabledmaxlength: "32", autocomplete: "off", class: "email" }}) }}
@@ -199,18 +204,19 @@
                       </div>
                       <table style="width: 100%;">
                         <tr>
-                          <td class="op_whitebox" >
+                         {# <td class="op_whitebox" >
                             <h3>Способ доставки <img class="shipping-ajax-loader" src="/media/system/images/mootree_loader.gif" style="display: none;"/></h3>
                             <div id="ajaxshipping" class="op_whitebox_content">{{ form_widget(form.shipping_method_id) }}</div>
                             {{ form_errors(form.shipping_method_id) }}
-                          </td>
+                          </td>#}
 
                           <td class="op_whitebox" >
                             <div id="payment_top_wrapper">
                               <h3>Способ оплаты  <img class="payment-ajax-loader" src="/media/system/images/mootree_loader.gif" style="display: none;"/></h3>
                               <div class="op_whitebox_content">
                                 <div id="payment_html">
-                                  <input type="hidden" id="{{ form.payment_method.vars.id }}" name="{{ form.payment_method.vars.name }}"/>
+                                    {{ form_widget(form.payment_method) }}
+                                 {# <input type="hidden" id="{{ form.payment_method.vars.id }}" name="{{ form.payment_method.vars.name }}"/>#}
                                 </div>
                                 <div id="payment_extra_outside_basket"></div>
                               </div>
@@ -348,7 +354,26 @@
 
 
       </section>
-
+  <script>
+      var $sport = $('#checkout_shipping_city_name');
+      // When sport gets selected ...
+      $sport.change(function() {
+          var $form = $(this).closest('form');
+          var data = {};
+          data[$sport.attr('name')] = $sport.val();
+          $.ajax({
+              url : $form.attr('action'),
+              type: $form.attr('method'),
+              data : data,
+              success: function(html) {
+                  console.log(html)
+                  $('#adminForm').replaceWith(
+                      $(html).find('#adminForm')
+                  );
+              }
+          });
+      });
+  </script>
 {% endblock %}
 
 
