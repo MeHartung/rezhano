@@ -1,6 +1,19 @@
 <div class="product-item{% if options.narrow|default(false) %} product-item_narrow{% endif %}">
+
+    {#
+        Этот блок определяет цвет подложки у товара
+        Блок для демонстрации
+     #}
+    {% if product.background == constant('StoreBundle\\Entity\\Store\\Catalog\\Product\\Product::ORANGE_BACKGROUND') %}
+        у товара оранжевая подложка
+    {% elseif product.background == constant('StoreBundle\\Entity\\Store\\Catalog\\Product\\Product::BLACK_BACKGROUND') %}
+        у товара чёрная подложка
+    {% else %}
+        у товара нет подложки
+    {% endif %}
+
     <a class="product-item__image" href="{{ path('product', { 'slug': product.slug }) }}">
-        <img src="{% if image_url(product.mainImage) is not empty %}{{ image_url(product.mainImage) }}{% else %}{{ asset('/images/no_photo.png')}}{% endif %}" title="{{ product.name|e('html_attr') }}" />
+        <img src="{% if image_url(product.mainImage) is not empty %}{{ image_url(product.mainImage) }}{% else %}{{ asset('/images/no_photo.png')}}{% endif %}" title="{{ product.name|e('html_attr') }}" height="150px"/>
     </a>
     {% if product.sale %}
         <div class="product-item__discount-ticket">

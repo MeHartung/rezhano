@@ -34,6 +34,8 @@ use Accurateweb\LogisticBundle\Validator\Constraints as LogisticAssert;
  */
 class Product implements SluggableInterface//, StockableInterface
 {
+  const ORANGE_BACKGROUND = 1;
+  const BLACK_BACKGROUND = 2;
   /**
    * @var int
    *
@@ -308,12 +310,25 @@ class Product implements SluggableInterface//, StockableInterface
    * @ORM\Column(type="decimal", scale=2)
    */
   private $wholesalePrice;
-
+  
+  /**
+   * @var string
+   * @ORM\Column(type="integer", length=64, nullable=true)
+   */
+  private $background;
+  
+  /**
+   * @var ArrayCollection
+   * @ORM\ManyToMany(targetEntity="StoreBundle\Entity\Store\Catalog\Product\Product", inversedBy="id")
+   */
+  private $relatedProducts;
+  
   public function __construct()
   {
     $this->taxons = new ArrayCollection();
     $this->images = new ArrayCollection();
     $this->orderItems = new ArrayCollection();
+    $this->relatedProducts= new ArrayCollection();
 
     $this->productAttributeValues = new ArrayCollection();
     $this->stocks = new ArrayCollection();
@@ -1173,6 +1188,38 @@ class Product implements SluggableInterface//, StockableInterface
     {
       $this->wholesalePrice = (float)$wholesalePrice;
     }
+  }
+  
+  /**
+   * @return int
+   */
+  public function getBackground(): ?int
+  {
+    return $this->background;
+  }
+  
+  /**
+   * @param int $background
+   */
+  public function setBackground(?int $background): void
+  {
+    $this->background = $background;
+  }
+  
+  /**
+   * @return ArrayCollection
+   */
+  public function getRelatedProducts()
+  {
+    return $this->relatedProducts;
+  }
+  
+  /**
+   * @param ArrayCollection $relatedProducts
+   */
+  public function setRelatedProducts(ArrayCollection $relatedProducts): void
+  {
+    $this->relatedProducts = $relatedProducts;
   }
   
 }
