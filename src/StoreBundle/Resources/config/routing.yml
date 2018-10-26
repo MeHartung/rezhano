@@ -18,13 +18,13 @@ product:
   path:     /products/{slug}
   defaults: { _controller: StoreBundle:Catalog/Product:show }
 
-catalog_search:
-  path:  /search
-  defaults: { _controller: StoreBundle:Catalog/Search:search }
+#catalog_search:
+#  path:  /search
+#  defaults: { _controller: StoreBundle:Catalog/Search:search }
 
-catalog_search_suggest:
-  path: /search/suggest
-  defaults: { _controller: StoreBundle:Catalog/Search:suggest }
+#catalog_search_suggest:
+#  path: /search/suggest
+#  defaults: { _controller: StoreBundle:Catalog/Search:suggest }
 
 news_index:
   path:      /news
