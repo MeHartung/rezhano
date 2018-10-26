@@ -5,7 +5,7 @@ services:
         -
           name: sonata.admin
           manager_type: orm
-          group: text
+          group: homepage
           label: Сырные заметки
       arguments:
         - null
@@ -18,11 +18,25 @@ services:
         -
           name: sonata.admin
           manager_type: orm
-          group: text
+          group: main_page
           label: Партнёры
       arguments:
         - null
         - StoreBundle\Entity\Text\Partner
+        - 'PixSortableBehaviorBundle:SortableAdmin'
+
+    app.admin.promo_banner:
+      class: StoreBundle\Admin\Text\PromoBannerAdmin
+      tags:
+        -
+          name: sonata.admin
+          manager_type: orm
+          group: homepage
+          label: Промо-баннеры
+      arguments:
+        - null
+        - StoreBundle\Entity\Text\PromoBanner
+        - 'PixSortableBehaviorBundle:SortableAdmin'
         - 'PixSortableBehaviorBundle:SortableAdmin'
 
     app.admin.ship:
@@ -32,7 +46,7 @@ services:
           name: sonata.admin
           manager_type: orm
           group: store
-          label: Доставка
+          label: Способы доставки
       arguments:
         - null
         -  StoreBundle\Entity\Store\Shipping\ShippingMethod
@@ -50,3 +64,9 @@ services:
         - null
         -  StoreBundle\Entity\Store\Shipping\PickupPoint
         - 'PixSortableBehaviorBundle:SortableAdmin'
+
+    app.home_banner.admin:
+      class: StoreBundle\Admin\HomeBannerAdmin
+      arguments: [~, StoreBundle\Entity\Common\HomeBanner, 'PixSortableBehaviorBundle:SortableAdmin']
+      tags:
+        - {name: sonata.admin, manager_type: orm, group: homepage, label: "Тизерные блоки"}

@@ -6,6 +6,7 @@
 namespace StoreBundle\Admin\Store\Catalog;
 
 use Accurateweb\MediaBundle\Form\ImageGalleryType;
+use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Form\Catalog\Product\ProductTaxonType;
 use StoreBundle\Form\DataTransformer\NullableBooleanToBooleanTransformer;
 use StoreBundle\Form\ProductAttributeValueToProductType;
@@ -158,16 +159,29 @@ class ProductAdmin extends AbstractAdmin
       ))
       ->end()
       ->end();
-
+    
     if ($this->getSubject()->getId())
     {
       $form
         ->tab('Фотогалерея')
-        ->add('productPhotos', ImageGalleryType::class, array(
-          'gallery' => 'product-photo',
-          'label' => false
-        ))
-        ->end();
+          ->add('background', ChoiceType::class, [
+            'choices' => [
+              'Нет' => null,
+              'Оранжевая' => Product::ORANGE_BACKGROUND,
+              'Черная' => Product::BLACK_BACKGROUND,
+            ],
+            'required' => true
+          ])
+          ->add('productPhotos', ImageGalleryType::class, array(
+            'gallery' => 'product-photo',
+            'label' => false
+          ))
+        ->end()
+        ->end()
+/*        ->tab('Сопутствующие товары')
+          ->add('relatedProducts')
+        ->end()
+        ->end()*/;
     }
     ;
 

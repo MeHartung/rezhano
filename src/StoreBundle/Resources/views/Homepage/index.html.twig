@@ -68,6 +68,25 @@
         </div>
     </section>
 
+    {% if promoBanners|length %}
+    <section class="advantages">
+        <div class="container">
+            {% for i,promoBanner in promoBanners %}
+            <div class="advantages-step {% if 0 == i%2 %}advantages-image-left{% endif %}">
+                <div class="advantages-image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat"></div>
+                <div class="advantages-text">
+                    <img class="advantages-text__image" src="{{ image_url(promoBanner, 'homepage-promo-banner/text') }}"/>
+                    <span class="advantages-text__text">{{ promoBanner.text|raw }}</span>
+                    <a href="{{ promoBanner.url }}" class="button">
+                        <span>{{ promoBanner.buttonText }}</span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
     {% if bestOffers|length %}
         <section class="popular-products product-list">
             <div class="container container_no-padding">
@@ -114,6 +133,22 @@
             <a href="{{ url('taxon', { slug: 'syr', "f[type]": "gourmet"}) }}" class="choice__link choice__gourmet"></a>
         </div>
     </section>
+
+    <section class="wholesale">
+        <div class="container container_no-padding">
+
+            <div class="wholesale__image">
+            </div>
+            <div class="wholesale__text">
+                <p>Ты оптовый покупатель?<br>Сделай заказ в специальном<br> разделе сайта</p>
+                <a href="#" class="button button_on-yellow">
+                    <span>купить оптом</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
     {% if partners | length > 0 %}
         <section class="partners">
             <div class="container">
@@ -171,20 +206,20 @@
         </section>
     {% endif %}
 
-    {% if app.user and viewedProducts and viewedProducts|length %}
-        <section class="last-viewed-panel">
-            <div class="container">
-                <div class="section-title">
-                    <span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>
-                </div>
+    {#{% if app.user and viewedProducts and viewedProducts|length %}#}
+        {#<section class="last-viewed-panel">#}
+            {#<div class="container">#}
+                {#<div class="section-title">#}
+                    {#<span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>#}
+                {#</div>#}
 
-                <div class="section-wrap">
-                    {% for product in viewedProducts %}
-                        {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}
-                    {% endfor %}
-                </div>
+                {#<div class="section-wrap">#}
+                    {#{% for product in viewedProducts %}#}
+                        {#{{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}#}
+                    {#{% endfor %}#}
+                {#</div>#}
 
-            </div>
-        </section>
-    {% endif %}
+            {#</div>#}
+        {#</section>#}
+    {#{% endif %}#}
 {% endblock %}

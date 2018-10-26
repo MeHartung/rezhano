@@ -8,6 +8,7 @@ namespace Accurateweb\MediaBundle\Model\Image;
 
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class Image implements ImageInterface
 {
@@ -15,10 +16,23 @@ abstract class Image implements ImageInterface
 
   private $id;
 
-  function __construct($id, $resourceId)
+  private $options;
+
+  function __construct($id, $resourceId, $options=array())
   {
     $this->id = $id;
     $this->resourceId = $resourceId;
+
+    $resolver = new OptionsResolver();
+
+    $this->configureOptions($resolver);
+
+    $this->options = $resolver->resolve($options);
+  }
+
+  protected function configureOptions(OptionsResolver $resolver)
+  {
+
   }
 
   public function getId()
@@ -39,7 +53,7 @@ abstract class Image implements ImageInterface
   /**
    * Returns thumbnail for an image
    *
-   * @param $id
+   * @param string $id
    * @return ImageThumbnail
    * @throws \Exception
    */
@@ -55,4 +69,13 @@ abstract class Image implements ImageInterface
     return new ImageThumbnail($id, $this);
   }
 
+  protected function getOptions()
+  {
+    return $this->options;
+  }
+
+  protected function getOption($name)
+  {
+    return isset($this->options[$name]) ? $this->options[$name] : null;
+  }
 }
