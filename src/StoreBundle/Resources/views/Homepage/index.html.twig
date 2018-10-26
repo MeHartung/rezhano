@@ -75,7 +75,7 @@
             <div class="advantages-step {% if 0 == i%2 %}advantages-image-left{% endif %}">
                 <div class="advantages-image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat"></div>
                 <div class="advantages-text">
-                    <div class="advantages-text__image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/text') }}) center no-repeat"></div>
+                    <img class="advantages-text__image" src="{{ image_url(promoBanner, 'homepage-promo-banner/text') }}"/>
                     <span class="advantages-text__text">{{ promoBanner.text|raw }}</span>
                     <a href="{{ promoBanner.url }}" class="button">
                         <span>{{ promoBanner.buttonText }}</span>
@@ -133,6 +133,22 @@
             <a href="{{ url('taxon', { slug: 'syr', "f[type]": "gourmet"}) }}" class="choice__link choice__gourmet"></a>
         </div>
     </section>
+
+    <section class="wholesale">
+        <div class="container container_no-padding">
+
+            <div class="wholesale__image">
+            </div>
+            <div class="wholesale__text">
+                <p>Ты оптовый покупатель?<br>Сделай заказ в специальном<br> разделе сайта</p>
+                <a href="#" class="button button_on-yellow">
+                    <span>купить оптом</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
     {% if partners | length > 0 %}
         <section class="partners">
             <div class="container">
