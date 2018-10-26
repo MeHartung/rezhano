@@ -5,7 +5,7 @@
 
 namespace StoreBundle\Validator\Constraints;
 
-use AccurateCommerce\Shipping\Method\App\ShippingMethodStoreCourier;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStoreCourier;
 use AccurateCommerce\Shipping\ShippingManager;
 use Doctrine\ORM\EntityManagerInterface;
 use StoreBundle\Entity\Store\Order\Order;
@@ -36,7 +36,6 @@ class ShippingMethodValidator extends ConstraintValidator
     }
 
     $isValid = false;
-
     $shipments = $order->getShipments();
 
     $availableShippingMethods = $this->shippingManager->getAvailableShippingMethodsForShipment($shipments[0]);
@@ -44,7 +43,7 @@ class ShippingMethodValidator extends ConstraintValidator
 
     foreach ($availableShippingMethods as $shippingMethod)
     {
-      if ($shippingMethod->getUid() === $order->getShippingMethodId())
+      if ($shippingMethod->getUid() === $order->getShippingMethodId()->getUid())
       {
         $isValid = true;
         break;

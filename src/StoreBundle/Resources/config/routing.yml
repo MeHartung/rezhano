@@ -104,6 +104,10 @@ payment_method_list:
   path: /payment/methods
   defaults: { _controller: StoreBundle:Order/Checkout:paymentMethodList }
 
+internal_pickup_point_;ist:
+  path: /internal-pickups
+  defaults: { _controller: StoreBundle:Order/Checkout:pickup }
+
 special_offers_index:
   path: /offers
   defaults: { _controller: StoreBundle:Text/SpecialOffer:index }

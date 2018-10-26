@@ -92,7 +92,7 @@ class ShippingManager
   {
     if ($this->isShippingServiceRegistered($service->getUid()))
     {
-      throw new Exception(sprintf('Shipping service with id "%s" already registered', $service->getUid()));
+      throw new \Exception(sprintf('Shipping service with id "%s" already registered', $service->getUid()));
     }
     
     $this->shippingServices[(string)$service->getUid()] = $service;

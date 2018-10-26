@@ -6,6 +6,7 @@ use AccurateCommerce\Component\Checkout\Event\OrderCheckoutEvent;
 use AccurateCommerce\Shipping\ShippingManager;
 use Accurateweb\EmailTemplateBundle\Email\Factory\EmailFactory;
 use Psr\Log\LoggerInterface;
+use Sonata\AdminBundle\Route\RouteCollection;
 use StoreBundle\Entity\Store\Order\Order;
 
 class OrderCheckoutCustomerMail
@@ -73,7 +74,7 @@ class OrderCheckoutCustomerMail
 
   private function getEmailVariables (Order $order)
   {
-    $shippingMethod = $this->shippingManager->getShippingMethodByUid($order->getShippingMethodId());
+    $shippingMethod = $this->shippingManager->getShippingMethodByUid($order->getShippingMethodId()->getUid());
 
     $variables = array(
       'customer_name' => $order->getCustomerFullName(),
@@ -94,5 +95,10 @@ class OrderCheckoutCustomerMail
     );
 
     return $variables;
+  }
+  
+  protected function configureRoutes(RouteCollection $collection)
+  {
+    $collection->add('move', $this->getRouterIdParameter().'/move/{position}');
   }
 }
