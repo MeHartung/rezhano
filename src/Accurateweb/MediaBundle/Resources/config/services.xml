@@ -34,6 +34,7 @@
 
         <service class="Accurateweb\MediaBundle\EventListener\ImageUploadListener">
             <argument type="service" id="aw.media.image.uploader"/>
+            <argument type="service" id="annotations.reader"/>
             <tag name="doctrine.event_listener" event="prePersist"/>
             <tag name="doctrine.event_listener" event="preUpdate"/>
         </service>

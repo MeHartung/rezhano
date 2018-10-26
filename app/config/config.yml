@@ -145,12 +145,12 @@ sonata_admin:
             label: "Товары"
         messaging:
             label: Настройки уведомлений
+        homepage:
+            label: "Главная страница"
         text:
             label: "Текстовые разделы"
         notify:
             label: 'Уведомления'
-        document:
-            label: "Документы"
         integration:
             label: "Интеграция"
         user:

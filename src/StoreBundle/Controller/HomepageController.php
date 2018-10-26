@@ -32,10 +32,14 @@ class HomepageController extends Controller
     
     $cheeseStories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findBy([],['position' => 'ASC']);
     $partners = $this->getDoctrine()->getRepository('StoreBundle:Text\Partner')->findBy([],['position' => 'ASC']);
+    //Промо-баннеры с преимуществами сыроварни
+    $promoBanners = $this->getDoctrine()->getRepository('StoreBundle:Text\PromoBanner')
+      ->findBy(['published' => true], ['position' => 'ASC']);
 
     return $this->render('StoreBundle:Homepage:index.html.twig', array(
       'banners' => $banners,
       'bestOffers' => $bestOffers,
+      'promoBanners' => $promoBanners,
       'viewedProducts' => $viewedProducts,
       'cheeseStories' => $cheeseStories,
       'partners' => $partners

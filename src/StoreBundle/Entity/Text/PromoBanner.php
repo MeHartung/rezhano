@@ -5,6 +5,7 @@
 
 namespace StoreBundle\Entity\Text;
 
+use Accurateweb\MediaBundle\Annotation\Image;
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,6 +37,7 @@ class PromoBanner implements ImageAwareInterface
    * @var string
    *
    * @ORM\Column(length=255)
+   * @Image(id="homepage-promo-banner/teaser")
    */
   private $teaserImageFile;
 
@@ -43,6 +45,7 @@ class PromoBanner implements ImageAwareInterface
    * @var string
    *
    * @ORM\Column()
+   * @Image(id="homepage-promo-banner/text")
    */
   private $textImageFile;
 
@@ -119,7 +122,11 @@ class PromoBanner implements ImageAwareInterface
    */
   public function setTeaserImageFile($teaserImageFile)
   {
-    $this->teaserImageFile = $teaserImageFile;
+    if (null !== $teaserImageFile)
+    {
+      $this->teaserImageFile = $teaserImageFile;
+    }
+
     return $this;
   }
 
@@ -137,7 +144,11 @@ class PromoBanner implements ImageAwareInterface
    */
   public function setTextImageFile($textImageFile)
   {
-    $this->textImageFile = $textImageFile;
+    if (null !== $textImageFile)
+    {
+      $this->textImageFile = $textImageFile;
+    }
+
     return $this;
   }
 
@@ -235,24 +246,34 @@ class PromoBanner implements ImageAwareInterface
   /**
    * @return ImageInterface | null
    */
-  public function getTeaserImage()
+  public function getTeaserImageFileImage()
   {
     if (null == $this->teaserImageFile)
     {
       return null;
     }
 
-    return new UnprocessedImage('homepage-promo-banner/teaser', $this->id, []);
+    return new UnprocessedImage('homepage-promo-banner/'.$this->id.'teaser', $this->teaserImageFile, []);
   }
 
-  public function getTextImage()
+  public function setTeaserImageFileImage(ImageInterface $image = null)
+  {
+    $this->setTeaserImageFile($image ? $image->getResourceId() : null);
+  }
+
+  public function getTextImageFileImage()
   {
     if (null == $this->textImageFile)
     {
       return null;
     }
 
-    return new UnprocessedImage('homepage-promo-banner/text', $this->id, []);
+    return new UnprocessedImage('homepage-promo-banner/'.$this->id.'text', $this->textImageFile, []);
+  }
+
+  public function setTextImageFileImage(ImageInterface $image = null)
+  {
+      $this->setTextImageFile($image ? $image->getResourceId() : null);
   }
 
   /**
@@ -265,12 +286,12 @@ class PromoBanner implements ImageAwareInterface
     switch ($id)
     {
       case 'homepage-promo-banner/teaser':
-        return $this->getTeaserImage();
+        return $this->getTeaserImageFileImage();
       case 'homepage-promo-banner/text':
-        return $this->getTextImage();
+        return $this->getTextImageFileImage();
     }
 
-    throw new \InvalidArgumentException();
+    throw new \InvalidArgumentException(sprintf('Unknown image id "%s"', $id));
   }
 
   public function setImage(ImageInterface $image)

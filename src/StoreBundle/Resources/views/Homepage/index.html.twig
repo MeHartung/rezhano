@@ -68,6 +68,25 @@
         </div>
     </section>
 
+    {% if promoBanners|length %}
+    <section class="advantages">
+        <div class="container">
+            {% for i,promoBanner in promoBanners %}
+            <div class="advantages-step {% if 0 == i%2 %}advantages-image-left{% endif %}">
+                <div class="advantages-image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat"></div>
+                <div class="advantages-text">
+                    <div class="advantages-text__image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/text') }}) center no-repeat"></div>
+                    <span class="advantages-text__text">{{ promoBanner.text|raw }}</span>
+                    <a href="{{ promoBanner.url }}" class="button">
+                        <span>{{ promoBanner.buttonText }}</span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
     {% if bestOffers|length %}
         <section class="popular-products product-list">
             <div class="container container_no-padding">
@@ -171,20 +190,20 @@
         </section>
     {% endif %}
 
-    {% if app.user and viewedProducts and viewedProducts|length %}
-        <section class="last-viewed-panel">
-            <div class="container">
-                <div class="section-title">
-                    <span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>
-                </div>
+    {#{% if app.user and viewedProducts and viewedProducts|length %}#}
+        {#<section class="last-viewed-panel">#}
+            {#<div class="container">#}
+                {#<div class="section-title">#}
+                    {#<span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>#}
+                {#</div>#}
 
-                <div class="section-wrap">
-                    {% for product in viewedProducts %}
-                        {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}
-                    {% endfor %}
-                </div>
+                {#<div class="section-wrap">#}
+                    {#{% for product in viewedProducts %}#}
+                        {#{{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}#}
+                    {#{% endfor %}#}
+                {#</div>#}
 
-            </div>
-        </section>
-    {% endif %}
+            {#</div>#}
+        {#</section>#}
+    {#{% endif %}#}
 {% endblock %}

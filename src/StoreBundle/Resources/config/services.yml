@@ -25,7 +25,7 @@ services:
       class: StoreBundle\Admin\HomeBannerAdmin
       arguments: [~, StoreBundle\Entity\Common\HomeBanner, 'PixSortableBehaviorBundle:SortableAdmin']
       tags:
-        - {name: sonata.admin, manager_type: orm, group: store, label: "Тизерные блоки"}
+        - {name: sonata.admin, manager_type: orm, group: homepage, label: "Тизерные блоки"}
 
     app.user.adapter:
       class: StoreBundle\DataAdapter\User\UserDataAdapter
@@ -119,12 +119,6 @@ services:
       arguments: ['@accuratecommerce.payment.method.manager']
       tags:
         - { name: aw.client_application.adapter, alias: payment.method }
-
-    app.document_type.adapter:
-      class: StoreBundle\DataAdapter\Document\DocumentTypeDataAdapter
-      arguments: ['@store.document.storage']
-      tags:
-        - { name: aw.client_application.adapter, alias: document.type }
 
     app.dialog_message.adapter:
       class: StoreBundle\DataAdapter\Notification\DialogMessageDataAdapter
@@ -917,35 +911,6 @@ services:
       tags:
         - { name: store.price.modificator }
 
-    store.admin.document:
-      class: StoreBundle\Admin\Document\RegistrationDocumentAdmin
-      arguments: [~, StoreBundle\Entity\Document\RegistrationDocument, ~]
-      tags:
-        - { name: sonata.admin, manager_type: orm, group: document, label: "Страница регистрации" }
-
-    store.document.storage:
-      class: StoreBundle\Service\Uploader\DocumentStorage
-      arguments:
-        - '%kernel.root_dir%/../web'
-        - 'uploads/documents'
-        - '@router'
-
-    store.document.uploader:
-      class: StoreBundle\Service\Uploader\DocumentUploader
-      arguments: ['@store.document.storage']
-
-    store.document.upload.listener:
-      class: StoreBundle\EventListener\Upload\DocumentUploadListener
-      arguments: ['@store.document.uploader']
-      tags:
-        - { name: doctrine.event_listener, event: prePersist }
-        - { name: doctrine.event_listener, event: preUpdate }
-
-    store.document.twig.extension:
-      class: StoreBundle\Twig\DocumentExtension
-      arguments: ['@store.document.storage']
-      tags:
-        - { name: twig.extension }
 
     store.event_listener_email_messaging.customer_question_create_mail:
       class: StoreBundle\EventListener\EmailMessaging\CustomerQuestionCreateMail
@@ -1059,39 +1024,6 @@ services:
       tags:
         - { name: doctrine.event_listener, event: postPersist }
         - { name: doctrine.event_listener, event: postUpdate }
-
-    store.admin.user_document_type:
-      class: StoreBundle\Admin\Document\UserDocumentTypeAdmin
-      arguments: [~, StoreBundle\Entity\Document\UserDocumentType, 'StoreBundle:Admin/Document/UserDocumentTypeAdmin']
-      tags:
-        - { name: sonata.admin, manager_type: orm, group: document, label: "Типы документов пользователя" }
-
-    store.document_type.repository:
-      class: StoreBundle\Repository\Document\UserDocumentTypeRepository
-      factory: ['@doctrine.orm.entity_manager', 'getRepository']
-      arguments: ['StoreBundle\Entity\Document\UserDocumentType']
-
-    StoreBundle\Form\Document\JuridicalUserDocumentFormType:
-      class: StoreBundle\Form\Document\JuridicalUserDocumentFormType
-      arguments: ['@store.document_type.repository']
-      tags: ['form.type']
-
-    StoreBundle\Form\Document\EntrepreneurUserDocumentFormType:
-      class: StoreBundle\Form\Document\EntrepreneurUserDocumentFormType
-      arguments: ['@store.document_type.repository']
-      tags: ['form.type']
-
-    StoreBundle\Form\Document\IndividualUserDocumentFormType:
-      class: StoreBundle\Form\Document\IndividualUserDocumentFormType
-      arguments: ['@store.document_type.repository']
-      tags: ['form.type']
-
-    store.document_type.position.listener:
-      class: StoreBundle\EventListener\UserDocumentTypePositionListener
-      tags:
-        - { name: doctrine.event_listener, event: prePersist }
-        - { name: doctrine.event_listener, event: preUpdate }
-        - { name: doctrine.event_listener, event: postRemove }
 
     store.product.voter.publication_allowed:
       class: StoreBundle\Resolver\Product\PublicationAllowedPublicationResolver

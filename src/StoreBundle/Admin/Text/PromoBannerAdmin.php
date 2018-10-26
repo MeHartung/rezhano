@@ -30,6 +30,7 @@ class PromoBannerAdmin extends AbstractAdmin
     #$text = substr($this->getSubject()->getText(), 0, 50);
     $list
       ->add('__toString', null, ['label' => 'Текст'])
+      ->add('published')
       #->add('title', null)
       ->add('_action', null, array(
           'actions' => array(
@@ -46,10 +47,12 @@ class PromoBannerAdmin extends AbstractAdmin
   {
     $form
       ->add('teaser_image_file', ImageType::class, [
-        'required' => !!$this->getSubject()->getTeaserImageFile()
+        'required' => !!$this->getSubject()->getTeaserImageFile(),
+        'image_id' => 'homepage-promo-banner/teaser'
       ])
       ->add('text_image_file', ImageType::class, [
-        'required' => !!$this->getSubject()->getTeaserImageFile()
+        'required' => !!$this->getSubject()->getTeaserImageFile(),
+        'image_id' => 'homepage-promo-banner/text'
       ])
       ->add('text', TextareaType::class, [
         'required' => true
@@ -60,6 +63,7 @@ class PromoBannerAdmin extends AbstractAdmin
       ->add('url', null, [
         'required' => true
       ])
+      ->add('published')
     ;
   }
 
