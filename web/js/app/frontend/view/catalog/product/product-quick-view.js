@@ -21,7 +21,6 @@ define(function (require) {
           productId: this.model.get('id'),
           quantity: this.model.get('min_count')
         }),
-        max: this.model.get('available_stock'),
         min: this.model.get('min_count'),
         step: this.model.get('count_step')
       });

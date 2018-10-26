@@ -19,6 +19,8 @@ define(function(require) {
             this.totalsPanelView = new TotalsPanelView({
                 model: this.order
             });
+            
+            this.listenTo(this.order.items, 'remove', this.changeCart)
         },
         render: function () {
             CommonView.prototype.render.apply(this, arguments);
@@ -28,8 +30,17 @@ define(function(require) {
 
             this.totalsPanelView.setElement(this.$('.cards-container__payment-info'));
             this.totalsPanelView.render();
-
+            
             return this;
+        },
+        changeCart: function () {
+          if (this.order.items.length) {
+            this.$('.header-controls__cart .header-controls__notice .notice-count').text(this.order.items.length)
+          } else {
+            this.$('.header-controls__cart .header-controls__notice').css({
+              display: 'none'
+            })
+          }
         }
     })
 });

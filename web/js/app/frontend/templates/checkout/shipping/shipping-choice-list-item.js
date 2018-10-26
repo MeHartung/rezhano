@@ -14,8 +14,11 @@ define(function(require){
     </label>\n\
     <% if (cost) { %>\
       <span class="delivery-info">\n\
-        /  от <%= cost %> ₽ <span class="delivery-info__message"><%= help %></span>\n\
+        /  <%= cost %> ₽ \n\
       </span>\n\
+    <% } %>\
+    <% if (help) { %>\
+      <span class="delivery-info__message"><%= help %></span>\
     <% } %>\
     ';
 });
