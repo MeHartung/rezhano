@@ -12,70 +12,88 @@
 {% set isPaymentStep = currentStep == paymentStep %}
 {% set isCompleteStep = currentStep == completeStep %}
 
-{% block headerMenu %}
-  <header>
-    <div class="header-menu">
-      <div class="header-menu__wrap">
-        <a href="{{ path('cart_index') }}"
-           class="header-menu__item ordering-item{% if isCartStep %} active{% endif %}{% if currentStep>cartStep %} ordering-item_past{% endif %}">
-          Корзина
-        </a>
-        <a href="{{ path('checkout_shipping') }}"
-           class="header-menu__item ordering-item{% if isDeliveryStep %} active{% endif %}{% if currentStep>deliveryStep %} ordering-item_past{% endif %}">
-          Доставка и сервисы
-        </a>
-        <a href="{{ path('checkout_payment') }}"
-           class="header-menu__item ordering-item{% if isPaymentStep %} active{% endif %}{% if currentStep>paymentStep %} ordering-item_past{% endif %}">
-          Оплата
-        </a>
-        <a class="header-menu__item ordering-item{% if isCompleteStep %} active{% endif %}{% if currentStep>completeStep %} ordering-item_past{% endif %}">
-          Заказ
-        </a>
-      </div>
-    </div>
-  </header>
-
-{% endblock %}
+{#{% block headerMenu %}#}
+  {#<header>#}
+    {#<div class="header-menu">#}
+      {#<div class="header-menu__wrap">#}
+        {#<a href="{{ path('cart_index') }}"#}
+           {#class="header-menu__item ordering-item{% if isCartStep %} active{% endif %}{% if currentStep>cartStep %} ordering-item_past{% endif %}">#}
+          {#Корзина#}
+        {#</a>#}
+        {#<a href="{{ path('checkout_shipping') }}"#}
+           {#class="header-menu__item ordering-item{% if isDeliveryStep %} active{% endif %}{% if currentStep>deliveryStep %} ordering-item_past{% endif %}">#}
+          {#Доставка и сервисы#}
+        {#</a>#}
+        {#<a href="{{ path('checkout_payment') }}"#}
+           {#class="header-menu__item ordering-item{% if isPaymentStep %} active{% endif %}{% if currentStep>paymentStep %} ordering-item_past{% endif %}">#}
+          {#Оплата#}
+        {#</a>#}
+        {#<a class="header-menu__item ordering-item{% if isCompleteStep %} active{% endif %}{% if currentStep>completeStep %} ordering-item_past{% endif %}">#}
+          {#Заказ#}
+        {#</a>#}
+      {#</div>#}
+    {#</div>#}
+  {#</header>#}
+{#{% endblock %}#}
 
 {% block main %}
-  <section>
+  <section class="section-checkout">
     <div class="container">
 
-      {% block breadcrumbs %}
-        <div class="section-title">
-          <div class="breadcrumbs">
-            <a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>
-            <span class="breadcrumbs__divide"></span>
-            <a href="{{ path('cart_index') }}" class="breadcrumbs__item">Корзина</a>
-            <span class="breadcrumbs__divide"></span>
-            <a class="breadcrumbs__item breadcrumbs__item_active">Доставка и сервисы</a>
-          </div>
-          <span class="section-title__text section-title__text_in-product">Доставка и сервисы</span>
-        </div>
-      {% endblock %}
+      <h1>Корзина</h1>
 
-      <div class="center_no-left cards-container__center_no-left">
+      {#{% block breadcrumbs %}#}
+        {#<div class="section-title">#}
+          {#<div class="breadcrumbs">#}
+            {#<a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>#}
+            {#<span class="breadcrumbs__divide"></span>#}
+            {#<a href="{{ path('cart_index') }}" class="breadcrumbs__item">Корзина</a>#}
+            {#<span class="breadcrumbs__divide"></span>#}
+            {#<a class="breadcrumbs__item breadcrumbs__item_active">Доставка и сервисы</a>#}
+          {#</div>#}
+          {#<span class="section-title__text section-title__text_in-product">Доставка и сервисы</span>#}
+        {#</div>#}
+      {#{% endblock %}#}
+
+      {#<div class="center_no-left cards-container__center_no-left">#}
         {% block sidebar %}
-          <aside class="right">
-            <div class="cards-container__payment-info">
-              <span class="payment-info__title">К оплате:</span>
-              <span class="payment-info__value">{{ cart.total|number_format(0, '', ' ') }},<span
-                        class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</span>
-            </div>
-            <a href="{{ path('checkout_shipping') }}" class="button"><span>К оформлению заказа</span></a>
-            <a href="{{ path('catalog_index') }}" class="button white"><span>Продолжить покупки</span></a>
-          </aside>
+          {#<aside class="right">#}
+            {#<div class="cards-container__payment-info">#}
+              {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
+
+              {#<div class="payment-info__product">#}
+                {#<span class="payment-info__product-name">Буррата</span>#}
+                {#<span class="payment-info__product-value">1 шт. × 169₽</span>#}
+              {#</div>#}
+
+              {#<div class="payment-info__product">#}
+                {#<span class="payment-info__product-name">Буррата</span>#}
+                {#<span class="payment-info__product-value">1 шт. × 169₽</span>#}
+              {#</div>#}
+
+              {#<span class="payment-info__discount">#}
+                {#Скидка 10%#}
+              {#</span>#}
+
+              {#<div class="payment-info__value">#}
+                {#Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}₽</span>#}
+              {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
+              {#</div>#}
+            {#</div>#}
+            {#<a href="{{ path('checkout_shipping') }}" class="button button_black">#}
+              {#<span>оформить в один клик</span>#}
+            {#</a>#}
+
+            {#<a href="{{ path('checkout_shipping') }}" class="button"><span>К оформлению заказа</span></a>#}
+            {#<a href="{{ path('catalog_index') }}" class="button white"><span>Продолжить покупки</span></a>#}
+          {#</aside>#}
         {% endblock %}
         <div class="section-wrap">
-
           {% block form %}
+
           {% endblock %}
-
         </div>
-      </div>
-
-
+      {#</div>#}
     </div>
-
   </section>
 {% endblock %}

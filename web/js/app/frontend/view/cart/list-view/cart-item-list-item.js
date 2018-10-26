@@ -9,29 +9,28 @@ define(function(require){
 
   var template = _.template('\
   <div class="cards-container__item">\n' +
-'   <a href="<%= product_url %>" class="cards-container__item-image" style="background: url(\'<%= product_image %>\') center no-repeat; background-size: cover"></a>\n' +
+'   <a href="<%= product_url %>" class="cards-container__item-image">' +
+'     <img src="<%= product_image %>" alt="">' +
+'   </a>\n' +
 '   <div class="cards-container__item-info">\n' +
 '     <a href="<%= product_url %>" class="item-info__title"><%= product_name %></a>\n' +
-'     <span class="item-info__title-aside">Артикул –&nbsp;<%= product_sku %></span>\n' +
+'     <span class="item-info__quantity"><%= product_sku %></span>\n' +
 '   </div>\n' +
 ' </div>' +
-' <div class="quantity-wrap">\n' +
-'                    <a class="quantity-control quantity-control__down"></a>\n' +
-'                    <input class="quantity-control__input" value="<%= quantity %>" type="text">\n' +
-'                    <a class="quantity-control quantity-control__up"></a>\n' +
-'                    <span class="quantity-balance">всего <%= product_stock %> шт.</span>\n' +
+'<div class="cards-container__price"><%= price.toCurrencyString() %></div>' +
+' <div class="quantity-widget quantity-wrap product-item__controls cards-container__quantity">\n' +
+'  <a class="controls-item controls-item__increase quantity-control quantity-control__down"></a>\n' +
+'  <input class="custom-input quantity-control__input" value="<%= quantity %>" type="text">\n' +
+'  <a class="controls-item controls-item__reduce quantity-control quantity-control__up"></a>\n' +
+'</div>\n' +
+'<div class="cards-container__cost">\n' +
+'  <div class="total-value">\n' +
+'    <span class="total-value__payment"><% if (cost) { %><%= cost.toCurrencyString() %><% } %></span>\n' +
 '  </div>\n' +
-'  <div class="cards-container__location"><%= city %></div>\
-   <div class="cards-container__price"><%= price.toCurrencyString() %></div>\
-   <div class="cards-container__controls">\n' +
-'    <a class="button button-remove-from-favorites"></a>\n' +
-'  </div>\n' +
-'<div class="cards-container__amount-total">\n' +
-      '                    <div class="total-value">\n' +
-      '                      Сумма:\n' +
-      '                      <span class="total-value__payment"><% if (cost) { %><%= cost.toCurrencyString() %><% } %></span>\n' +
-      '                    </div>\n' +
-      '                  </div>');
+'</div>'+
+'<div class="cards-container__controls">\n' +
+'   <a class="button-remove-from-favorites"></a>\n' +
+'</div>\n');
 
   return ListItemView.extend({
     //tagName: 'tr',

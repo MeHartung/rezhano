@@ -51,3 +51,16 @@ services:
         - null
         -  StoreBundle\Entity\Store\Shipping\ShippingMethod
         - 'PixSortableBehaviorBundle:SortableAdmin'
+
+    app.admin.pickup:
+      class: StoreBundle\Admin\Store\Shipping\PickupPointAdmin
+      tags:
+        -
+          name: sonata.admin
+          manager_type: orm
+          group: store
+          label: Пункты самовывоза
+      arguments:
+        - null
+        -  StoreBundle\Entity\Store\Shipping\PickupPoint
+        - 'PixSortableBehaviorBundle:SortableAdmin'

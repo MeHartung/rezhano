@@ -6,14 +6,14 @@ define(function(require){
       CartCartItemListItemView = require('view/cart/list-view/cart-item-list-item');
 
   var template = _.template('\
-<div class="cards-container__header">\n' +
-      '                  <div class="cards-container__item cards-container__item_header"></div>\n' +
-      '                  <div class="quantity-wrap quantity-wrap_header"><span>Кол-во</span></div>\n' +
-      '                  <div class="cards-container__location cards-container__location_header"><span>Местонахождение</span></div>\n' +
-      '                  <div class="cards-container__price cards-container__price_header"><span>Цена</span></div>\n' +
-      '                </div>\
-      \
-      <div class="cards-container__container"></div>');
+ <div class="cards-container__header">\
+    <div class="cards-container__item cards-container__item_header">Описание</div>\
+    <div class="cards-container__price cards-container__price_header"><span>Цена</span></div>\
+    <div class="cards-container__quantity cards-container__quantity_header"><span>Количество</span></div>\
+    <div class="cards-container__cost cards-container__cost_header"><span>Сумма</span></div>\
+    <div class="cards-container__remove cards-container__remove_header"><span>Удалить</span></div>\
+ </div>\
+ <div class="cards-container__container"></div>');
 
   return ListView.extend({
     //tagName: 'table',
