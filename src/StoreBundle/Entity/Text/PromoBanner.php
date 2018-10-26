@@ -253,7 +253,7 @@ class PromoBanner implements ImageAwareInterface
       return null;
     }
 
-    return new UnprocessedImage('homepage-promo-banner/'.$this->id.'teaser', $this->teaserImageFile, []);
+    return new UnprocessedImage('homepage-promo-banner/teaser', $this->teaserImageFile, []);
   }
 
   public function setTeaserImageFileImage(ImageInterface $image = null)
@@ -268,7 +268,7 @@ class PromoBanner implements ImageAwareInterface
       return null;
     }
 
-    return new UnprocessedImage('homepage-promo-banner/'.$this->id.'text', $this->textImageFile, []);
+    return new UnprocessedImage('homepage-promo-banner/text', $this->textImageFile, []);
   }
 
   public function setTextImageFileImage(ImageInterface $image = null)
