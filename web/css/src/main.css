@@ -576,7 +576,7 @@ input[type="text"].input-text {
 .checkbox:checked + .custom-checkbox__checkbox:after {
   content: url("../images/icons/checkbox-checked.png");
   width: 17px;
-  height: 16px;
+  height: 23px;
   position: absolute;
   bottom: 5px;
   left: 3px;
@@ -2099,6 +2099,13 @@ aside.right {
 .cards-container__step-container .step-item {
   margin-bottom: 45px;
 }
+.cards-container__step-container .step-item__title {
+  font-family: alegreyasans-light;
+  font-size: 17px;
+  color: #191919;
+  display: block;
+  margin-bottom: 18px;
+}
 .cards-container__step-container .step-item.step-item-input {
   display: inline-block;
   width: 252px;
@@ -3254,6 +3261,12 @@ body.ui-widget textarea {
 }
 body .ui-widget-overlay {
   background-color: rgba(0, 0, 0, 0.9);
+}
+body .custom-select .ui-selectmenu-button {
+  border-radius: 0;
+  border: 3px solid #000000;
+  outline: none;
+  box-shadow: none;
 }
 .jspPane {
   width: 335px !important;

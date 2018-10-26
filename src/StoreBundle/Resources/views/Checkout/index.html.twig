@@ -398,6 +398,14 @@
 
 {% block main %}
 <section class="section-purchase">
+
+  <script type="text/javascript" src="{{ asset('js/vendor/jquery-ui/jquery-ui.min.js') }}"></script>
+  <script>
+    $(function () {
+      $('.custom-select select').selectmenu();
+    });
+  </script>
+
   <div class="container">
     <h1>Оформление заказа</h1>
     <div class="center_no-left cards-container__center_no-left">
@@ -431,6 +439,9 @@
         </aside>
       {% endblock %}
       <div class="section-wrap">
+        <form >
+
+
         <div class="cards-container__step cards-container__order">
           <div class="cards-container__step-title">
             <span class="step-title__number">1</span>ваши данные
@@ -473,13 +484,28 @@
           </div>
 
           <div class="cards-container__step-container">
+
             <div class="step-item">
+              <div class="custom-select">
+                <label for="">
+                  <select name="" id="">
+                    <option value="Екатеринбург">Екатеринбург</option>
+                    <option value="Москва">Москва</option>
+                    <option value="Санкт-Петербург">Санкт-Петербург</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <span class="step-item__title">
+                Способ получения
+              </span>
               <div class="custom-radio">
                 <label>
                   <input type="radio" class="radio" name="radio-delivery">
                   <span class="custom-radio__radio"></span>
                   <span>Курьером</span>
-
                 </label>
 
                 <span class="delivery-info">
@@ -496,6 +522,9 @@
                   <span>Самовывоз с <span class="shipment-address">Красноармейской, 68</span></span>
                 </label>
               </div>
+
+              <a href="" >Ознакомьтесь с условиями доставки и оплаты</a>
+
             </div>
 
             {#<div class="custom-checkbox custom-checkbox_bg-blue" name="tos">#}
@@ -519,6 +548,67 @@
           </div>
         </div>
 
+
+        <div class="cards-container__step cards-container__order">
+          <div class="cards-container__step-title">
+            <span class="step-title__number">3</span>опалата заказа
+          </div>
+
+          <div class="cards-container__step-container">
+
+            <div class="step-item">
+              <div class="custom-checkbox" name="tos">
+                <label>
+                  <input  name="tos" class="checkbox" type="checkbox">
+                  <span class="custom-checkbox__checkbox"></span>
+                  <span>Я ознакомился и согласен с <a href="">Политикой Компании</a> и <a href="">условиями сотрудничества</a>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="step-item ">
+              <input class="input-text" type="text" placeholder="Введите номер карты">
+              <a href="" class="button">
+                <span>Применить</span>
+              </a>
+            </div>
+
+            <div class="step-item">
+              <span class="step-item__title">
+                Способ получения
+              </span>
+              <div class="custom-radio">
+                <label>
+                  <input type="radio" class="radio" name="radio-delivery">
+                  <span class="custom-radio__radio"></span>
+                  <span>Курьером</span>
+                </label>
+
+                <span class="delivery-info">
+                  /  от 250 ₽ <span class="delivery-info__message">
+                    Кстати, при заказе сыров от 1500₽ мы сделаем доставку бесплатно
+                  </span>
+                </span>
+              </div>
+
+              <div class="custom-radio">
+                <label>
+                  <input type="radio" class="radio" name="radio-delivery">
+                  <span class="custom-radio__radio"></span>
+                  <span>Самовывоз с <span class="shipment-address">Красноармейской, 68</span></span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+          <button class="button">
+            <span>сделать заказ</span>
+          </button>
+
+        </form>
       </div>
     </div>
   </div>

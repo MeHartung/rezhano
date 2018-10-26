@@ -128,8 +128,6 @@ body.ui-widget {
       bottom: -7px;
       margin-left: -11px;
       background-color: #33a5db;
-      //box-shadow: 2px 2px 4.6px 0.4px rgba(116, 130, 142, 0.35);
-      //z-index: -1;
       -webkit-transform: rotate(45deg);
       -moz-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
@@ -137,7 +135,6 @@ body.ui-widget {
       transform: rotate(45deg);
 
       box-shadow: 3px 3px 4px -2px rgba(0, 0, 0, 0.3);
-    ;
     }
   }
 
@@ -758,4 +755,17 @@ body.ui-widget {
 
 body .ui-widget-overlay {
   background-color: fade(@c_black, 90%);
+}
+
+//
+
+body .custom-select {
+
+  .ui-selectmenu-button {
+    border-radius: 0;
+    border: 3px solid @c_black;
+    outline: none;
+    box-shadow: none;
+
+  }
 }
