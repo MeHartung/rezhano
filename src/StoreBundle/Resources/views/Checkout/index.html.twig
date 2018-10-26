@@ -14,48 +14,48 @@
   {% endspaceless %}
 {% endblock form_errors %}
 
-{% block stylesheets %}
-  {{ parent() }}
+{#{% block stylesheets %}#}
+  {#{{ parent() }}#}
 
-  <link rel="stylesheet" href="/components/com_onepage/themes/Store_custom/tabcontent1.css?opcversion=2_0_252_280714" type="text/css" />
+  {#<link rel="stylesheet" href="/components/com_onepage/themes/Store_custom/tabcontent1.css?opcversion=2_0_252_280714" type="text/css" />#}
 
-{% endblock %}
+{#{% endblock %}#}
 
-{% block header_cart_widget %}{% endblock %}
+{#{% block header_cart_widget %}{% endblock %}#}
 
-{% block body %}
-<section  class="gkContentTopBorder "></section>
-<section id="gkContent" >
-  <div id="gkContentWrap" class="gkContentNoSidebar">
-    <div id="gkMainbody">
-      <div id="vmMainPageOPC"><div class="opc_unlogged_wrapper" id="opc_unlogged_wrapper" ><div id="top_basket_wrapper">
-        <div id="opc_basket"><div id="basket_container">
-            <h1>Оформление заказа</h1>
-            {#<table>
-              <tr>
-                <td class="op_greybox">Название</td>
-                <td class="op_greybox">Артикул</td>
-                <td class="op_greybox">Кол-во</td>
-                <td class="op_greybox">Стоимость</td>
-                <td class="op_greybox">&nbsp;</td>
-              </tr>
-              {% for item in items %}
-                <tr class="product">
-                  <td class="op_whitebox"><a href="{{ path('product', { slug: item.product.slug }) }}">{{ item.product.name }}</a></td>
-                  <td class="op_whitebox">{{ item.product.sku }}</td>
-                  <td class="op_whitebox center" style="min-width: 80px;">
-                    <div class="quantity-input-widget">
-                      <input type="text" class="inputbox_update" size="3" name="quantity" value="{{ item.quantity }}" />
-                    </div>
-                  </td>
-                  <td class="op_whitebox"><div class="opc_price_general opc_PricesalesPrice"><span class="opc_price_general opc_PricesalesPrice" >{{ item.cost|price }}</span></div></td>
-                  <td class="op_whitebox center"><a class="deletebtn" title="Удалить" href="{{ path('cart_remove', { id: item.id }) }}"></a></td>
-                </tr>
-              {% endfor %}
-            </table>
-            {{ form_errors(form.orderItems) }}#}
-          </div>
-        </div>
+{#{% block body %}#}
+{#<section  class="gkContentTopBorder "></section>#}
+{#<section id="gkContent" >#}
+  {#<div id="gkContentWrap" class="gkContentNoSidebar">#}
+    {#<div id="gkMainbody">#}
+      {#<div id="vmMainPageOPC"><div class="opc_unlogged_wrapper" id="opc_unlogged_wrapper" ><div id="top_basket_wrapper">#}
+        {#<div id="opc_basket"><div id="basket_container">#}
+            {#<h1>Оформление заказа</h1>#}
+            {#<table>#}
+              {#<tr>#}
+                {#<td class="op_greybox">Название</td>#}
+                {#<td class="op_greybox">Артикул</td>#}
+                {#<td class="op_greybox">Кол-во</td>#}
+                {#<td class="op_greybox">Стоимость</td>#}
+                {#<td class="op_greybox">&nbsp;</td>#}
+              {#</tr>#}
+              {#{% for item in items %}#}
+                {#<tr class="product">#}
+                  {#<td class="op_whitebox"><a href="{{ path('product', { slug: item.product.slug }) }}">{{ item.product.name }}</a></td>#}
+                  {#<td class="op_whitebox">{{ item.product.sku }}</td>#}
+                  {#<td class="op_whitebox center" style="min-width: 80px;">#}
+                    {#<div class="quantity-input-widget">#}
+                      {#<input type="text" class="inputbox_update" size="3" name="quantity" value="{{ item.quantity }}" />#}
+                    {#</div>#}
+                  {#</td>#}
+                  {#<td class="op_whitebox"><div class="opc_price_general opc_PricesalesPrice"><span class="opc_price_general opc_PricesalesPrice" >{{ item.cost|price }}</span></div></td>#}
+                  {#<td class="op_whitebox center"><a class="deletebtn" title="Удалить" href="{{ path('cart_remove', { id: item.id }) }}"></a></td>#}
+                {#</tr>#}
+              {#{% endfor %}#}
+            {#</table>#}
+            {#{{ form_errors(form.orderItems) }}#}
+          {#</div>#}
+        {#</div>#}
 
         {# Ввод купона недоступен в первой версии #}
         {#<div id="couponcode_field" style="">#}
@@ -75,14 +75,14 @@
           {#</form>#}
         {#</div>#}
 
-                <div style="width: 100%; clear: both;"></div><div class="opc_errors" id="opc_error_msgs" style="display: none; width: 100%; clear:both; border: 1px solid red;">&nbsp;</div></div>
+                {#<div style="width: 100%; clear: both;"></div><div class="opc_errors" id="opc_error_msgs" style="display: none; width: 100%; clear:both; border: 1px solid red;">&nbsp;</div></div>#}
 
-                <div id="onepage_main_div">
+                {#<div id="onepage_main_div">#}
 
-                  <!-- start of checkout form -->
-                  {{ form_start(form, { attr: { id: "adminForm", name: "adminForm",  class: "form-valida2te", novalidate: "novalidate" } }) }}
+                  {#<!-- start of checkout form -->#}
+                  {#{{ form_start(form, { attr: { id: "adminForm", name: "adminForm",  class: "form-valida2te", novalidate: "novalidate" } }) }}#}
                   {#<form action="{{ path('checkout') }}" method="post"  id="adminForm" name="adminForm"  class="form-valida2te" novalidate="novalidate" >#}
-                    <!-- login box -->
+                    {#<!-- login box -->#}
                     {#<div style="display: none;">#}
                       {#<div class="op_inside loginsection">#}
                         {#<div class="op_rounded">#}
@@ -140,259 +140,388 @@
                         {#</div>#}
                       {#</div>#}
                     {#</div>#}
-                    <div id="allcheckout_sections">
-                      {{ form_errors(form) }}
+                    {#<div id="allcheckout_sections">#}
+                      {#{{ form_errors(form) }}#}
 
-                      <!-- user registration and fields -->
-                      <div class="op_whitebox" id="bill_to_section">
-                        <h3>Информация о покупателе</h3>
-                        <div class="op_whitebox_content">
-                          <div style="width:100%;">
-                            <div class="formField text-input" id="phone_1_input">
-                              {{ form_label(form.customer_phone) }}
-                              {{ form_widget(form.customer_phone, { attr: { placeholder: "Телефон *", size: "30", disabledmaxlength: "32", autocomplete: "off", type: "tel" }}) }}
-                              {{ form_errors(form.customer_phone) }}
-                            </div>
-                            <div class="formField text-input" id="first_name_input">
-                              {{ form_label(form.customer_first_name) }}
-                              {{ form_widget(form.customer_first_name, { attr: { placeholder: "Имя *", size: "30", disabledmaxlength: "32", autocomplete: "off" }}) }}
-                              {{ form_errors(form.customer_first_name) }}
-                            </div>
-                            <div class="formField text-input" id="last_name_input">
-                              {{ form_label(form.customer_last_name) }}
-                              {{ form_widget(form.customer_last_name, { attr: { placeholder: "Фамилия *", size: "30", disabledmaxlength: "32", autocomplete: "off" }}) }}
-                              {{ form_errors(form.customer_last_name) }}
-                            </div>
-                            <div class="formField text-input" id="email_input">
-                              {{ form_label(form.customer_email) }}
-                              {{ form_widget(form.customer_email, { attr: { placeholder: "Email *", size: "30", disabledmaxlength: "100", autocomplete: "off", class: "email" }}) }}
-                              {{ form_errors(form.customer_email) }}
-                            </div>
-                            <div class="formField text-input" id="city_input">
-                              {{ form_label(form.shipping_city_name) }}
-                              {{ form_widget(form.shipping_city_name) }}
-                              {{ form_errors(form.shipping_city_name) }}
-                            </div>
-                            <div class="formField text-input" id="city_input">
-                                {{ form_widget(form.shipping_method_id) }}
+                      {#<!-- user registration and fields -->#}
+                      {#<div class="op_whitebox" id="bill_to_section">#}
+                        {#<h3>Информация о покупателе</h3>#}
+                        {#<div class="op_whitebox_content">#}
+                          {#<div style="width:100%;">#}
+                            {#<div class="formField text-input" id="phone_1_input">#}
+                              {#{{ form_label(form.customer_phone) }}#}
+                              {#{{ form_widget(form.customer_phone, { attr: { placeholder: "Телефон *", size: "30", disabledmaxlength: "32", autocomplete: "off", type: "tel" }}) }}#}
+                              {#{{ form_errors(form.customer_phone) }}#}
+                            {#</div>#}
+                            {#<div class="formField text-input" id="first_name_input">#}
+                              {#{{ form_label(form.customer_first_name) }}#}
+                              {#{{ form_widget(form.customer_first_name, { attr: { placeholder: "Имя *", size: "30", disabledmaxlength: "32", autocomplete: "off" }}) }}#}
+                              {#{{ form_errors(form.customer_first_name) }}#}
+                            {#</div>#}
+                            {#<div class="formField text-input" id="last_name_input">#}
+                              {#{{ form_label(form.customer_last_name) }}#}
+                              {#{{ form_widget(form.customer_last_name, { attr: { placeholder: "Фамилия *", size: "30", disabledmaxlength: "32", autocomplete: "off" }}) }}#}
+                              {#{{ form_errors(form.customer_last_name) }}#}
+                            {#</div>#}
+                            {#<div class="formField text-input" id="email_input">#}
+                              {#{{ form_label(form.customer_email) }}#}
+                              {#{{ form_widget(form.customer_email, { attr: { placeholder: "Email *", size: "30", disabledmaxlength: "100", autocomplete: "off", class: "email" }}) }}#}
+                              {#{{ form_errors(form.customer_email) }}#}
+                            {#</div>#}
+                            {#<div class="formField text-input" id="city_input">#}
+                              {#{{ form_label(form.shipping_city_name) }}#}
+                              {#{{ form_widget(form.shipping_city_name) }}#}
+                              {#{{ form_errors(form.shipping_city_name) }}#}
+                            {#</div>#}
+                            {#<div class="formField text-input" id="city_input">#}
+                                {#{{ form_widget(form.shipping_method_id) }}#}
 
-                              <div>
-                                <b>это появляется если выбран самовывоз </b>
-                                Тут должна быть карта с пунктами выдачи магазина <br />
-                                Пункты выдачи в формате JSON получить  можно тут: GET /internal-pickups
-                              </div>
-                            </div>
-                            <div>
-                                <b> это появляется если выбран другой город вместо способов доставки </b>
-                                {{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}
-                            </div>
-                              {#
-                            <div class="formField text-input" id="city_input">
-                              {{ form_label(form.shipping_city_name) }}
-                              {{ form_widget(form.shipping_city_name, { attr: { placeholder: "Город *", size: "30", disabledmaxlength: "32", autocomplete: "off", class: "email" }}) }}
-                              {{ form_errors(form.shipping_city_name) }}
-                            </div>#}{#
-                            <div class="formField text-input" id="zip_input">
-                              {{ form_label(form.shipping_post_code) }}
-                              {{ form_widget(form.shipping_post_code, { attr: { placeholder: "Почтовый индекс", size: "30", disabledmaxlength: "32", autocomplete: "off", class: "email" }}) }}
-                              {{ form_errors(form.shipping_post_code) }}
-                            </div>#}
-                            <div class="formField text-input" id="address_1_input">
+                              {#<div>#}
+                                {#<b>это появляется если выбран самовывоз </b>#}
+                                {#Тут должна быть карта с пунктами выдачи магазина <br />#}
+                                {#Пункты выдачи в формате JSON получить  можно тут: GET /internal-pickups#}
+                              {#</div>#}
+                            {#</div>#}
+                            {#<div>#}
+                                {#<b> это появляется если выбран другой город вместо способов доставки </b>#}
+                                {#{{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}#}
+                            {#</div>#}
+                              {##}
+                            {#<div class="formField text-input" id="city_input">#}
+                              {#{{ form_label(form.shipping_city_name) }}#}
+                              {#{{ form_widget(form.shipping_city_name, { attr: { placeholder: "Город *", size: "30", disabledmaxlength: "32", autocomplete: "off", class: "email" }}) }}#}
+                              {#{{ form_errors(form.shipping_city_name) }}#}
+                            {#</div>#}{##}{##}
+                            {#<div class="formField text-input" id="zip_input">#}
+                              {#{{ form_label(form.shipping_post_code) }}#}
+                              {#{{ form_widget(form.shipping_post_code, { attr: { placeholder: "Почтовый индекс", size: "30", disabledmaxlength: "32", autocomplete: "off", class: "email" }}) }}#}
+                              {#{{ form_errors(form.shipping_post_code) }}#}
+                            {#</div>#}
+                            {#<div class="formField text-input" id="address_1_input">#}
                               {# мне кажется, что не нужно выводить это поле, если самовывоз #}
-                              {{ form_label(form.shipping_address) }}
-                              {{ form_widget(form.shipping_address, { attr: { placeholder: "Адрес доставки", size: "30", disabledmaxlength: "64", autocomplete: "off", class: "email" }}) }}
-                              {{ form_errors(form.shipping_address) }}
+                              {#{{ form_label(form.shipping_address) }}#}
+                              {#{{ form_widget(form.shipping_address, { attr: { placeholder: "Адрес доставки", size: "30", disabledmaxlength: "64", autocomplete: "off", class: "email" }}) }}#}
+                              {#{{ form_errors(form.shipping_address) }}#}
 
-                            </div>
-                          </div>
-                        </div>
-                        <div id="customer_note_input" class="formField text-input">
-                          {{ form_label(form.customer_comment) }}
-                          {{ form_widget(form.customer_comment, { attr: { placeholder: "Примечания и специальные запросы"} }) }}
-                          {{ form_errors(form.customer_comment) }}
-                        </div>
-                        <div id="agreed_div">
-                          {{ form_widget(form.tos_agreement) }}
-                          <label for="{{ form.tos_agreement.vars.id }}">Я согласен с <a href="#" class="tos-agreement-link dashed">Условиями обслуживания</a></label>
-                          {{ form_errors(form.tos_agreement) }}
-                        </div>
-                        <div class="formField" id="agreed_input"></div>
-                      </div>
-                      <table style="width: 100%;">
-                        <tr>
-                            {{ form_widget(form.shipping_method_id) }}
-                         {# <td class="op_whitebox" >
-                            <h3>Способ доставки <img class="shipping-ajax-loader" src="/media/system/images/mootree_loader.gif" style="display: none;"/></h3>
-                            <div id="ajaxshipping" class="op_whitebox_content">{{ form_widget(form.shipping_method_id) }}</div>
-                            {{ form_errors(form.shipping_method_id) }}
-                          </td>#}
+                            {#</div>#}
+                          {#</div>#}
+                        {#</div>#}
+                        {#<div id="customer_note_input" class="formField text-input">#}
+                          {#{{ form_label(form.customer_comment) }}#}
+                          {#{{ form_widget(form.customer_comment, { attr: { placeholder: "Примечания и специальные запросы"} }) }}#}
+                          {#{{ form_errors(form.customer_comment) }}#}
+                        {#</div>#}
+                        {#<div id="agreed_div">#}
+                          {#{{ form_widget(form.tos_agreement) }}#}
+                          {#<label for="{{ form.tos_agreement.vars.id }}">Я согласен с <a href="#" class="tos-agreement-link dashed">Условиями обслуживания</a></label>#}
+                          {#{{ form_errors(form.tos_agreement) }}#}
+                        {#</div>#}
+                        {#<div class="formField" id="agreed_input"></div>#}
+                      {#</div>#}
+                      {#<table style="width: 100%;">#}
+                        {#<tr>#}
+                            {#{{ form_widget(form.shipping_method_id) }}#}
+                         {# <td class="op_whitebox" >#}
+                            {#<h3>Способ доставки <img class="shipping-ajax-loader" src="/media/system/images/mootree_loader.gif" style="display: none;"/></h3>#}
+                            {#<div id="ajaxshipping" class="op_whitebox_content">{{ form_widget(form.shipping_method_id) }}</div>#}
+                            {#{{ form_errors(form.shipping_method_id) }}#}
+                          {#</td>#}
 
-                          <td class="op_whitebox" >
-                            <div id="payment_top_wrapper">
-                              <h3>Способ оплаты  <img class="payment-ajax-loader" src="/media/system/images/mootree_loader.gif" style="display: none;"/></h3>
-                              <div class="op_whitebox_content">
-                                <div id="payment_html">
-                                    {{ form_widget(form.payment_method) }}
+                          {#<td class="op_whitebox" >#}
+                            {#<div id="payment_top_wrapper">#}
+                              {#<h3>Способ оплаты  <img class="payment-ajax-loader" src="/media/system/images/mootree_loader.gif" style="display: none;"/></h3>#}
+                              {#<div class="op_whitebox_content">#}
+                                {#<div id="payment_html">#}
+                                    {#{{ form_widget(form.payment_method) }}#}
                                  {# <input type="hidden" id="{{ form.payment_method.vars.id }}" name="{{ form.payment_method.vars.name }}"/>#}
-                                </div>
-                                <div id="payment_extra_outside_basket"></div>
-                              </div>
+                                {#</div>#}
+                                {#<div id="payment_extra_outside_basket"></div>#}
+                              {#</div>#}
 
-                              {{ form_errors(form.payment_method) }}
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                      <div class="bill_to_section op_inside op_userfields_style_hundred" >
-                        <div class="op_whitebox" id="bill_state_total">
-                          <div class="op_whitebox_content">
-                            <div id="totalam"></div>
-                            <div id="confirmbtn_area">
-                              <button type="submit" id="confirmbtn_button" name="checkout[submit]"><span id="confirmbtn" style="width: 250px;">Оформить заказ</span></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end of tricks -->
-                  {% do form.payment_method.setRendered %}
-                  {% do form.submit.setRendered %}
-                  {% do form.orderItems.setRendered %}
-                 {{ form_end(form) }}
+                              {#{{ form_errors(form.payment_method) }}#}
+                            {#</div>#}
+                          {#</td>#}
+                        {#</tr>#}
+                      {#</table>#}
+                      {#<div class="bill_to_section op_inside op_userfields_style_hundred" >#}
+                        {#<div class="op_whitebox" id="bill_state_total">#}
+                          {#<div class="op_whitebox_content">#}
+                            {#<div id="totalam"></div>#}
+                            {#<div id="confirmbtn_area">#}
+                              {#<button type="submit" id="confirmbtn_button" name="checkout[submit]"><span id="confirmbtn" style="width: 250px;">Оформить заказ</span></button>#}
+                            {#</div>#}
+                          {#</div>#}
+                        {#</div>#}
+                      {#</div>#}
+                    {#</div>#}
+                    {#<!-- end of tricks -->#}
+                  {#{% do form.payment_method.setRendered %}#}
+                  {#{% do form.submit.setRendered %}#}
+                  {#{% do form.orderItems.setRendered %}#}
+                 {#{{ form_end(form) }}#}
 
-                </div>
-                <div id="tracking_div"></div>
+                {#</div>#}
+                {#<div id="tracking_div"></div>#}
 
-                <br style="clear: both; float: none;" />
-                <br style="clear: both; float: left;" />
+                {#<br style="clear: both; float: none;" />#}
+                {#<br style="clear: both; float: left;" />#}
 
-                <!-- Facebook Pixel Code -->
-                <script>
-                  fbq && fbq('track', 'InitiateCheckout');
-                </script>
-                <!-- End Facebook Pixel Code --></div></div>
-      <form action="#" name="hidden_form"><div style="display: none;">
-          <select id="state_for_176">
-            <option value="">-- Выберите --</option>
-            <option value="570">Адыгея Республика</option>
-            <option value="571">Алтай Республика</option>
-            <option value="572">Алтайский край</option>
-            <option value="573">Амурская область</option>
-            <option value="574">Архангельская область</option>
-            <option value="575">Астраханская область</option>
-            <option value="576">Башкортостан Республика</option>
-            <option value="577">Белгородская область</option>
-            <option value="578">Брянская область</option>
-            <option value="579">Бурятия Республика</option>
-            <option value="580">Владимирская область</option>
-            <option value="581">Волгоградская область</option>
-            <option value="582">Вологодская область</option>
-            <option value="583">Воронежская область</option>
-            <option value="584">Дагестан Республика</option>
-            <option value="585">Еврейская автономная область</option>
-            <option value="586">Забайкальский край</option>
-            <option value="587">Ивановская область</option>
-            <option value="588">Ингушетия Республика</option>
-            <option value="589">Иркутская область</option>
-            <option value="590">Кабардино-Балкарская Республика</option>
-            <option value="591">Калининградская область</option>
-            <option value="592">Калмыкия Республика</option>
-            <option value="593">Калужская область</option>
-            <option value="594">Камчатский край</option>
-            <option value="595">Карачаево-Черкесская Республика</option>
-            <option value="596">Карелия Республика</option>
-            <option value="597">Кемеровская область</option>
-            <option value="598">Кировская область</option>
-            <option value="599">Коми Республика</option>
-            <option value="600">Костромская область</option>
-            <option value="601">Краснодарский край</option>
-            <option value="602">Красноярский край</option>
-            <option value="603">Курганская область</option>
-            <option value="604">Курская область</option>
-            <option value="605">Ленинградская область</option>
-            <option value="606">Липецкая область</option>
-            <option value="607">Магаданская область</option>
-            <option value="608">Марий Эл Республика</option>
-            <option value="609">Мордовия Республика</option>
-            <option value="610">Москва</option>
-            <option value="611">Московская область</option>
-            <option value="612">Мурманская область</option>
-            <option value="613">Ненецкий автономный округ</option>
-            <option value="614">Нижегородская область</option>
-            <option value="615">Новгородская область</option>
-            <option value="616">Новосибирская область</option>
-            <option value="617">Омская область</option>
-            <option value="618">Оренбургская область</option>
-            <option value="619">Орловская область</option>
-            <option value="620">Пензенская область</option>
-            <option value="621">Пермский край</option>
-            <option value="622">Приморский край</option>
-            <option value="623">Псковская область</option>
-            <option value="624">Ростовская область</option>
-            <option value="625">Рязанская область</option>
-            <option value="626">Самарская область</option>
-            <option value="627">Санкт-Петербург</option>
-            <option value="628">Саратовская область</option>
-            <option value="629">Саха (Якутия) Республика</option>
-            <option value="630">Сахалинская область</option>
-            <option value="631">Свердловская область</option>
-            <option value="632">Северная Осетия-Алания Республика</option>
-            <option value="633">Смоленская область</option>
-            <option value="634">Ставропольский край</option>
-            <option value="635">Тамбовская область</option>
-            <option value="636">Татарстан Республика</option>
-            <option value="637">Тверская область</option>
-            <option value="638">Томская область</option>
-            <option value="639">Тульская область</option>
-            <option value="640">Тыва Республика</option>
-            <option value="641">Тюменская область</option>
-            <option value="642">Удмуртская Республика</option>
-            <option value="643">Ульяновская область</option>
-            <option value="649">Хабаровский край</option>
-            <option value="644">Хакасия Республика</option>
-            <option value="650">Ханты-Мансийский автономный округ</option>
-            <option value="645">Челябинская область</option>
-            <option value="646">Чеченская Республика</option>
-            <option value="647">Чувашская Республика</option>
-            <option value="648">Чукотский автономный округ</option>
-            <option value="651">Ямало-Ненецкий автономный округ</option>
-            <option value="652">Ярославская область</option>
-          </select></div>
-        <div id="opc_totals_hash">&nbsp;</div>
-        <div style="display: none;">
-          <input type="text" name="fool" value="1" required="required" class="required hasTip"
-                                           title="fool::fool"/>
-        </div>
-      </form>
+                {#<!-- Facebook Pixel Code -->#}
+                {#<script>#}
+                  {#fbq && fbq('track', 'InitiateCheckout');#}
+                {#</script>#}
+                {#<!-- End Facebook Pixel Code --></div></div>#}
+      {#<form action="#" name="hidden_form"><div style="display: none;">#}
+          {#<select id="state_for_176">#}
+            {#<option value="">-- Выберите --</option>#}
+            {#<option value="570">Адыгея Республика</option>#}
+            {#<option value="571">Алтай Республика</option>#}
+            {#<option value="572">Алтайский край</option>#}
+            {#<option value="573">Амурская область</option>#}
+            {#<option value="574">Архангельская область</option>#}
+            {#<option value="575">Астраханская область</option>#}
+            {#<option value="576">Башкортостан Республика</option>#}
+            {#<option value="577">Белгородская область</option>#}
+            {#<option value="578">Брянская область</option>#}
+            {#<option value="579">Бурятия Республика</option>#}
+            {#<option value="580">Владимирская область</option>#}
+            {#<option value="581">Волгоградская область</option>#}
+            {#<option value="582">Вологодская область</option>#}
+            {#<option value="583">Воронежская область</option>#}
+            {#<option value="584">Дагестан Республика</option>#}
+            {#<option value="585">Еврейская автономная область</option>#}
+            {#<option value="586">Забайкальский край</option>#}
+            {#<option value="587">Ивановская область</option>#}
+            {#<option value="588">Ингушетия Республика</option>#}
+            {#<option value="589">Иркутская область</option>#}
+            {#<option value="590">Кабардино-Балкарская Республика</option>#}
+            {#<option value="591">Калининградская область</option>#}
+            {#<option value="592">Калмыкия Республика</option>#}
+            {#<option value="593">Калужская область</option>#}
+            {#<option value="594">Камчатский край</option>#}
+            {#<option value="595">Карачаево-Черкесская Республика</option>#}
+            {#<option value="596">Карелия Республика</option>#}
+            {#<option value="597">Кемеровская область</option>#}
+            {#<option value="598">Кировская область</option>#}
+            {#<option value="599">Коми Республика</option>#}
+            {#<option value="600">Костромская область</option>#}
+            {#<option value="601">Краснодарский край</option>#}
+            {#<option value="602">Красноярский край</option>#}
+            {#<option value="603">Курганская область</option>#}
+            {#<option value="604">Курская область</option>#}
+            {#<option value="605">Ленинградская область</option>#}
+            {#<option value="606">Липецкая область</option>#}
+            {#<option value="607">Магаданская область</option>#}
+            {#<option value="608">Марий Эл Республика</option>#}
+            {#<option value="609">Мордовия Республика</option>#}
+            {#<option value="610">Москва</option>#}
+            {#<option value="611">Московская область</option>#}
+            {#<option value="612">Мурманская область</option>#}
+            {#<option value="613">Ненецкий автономный округ</option>#}
+            {#<option value="614">Нижегородская область</option>#}
+            {#<option value="615">Новгородская область</option>#}
+            {#<option value="616">Новосибирская область</option>#}
+            {#<option value="617">Омская область</option>#}
+            {#<option value="618">Оренбургская область</option>#}
+            {#<option value="619">Орловская область</option>#}
+            {#<option value="620">Пензенская область</option>#}
+            {#<option value="621">Пермский край</option>#}
+            {#<option value="622">Приморский край</option>#}
+            {#<option value="623">Псковская область</option>#}
+            {#<option value="624">Ростовская область</option>#}
+            {#<option value="625">Рязанская область</option>#}
+            {#<option value="626">Самарская область</option>#}
+            {#<option value="627">Санкт-Петербург</option>#}
+            {#<option value="628">Саратовская область</option>#}
+            {#<option value="629">Саха (Якутия) Республика</option>#}
+            {#<option value="630">Сахалинская область</option>#}
+            {#<option value="631">Свердловская область</option>#}
+            {#<option value="632">Северная Осетия-Алания Республика</option>#}
+            {#<option value="633">Смоленская область</option>#}
+            {#<option value="634">Ставропольский край</option>#}
+            {#<option value="635">Тамбовская область</option>#}
+            {#<option value="636">Татарстан Республика</option>#}
+            {#<option value="637">Тверская область</option>#}
+            {#<option value="638">Томская область</option>#}
+            {#<option value="639">Тульская область</option>#}
+            {#<option value="640">Тыва Республика</option>#}
+            {#<option value="641">Тюменская область</option>#}
+            {#<option value="642">Удмуртская Республика</option>#}
+            {#<option value="643">Ульяновская область</option>#}
+            {#<option value="649">Хабаровский край</option>#}
+            {#<option value="644">Хакасия Республика</option>#}
+            {#<option value="650">Ханты-Мансийский автономный округ</option>#}
+            {#<option value="645">Челябинская область</option>#}
+            {#<option value="646">Чеченская Республика</option>#}
+            {#<option value="647">Чувашская Республика</option>#}
+            {#<option value="648">Чукотский автономный округ</option>#}
+            {#<option value="651">Ямало-Ненецкий автономный округ</option>#}
+            {#<option value="652">Ярославская область</option>#}
+          {#</select></div>#}
+        {#<div id="opc_totals_hash">&nbsp;</div>#}
+        {#<div style="display: none;">#}
+          {#<input type="text" name="fool" value="1" required="required" class="required hasTip"#}
+                                           {#title="fool::fool"/>#}
+        {#</div>#}
+      {#</form>#}
+          {#</div>#}
+
+
+        {#</div>#}
+
+
+      {#</section>#}
+  {#<script>#}
+      {#var $sport = $('#checkout_shipping_city_name');#}
+
+      {#// When sport gets selected ...#}
+      {#$sport.change(function() {#}
+          {#console.log( $sport.val());#}
+          {#var $form = $(this).closest('form');#}
+          {#var data = {};#}
+          {#data[$sport.attr('name')] = $sport.val();#}
+          {#$.ajax({#}
+              {#url : $form.attr('action'),#}
+              {#type: $form.attr('method'),#}
+              {#data : data,#}
+              {#success: function(html) {#}
+                  {#console.log(html)#}
+                  {#$('#checkout_shipping_city_name').replaceWith(#}
+                      {#$(html).find('#checkout_shipping_city_name')#}
+                  {#);#}
+              {#}#}
+          {#});#}
+      {#});#}
+  {#</script>#}
+{#{% endblock %}#}
+
+
+{% block main %}
+<section class="section-purchase">
+  <div class="container">
+    <h1>Оформление заказа</h1>
+    <div class="center_no-left cards-container__center_no-left">
+      {% block sidebar %}
+        <aside class="right">
+          <div class="cards-container__payment-info">
+          <span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>
+
+          <div class="payment-info__product">
+          <span class="payment-info__product-name">Буррата</span>
+          <span class="payment-info__product-value">1 шт. × 169₽</span>
           </div>
 
+          <div class="payment-info__product">
+          <span class="payment-info__product-name">Буррата</span>
+          <span class="payment-info__product-value">1 шт. × 169₽</span>
+          </div>
 
+          <span class="payment-info__discount">
+          Скидка 10%
+          </span>
+
+          <div class="payment-info__value">
+          Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}₽</span>
+          {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
+          </div>
+          </div>
+          <a href="{{ path('checkout_shipping') }}" class="button button_black">
+            <span>оформить в один клик</span>
+          </a>
+        </aside>
+      {% endblock %}
+      <div class="section-wrap">
+        <div class="cards-container__step cards-container__order">
+          <div class="cards-container__step-title">
+            <span class="step-title__number">1</span>ваши данные
+          </div>
+
+          <div class="cards-container__step-container">
+            <div class="step-item">
+              <div class="custom-radio">
+                <label>
+                  <input type="radio" class="radio" name="radio-group">
+                  <span class="custom-radio__radio"></span>
+                  <span>Частное лицо</span>
+                </label>
+              </div>
+
+              <div class="custom-radio">
+                <label>
+                  <input type="radio" class="radio" name="radio-group">
+                  <span class="custom-radio__radio"></span>
+                  <span>Юридическое лицо</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="step-item step-item-input">
+              <input class="input-text" type="text" placeholder="ФИО">
+            </div>
+            <div class="step-item step-item-input">
+              <input class="input-text" type="text" placeholder="Телефон">
+            </div>
+            <div class="step-item step-item-input">
+              <input class="input-text" type="text" placeholder="Эл. почта">
+            </div>
+          </div>
         </div>
 
+        <div class="cards-container__step cards-container__order">
+          <div class="cards-container__step-title">
+            <span class="step-title__number">2</span>получение заказа
+          </div>
 
-      </section>
-  {#<script>
-      var $sport = $('#checkout_shipping_city_name');
+          <div class="cards-container__step-container">
+            <div class="step-item">
+              <div class="custom-radio">
+                <label>
+                  <input type="radio" class="radio" name="radio-delivery">
+                  <span class="custom-radio__radio"></span>
+                  <span>Курьером</span>
 
-      // When sport gets selected ...
-      $sport.change(function() {
-          console.log( $sport.val());
-          var $form = $(this).closest('form');
-          var data = {};
-          data[$sport.attr('name')] = $sport.val();
-          $.ajax({
-              url : $form.attr('action'),
-              type: $form.attr('method'),
-              data : data,
-              success: function(html) {
-                  console.log(html)
-                  $('#checkout_shipping_city_name').replaceWith(
-                      $(html).find('#checkout_shipping_city_name')
-                  );
-              }
-          });
-      });
-  </script>#}
+                </label>
+
+                <span class="delivery-info">
+                  /  от 250 ₽ <span class="delivery-info__message">
+                    Кстати, при заказе сыров от 1500₽ мы сделаем доставку бесплатно
+                  </span>
+                </span>
+              </div>
+
+              <div class="custom-radio">
+                <label>
+                  <input type="radio" class="radio" name="radio-delivery">
+                  <span class="custom-radio__radio"></span>
+                  <span>Самовывоз с <span class="shipment-address">Красноармейской, 68</span></span>
+                </label>
+              </div>
+            </div>
+
+            {#<div class="custom-checkbox custom-checkbox_bg-blue" name="tos">#}
+            {#<label>#}
+            {#<input id="register_juridicaltos" name="tos" class="checkbox" type="checkbox">#}
+            {#<span class="custom-checkbox__checkbox"></span>#}
+            {#<span>Я ознакомился и согласен с <a href="">Политикой Компании</a> и <a href="">условиями сотрудничества</a>#}
+            {#</span>#}
+            {#</label>#}
+            {#</div>#}
+
+            <div class="step-item step-item-input">
+              <input class="input-text" type="text" placeholder="ФИО">
+            </div>
+            <div class="step-item step-item-input">
+              <input class="input-text" type="text" placeholder="Телефон">
+            </div>
+            <div class="step-item step-item-input">
+              <input class="input-text" type="text" placeholder="Эл. почта">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
-
-
