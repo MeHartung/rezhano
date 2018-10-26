@@ -365,7 +365,7 @@ services:
 #      arguments:
 #        - '703a6c0e-3485-420c-b76c-1894e58576e0'
 #      tags:
-#        - { name: accuratecommerce.shipping.service, priority: 1000 }
+ #        - { name: accuratecommerce.shipping.service, priority: 1000 }
 
 #    accuratecommerce.shipping.service.cdek:
 #      class: AccurateCommerce\Shipping\Service\AccurateCommerce\ShippingServiceStore

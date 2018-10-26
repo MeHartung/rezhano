@@ -24,3 +24,16 @@ services:
         - null
         - StoreBundle\Entity\Text\Partner
         - 'PixSortableBehaviorBundle:SortableAdmin'
+
+    app.admin.promo_banner:
+      class: StoreBundle\Admin\Text\PromoBannerAdmin
+      tags:
+        -
+          name: sonata.admin
+          manager_type: orm
+          group: homepage
+          label: Промо-баннеры
+      arguments:
+        - null
+        - StoreBundle\Entity\Text\PromoBanner
+        - 'PixSortableBehaviorBundle:SortableAdmin'
