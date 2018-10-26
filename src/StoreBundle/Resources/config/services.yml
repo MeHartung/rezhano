@@ -21,12 +21,6 @@ services:
       tags:
         - { name: aw.meta.route, route: product }
 
-    app.home_banner.admin:
-      class: StoreBundle\Admin\HomeBannerAdmin
-      arguments: [~, StoreBundle\Entity\Common\HomeBanner, 'PixSortableBehaviorBundle:SortableAdmin']
-      tags:
-        - {name: sonata.admin, manager_type: orm, group: homepage, label: "Тизерные блоки"}
-
     app.user.adapter:
       class: StoreBundle\DataAdapter\User\UserDataAdapter
       tags:

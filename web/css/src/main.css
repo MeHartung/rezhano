@@ -525,6 +525,16 @@ input[type="text"].input-text {
   background-color: #ffcf40;
   border-color: #ffcf40;
 }
+.custom-radio .shipment-address {
+  cursor: pointer;
+  border-bottom: 1px solid #000000;
+  display: inline-block;
+  vertical-align: baseline;
+}
+.custom-radio .shipment-address:hover {
+  color: #ffcf40;
+  border-color: #ffcf40;
+}
 .custom-checkbox {
   position: relative;
 }
@@ -2337,6 +2347,20 @@ aside.right {
 }
 .section-purchase aside {
   padding-top: 25px;
+}
+body .delivery-info {
+  font-size: 17px;
+  font-family: alegreyasans-regular;
+  color: #a5a5a5;
+  margin-bottom: -10px;
+  margin-left: 5px;
+  display: inline-block;
+}
+body .delivery-info__message {
+  margin-left: 10px;
+  color: #ffcf40;
+  font-family: alegreyasans-regular;
+  font-size: 17px;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

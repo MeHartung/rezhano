@@ -53,7 +53,7 @@
               <div class="main-image">
 
                 <a href="{{ image_url(product.mainImage) }}" class="gallery-image" title="{{ product.name }}"
-                   itemprop="image" rel="vm-additional-images[]" title="{{ product.name }}">
+                   itemprop="image" rel="vm-additional-images[]">
                   <img src="{{ image_url(product.mainImage) }}" alt="Фотография товара {{ product.name }}">
                 </a>
 
@@ -148,5 +148,14 @@
         </div>
       </div>
     </div>
+
+{#    {% if product.relatedProducts|length > 0 %}
+    <div>
+      <h1>{{ hotspot_inline('related-products', 'Великолпное дополнение к сыру') }}</h1>
+      {% for rProduct in product.relatedProducts %}
+          {% include '@Store/Catalog/Product/product_card.html.twig' with { 'product': rProduct } %}
+      {% endfor %}
+    </div>
+    {% endif %}#}
   </section>
 {% endblock %}

@@ -157,8 +157,8 @@ sonata_admin:
             label: "Пользователи"
         settings:
             label: "Настройки"
-        logistic:
-            label: "Логистика"
+        #logistic:
+            #label: "Логистика"
   templates:
     edit:   ':CRUD:edit.html.twig'
 #    html: 'StoreBundle:Catalog\Product:product_taxon.html.twig'
