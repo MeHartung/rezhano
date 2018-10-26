@@ -1836,6 +1836,83 @@ footer .footer-aside__link.link_frukt:after {
   font-size: 20px;
   color: #000000;
 }
+aside.left {
+  width: 256px;
+  margin-left: -298px;
+  float: left;
+  vertical-align: top;
+  margin-bottom: 250px;
+}
+aside.right {
+  width: 256px;
+  margin-right: -298px;
+  float: right;
+  vertical-align: top;
+}
+.cards-container__center_no-left {
+  padding: 0 245px 0 0;
+}
+.cards-container__center_no-left .right {
+  width: 265px;
+  margin-right: -265px;
+  padding-left: 22px;
+}
+.cards-container__center_no-left .right .cards-container__payment-info {
+  background-color: #0070ba;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 2px 2.91px 0.09px rgba(116, 134, 150, 0.42);
+          box-shadow: 0 2px 2.91px 0.09px rgba(116, 134, 150, 0.42);
+  padding: 18px 23px;
+  margin-bottom: 15px;
+}
+.cards-container__center_no-left .right .cards-container__payment-info .payment-info__title,
+.cards-container__center_no-left .right .cards-container__payment-info .payment-info__value {
+  display: block;
+  color: #ffffff;
+}
+.cards-container__center_no-left .right .cards-container__payment-info .payment-info__title {
+  font-size: 17px;
+}
+.cards-container__center_no-left .right .cards-container__payment-info .payment-info__value {
+  font-size: 30px;
+  font-weight: 700;
+}
+.cards-container__center_no-left .right .cards-container__payment-info .payment-info__value_fraction {
+  font-size: 17px;
+}
+.cards-container__center_no-left .right .cards-container__payment-info .value-details__wrap {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 5px;
+}
+.cards-container__center_no-left .right .cards-container__payment-info .value-details__wrap .value-details {
+  margin-top: 5px;
+  white-space: nowrap;
+}
+.cards-container__center_no-left .right .cards-container__payment-info .value-details__wrap .value-details .delivery-message,
+.cards-container__center_no-left .right .cards-container__payment-info .value-details__wrap .value-details .delivery-icon {
+  display: inline-block;
+  white-space: normal;
+  vertical-align: top;
+}
+.cards-container__center_no-left .right .cards-container__payment-info .value-details__wrap .value-details .delivery-message {
+  font-weight: 200;
+}
+.cards-container__center_no-left .right .cards-container__payment-info .value-details__wrap .card-icon,
+.cards-container__center_no-left .right .cards-container__payment-info .value-details__wrap .delivery-icon {
+  width: 18px;
+  height: 15px;
+  margin: 0;
+  margin-right: 5px;
+}
+.cards-container__center_no-left .right a.button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 10px;
+}
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
   width: 24px;
