@@ -94,7 +94,7 @@
     {% block footer %}
     <footer>
         <div class="container">
-            <a href="#" class="header-logo"></a>
+            <a {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %} class="header-logo"></a>
             <div class="footer-wrap">
                 <div class="footer-contacts">
                     <div class="contact-item">+7 (343) 207-76-66
