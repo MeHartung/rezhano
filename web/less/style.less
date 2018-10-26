@@ -1952,6 +1952,12 @@ aside {
 // cards container
 
 .cards-container {
+  padding-bottom: 45px;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 
   &__step {
 
@@ -2018,7 +2024,8 @@ aside {
   }
 
   &__item {
-    width: 400px;
+    //width: 400px;
+    width: 650px;
   }
 
   &__price {
@@ -2254,5 +2261,26 @@ aside {
 //
 .section-checkout {
   padding-top: 15px;
-  padding-bottom: 140px;
+  padding-bottom: 200px;
+}
+
+//
+
+.cart-empty {
+
+  &__wrap {
+    text-align: center;
+  }
+
+  &__title {
+    margin-bottom: 50px;
+    font-size: 25px;
+    font-family: Catorze27style1-medium;
+    color: @c_black;
+    //text-align: left;
+  }
+
+  .button {
+
+  }
 }

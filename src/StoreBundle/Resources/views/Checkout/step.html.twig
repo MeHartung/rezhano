@@ -55,45 +55,45 @@
         {#</div>#}
       {#{% endblock %}#}
 
-      <div class="center_no-left cards-container__center_no-left">
+      {#<div class="center_no-left cards-container__center_no-left">#}
         {% block sidebar %}
-          <aside class="right">
-            <div class="cards-container__payment-info">
-              <span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>
+          {#<aside class="right">#}
+            {#<div class="cards-container__payment-info">#}
+              {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
 
-              <div class="payment-info__product">
-                <span class="payment-info__product-name">Буррата</span>
-                <span class="payment-info__product-value">1 шт. × 169₽</span>
-              </div>
+              {#<div class="payment-info__product">#}
+                {#<span class="payment-info__product-name">Буррата</span>#}
+                {#<span class="payment-info__product-value">1 шт. × 169₽</span>#}
+              {#</div>#}
 
-              <div class="payment-info__product">
-                <span class="payment-info__product-name">Буррата</span>
-                <span class="payment-info__product-value">1 шт. × 169₽</span>
-              </div>
+              {#<div class="payment-info__product">#}
+                {#<span class="payment-info__product-name">Буррата</span>#}
+                {#<span class="payment-info__product-value">1 шт. × 169₽</span>#}
+              {#</div>#}
 
-              <span class="payment-info__discount">
-                Скидка 10%
-              </span>
+              {#<span class="payment-info__discount">#}
+                {#Скидка 10%#}
+              {#</span>#}
 
-              <div class="payment-info__value">
-                Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}₽</span>
+              {#<div class="payment-info__value">#}
+                {#Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}₽</span>#}
               {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
-              </div>
-            </div>
-            <a href="{{ path('checkout_shipping') }}" class="button button_black">
-              <span>оформить в один клик</span>
-            </a>
+              {#</div>#}
+            {#</div>#}
+            {#<a href="{{ path('checkout_shipping') }}" class="button button_black">#}
+              {#<span>оформить в один клик</span>#}
+            {#</a>#}
 
             {#<a href="{{ path('checkout_shipping') }}" class="button"><span>К оформлению заказа</span></a>#}
             {#<a href="{{ path('catalog_index') }}" class="button white"><span>Продолжить покупки</span></a>#}
-          </aside>
+          {#</aside>#}
         {% endblock %}
         <div class="section-wrap">
           {% block form %}
 
           {% endblock %}
         </div>
-      </div>
+      {#</div>#}
     </div>
   </section>
 {% endblock %}

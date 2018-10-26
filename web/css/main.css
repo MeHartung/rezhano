@@ -1847,6 +1847,13 @@ aside.right {
   float: right;
   vertical-align: top;
 }
+.cards-container {
+  padding-bottom: 45px;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
 .cards-container__step-title {
   display: block;
   font-size: 46px;
@@ -1900,7 +1907,7 @@ aside.right {
   white-space: normal;
 }
 .cards-container__item {
-  width: 400px;
+  width: 650px;
 }
 .cards-container__price {
   width: 120px;
@@ -2087,7 +2094,16 @@ aside.right {
 }
 .section-checkout {
   padding-top: 15px;
-  padding-bottom: 140px;
+  padding-bottom: 200px;
+}
+.cart-empty__wrap {
+  text-align: center;
+}
+.cart-empty__title {
+  margin-bottom: 50px;
+  font-size: 25px;
+  font-family: Catorze27style1-medium;
+  color: #000000;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
