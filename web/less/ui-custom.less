@@ -128,8 +128,6 @@ body.ui-widget {
       bottom: -7px;
       margin-left: -11px;
       background-color: #33a5db;
-      //box-shadow: 2px 2px 4.6px 0.4px rgba(116, 130, 142, 0.35);
-      //z-index: -1;
       -webkit-transform: rotate(45deg);
       -moz-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
@@ -137,7 +135,6 @@ body.ui-widget {
       transform: rotate(45deg);
 
       box-shadow: 3px 3px 4px -2px rgba(0, 0, 0, 0.3);
-    ;
     }
   }
 
@@ -647,13 +644,19 @@ body.ui-widget {
   font-weight: 500 !important;
   font-family: DINPro !important;
 }
+.ui-state-active, .ui-widget-content {
+
+  font-size: 17px;
+  line-height: 42px;
+}
 
 .ui-state-active, .ui-widget-content .ui-state-active {
-  border: transparent !important;
-  background-color: @c_blue_lightest !important;
-  color: @c_black !important;
+  background-color: @c_white !important;
+  color: @rc_yellow !important;
   margin: 0 !important;
   font-weight: 500 !important;
+  border: none !important;
+  border-bottom: 2px solid @c_black !important;
 }
 
 //
@@ -759,3 +762,91 @@ body.ui-widget {
 body .ui-widget-overlay {
   background-color: fade(@c_black, 90%);
 }
+
+//
+
+body .custom-select {
+
+  .ui-selectmenu-button {
+    border-radius: 0;
+    border: 2px solid @c_black;
+    outline: none;
+    box-shadow: none;
+    background-color: @c_white;
+    font-family: Catorze27style1-medium;
+    font-size: 21px;
+    color: @c_black;
+    padding: 6px 15px;
+  }
+
+  .ui-button {
+
+    .ui-icon {
+      background: url("../images/icons/select-dropdown-icon.png") center no-repeat;
+      width: 20px;
+      height: 13px;
+      margin-top: 7px;
+      background-position: 0 -13px;
+    }
+
+    &.ui-corner-top {
+
+      .ui-icon {
+        background-position: 0 0;
+      }
+    }
+  }
+
+  &_filter {
+
+    .ui-selectmenu-button {
+      border-left: none !important;
+      border-right: none !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+  }
+}
+
+
+.ui-selectmenu-menu {
+
+  .ui-widget.ui-widget-content {
+    border: 2px solid @c_black;
+    background-color: @c_white;
+    margin-top: -2px !important;
+  }
+
+  .ui-menu-item {
+
+    &:last-child {
+
+      .ui-menu-item-wrapper {
+        border-color: @c_white !important;
+      }
+    }
+
+    .ui-menu-item-wrapper {
+      margin: 0 12px !important;
+      border-bottom: 2px solid @c_black;
+      font-family: alegreyasans-regular;
+      font-size: 17px !important;
+      line-height: 33px;
+    }
+  }
+}
+
+.section-purchase {
+
+  .cards-container__step-container {
+
+    .custom-select {
+
+      .ui-selectmenu-button {
+        width: 225px;
+      }
+    }
+
+  }
+}
+
