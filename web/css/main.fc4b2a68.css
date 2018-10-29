@@ -585,7 +585,7 @@ input[type="text"].input-text {
   width: 17px;
   height: 23px;
   position: absolute;
-  bottom: 5px;
+  bottom: -4px;
   left: 3px;
 }
 .custom-checkbox_biggest .custom-checkbox__checkbox {
@@ -1221,6 +1221,9 @@ h1,
   line-height: 30px;
   font-family: alegreyasans-bold;
   color: #ffcf40;
+}
+.product-list .product-item__characteristics_in-layer {
+  text-align: left;
 }
 .product-list .product-item .button {
   display: inline-block;
@@ -2393,6 +2396,40 @@ body .delivery-info__message {
 .cheese-card__more:hover {
   color: #ffcf40;
   border-color: #ffcf40;
+}
+.layer__container {
+  height: 100%;
+}
+.layer__text {
+  position: relative;
+  height: 100%;
+}
+.layer .product-item__controls-title {
+  font-size: 21px;
+  font-family: Catorze27style1-semibold;
+  color: #000000;
+  display: inline-block;
+  vertical-align: middle;
+}
+.layer .product-item__info {
+  position: absolute;
+  bottom: 40px;
+  left: 45px;
+  width: 410px;
+  text-align: right;
+}
+.layer .product-item__info .button {
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  left: 0;
+}
+.layer .product-item__controls {
+  display: inline-block;
+  vertical-align: middle;
+}
+.layer .product-item__controls .custom-input {
+  width: 30px;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

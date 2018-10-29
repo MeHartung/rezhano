@@ -19,6 +19,12 @@ a {
   }
 }
 
+.scroll-pane {
+  width: 100%;
+  height: 450px;
+  overflow: auto;
+}
+
 section {
   overflow: hidden;
 
@@ -161,7 +167,7 @@ input[type="text"].input-text {
     width: 17px;
     height: 23px;
     position: absolute;
-    bottom: 5px;
+    bottom: -4px;
     left: 3px;
   }
 
@@ -1080,8 +1086,8 @@ h1, .popular-products__title {
         font-family: alegreyasans-bold;
         color: @rc_yellow;
       }
-
     }
+
 
     .button {
       display: inline-block;
@@ -1263,7 +1269,7 @@ h1, .popular-products__title {
 }
 
 .product-item__characteristics {
-  text-align: center;
+  text-align: left;
 
   .product-item__quantity {
     font-family: alegreyasans-medium;
@@ -2674,6 +2680,232 @@ body .delivery-info {
     &:hover {
       color: @rc_yellow;
       border-color: @rc_yellow;
+    }
+  }
+}
+
+//
+.layer {
+
+  .layer-title {
+    font-size: 65px;
+    color: #000000;
+    font-family: Catorze27style1-bold;
+    display: block;
+    line-height: 58px;
+    margin-bottom: 35px;
+
+    &:hover {
+      color: @rc_yellow;
+    }
+  }
+
+  &__container {
+    height: 100%;
+  }
+
+  &__text {
+    position: relative;
+    height: 100%;
+    white-space: normal;
+
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+
+    .product-item__info {
+
+    }
+  }
+
+  &__title {
+    white-space: normal;
+  }
+
+  &__text-title {
+    font-size: 20px;
+    font-family: alegreyasans-bolditalic;
+    color:@c_black;
+    display: inline;
+    white-space: normal;
+    vertical-align: top;
+    padding-right: 10px;
+  }
+
+  &__text-text {
+    font-size: 20px;
+    font-family: alegreyasans-regular;
+    color: @c_black;
+    display: inline;
+    white-space: normal;
+    vertical-align: top;
+  }
+
+  &__text-wrap {
+    //max-height: 310px;
+    height: 315px;
+    outline: none;
+    padding: 0;
+  }
+
+  .product-item {
+
+    &__controls-title {
+      font-size: 21px;
+      font-family: Catorze27style1-semibold;
+      color: #000000;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__info {
+      position: absolute;
+      bottom: 40px;
+      left: 45px;
+      width: 410px;
+      text-align: right;
+
+      .button {
+        display: inline-block;
+        vertical-align: middle;
+
+        position: absolute;
+        left: 0;
+      }
+    }
+
+    &__controls {
+      display: inline-block;
+      vertical-align: middle;
+
+      .custom-input {
+        width: 30px;
+      }
+    }
+  }
+}
+
+//
+
+.section-in-product {
+  padding-top: 70px;
+  padding-bottom: 70px;
+
+  .layer__text {
+    height: 713px;
+    position: relative;
+  }
+
+  .product-item__info {
+    position: absolute;
+    bottom: 40px;
+    left: 45px;
+    width: 410px;
+    text-align: right;
+
+    .button {
+      position: absolute;
+      left: 15px;
+    }
+  }
+
+  .product-item__controls-title {
+    font-size: 21px;
+    font-family: Catorze27style1-semibold;
+    color: #000000;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .product-item__controls {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .layer__text {
+    padding: 85px 60px;
+  }
+
+  .product-item__controls .custom-input {
+    width: 30px;
+  }
+
+  .scroll-pane {
+    height: 340px;
+  }
+
+  .layer__images {
+    width: 570px;
+    height: 713px;
+  }
+
+  .show-full-image {
+    width: 570px;
+    height: 713px;
+  }
+}
+
+//
+.section-back-to-all {
+  background-color: @rc_yellow;
+  padding-top: 45px;
+  white-space: nowrap;
+  margin-bottom: -65px;
+
+  &__link {
+    padding-top: 30px;
+
+    a {
+      font-size: 45px;
+      font-family: Catorze27style1-bold;
+      color: @c_black;
+
+      &:hover {
+        color: @c_white;
+      }
+    }
+
+    text-align: center;
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+  }
+
+  &__image {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    text-align: center;
+  }
+}
+
+// section-product-addition
+
+.section-product-addition {
+  background-color: #f3f3f3;
+  padding-top: 70px;
+
+  h3 {
+    text-align: center;
+    margin-bottom: 75px;
+  }
+
+  .product-list {
+    text-align: center;
+
+    .product-item {
+      width: 330px;
+    }
+  }
+
+  .product-list .product-item__image {
+    width: 130px;
+    height: 130px;
+
+    img {
+      max-width: 200px;
+      max-height: 130px;
     }
   }
 }

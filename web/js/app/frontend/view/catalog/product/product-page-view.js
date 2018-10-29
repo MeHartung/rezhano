@@ -12,6 +12,8 @@ define(function(require){
 
   require('slick');
   require('jquery-ui/widgets/tabs');
+  require('jscrollpane');
+  require('jquery.mousewheel');
 
   return CommonView.extend({
     events: {
@@ -35,9 +37,16 @@ define(function(require){
       this.imageGalleryView = new ImageGalleryView();
     },
     render: function(){
+      var _self = this;
       CommonView.prototype.render.apply(this, arguments);
 
       this.$('#product-description-tabs').tabs();
+
+      this.$('.layer__images .main-image').slick({
+        dots: false,
+        arrows: true,
+        infinite: true
+      });
 
       // if (this.$('.buy-one-product').length){
       //   new Buy1ClickButton({
@@ -52,7 +61,7 @@ define(function(require){
       // }
 
       if (this.$('.quantity-widget').length){
-        this.quantityWidget.setElement($('.quantity-widget'));
+        this.quantityWidget.setElement($('.product-item__controls'));
         this.quantityWidget.render();
       }
 
@@ -61,6 +70,8 @@ define(function(require){
         this.imageGalleryView.setElement(this.$('#product-image-gallery'));
         this.imageGalleryView.render();
       }
+
+      _self.$('.scroll-pane').jScrollPane();
 
       var $askQuestionLinkView = this.$('a.ask-a-question');
       if ($askQuestionLinkView.length){
