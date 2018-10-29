@@ -610,17 +610,13 @@ header {
     //right: -195px;
 
     position: relative;
-    top: -605px;
+    top: -135px;
     //right: -240px;
 
     &__item {
       background: url("../images/header-slider1.png") center no-repeat;
       width: 956px;
       height: 942px;
-    }
-
-    .slick-list {
-      right: -240px;
     }
 
     .slick-dots {
@@ -635,6 +631,7 @@ header {
       -ms-transform: translateX(-50%);
       -o-transform: translateX(-50%);
       transform: translateX(-50%);
+
       li {
         display: inline-block;
         padding: 15px;
@@ -645,7 +642,6 @@ header {
             background-color: @rc_yellow;
           }
         }
-
 
         button {
           position: relative;
@@ -660,8 +656,6 @@ header {
           &:after {
             content: '';
           }
-
-
         }
 
         &.slick-active {
@@ -676,12 +670,12 @@ header {
   }
 
   &__image {
-    background: url("../images/header-section-image.png") top no-repeat;
+    //background: url("../images/header-section-image.png") top no-repeat;
     width: 578px;
     height: 290px;
 
-    margin-top: 75px;
-    margin-left: -66px;
+    margin-top: 220px;
+    margin-left: -54px;
     margin-bottom: 20px;
   }
 
@@ -2907,5 +2901,173 @@ body .delivery-info {
       max-width: 200px;
       max-height: 130px;
     }
+  }
+}
+
+//
+.product-filter {
+  //width: 734px;
+  margin: 0 auto;
+  text-align: center;
+
+  &__row {
+    display: block;
+    text-align: right;
+    border-bottom: 2px solid #000000;
+    margin: 0 12px;
+    height: 42px;
+
+    .product-filter__clear {
+      margin-top: 8px;
+    }
+  }
+
+  &__clear {
+    display: inline-block;
+    font-size: 15px;
+    font-family: alegreyasans-regular;
+    color: @c_black;
+    background-color: #ececeb;
+    padding: 3px 11px;
+
+    &:hover {
+      background-color:@rc_yellow;
+      color: @c_black;
+    }
+  }
+
+  &__link {
+    border-radius: 0;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: #ffffff;
+    font-family: Catorze27style1-medium;
+    font-size: 21px;
+    color: #000000;
+    padding: 5px 0px 9px 0;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+
+    .ui-icon {
+      position: absolute;
+      top: 17px;
+      right: 0;
+      background: url("../images/icons/select-dropdown-icon.png");
+      background-position: 0 -13px;
+      width: 20px;
+      height: 13px;
+    }
+
+    &:hover {
+      color: @rc_yellow;
+
+      .ui-icon {
+        background-position:  0 -26px;
+      }
+    }
+  }
+
+  &__filter {
+    border: 2px solid #000000;
+  }
+
+  &__custom-checkbox {
+    position: relative;
+    display: block;
+    margin: 0 12px;
+    line-height: 40px;
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    span {
+      border-bottom: 2px solid #000000;
+      font-size: 17px;
+      font-family: alegreyasans-regular;
+      display: block;
+      text-align: left;
+    }
+
+    .checkbox-link {
+      cursor: pointer;
+
+      &:hover {
+        color: @rc_yellow;
+      }
+    }
+
+    .custom-checkbox {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border: 2px solid @rc_yellow;
+      border-radius: 50%;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    .checkbox:checked +.checkbox-link {
+
+      .custom-checkbox {
+        background-color: @rc_yellow;
+      }
+    }
+
+    &:last-child {
+
+      .checkbox-link {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &__item {
+    width: 178px;
+    display: inline-block;
+    vertical-align: top;
+
+    margin: 0 50px;
+
+    position: relative;
+
+    .product-filter__filter {
+      display: none;
+    }
+
+    &.deployed {
+
+      .product-filter__link {
+
+        .ui-icon {
+          background-position:  0 0;
+        }
+      }
+
+      .product-filter__filter {
+        background-color: @c_white;
+        display: block;
+        margin-top: -1px;
+        position: absolute;
+        top: 42px;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+  }
+
+  &__link {
+    text-align: left;
   }
 }

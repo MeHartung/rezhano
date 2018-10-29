@@ -893,15 +893,12 @@ header.header-catalog:after {
 }
 .header-section .header-slider {
   position: relative;
-  top: -605px;
+  top: -135px;
 }
 .header-section .header-slider__item {
   background: url("../images/header-slider1.png") center no-repeat;
   width: 956px;
   height: 942px;
-}
-.header-section .header-slider .slick-list {
-  right: -240px;
 }
 .header-section .header-slider .slick-dots {
   list-style: none;
@@ -944,8 +941,8 @@ header.header-catalog:after {
   background: url("../images/header-section-image.png") top no-repeat;
   width: 578px;
   height: 290px;
-  margin-top: 75px;
-  margin-left: -66px;
+  margin-top: 220px;
+  margin-left: -54px;
   margin-bottom: 20px;
 }
 .header-section__text {
@@ -2660,6 +2657,135 @@ body .delivery-info__message {
   max-width: 200px;
   max-height: 130px;
 }
+.product-filter {
+  margin: 0 auto;
+  text-align: center;
+}
+.product-filter__row {
+  display: block;
+  text-align: right;
+  border-bottom: 2px solid #000000;
+  margin: 0 12px;
+  height: 42px;
+}
+.product-filter__row .product-filter__clear {
+  margin-top: 8px;
+}
+.product-filter__clear {
+  display: inline-block;
+  font-size: 15px;
+  font-family: alegreyasans-regular;
+  color: #000000;
+  background-color: #ececeb;
+  padding: 3px 11px;
+}
+.product-filter__clear:hover {
+  background-color: #ffcf40;
+  color: #000000;
+}
+.product-filter__link {
+  border-radius: 0;
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: #ffffff;
+  font-family: Catorze27style1-medium;
+  font-size: 21px;
+  color: #000000;
+  padding: 5px 0px 9px 0;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+}
+.product-filter__link .ui-icon {
+  position: absolute;
+  top: 17px;
+  right: 0;
+  background: url("../images/icons/select-dropdown-icon.png");
+  background-position: 0 -13px;
+  width: 20px;
+  height: 13px;
+}
+.product-filter__link:hover {
+  color: #ffcf40;
+}
+.product-filter__link:hover .ui-icon {
+  background-position: 0 -26px;
+}
+.product-filter__filter {
+  border: 2px solid #000000;
+}
+.product-filter__custom-checkbox {
+  position: relative;
+  display: block;
+  margin: 0 12px;
+  line-height: 40px;
+}
+.product-filter__custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+.product-filter__custom-checkbox span {
+  border-bottom: 2px solid #000000;
+  font-size: 17px;
+  font-family: alegreyasans-regular;
+  display: block;
+  text-align: left;
+}
+.product-filter__custom-checkbox .checkbox-link {
+  cursor: pointer;
+}
+.product-filter__custom-checkbox .checkbox-link:hover {
+  color: #ffcf40;
+}
+.product-filter__custom-checkbox .custom-checkbox {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border: 2px solid #ffcf40;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.product-filter__custom-checkbox .checkbox:checked + .checkbox-link .custom-checkbox {
+  background-color: #ffcf40;
+}
+.product-filter__custom-checkbox:last-child .checkbox-link {
+  border-bottom: none;
+}
+.product-filter__item {
+  width: 178px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 50px;
+  position: relative;
+}
+.product-filter__item .product-filter__filter {
+  display: none;
+}
+.product-filter__item.deployed .product-filter__link .ui-icon {
+  background-position: 0 0;
+}
+.product-filter__item.deployed .product-filter__filter {
+  background-color: #ffffff;
+  display: block;
+  margin-top: -1px;
+  position: absolute;
+  top: 42px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.product-filter__link {
+  text-align: left;
+}
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
   width: 24px;
@@ -3576,6 +3702,9 @@ body .custom-select .ui-button .ui-icon {
   height: 13px;
   margin-top: 7px;
   background-position: 0 -13px;
+}
+body .custom-select .ui-button:hover .ui-icon {
+  background-position: 0 -26px;
 }
 body .custom-select .ui-button.ui-corner-top .ui-icon {
   background-position: 0 0;
