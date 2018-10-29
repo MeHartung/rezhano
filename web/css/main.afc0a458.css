@@ -934,7 +934,6 @@ header.header-catalog:after {
   background-color: #ffcf40;
 }
 .header-section__image {
-  background: url("../images/header-section-image.png") top no-repeat;
   width: 578px;
   height: 290px;
   margin-top: 220px;
