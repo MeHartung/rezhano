@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 use AccurateCommerce\Shipping\Shipment\Address;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 use AccurateCommerce\Util\UUID;
+use StoreBundle\Entity\Integration\MoyskladQueue;
 use StoreBundle\Entity\Store\Order\Status\OrderStatusHistory;
 use StoreBundle\Entity\Store\Order\Status\OrderStatus;
 use StoreBundle\Entity\Store\Payment\Method\PaymentMethod;
@@ -270,7 +271,19 @@ class Order implements ClientApplicationModelAdapterInterface
    * @ORM\Column(type="datetime", nullable=true)
    */
   private $checkoutAt;
-
+  
+  /**
+   * @var boolean
+   * @ORM\Column(name="moysklad_sent", type="boolean", options={"default"=false}, nullable=true)
+   */
+  private $moyskladSent=false;
+  
+  /**
+   * @var MoyskladQueue
+   * @ORM\OneToOne(targetEntity="StoreBundle\Entity\Integration\MoyskladQueue", mappedBy="order")
+   */
+  private $moysklad_queue;
+  
   /**
    * Конструктор.
    */
@@ -1130,4 +1143,37 @@ class Order implements ClientApplicationModelAdapterInterface
   {
     return new \DateTime("+5 days");
   }
+  
+  /**
+   * @return bool
+   */
+  public function isMoyskladSent(): bool
+  {
+    return $this->moyskladSent;
+  }
+  
+  /**
+   * @param bool $moyskladSent
+   */
+  public function setMoyskladSent(bool $moyskladSent): void
+  {
+    $this->moyskladSent = $moyskladSent;
+  }
+  
+  /**
+   * @return MoyskladQueue
+   */
+  public function getMoyskladQueue(): ?MoyskladQueue
+  {
+    return $this->moysklad_queue;
+  }
+  
+  /**
+   * @param MoyskladQueue $moysklad_queue
+   */
+  public function setMoyskladQueue(?MoyskladQueue $moysklad_queue): void
+  {
+    $this->moysklad_queue = $moysklad_queue;
+  }
+  
 }

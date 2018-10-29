@@ -26,7 +26,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class MoyskladOrderSender
 {
-  const ATTRIBUTE_ORDER_NUM = 'ac2633f9-6f98-11e8-9109-f8fc00013baa'; //Номер заказа ИМ string
+  # это всё пока не надо
+/*  const ATTRIBUTE_ORDER_NUM = 'ac2633f9-6f98-11e8-9109-f8fc00013baa'; //Номер заказа ИМ string
   const ATTRIBUTE_CDEK_ORDER_NUM = 'ac263d50-6f98-11e8-9109-f8fc00013bab'; //Номер заказа СДЭК string
   const ATTRIBUTE_CDEK_ORDER_STATUS = 'ac266038-6f98-11e8-9109-f8fc00013bb4'; //Статус СДЭК string
   const ATTRIBUTE_RECIEVER = 'ac264708-6f98-11e8-9109-f8fc00013bad'; //Получатель string
@@ -39,22 +40,20 @@ class MoyskladOrderSender
   const ATTRIBUTE_COMMENT = 'ac265c42-6f98-11e8-9109-f8fc00013bb3'; //Комментарий string
   const ATTRIBUTE_PDF = '68be641e-7063-11e8-9107-5048000ea93e'; //PDF link
   const ATTRIBUTE_NO_PAYMENT = '97e6eea6-7065-11e8-9107-5048000ed3a1'; //Без оплаты boolean
-  const ATTRIBUTE_WARRANTY = '3a64a28b-706b-11e8-9107-5048000f3e98'; //Страхование boolean
+  const ATTRIBUTE_WARRANTY = '3a64a28b-706b-11e8-9107-5048000f3e98'; //Страхование boolean*/
 
   private $sklad;
   private $eventDispatcher;
   private $organization_id;
-  private $pvzlistRepository;
   private $settingManager;
 
 
   public function __construct (MoyskladManager $sklad, EventDispatcherInterface $eventDispatcher, $organization_id,
-                               CdekRawPvzlistRepository $pvzlistRepository, SettingManagerInterface $settingManager)
+                               SettingManagerInterface $settingManager)
   {
     $this->sklad = $sklad;
     $this->eventDispatcher = $eventDispatcher;
     $this->organization_id = $organization_id;
-    $this->pvzlistRepository = $pvzlistRepository;
     $this->settingManager = $settingManager;
   }
 
@@ -89,10 +88,11 @@ class MoyskladOrderSender
 
     $customerOrderCreation = $customerOrder->buildCreation();
     $meta = $this->sklad->getRepository('MoySklad\\Entities\\Documents\\Orders\\CustomerOrder')->getClassMetadata();
-    /** @var EntityList $attributes */
-    $attributes = $meta->attributes;
-
-    /** @var Attribute $attribute */
+    /**
+     * Этот кусок на данный момент выпилен, ибо работает он с кастомными полями
+     * @var EntityList $attributes
+     */
+   /* $attributes = $meta->attributes;
     foreach ($attributes as $attribute)
     {
       switch ($attribute->id)
@@ -112,18 +112,14 @@ class MoyskladOrderSender
         case self::ATTRIBUTE_CDEK_PVZ:
           if ($order->getShippingMethodId() == ShippingMethodCdekTerminal::UID)
           {
-            /*
-             * При заказе через ПВЗ СДЕК в поле shipping_address лежит адрес из сдэка - подставляем его
-             */
+            # При заказе через ПВЗ СДЕК в поле shipping_address лежит адрес из сдэка - подставляем его
             $shipping_info = $order->getShippingInfo();
             $addr = null;
 
-            /*
-             * Ищем по информации о ПВЗ
-             */
+            # Ищем по информации о ПВЗ
             if (isset($shipping_info['pvz']))
             {
-              /** @var CdekRawPvzlist $pvz */
+              # @ var CdekRawPvzlist $pvz
               $pvz = $this->pvzlistRepository->find($shipping_info['pvz']);
 
               if ($pvz)
@@ -132,9 +128,7 @@ class MoyskladOrderSender
               }
             }
 
-            /*
-             * Ищем по адресу заказа
-             */
+            # Ищем по адресу заказа
             if (!isset($pvz))
             {
               $pvz = $this->pvzlistRepository->findOneBy(['address' => $order->getShippingAddress()]);
@@ -148,15 +142,11 @@ class MoyskladOrderSender
             if (!$addr)
             {
 //              $this->logger->warning(sprintf('Pvz address not found for %s', $order->getDocumentNumber()));
-              /*
-               * Если ничего нет, вставляем просто адрес из заказа
-               */
+              #Если ничего нет, вставляем просто адрес из заказа
               $addr = $order->getShippingAddress();
             }
 
-            /*
-             * Атрибут ПВЗ - справочник, поэтому делаем CustomEntity как атрибут
-             */
+            # Атрибут ПВЗ - справочник, поэтому делаем CustomEntity как атрибут
             $customAttribute = new CustomEntity($this->sklad->getSklad());
             $customAttribute->meta = $attribute->customEntityMeta;
             $customAttribute->name = $addr;
@@ -173,9 +163,7 @@ class MoyskladOrderSender
         case self::ATTRIBUTE_ADDRESS:
           if ($order->getShippingMethodId() != ShippingMethodCdekTerminal::UID)
           {
-            /*
-             * Для заказа через СДЕК Не нужно указывать адрес доставки
-             */
+            # Для заказа через СДЕК Не нужно указывать адрес доставки
             $attribute->value = $order->getShippingAddress();
             $customerOrderCreation->addAttribute($attribute);
           }
@@ -185,9 +173,9 @@ class MoyskladOrderSender
           $customerOrderCreation->addAttribute($attribute);
           break;
       }
-    }
+    }*/
 
-    $productList = $this->getProductList($order->getItems());
+    $productList = $this->getProductList($order->getOrderItems());
     $customerOrderCreation
       ->addCounterparty($contragent)
       ->addPositionList($productList)
