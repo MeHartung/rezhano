@@ -72,16 +72,19 @@
     <section class="advantages">
         <div class="container">
             {% for i,promoBanner in promoBanners %}
-            <div class="advantages-step {% if 0 == i%2 %}advantages-image-left{% endif %}">
-                <div class="advantages-image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat"></div>
-                <div class="advantages-text">
-                    <img class="advantages-text__image" src="{{ image_url(promoBanner, 'homepage-promo-banner/text') }}"/>
-                    <span class="advantages-text__text">{{ promoBanner.text|raw }}</span>
-                    <a href="{{ promoBanner.url }}" class="button">
-                        <span>{{ promoBanner.buttonText }}</span>
-                    </a>
-                </div>
-            </div>
+                {% if (image_exists(promoBanner, 'homepage-promo-banner/teaser')) %}
+                    <div class="advantages-step {% if 0 != i%2 %}advantages-image-left{% endif %}">
+                        <div class="advantages-image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat;
+width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;height: {{ image_height(promoBanner, 'homepage-promo-banner/teaser') }}px"></div>
+                        <div class="advantages-text">
+                            <img class="advantages-text__image" src="{{ image_url(promoBanner, 'homepage-promo-banner/text') }}"/>
+                            <span class="advantages-text__text">{{ promoBanner.text|raw }}</span>
+                            <a href="{{ promoBanner.url }}" class="button">
+                                <span>{{ promoBanner.buttonText }}</span>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     </section>
@@ -89,7 +92,7 @@
 
     {% if bestOffers|length %}
         <section class="popular-products product-list">
-            <div class="container container_no-padding">
+            <div class="container container_no-padding">_E52FFDEE5F7D6850 FOREIGN KEY (shipping_method_id) REFERENCES shipping
                 <span class="popular-products__title">Популярные сыры</span>
 
                 <div class="product-items">

@@ -94,7 +94,7 @@ class FileMediaStorage implements MediaStorageInterface
     if (!@copy($file->getPathname(), $path))
     {
       $error = error_get_last();
-      throw new FileException(sprintf('Could not move the file "%s" to "%s" (%s)', $this->getPathname(), $target, strip_tags($error['message'])));
+      throw new FileException(sprintf('Could not move the file "%s" to "%s" (%s)', $file->getPathname(), $path, strip_tags($error['message'])));
     }
   }
 

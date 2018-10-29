@@ -1037,6 +1037,7 @@ header.header-catalog:after {
 .advantages .advantages-step .advantages-image {
   position: absolute;
   right: -200px;
+  top: -15px;
 }
 .advantages .advantages-step .advantages-text {
   width: 500px;

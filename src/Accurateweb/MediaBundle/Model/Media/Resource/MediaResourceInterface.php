@@ -13,4 +13,11 @@ interface MediaResourceInterface
    * @return string
    */
   public function getUrl();
+
+  /**
+   * Returns an resource path
+   *
+   * @return mixed
+   */
+  public function getPath();
 }

@@ -15,7 +15,7 @@ class Version20181025131307 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE shipping_method (uid VARCHAR(64) NOT NULL, name VARCHAR(128) NOT NULL, help LONGTEXT DEFAULT NULL, position INT NOT NULL, PRIMARY KEY(uid)) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE IF NOT EXISTS shipping_method (uid VARCHAR(64) NOT NULL, name VARCHAR(128) NOT NULL, help LONGTEXT DEFAULT NULL, position INT NOT NULL, PRIMARY KEY(uid)) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE = InnoDB');
     }
 
     public function down(Schema $schema)
