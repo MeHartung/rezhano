@@ -15,10 +15,9 @@ class Version20181029144143 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        //$this->addSql('CREATE TABLE moysklad_queue (id INT AUTO_INCREMENT NOT NULL, order_id INT DEFAULT NULL, created_at DATETIME DEFAULT NULL, sent_at DATETIME DEFAULT NULL, message LONGTEXT DEFAULT NULL, UNIQUE INDEX UNIQ_A9D371F18D9F6D38 (order_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        //$this->addSql('ALTER TABLE moysklad_queue ADD CONSTRAINT FK_A9D371F18D9F6D38 FOREIGN KEY (order_id) REFERENCES orders (id)');
-        //$this->addSql('ALTER TABLE orders ADD moysklad_sent TINYINT(1) DEFAULT \'0\', CHANGE shipping_method_id shipping_method_id INT DEFAULT NULL');
-        $this->addSql('CREATE TABLE IF NOT EXISTS shipping_method (uid VARCHAR(64) NOT NULL, name VARCHAR(128) NOT NULL, help LONGTEXT DEFAULT NULL, position INT NOT NULL, PRIMARY KEY(uid)) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE moysklad_queue (id INT AUTO_INCREMENT NOT NULL, order_id INT DEFAULT NULL, created_at DATETIME DEFAULT NULL, sent_at DATETIME DEFAULT NULL, message LONGTEXT DEFAULT NULL, UNIQUE INDEX UNIQ_A9D371F18D9F6D38 (order_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE moysklad_queue ADD CONSTRAINT FK_A9D371F18D9F6D38 FOREIGN KEY (order_id) REFERENCES orders (id)');
+        $this->addSql('ALTER TABLE orders ADD moysklad_sent TINYINT(1) DEFAULT \'0\', CHANGE shipping_method_id shipping_method_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE shipping_method ADD id INT AUTO_INCREMENT NOT NULL, ADD cost_info VARCHAR(512) DEFAULT NULL, DROP PRIMARY KEY, ADD PRIMARY KEY (id)');
         $this->addSql('ALTER TABLE orders ADD CONSTRAINT FK_E52FFDEE5F7D6850 FOREIGN KEY (shipping_method_id) REFERENCES shipping_method (id)');
         $this->addSql('CREATE INDEX IDX_E52FFDEE5F7D6850 ON orders (shipping_method_id)');
