@@ -295,8 +295,6 @@ class CheckoutController extends Controller
     
     $order->setPaymentMethod($payment);
     $order->setShippingCityName('Екатеринбург');
-    $order->setShippingMethodId(ShippingMethodStorePickup::UID);
-    
     
     $shipments = $order->getShipments();
     
@@ -317,6 +315,16 @@ class CheckoutController extends Controller
         
         $payment = $this->getDoctrine()->getRepository('StoreBundle:Store\Payment\Method\PaymentMethod')->find($order->getPaymentMethod()->getId());
         $order->setPaymentMethod($payment);
+        
+        /**
+         * TODO выпилить это!1!
+         */
+        $shippingMethod = $this->getDoctrine()->getRepository(ShippingMethod::class)->findOneBy([
+          'uid' => $order->getPaymentMethod()->getId()
+        ]);
+        
+        #$order->setShippingMethodId($shippingMethod);
+        #$order->setShippingMethod($shippingMethod);
         
         /** @var $order Order */
         $this->get('store.checkout.processor')->process($order);
@@ -520,7 +528,7 @@ class CheckoutController extends Controller
     {
       $shippingMethod = $this->get('accurateweb.shipping.manager')->getShippingMethodByUid($deliveryMethodId);
       
-      $order->setShippingMethod($shippingMethod);
+     # $order->setShippingMethodEntity($shippingMethod);
     }
     
     $paymentMethodManager = $this->get('accuratecommerce.payment.method.manager');

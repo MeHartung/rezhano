@@ -1,0 +1,10 @@
+<span class="custom-radio__radio"></span>
+<span>{{ value.name }}</span>
+{% if value.costInfo %}
+<span class="delivery-info">
+    {{ value.costInfo }}
+    {% if value.help %}
+    <span class="delivery-info__message"> {{ value.help }} </span>
+    {% endif %}
+</span>
+{% endif %}

@@ -308,6 +308,12 @@ services:
         tags:
             - { name: twig.extension }
 
+    store.twig.checkout:
+        class: StoreBundle\Twig\CheckoutExtension
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            - { name: twig.extension }
+
     main.twig.menu:
         class: StoreBundle\Twig\MenuExtension
         arguments:

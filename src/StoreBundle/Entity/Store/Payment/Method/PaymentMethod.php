@@ -32,7 +32,13 @@ class PaymentMethod extends BasePaymentMethod
    * @ORM\Column(name="type_guid", type="string", length=255, nullable=true)
    */
   private $type;
-
+  
+  /**
+   * @var string|null
+   * @ORM\Column(type="string", length=512, nullable=true)
+   */
+  private $info;
+  
   /**
    * @return int
    */
@@ -66,6 +72,22 @@ class PaymentMethod extends BasePaymentMethod
   public function setType($type)
   {
     $this->type = $type;
+  }
+  
+  /**
+   * @return null|string
+   */
+  public function getInfo(): ?string
+  {
+    return $this->info;
+  }
+  
+  /**
+   * @param null|string $info
+   */
+  public function setInfo(?string $info): void
+  {
+    $this->info = $info;
   }
 
   function __toString()

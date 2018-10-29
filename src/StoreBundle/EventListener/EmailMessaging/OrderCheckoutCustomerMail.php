@@ -74,7 +74,7 @@ class OrderCheckoutCustomerMail
 
   private function getEmailVariables (Order $order)
   {
-    $shippingMethod = $this->shippingManager->getShippingMethodByUid($order->getShippingMethodId()->getUid());
+    $shippingMethod = $this->shippingManager->getShippingMethodByUid($order->getShippingMethod()->getUid());
 
     $variables = array(
       'customer_name' => $order->getCustomerFullName(),
@@ -82,8 +82,7 @@ class OrderCheckoutCustomerMail
       'customer_phone' => $order->getCustomerPhone(),
       'customer_email' => $order->getCustomerEmail(),
       'payment_method' => $order->getPaymentMethod()->getName(),
-      'shipping_method' =>'',
-      #'shipping_method' => $shippingMethod->getName(),
+      'shipping_method' => $shippingMethod->getName(),
       'shipping_address' => $order->getFullShippingAddress(),
       'subtotal' => $order->getSubtotal(),
       'shipping_cost' => $order->getShippingCost(),

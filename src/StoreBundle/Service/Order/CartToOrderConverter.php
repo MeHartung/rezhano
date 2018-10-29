@@ -81,8 +81,8 @@ class CartToOrderConverter
     $order->setShippingCityName($cart->getShippingCityName());
     $order->setShippingPostCode($cart->getShippingPostCode());
     $order->setShippingAddress($cart->getShippingAddress());
-    $order->setShippingMethodId($cart->getShippingMethodId());
     $order->setShippingMethod($cart->getShippingMethod());
+    #$order->setShippingMethod($cart->getShippingMethod());
     $order->setCheckoutStateId($cart->getCheckoutStateId());
     $order->setVirtuemartOrderId($cart->getVirtuemartOrderId());
     $order->setCreatedAt($cart->getCreatedAt());

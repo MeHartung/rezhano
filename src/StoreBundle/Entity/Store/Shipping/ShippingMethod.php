@@ -15,9 +15,16 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class ShippingMethod
 {
   /**
+   * @var integer|null
+   * @ORM\Column(type="integer")
+   * @ORM\Id()
+   * @ORM\GeneratedValue()
+   */
+  private $id;
+  
+  /**
    * @var string|null
    * @ORM\Column(type="string", length=64)
-   * @ORM\Id()
    */
   private $uid;
   
@@ -41,11 +48,33 @@ class ShippingMethod
   private $help;
   
   /**
+   * @var string|null
+   * @ORM\Column(type="string", length=512, nullable=true)
+   */
+  private $costInfo;
+  
+  /**
    * @var integer|null
    * @ORM\Column(type="integer")
    * @Gedmo\SortablePosition()
    */
   private $position;
+  
+  /**
+   * @return int|null
+   */
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
+  
+  /**
+   * @param int|null $id
+   */
+  public function setId(?int $id): void
+  {
+    $this->id = $id;
+  }
   
   /**
    * @return null|string
@@ -125,6 +154,22 @@ class ShippingMethod
   public function setPosition(?int $position): void
   {
     $this->position = $position;
+  }
+  
+  /**
+   * @return null|string
+   */
+  public function getCostInfo(): ?string
+  {
+    return $this->costInfo;
+  }
+  
+  /**
+   * @param null|string $costInfo
+   */
+  public function setCostInfo(?string $costInfo): void
+  {
+    $this->costInfo = $costInfo;
   }
   
   public function __toString()

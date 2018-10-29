@@ -31,8 +31,8 @@ class OrderShippingMethodInjectionListener
       return;
     }
 
-    $shippingMethod = $this->shippingManager->getShippingMethodByUid($object->getShippingMethodId());
+   # $shippingMethod = $this->shippingManager->getShippingMethodByUid($object->getShippingMethod()->getUid());
 
-    $object->setShippingMethod($shippingMethod);
+    #$object->setShippingMethodEntity($shippingMethod);
   }
 }

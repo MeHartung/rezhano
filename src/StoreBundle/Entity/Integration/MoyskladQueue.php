@@ -10,6 +10,7 @@ namespace StoreBundle\Entity\Integration;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use StoreBundle\Entity\Store\Order\Order;
 
 /**
@@ -28,7 +29,7 @@ class MoyskladQueue
   private $id;
   /**
    * @var Order
-   * @ORM\OneToOne(targetEntity="AppBundle\Entity\Store\Order\Order", inversedBy="moysklad_queue", cascade={"remove", "persist"})
+   * @ORM\OneToOne(targetEntity="StoreBundle\Entity\Store\Order\Order", inversedBy="moysklad_queue", cascade={"remove", "persist"})
    * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
    */
   private $order;

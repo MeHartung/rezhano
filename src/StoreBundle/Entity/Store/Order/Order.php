@@ -176,13 +176,12 @@ class Order implements ClientApplicationModelAdapterInterface
    * @ORM\Column(length=255, nullable=true)
    */
   private $shippingAddress;
-
+  
   /**
-   * @var string
-   *
-   * @ORM\Column(length=36, nullable=true)
+   * @var ShippingMethodInterface
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Shipping\ShippingMethod", inversedBy="id")
    */
-  private $shippingMethodId;
+  private $shippingMethod;
 
   /**
    * @var \DateTime|null
@@ -252,12 +251,7 @@ class Order implements ClientApplicationModelAdapterInterface
 
   private $shipments,
     $shippingEstimateCache = array();
-
-  /**
-   * @var ShippingMethodInterface
-   */
-  private $shippingMethod;
-
+  
   /**
    * @var string
    *
@@ -293,7 +287,7 @@ class Order implements ClientApplicationModelAdapterInterface
     $this->uid = $this->generateUid();
     $this->checkoutStateId = self::CHECKOUT_STATE_CART;
     $this->orderStatusHistory = new ArrayCollection();
-
+    
     $this->discountSum = 0;
   }
 
@@ -768,25 +762,6 @@ class Order implements ClientApplicationModelAdapterInterface
   public function setCustomerEmail($customerEmail)
   {
     $this->customerEmail = $customerEmail;
-
-    return $this;
-  }
-
-  /**
-   * @return string
-   */
-  public function getShippingMethodId()
-  {
-    return $this->shippingMethodId;
-  }
-
-  /**
-   * @param string $shippingMethodId
-   * @return Order
-   */
-  public function setShippingMethodId($shippingMethodId)
-  {
-    $this->shippingMethodId = $shippingMethodId;
 
     return $this;
   }

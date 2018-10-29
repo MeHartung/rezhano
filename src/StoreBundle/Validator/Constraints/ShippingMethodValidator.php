@@ -30,7 +30,7 @@ class ShippingMethodValidator extends ConstraintValidator
    */
   public function validate($order, Constraint $constraint)
   {
-    if (!$order->getShippingMethodId())
+    if (!$order->getShippingMethod())
     {
       return;
     }
@@ -43,7 +43,7 @@ class ShippingMethodValidator extends ConstraintValidator
 
     foreach ($availableShippingMethods as $shippingMethod)
     {
-      if ($shippingMethod->getUid() === $order->getShippingMethodId()->getUid())
+      if ($shippingMethod->getUid() === $order->getShippingMethod()->getUid())
       {
         $isValid = true;
         break;
@@ -55,7 +55,7 @@ class ShippingMethodValidator extends ConstraintValidator
       $selectedShippingMethod = null;
       foreach ($allShippingMethods as $shippingMethod)
       {
-        if ($shippingMethod->getUid() == $order->getShippingMethodId())
+        if ($shippingMethod->getUid() == $order->getShippingMethod())
         {
           $selectedShippingMethod = $shippingMethod;
           break;
@@ -72,7 +72,7 @@ class ShippingMethodValidator extends ConstraintValidator
 
       $this->context->buildViolation($constraint->message)
         ->atPath('shipping_method_id')
-        ->setParameter('shipping_method_id', $selectedShippingMethod ? $selectedShippingMethod->getName($cityName) : $order->getShippingMethodId())
+        ->setParameter('shipping_method_id', $selectedShippingMethod ? $selectedShippingMethod->getName($cityName) : $order->getShippingMethod())
         ->addViolation();
     }
   }

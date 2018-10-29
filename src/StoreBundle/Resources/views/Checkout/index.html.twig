@@ -395,7 +395,6 @@
   {#</script>#}
 {#{% endblock %}#}
 
-
 {% block main %}
 <section class="section-purchase">
 
@@ -439,10 +438,10 @@
         </aside>
       {% endblock %}
       <div class="section-wrap">
-        <form >
+        {{ form_start(form) }}
 
 
-        <div class="cards-container__step cards-container__order">
+       <div class="cards-container__step cards-container__order">
           <div class="cards-container__step-title">
             <span class="step-title__number">1</span>ваши данные
           </div>
@@ -467,13 +466,16 @@
             </div>
 
             <div class="step-item step-item-input">
-              <input class="input-text" type="text" placeholder="ФИО">
+              {#<input class="input-text" type="text" placeholder="ФИО">#}
+                {{ form_widget(form.customer_first_name, {'attr': {'placeholder': 'ФИО', 'class': 'input-text'}}) }}
+            </div>
+
+            <div class="step-item step-item-input">
+              {#<input class="input-text" type="text" placeholder="Телефон">#}
+              {{ form_widget(form.customer_phone, {'attr': {'placeholder': 'Телефон', 'class': 'input-text'}}) }}
             </div>
             <div class="step-item step-item-input">
-              <input class="input-text" type="text" placeholder="Телефон">
-            </div>
-            <div class="step-item step-item-input">
-              <input class="input-text" type="text" placeholder="Эл. почта">
+                {{ form_widget(form.customer_email, {'attr': {'placeholder': 'Эл. почта', 'class': 'input-text'}}) }}
             </div>
           </div>
         </div>
@@ -489,23 +491,36 @@
               <span class="step-item__title">
                 Город получения
               </span>
+
               <div class="custom-select">
-                <label for="">
+                  {{ form_widget(form.shipping_city_name) }} {# , {'attr': {'class': 'custom-select' }} #}
+{#                <label for="">
                   <select name="" id="">
                     <option value="Екатеринбург">Екатеринбург</option>
                     <option value="Москва">Москва</option>
                     <option value="Санкт-Петербург">Санкт-Петербург</option>
                   </select>
-                </label>
+                </label>#}
               </div>
-
             </div>
 
             <div class="step-item">
               <span class="step-item__title">
                 Способ получения
               </span>
-              <div class="custom-radio">
+
+                {% for child in form.shippingMethod %}
+                  <div class="custom-radio">
+                    <label>
+                        {{ form_widget(child, { attr: { 'class': 'radio'} }) }}
+                        {{ child.vars.value | render_shipping_label | raw }}
+                    </label>
+                  </div>
+                {% endfor %}
+
+                {#{{ form_widget(form.shippingMethod) }}#}
+
+              {#<div class="custom-radio">
                 <label>
                   <input type="radio" class="radio" name="radio-delivery">
                   <span class="custom-radio__radio"></span>
@@ -526,10 +541,11 @@
                   <span>Самовывоз с <span class="shipment-address">Красноармейской, 68</span></span>
                 </label>
               </div>
-            </div>
+            </div>#}
 
             <div class="step-item step-item-input step-item-input_biggest">
-              <input class="input-text" type="text" placeholder="Адрес">
+              {{ form_widget(form.shipping_address, {'attr': {'placeholder': 'Адрес', 'class': 'input-text'}}) }}
+              {#<input class="input-text" type="text" placeholder="Адрес">#}
               <div class="step-item-input__link">Ознакомьтесь с <a href="">условиями доставки и оплаты</a></div>
             </div>
 
@@ -548,7 +564,8 @@
             <div class="step-item">
               <div class="custom-checkbox font-alegreya" name="tos">
                 <label>
-                  <input  name="tos" class="checkbox" type="checkbox">
+                 {# <input  name="tos" class="checkbox" type="checkbox">#}
+                  {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox'}}) }}
                   <span class="custom-checkbox__checkbox"></span>
                   <span>Я ознакомился и согласен с <a href="">Политикой Компании</a> и <a href="">условиями сотрудничества</a>
                   </span>
@@ -563,19 +580,33 @@
               </a>
             </div>
 
+
+
             <div class="step-item">
-              <div class="custom-radio">
-                <label>
-                  <input type="radio" class="radio" name="radio-delivery">
+                {% for payment in form.payment_method %}
+                  <div class="custom-radio">
+                    <label>
+                      {#<input type="radio" class="radio" name="radio-delivery">#}
+                      {{ form_widget(payment, {'attr': {'class': 'radio'}}) }}
+                      {{ payment.vars.value | render_payment_label | raw }}
+                    </label>
+                   {# {{ dump(payment) }}
+                    <span class="delivery-info">
+                      /  Картами Visa, MasterCard, Мир, Apple Pay
+                    </span>#}
+                  </div>
+                {% endfor %}
+
+{#                  <input type="radio" class="radio" name="radio-delivery">
                   <span class="custom-radio__radio"></span>
                   <span>При получении</span>
                 </label>
                 <span class="delivery-info">
                   /  Наличными, банковской картой
                 </span>
-              </div>
+              </div>#}
 
-              <div class="custom-radio">
+              {#<div class="custom-radio">
                 <label>
                   <input type="radio" class="radio" name="radio-delivery">
                   <span class="custom-radio__radio"></span>
@@ -584,17 +615,18 @@
                 <span class="delivery-info">
                   /  Картами Visa, MasterCard, Мир, Apple Pay
                 </span>
-              </div>
+              </div>#}
             </div>
 
           </div>
         </div>
 
-          <button class="button">
-            <span>сделать заказ</span>
-          </button>
+        <button type="submit" id="checkout_submit" name="checkout[submit]" class="button">
+          <span>сделать заказ</span>
+        </button>
 
-        </form>
+        {% do form.submit.setRendered %}
+          {{ form_end(form) }}
       </div>
     </div>
   </div>
