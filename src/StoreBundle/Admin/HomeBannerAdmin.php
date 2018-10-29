@@ -16,7 +16,15 @@ class HomeBannerAdmin extends AbstractAdmin
       ->add('teaser', 'Accurateweb\MediaBundle\Form\ImageType', [
         'label' => 'Изображение',
         'required' => true,
+        'image_id' => 'homepage-banner/teaser'
       ])
+      ->add('textImageFile', 'Accurateweb\MediaBundle\Form\ImageType', [
+        'label' => 'Текстовое изображение',
+        'required' => true,
+        'image_id' => 'homepage-banner/text'
+      ])
+      ->add('text')
+      ->add('buttonLabel')
       ->add('url', null, [
         'required' => false,
         'constraints' => [

@@ -4,6 +4,7 @@ namespace StoreBundle\Entity\Common;
 
 use Accurateweb\ImagingBundle\Filter\CropFilterOptionsResolver;
 use Accurateweb\ImagingBundle\Filter\FilterChain;
+use Accurateweb\MediaBundle\Annotation\Image;
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use Accurateweb\MediaBundle\Model\Media\Thumbnail;
@@ -11,6 +12,7 @@ use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
 use Accurateweb\MediaBundle\Model\Thumbnail\ThumbnailDefinition;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use StoreBundle\Media\Text\UnprocessedImage;
 
 /**
  * HomeBanner
@@ -18,7 +20,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="common_home_banner")
  * @ORM\Entity(repositoryClass="StoreBundle\Repository\Common\HomeBannerRepository")
  */
-class HomeBanner implements ImageAwareInterface, ImageInterface
+class HomeBanner implements ImageAwareInterface
 {
   /**
    * @var int
@@ -33,8 +35,31 @@ class HomeBanner implements ImageAwareInterface, ImageInterface
    * @var string
    *
    * @ORM\Column(name="teaser", type="string", length=255)
+   * @Image(id="homepage-banner/teaser")
    */
   private $teaser;
+
+  /**
+   * @var string
+   *
+   * @ORM\Column()
+   * @Image(id="homepage-banner/text")
+   */
+  private $textImageFile;
+
+  /**
+   * @var ?string
+   *
+   * @ORM\Column(length=255, nullable=true)
+   */
+  private $text;
+
+  /**
+   * @var ?string
+   *
+   * @ORM\Column(length=16, nullable=true)
+   */
+  private $buttonLabel;
 
   /**
    * @var string
@@ -79,12 +104,67 @@ class HomeBanner implements ImageAwareInterface, ImageInterface
    * @param string $teaser
    * @return $this
    */
-  public function setTeaser ($teaser)
+  public function setTeaser($teaser)
   {
     if (null !== $teaser)
     {
       $this->teaser = $teaser;
     }
+
+    return $this;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getTextImageFile()
+  {
+    return $this->textImageFile;
+  }
+
+  /**
+   * @param string $textImageFile
+   * @return HomeBanner
+   */
+  public function setTextImageFile($textImageFile): HomeBanner
+  {
+    if (null !== $textImageFile)
+    {
+      $this->textImageFile = $textImageFile;
+    }
+    return $this;
+  }
+
+
+
+  public function getTeaserImage()
+  {
+    if (null === $this->teaser)
+    {
+      return null;
+    }
+
+    return new UnprocessedImage('homepage-banner/teaser', $this->teaser, []);
+  }
+
+  public function setTeaserImage(ImageInterface $image)
+  {
+    $this->setTeaser($image ? $image->getResourceId() : null);
+  }
+
+  public function getTextImageFileImage()
+  {
+    if (null === $this->textImageFile)
+    {
+      return null;
+    }
+
+    return new UnprocessedImage('homepage-banner/text', $this->textImageFile, []);
+  }
+
+  public function setTextImageFileImage(ImageInterface $image)
+  {
+    $this->setTextImageFile($image ? $image->getResourceId() : null);
 
     return $this;
   }
@@ -161,7 +241,16 @@ class HomeBanner implements ImageAwareInterface, ImageInterface
    */
   public function getImage ($id = null)
   {
-    return $this;
+    switch ($id)
+    {
+      case null:
+      case 'homepage-banner/teaser':
+        return $this->getTeaserImage();
+      case 'homepage-banner/text':
+        return $this->getTextImageFileImage();
+    }
+
+    throw new \InvalidArgumentException();
   }
 
   /**
@@ -170,7 +259,23 @@ class HomeBanner implements ImageAwareInterface, ImageInterface
    */
   public function setImage (ImageInterface $image)
   {
-    $this->setResourceId($image->getResourceId());
+    if (!$image)
+    {
+      return $this;
+    }
+
+    switch ($image->getId())
+    {
+      case null:
+      case 'homepage-banner/teaser':
+        $this->setTeaserImage($image);
+        break;
+      case 'homepage-banner/text':
+        $this->setTextImageFileImage($image);
+        break;
+      default:
+        throw new \InvalidArgumentException();
+    }
 
     return $this;
   }
@@ -229,24 +334,46 @@ class HomeBanner implements ImageAwareInterface, ImageInterface
     return new ImageThumbnail($id, $this);
   }
 
-  /**
-   * @return string
-   */
-  public function getResourceId ()
-  {
-    return $this->getTeaser();
-  }
-
-  /**
-   * @param $id
-   */
-  public function setResourceId ($id)
-  {
-    $this->setTeaser($id);
-  }
-
   public function __toString ()
   {
     return $this->getId()?sprintf('Баннер #%s', $this->getId()):'Новый баннер';
   }
+
+  /**
+   * @return mixed
+   */
+  public function getText()
+  {
+    return $this->text;
+  }
+
+  /**
+   * @param mixed $text
+   * @return HomeBanner
+   */
+  public function setText($text)
+  {
+    $this->text = $text;
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getButtonLabel()
+  {
+    return $this->buttonLabel;
+  }
+
+  /**
+   * @param mixed $buttonLabel
+   * @return HomeBanner
+   */
+  public function setButtonLabel($buttonLabel)
+  {
+    $this->buttonLabel = $buttonLabel;
+    return $this;
+  }
+
+
 }

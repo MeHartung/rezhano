@@ -94,6 +94,19 @@ define(function(require){
         }).render();
       });
 
+      var $headerMenu = $('header');
+      var headerMenuHeight = $('header').height();
+      var headerSectionHeight = $('.header-section').height() - headerMenuHeight;
+
+      $(window).scroll(function () {
+
+        if ( $(this).scrollTop()>headerSectionHeight ) {
+          $headerMenu.addClass('fixed');
+        } else if ( $(this).scrollTop()<headerSectionHeight ) {
+          $headerMenu.removeClass('fixed');
+        }
+      });
+
       return this;
     }
   });

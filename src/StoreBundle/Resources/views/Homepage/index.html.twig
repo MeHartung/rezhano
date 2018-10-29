@@ -4,12 +4,12 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="js/vendor/slick/slick.css">
+    <link rel="stylesheet" href="{{ asset("js/vendor/slick/slick.css") }}">
 {% endblock %}
 
 {% block head_javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="js/vendor/slick/slick.js"></script>
+    <script type="text/javascript" src="{{ asset("js/vendor/slick/slick.js") }}"></script>
 {% endblock %}
 
 {% block javascripts %}
@@ -22,21 +22,33 @@
 
 {% block main %}
     <section class="header-section">
+        {% if banners|length %}
+        <div class="container container_no-padding">
+            <div class="header-section__wrap">
 
-    </section>
-    {% if banners|length %}
-        <section class="section-slider">
-            <div class="container container_no-padding">
-                <div class="section-slider__prev-slide"></div>
-                <div id="sliderMain" class="slider-main" style="font-size: 0; white-space: nowrap">
-                    {% for banner in banners %}
-                        <a href="{{ banner.url }}"><div style="background: url({{ image_url(banner) }}) no-repeat; width: 619px; height: 301px; display: inline-block;"></div></a>
+            </div>
+            <div class="header-slider">
+                <div class="header-slider__wrap">
+                    {% for banner in banners  %}
+                    <div class="header-slider__item" style="background:url({{ image_url(banner, 'homepage-banner/teaser') }}) center no-repeat">
+                        <div class="header-section__image">
+                            <img src="{{ image_url(banner, 'homepage-banner/text') }}" alt="">
+                        </div>
+                        <div class="header-section__text">
+                            {{ banner.text|raw }}
+                        </div>
+                        {% if (banner.url and banner.buttonLabel) %}
+                        <a class="button" href="{{ banner.url }}">
+                            <span>{{ banner.buttonLabel }}</span>
+                        </a>
+                        {% endif %}
+                    </div>
                     {% endfor %}
                 </div>
-                <div class="section-slider__next-slide"></div>
             </div>
-        </section>
-    {% endif %}
+        </div>
+        {% endif %}
+    </section>
 
     <section class="first-slide">
         <div class="container">

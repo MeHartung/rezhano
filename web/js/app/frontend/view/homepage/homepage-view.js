@@ -32,19 +32,17 @@ define(function(require){
       // this.lastVisitedView.render();
       //
       $(function () {
-        self.$('#sliderMain').slick({
+        self. $('.header-slider__wrap').slick({
           infinite: true,
+          // autoplay: true,
+          // autoplaySpeed: 2000,
           dots: true,
-          arrows: true,
-          autoplay: true,
-          autoplayTime: 2000,
-          slidesToShow: 2,
-          slidesToScroll: 2
+          arrows: false
         });
 
         self.$('.notes-slider').slick({
           dots: true,
-          arrows: true,
+          arrows: true
         });
 
         var $headerMenu = $('header');
