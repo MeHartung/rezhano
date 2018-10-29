@@ -1787,7 +1787,7 @@ footer {
   width: 100%;
   height: auto;
   position: relative;
-  margin-top: -105px;
+  margin-top: -160px;
   padding-top: 260px;
 }
 footer .header-logo {
@@ -2037,6 +2037,38 @@ footer .footer-aside__link.link_frukt:after {
   font-size: 20px;
   color: #000000;
 }
+.layer.add-to-cart-layer {
+  width: auto;
+  height: auto;
+  padding: 25px 50px;
+}
+.layer.add-to-cart-layer .layer__title {
+  font-size: 65px;
+  font-family: Catorze27style1-bold;
+  color: #000000;
+}
+.layer.add-to-cart-layer .add-to-cart-layer__product-name {
+  font-size: 40px;
+  font-family: Catorze27style1-bold;
+  color: #000000;
+  display: inline-block;
+}
+.layer.add-to-cart-layer .add-to-cart-layer__product-name:hover {
+  color: #ffcf40;
+}
+.layer.add-to-cart-layer .add-to-cart-layer__product-value {
+  font-size: 21px;
+  font-family: Catorze27style1-semibold;
+  color: #000000;
+}
+.layer.add-to-cart-layer .buttons {
+  margin-top: 50px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.layer.add-to-cart-layer .buttons .button {
+  margin: 0 5px;
+}
 aside.left {
   width: 285px;
   margin-left: -298px;
@@ -2051,7 +2083,7 @@ aside.right {
   vertical-align: top;
 }
 .cards-container {
-  padding-bottom: 45px;
+  padding-bottom: 56px;
   -ms-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -2338,7 +2370,10 @@ aside.right {
 .section-checkout,
 .section-purchase {
   padding-top: 15px;
-  padding-bottom: 200px;
+  padding-bottom: 185px;
+}
+.section-checkout h1 {
+  margin-bottom: 10px;
 }
 .cart-empty__wrap {
   text-align: center;
@@ -2368,6 +2403,43 @@ body .delivery-info__message {
   color: #ffcf40;
   font-family: alegreyasans-regular;
   font-size: 17px;
+}
+.cheese-card {
+  background-color: #e8e8e8;
+  padding-bottom: 120px;
+  overflow: visible;
+  position: relative;
+}
+.cheese-card__title {
+  font-size: 30px;
+  font-family: Catorze27style1-bold;
+  color: #000000;
+  display: inline-block;
+  max-width: 350px;
+  margin-left: 80px;
+  vertical-align: top;
+  margin-top: 37px;
+  position: relative;
+}
+.cheese-card__image {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -51px;
+  margin-left: 111px;
+}
+.cheese-card__more {
+  font-family: alegreyasans-regular;
+  font-size: 17px;
+  color: #000000;
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  border-bottom: 1px solid #000000;
+  line-height: 1;
+}
+.cheese-card__more:hover {
+  color: #ffcf40;
+  border-color: #ffcf40;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

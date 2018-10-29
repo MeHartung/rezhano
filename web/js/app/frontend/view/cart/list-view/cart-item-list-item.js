@@ -19,6 +19,7 @@ define(function(require){
 ' </div>' +
 '<div class="cards-container__price"><%= price.toCurrencyString() %></div>' +
 ' <div class="quantity-widget quantity-wrap product-item__controls cards-container__quantity">\n' +
+'  <span class="controls-title">количество</span>\n' +
 '  <a class="controls-item controls-item__increase quantity-control quantity-control__down"></a>\n' +
 '  <input class="custom-input quantity-control__input" value="<%= quantity %>" type="text">\n' +
 '  <a class="controls-item controls-item__reduce quantity-control quantity-control__up"></a>\n' +
