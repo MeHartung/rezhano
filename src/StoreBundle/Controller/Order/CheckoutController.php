@@ -449,11 +449,8 @@ class CheckoutController extends Controller
    */
   public function shippingMethodListAction(Request $request)
   {
-    $cart = $this->get('store.user.cart')->getCart();
+   /* $cart = $this->get('store.user.cart')->getCart();
     $postcode = $request->get('postcode');
-    /*
-     * Установим город пользователя по умолчанию в соответствии с выбранным городом
-     */
     $location = $this->get('store.geography.location');
     
     if ($postcode !== null && $postcode !== $location->getCityPostcode())
@@ -480,6 +477,9 @@ class CheckoutController extends Controller
       $em->persist($cart);
       $em->flush();
     }
+    
+   */
+    $cart = $this->get('store.user.cart')->getCart();
     
     $orderClientApplicationAdapter = new OrderClientApplicationAdapter($cart,
       $this->get('accurateweb.shipping.manager'));

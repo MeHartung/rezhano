@@ -372,14 +372,14 @@
 
       {#</section>#}
   {#<script>#}
-      {#var $sport = $('#checkout_shipping_city_name');#}
+      {#var $city = $('#checkout_shipping_city_name');#}
 
       {#// When sport gets selected ...#}
-      {#$sport.change(function() {#}
-          {#console.log( $sport.val());#}
+      {#$city.change(function() {#}
+          {#console.log( $city.val());#}
           {#var $form = $(this).closest('form');#}
           {#var data = {};#}
-          {#data[$sport.attr('name')] = $sport.val();#}
+          {#data[$city.attr('name')] = $city.val();#}
           {#$.ajax({#}
               {#url : $form.attr('action'),#}
               {#type: $form.attr('method'),#}
@@ -514,6 +514,7 @@
                     <label>
                         {{ form_widget(child, { attr: { 'class': 'radio'} }) }}
                         {{ child.vars.value | render_shipping_label | raw }}
+                        {{ child.vars.value | render_shipping_info | raw }}
                     </label>
                   </div>
                 {% endfor %}
@@ -571,6 +572,16 @@
                   </span>
                 </label>
               </div>
+
+              <div class="custom-checkbox font-alegreya">
+                <label>
+                 {# <input  name="tos" class="checkbox" type="checkbox">#}
+                  {{ form_widget(form.personalInformationAgreement, {'attr': {'class': 'checkbox'}}) }}
+                  <span class="custom-checkbox__checkbox"></span>
+                  <span>Я ознакомился и согласен с <a href="">условиями обработки персональных данных</a>
+                  </span>
+                </label>
+              </div>
             </div>
 
             <div class="step-item step-item-input step-item-input_350 step-item-card-number">
@@ -590,12 +601,12 @@
                       {{ form_widget(payment, {'attr': {'class': 'radio'}}) }}
                       {{ payment.vars.value | render_payment_label | raw }}
                     </label>
-                   {# {{ dump(payment) }}
-                    <span class="delivery-info">
-                      /  Картами Visa, MasterCard, Мир, Apple Pay
-                    </span>#}
+                      {{ payment.vars.value | render_payment_info | raw }}
                   </div>
                 {% endfor %}
+
+                {# если выбран другой город #}
+               {# {{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}#}
 
 {#                  <input type="radio" class="radio" name="radio-delivery">
                   <span class="custom-radio__radio"></span>
@@ -630,6 +641,32 @@
       </div>
     </div>
   </div>
+  </div>
 </section>
-
+    {# УБРАТЬ ЭТОТ СКРИПТ!  #}
+  <script>
+      var $city = $('#checkout_shipping_city_name');
+      // When sport gets selected ...
+      $city.change(function() {
+          // ... retrieve the corresponding form.
+          var $form = $(this).closest('form');
+          // Simulate form data, but only include the selected sport value.
+          var data = {};
+          data[$city.attr('name')] = $city.val();
+          // Submit data via AJAX to the form's action path.
+          $.ajax({
+              url : $form.attr('action'),
+              type: $form.attr('method'),
+              data : data,
+              success: function(html) {
+                  // Replace current position field ...
+                  $('#checkout_shipping_city_name').replaceWith(
+                      // ... with the returned one from the AJAX response.
+                      $(html).find('#checkout_shipping_city_name')
+                  );
+                  // Position field now displays the appropriate positions.
+              }
+          });
+      });
+  </script>
 {% endblock %}

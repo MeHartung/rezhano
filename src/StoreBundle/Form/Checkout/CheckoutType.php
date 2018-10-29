@@ -40,7 +40,47 @@ class CheckoutType extends AbstractType
    */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $data = $builder->getForm()->getData();
+    $formModifier = function (FormInterface $form, $city = 'Екатеринбург')
+    {
+      if ($city === 'Екатеринбург' || $city === 'Реж')
+      {
+        $qb = function (EntityRepository $er) use ($city)
+        {
+          return $er->createQueryBuilder('sm')
+            ->where('sm.uid != :uid')
+            ->orderBy('sm.position')
+            ->setParameter('uid', ShippingMethodUserDefined::UID);
+        };
+      } else
+      {
+        $qb = function (EntityRepository $er) use ($city)
+        {
+          return $er->createQueryBuilder('sm')
+            ->where('sm.uid = :uid')
+            ->orderBy('sm.position')
+            ->setParameter('uid', ShippingMethodUserDefined::UID);
+        };
+      }
+  
+      $form->add('shippingMethod', null, [
+        'required' => true,
+        'expanded' => true,
+        'label' => false,
+        'query_builder' => $qb
+      ]);
+    };
+    
+    $builder->addEventListener(
+      FormEvents::PRE_SET_DATA,
+      function (\Symfony\Component\Form\FormEvent $event) use ($formModifier)
+      {
+        /** @var Order $data */
+        $data = $event->getData();
+        
+        $formModifier($event->getForm(), $data->getShippingCityName());
+      }
+    );
+    
     $builder
       ->add('customer_phone', TextType::class, [
         'required' => true,
@@ -120,50 +160,66 @@ class CheckoutType extends AbstractType
           new IsTrue(['message' => 'Чтобы оформить заказ, необходимо принять Условия обслуживания'])
         ]
       ])
-      ->add('submit', SubmitType::class)
-      /*->add('orderItems', null, [
+      ->add('personalInformationAgreement', CheckboxType::class, [
+        'mapped' => false,
+        'required' => true,
+        'constraints' => [
+          new IsTrue(['message' => 'Чтобы оформить заказ, необходимо принять политику обработки персональных данных'])
+        ]
+      ])
+      ->add('submit', SubmitType::class)/*->add('orderItems', null, [
         'required' => true,
         'inherit_data' => true,
         'constraints' => [
           new NotNull(),
           new Callback(['callback' => [$this, 'hasNotPreorderProducts']])
         ]
-      ])*/;
-
-    $builder->add('shippingMethod', null, [
+      ])*/
+    ;
+  
+    $builder->get('shipping_city_name')->addEventListener(
+      FormEvents::POST_SUBMIT,
+      function (\Symfony\Component\Form\FormEvent $event) use ($formModifier) {
+        /** @var Order $data */
+        $data = $event->getForm()->getData();
+        $formModifier($event->getForm()->getParent(), $data);
+      }
+    );
+    
+/*    $builder->add('shippingMethod', null, [
       'required' => true,
       'expanded' => true
-    ]);
-/*    if ($city === 'Реж' || $city === 'Екатеринбург')
-    {*/
-/*      $builder
-        ->add('shipping_method_id', EntityType::class, [
-          'label' => 'Метод доставки',
-          'class' => ShippingMethod::class,
-         /* 'query_builder' => function (EntityRepository $er) use ($data)
-          {
-            return $er->createQueryBuilder('sm')
-              ->where('sm.uid != :uid')
-              ->orderBy('sm.position')
-              ->setParameter('uid', ShippingMethodUserDefined::UID);
-          },
-          'required' => true,
-          'error_bubbling' => false,
-          'constraints' => [
-            new NotBlank(['message' => 'Пожалуйста, укажите способ оплаты заказа'])
-          ],
-          'expanded' => true*/
-          /*
-          'data' => function (EntityRepository $er) use ($data)
-          {
-            return $er->createQueryBuilder('sm')
-              ->where('sm.uid = :uid')
-              ->orderBy('sm.position')
-              ->setParameter('uid', ShippingMethodStorePickup::UID)
-              ->getQuery()->getOneOrNullResult();
-          },
-         # 'expanded' => true,
-        ]);*/
+    ]);*/
+    /*    if ($city === 'Реж' || $city === 'Екатеринбург')
+        {*/
+    /*      $builder
+            ->add('shipping_method_id', EntityType::class, [
+              'label' => 'Метод доставки',
+              'class' => ShippingMethod::class,
+             /* 'query_builder' => function (EntityRepository $er) use ($data)
+              {
+                return $er->createQueryBuilder('sm')
+                  ->where('sm.uid != :uid')
+                  ->orderBy('sm.position')
+                  ->setParameter('uid', ShippingMethodUserDefined::UID);
+              },
+              'required' => true,
+              'error_bubbling' => false,
+              'constraints' => [
+                new NotBlank(['message' => 'Пожалуйста, укажите способ оплаты заказа'])
+              ],
+              'expanded' => true*/
+    /*
+    'data' => function (EntityRepository $er) use ($data)
+    {
+      return $er->createQueryBuilder('sm')
+        ->where('sm.uid = :uid')
+        ->orderBy('sm.position')
+        ->setParameter('uid', ShippingMethodStorePickup::UID)
+        ->getQuery()->getOneOrNullResult();
+    },
+   # 'expanded' => true,
+  ]);*/
     /*} else
     {
       $builder
@@ -186,7 +242,7 @@ class CheckoutType extends AbstractType
           ]
         ]);
     }*/
-  
+    
     /*$builder->get('shipping_method_id')->addEventListener(
       FormEvents::POST_SUBMIT,
       function (FormEvent $event) use ($data) {
@@ -199,6 +255,8 @@ class CheckoutType extends AbstractType
         $event->getForm()->setData($data);
       }
     );*/
+    
+    
   }
   
   

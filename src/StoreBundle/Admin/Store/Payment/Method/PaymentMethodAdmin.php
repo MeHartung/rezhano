@@ -28,6 +28,10 @@ class PaymentMethodAdmin extends AbstractAdmin
   {
     $form->add('name')
          ->add('description')
+         ->add('info', null, [
+           'label' => 'Информация',
+           'help' => 'Краткая информация о доставке'
+         ])
          ->add('enabled')
          ->add('availability_decision_manager_id', ChoiceType::class, [
            'choices' => array_flip($this->getAvailabilityDecisionManagerChoices())

@@ -1,0 +1,8 @@
+{% if value.help %}
+<span class="delivery-info">
+    {{ value.help }}
+    {% if value.costInfo %}
+        <span class="delivery-info__message">{{ value.costInfo }}</span>
+    {% endif %}
+</span>
+{% endif %}
