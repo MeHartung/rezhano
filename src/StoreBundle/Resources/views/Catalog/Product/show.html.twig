@@ -13,7 +13,6 @@
 {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('js/vendor/jquery-ui-1.12.1.custom/jquery-ui.css') }}"/>
   <link rel="stylesheet" href="{{ asset('js/vendor/slick/slick.css') }}"/>
-  <link rel="stylesheet" href="{{ asset('js/vendor/slick/slick-theme.css') }}"/>
   <link rel="stylesheet" href="{{ asset('js/vendor/prettyphoto/css/prettyPhoto.css') }}"/>
 
   {{ parent() }}
@@ -30,132 +29,232 @@
 
 {% block main %}
 
-  <section>
+  <section class="section-in-product">
     <div class="container">
 
-      <div class="section-title">
-        <div class="breadcrumbs">
-          <a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>
-          <span class="breadcrumbs__divide"></span>
-          <a href="{{ path('taxon', {'slug': taxon.slug}) }}" class="breadcrumbs__item">{{ taxon.name }}</a>
-          <span class="breadcrumbs__divide"></span>
-          <a class="breadcrumbs__item breadcrumbs__item_active">{{ product.name }}</a>
+      {#<div class="section-title">#}
+        {#<div class="breadcrumbs">#}
+          {#<a href="{{ path('homepage') }}" class="breadcrumbs__item">Главная страница</a>#}
+          {#<span class="breadcrumbs__divide"></span>#}
+          {#<a href="{{ path('taxon', {'slug': taxon.slug}) }}" class="breadcrumbs__item">{{ taxon.name }}</a>#}
+          {#<span class="breadcrumbs__divide"></span>#}
+          {#<a class="breadcrumbs__item breadcrumbs__item_active">{{ product.name }}</a>#}
+        {#</div>#}
+        {#<span class="section-title__text">{{ product.name }}</span>#}
+      {#</div>#}
+
+      <div class="layer__container ">
+        <div class="layer__images product-image__gallery" id="product-image-gallery" >
+          <div class="main-image">
+            {% for image in product.images %}
+              <a href="{{ image_url(image) }}" class="show-full-image" itemprop="image" rel="vm-additional-images[]">
+                <img src="{{ image_url(image) }}" alt="">
+              </a>
+            {% endfor %}
+          </div>
         </div>
-        <span class="section-title__text">{{ product.name }}</span>
+        <div class="layer__text">
+          <h2 class="layer__title">{{ product.name }}</h2>
+          <div class="layer__text-wrap scroll-pane">
+            <div class="layer__text-item">
+              <div class="layer__text-title">Тип:</div>
+              <div class="layer__text-text">это готовое самостоятельное блюдо. Можно посыпать солью, чёрным перцем, сбрызнуть оливковым маслом, и с помощью ломтика хлеба или крекера собирать жидкую начинку. А можно так же, как и Моцареллу —со свежими помидорами и базиликом, или овощами, пожаренными на гриле.</div>
+            </div>
+            <div class="layer__text-item">
+              <div class="layer__text-title">Тип:</div>
+              <div class="layer__text-text">это готовое самостоятельное блюдо. Можно посыпать солью, чёрным перцем, сбрызнуть оливковым маслом, и с помощью ломтика хлеба или крекера собирать жидкую начинку. А можно так же, как и Моцареллу —со свежими помидорами и базиликом, или овощами, пожаренными на гриле.</div>
+            </div>
+          </div>
+          <div class="product-item__characteristics">
+              <span class="product-item__quantity">300 г  / </span>
+              <span class="product-item__price">1&nbsp;200&nbsp;₽</span>
+            </div>
+          <div class="product-item__info">
+            {#<% if (isPurchasable) { %>#}
+              <a class="button button_black button_add-to-cart button-buy_in-product" data-product-id="{{ product.id }}">
+                  <span>В корзину</span>
+                </a>
+              <span class="product-item__controls-title">количество</span>
+            <div class="product-item__controls quantity-widget quantity-wrap">
+              <a class="controls-item controls-item__increase quantity-control quantity-control__down"></a>
+              <input class="custom-input quantity-control__input" value="1" type="text">
+              <a class="controls-item controls-item__reduce quantity-control quantity-control__up"></a>
+            </div>
+            {#<% } %>#}
+            </div>
+          </div>
       </div>
 
-      <div class="product-container">
-        <div class="center_no-left">
-          <div class="section-wrap">
+      {#<div class="product-container">#}
+        {#<div class="center_no-left">#}
+          {#<div class="section-wrap">#}
 
-            <div id="product-image-gallery"
-                 class="product-image__gallery {% if image_url(product.mainImage) is empty %}product-image__gallery_no-image{% endif %}">
-              <div class="main-image">
+            {#<div id="product-image-gallery"#}
+                 {#class="product-image__gallery {% if image_url(product.mainImage) is empty %}product-image__gallery_no-image{% endif %}">#}
+              {#<div class="main-image">#}
+                {#<a href="{{ image_url(product.mainImage) }}" class="gallery-image" title="{{ product.name }}"#}
+                   {#itemprop="image" rel="vm-additional-images[]">#}
+                  {#<img src="{{ image_url(product.mainImage) }}" alt="Фотография товара {{ product.name }}">#}
+                {#</a>#}
+              {#</div>#}
+              {#<div class="product-image__gallery__additional">#}
+                {#{% for image in product.images %}#}
+                  {#<a href="{{ image_url(image) }}" rel="vm-additional-images[]"#}
+                     {#class="product-image gallery-image gallery-image__additional gallery-image__additional_active"#}
+                     {#title="{{ product.name }}">#}
+                    {#<img src="{{ image_url(image) }}" alt="Фотография товара {{ product.name }}">#}
+                  {#</a>#}
+                {#{% endfor %}#}
+              {#</div>#}
+            {#</div>#}
 
-                <a href="{{ image_url(product.mainImage) }}" class="gallery-image" title="{{ product.name }}"
-                   itemprop="image" rel="vm-additional-images[]">
-                  <img src="{{ image_url(product.mainImage) }}" alt="Фотография товара {{ product.name }}">
-                </a>
+            {#<div class="product-container__info-wrap">#}
+              {#<div class="product-container__info">#}
+                {#<div class="product-container__price">{{ product|productPrice }}</div>#}
+                {#<div class="product-container__count">#}
+                  {#<div class="quantity-widget quantity-wrap">#}
+                    {#<a class="quantity-control quantity-control__down"></a>#}
+                    {#<input class="quantity-control__input" type="text" value="1">#}
+                    {#<a class="quantity-control quantity-control__up"></a>#}
+                  {#</div>#}
+                  {#<button class="button-buy_in-product" data-product-id="{{ product.id }}"></button>#}
+                  {#<span class="product-container__quantity">всего {{ product.availableStock }} шт.</span>#}
+                {#</div>#}
+              {#</div>#}
 
-              </div>
-              <div class="product-image__gallery__additional">
-                {% for image in product.images %}
-                  <a href="{{ image_url(image) }}" rel="vm-additional-images[]"
-                     class="product-image gallery-image gallery-image__additional gallery-image__additional_active"
-                     title="{{ product.name }}">
-                    <img src="{{ image_url(image) }}" alt="Фотография товара {{ product.name }}">
-                  </a>
-                {% endfor %}
-              </div>
-            </div>
-
-            <div class="product-container__info-wrap">
-              <div class="product-container__info">
-                <div class="product-container__price">{{ product|productPrice }}</div>
-                <div class="product-container__count">
-                  <div class="quantity-widget quantity-wrap">
-                    <a class="quantity-control quantity-control__down"></a>
-                    <input class="quantity-control__input" type="text" value="1">
-                    <a class="quantity-control quantity-control__up"></a>
-                  </div>
-                  <button class="button-buy_in-product" data-product-id="{{ product.id }}"></button>
-                  <span class="product-container__quantity">всего {{ product.availableStock }} шт.</span>
-                </div>
-              </div>
-
-              <div class="product-brief-characteristics">
-                <div class="product-brief-characteristics_col-left">
+              {#<div class="product-brief-characteristics">#}
+                {#<div class="product-brief-characteristics_col-left">#}
                   {#<span class="product-brief-characteristics__location">#}
                     {#{% if stockManager.getAvailableWarehouse(product) %}#}
                       {#{{ stockManager.getAvailableWarehouse(product).city.name }}#}
                     {#{% endif %}#}
                   {#</span>#}
-                  {% if product.length %}
-                    <span class="product-brief-characteristics__item">Длина<span
-                              class="product-brief-characteristics__item_count">{{ product.length }} м</span></span>
-                  {% endif %}
-                  {% if product.width %}
-                    <span class="product-brief-characteristics__item">Ширина<span
-                              class="product-brief-characteristics__item_count">{{ product.width }} м</span></span>
-                  {% endif %}
-                </div>
-                <div class="product-brief-characteristics_col-right">
-                  <div class="product-brief-characteristics__article">Артикул –&nbsp;{{ product.sku }}</div>
-                  {% if product.weight %}
-                    <span class="product-brief-characteristics__item">Вес<span
-                              class="product-brief-characteristics__item_count">{{ product.weight }} кг</span></span>
-                  {% endif %}
-                  {% if product.volume %}
-                    <span class="product-brief-characteristics__item">Объем<span
-                              class="product-brief-characteristics__item_count">{{ product.volume }}
-                        м<sup>3</sup></span></span>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
+                  {#{% if product.length %}#}
+                    {#<span class="product-brief-characteristics__item">Длина<span#}
+                              {#class="product-brief-characteristics__item_count">{{ product.length }} м</span></span>#}
+                  {#{% endif %}#}
+                  {#{% if product.width %}#}
+                    {#<span class="product-brief-characteristics__item">Ширина<span#}
+                              {#class="product-brief-characteristics__item_count">{{ product.width }} м</span></span>#}
+                  {#{% endif %}#}
+                {#</div>#}
+                {#<div class="product-brief-characteristics_col-right">#}
+                  {#<div class="product-brief-characteristics__article">Артикул –&nbsp;{{ product.sku }}</div>#}
+                  {#{% if product.weight %}#}
+                    {#<span class="product-brief-characteristics__item">Вес<span#}
+                              {#class="product-brief-characteristics__item_count">{{ product.weight }} кг</span></span>#}
+                  {#{% endif %}#}
+                  {#{% if product.volume %}#}
+                    {#<span class="product-brief-characteristics__item">Объем<span#}
+                              {#class="product-brief-characteristics__item_count">{{ product.volume }}#}
+                        {#м<sup>3</sup></span></span>#}
+                  {#{% endif %}#}
+                {#</div>#}
+              {#</div>#}
+            {#</div>#}
 
+          {#</div>#}
+
+          {#<aside class="right">#}
+
+          {#</aside>#}
+        {#</div>#}
+
+        {#<div class="product-description" id="product-description-tabs">#}
+          {#<ul class="nav-tabs__wrap">#}
+            {#<li class="nav-tabs__item">#}
+              {#<a href="#product-description-tab" class="button nav-tabs-description nav-characteristics"><span>Характеристики</span></a>#}
+            {#</li>#}
+            {#<li class="nav-tabs__item">#}
+              {#<a href="#delivery-calculator-tab" class="button nav-tabs-description nav-delivery"><span>Калькулятор доставки</span></a>#}
+            {#</li>#}
+          {#</ul>#}
+
+          {#<div id="product-description-tab" class="product-description__info">#}
+            {#{% for productAttributeValueChunk in productAttributeValueChunks %}#}
+              {#<div class="product-description__col">#}
+                {#{% for productAttributeValue in productAttributeValueChunk %}#}
+                  {#<div class="product-description__col-item">#}
+                    {#<div class="col-item__name">{{ productAttributeValue.productAttribute.name }}</div>#}
+                    {#<div class="col-item__value">{{ productAttributeValue.value }}</div>#}
+                  {#</div>#}
+                {#{% endfor %}#}
+              {#</div>#}
+            {#{% endfor %}#}
+          {#</div>#}
+          {#<div id="delivery-calculator-tab" class="product-description__calc">#}
+          {#</div>#}
+        {#</div>#}
+      {#</div>#}
+    {#</div>#}
+
+    {#{% if product.relatedProducts|length > 0 %}#}
+      {#<div>#}
+        {#<h1>{{ hotspot_inline('related-products', 'Великолпное дополнение к сыру') }}</h1>#}
+        {#{% for rProduct in product.relatedProducts %}#}
+            {#{% include '@Store/Catalog/Product/product_card.html.twig' with { 'product': rProduct } %}#}
+        {#{% endfor %}#}
+      {#</div>#}
+    {#{% endif %}#}
+  </section>
+
+  <section class="section-product-addition">
+    <div class="container">
+      <h3>Великолепное дополнение к сыру</h3>
+      <div class="product-list">
+        <div class="product-item">
+          <a href="" class="product-item__image product-page-link">
+            <img src="/images/TEST_DELETE.png" alt="Нет фотографии">
+          </a>
+          <a href="" class="product-item__name  product-page-link">Мед</a>
+          <div class="product-item__characteristics">
+            <span class="product-item__quantity">300 г  / </span>
+            <span class="product-item__price">0&nbsp;₽</span>
           </div>
-
-          <aside class="right">
-
-          </aside>
+          <a class="addtocart-button button button_black button_add-to-cart">
+            <span>В корзину</span>
+          </a>
         </div>
 
-        <div class="product-description" id="product-description-tabs">
-          <ul class="nav-tabs__wrap">
-            <li class="nav-tabs__item">
-              <a href="#product-description-tab" class="button nav-tabs-description nav-characteristics"><span>Характеристики</span></a>
-            </li>
-            <li class="nav-tabs__item">
-              <a href="#delivery-calculator-tab" class="button nav-tabs-description nav-delivery"><span>Калькулятор доставки</span></a>
-            </li>
-          </ul>
+        <div class="product-item">
+          <a href="" class="product-item__image product-page-link">
+            <img src="/images/TEST_DELETE.png" alt="Нет фотографии">
+          </a>
+          <a href="" class="product-item__name  product-page-link">Мед</a>
+          <div class="product-item__characteristics">
+            <span class="product-item__quantity">300 г  / </span>
+            <span class="product-item__price">0&nbsp;₽</span>
+          </div>
+          <a class="addtocart-button button button_black button_add-to-cart">
+            <span>В корзину</span>
+          </a>
+        </div>
 
-          <div id="product-description-tab" class="product-description__info">
-            {% for productAttributeValueChunk in productAttributeValueChunks %}
-              <div class="product-description__col">
-                {% for productAttributeValue in productAttributeValueChunk %}
-                  <div class="product-description__col-item">
-                    <div class="col-item__name">{{ productAttributeValue.productAttribute.name }}</div>
-                    <div class="col-item__value">{{ productAttributeValue.value }}</div>
-                  </div>
-                {% endfor %}
-              </div>
-            {% endfor %}
+        <div class="product-item">
+          <a href="" class="product-item__image product-page-link">
+            <img src="/images/TEST_DELETE.png" alt="Нет фотографии">
+          </a>
+          <a href="" class="product-item__name  product-page-link">Мед</a>
+          <div class="product-item__characteristics">
+            <span class="product-item__quantity">300 г  / </span>
+            <span class="product-item__price">0&nbsp;₽</span>
           </div>
-          <div id="delivery-calculator-tab" class="product-description__calc">
-          </div>
+          <a class="addtocart-button button button_black button_add-to-cart">
+            <span>В корзину</span>
+          </a>
         </div>
       </div>
     </div>
+  </section>
 
-{#    {% if product.relatedProducts|length > 0 %}
-    <div>
-      <h1>{{ hotspot_inline('related-products', 'Великолпное дополнение к сыру') }}</h1>
-      {% for rProduct in product.relatedProducts %}
-          {% include '@Store/Catalog/Product/product_card.html.twig' with { 'product': rProduct } %}
-      {% endfor %}
+  <section class="section-back-to-all">
+    <div class="container">
+      <div class="section-back-to-all__link">
+        <a href="{{ url('catalog_index') }}" ><  назад ко всем сырам</a>
+      </div>
+      <div class="section-back-to-all__image">
+        <img  src="{{ asset('images/back-to-all.png') }}">
+      </div>
     </div>
-    {% endif %}#}
   </section>
 {% endblock %}

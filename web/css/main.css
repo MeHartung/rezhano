@@ -389,6 +389,10 @@ body {
   margin-top: -195px;
   position: relative;
 }
+h3 {
+  font-family: Catorze27style1-bold;
+  font-size: 45px;
+}
 body {
   font-family: 'DINPro', sans-serif;
   font-size: 18px;
@@ -471,6 +475,11 @@ img {
 }
 a {
   text-decoration: none;
+}
+.scroll-pane {
+  width: 100%;
+  height: 450px;
+  overflow: auto;
 }
 section {
   overflow: hidden;
@@ -585,7 +594,7 @@ input[type="text"].input-text {
   width: 17px;
   height: 23px;
   position: absolute;
-  bottom: 5px;
+  bottom: -4px;
   left: 3px;
 }
 .custom-checkbox_biggest .custom-checkbox__checkbox {
@@ -1347,7 +1356,7 @@ h1,
   transform: translate(-50%, -50%);
 }
 .product-item__characteristics {
-  text-align: center;
+  text-align: left;
 }
 .product-item__characteristics .product-item__quantity {
   font-family: alegreyasans-medium;
@@ -2394,6 +2403,177 @@ body .delivery-info__message {
   color: #ffcf40;
   border-color: #ffcf40;
 }
+.layer .layer-title {
+  font-size: 65px;
+  color: #000000;
+  font-family: Catorze27style1-bold;
+  display: block;
+  line-height: 58px;
+  margin-bottom: 35px;
+}
+.layer .layer-title:hover {
+  color: #ffcf40;
+}
+.layer__container {
+  height: 100%;
+}
+.layer__text {
+  position: relative;
+  height: 100%;
+  white-space: normal;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+.layer__title {
+  white-space: normal;
+}
+.layer__text-title {
+  font-size: 20px;
+  font-family: alegreyasans-bolditalic;
+  color: #000000;
+  display: inline;
+  white-space: normal;
+  vertical-align: top;
+  padding-right: 10px;
+}
+.layer__text-text {
+  font-size: 20px;
+  font-family: alegreyasans-regular;
+  color: #000000;
+  display: inline;
+  white-space: normal;
+  vertical-align: top;
+}
+.layer__text-wrap {
+  height: 315px;
+  outline: none;
+  padding: 0;
+}
+.layer .product-item__controls-title {
+  font-size: 21px;
+  font-family: Catorze27style1-semibold;
+  color: #000000;
+  display: inline-block;
+  vertical-align: middle;
+}
+.layer .product-item__info {
+  position: absolute;
+  bottom: 40px;
+  left: 45px;
+  width: 410px;
+  text-align: right;
+}
+.layer .product-item__info .button {
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  left: 0;
+}
+.layer .product-item__controls {
+  display: inline-block;
+  vertical-align: middle;
+}
+.layer .product-item__controls .custom-input {
+  width: 30px;
+}
+.section-in-product {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+.section-in-product .layer__text {
+  height: 713px;
+  position: relative;
+}
+.section-in-product .product-item__info {
+  position: absolute;
+  bottom: 40px;
+  left: 45px;
+  width: 410px;
+  text-align: right;
+}
+.section-in-product .product-item__info .button {
+  position: absolute;
+  left: 15px;
+}
+.section-in-product .product-item__controls-title {
+  font-size: 21px;
+  font-family: Catorze27style1-semibold;
+  color: #000000;
+  display: inline-block;
+  vertical-align: middle;
+}
+.section-in-product .product-item__controls {
+  display: inline-block;
+  vertical-align: middle;
+}
+.section-in-product .layer__text {
+  padding: 85px 60px;
+}
+.section-in-product .product-item__controls .custom-input {
+  width: 30px;
+}
+.section-in-product .scroll-pane {
+  height: 340px;
+}
+.section-in-product .layer__images {
+  width: 570px;
+  height: 713px;
+}
+.section-in-product .show-full-image {
+  width: 570px;
+  height: 713px;
+}
+.section-back-to-all {
+  background-color: #ffcf40;
+  padding-top: 45px;
+  white-space: nowrap;
+  margin-bottom: -65px;
+}
+.section-back-to-all__link {
+  padding-top: 30px;
+  text-align: center;
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+}
+.section-back-to-all__link a {
+  font-size: 45px;
+  font-family: Catorze27style1-bold;
+  color: #000000;
+}
+.section-back-to-all__link a:hover {
+  color: #ffffff;
+}
+.section-back-to-all__image {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+  text-align: center;
+}
+.section-product-addition {
+  background-color: #f3f3f3;
+  padding-top: 70px;
+}
+.section-product-addition h3 {
+  text-align: center;
+  margin-bottom: 75px;
+}
+.section-product-addition .product-list {
+  text-align: center;
+}
+.section-product-addition .product-list .product-item {
+  width: 330px;
+}
+.section-product-addition .product-list .product-item__image {
+  width: 130px;
+  height: 130px;
+}
+.section-product-addition .product-list .product-item__image img {
+  max-width: 200px;
+  max-height: 130px;
+}
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
   width: 24px;
@@ -3334,7 +3514,6 @@ body .custom-select_filter .ui-selectmenu-button {
 }
 .jspPane {
   width: 335px !important;
-  padding: 0 8px !important;
 }
 .jspVerticalBar {
   width: 8px;
@@ -3351,15 +3530,10 @@ body div.pp_overlay {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #002a45;
-  opacity: .9;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 body .pp_pic_holder.pp_default {
   background-color: #FFFFFF;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 2px 26.19px 0.81px rgba(116, 134, 150, 0.4);
-          box-shadow: 0 2px 26.19px 0.81px rgba(116, 134, 150, 0.4);
-  padding: 10px;
   min-width: 150px;
 }
 body .pp_pic_holder.pp_default .ppt {
@@ -3380,18 +3554,21 @@ body .pp_pic_holder.pp_default .pp_left .pp_right {
   padding: 0;
 }
 body .pp_pic_holder.pp_default .pp_close {
-  background-image: url('../images/pp_close.png');
-  background-repeat: no-repeat;
-  display: block;
-  width: 45px;
-  height: 40px;
-  top: -10px;
-  right: -80px;
-  opacity: 0.7;
+  background: url(../images/icons/close.png) center no-repeat;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: -40px;
+  right: -42px;
   z-index: 11111;
+  background-size: auto;
+  -webkit-transition: background-size 0.2s;
+  transition: background-size 0.2s;
 }
 body .pp_pic_holder.pp_default .pp_close:hover {
-  opacity: 1;
+  background-size: 90%;
+  -webkit-transition: background-size 0.2s;
+  transition: background-size 0.2s;
 }
 body .pp_pic_holder.pp_default .pp_content {
   width: 100% !important;
@@ -3457,4 +3634,7 @@ body .pp_pic_holder.pp_default .pp_content .pp_fade .pp_gallery {
 }
 body .pp_pic_holder.pp_default .pp_content .pp_fade .pp_details {
   display: none;
+}
+body #pp_full_res {
+  line-height: 0 !important;
 }

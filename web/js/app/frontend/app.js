@@ -17,10 +17,12 @@ requirejs.config({
     "jquery-ui": "/js/vendor/jquery-ui-1.12.1/ui",
     "jquery-ui.custom": "/js/vendor/jquery-ui-1.12.1.custom/jquery-ui",
     "jquery-ellipsis": "/js/vendor/jquery.ellipsis",
+    "jquery.mousewheel": "/js/vendor/jquery.mousewheel",
     "moment": "/js/vendor/momentjs/moment",
     "jquery-validate": "/js/vendor/jquery-validate/jquery-validate",
     //"jquery-mask": "vendor/inputmask/jquery.inputmask",
     "slick": "/js/vendor/slick/slick",
+    "jscrollpane": "/js/vendor/jquery.jscrollpane.min",
     "jquery-checkbox": "/js/vendor/jquery.ui.checkbox",
     "prettyphoto": "/js/vendor/prettyphoto/js/jquery.prettyPhoto",
     "cleave": "/js/vendor/cleave/cleave",
@@ -36,7 +38,9 @@ requirejs.config({
     "backbone": {"deps": ["underscore"], "exports": "Backbone"},
     "underscore": {"exports": "_"},
     "prettyphoto": { "deps": ["jquery"] },
-    "sinon" : {"exports": 'sinon'}
+    "sinon" : {"exports": 'sinon'},
+    "jscrollpane": {"export":'jscrollpane'},
+    "jquery-mousewheel": {"export": 'jquery.mousewheel'}
   }
 });
 
