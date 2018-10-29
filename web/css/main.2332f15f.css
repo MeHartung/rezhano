@@ -601,6 +601,13 @@ input[type="text"].input-text {
   width: 27px;
   height: 27px;
 }
+.custom-checkbox.font-alegreya span {
+  font-family: alegreyasans-light;
+  font-size: 17px;
+}
+.custom-checkbox.font-alegreya span a {
+  color: #ffcf40;
+}
 .control-panel {
   background-color: #f2f2f2;
   border-radius: 5px;
@@ -1575,7 +1582,7 @@ h1,
   position: relative;
   padding-top: 145px;
   overflow: initial;
-  margin-bottom: 100px;
+  margin-bottom: 245px;
 }
 .notes .notes-slider {
   width: 471px;
@@ -1722,7 +1729,7 @@ footer {
   width: 100%;
   height: auto;
   position: relative;
-  margin-top: -105px;
+  margin-top: -160px;
   padding-top: 260px;
 }
 footer .header-logo {
@@ -2003,7 +2010,7 @@ aside.right {
   vertical-align: top;
 }
 .cards-container {
-  padding-bottom: 45px;
+  padding-bottom: 56px;
   -ms-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -2043,10 +2050,19 @@ aside.right {
   transform: rotate(30deg);
 }
 .cards-container__step-container {
-  padding-top: 85px;
+  padding-top: 72px;
+  padding-bottom: 35px;
 }
 .cards-container__step-container .step-item {
   margin-bottom: 45px;
+}
+.cards-container__step-container .step-item.step-item-card-number {
+  position: relative;
+}
+.cards-container__step-container .step-item.step-item-card-number .button {
+  position: absolute;
+  top: -6px;
+  right: -127px;
 }
 .cards-container__step-container .step-item__title {
   font-family: alegreyasans-light;
@@ -2060,6 +2076,23 @@ aside.right {
   width: 252px;
   margin-right: 35px;
   position: relative;
+  margin-top: 8px;
+}
+.cards-container__step-container .step-item.step-item-input_biggest {
+  width: 100%;
+}
+.cards-container__step-container .step-item.step-item-input_350 {
+  width: 350px;
+}
+.cards-container__step-container .step-item.step-item-input .step-item-input__link {
+  font-size: 17px;
+  font-family: alegreyasans-light;
+  color: #000000;
+  padding: 8px 4px;
+}
+.cards-container__step-container .step-item.step-item-input .step-item-input__link a {
+  display: inline-block;
+  color: #ffcf40;
 }
 .cards-container__step-container .step-item.step-item-input:last-of-type {
   margin-right: 0;
@@ -2284,7 +2317,13 @@ aside.right {
 .section-checkout,
 .section-purchase {
   padding-top: 15px;
-  padding-bottom: 200px;
+  padding-bottom: 185px;
+}
+.section-purchase {
+  padding-bottom: 310px;
+}
+.section-purchase button.button {
+  padding: 5px 22px 10px 22px;
 }
 .section-checkout h1 {
   margin-bottom: 10px;
@@ -2317,6 +2356,43 @@ body .delivery-info__message {
   color: #ffcf40;
   font-family: alegreyasans-regular;
   font-size: 17px;
+}
+.cheese-card {
+  background-color: #e8e8e8;
+  padding-bottom: 120px;
+  overflow: visible;
+  position: relative;
+}
+.cheese-card__title {
+  font-size: 30px;
+  font-family: Catorze27style1-bold;
+  color: #000000;
+  display: inline-block;
+  max-width: 350px;
+  margin-left: 80px;
+  vertical-align: top;
+  margin-top: 37px;
+  position: relative;
+}
+.cheese-card__image {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -51px;
+  margin-left: 111px;
+}
+.cheese-card__more {
+  font-family: alegreyasans-regular;
+  font-size: 17px;
+  color: #000000;
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  border-bottom: 1px solid #000000;
+  line-height: 1;
+}
+.cheese-card__more:hover {
+  color: #ffcf40;
+  border-color: #ffcf40;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
@@ -3126,12 +3202,18 @@ body.ui-widget textarea {
   font-family: DINPro !important;
 }
 .ui-state-active,
+.ui-widget-content {
+  font-size: 17px;
+  line-height: 42px;
+}
+.ui-state-active,
 .ui-widget-content .ui-state-active {
-  border: transparent !important;
-  background-color: #eaf5f9 !important;
-  color: #000000 !important;
+  background-color: #ffffff !important;
+  color: #ffcf40 !important;
   margin: 0 !important;
   font-weight: 500 !important;
+  border: none !important;
+  border-bottom: 2px solid #000000 !important;
 }
 .ui-tabs .ui-tabs-panel {
   margin: 0 !important;
@@ -3206,10 +3288,49 @@ body .ui-widget-overlay {
 }
 body .custom-select .ui-selectmenu-button {
   border-radius: 0;
-  border: 3px solid #000000;
+  border: 2px solid #000000;
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
+  background-color: #ffffff;
+  font-family: Catorze27style1-medium;
+  font-size: 21px;
+  color: #000000;
+  padding: 6px 15px;
+}
+body .custom-select .ui-button .ui-icon {
+  background: url("../images/icons/select-dropdown-icon.png") center no-repeat;
+  width: 20px;
+  height: 13px;
+  margin-top: 7px;
+  background-position: 0 -13px;
+}
+body .custom-select .ui-button.ui-corner-top .ui-icon {
+  background-position: 0 0;
+}
+body .custom-select_filter .ui-selectmenu-button {
+  border-left: none !important;
+  border-right: none !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+.ui-selectmenu-menu .ui-widget.ui-widget-content {
+  border: 2px solid #000000;
+  background-color: #ffffff;
+  margin-top: -2px !important;
+}
+.ui-selectmenu-menu .ui-menu-item:last-child .ui-menu-item-wrapper {
+  border-color: #ffffff !important;
+}
+.ui-selectmenu-menu .ui-menu-item .ui-menu-item-wrapper {
+  margin: 0 12px !important;
+  border-bottom: 2px solid #000000;
+  font-family: alegreyasans-regular;
+  font-size: 17px !important;
+  line-height: 33px;
+}
+.section-purchase .cards-container__step-container .custom-select .ui-selectmenu-button {
+  width: 225px;
 }
 .jspPane {
   width: 335px !important;

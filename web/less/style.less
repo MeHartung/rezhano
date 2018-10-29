@@ -190,6 +190,18 @@ input[type="text"].input-text {
     //  background-color: #daeef5;
     //}
   }
+
+  &.font-alegreya {
+
+    span {
+      font-family: alegreyasans-light;
+      font-size: 17px;
+
+      a {
+        color: @rc_yellow;
+      }
+    }
+  }
 }
 
 
@@ -1587,6 +1599,7 @@ h1, .popular-products__title {
   position: relative;
   padding-top: 145px;
   overflow: initial;
+  margin-bottom: 245px;
 
   .notes-slider {
     width: 471px;
@@ -1704,7 +1717,6 @@ h1, .popular-products__title {
     }
   }
 
-  margin-bottom: 100px;
 
   .notes-images-gallery {
     width: 565px;
@@ -2226,10 +2238,23 @@ aside {
   }
 
   &__step-container {
-    padding-top: 85px;
+    padding-top: 72px;
+    padding-bottom: 35px;
+
+
 
     .step-item {
       margin-bottom: 45px;
+
+      &.step-item-card-number {
+        position: relative;
+
+        .button {
+          position: absolute;
+          top: -6px;
+          right: -127px;
+        }
+      }
 
       &__title {
         font-family: alegreyasans-light;
@@ -2243,6 +2268,27 @@ aside {
         width: 252px;
         margin-right: 35px;
         position: relative;
+        margin-top: 8px;
+
+        &_biggest {
+          width: 100%;
+        }
+
+        &_350 {
+          width: 350px;
+        }
+
+        .step-item-input__link {
+          font-size: 17px;
+          font-family: alegreyasans-light;
+          color: @c_black;
+          padding: 8px 4px;
+
+          a {
+            display: inline-block;
+            color: @rc_yellow
+          }
+        }
 
         &:last-of-type {
           margin-right: 0;
@@ -2525,6 +2571,14 @@ aside {
 .section-purchase {
   padding-top: 15px;
   padding-bottom: 185px;
+}
+
+.section-purchase {
+  padding-bottom: 310px;
+
+  button.button {
+    padding: 5px 22px 10px 22px;
+  }
 }
 
 .section-checkout {

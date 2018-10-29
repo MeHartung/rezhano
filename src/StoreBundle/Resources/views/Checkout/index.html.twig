@@ -486,6 +486,9 @@
           <div class="cards-container__step-container">
 
             <div class="step-item">
+              <span class="step-item__title">
+                Город получения
+              </span>
               <div class="custom-select">
                 <label for="">
                   <select name="" id="">
@@ -495,6 +498,7 @@
                   </select>
                 </label>
               </div>
+
             </div>
 
             <div class="step-item">
@@ -522,29 +526,14 @@
                   <span>Самовывоз с <span class="shipment-address">Красноармейской, 68</span></span>
                 </label>
               </div>
-
-              <a href="" >Ознакомьтесь с условиями доставки и оплаты</a>
-
             </div>
 
-            {#<div class="custom-checkbox custom-checkbox_bg-blue" name="tos">#}
-            {#<label>#}
-            {#<input id="register_juridicaltos" name="tos" class="checkbox" type="checkbox">#}
-            {#<span class="custom-checkbox__checkbox"></span>#}
-            {#<span>Я ознакомился и согласен с <a href="">Политикой Компании</a> и <a href="">условиями сотрудничества</a>#}
-            {#</span>#}
-            {#</label>#}
-            {#</div>#}
+            <div class="step-item step-item-input step-item-input_biggest">
+              <input class="input-text" type="text" placeholder="Адрес">
+              <div class="step-item-input__link">Ознакомьтесь с <a href="">условиями доставки и оплаты</a></div>
+            </div>
 
-            <div class="step-item step-item-input">
-              <input class="input-text" type="text" placeholder="ФИО">
-            </div>
-            <div class="step-item step-item-input">
-              <input class="input-text" type="text" placeholder="Телефон">
-            </div>
-            <div class="step-item step-item-input">
-              <input class="input-text" type="text" placeholder="Эл. почта">
-            </div>
+
           </div>
         </div>
 
@@ -557,7 +546,7 @@
           <div class="cards-container__step-container">
 
             <div class="step-item">
-              <div class="custom-checkbox" name="tos">
+              <div class="custom-checkbox font-alegreya" name="tos">
                 <label>
                   <input  name="tos" class="checkbox" type="checkbox">
                   <span class="custom-checkbox__checkbox"></span>
@@ -567,28 +556,22 @@
               </div>
             </div>
 
-            <div class="step-item ">
+            <div class="step-item step-item-input step-item-input_350 step-item-card-number">
               <input class="input-text" type="text" placeholder="Введите номер карты">
-              <a href="" class="button">
+              <a href="" class="button button_black">
                 <span>Применить</span>
               </a>
             </div>
 
             <div class="step-item">
-              <span class="step-item__title">
-                Способ получения
-              </span>
               <div class="custom-radio">
                 <label>
                   <input type="radio" class="radio" name="radio-delivery">
                   <span class="custom-radio__radio"></span>
-                  <span>Курьером</span>
+                  <span>При получении</span>
                 </label>
-
                 <span class="delivery-info">
-                  /  от 250 ₽ <span class="delivery-info__message">
-                    Кстати, при заказе сыров от 1500₽ мы сделаем доставку бесплатно
-                  </span>
+                  /  Наличными, банковской картой
                 </span>
               </div>
 
@@ -596,8 +579,11 @@
                 <label>
                   <input type="radio" class="radio" name="radio-delivery">
                   <span class="custom-radio__radio"></span>
-                  <span>Самовывоз с <span class="shipment-address">Красноармейской, 68</span></span>
+                  <span>Онлайн</span>
                 </label>
+                <span class="delivery-info">
+                  /  Картами Visa, MasterCard, Мир, Apple Pay
+                </span>
               </div>
             </div>
 

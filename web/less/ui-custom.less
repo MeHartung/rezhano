@@ -644,13 +644,19 @@ body.ui-widget {
   font-weight: 500 !important;
   font-family: DINPro !important;
 }
+.ui-state-active, .ui-widget-content {
+
+  font-size: 17px;
+  line-height: 42px;
+}
 
 .ui-state-active, .ui-widget-content .ui-state-active {
-  border: transparent !important;
-  background-color: @c_blue_lightest !important;
-  color: @c_black !important;
+  background-color: @c_white !important;
+  color: @rc_yellow !important;
   margin: 0 !important;
   font-weight: 500 !important;
+  border: none !important;
+  border-bottom: 2px solid @c_black !important;
 }
 
 //
@@ -763,9 +769,84 @@ body .custom-select {
 
   .ui-selectmenu-button {
     border-radius: 0;
-    border: 3px solid @c_black;
+    border: 2px solid @c_black;
     outline: none;
     box-shadow: none;
+    background-color: @c_white;
+    font-family: Catorze27style1-medium;
+    font-size: 21px;
+    color: @c_black;
+    padding: 6px 15px;
+  }
+
+  .ui-button {
+
+    .ui-icon {
+      background: url("../images/icons/select-dropdown-icon.png") center no-repeat;
+      width: 20px;
+      height: 13px;
+      margin-top: 7px;
+      background-position: 0 -13px;
+    }
+
+    &.ui-corner-top {
+
+      .ui-icon {
+        background-position: 0 0;
+      }
+    }
+  }
+
+  &_filter {
+
+    .ui-selectmenu-button {
+      border-left: none !important;
+      border-right: none !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+  }
+}
+
+
+.ui-selectmenu-menu {
+
+  .ui-widget.ui-widget-content {
+    border: 2px solid @c_black;
+    background-color: @c_white;
+    margin-top: -2px !important;
+  }
+
+  .ui-menu-item {
+
+    &:last-child {
+
+      .ui-menu-item-wrapper {
+        border-color: @c_white !important;
+      }
+    }
+
+    .ui-menu-item-wrapper {
+      margin: 0 12px !important;
+      border-bottom: 2px solid @c_black;
+      font-family: alegreyasans-regular;
+      font-size: 17px !important;
+      line-height: 33px;
+    }
+  }
+}
+
+.section-purchase {
+
+  .cards-container__step-container {
+
+    .custom-select {
+
+      .ui-selectmenu-button {
+        width: 225px;
+      }
+    }
 
   }
 }
+
