@@ -49,6 +49,12 @@ class ProductController extends Controller
       throw $this->createNotFoundException(sprintf('Товар "%s" снят с публикации', $slug));
     }
 
+    
+    if($product->getTaxons()->count() === 0)
+    {
+      throw $this->createNotFoundException(sprintf('Товар "%s" не найден', $slug));
+    }
+    
     $taxon = $product->getTaxons()->first();
     $productAttributeValues = $product->getProductAttributeValues();
 

@@ -21,7 +21,8 @@
         </div>
     {% endif %}
     <a href="{{ path('product', {'slug': product.slug}) }}" class="product-item__name" >{{ product.name }}</a>
-    <span class="product-item__type">мягкий сыр</span>
+    <span class="product-item__type">{{ product.productType }}</span>
+    {#<span class="product-item__type">мягкий сыр</span>#}
     <div class="product-item__characteristics">
       <span class="product-item__quantity">300 г  / </span>
       <span class="product-item__price">{{ product.price|price }}</span>
