@@ -1963,6 +1963,9 @@ footer .footer-aside__link {
 footer .footer-aside__link span {
   font-family: alegreyasans-medium;
 }
+footer .footer-aside__link:hover {
+  color: #d8c8ac;
+}
 footer .footer-aside__link.link_frukt {
   position: relative;
   margin-right: 50px;
@@ -1976,6 +1979,9 @@ footer .footer-aside__link.link_frukt:after {
   position: absolute;
   top: 4px;
   right: 0;
+}
+footer .footer-aside__link.link_frukt:hover:after {
+  background: url("../images/icons/frukt-hover.png");
 }
 .catalog-section {
   padding-bottom: 165px;
