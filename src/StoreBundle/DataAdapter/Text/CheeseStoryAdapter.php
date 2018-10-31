@@ -27,7 +27,7 @@ class CheeseStoryAdapter implements ClientApplicationModelAdapterInterface
       'title' => $subject->getTitle(),
       'text' => $subject->getText(),
       'position' => $subject->getPosition(),
-      'photo' => $subject->getTeaser()
+      'photo' => $subject->getTeaserImageFile()
     ];
   }
   

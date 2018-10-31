@@ -38,9 +38,12 @@ class PartnerAdmin extends AbstractAdmin
     
     $form
       ->add('name')
-      ->add('teaser', ImageType::class);
+      ->add('teaser_image_file', ImageType::class, [
+        'required' => !!$this->getSubject()->getTeaserImageFile(),
+        'image_id' => 'partner/teaser'
+      ]);
     
-    $form->getFormBuilder()->addEventListener(FormEvents::POST_SUBMIT,
+/*    $form->getFormBuilder()->addEventListener(FormEvents::POST_SUBMIT,
       function (\Symfony\Component\Form\FormEvent $event) use ($subject)
       {
         if ($this->getSubject()->getTeaser() === null)
@@ -49,7 +52,7 @@ class PartnerAdmin extends AbstractAdmin
           $error = new FormError($text);
           $event->getForm()->get('teaser')->addError($error);
         }
-      });
+      });*/
   }
   
   protected function configureRoutes(RouteCollection $collection)
@@ -69,13 +72,15 @@ class PartnerAdmin extends AbstractAdmin
   
   private function changeColor()
   {
+    /** @var Partner $subject */
+    $subject = $this->getSubject();
     $pathPrefix = $this->getConfigurationPool()->getContainer()->getParameter('kernel.root_dir') .
       DIRECTORY_SEPARATOR . '..' .
       DIRECTORY_SEPARATOR . 'web' .
       DIRECTORY_SEPARATOR . 'uploads' .
       DIRECTORY_SEPARATOR;
     
-    $imgPath = $pathPrefix . $this->getSubject()->getTeaser();
+    $imgPath = $pathPrefix . $subject->getTeaserImageFile();
     
     $imageInfo = pathinfo($imgPath);
     $ext = $imageInfo['extension'];

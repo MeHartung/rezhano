@@ -9,11 +9,13 @@
 namespace StoreBundle\Entity\Text;
 
 
+use Accurateweb\MediaBundle\Annotation\Image;
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use StoreBundle\Media\Text\PartnerImage;
+use StoreBundle\Media\Text\UnprocessedImage;
 
 /**
  * Class Partner
@@ -46,8 +48,9 @@ class Partner implements ImageAwareInterface
   /**
    * @var string|null
    * @ORM\Column(name="image", length=255)
+   * @Image(id="partner/teaser")
    */
-  private $teaser;
+  private $teaserImageFile;
   
   /**
    * @var array|null
@@ -61,12 +64,12 @@ class Partner implements ImageAwareInterface
    */
   public function getImage($id = null)
   {
-    if (!$this->teaser)
+    if (!$this->teaserImageFile)
     {
       return null;
     }
     
-    return new PartnerImage('teaser', $this->teaser, $this->getTeaserImageOptions());
+    return new PartnerImage('teaser', $this->teaserImageFile, $this->getTeaserImageOptions());
   }
   
   /**
@@ -75,7 +78,7 @@ class Partner implements ImageAwareInterface
    */
   public function setImage(ImageInterface $teaser)
   {
-    $this->teaser = $teaser ? $teaser->getResourceId() : null;
+    $this->teaserImageFile = $teaser ? $teaser->getResourceId() : null;
   }
   
   /**
@@ -95,26 +98,44 @@ class Partner implements ImageAwareInterface
   /**
    * @return string
    */
-  public function getTeaser()
+  public function getTeaserImageFile()
   {
-    return $this->teaser;
+    return $this->teaserImageFile;
   }
   
   /**
-   * @param string $teaser
+   * @param string $teaserImageFile
    * @return News
    */
-  public function setTeaser($teaser)
+  public function setTeaserImageFile($teaserImageFile)
   {
     /*
      * Не даем сбрасывать изображение из-за пустого значения в форме
      */
-    if (null !== $teaser)
+    if (null !== $teaserImageFile)
     {
-      $this->teaser = $teaser;
+      $this->teaserImageFile = $teaserImageFile;
     }
     
     return $this;
+  }
+  
+  /**
+   * @return ImageInterface | null
+   */
+  public function getTeaserImageFileImage()
+  {
+    if (null == $this->teaserImageFile)
+    {
+      return null;
+    }
+    
+    return new UnprocessedImage('partner/teaser', $this->teaserImageFile, []);
+  }
+  
+  public function setTeaserImageFileImage(ImageInterface $image = null)
+  {
+    $this->setTeaserImageFile($image ? $image->getResourceId() : null);
   }
   
   /**
