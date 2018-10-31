@@ -2,7 +2,7 @@ define(function(){
   //var _ = require('underscore');
 
   return _.template('\
-  <a class="product-item__image product-page-link" title="<%= name %> купить" href="<%= url %>"> \
+  <a class="product-item__image product-page-link <% if (mountBg) { %>product-item__image_yellow<% } %> " title="<%= name %> купить" href="<%= url %>"> \
     <% if (image) { %>\n\
       <img src="<%= image %>" alt="Фотография товара <%= name %>"/>\n\
     <% } else { %>\n\

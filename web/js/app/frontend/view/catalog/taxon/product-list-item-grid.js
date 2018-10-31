@@ -43,6 +43,7 @@ define(function(require){
         image: this.model.get('image'),
         price: Number(this.model.get('price')).toCurrencyString('₽', 0),
         discountValue: this.model.get('isSale') ? Math.round((1 - this.model.get('price') / this.model.get('oldPrice')) * 100) : null,
+        mountBg: this.model.get('background'),
         isSale: this.model.get('isSale'),
         isNovice: this.model.get('isNovice'),
         isHit: this.model.get('isHit'),
@@ -50,7 +51,6 @@ define(function(require){
         isPreorder: this.model.get('isPreorder'),
         isUserAuth: isUserAuth
       }));
-
       if (this.model.get('isPurchasable')){
         this.$el.removeClass('product-unavailable');
         // if (this.model.get('isPreorder')) {

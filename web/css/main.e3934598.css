@@ -2071,11 +2071,14 @@ footer .footer-aside__link.link_frukt:after {
   display: inline-block;
   background-color: #000000;
   vertical-align: middle;
-  margin-right: 20px;
+  margin-right: 40px;
+}
+.layer .add-to-cart-layer__image.add-to-cart-layer__image_yellow {
+  background-color: #ffcf40;
 }
 .layer .add-to-cart-layer__image img {
   position: absolute;
-  max-width: 180px;
+  max-width: 150px;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
