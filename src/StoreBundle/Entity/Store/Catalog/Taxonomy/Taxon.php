@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Media\Store\Catalog\Taxonomy\TaxonImage;
+use StoreBundle\Media\Text\UnprocessedImage;
 use StoreBundle\Sluggable\SluggableInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
@@ -80,7 +81,7 @@ class Taxon implements SluggableInterface, ImageAwareInterface
    *
    * @ORM\Column(name="image", length=255, nullable=true)
    */
-  private $teaser;
+  private $teaserImageFile;
 
   /**
    * @Gedmo\TreeRoot
@@ -231,28 +232,45 @@ class Taxon implements SluggableInterface, ImageAwareInterface
   /**
    * @return mixed
    */
-  public function getTeaser()
+  public function getTeaserImageFile()
   {
-    return $this->teaser;
+    return $this->teaserImageFile;
   }
 
   /**
-   * @param mixed $teaser
+   * @param mixed $teaserImageFile
    * @return Taxon
    */
-  public function setTeaser($teaser)
+  public function setTeaserImageFile($teaserImageFile)
   {
     /*
      * Не даем сбрасывать изображение из-за пустого значения в форме
      */
-    if (null !== $teaser)
+    if (null !== $teaserImageFile)
     {
-      $this->teaser = $teaser;
+      $this->teaserImageFile = $teaserImageFile;
     }
 
     return $this;
   }
-
+  
+  /**
+   * @return ImageInterface | null
+   */
+  public function getTeaserImageFileImage()
+  {
+    if (null == $this->teaserImageFile)
+    {
+      return null;
+    }
+    
+    return new UnprocessedImage('taxon/teaser', $this->teaserImageFile, []);
+  }
+  
+  public function setTeaserImageFileImage(ImageInterface $image = null)
+  {
+    $this->setTeaserImageFile($image ? $image->getResourceId() : null);
+  }
   /**
    * @return mixed
    */
@@ -385,12 +403,12 @@ class Taxon implements SluggableInterface, ImageAwareInterface
    */
   public function getImage($id = null)
   {
-    if (!$this->teaser)
+    if (!$this->teaserImageFile)
     {
       return null;
     }
 
-    return new TaxonImage('teaser', $this->teaser);
+    return new TaxonImage('teaser', $this->teaserImageFile);
   }
 
   /**
@@ -399,7 +417,7 @@ class Taxon implements SluggableInterface, ImageAwareInterface
    */
   public function setImage(ImageInterface $image)
   {
-    $this->teaser = $image ? $image->getResourceId() : null;
+    $this->teaserImageFile = $image ? $image->getResourceId() : null;
     return $this;
   }
 

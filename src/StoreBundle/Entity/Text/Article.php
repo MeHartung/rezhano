@@ -6,9 +6,11 @@
 namespace StoreBundle\Entity\Text;
 
 
+use Accurateweb\MediaBundle\Annotation\Image;
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use StoreBundle\Media\Text\ArticleImage;
+use StoreBundle\Media\Text\UnprocessedImage;
 use StoreBundle\Sluggable\SluggableInterface;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -111,9 +113,9 @@ class Article implements SluggableInterface, ImageAwareInterface
    * @var string
    *
    * @ORM\Column(name="image", length=255, nullable=true)
-   *
+   * @Image(id="article/news")
    */
-  private $teaser;
+  private $teaserImageFile;
 
   /**
    * @var array
@@ -321,28 +323,46 @@ class Article implements SluggableInterface, ImageAwareInterface
   /**
    * @return string
    */
-  public function getTeaser()
+  public function getTeaserImageFile()
   {
-    return $this->teaser;
+    return $this->teaserImageFile;
   }
 
   /**
-   * @param string $teaser
+   * @param string $teaserImageFile
    * @return Article
    */
-  public function setTeaser($teaser)
+  public function setTeaserImageFile($teaserImageFile)
   {
     /*
      * Не даем сбрасывать изображение из-за пустого значения в форме
      */
-    if (null !== $teaser)
+    if (null !== $teaserImageFile)
     {
-      $this->teaser = $teaser;
+      $this->teaserImageFile = $teaserImageFile;
     }
 
     return $this;
   }
-
+  
+  /**
+   * @return ImageInterface | null
+   */
+  public function getTeaserImageFileImage()
+  {
+    if (null == $this->teaserImageFile)
+    {
+      return null;
+    }
+    
+    return new UnprocessedImage('article/teaser', $this->teaserImageFile, []);
+  }
+  
+  public function setTeaserImageFileImage(ImageInterface $image = null)
+  {
+    $this->setTeaserImageFile($image ? $image->getResourceId() : null);
+  }
+  
   /**
    * @return array
    */
@@ -366,7 +386,7 @@ class Article implements SluggableInterface, ImageAwareInterface
    */
   public function getImage($id=null)
   {
-    if (!$this->teaser)
+    if (!$this->teaserImageFile)
     {
       $matches = array();
       if (false === preg_match('/<img\s+src=["\']([^"\']+)["\']/', $this->announce, $matches))
@@ -376,7 +396,7 @@ class Article implements SluggableInterface, ImageAwareInterface
 
       if (isset($matches[1]))
       {
-        $this->teaser = $matches[1];
+        $this->teaserImageFile = $matches[1];
       }
       else
       {
@@ -384,7 +404,7 @@ class Article implements SluggableInterface, ImageAwareInterface
       }
     }
 
-    return new ArticleImage('teaser', $this->teaser, $this->getTeaserImageOptions());
+    return new ArticleImage('teaser', $this->teaserImageFile, $this->getTeaserImageOptions());
   }
 
   /**
@@ -392,7 +412,7 @@ class Article implements SluggableInterface, ImageAwareInterface
    */
   public function setImage(ImageInterface $teaser)
   {
-    $this->teaser = $teaser ? $teaser->getResourceId() : null;
+    $this->teaserImageFile = $teaser ? $teaser->getResourceId() : null;
   }
 
 }

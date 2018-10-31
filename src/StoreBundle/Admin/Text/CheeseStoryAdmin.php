@@ -52,7 +52,7 @@ class CheeseStoryAdmin extends AbstractAdmin
     $form
     #  ->add('title')
       ->add('text', TinyMceType::class)
-    #  ->add('teaser', ImageType::class, array(
+    #  ->add('teaserImageFile', ImageType::class, array(
     #    'required' => $subject->getTeaser() === null
     #  ));
   ;

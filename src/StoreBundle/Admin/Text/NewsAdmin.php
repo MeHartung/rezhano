@@ -104,7 +104,7 @@ class NewsAdmin extends AbstractAdmin
       ->end()
       ->end()
       ->tab('Фото')
-        ->add('teaser', ImageType::class, array(
+        ->add('teaserImageFile', ImageType::class, array(
           'required' => false
         ))
 //      ->add('file', 'file', $this->getFileFieldOptions())
