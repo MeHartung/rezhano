@@ -697,6 +697,9 @@ input[type="text"].input-text {
   color: #ffffff;
   position: relative;
 }
+.header.black-bg {
+  background: #000000;
+}
 .footer {
   border-top: 1px solid #dcdcdc;
 }
@@ -765,7 +768,6 @@ header {
   padding: 37px 50px;
 }
 header .header-menu-wrap {
-  max-width: 1400px;
   margin: 0 auto;
   position: relative;
 }
@@ -2785,6 +2787,32 @@ body .delivery-info__message {
 }
 .product-filter__link {
   text-align: left;
+}
+.error-page {
+  background-color: #000000;
+  text-align: center;
+  padding-top: 88px;
+  padding-bottom: 288px;
+}
+.error-page_500 {
+  padding-top: 255px;
+  padding-bottom: 300px;
+}
+.error-page__image {
+  display: inline-block;
+  margin-bottom: 38px;
+}
+.error-page__text {
+  font-family: Catorze27style1-medium;
+  font-size: 21px;
+  color: #ffffff;
+}
+.error-page__link {
+  color: #ffcf40;
+}
+.error-page__link:hover {
+  color: #ffcf40;
+  border-bottom: 2px solid #ffcf40;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

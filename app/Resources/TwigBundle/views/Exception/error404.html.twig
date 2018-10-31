@@ -1,67 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{#{% block stylesheets %}#}
-    {#{{ parent() }}#}
-    {#<link rel="stylesheet" href="{{ asset('css/error.css') }}" media="all"/>#}
-{#{% endblock %}#}
-
-
+ {% block header %}
+   <header style="" class="{% block header_class %}header{% endblock %} black-bg">
+     <div class="header-menu-wrap">
+       <a class="header-logo" title="Режано"
+          {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
+       {% block headerMenu %}
+         {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
+       {% endblock %}
+       <div class="header-controls">
+         <a href="" class="header-controls__item header-controls__cabinet">
+           <span class="header-controls__notice">
+             <span class="notice-count">1</span>
+           </span>
+         </a>
+         <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
+           {% if cart.orderItems|length %}
+             <span class="header-controls__notice">
+               <span class="notice-count">{{ cart.orderItems|length }}</span>
+             </span>
+           {% endif %}
+         </a>
+       </div>
+     </div>
+   </header>
+ {% endblock header %}
 
 {% block main %}
-    <div class="error-page">
-        <div class="container container_narrow">
-            <div class="error-page__image">
-                <span class="error-page__code">404</span>
-            </div>
-            <div class="error-page__message">
-                <span class="error-page__title">Страница не найдена</span>
-                <p class="error-page__text">
-                    Неправильно набран адрес, <br>или такой страницы больше не существует.
-                </p>
-                <p class="error-page__text">
-                    Вернитесь на <a href="{{ url('homepage') }}" class="error-page__index-page">главную</a>
-                </p>
-            </div>
-        </div>
-
+  <div class="error-page error-page_404">
+    <div class="container">
+      <div class="error-page__image">
+        <img src="{{ asset('/images/404.png') }}" alt="">
+      </div>
+      <div class="error-page__message">
+        <p class="error-page__text">
+          Такой страницы нет. Но вы всегда можете посмотреть наши сыры <a href="{{ url('catalog_index') }}" class="error-page__link">здесь</a>
+        </p>
+      </div>
     </div>
+  </div>
 {% endblock %}
-
-{#{% block body %}#}
-{#<div id="gkPage">#}
-  {#<div id="gkPageWrap">#}
-    {#<div id="frame">#}
-      {#<div id="errorDescription">#}
-        {#<h2><span>404</span>Запрашиваемая Вами страница не найдена </h2>#}
-        {#<h3>Свяжитесь с нами для уточнения необходимой Вам информации</h3>#}
-      {#</div>#}
-    {#</div>#}
-
-    {#<div id="errorboxbody">#}
-      {#<script type="text/javascript">#}
-        {#<!--#}
-        {#var prefix = '&#109;a' + 'i&#108;' + '&#116;o';#}
-        {#var path = 'hr' + 'ef' + '=';#}
-        {#var addy8137 = '&#105;nb&#111;x' + '&#64;';#}
-        {#addy8137 = addy8137 + '&#101;xc&#97;m' + '&#46;' + 'r&#117;';#}
-        {#var addy_text8137 = 'E-MAIL';#}
-        {#document.write('<a ' + path + '\'' + prefix + ':' + addy8137 + '\'>');#}
-        {#document.write(addy_text8137);#}
-        {#document.write('<\/a>');#}
-        {#//-->\n </script>#}
-        {#<script type="text/javascript">#}
-        {#<!--#}
-        {#document.write('<span style=\'display: none;\'>');#}
-        {#//-->#}
-      {#</script>#}
-        {#Этот адрес электронной почты защищен от спам-ботов. У вас должен быть включен JavaScript для просмотра.#}
-      {#<script type="text/javascript">#}
-         {#<!--#}
-         {#document.write('</');#}
-         {#document.write('span>');#}
-         {#//-->#}
-      {#</script>#}
-    {#</div>#}
-  {#</div>#}
-{#</div>#}
-{#{% endblock %}#}
