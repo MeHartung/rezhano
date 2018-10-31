@@ -225,7 +225,8 @@ class OrderItem implements ShippableInterface
         'slug' => $product->getSlug(),
         'images' => count($images)>0 ? $images : null,
         'preview_image' => $product->getFirstImage(),
-        'taxon' => $primary_taxon?$primary_taxon->getName():''
+        'taxon' => $primary_taxon?$primary_taxon->getName():'',
+        'background' => $product->getBackground()
       ] : null
     ];
   }
