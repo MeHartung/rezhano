@@ -9,8 +9,9 @@ define(function(require){
         <div class="layer__container">\
           <div class="layer__title">Товар добавлен в корзину</div>\
           <div class="add-to-cart-layer__wrap">\
-              <a href="<%= product_url %>" class="add-to-cart-layer__image" style="background: url(\'<%= preview_image %>\') center no-repeat">\
-              </a>\
+            <a href="<%= product_url %>" class="add-to-cart-layer__image">\
+              <img src="(\'<%= preview_image %>\')" alt="">\
+            </a>\
             <div class="add-to-cart-layer__info">\
               <a href="<%= product_url %>" class="add-to-cart-layer__product-name"><%= name %></a>\
               <div class="add-to-cart-layer__product-value">количество <%= quantity %> &nbsp;&nbsp; <%= price.toCurrencyString() %></div>\
