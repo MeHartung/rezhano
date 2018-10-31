@@ -151,7 +151,8 @@ class CheckoutType extends AbstractType
         'constraints' => [
           new NotBlank(['message' => 'Пожалуйста, укажите способ оплаты заказа'])
         ],
-        'expanded' => true
+        'expanded' => true,
+        'label' => false
       ])
       ->add('tos_agreement', CheckboxType::class, [
         'mapped' => false,

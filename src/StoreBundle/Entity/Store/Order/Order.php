@@ -178,7 +178,7 @@ class Order implements ClientApplicationModelAdapterInterface
   private $shippingAddress;
   
   /**
-   * @var ShippingMethodInterface
+   * @var \StoreBundle\Entity\Store\Shipping\ShippingMethod
    * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Shipping\ShippingMethod", inversedBy="id")
    */
   private $shippingMethod;
@@ -651,7 +651,7 @@ class Order implements ClientApplicationModelAdapterInterface
   }
 
   /**
-   * @return ShippingMethodInterface
+   * @return \StoreBundle\Entity\Store\Shipping\ShippingMethod
    */
   public function getShippingMethod()
   {

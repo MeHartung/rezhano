@@ -23,7 +23,7 @@ class OrderItemTransformer
       throw new \Exception(sprintf('Product not linked to order item'));
     }
 
-    $skald_code = $product->getMoyskladCode();
+    $skald_code = $product->getExternalCode();
 
     if (!$skald_code)
     {

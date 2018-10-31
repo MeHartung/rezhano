@@ -64,7 +64,10 @@ class MoyskladOrderSender
    */
   public function sendOrder(Order $order)
   {
-    $organization = $this->sklad->getRepository('MoySklad\\Entities\\Organization')->find($this->organization_id);
+    
+    $orid = $this->sklad->getRepository('MoySklad\\Entities\\Organization')->findAll();
+    $organization = $orid[0];
+    #$organization = $this->sklad->getRepository('MoySklad\\Entities\\Organization')->find($this->organization_id);
 
     if (!$organization)
     {
@@ -75,7 +78,7 @@ class MoyskladOrderSender
       $order->getCustomerEmail(),
       $order->getCustomerFullName(),
       $order->getCustomerPhone(),
-      ($order->getShippingMethodId() != ShippingMethodCdekTerminal::UID)?$order->getShippingAddress():''
+      $order->getShippingAddress()
     );
 
     $customerOrder = new CustomerOrder($this->sklad->getSklad(), [
