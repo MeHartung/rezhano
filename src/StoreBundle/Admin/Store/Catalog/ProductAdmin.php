@@ -166,7 +166,6 @@ class ProductAdmin extends AbstractAdmin
         ->tab('Фотогалерея')
           ->add('background', ChoiceType::class, [
             'choices' => [
-              'Нет' => null,
               'Оранжевая' => Product::ORANGE_BACKGROUND,
               'Черная' => Product::BLACK_BACKGROUND,
             ],

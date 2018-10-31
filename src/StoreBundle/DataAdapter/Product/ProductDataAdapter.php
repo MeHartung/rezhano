@@ -81,6 +81,7 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'isSale' => $subject->isSale(),
       'url' => $this->router->generate('product', array('slug' => $subject->getSlug())),
       'isFavorite' => $isFavorite,
+      'background' => $subject->getBackground()
     );
   }
 
