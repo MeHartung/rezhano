@@ -26,12 +26,15 @@ define(function(require){
       this.model = new Product(ObjectCache.Product || {});
 
       this.cartItem = this.cart.createItem({
-        product_id: this.model.get('id')
+        product_id: this.model.get('id'),
+        quantity: this.model.get('min_count')
       });
 
       this.quantityWidget = new QuantityWidget({
         model: this.cartItem,
-        max: this.model.get('available_stock')
+        max: this.model.get('available_stock'),
+        min: this.model.get('min_count'),
+        step: this.model.get('count_step')
       });
 
       this.imageGalleryView = new ImageGalleryView();

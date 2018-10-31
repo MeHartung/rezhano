@@ -11,6 +11,8 @@ namespace StoreBundle\Admin\Products\Type;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\CoreBundle\Form\Type\BooleanType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class ProductTypeAdmin extends AbstractAdmin
 {
@@ -19,6 +21,9 @@ class ProductTypeAdmin extends AbstractAdmin
   {
    $list
      ->add('name')
+     ->add('measured', BooleanType::class, array(
+       'transform' => true
+     ))
      ->add('productAttributes', 'sonata_type_model_autocomplete', array(
        'multiple' => 'true',
        'editable' => 'true',
@@ -38,6 +43,11 @@ class ProductTypeAdmin extends AbstractAdmin
     $form
       ->tab('Тип')
         ->add('name')
+        ->add('measured', BooleanType::class, array(
+          'transform' => true
+        ))
+        ->add('minCount', NumberType::class)
+        ->add('countStep', NumberType::class)
       ->end()
       ->end()
 

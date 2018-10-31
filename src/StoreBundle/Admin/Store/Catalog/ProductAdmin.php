@@ -95,6 +95,8 @@ class ProductAdmin extends AbstractAdmin
       ->add('publicationAllowed', BooleanType::class, array(
         'transform' => true
       ))
+      ->add('units')
+      ->add('package', NumberType::class, ['required' => false])
 //      ->add('isPurchasable', BooleanType::class, array(
 //        'transform' => true,
 //        'help' => 'Если нет, товар будет отображен, как «Снят с производства»'

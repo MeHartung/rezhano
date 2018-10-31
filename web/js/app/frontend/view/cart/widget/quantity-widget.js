@@ -12,7 +12,8 @@ define(function(require){
     className: 'quantity-widget quantity-wrap',
     defaults:{
       min: 1,
-      max: null
+      max: null,
+      step: 1
     },
     events:{
       'keydown  .quantity-control__input': 'onCartActionsQuantityInputKeydown',
@@ -35,12 +36,14 @@ define(function(require){
       if (typeof this.options.max !== 'undefined') this.maxQuantity = this.options.max;
       else this.maxQuantity = this.defaults.max;
 
+      if (typeof this.options.step !== 'undefined') this.step = parseFloat(this.options.step);
+      else this.step = this.defaults.step;
 
-        this.$quantityInput =  this.$('.quantity-control__input');
+      this.$quantityInput =  this.$('.quantity-control__input');
     },
     render: function(){
       this.$el.html(template({
-        quantity: this.model.get('quantity'),
+        quantity: this.formatFloat(+this.model.get('quantity')),
         product_stock: this.model.get('product')?this.model.get('product').available_stock:null,
         showButtons: this.options.showButtons
       }));
@@ -66,22 +69,29 @@ define(function(require){
           _val = parseFloat(value);
       
       if (!isNaN(_val) && isFinite(_val) && this.__valueIsInBounds(_val)) {
-        self.model.set({ quantity: _val });
+        _val = Math.floor(_val / this.step) * this.step;
+
+        if (+self.model.get('quantity') === _val) {
+          this.$quantityInput.val(this.formatFloat(+this.model.get('quantity')));
+        } else {
+          self.model.set({ quantity: _val });
+        }
+
       } else {
         if (value.length > 0){
-          this.$quantityInput.val(self.previousValue);
+          this.$quantityInput.val(this.formatFloat(+self.previousValue));
         }
       }
     },
     onQuantityChanged: function(){
-      this.$quantityInput.val(this.model.get('quantity'));
+      this.$quantityInput.val(this.formatFloat(+this.model.get('quantity')));
     },
     onAppendClick: function(e){
       e.preventDefault();
       var value = this.$quantityInput.val(),
           _val = parseFloat(value);
       if (!isNaN(_val) && isFinite(_val)) {
-        this.model.set({ quantity: this.__ensureMaxLimit(_val + 1) });
+        this.model.set({ quantity: this.__ensureMaxLimit(_val + this.step) });
       } else {
         this.model.set({ quantity: 1 });
       }
@@ -92,7 +102,7 @@ define(function(require){
 
       var value = this.$quantityInput.val();
       if (!isNaN(parseFloat(value)) && isFinite(value)) {
-        this.model.set({ quantity: Math.max(this.model.get('quantity') - 1, this.minQuantity)});
+        this.model.set({ quantity: Math.max(this.model.get('quantity') - this.step, this.minQuantity)});
       } else {
         this.model.set({ quantity: this.minQuantity });
       }
@@ -113,10 +123,13 @@ define(function(require){
         return v;
       }
 
-      return Math.min(this.maxQuantity, v);
+      return Math.min(parseInt(this.maxQuantity / this.step) * this.step, v);
     },
     __valueIsInBounds: function(v){
       return v >= this.minQuantity && (Math.abs(v - this.__ensureMaxLimit(v)) < 0.001);
+    },
+    formatFloat: function ($number) {
+      return $number - Math.floor($number) ? $number.toFixed(3) : $number;
     }
   });
 });

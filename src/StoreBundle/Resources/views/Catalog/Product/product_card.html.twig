@@ -24,14 +24,16 @@
     <span class="product-item__type">{{ product.productType }}</span>
     {#<span class="product-item__type">мягкий сыр</span>#}
     <div class="product-item__characteristics">
-      <span class="product-item__quantity">300 г  / </span>
-      <span class="product-item__price">{{ product.price|price }}</span>
+        {% if product.package %}
+            <span class="product-item__quantity">{{ product.package }} {{ product.units }} / </span>
+        {% endif %}
+        <span class="product-item__price">{{ product.price|price }}</span>
     </div>
     <a class="addtocart-button button button_black button_add-to-cart" data-product-id="{{ product.id }}"><span>В корзину</span></a>
     <div class="product-item__controls">
         {#<span class="controls-title">количество</span>#}
         <span class="controls-item controls-item__increase"></span>
-        <input type="text" class="custom-input" value="0">
+        <input type="text" class="custom-input" value="{{ product.minCount }}">
         <span class="controls-item controls-item__reduce"></span>
     </div>
 </div>

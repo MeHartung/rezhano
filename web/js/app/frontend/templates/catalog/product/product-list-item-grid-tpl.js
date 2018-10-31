@@ -16,17 +16,20 @@ define(function(){
   </a>\
   <a href="<%= url %>" class="product-item__name  product-page-link"><%= name %></a>\n\
   <span class="product-item__type">мягкий сыр</span>\n\
-  <div class="product-item__characteristics">\
-    <span class="product-item__quantity">300 г  / </span>\n' +
-'   <span class="product-item__price"><%= price %></span>\
+  <div class="product-item__characteristics">\n\
+  <% if (package) { %>\
+    <span class="product-item__quantity"><%= package %> <%= units %> / </span>\n\
+  <% } %>\
+    <span class="product-item__price"><%= price %></span>\
   </div>\
   <% if (isPurchasable) { %>\
     <a class="addtocart-button button button_black button_add-to-cart" data-product-id="<%= id %>"><span>В корзину</span></a>\
-    <div class="product-item__controls">\n' +
-'        <span class="controls-title">количество</span>\n' +
-'        <a class="controls-item controls-item__increase"></a>\n' +
-'        <input type="text" class="custom-input" value="1">\n' +
-'        <a class="controls-item controls-item__reduce"></a>\n' +
-'    </div>\
-  <% } %>\n')
+    <div class="product-item__controls">\n\
+        <span class="controls-title">количество</span>\n\
+        <a class="controls-item controls-item__increase"></a>\n\
+        <input type="text" class="custom-input" value="1">\n\
+        <a class="controls-item controls-item__reduce"></a>\n\
+    </div>\
+  <% } %>\n\
+  ')
 });

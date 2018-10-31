@@ -28,8 +28,12 @@ define(function(require){
       this.cart = options.cart;
       this.quantityWidget = new QuantityWidget({
         model: this.cart.createItem({
-          productId: this.model.get('id')
-        })
+          productId: this.model.get('id'),
+          quantity: this.model.get('min_count')
+        }),
+        max: this.model.get('available_stock'),
+        min: this.model.get('min_count'),
+        step: this.model.get('count_step')
       });
       this.productQuickViewDialog = null;
     },
@@ -49,7 +53,9 @@ define(function(require){
         isHit: this.model.get('isHit'),
         isPurchasable: this.model.get('isPurchasable'),
         isPreorder: this.model.get('isPreorder'),
-        isUserAuth: isUserAuth
+        isUserAuth: isUserAuth,
+        package: this.model.get('package'),
+        units: this.model.get('units')
       }));
       if (this.model.get('isPurchasable')){
         this.$el.removeClass('product-unavailable');

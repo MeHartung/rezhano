@@ -40,6 +40,9 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
     $isFavorite = false;
     $primary_taxon = $subject->getPrimaryTaxon();
     $brand = $subject->getBrand();
+    $isMeasured = $subject->getMeasured();
+    $count_step = $subject->getMinCount();
+    $min_count = $subject->getCountStep();
 
     $images = [];
     foreach ($subject->getImages() as $image)
@@ -81,7 +84,12 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'isSale' => $subject->isSale(),
       'url' => $this->router->generate('product', array('slug' => $subject->getSlug())),
       'isFavorite' => $isFavorite,
-      'background' => $subject->getBackground()
+      'background' => $subject->getBackground(),
+      'package' => $subject->getPackage(),
+      'units' => $subject->getUnits(),
+      'isMeasured' => $isMeasured,
+      'count_step' => $count_step,
+      'min_count' => $min_count
     );
   }
 

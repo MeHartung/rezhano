@@ -503,6 +503,22 @@
              <source>Checkout At</source>
              <target>Оформлен</target>
            </trans-unit>
+            <trans-unit id="Package">
+                <source>Package</source>
+                <target>Вес единицы товара</target>
+            </trans-unit>
+            <trans-unit id="Measured">
+                <source>Measured</source>
+                <target>Весовой товар</target>
+            </trans-unit>
+            <trans-unit id="Min Count">
+                <source>Min Count</source>
+                <target>Минимальное количество для заказа</target>
+            </trans-unit>
+            <trans-unit id="Count Step">
+                <source>Count Step</source>
+                <target>Шаг изменения количества</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>

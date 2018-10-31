@@ -54,6 +54,27 @@ class ProductType
    */
   private $productAttributes;
 
+  /**
+   * @var bool
+   *
+   * @ORM\Column(type="boolean")
+   */
+  private $measured = false;
+
+  /**
+   * @var float
+   *
+   * @ORM\Column(type="decimal", scale=3, nullable=true)
+   */
+  private $minCount = 1;
+
+  /**
+   * @var float
+   *
+   * @ORM\Column(type="decimal", scale=3, nullable=true)
+   */
+  private $countStep = 1;
+
   public function __construct()
   {
     $this->productAttributes = new ArrayCollection();
@@ -134,7 +155,62 @@ class ProductType
     return $this;
   }
 
+  /**
+   * @return mixed
+   */
+  public function getMeasured()
+  {
+    return $this->measured;
+  }
 
+  /**
+   * @param mixed $measured
+   * @return ProductType
+   */
+  public function setMeasured($measured)
+  {
+    $this->measured = $measured;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getMinCount()
+  {
+    return $this->minCount;
+  }
+
+  /**
+   * @param mixed $minCount
+   * @return ProductType
+   */
+  public function setMinCount($minCount)
+  {
+    $this->minCount = $minCount;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getCountStep()
+  {
+    return $this->countStep;
+  }
+
+  /**
+   * @param mixed $countStep
+   * @return ProductType
+   */
+  public function setCountStep($countStep)
+  {
+    $this->countStep = $countStep;
+
+    return $this;
+  }
 
   public function __toString()
   {
