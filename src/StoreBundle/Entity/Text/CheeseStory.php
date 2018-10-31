@@ -31,8 +31,7 @@ class CheeseStory implements ImageAwareInterface
    * @ORM\Column(type="string", length=256, nullable=true)
    * @Assert\NotBlank(message="Поле не может быть пустым")
    */
-  private $title;
-  
+
   /**
    * @var string|null
    * @ORM\Column(type="text")

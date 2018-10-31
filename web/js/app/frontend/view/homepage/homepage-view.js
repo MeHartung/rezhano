@@ -33,9 +33,11 @@ define(function(require){
       //
       $(function () {
         self. $('.header-slider__wrap').slick({
+          autoplay: true,
+          autoplaySpeed: 5000,
           infinite: true,
-          // autoplay: true,
-          // autoplaySpeed: 2000,
+          fade: true,
+          cssEase: 'linear',
           dots: true,
           arrows: false
         });
