@@ -123,8 +123,11 @@ input[type="text"].input-text {
   span {
     vertical-align: middle;
     cursor: pointer;
-    font-size: 21px;
-    font-family: Catorze27style1-medium;
+    //font-size: 21px;
+    //font-family: Catorze27style1-medium;
+    font-family: alegreyasans-light;
+    font-size: 17px;
+
 
     a {
       text-decoration: none;
@@ -712,6 +715,11 @@ header {
     font-family: alegreyasans-regular;
     color: @c_white;
     margin-bottom: 25px;
+
+    max-height: 200px;
+    max-width: 50%;
+    line-height: 1.2;
+
   }
 }
 
@@ -747,6 +755,17 @@ header {
   //
   //}
 
+  .container p {
+    font-size: 25px;
+    font-family: alegreyasans-medium;
+    line-height: 36px;
+    color: @c_black;
+    max-width: 660px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
    &__title {
     font-size: 65px;
     font-family: Catorze27style1-bold;
@@ -765,12 +784,12 @@ header {
     font-family: alegreyasans-medium;
     line-height: 36px;
     color: @c_black;
-
     max-width: 660px;
     margin: 0 auto;
     text-align: center;
-
     margin-bottom: 30px;
+
+
   }
 
   &__image {
@@ -2422,6 +2441,11 @@ aside {
           }
         }
       }
+
+      .custom-checkbox {
+        margin-bottom: 25px;
+      }
+
     }
 
     .custom-radio {
