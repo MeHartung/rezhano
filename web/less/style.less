@@ -339,6 +339,10 @@ input[type="text"].input-text {
   //}
 
   //.clearfix();
+
+  &.black-bg {
+    background: @c_black;
+  }
 }
 
 .footer {
@@ -421,7 +425,7 @@ header {
   //
 
   .header-menu-wrap {
-    max-width: 1400px;
+    //max-width: 1400px;
     margin: 0 auto;
     position: relative;
   }
@@ -3070,5 +3074,43 @@ body .delivery-info {
 
   &__link {
     text-align: left;
+  }
+}
+
+// error-page
+
+.error-page {
+  background-color: @c_black;
+  text-align: center;
+  padding-top: 88px;
+  padding-bottom: 288px;
+
+  &_500  {
+    padding-top: 255px;
+    padding-bottom: 300px;
+  }
+
+  &__image {
+    display: inline-block;
+    margin-bottom: 38px;
+  }
+
+  &__message {
+
+  }
+
+  &__text {
+    font-family: Catorze27style1-medium;
+    font-size: 21px;
+    color: @c_white;
+  }
+
+  &__link {
+    color: @rc_yellow;
+
+    &:hover {
+      color: @rc_yellow;
+      border-bottom: 2px solid @rc_yellow;
+    }
   }
 }
