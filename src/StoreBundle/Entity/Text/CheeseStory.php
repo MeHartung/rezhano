@@ -2,11 +2,13 @@
 
 namespace StoreBundle\Entity\Text;
 
+use Accurateweb\MediaBundle\Annotation\Image;
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use StoreBundle\Media\Text\CheeseStoryImage;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use StoreBundle\Media\Text\UnprocessedImage;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -29,8 +31,7 @@ class CheeseStory implements ImageAwareInterface
    * @ORM\Column(type="string", length=256, nullable=true)
    * @Assert\NotBlank(message="Поле не может быть пустым")
    */
-  private $title;
-  
+
   /**
    * @var string|null
    * @ORM\Column(type="text")
@@ -42,8 +43,9 @@ class CheeseStory implements ImageAwareInterface
    * @var string|null
    * @ORM\Column(type="string", name="photo", nullable=true)
    * @ Assert\NotBlank(message="Поле не может быть пустым")
+   * @Image(id="cheese-story/teaser")
    */
-  private $teaser;
+  private $teaserImageFile;
   
   /**
    * @var integer|null
@@ -123,27 +125,44 @@ class CheeseStory implements ImageAwareInterface
   /**
    * @return string
    */
-  public function getTeaser()
+  public function getTeaserImageFile()
   {
-    return $this->teaser;
+    return $this->teaserImageFile;
   }
   
   /**
-   * @param string $teaser
+   * @param string $teaserImageFile
    */
-  public function setTeaser($teaser)
+  public function setTeaserImageFile($teaserImageFile)
   {
     /*
      * Не даем сбрасывать изображение из-за пустого значения в форме
      */
-    if (null !== $teaser)
+    if (null !== $teaserImageFile)
     {
-      $this->teaser = $teaser;
+      $this->teaserImageFile = $teaserImageFile;
     }
     
     return $this;
   }
   
+  /**
+   * @return ImageInterface | null
+   */
+  public function getTeaserImageFileImage()
+  {
+    if (null == $this->teaserImageFile)
+    {
+      return null;
+    }
+    
+    return new UnprocessedImage('cheese-story/teaser', $this->teaserImageFile, []);
+  }
+  
+  public function setTeaserImageFileImage(ImageInterface $image = null)
+  {
+    $this->setTeaserImageFile($image ? $image->getResourceId() : null);
+  }
   /**
    * @return array
    */
@@ -167,12 +186,12 @@ class CheeseStory implements ImageAwareInterface
    */
   public function getImage($id=null)
   {
-    if (!$this->teaser)
+    if (!$this->teaserImageFile)
     {
       return null;
     }
     
-    return new CheeseStoryImage('teaser', $this->teaser, $this->getTeaserImageOptions());
+    return new CheeseStoryImage('teaser', $this->teaserImageFile, $this->getTeaserImageOptions());
   }
   
   /**
@@ -180,7 +199,7 @@ class CheeseStory implements ImageAwareInterface
    */
   public function setImage(ImageInterface $teaser)
   {
-    $this->teaser = $teaser ? $teaser->getResourceId() : null;
+    $this->teaserImageFile = $teaser ? $teaser->getResourceId() : null;
   }
   /**
    * @return null|string

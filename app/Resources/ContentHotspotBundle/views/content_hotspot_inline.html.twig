@@ -1,0 +1,7 @@
+{% if canEdit and app.request.get('hotspots') %}
+    <div class="clickzone-inline" id="{{ clickZone.alias }}"  style="border: 1px; border-style: dotted; color: #000000;">
+        {{ clickZone.text | raw }}
+    </div>
+{% else %}
+    {{ clickZone.text | raw }}
+{% endif %}

@@ -56,14 +56,29 @@
         <div class="layer__text">
           <h2 class="layer__title">{{ product.name }}</h2>
           <div class="layer__text-wrap scroll-pane">
+            {% if product.productAttributeValuesGrouped | length > 0 %}
+                {% for attribure_name, attribute in product.productAttributeValuesGrouped %}
+                  <div class="layer__text-item">
+                  <div class="layer__text-title">{{ attribure_name }}:</div>
+                  <div class="layer__text-text">
+                  {#{% spaceless %}#}
+                    {% for val in attribute %}
+                    {#<div class="layer__text-text">это готовое самостоятельное блюдо. Можно посыпать солью, чёрным перцем, сбрызнуть оливковым маслом, и с помощью ломтика хлеба или крекера собирать жидкую начинку. А можно так же, как и Моцареллу —со свежими помидорами и базиликом, или овощами, пожаренными на гриле.</div>#}
+                    {{ val }}{% if loop.last == false %}, {% endif%}
+                    {% endfor %}
+                  {#{% endspaceless %}#}
+                  </div>
+                  </div>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if product.description %}
             <div class="layer__text-item">
-              <div class="layer__text-title">Тип:</div>
-              <div class="layer__text-text">это готовое самостоятельное блюдо. Можно посыпать солью, чёрным перцем, сбрызнуть оливковым маслом, и с помощью ломтика хлеба или крекера собирать жидкую начинку. А можно так же, как и Моцареллу —со свежими помидорами и базиликом, или овощами, пожаренными на гриле.</div>
+              <div class="layer__text-title">С чем едят:</div>
+              <div class="layer__text-text">{{ product.description | raw }}</div>
             </div>
-            <div class="layer__text-item">
-              <div class="layer__text-title">Тип:</div>
-              <div class="layer__text-text">это готовое самостоятельное блюдо. Можно посыпать солью, чёрным перцем, сбрызнуть оливковым маслом, и с помощью ломтика хлеба или крекера собирать жидкую начинку. А можно так же, как и Моцареллу —со свежими помидорами и базиликом, или овощами, пожаренными на гриле.</div>
-            </div>
+            {% endif %}
           </div>
           <div class="product-item__characteristics">
               {% if product.package %}
@@ -200,7 +215,7 @@
     {#{% endif %}#}
   </section>
 
-  <section class="section-product-addition">
+  {#<section class="section-product-addition">
     <div class="container">
       <h3>Великолепное дополнение к сыру</h3>
       <div class="product-list">
@@ -247,7 +262,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section>#}
 
   <section class="section-back-to-all">
     <div class="container">

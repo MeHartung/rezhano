@@ -316,16 +316,6 @@ class CheckoutController extends Controller
         $payment = $this->getDoctrine()->getRepository('StoreBundle:Store\Payment\Method\PaymentMethod')->find($order->getPaymentMethod()->getId());
         $order->setPaymentMethod($payment);
         
-        /**
-         * TODO выпилить это!1!
-         */
-        $shippingMethod = $this->getDoctrine()->getRepository(ShippingMethod::class)->findOneBy([
-          'uid' => $order->getPaymentMethod()->getId()
-        ]);
-        
-        #$order->setShippingMethodId($shippingMethod);
-        #$order->setShippingMethod($shippingMethod);
-        
         /** @var $order Order */
         $this->get('store.checkout.processor')->process($order);
         

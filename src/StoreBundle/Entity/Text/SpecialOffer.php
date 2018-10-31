@@ -8,10 +8,12 @@
 
 namespace StoreBundle\Entity\Text;
 
+use Accurateweb\MediaBundle\Annotation\Image;
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use Doctrine\ORM\Mapping as ORM;
 use StoreBundle\Media\Text\SpecialOfferImage;
+use StoreBundle\Media\Text\UnprocessedImage;
 use StoreBundle\Sluggable\SluggableInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -99,9 +101,9 @@ class SpecialOffer implements SluggableInterface, ImageAwareInterface
    * @var string
    *
    * @ORM\Column(name="image", length=255, nullable=true)
-   *
+   * @Image(id="special-offer/teaser")
    */
-  private $teaser;
+  private $teaserImageFile;
 
   /**
    * @var array
@@ -275,7 +277,7 @@ class SpecialOffer implements SluggableInterface, ImageAwareInterface
    */
   public function getImage($id=null)
   {
-    if (!$this->teaser)
+    if (!$this->teaserImageFile)
     {
       $matches = array();
       if (false === preg_match('/<img\s+src=["\']([^"\']+)["\']/', $this->announce, $matches))
@@ -285,7 +287,7 @@ class SpecialOffer implements SluggableInterface, ImageAwareInterface
 
       if (isset($matches[1]))
       {
-        $this->teaser = $matches[1];
+        $this->teaserImageFile = $matches[1];
       }
       else
       {
@@ -293,7 +295,7 @@ class SpecialOffer implements SluggableInterface, ImageAwareInterface
       }
     }
 
-    return new SpecialOfferImage('teaser', $this->teaser, $this->getTeaserImageOptions());
+    return new SpecialOfferImage('teaser', $this->teaserImageFile, $this->getTeaserImageOptions());
   }
 
   /**
@@ -301,7 +303,7 @@ class SpecialOffer implements SluggableInterface, ImageAwareInterface
    */
   public function setImage(ImageInterface $teaser)
   {
-    $this->teaser = $teaser ? $teaser->getResourceId() : null;
+    $this->teaserImageFile = $teaser ? $teaser->getResourceId() : null;
   }
   /**
    * @param $id
@@ -320,23 +322,23 @@ class SpecialOffer implements SluggableInterface, ImageAwareInterface
   /**
    * @return string
    */
-  public function getTeaser()
+  public function getTeaserImageFile()
   {
-    return $this->teaser;
+    return $this->teaserImageFile;
   }
 
   /**
-   * @param string $teaser
+   * @param string $teaserImageFile
    * @return SpecialOffer
    */
-  public function setTeaser($teaser)
+  public function setTeaserImageFile($teaserImageFile)
   {
     /*
      * Не даем сбрасывать изображение из-за пустого значения в форме
      */
-    if (null !== $teaser)
+    if (null !== $teaserImageFile)
     {
-      $this->teaser = $teaser;
+      $this->teaserImageFile = $teaserImageFile;
     }
 
     return $this;
@@ -359,5 +361,24 @@ class SpecialOffer implements SluggableInterface, ImageAwareInterface
     $this->teaserImageOptions = $teaserImageOptions;
     return $this;
   }
-
+  
+  /**
+   * @return ImageInterface | null
+   */
+  public function getTeaserImageFileImage()
+  {
+    if (null == $this->teaserImageFile)
+    {
+      return null;
+    }
+    
+    return new UnprocessedImage('special-offer/teaser', $this->teaserImageFile, []);
+  }
+  
+  public function setTeaserImageFileImage(ImageInterface $image = null)
+  {
+    $this->setTeaserImageFile($image ? $image->getResourceId() : null);
+  }
+  
+  
 }

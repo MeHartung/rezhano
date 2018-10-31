@@ -3,8 +3,8 @@
 namespace Accurateweb\MoyskladIntegrationBundle\Command;
 
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
-use StoreBundle\Entity\Store\Integration\MoyskladQueue;
 use MoySklad\Exceptions\RequestFailedException;
+use StoreBundle\Entity\Integration\MoyskladQueue;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -22,7 +22,7 @@ class MoyskladOrderSendCommand extends ContainerAwareCommand
   {
     $moysklad_sender = $this->getContainer()->get('moysklad.sender');
     $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-    $queue = $em->getRepository('StoreBundle:Store\Integration\MoyskladQueue')->findNotSuccessfullySent();
+    $queue = $em->getRepository('StoreBundle:Integration\MoyskladQueue')->findNotSuccessfullySent();
 
     /** @var MoyskladQueue $item */
     foreach ($queue as $item)
@@ -68,7 +68,7 @@ class MoyskladOrderSendCommand extends ContainerAwareCommand
           $to = $this->getContainer()->getParameter('service_desc_email');
           $email = $this->getContainer()->get('aw_email_templating.template.factory')->createMessage(
             'moysklad_order_failed',
-            array($from => 'Интернет-магазин Evolve'),
+            array($from => 'Интернет-магазин'),
             array($to => 'ServiceDesk'),
             [
               'request' => json_encode($req),

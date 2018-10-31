@@ -9,6 +9,7 @@
 namespace StoreBundle\Repository\Store\Catalog\Product\Attributes;
 
 use Doctrine\ORM\EntityRepository;
+use StoreBundle\Entity\Store\Catalog\Product\Product;
 
 class ProductAttributeRepository extends EntityRepository
 {
@@ -31,4 +32,16 @@ class ProductAttributeRepository extends EntityRepository
 
     return $query;
   }
+  
+  
+  /**
+   * Вернет свойства товара, сгруппированые по атрибутам
+   *
+   * @param Product $product
+   * @return array|null
+   */
+/*  public function findProductAttributesValuesGroupByTypeAttributes(Product $product)
+  {
+  
+  }*/
 }

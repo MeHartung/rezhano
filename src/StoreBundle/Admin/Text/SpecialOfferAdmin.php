@@ -72,7 +72,7 @@ class SpecialOfferAdmin extends AbstractAdmin
        ->end()
      ->end()
      ->tab('Фото')
-      ->add('teaser', ImageType::class, [
+      ->add('teaserImageFile', ImageType::class, [
         'required' => false
       ])
      ->end()

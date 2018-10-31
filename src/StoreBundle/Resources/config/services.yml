@@ -1086,3 +1086,9 @@ services:
         - '@logger'
       tags:
         - { name: kernel.event_listener, event: customer_question.answer, method: onAnswer }
+
+    app.moysklad.order.create:
+      class: StoreBundle\EventListener\MoyskladOrderCreateListener
+      arguments: ['@doctrine.orm.entity_manager']
+      tags:
+        - { name: kernel.event_listener, event: moysklad.order.create, method: onMoyskladOrderCreate }

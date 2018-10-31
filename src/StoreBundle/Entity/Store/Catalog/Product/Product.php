@@ -11,6 +11,7 @@ use Accurateweb\MediaBundle\Model\Media\MediaInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use StoreBundle\Entity\Store\Brand\Brand;
+use StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttribute;
 use StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttributeValue;
 use StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttributeValueToProduct;
 use StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon;
@@ -349,6 +350,23 @@ class Product implements SluggableInterface//, StockableInterface
   public function getProductAttributeValues()
   {
     return $this->productAttributeValues;
+  }
+  
+  /**
+   * @return ProductAttribute[]
+   */
+  public function getProductAttributeValuesGrouped()
+  {
+    $result = [];
+    
+    if ($this->getProductAttributeValues()->count() === 0) return $result;
+    
+    foreach ($this->productAttributeValues as $value)
+    {
+      $result[$value->getProductAttribute()->getName()][] = $value->getValue();
+    }
+    
+    return $result;
   }
 
   /**
