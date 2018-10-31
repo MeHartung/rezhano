@@ -322,6 +322,13 @@ class Product implements SluggableInterface//, StockableInterface
    * @ORM\ManyToMany(targetEntity="StoreBundle\Entity\Store\Catalog\Product\Product", inversedBy="id")
    */
   private $relatedProducts;
+
+  /**
+   * @var float
+   *
+   * @ORM\Column(type="decimal", scale=3, nullable=true)
+   */
+  private $package;
   
   public function __construct()
   {
@@ -1221,5 +1228,79 @@ class Product implements SluggableInterface//, StockableInterface
   {
     $this->relatedProducts = $relatedProducts;
   }
-  
+
+  /**
+   * @return integer
+   */
+  public function getPackage()
+  {
+    return $this->package;
+  }
+
+  /**
+   * @param integer $package
+   */
+  public function setPackage($package)
+  {
+    $this->package = $package;
+  }
+
+  /**
+   * @return bool
+   */
+  public function getMeasured()
+  {
+    if ($this->getProductType())
+    {
+      return $this->getProductType()->getMeasured();
+    }
+
+    return false;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getMinCount()
+  {
+    $productType = $this->getProductType();
+
+    if ($productType)
+    {
+      return $this->formatFloat($productType->getMinCount());
+    }
+
+    return 1;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getCountStep()
+  {
+    $productType = $this->getProductType();
+
+    if ($productType)
+    {
+      return $this->formatFloat($productType->getCountStep());
+    }
+
+    return 1;
+  }
+
+  /**
+   * Убирает нули после запятой, если число целое.
+   *
+   * @param $number
+   * @return string
+   */
+  private function formatFloat($number)
+  {
+    if ($number - floor($number) == 0)
+    {
+      return rtrim($number, '.0');
+    }
+
+    return $number;
+  }
 }

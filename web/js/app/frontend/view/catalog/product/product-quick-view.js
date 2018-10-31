@@ -18,8 +18,12 @@ define(function (require) {
       this.cart = options.cart;
       this.quantityWidget = new QuantityWidget({
         model: this.cart.createItem({
-          productId: this.model.get('id')
-        })
+          productId: this.model.get('id'),
+          quantity: this.model.get('min_count')
+        }),
+        max: this.model.get('available_stock'),
+        min: this.model.get('min_count'),
+        step: this.model.get('count_step')
       });
     },
     render: function () {
@@ -30,7 +34,10 @@ define(function (require) {
         isPurchasable: this.model.get('isPurchasable'),
         images: this.model.get('images') instanceof Array && this.model.get('images') ? this.model.get('images') : '/images/medium-no_photo.png',
         preview_image: this.model.get('preview_image') ? this.model.get('preview_image') : '/images/medium-no_photo.png',
-        product_url: this.model.get('url')
+        product_url: this.model.get('url'),
+        package: this.model.get('package'),
+        units: this.model.get('units'),
+        price: Number(this.model.get('price')).toCurrencyString('₽', 0)
       }));
 
       $(function () {

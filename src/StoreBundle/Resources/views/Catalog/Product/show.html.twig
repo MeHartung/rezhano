@@ -66,8 +66,10 @@
             </div>
           </div>
           <div class="product-item__characteristics">
-              <span class="product-item__quantity">300 г  / </span>
-              <span class="product-item__price">1&nbsp;200&nbsp;₽</span>
+              {% if product.package %}
+                <span class="product-item__quantity">{{ product.package }} {{ product.units }} / </span>
+              {% endif %}
+              <span class="product-item__price">{{ product.price | price }}</span>
             </div>
           <div class="product-item__info">
             {#<% if (isPurchasable) { %>#}
@@ -77,7 +79,7 @@
               <span class="product-item__controls-title">количество</span>
             <div class="product-item__controls quantity-widget quantity-wrap">
               <a class="controls-item controls-item__increase quantity-control quantity-control__down"></a>
-              <input class="custom-input quantity-control__input" value="1" type="text">
+                <input class="custom-input quantity-control__input" value="{{ product.minCount }}" type="text">
               <a class="controls-item controls-item__reduce quantity-control quantity-control__up"></a>
             </div>
             {#<% } %>#}
