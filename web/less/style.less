@@ -555,13 +555,29 @@ header {
     }
 
     &__cabinet {
-      background: url("../images/icons/room.png") center no-repeat;
+      background-image: url("../images/icons/sprite-rezhano-controls.png");
+      background-repeat: no-repeat;
+
       width: 18px;
+      height: 21px;
+      background-position: -37px -5px;
+
+      &:hover {
+        background-position: -65px -5px;
+      }
     }
 
     &__cart {
-      background: url("../images/icons/basket.png") center no-repeat;
+      background-image: url("../images/icons/sprite-rezhano-controls.png");
+      background-repeat: no-repeat;
+
       width: 22px;
+      height: 19px;
+      background-position: -5px -5px;
+
+      &:hover {
+        background-position: -5px -34px;
+      }
     }
   }
 
@@ -581,12 +597,17 @@ header {
 header {
 
   &.header-catalog {
-    background: url("../images/header-shop_bg.png") top no-repeat;
-    background-size: cover;
+    //background: url("../images/header-shop_bg.png") top no-repeat;
+    //background-size: cover;
     height: 550px;
-
+    background-color: @c_brand_black;
     position: relative;
-
+    padding: 0;
+    //
+    //@media (min-width: 2000px) {
+    //  background-position: center;
+    //}
+    //
     &:after {
       content: '';
       position: absolute;
@@ -595,6 +616,17 @@ header {
       background: url("../images/catalog-header-bottom.png") center no-repeat;
       height: 98px;
       bottom: -5px;
+    }
+
+    .header-catalog__wrap {
+      padding: 37px 50px;
+
+      background: url("../images/header-shop_bg.png") center no-repeat;
+      background-size: cover;
+      height: 550px;
+
+      max-width: 1850px;
+      margin: 0 auto;
     }
   }
 }
@@ -1141,6 +1173,10 @@ h1, .popular-products__title {
         ~.product-item__name {
           color: @rc_yellow;
         }
+      }
+
+      &_yellow {
+        background-color: @rc_yellow;
       }
     }
 
@@ -2229,7 +2265,39 @@ footer {
     }
   }
 
+  .add-to-cart-layer__image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    background-color: @c_black;
+    vertical-align: middle;
+    margin-right: 20px;
+
+    img {
+      position: absolute;
+      max-width: 180px;
+
+      top: 50%;
+      left: 50%;
+
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .add-to-cart-layer__info {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
   .add-to-cart-layer__wrap {
+
+    padding:  20px 0 0;
 
     .info-type-sign__title, .info-type-sign__text {
       display: inline-block;
@@ -2472,7 +2540,7 @@ aside {
 
   &__item {
     //width: 400px;
-    width: 650px;
+    width: 620px;
   }
 
   &__price {
@@ -2480,13 +2548,31 @@ aside {
   }
 
   &__quantity {
-    width: 140px;
+    width: 160px;
   }
 
   &__cost {
     width: 100px;
   }
 
+
+  @media (min-width: 2000px) {
+    &__item {
+      width: 740px;
+    }
+
+    &__price {
+      width: 160px;
+    }
+
+    &__quantity {
+      width: 300px;
+    }
+
+    &__cost {
+      width: 160px;
+    }
+  }
 
   &__wrap {
     border-bottom: 2px solid @c_black;
@@ -2501,7 +2587,7 @@ aside {
     .quantity-wrap {
 
       .quantity-control__input {
-        width: 25px;
+        width: 60px;
       }
     }
 
@@ -2814,6 +2900,19 @@ body .delivery-info {
       color: @rc_yellow;
       border-color: @rc_yellow;
     }
+  }
+
+  @media (min-width: 2000px) {
+
+    .cheese-card__image {
+      margin-left: 300px;
+    }
+
+    .cheese-card__title {
+      font-size: 40px;
+      max-width: 500px;
+    }
+
   }
 }
 
