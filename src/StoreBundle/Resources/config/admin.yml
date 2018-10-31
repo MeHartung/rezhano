@@ -18,7 +18,7 @@ services:
         -
           name: sonata.admin
           manager_type: orm
-          group: main_page
+          group: homepage
           label: Партнёры
       arguments:
         - null
