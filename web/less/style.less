@@ -43,6 +43,7 @@ h2 {
 
 /// custom inputs
 
+input[type="password"].input-text,
 input[type="text"].input-text {
   border: none;
   box-shadow: none;
@@ -379,7 +380,7 @@ button, a.button {
   text-transform: lowercase;
   background-color: transparent;
   padding: 5px 15px 10px 15px;
-
+  outline: none;
   text-decoration: none;
 
   span {
@@ -565,6 +566,10 @@ header {
       &:hover {
         background-position: -65px -5px;
       }
+
+      // до лучших времен (регистрацию пока закрыли, ЛК тоже)
+
+      display: none;
     }
 
     &__cart {
@@ -2123,6 +2128,10 @@ footer {
         font-family: alegreyasans-medium;
       }
 
+      &:hover {
+        color: #d8c8ac;
+      }
+
       &.link_frukt {
         position: relative;
         margin-right: 50px;
@@ -2136,6 +2145,13 @@ footer {
           position: absolute;
           top: 4px;
           right: 0;
+        }
+
+        &:hover {
+
+          &:after {
+            background: url("../images/icons/frukt-hover.png");
+          }
         }
       }
     }
@@ -2273,11 +2289,15 @@ footer {
     display: inline-block;
     background-color: @c_black;
     vertical-align: middle;
-    margin-right: 20px;
+    margin-right: 40px;
+
+    &.add-to-cart-layer__image_yellow {
+      background-color: @rc_yellow;
+    }
 
     img {
       position: absolute;
-      max-width: 180px;
+      max-width: 150px;
 
       top: 50%;
       left: 50%;
@@ -3353,6 +3373,49 @@ body .delivery-info {
     &:hover {
       color: @rc_yellow;
       border-bottom: 2px solid @rc_yellow;
+    }
+  }
+}
+///
+.section-login {
+  padding-top: 100px;
+  padding-bottom: 250px;
+
+  .form-page-wrap {
+    display: block;
+    margin: 0 auto;
+
+    max-width: 300px;
+
+    .buttons {
+
+      .button {
+        display: inline-block;
+      }
+    }
+
+    input {
+      margin-bottom: 25px;
+    }
+
+    .user-layer__controls {
+      margin-bottom: 25px;
+    }
+
+    .custom-checkbox {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .restore-link {
+      display: inline-block;
+      vertical-align: middle;
+      font-family: Catorze27style1-medium;
+      color: @rc_yellow;
+
+      &:hover {
+        color: @c_black;
+      }
     }
   }
 }

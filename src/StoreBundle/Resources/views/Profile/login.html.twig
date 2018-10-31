@@ -4,27 +4,28 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block main %}
-    <section>
+    <section class="section-login">
         <div class="container">
-            <div class="section-title">
-                <div class="breadcrumbs">
-                    <a class="breadcrumbs__item" href="{{ url('homepage') }}">Главная страница</a>
-                    <span class="breadcrumbs__divide"></span>
-                    <span class="breadcrumbs__item breadcrumbs__item_active">Вход</span>
-                </div>
-                <span class="section-title__text">Вход</span>
-            </div>
-            <div class="center_no-left">
+            <h2>Вход</h2>
+            {#<div class="section-title">#}
+                {#<div class="breadcrumbs">#}
+                    {#<a class="breadcrumbs__item" href="{{ url('homepage') }}">Главная страница</a>#}
+                    {#<span class="breadcrumbs__divide"></span>#}
+                    {#<span class="breadcrumbs__item breadcrumbs__item_active">Вход</span>#}
+                {#</div>#}
+                {#<span class="section-title__text">Вход</span>#}
+            {#</div>#}
+            {#<div class="center_no-left">#}
                 <div class="form-page-wrap">
                     <form action="{{ path("fos_user_security_check") }}" method="post" class="layer__form">
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                        <input class="layer__input" type="text" id="username" name="_username"
+                        <input class="input-text layer__input" type="text" id="username" name="_username"
                                value="" required="required"
                                placeholder="E-mail" data-validate="email" data-describedby="email-error-list" data-description="email">
                         <div class="error-list" id="email-error-list"></div>
 
                         <div class="password-input-wrap">
-                            <input class="layer__input layer__input-password" type="password" id="password"
+                            <input class="input-text layer__input layer__input-password" type="password" id="password"
                                    name="_password" required="required"
                                    placeholder="Пароль" data-validate="password" data-describedby="password-error-list" data-description="password">
                             <div class="password-input-wrap__toggle" title="Показать пароль"></div>
@@ -49,14 +50,18 @@
                                target="_blank" class="restore-link js-restore">Забыли пароль?</a>
                         </div>
                         <div class="buttons">
-                            <button class="button layer__button" id="_submit" type="submit" name="_submit" value="Войти">Войти</button>
-                            <a class="button white" href="{{ path('fos_user_registration_register') }}"><span>Регистрация</span></a>
+                            <button class="button layer__button" id="_submit" type="submit" name="_submit" value="Войти">
+                              <span>Войти</span>
+                            </button>
+                            <a class="button white" href="{{ path('fos_user_registration_register') }}">
+                              <span>Регистрация</span>
+                            </a>
                         </div>
                         <div class="loader-icon loader-icon_red"></div>
                         {#<a class="button button-register" href="{{ path('fos_user_registration_register') }}">Регистрация</a>#}
                     </form>
                 </div>
-            </div>
+            {#</div>#}
         </div>
     </section>
 {% endblock %}

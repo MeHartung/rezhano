@@ -18,7 +18,6 @@ define(function(require){
         cartWidget: true,
         search: false
       }, options);
-
       this.cart = options.cart;
       this.user = options.user;
 
@@ -48,7 +47,6 @@ define(function(require){
         this.addToCartSuccessLayer.dispose();
         this.addToCartSuccessLayer = null;
       }
-
       this.addToCartSuccessLayer = new AddToCartSuccessLayerView({
         model: model,
         quantity: quantity
