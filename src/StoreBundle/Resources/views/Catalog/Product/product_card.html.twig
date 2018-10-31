@@ -4,13 +4,13 @@
         Этот блок определяет цвет подложки у товара
         Блок для демонстрации
      #}
-    {% if product.background == constant('StoreBundle\\Entity\\Store\\Catalog\\Product\\Product::ORANGE_BACKGROUND') %}
-        у товара оранжевая подложка
-    {% elseif product.background == constant('StoreBundle\\Entity\\Store\\Catalog\\Product\\Product::BLACK_BACKGROUND') %}
-        у товара чёрная подложка
-    {% else %}
-        у товара нет подложки
-    {% endif %}
+    {#{% if product.background == constant('StoreBundle\\Entity\\Store\\Catalog\\Product\\Product::ORANGE_BACKGROUND') %}#}
+        {#у товара оранжевая подложка#}
+    {#{% elseif product.background == constant('StoreBundle\\Entity\\Store\\Catalog\\Product\\Product::BLACK_BACKGROUND') %}#}
+        {#у товара чёрная подложка#}
+    {#{% else %}#}
+        {#у товара нет подложки#}
+    {#{% endif %}#}
 
     <a class="product-item__image" href="{{ path('product', { 'slug': product.slug }) }}">
         <img src="{% if image_url(product.mainImage) is not empty %}{{ image_url(product.mainImage) }}{% else %}{{ asset('/images/no_photo.png')}}{% endif %}" title="{{ product.name|e('html_attr') }}" height="150px"/>
@@ -29,7 +29,7 @@
     </div>
     <a class="addtocart-button button button_black button_add-to-cart" data-product-id="{{ product.id }}"><span>В корзину</span></a>
     <div class="product-item__controls">
-        <span class="controls-title">количество</span>
+        {#<span class="controls-title">количество</span>#}
         <span class="controls-item controls-item__increase"></span>
         <input type="text" class="custom-input" value="0">
         <span class="controls-item controls-item__reduce"></span>

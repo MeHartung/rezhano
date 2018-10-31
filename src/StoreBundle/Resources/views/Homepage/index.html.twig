@@ -23,34 +23,53 @@
 {% block main %}
     <section class="header-section">
         {% if banners|length %}
-        <div class="container container_no-padding">
-            <div class="header-section__wrap">
-
-            </div>
             <div class="header-slider">
                 <div class="header-slider__wrap">
                     {% for banner in banners  %}
-                    <div class="header-slider__item" style="background:url({{ image_url(banner, 'homepage-banner/teaser') }}) center no-repeat">
-                        <div class="header-section__image">
-                            <img src="{{ image_url(banner, 'homepage-banner/text') }}" alt="">
+                    <div class="header-slider__item" >
+
+                        <img src="{{ image_url(banner, 'homepage-banner/teaser') }}" alt="" style="position: absolute; right: 0; bottom: 15px;">
+
+                        <div class="container">
+                            <div class="header-section__image">
+                                <img src="{{ image_url(banner, 'homepage-banner/text') }}" alt="">
+                            </div>
+                            <div class="header-section__text">
+                              {{ banner.text|raw }}
+                            </div>
+                            {% if (banner.url and banner.buttonLabel) %}
+                                <a class="button" href="{{ banner.url }}">
+                                    <span>{{ banner.buttonLabel }}</span>
+                                </a>
+                            {% endif %}
                         </div>
-                        <div class="header-section__text">
-                            {{ banner.text|raw }}
-                        </div>
-                        {% if (banner.url and banner.buttonLabel) %}
-                        <a class="button" href="{{ banner.url }}">
-                            <span>{{ banner.buttonLabel }}</span>
-                        </a>
-                        {% endif %}
                     </div>
                     {% endfor %}
                 </div>
             </div>
-        </div>
+
+
         {% endif %}
     </section>
 
     <section class="first-slide">
+
+        <div class="first-slide__image first-slide__image_left">
+            <img src="/images/first-image_1.png" alt="">
+            <div class="image-name">
+                <span class="image-name__arrow"></span>
+                <span class="image-name__text">Сыр «Буратта»</span>
+            </div>
+        </div>
+
+        <div class="first-slide__image first-slide__image_right">
+            <img src="/images/first-image_2.png" alt="">
+            <div class="image-name">
+                <span class="image-name__arrow"></span>
+                <span class="image-name__text">Сыр «Шемудин»</span>
+            </div>
+        </div>
+
         <div class="container">
 
             <div class="first-slide__title">{{ hotspot('сыр-это-наше-призвание-заголовок', "Сыр — это наше призвание") }}</div>
@@ -58,47 +77,34 @@
             <p class="first-slide__text">{{ hotspot('сыр-это-наше-призвание-абзац-1', "«Режано» — ремесленная сыроварня, построенная<br>по европейскому  образцу. Мы производим натуральные<br>сыры ручной работы из цельного молока.") }}</p>
             <p class="first-slide__text">{{ hotspot('сыр-это-наше-призвание-абзац-2', "Абсолютно прозрачное производство — любой желающий может приехать на экскурсию и посмотреть через стеклянную стену на работу сыроваров.") }}</p>
 
-            <div class="first-slide__image first-slide__image_left">
-                <img src="/images/first-image_1.png" alt="">
-
-                <div class="image-name">
-                    <span class="image-name__arrow"></span>
-                    <span class="image-name__text">Сыр «Буратта»</span>
-                </div>
-
-            </div>
-
-            <div class="first-slide__image first-slide__image_right">
-                <img src="/images/first-image_2.png" alt="">
-
-                <div class="image-name">
-                    <span class="image-name__arrow"></span>
-                    <span class="image-name__text">Сыр «Шемудин»</span>
-                </div>
-            </div>
-
         </div>
     </section>
 
     {% if promoBanners|length %}
     <section class="advantages">
-        <div class="container">
+        {#<div class="container">#}
             {% for i,promoBanner in promoBanners %}
                 {% if (image_exists(promoBanner, 'homepage-promo-banner/teaser')) %}
-                    <div class="advantages-step {% if 0 != i%2 %}advantages-image-left{% endif %}">
+                    <div class="advantages-item__wrap  {% if 0 != i%2 %}advantages-item__wrap_left{% endif %}">
+                        <div class="container">
+                            <div class="advantages-step">
+                                <div class="advantages-text">
+                                    <img class="advantages-text__image" src="{{ image_url(promoBanner, 'homepage-promo-banner/text') }}"/>
+                                    <span class="advantages-text__text">{{ promoBanner.text|raw }}</span>
+                                    <a href="{{ promoBanner.url }}" class="button">
+                                        <span>{{ promoBanner.buttonText }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="advantages-image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat;
-width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;height: {{ image_height(promoBanner, 'homepage-promo-banner/teaser') }}px"></div>
-                        <div class="advantages-text">
-                            <img class="advantages-text__image" src="{{ image_url(promoBanner, 'homepage-promo-banner/text') }}"/>
-                            <span class="advantages-text__text">{{ promoBanner.text|raw }}</span>
-                            <a href="{{ promoBanner.url }}" class="button">
-                                <span>{{ promoBanner.buttonText }}</span>
-                            </a>
+                              width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;height: {{ image_height(promoBanner, 'homepage-promo-banner/teaser') }}px">
                         </div>
                     </div>
+
                 {% endif %}
             {% endfor %}
-        </div>
+        {#</div>#}
     </section>
     {% endif %}
 
@@ -124,9 +130,10 @@ width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;height: 
     {% endif %}
 
     <section class="presents">
+        <div class="presents__image"></div>
         <div class="container">
             <div class="presents__wrap">
-                <div class="presents__image"></div>
+
                 <p class="presents__text">
                     {{ hotspot('подарки-абзац-1', 'Знаете, как порадовать<br>близких или себя?') }}
                 </p>
@@ -141,7 +148,7 @@ width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;height: 
     </section>
 
     <section class="choice">
-        <div class="container container_no-padding">
+        <div class="container container_no-padding container_2000">
             <h2 class="choice__title">Сложный выбор?</h2>
 
             <a href="{{ url('taxon', { slug: 'syr', "f[type]": "casual"}) }}" class="choice__link choice__everyday"></a>
@@ -195,10 +202,9 @@ width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;height: 
     {% if cheeseStories|length > 0 %}
 
         <section class="notes">
+            <div class="notes__image-top"></div>
             <div class="container">
                 <h2 class="notes__title">Сырные заметки</h2>
-                <div class="notes__image-top"></div>
-
                 <div class="notes-slider">
                     {% for story in cheeseStories %}
                         <div class="notes__text">
