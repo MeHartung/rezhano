@@ -504,6 +504,7 @@ h2 {
   color: #000000;
   font-family: Catorze27style1-bold;
 }
+input[type="password"].input-text,
 input[type="text"].input-text {
   border: none;
   -webkit-box-shadow: none;
@@ -738,6 +739,7 @@ a.button {
   text-transform: lowercase;
   background-color: transparent;
   padding: 5px 15px 10px 15px;
+  outline: none;
   text-decoration: none;
 }
 button span,
@@ -869,6 +871,7 @@ header .header-controls__cabinet {
   width: 18px;
   height: 21px;
   background-position: -37px -5px;
+  display: none;
 }
 header .header-controls__cabinet:hover {
   background-position: -65px -5px;
@@ -2886,6 +2889,37 @@ body .delivery-info__message {
 .error-page__link:hover {
   color: #ffcf40;
   border-bottom: 2px solid #ffcf40;
+}
+.section-login {
+  padding-top: 100px;
+  padding-bottom: 250px;
+}
+.section-login .form-page-wrap {
+  display: block;
+  margin: 0 auto;
+  max-width: 300px;
+}
+.section-login .form-page-wrap .buttons .button {
+  display: inline-block;
+}
+.section-login .form-page-wrap input {
+  margin-bottom: 25px;
+}
+.section-login .form-page-wrap .user-layer__controls {
+  margin-bottom: 25px;
+}
+.section-login .form-page-wrap .custom-checkbox {
+  display: inline-block;
+  vertical-align: middle;
+}
+.section-login .form-page-wrap .restore-link {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: Catorze27style1-medium;
+  color: #ffcf40;
+}
+.section-login .form-page-wrap .restore-link:hover {
+  color: #000000;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
