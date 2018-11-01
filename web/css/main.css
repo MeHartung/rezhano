@@ -503,6 +503,18 @@ h2 {
   color: #000000;
   font-family: Catorze27style1-bold;
 }
+textarea {
+  width: 100%;
+  resize: none;
+  border: 2px solid #191919;
+  background-color: #ffffff;
+  font-size: 17px;
+  font-family: alegreyasans-light;
+  color: #191919;
+  line-height: 28px;
+  padding: 3px 5px;
+  outline: none;
+}
 input[type="password"].input-text,
 input[type="text"].input-text {
   border: none;
@@ -2438,6 +2450,31 @@ aside.right {
 .cards-container__wrap .cards-container__controls .button-remove-from-favorites:hover {
   background-position: -20px 0;
 }
+.error-icon {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  background: url("../images/icons/error-input.png") center no-repeat;
+  width: 24px;
+  height: 24px;
+}
+.error-icon__message {
+  border: 1px solid #000000;
+  padding: 5px;
+  width: 200px;
+  background-color: #ffffff;
+  font-family: Catorze27style1-medium;
+  font-size: 21px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  font-style: normal;
+  display: none;
+  z-index: 1;
+}
+.error-icon:hover .error-icon__message {
+  display: block;
+}
 .cards-container__center_no-left {
   padding: 0 245px 0 0;
 }
@@ -2534,6 +2571,9 @@ aside.right {
 }
 .section-purchase button.button {
   padding: 5px 22px 10px 22px;
+}
+.section-purchase .custom-select > select {
+  opacity: 0;
 }
 .section-checkout h1 {
   margin-bottom: 10px;
@@ -3012,13 +3052,64 @@ body .delivery-info__message {
   color: #ca0d1b;
   font-weight: 500;
 }
-.step-item .help-block,
-.step-item .help-inline {
+.step-item .error-icon {
   display: none;
 }
-.step-item.error .help-block,
-.step-item.error .help-inline {
+.step-item.error .error-icon {
   display: block;
+}
+.section-article {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  margin-bottom: 160px;
+}
+.section-article__title {
+  padding-bottom: 45px;
+}
+.section-article__text {
+  font-size: 20px;
+  font-family: alegreyasans-regular;
+  color: #000000;
+}
+.section-article__text p {
+  font-size: 20px;
+  font-family: alegreyasans-regular;
+  color: #000000;
+}
+.section-question {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  margin-bottom: 160px;
+}
+.section-question .form-item {
+  position: relative;
+}
+.section-question .form-item .error-icon {
+  display: none;
+}
+.section-question .form-item.error .error-icon {
+  display: block;
+}
+.section-question__title {
+  padding-bottom: 45px;
+}
+.section-question .container__wrap {
+  width: 500px;
+  margin: 0 auto;
+}
+.section-question .container__wrap .input-text {
+  margin-bottom: 25px;
+}
+.section-question .container__wrap textarea {
+  margin-bottom: 25px;
+}
+.section-question .cards-container__order-details {
+  font-size: 21px;
+  font-family: alegreyasans-regular;
+  color: #000000;
+}
+.section-question_success {
+  margin-bottom: 0;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
