@@ -29,12 +29,13 @@ define(function(require){
       return this;
     },
     onCityChange: function (e) {
+      var self = this;
         $.ajax({
           url: urlPrefix + '/shipping/methods',
           type: 'POST',
-          data: data,
-          success: function (html) {
-          console.log(html)
+          data: {city: $(e.currentTarget).val()},
+          success: function (r) {
+            self.collection.set(r)
           }
         });
     }
