@@ -405,20 +405,21 @@
           <aside class="right">
             <div class="cards-container__payment-info">
               {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
+              {% for item in order.orderItems %}
+                <div class="payment-info__product">
+                  <span class="payment-info__product-name">{{ item.product.name }}</span>
+                  <span class="payment-info__product-value">{{ item.quantity }} шт. × {{ item.product.price | price }}</span>
+                </div>
+              {% endfor %}
 
               <div class="payment-info__product">
                 <span class="payment-info__product-name">Буррата</span>
                 <span class="payment-info__product-value">1 шт. × 169₽</span>
               </div>
 
-              <div class="payment-info__product">
-                <span class="payment-info__product-name">Буррата</span>
-                <span class="payment-info__product-value">1 шт. × 169₽</span>
-              </div>
-
-              <span class="payment-info__discount">
-          Скидка 10%
-          </span>
+              {#<span class="payment-info__discount">#}
+                {#Скидка 10%#}
+              {#</span>#}
 
               <div class="payment-info__value">
                 Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}₽</span>
