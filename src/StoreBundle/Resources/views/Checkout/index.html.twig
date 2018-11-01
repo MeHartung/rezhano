@@ -398,13 +398,6 @@
 {% block main %}
   <section class="section-purchase">
 
-    <script type="text/javascript" src="{{ asset('js/vendor/jquery-ui/jquery-ui.min.js') }}"></script>
-    <script>
-      $(function () {
-        $('.custom-select select').selectmenu();
-      });
-    </script>
-
     <div class="container">
       <h1>Оформление заказа</h1>
       <div class="center_no-left cards-container__center_no-left">
@@ -432,14 +425,13 @@
                 {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
               </div>
             </div>
-            <a href="{{ path('checkout_shipping') }}" class="button button_black">
-              <span>оформить в один клик</span>
-            </a>
+            {#<a href="{{ path('checkout_shipping') }}" class="button button_black">#}
+              {#<span>оформить в один клик</span>#}
+            {#</a>#}
           </aside>
         {% endblock %}
         <div class="section-wrap">
-          {{ form_start(form) }}
-
+          {{ form_start(form, { attr: { id: "checkoutForm", name: "checkoutForm", 'novalidate': 'novalidate'} }) }}
 
           <div class="cards-container__step cards-container__order">
             <div class="cards-container__step-title">
@@ -463,15 +455,17 @@
                     <span>Юридическое лицо</span>
                   </label>
                 </div>
-                <div class="help-inline" data-error=""></div>
-                <div class="help-block"></div>
+                <div id="">
+
+                </div>
               </div>
 
-              <div class="step-item step-item-input">
+              <div class="step-item step-item-input{% if (form.customer_first_name.vars.errors|length) %} error{% endif %}">
                 {#<input class="input-text" type="text" placeholder="ФИО">#}
-                {{ form_widget(form.customer_first_name, {'attr': {'placeholder': 'ФИО', 'class': 'input-text'}}) }}
-                <div class="help-inline" data-error=""></div>
-                <div class="help-block"></div>
+                {{ form_widget(form.customer_first_name, {'attr': {'placeholder': 'ФИО', 'class': 'input-text', 'data-validate':'name', 'data-description':'name', 'data-describedby': 'name-errors'}}) }}
+                <div id="name-errors">
+
+                </div>
                 <i class="error-icon">
                   <span class="error-icon__message">
                     Текст очень не приятной ошибки, хотя для кого то и очень приятной
@@ -479,16 +473,15 @@
                 </i>
               </div>
 
-              <div class="step-item step-item-input">
+              <div class="step-item step-item-input{% if (form.customer_phone.vars.errors|length) %} error{% endif %}">
                 {#<input class="input-text" type="text" placeholder="Телефон">#}
                 {{ form_widget(form.customer_phone, {'attr': {'placeholder': 'Телефон', 'class': 'input-text'}}) }}
-                <div class="help-inline" data-error=""></div>
-                <div class="help-block"></div>
+                <div id="phone-errors">
+
+                </div>
               </div>
-              <div class="step-item step-item-input">
+              <div class="step-item step-item-input{% if (form.customer_email.vars.errors|length) %} error{% endif %}">
                 {{ form_widget(form.customer_email, {'attr': {'placeholder': 'Эл. почта', 'class': 'input-text'}}) }}
-                <div class="help-inline" data-error=""></div>
-                <div class="help-block"></div>
               </div>
             </div>
           </div>
@@ -498,9 +491,9 @@
               <span class="step-title__number">2</span>получение заказа
             </div>
 
-            <div class="cards-container__step-container">
+            <div class="cards-container__step-container shipping-panel">
 
-              <div class="step-item">
+              <div class="step-item {% if (form.shipping_city_name.vars.errors|length) %} error{% endif %}">
               <span class="step-item__title">
                 Город получения
               </span>
@@ -516,24 +509,23 @@
                                   </label>#}
                 </div>
 
-                <div class="help-inline" data-error=""></div>
-                <div class="help-block"></div>
               </div>
 
-              <div class="step-item">
+              <div class="step-item {% if (form.shippingMethod.vars.errors|length) %} error{% endif %}">
                 <span class="step-item__title">
                   Способ получения
                 </span>
-
-                {% for child in form.shippingMethod %}
-                  <div class="custom-radio">
-                    <label>
-                      {{ form_widget(child, { attr: { 'class': 'radio'} }) }}
-                      {{ child.vars.value | render_shipping_label | raw }}
-                      {{ child.vars.value | render_shipping_info | raw }}
-                    </label>
-                  </div>
-                {% endfor %}
+                <div class="shipping-method-list">
+                  {% for child in form.shippingMethod %}
+                    <div class="custom-radio">
+                      <label>
+                          {{ form_widget(child, { attr: { 'class': 'radio'} }) }}
+                          {{ child.vars.value | render_shipping_label | raw }}
+                          {{ child.vars.value | render_shipping_info | raw }}
+                      </label>
+                    </div>
+                  {% endfor %}
+                </div>
 
                 {#{{ form_widget(form.shippingMethod) }}#}
 
@@ -560,7 +552,7 @@
                 </div>
               </div>#}
 
-                <div class="step-item step-item-input step-item-input_biggest">
+                <div class="step-item step-item-input step-item-input_biggest{% if (form.shipping_address.vars.errors|length) %} error{% endif %}">
                   {{ form_widget(form.shipping_address, {'attr': {'placeholder': 'Адрес', 'class': 'input-text'}}) }}
                   {#<input class="input-text" type="text" placeholder="Адрес">#}
                   <div class="step-item-input__link">Ознакомьтесь с <a href="">условиями доставки и оплаты</a></div>
@@ -665,30 +657,4 @@
       </div>
     </div>
   </section>
-  {# УБРАТЬ ЭТОТ СКРИПТ!  #}
-  <script>
-    var $city = $('#checkout_shipping_city_name');
-    // When sport gets selected ...
-    $city.change(function () {
-      // ... retrieve the corresponding form.
-      var $form = $(this).closest('form');
-      // Simulate form data, but only include the selected sport value.
-      var data = {};
-      data[$city.attr('name')] = $city.val();
-      // Submit data via AJAX to the form's action path.
-      $.ajax({
-        url: $form.attr('action'),
-        type: $form.attr('method'),
-        data: data,
-        success: function (html) {
-          // Replace current position field ...
-          $('#checkout_shipping_city_name').replaceWith(
-            // ... with the returned one from the AJAX response.
-            $(html).find('#checkout_shipping_city_name')
-          );
-          // Position field now displays the appropriate positions.
-        }
-      });
-    });
-  </script>
 {% endblock %}
