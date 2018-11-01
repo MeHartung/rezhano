@@ -463,25 +463,29 @@
               <div class="step-item step-item-input{% if (form.customer_first_name.vars.errors|length) %} error{% endif %}">
                 {#<input class="input-text" type="text" placeholder="ФИО">#}
                 {{ form_widget(form.customer_first_name, {'attr': {'placeholder': 'ФИО', 'class': 'input-text', 'data-validate':'name', 'data-description':'name', 'data-describedby': 'name-errors'}}) }}
-                <div id="name-errors">
-
-                </div>
                 <i class="error-icon">
-                  <span class="error-icon__message">
-                    Текст очень не приятной ошибки, хотя для кого то и очень приятной
+                  <span class="error-icon__message" id="name-errors">
+                    {{ form_errors(form.customer_first_name) }}
                   </span>
                 </i>
               </div>
 
               <div class="step-item step-item-input{% if (form.customer_phone.vars.errors|length) %} error{% endif %}">
                 {#<input class="input-text" type="text" placeholder="Телефон">#}
-                {{ form_widget(form.customer_phone, {'attr': {'placeholder': 'Телефон', 'class': 'input-text'}}) }}
-                <div id="phone-errors">
-
-                </div>
+                {{ form_widget(form.customer_phone, {'attr': {'placeholder': 'Телефон', 'class': 'input-text', 'data-validate':'phone', 'data-description':'phone', 'data-describedby': 'phone-errors'}}) }}
+                <i class="error-icon">
+                  <span class="error-icon__message" id="phone-errors">
+                    {{ form_errors(form.customer_phone) }}
+                  </span>
+                </i>
               </div>
               <div class="step-item step-item-input{% if (form.customer_email.vars.errors|length) %} error{% endif %}">
-                {{ form_widget(form.customer_email, {'attr': {'placeholder': 'Эл. почта', 'class': 'input-text'}}) }}
+                {{ form_widget(form.customer_email, {'attr': {'placeholder': 'Эл. почта', 'class': 'input-text', 'data-validate':'email', 'data-description':'email', 'data-describedby': 'email-errors'}}) }}
+                <i class="error-icon">
+                  <span class="error-icon__message" id="email-errors">
+                    {{ form_errors(form.customer_email) }}
+                  </span>
+                </i>
               </div>
             </div>
           </div>
