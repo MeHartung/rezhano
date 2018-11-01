@@ -29,7 +29,7 @@ class ShippingAdmin extends AbstractAdmin
             'delete' => null
           )
         )
-      );;
+      );
   }
   
   public function configureFormFields(FormMapper $form)

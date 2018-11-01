@@ -519,6 +519,18 @@
                 <source>Count Step</source>
                 <target>Шаг изменения количества</target>
             </trans-unit>
+            <trans-unit id="Answer">
+                <source>Answer</source>
+                <target>Ответ</target>
+            </trans-unit>
+            <trans-unit id="Answer At">
+                <source>Answer At</source>
+                <target>Ответ дан</target>
+            </trans-unit>
+            <trans-unit id="Fio">
+                <source>Fio</source>
+                <target>ФИО</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>

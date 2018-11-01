@@ -937,11 +937,23 @@ services:
         - { name: kernel.event_listener, event: 'customer_question.create', method: 'onCreate' }
         - { name: kernel.event_listener, event: 'customer_question.message', method: 'onNewMessage' }
 
-    store.admin_text.customer_question_admin:
-      class: StoreBundle\Admin\Text\CustomerQuestionAdmin
-      arguments: [~, StoreBundle\Entity\Text\Dialog\Dialog, ~]
+    store.event_listener_email_messaging.question_create_mail:
+      class: StoreBundle\EventListener\EmailMessaging\QuestionAnswer
+      arguments:
+        - '@mailer'
+        - '@aw_email_templating.template.factory'
+        - '%mailer_from%'
+        - '%mailer_sender_name%'
+        - '%operator_email%'
+        - '@logger'
       tags:
-        - {name: sonata.admin, manager_type: orm, group: notify, label: "Вопросы покупателей"}
+        - { name: kernel.event_listener, event: 'question.answer', method: 'onUpdate' }
+
+ #   store.admin_text.customer_question_admin:
+#      class: StoreBundle\Admin\Text\CustomerQuestionAdmin
+#      arguments: [~, StoreBundle\Entity\Text\Dialog\Dialog, ~]
+#      tags:
+#        - {name: sonata.admin, manager_type: orm, group: notify, label: "Вопросы покупателей"}
 
     store.admin.customer_message:
       class: StoreBundle\Admin\Text\CustomerMessageAdmin

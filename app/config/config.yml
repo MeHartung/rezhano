@@ -150,6 +150,8 @@ sonata_admin:
             label: "Главная страница"
         text:
             label: "Текстовые разделы"
+        questions:
+            label: 'Вопросы пользователей'
         notify:
             label: 'Уведомления'
         integration:

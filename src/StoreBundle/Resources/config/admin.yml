@@ -65,6 +65,20 @@ services:
         -  StoreBundle\Entity\Store\Shipping\PickupPoint
         - 'PixSortableBehaviorBundle:SortableAdmin'
 
+
+    app.admin.user_qustion:
+      class: StoreBundle\Admin\Text\QuestionAdmin
+      tags:
+        -
+          name: sonata.admin
+          manager_type: orm
+          group: questions
+          label: Вопросы пользователей
+      arguments:
+        - null
+        - StoreBundle\Entity\Text\Question
+        - StoreBundle:Admin\Text\QuestionAdmin
+
     app.home_banner.admin:
       class: StoreBundle\Admin\HomeBannerAdmin
       arguments: [~, StoreBundle\Entity\Common\HomeBanner, 'PixSortableBehaviorBundle:SortableAdmin']

@@ -149,6 +149,31 @@ aw_email_templating:
 
           Текст вопроса: «%%question%%».
 
+    user_question_operator:
+      description: "Уведомление оператору о вопросе от пользователя"
+      variables:
+        customer_name: { description: "ФИО клиента" }
+        customer_email: { description: "Email клиента" }
+        question: { description: "Текст вопроса" }
+      defaults:
+        subject: "Вопрос от клиента %%customer_name%%"
+        body: |
+          От %%customer_name%% (%%customer_email%%) получен вопрос.
+
+          Текст вопроса: «%%question%%».
+
+    question_answer:
+      description: "Ответ пользователю, задавшему вопрос на сайте"
+      variables:
+        customer_name: { description: "ФИО клиента" }
+        customer_email: { description: "Email клиента" }
+        customer_phone: { description: "Телефон клиента" }
+        question: { description: "Текст вопроса" }
+      defaults:
+        subject: "Ответ на вопрос"
+        body: |
+          %%customer_name%%!
+          Ответ на Ваш вопрос «%%question%%»:
 #    checkout_1click_operator:
 #      description: "Уведомление оператору о заказе в «1 клик»"
 #      variables:

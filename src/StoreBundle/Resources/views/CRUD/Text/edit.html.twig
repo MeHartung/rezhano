@@ -1,0 +1,46 @@
+{% extends ':CRUD:edit.html.twig' %}
+
+{% block form %}
+    {{ form_start(form, { attr: {
+        class: "form-horizontal"
+    }
+    }) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <div class="tab-content">
+                    <div class="box-body  container-fluid">
+                        {% for child in form.children %}
+                            {{ form_row(child) }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sonata-ba-form-actions well well-small form-actions">
+        {% if answerAt == null %}
+            <button type="submit" class="btn btn-success" name="btn_update_and_edit">
+
+                {% if form.email.vars.value != null %}
+                    <i class="fa fa-ban" aria-hidden="true"></i>
+                    Сохранить ответ и отправить письмо
+                {% else %}
+                    <i class="fa fa-exchange" aria-hidden="true"></i>
+                    Пометить вопрос как отвеченный
+                {% endif %}
+
+            </button>
+        {% else %}
+            <a  href="{{ backPath }}" class="">
+                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                Вернуться к списку
+            </a>
+        {% endif %}
+    </div>
+
+    {{ form_rest(form) }}
+{% endblock %}
+
+{% block formactions %}{% endblock %}
