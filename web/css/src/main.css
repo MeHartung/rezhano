@@ -1398,6 +1398,28 @@ h1,
 .product-list .product-item.yellow-back .product-item__image {
   background-color: #ffcf40;
 }
+.product-list .product-item .controls-wrap {
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+.product-list .product-item .controls-wrap .controls-title {
+  font-size: 21px;
+  font-family: Catorze27style1-semibold;
+  color: #000000;
+  display: inline-block;
+  vertical-align: sub;
+  margin-right: 5px;
+}
+.product-list .product-item .controls-wrap .controls-title {
+  display: inline-block;
+  vertical-align: sub;
+}
+.product-list .product-item .controls-wrap .product-item__controls {
+  display: inline-block;
+  vertical-align: baseline;
+}
 .product-item__controls .controls-title {
   font-size: 21px;
   font-family: Catorze27style1-semibold;
@@ -3023,6 +3045,23 @@ body .delivery-info__message {
 }
 .section-login .form-page-wrap .restore-link:hover {
   color: #000000;
+}
+.help-block,
+.help-inline {
+  font-size: 15px;
+  display: block;
+  font-family: Catorze27style1-medium;
+  max-width: 200px;
+  color: #ca0d1b;
+  font-weight: 500;
+}
+.step-item .help-block,
+.step-item .help-inline {
+  display: none;
+}
+.step-item.error .help-block,
+.step-item.error .help-inline {
+  display: block;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

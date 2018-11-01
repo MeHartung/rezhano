@@ -20,15 +20,17 @@ define(function(){
   <% if (package) { %>\
     <span class="product-item__quantity"><%= package %> <%= units %> / </span>\n\
   <% } %>\
-    <span class="product-item__price"><%= price %></span>\
+  <span class="product-item__price"><%= price %></span>\
   </div>\
   <% if (isPurchasable) { %>\
     <a class="addtocart-button button button_black button_add-to-cart" data-product-id="<%= id %>"><span>В корзину</span></a>\
-    <div class="product-item__controls">\n\
-        <span class="controls-title">количество</span>\n\
-        <a class="controls-item controls-item__increase"></a>\n\
-        <input type="text" class="custom-input" value="1">\n\
-        <a class="controls-item controls-item__reduce"></a>\n\
+    <div class="controls-wrap">\n\
+       <span class="controls-title">количество</span>\n\
+       <div class="product-item__controls">\n\
+          <a class="controls-item controls-item__increase"></a>\n\
+          <input type="text" class="custom-input" value="1">\n\
+          <a class="controls-item controls-item__reduce"></a>\n\
+       </div>\
     </div>\
   <% } %>\n\
   ')
