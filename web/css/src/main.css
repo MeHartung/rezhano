@@ -768,14 +768,14 @@ a.button_on-yellow:hover {
   background-color: #000000;
   border-color: #000000;
 }
-button_yellow-yellow,
-a.button_yellow-yellow {
+button.button_yellow-yellow,
+a.button.button_yellow-yellow {
   background-color: #ffcf40;
   color: #000000;
   border-color: #ffcf40;
 }
-button_yellow-yellow:hover,
-a.button_yellow-yellow:hover {
+button.button_yellow-yellow:hover,
+a.button.button_yellow-yellow:hover {
   background-color: #ffbf02;
   color: #000000;
   border-color: #ffbf02;
