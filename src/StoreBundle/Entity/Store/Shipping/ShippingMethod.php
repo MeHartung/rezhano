@@ -33,7 +33,7 @@ class ShippingMethod
    * @ORM\Column(type="string", length=128)
    */
   private $name;
-
+  
   
   /**
    * @var string|null
@@ -197,5 +197,18 @@ class ShippingMethod
   public function setFreeDeliveryThreshold(?int $freeDeliveryThreshold): void
   {
     $this->freeDeliveryThreshold = $freeDeliveryThreshold;
+  }
+  
+  public function toArray()
+  {
+    return
+      [
+        'id' => $this->getId(),
+        'uid' => $this->getUid(),
+        'name' => $this->getName(),
+        'cost' => $this->getCost(),
+        'free_delivery_threshold'=> $this->getFreeDeliveryThreshold(),
+        'help' => $this->getHelp()
+      ];
   }
 }

@@ -8,7 +8,9 @@ namespace StoreBundle\Controller\Order;
 use AccurateCommerce\DataAdapter\OrderClientApplicationAdapter;
 use StoreBundle\DataAdapter\Logistic\InternalPickupPointAdapter;
 use StoreBundle\Entity\Store\Order\Order;
+use StoreBundle\Entity\Store\Payment\Method\PaymentMethod;
 use StoreBundle\Entity\Store\Shipping\PickupPoint;
+use StoreBundle\Entity\Store\Shipping\ShippingMethod;
 use StoreBundle\Form\Checkout\CheckoutType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -138,8 +140,24 @@ class CheckoutController extends Controller
     $cart = $this->get('store.user.cart')->getCart();
     $cart->setShippingCityName($city);
     $orderClientApplicationAdapter = new OrderClientApplicationAdapter($cart, $this->get('accurateweb.shipping.manager'));
+    $result = [];
+    /** TODO восстановить логику работы калькулятора доставки и выпилить ЭТО */
+    $repo = $this->getDoctrine()->getRepository(ShippingMethod::class);
+    if($city !== 'Другой город')
+    {
+      $methods = $repo->findForRezhAndEkb();
+    }else
+    {
+      $methods = $repo->findNotCountryDelivery();
+    }
+    /** @var ShippingMethod $method */
+    foreach ($methods as $method)
+    {
+      $result[] = $method->toArray();
+    }
     
-    return new JsonResponse($orderClientApplicationAdapter->getShippingMethodClientModels()->toArray());
+    return new JsonResponse($result);
+    #return new JsonResponse($orderClientApplicationAdapter->getShippingMethodClientModels()->toArray());
   }
   
   public function shippingChoiceListAction(Request $request)

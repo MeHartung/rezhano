@@ -161,13 +161,13 @@ class CheckoutType extends AbstractType
           new IsTrue(['message' => 'Чтобы оформить заказ, необходимо принять Условия обслуживания'])
         ]
       ])
-      ->add('personalInformationAgreement', CheckboxType::class, [
+/*      ->add('personalInformationAgreement', CheckboxType::class, [
         'mapped' => false,
         'required' => true,
         'constraints' => [
           new IsTrue(['message' => 'Чтобы оформить заказ, необходимо принять политику обработки персональных данных'])
         ]
-      ])
+      ])*/
       ->add('submit', SubmitType::class)/*->add('orderItems', null, [
         'required' => true,
         'inherit_data' => true,

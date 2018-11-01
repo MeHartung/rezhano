@@ -582,20 +582,20 @@
                       {# <input  name="tos" class="checkbox" type="checkbox">#}
                       {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox'}}) }}
                       <span class="custom-checkbox__checkbox"></span>
-                      <span>Я ознакомился и согласен с <a href="">Политикой Компании</a> и <a href="">условиями сотрудничества</a>
+                      <span>Я ознакомился и согласен с <a href="">Политикой Компании</a>, <a href="">условиями сотрудничества</a>, <a href="">условиями обработки персональных данных</a>
                   </span>
                     </label>
                   </div>
 
-                  <div class="custom-checkbox font-alegreya">
+                  {#<div class="custom-checkbox font-alegreya">
                     <label>
-                      {# <input  name="tos" class="checkbox" type="checkbox">#}
-                      {{ form_widget(form.personalInformationAgreement, {'attr': {'class': 'checkbox'}}) }}
+                      #}{# <input  name="tos" class="checkbox" type="checkbox">#}{#
+                     #}{# {{ form_widget(form.personalInformationAgreement, {'attr': {'class': 'checkbox'}}) }}#}{#
                       <span class="custom-checkbox__checkbox"></span>
                       <span>Я ознакомился и согласен с <a href="">условиями обработки персональных данных</a>
                   </span>
                     </label>
-                  </div>
+                  </div>#}
                   <div class="help-inline" data-error=""></div>
                   <div class="help-block"></div>
                 </div>
