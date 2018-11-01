@@ -359,7 +359,6 @@ body {
   min-width: 1238px;
 }
 .wrapper {
-  min-height: 100%;
   overflow: hidden;
 }
 .wrapper_service-page {
@@ -768,6 +767,18 @@ a.button_on-yellow:hover {
   color: #ffcf40;
   background-color: #000000;
   border-color: #000000;
+}
+button.button_yellow-yellow,
+a.button.button_yellow-yellow {
+  background-color: #ffcf40;
+  color: #000000;
+  border-color: #ffcf40;
+}
+button.button_yellow-yellow:hover,
+a.button.button_yellow-yellow:hover {
+  background-color: #ffbf02;
+  color: #000000;
+  border-color: #ffbf02;
 }
 header {
   height: 120px;
@@ -2343,14 +2354,30 @@ aside.right {
 .cards-container__step-container .step-item.step-item-input:last-of-type {
   margin-right: 0;
 }
-.cards-container__step-container .step-item.step-item-input.error:after {
-  content: '';
+.cards-container__step-container .step-item.step-item-input .error-icon {
   position: absolute;
   top: 0;
   right: 10px;
   background: url("../images/icons/error-input.png") center no-repeat;
   width: 24px;
   height: 24px;
+}
+.cards-container__step-container .step-item.step-item-input .error-icon__message {
+  border: 1px solid #000000;
+  padding: 5px;
+  width: 200px;
+  background-color: #ffffff;
+  font-family: Catorze27style1-medium;
+  font-size: 21px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  font-style: normal;
+  display: none;
+  z-index: 1;
+}
+.cards-container__step-container .step-item.step-item-input .error-icon:hover .error-icon__message {
+  display: block;
 }
 .cards-container__step-container .step-item .custom-checkbox {
   margin-bottom: 25px;
@@ -2594,6 +2621,16 @@ aside.right {
 .section-checkout h1 {
   margin-bottom: 10px;
 }
+.section-checkout .button {
+  background-color: #ffcf40;
+  color: #000000;
+  border-color: #ffcf40;
+}
+.section-checkout .button:hover {
+  background-color: #ffbf02;
+  color: #000000;
+  border-color: #ffbf02;
+}
 .cart-empty__wrap {
   text-align: center;
 }
@@ -2797,7 +2834,7 @@ body .delivery-info__message {
   background-color: #ffcf40;
   padding-top: 45px;
   white-space: nowrap;
-  margin-bottom: -65px;
+  margin-bottom: -50px;
 }
 .section-back-to-all__link {
   padding-top: 30px;
@@ -2811,8 +2848,10 @@ body .delivery-info__message {
   font-family: Catorze27style1-bold;
   color: #000000;
 }
-.section-back-to-all__link a:hover {
-  color: #ffffff;
+.section-back-to-all__link a:hover span {
+  border-bottom: 1px solid #000000;
+  display: inline-block;
+  border-width: medium;
 }
 .section-back-to-all__image {
   display: inline-block;
@@ -2845,6 +2884,10 @@ body .delivery-info__message {
 .product-filter {
   margin: 0 auto;
   text-align: center;
+}
+.product-filter .product-filter-group {
+  display: inline-block;
+  vertical-align: top;
 }
 .product-filter__row {
   display: block;

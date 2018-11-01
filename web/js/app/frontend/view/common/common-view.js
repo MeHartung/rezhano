@@ -49,7 +49,8 @@ define(function(require){
       }
       this.addToCartSuccessLayer = new AddToCartSuccessLayerView({
         model: model,
-        quantity: quantity
+        quantity: model._previousAttributes.quantity
+        // quantity: quantity
       });
       this.addToCartSuccessLayer.$el.appendTo($('body'));
       this.addToCartSuccessLayer.render();
