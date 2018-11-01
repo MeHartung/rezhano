@@ -9,20 +9,20 @@ define(function(require){
 <div class="layer__text">\n\
 <a href="<%= product_url %>" class="layer__title layer-title"><%= name %></a>\n\
 <div class="layer__text-wrap scroll-pane">\n\
-  <div class="layer__text-item">\n\
-  <% if (description) { %>\n\
-    <div class="layer__text-title">С чем едят:</div> \n\
-    <div class="layer__text-text"><%= description %></div> \n\
-  <% } %>\n\
-  </div>\n\
   <% if (attributes) { %>\n\
-      <% _.each(attributes, function(attr, key) { %>\n\
-          <div class="layer__text-item">\n\
-              <div class="layer__text-title"><%= key %>:</div> \n\
-              <div class="layer__text-text"><%= attr %></div> \n\
-          </div>\n\
-      <%});%>\n\
-  <% } %>\
+     <% _.each(attributes, function(attr, key) { %>\n\
+       <div class="layer__text-item">\n\
+         <div class="layer__text-title"><%= key %>:</div> \n\
+         <div class="layer__text-text"><%= attr %></div> \n\
+       </div>\n\
+     <%});%>\n\
+  <% } %>\n\
+  <% if (description) { %>\n\
+    <div class="layer__text-item">\n\
+      <div class="layer__text-title">С чем едят:</div> \n\
+      <div class="layer__text-text"><%= description %></div> \n\
+    </div>\n\
+  <% } %>\n\
 </div>\n\
 <div class="product-item__characteristics">\n\
   <% if (package) { %>\n\

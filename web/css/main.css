@@ -2802,6 +2802,10 @@ body .delivery-info__message {
   margin: 0 auto;
   text-align: center;
 }
+.product-filter .product-filter-group {
+  display: inline-block;
+  vertical-align: top;
+}
 .product-filter__row {
   display: block;
   text-align: right;
