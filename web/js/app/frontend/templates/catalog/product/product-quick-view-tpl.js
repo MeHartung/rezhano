@@ -2,7 +2,7 @@ define(function(require){
     return '\
 <div class="layer__images">\n\
 <% _.each(images, function(image) { %>  \n\
-  <a href="" class="show-full-image">\n\
+  <a href="" class="show-full-image" itemprop="image" rel="vm-additional-images[]">\n\
     <img src="/uploads/<%= image %>" alt="">\n\
   </a>\n\
 <%});%></div>\
