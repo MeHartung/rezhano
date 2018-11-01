@@ -50,14 +50,14 @@ class CheckoutAdminType extends CheckoutType
     $this->setFieldLabel($builder, 'shipping_post_code', 'Почтовый индекс доставки');
     $this->setFieldLabel($builder, 'shipping_address', 'Адрес доставки');
     $this->setFieldLabel($builder, 'customer_comment', 'Комментарий покупателя');
-    $this->setFieldLabel($builder, 'shipping_method_id', 'Способ доставки');
+    $this->setFieldLabel($builder, 'shipping_method', 'Способ доставки');
     $this->setFieldLabel($builder, 'payment_method', 'Способ оплаты');
 
     $builder->remove('tos_agreement');
 
 
     $builder
-      ->add('shipping_method_id', ChoiceType::class, [
+      ->add('shipping_method', ChoiceType::class, [
         'choices' => $this->getShippingChoices($options),
         'required' => true,
         'error_bubbling' => false,
