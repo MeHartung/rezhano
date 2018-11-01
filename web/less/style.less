@@ -425,7 +425,11 @@ header {
   padding: 37px 50px;
 
   //
-
+  //-webkit-transition: top .2s;
+  //-moz-transition: top .2s;
+  //-ms-transition: top .2s;
+  //-o-transition: top .2s;
+  //transition: top .2s;
   //
 
   .header-menu-wrap {
@@ -910,7 +914,7 @@ header {
 
 .advantages {
   background-color: @c_black;
-  padding-top: 120px;
+  //padding-top: 120px;  сделать у популярных
   margin-top: -120px;
 
   padding-bottom: 200px;
@@ -1485,7 +1489,7 @@ h1, .popular-products__title {
   background: url("../images/choice-section-bg1.png") top no-repeat;
   background-size: cover;
   padding-top: 160px;
-  padding-bottom: 160px;
+  padding-bottom: 250px;
   margin-top: -82px;
   white-space: nowrap;
   text-align: center;
@@ -1629,9 +1633,9 @@ h1, .popular-products__title {
     content: '';
     position: absolute;
     background: url("../images/partners-bottom.png") center no-repeat;
-    height: 88px;
+    height: 135px;
     width: 100%;
-    bottom: -88px;
+    bottom: -134px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
@@ -1653,23 +1657,6 @@ h1, .popular-products__title {
       position: relative;
 
       top: 0;
-
-     -webkit-transition: top .2s;
-      -moz-transition: top .2s;
-      -ms-transition: top .2s;
-      -o-transition: top .2s;
-      transition: top .2s;
-
-      &:hover {
-        top: -10px;
-
-        -webkit-transition: top .2s;
-        -moz-transition: top .2s;
-        -ms-transition: top .2s;
-        -o-transition: top .2s;
-        transition: top .2s;
-
-      }
     }
 
     .partner-auchan {
@@ -1768,6 +1755,7 @@ h1, .popular-products__title {
   .notes-slider {
     width: 471px;
     max-height: 240px;
+    min-height: 240px;
     overflow: hidden;
     margin-bottom: 55px;
 
@@ -3285,6 +3273,7 @@ body .delivery-info {
     }
 
     .checkbox:checked +.checkbox-link {
+      color: @rc_yellow;
 
       .custom-checkbox {
         background-color: @rc_yellow;
@@ -3332,6 +3321,13 @@ body .delivery-info {
         z-index: 1;
       }
     }
+
+    &.active {
+
+      .product-filter__link {
+        color: @rc_yellow;
+      }
+    }
   }
 
   &__link {
@@ -3344,13 +3340,8 @@ body .delivery-info {
 .error-page {
   background-color: @c_black;
   text-align: center;
-  padding-top: 88px;
+  padding-top: 90px;
   padding-bottom: 288px;
-
-  &_500  {
-    padding-top: 255px;
-    padding-bottom: 300px;
-  }
 
   &__image {
     display: inline-block;
@@ -3375,11 +3366,33 @@ body .delivery-info {
       border-bottom: 2px solid @rc_yellow;
     }
   }
+
+  &_500 {
+    padding-top: 215px;
+    padding-bottom: 300px;
+
+    .error-page__image {
+      margin-bottom: 160px;
+    }
+  }
+
+  &_404 {
+    padding-top: 160px;
+
+    .error-page__image {
+      margin-bottom: 75px;
+    }
+  }
+
 }
 ///
 .section-login {
   padding-top: 100px;
   padding-bottom: 250px;
+
+  h2 {
+    text-align: center;
+  }
 
   .form-page-wrap {
     display: block;

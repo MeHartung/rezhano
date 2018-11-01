@@ -1082,7 +1082,6 @@ header.header-catalog .header-catalog__wrap {
 }
 .advantages {
   background-color: #000000;
-  padding-top: 120px;
   margin-top: -120px;
   padding-bottom: 200px;
   overflow: hidden;
@@ -1486,7 +1485,7 @@ h1,
   background: url("../images/choice-section-bg1.png") top no-repeat;
   background-size: cover;
   padding-top: 160px;
-  padding-bottom: 160px;
+  padding-bottom: 250px;
   margin-top: -82px;
   white-space: nowrap;
   text-align: center;
@@ -1595,9 +1594,9 @@ h1,
   content: '';
   position: absolute;
   background: url("../images/partners-bottom.png") center no-repeat;
-  height: 88px;
+  height: 135px;
   width: 100%;
-  bottom: -88px;
+  bottom: -134px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
@@ -1613,13 +1612,6 @@ h1,
   margin-bottom: 35px;
   position: relative;
   top: 0;
-  -webkit-transition: top .2s;
-  transition: top .2s;
-}
-.partners .partners-wrap .partner-item:hover {
-  top: -10px;
-  -webkit-transition: top .2s;
-  transition: top .2s;
 }
 .partners .partners-wrap .partner-auchan {
   background: url("../images/auchan.png") center no-repeat;
@@ -1694,6 +1686,7 @@ h1,
 .notes .notes-slider {
   width: 471px;
   max-height: 240px;
+  min-height: 240px;
   overflow: hidden;
   margin-bottom: 55px;
 }
@@ -2838,6 +2831,9 @@ body .delivery-info__message {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+.product-filter__custom-checkbox .checkbox:checked + .checkbox-link {
+  color: #ffcf40;
+}
 .product-filter__custom-checkbox .checkbox:checked + .checkbox-link .custom-checkbox {
   background-color: #ffcf40;
 }
@@ -2867,18 +2863,17 @@ body .delivery-info__message {
   width: 100%;
   z-index: 1;
 }
+.product-filter__item.active .product-filter__link {
+  color: #ffcf40;
+}
 .product-filter__link {
   text-align: left;
 }
 .error-page {
   background-color: #000000;
   text-align: center;
-  padding-top: 88px;
+  padding-top: 90px;
   padding-bottom: 288px;
-}
-.error-page_500 {
-  padding-top: 255px;
-  padding-bottom: 300px;
 }
 .error-page__image {
   display: inline-block;
@@ -2896,9 +2891,25 @@ body .delivery-info__message {
   color: #ffcf40;
   border-bottom: 2px solid #ffcf40;
 }
+.error-page_500 {
+  padding-top: 215px;
+  padding-bottom: 300px;
+}
+.error-page_500 .error-page__image {
+  margin-bottom: 160px;
+}
+.error-page_404 {
+  padding-top: 160px;
+}
+.error-page_404 .error-page__image {
+  margin-bottom: 75px;
+}
 .section-login {
   padding-top: 100px;
   padding-bottom: 250px;
+}
+.section-login h2 {
+  text-align: center;
 }
 .section-login .form-page-wrap {
   display: block;
