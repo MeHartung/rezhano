@@ -55,7 +55,8 @@
         </div>
         <div class="layer__text">
           <h2 class="layer__title">{{ product.name }}</h2>
-          <div class="layer__text-wrap scroll-pane">
+          {#<div class="layer__text-wrap scroll-pane">#}
+          <div class="layer__text-wrap">
             {% if product.productAttributeValuesGrouped | length > 0 %}
                 {% for attribure_name, attribute in product.productAttributeValuesGrouped %}
                   <div class="layer__text-item">
@@ -295,7 +296,7 @@
   <section class="section-back-to-all">
     <div class="container">
       <div class="section-back-to-all__link">
-        <a href="{{ url('catalog_index') }}" ><  назад ко всем сырам</a>
+        <a href="{{ url('catalog_index') }}" ><  <span>назад ко всем сырам</span></a>
       </div>
       <div class="section-back-to-all__image">
         <img  src="{{ asset('images/back-to-all.png') }}">

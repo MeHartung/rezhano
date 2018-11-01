@@ -43,6 +43,7 @@ define(function(require){
       this.listenTo(this.cart, 'item:add', this.onCartItemAdded);
     },
     onCartItemAdded: function(model, quantity){
+      console.log(model, quantity);
       if (this.addToCartSuccessLayer){
         this.addToCartSuccessLayer.dispose();
         this.addToCartSuccessLayer = null;

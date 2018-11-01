@@ -3130,7 +3130,7 @@ body .delivery-info {
   background-color: @rc_yellow;
   padding-top: 45px;
   white-space: nowrap;
-  margin-bottom: -65px;
+  margin-bottom: -50px;
 
   &__link {
     padding-top: 30px;
@@ -3141,7 +3141,12 @@ body .delivery-info {
       color: @c_black;
 
       &:hover {
-        color: @c_white;
+        //color: @c_white;
+        span {
+          border-bottom: 1px solid @c_black;
+          display: inline-block;
+          border-width: medium;
+        }
       }
     }
 

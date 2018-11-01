@@ -77,7 +77,6 @@ define(function(require){
       var self = this,
         productId = $(e.currentTarget).data('product-id'),
         cart = this.cart;
-
       var cartItem = this.cart.createItem({
         product_id: productId,
         quantity: this.quantityWidget.model.get('quantity')

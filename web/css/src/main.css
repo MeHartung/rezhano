@@ -359,7 +359,6 @@ body {
   min-width: 1238px;
 }
 .wrapper {
-  min-height: 100%;
   overflow: hidden;
 }
 .wrapper_service-page {
@@ -2797,7 +2796,7 @@ body .delivery-info__message {
   background-color: #ffcf40;
   padding-top: 45px;
   white-space: nowrap;
-  margin-bottom: -65px;
+  margin-bottom: -50px;
 }
 .section-back-to-all__link {
   padding-top: 30px;
@@ -2811,8 +2810,10 @@ body .delivery-info__message {
   font-family: Catorze27style1-bold;
   color: #000000;
 }
-.section-back-to-all__link a:hover {
-  color: #ffffff;
+.section-back-to-all__link a:hover span {
+  border-bottom: 1px solid #000000;
+  display: inline-block;
+  border-width: medium;
 }
 .section-back-to-all__image {
   display: inline-block;

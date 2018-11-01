@@ -40,7 +40,8 @@ define(function(require){
       }
       $.fn.prettyPhoto({
         social_tools: false,
-        deeplinking: false
+        deeplinking: false,
+        keyboard_shortcuts: false
       });
 
       this.$('.product-image__gallery__additional').slick({
