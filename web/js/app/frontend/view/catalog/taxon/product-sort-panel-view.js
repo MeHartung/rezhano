@@ -1,73 +1,79 @@
 define(function (require) {
-  var Backbone = require('backbone');
+    var Backbone = require('backbone');
+
+    var FilterWidget = require('view/catalog/filter/widget/filter-widget-choice-rezhano');
+
+//   var template = _.template('\
+//     <span class="product-list-sort__title">Сортировать:</span>\
+//       <% _.each(sortColumns, function(text, name) { %>\n\
+//         <a class="product-list-sort__type <% if (name === sorting.column) { %>product-list-sort__type_active product-list-sort__type_price <% if (sorting.order == \'desc\') { %>product-list-sort__type_price_down<% } else { %>product-list-sort__type_price_up<% } %>" title="<% if (sorting.order == \'desc\') { %>По убыванию<% } else { %>По возрастанию<% } %><% } %>"\
+//               data-order-column="<%= name %>" \
+//               data-order-direction-next="<%= sorting.next %>">\
+//           <%= text %> \
+//         </a>\
+//       <% }); %>\
+//       <span class="product-list-sort__my-region custom-checkbox">\n' +
+// '                    <label>\n' +
+// '                      <input type="checkbox" class="checkbox"<% if (sorting.icrf) { %> checked=""<% } %>>\n' +
+// '                      <span class="product-list-sort__checkbox custom-checkbox__checkbox"></span>\n' +
+// '                      <span>Сначала предложения в моём регионе</span>\n' +
+// '                    </label>\n' +
+// '                  </span>\
+//     ');
 
 
-  var template = _.template('\
-    <span class="product-list-sort__title">Сортировать:</span>\
-      <% _.each(sortColumns, function(text, name) { %>\n\
-        <a class="product-list-sort__type <% if (name === sorting.column) { %>product-list-sort__type_active product-list-sort__type_price <% if (sorting.order == \'desc\') { %>product-list-sort__type_price_down<% } else { %>product-list-sort__type_price_up<% } %>" title="<% if (sorting.order == \'desc\') { %>По убыванию<% } else { %>По возрастанию<% } %><% } %>"\
-              data-order-column="<%= name %>" \
-              data-order-direction-next="<%= sorting.next %>">\
-          <%= text %> \
-        </a>\
-      <% }); %>\
-      <span class="product-list-sort__my-region custom-checkbox">\n' +
-'                    <label>\n' +
-'                      <input type="checkbox" class="checkbox"<% if (sorting.icrf) { %> checked=""<% } %>>\n' +
-'                      <span class="product-list-sort__checkbox custom-checkbox__checkbox"></span>\n' +
-'                      <span>Сначала предложения в моём регионе</span>\n' +
-'                    </label>\n' +
-'                  </span>\
-    ');
-
-
-  return Backbone.View.extend({
-    className: 'product-list-sort',
-    events: {
-      'click .product-list-sort__type': 'sorting',
-      'change .product-list-sort__my-region input': 'onIcrfCheckboxChange'
-    },
+  return FilterWidget.extend({
+    className: 'product-filter__item product-list-sort',
+    // events: {
+    //   'click .product-list-sort__type': 'sorting'
+    // },
     initialize: function (options) {
       this.options = options;
 
-      this.render();
-
       this.options.filter.on('filtered', this.render, this);
-    },
-    render: function () {
+
       var sort = this.options.filter.get('sort'),
-        order = sort ? sort.order : 'none';
+          order = sort ? sort.order : 'none',
+          sortColumns = this.options.filter.get('sortColumns'),
+          sortChoices = [];
 
-      this.$el.html(template({
-        sorting: {
-          order: order,
-          column: $.inArray(order, ['desc', 'asc']) !== -1 ? sort.column : 'none',
-          next: sort ? sort.next : 'asc',
-          icrf: sort.icrf
+      _.each(sortColumns, function(name, id){
+        sortChoices.push({ id: id, value: name, enabled: true });
+      });
+
+      this.model = new Backbone.Model({
+        state: {
+          choices: sortChoices
         },
-        sortColumns: this.options.filter.get('sortColumns') || []
-      }));
+        value: {}
+      });
 
+      this.listenTo(this.model, 'change:value', this.sorting);
+
+      options.schema = _.extend({
+          name: 'sort',
+          label: 'сортировать',
+          type: 'radio'
+      }, options.schema);
+
+      FilterWidget.prototype.initialize.apply(this, arguments);
     },
-    onIcrfCheckboxChange: function(e){
-        var filter = this.options.filter;
-
-        var sort = filter.get('sort'),
-            element = $(e.currentTarget);
-
-        if (element) {
-            var newSort = _.extend({}, sort, {
-                icrf: element.is(':checked')
-            });
-
-            filter.set('sort', newSort);
-
-            filter.getContent();
-        }
-    },
-    sorting: function (event) {
-      event.preventDefault();
-
+    // render: function () {
+    //   var sort = this.options.filter.get('sort'),
+    //     order = sort ? sort.order : 'none';
+    //
+    //   this.$el.html(template({
+    //     sorting: {
+    //       order: order,
+    //       column: $.inArray(order, ['desc', 'asc']) !== -1 ? sort.column : 'none',
+    //       next: sort ? sort.next : 'asc',
+    //       icrf: sort.icrf
+    //     },
+    //     sortColumns: this.options.filter.get('sortColumns') || []
+    //   }));
+    //
+    // },
+    sorting: function () {
       var filter = this.options.filter;
 
       var sort = filter.get('sort'),
@@ -75,10 +81,10 @@ define(function (require) {
 
       if (element) {
         var newSort = {
-          column: element.data("order-column"),
-          order: element.data("order-direction-next"),
-          next: sort.next
-        }
+          column: this.model.get('value'),
+          order: 'asc',//element.data("order-direction-next"),
+          next: 'asc' //sort.next
+        };
 
         filter.set('sort', newSort);
 

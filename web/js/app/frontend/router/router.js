@@ -15,7 +15,6 @@ define(function(require){
       ProfileView = require('view/user/user-profile-view'),
       ProfileEditView = require('view/user/user-profile-edit-view'),
       ProfileHistoryView = require('view/user/user-profile-history-view'),
-      NoticeView = require('view/user/user-notice-view'),
       HomepageView = require('view/homepage/homepage-view'),
       CommonView = require('view/common/common-view'),
       PasswordResetView = require('view/user/password-reset/password-reset-view'),
@@ -70,9 +69,6 @@ define(function(require){
     profileHistoryAction: function () {
       this.defaultPageAction(ProfileHistoryView);
     },
-    noticeAction: function () {
-      this.defaultPageAction(NoticeView);
-    },
     homepageAction: function() {
       this.defaultPageAction(HomepageView);
     },
@@ -110,7 +106,6 @@ define(function(require){
       this.route(routePrefix + 'cabinet/profile', this.profileAction);
       this.route(routePrefix + 'cabinet/profile/edit', this.profileEditAction);
       this.route(routePrefix + 'cabinet/orders', this.profileHistoryAction);
-      this.route(routePrefix + 'cabinet/notice', this.noticeAction);
       this.route(routePrefix + 'passwordreset/reset/:token', this.passwordResetAction);
       this.route(routePrefix + 'checkout/delivery', this.checkoutDeliveryStepAction);
     }

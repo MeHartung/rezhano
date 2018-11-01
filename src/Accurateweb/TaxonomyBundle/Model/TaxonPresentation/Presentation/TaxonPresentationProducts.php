@@ -6,6 +6,7 @@ use AccurateCommerce\Model\Taxonomy\TaxonInterface;
 use AccurateCommerce\Pagination\Pagination;
 use AccurateCommerce\Sort\ProductSort;
 use AccurateCommerce\Sort\ProductSortFactoryInterface;
+use AccurateCommerce\Store\Catalog\Filter\BaseFilter;
 use AccurateCommerce\Store\Catalog\Filter\ProductFilter;
 use Accurateweb\TaxonomyBundle\Model\TaxonPresentation\TaxonFilterableInterface;
 use Accurateweb\TaxonomyBundle\Model\TaxonPresentation\TaxonPaginationInterface;
@@ -73,7 +74,20 @@ class TaxonPresentationProducts implements TaxonPresentationInterface, TaxonPagi
     $this->options = $optionsResolver->resolve($options);
 
     $this->taxon = $taxon;
-    $this->filter = new ProductFilter(null, $taxon);
+
+    $this->filter = $this->createProductFilter($taxon);
+  }
+
+  /**
+   * Возвращает новый экземлпяр ProductFilter
+   *
+   * @param $taxon
+   *
+   * @return BaseFilter
+   */
+  protected function createProductFilter()
+  {
+    return new ProductFilter(null, $this->taxon);
   }
 
   protected function configureOptions(OptionsResolver $optionsResolver)

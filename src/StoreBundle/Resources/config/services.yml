@@ -42,7 +42,6 @@ services:
       arguments:
         - '@app.cart_item.adapter'
         - '@accuratecommerce.payment.method.manager'
-        - '@aw.client_application.transformer'
         - '@doctrine.orm.entity_manager'
         - '@accurateweb.shipping.manager'
         - '@app.shipping_method.adapter'
@@ -54,7 +53,6 @@ services:
       arguments:
         - '@app.cart_item.adapter'
         - '@accuratecommerce.payment.method.manager'
-        - '@aw.client_application.transformer'
         - '@doctrine.orm.entity_manager'
         - '@accurateweb.shipping.manager'
         - '@app.shipping_method.adapter'

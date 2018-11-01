@@ -18,16 +18,15 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class CartDataAdapter implements ClientApplicationModelAdapterInterface
 {
-  private $cartItemDataAdapter, $paymentMethodManager, $applicationModelTransformer, $em, $shippingManager,
+  private $cartItemDataAdapter, $paymentMethodManager, $em, $shippingManager,
     $shippingMethodDataAdapter;
   
   public function __construct(CartItemDataAdapter $cartItemDataAdapter, PaymentMethodManager $paymentMethodManager,
-                              ClientApplicationModelTransformer $applicationModelTransformer, EntityManagerInterface $em,
-                              ShippingManager $shippingManager, ShippingMethodDataAdapter $shippingMethodDataAdapter)
+                              EntityManagerInterface $em, ShippingManager $shippingManager,
+                              ShippingMethodDataAdapter $shippingMethodDataAdapter)
   {
     $this->cartItemDataAdapter = $cartItemDataAdapter;
     $this->paymentMethodManager = $paymentMethodManager;
-    $this->applicationModelTransformer = $applicationModelTransformer;
     $this->em = $em;
     $this->shippingManager = $shippingManager;
     $this->shippingMethodDataAdapter = $shippingMethodDataAdapter;

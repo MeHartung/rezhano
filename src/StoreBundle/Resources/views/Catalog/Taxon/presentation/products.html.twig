@@ -5,89 +5,169 @@
 {{ products|client_model_collection('product', 'ProductList') }}
 {{ presentation|client_model('filter') }}
 
-<div class="center_no-right">
-    {% if filter is defined and parameters.showFilter is defined and parameters.showFilter %}
-    <aside class="left">
-        <div class="product-list-filter">
-            {% include '@Store/Catalog/Filter/filter.html.twig' %}
-            {#<div class="filter-section">#}
-                {#<a class="filter-section__title">Цена, ₽</a>#}
-                {#<div class="filter-section__content">#}
-                    {#<input type="text" placeholder="от">#}
-                    {#<input type="text" placeholder="до">#}
-                {#</div>#}
-            {#</div>#}
+<div class="container">
+    <div class="product-filter">
+        <div class="product-filter__item product-list-sort">{# deployed active  #}
+            <a href="" class="product-filter__link">сортировать <i class="ui-icon"></i></a>
+            <div class="product-filter__filter">
 
-            {#<div class="filter-section filter-section_collapse">#}
-                {#<a class="filter-section__title">Группа МТР</a>#}
-                {#<div class="filter-section__content" style="display: none">#}
+              <span class="product-filter__custom-checkbox">
+                <label>
+                  <input type="checkbox" class="checkbox">
+                  <span class="checkbox-link">Мы рекомендуем
+                    <span class="custom-checkbox"></span>
+                  </span>
+                </label>
+              </span>
 
-                {#</div>#}
-            {#</div>#}
+                <span class="product-filter__custom-checkbox">
+                <label>
+                  <input type="checkbox" class="checkbox">
+                  <span class="checkbox-link">Новинки
+                    <span class="custom-checkbox"></span>
+                  </span>
+                </label>
+              </span>
 
-            {#<div class="filter-section filter-section_collapse">#}
-                {#<a class="filter-section__title">Год поставки</a>#}
-                {#<div class="filter-section__content" style="display: none">#}
+                <span class="product-filter__custom-checkbox">
+                <label>
+                  <input type="checkbox" class="checkbox">
+                  <span class="checkbox-link">Акции
+                    <span class="custom-checkbox"></span>
+                  </span>
+                </label>
+              </span>
 
-                {#</div>#}
-            {#</div>#}
-
-            {#<div class="filter-section filter-section_collapse">#}
-                {#<a class="filter-section__title">Местонахождение</a>#}
-                {#<div class="filter-section__content" style="display: none">#}
-
-                {#</div>#}
-            {#</div>#}
-
-            {#<div class="filter-section filter-section_collapse">#}
-                {#<a class="filter-section__title">Группа МТР</a>#}
-                {#<div class="filter-section__content" style="display: none">#}
-
-                {#</div>#}
-            {#</div>#}
+            </div>
         </div>
-    </aside>
-    {% endif %}
 
-    <div class="section-wrap">
+        {% if filter is defined and parameters.showFilter is defined and parameters.showFilter %}
+            <div class="product-filter-group product-list-filter">
+                {% include '@Store/Catalog/Filter/filter.html.twig' %}
+            </div>
+        {% endif %}
 
-        {#{% if sort is defined %}#}
-        {#<div class="product-list-sort">#}
-            {#<span class="product-list-sort__title">Сортировать:</span>#}
-            {#<a class="product-list-sort__type">по популярности</a>#}
-            {#<a class="product-list-sort__type product-list-sort__type_active product-list-sort__type_price">по цене</a>#}
-            {#<span class="product-list-sort__my-region custom-checkbox">#}
-                  {#<label>#}
-                    {#<input type="checkbox" class="checkbox" checked>#}
-                    {#<span class="product-list-sort__checkbox custom-checkbox__checkbox"></span>#}
-                    {#<span>Сначала предложения в моём регионе</span>#}
-                  {#</label>#}
-                {#</span>#}
-        {#</div>#}
-        {#{% endif %}#}
 
-        <div class="product-list" id="product-listview">
-            {% for product in products %}
-                {{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage }) }}
-            {% endfor %}
+        <div class="product-filter-group">
+            <div class="product-filter__item deployed">
+                <a href="" class="product-filter__link">тип <i class="ui-icon"></i></a>
+                <div class="product-filter__filter">
 
+              <span class="product-filter__row">
+                <a href="#" class="product-filter__clear">
+                  <span>очистить</span>
+                </a>
+              </span>
+
+                    <span class="product-filter__custom-checkbox">
+                <label>
+                  <input type="checkbox" class="checkbox">
+                  <span class="checkbox-link">Мягкий
+                    <span class="custom-checkbox"></span>
+                  </span>
+                </label>
+              </span>
+
+                    <span class="product-filter__custom-checkbox">
+                <label>
+                  <input type="checkbox" class="checkbox">
+                  <span class="checkbox-link">Полутвёрдый
+                    <span class="custom-checkbox"></span>
+                  </span>
+                </label>
+              </span>
+
+                    <span class="product-filter__custom-checkbox">
+                <label>
+                  <input type="checkbox" class="checkbox">
+                  <span class="checkbox-link">Твёрдый
+                    <span class="custom-checkbox"></span>
+                  </span>
+                </label>
+              </span>
+
+                    <span class="product-filter__custom-checkbox">
+                <label>
+                  <input type="checkbox" class="checkbox">
+                  <span class="checkbox-link">С плесенью
+                    <span class="custom-checkbox"></span>
+                  </span>
+                </label>
+              </span>
+
+                    <div class="product-filter__filter_subfilter">
+
+               <span class="product-filter__custom-checkbox">
+                  <label>
+                    <input type="checkbox" class="checkbox">
+                    <span class="checkbox-link">— белая
+                      <span class="custom-checkbox"></span>
+                    </span>
+                  </label>
+              </span>
+
+                        <span class="product-filter__custom-checkbox">
+                  <label>
+                    <input type="checkbox" class="checkbox">
+                    <span class="checkbox-link">— голубая
+                      <span class="custom-checkbox"></span>
+                    </span>
+                  </label>
+              </span>
+
+                        <span class="product-filter__custom-checkbox">
+                  <label>
+                    <input type="checkbox" class="checkbox">
+                    <span class="checkbox-link">— твёрдая корка
+                      <span class="custom-checkbox"></span>
+                    </span>
+                  </label>
+              </span>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="product-filter__item deployed">
+                <a href="" class="product-filter__link">предпочтения <i class="ui-icon"></i></a>
+                <div class="product-filter__filter">
+
+            <span class="product-filter__custom-checkbox">
+                <label>
+                  <input type="checkbox" class="checkbox">
+                  <span class="checkbox-link">Для гурманов
+                    <span class="custom-checkbox"></span>
+                  </span>
+                </label>
+              </span>
+
+                    <span class="product-filter__custom-checkbox">
+                <label>
+                  <input type="checkbox" class="checkbox">
+                  <span class="checkbox-link">На каждый день
+                    <span class="custom-checkbox"></span>
+                  </span>
+                </label>
+              </span>
+
+                </div>
+            </div>
         </div>
-        {#<a class="product-list-item__show-more">#}
+
+
+    </div>
+
+</div>
+<h1>{{ taxon.name }}</h1>
+
+<div class="product-list" id="product-listview">
+    {% for product in products %}
+        {{ include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage }) }}
+    {% endfor %}
+
+</div>
+{#<a class="product-list-item__show-more">#}
             {#<span class="product-list-item__show-more__text">Показать ещё</span>#}
         {#</a>#}
-        {#{% include '@Store/Catalog/Taxon/pagination.html.twig' with { 'pagination': pagination } %}#}
-
-        {#{% if linkedTaxons is defined and linkedTaxons|length %}#}
-        {#<div class="maybe-interested">#}
-            {#<!--/ ^ модификатор для catalog-item -->#}
-            {#<div class="section-title">#}
-                {#<span class="section-title__text section-title__text_small section-title__text_aside-line">Вас также может заинтересовать</span>#}
-            {#</div>#}
-
-            {#<div class="maybe-interested__wrap">#}
-                {#{% include '@Store/Catalog/Taxon/children.html.twig' with {'taxons': linkedTaxons} %}#}
-            {#</div>#}
-        {#</div>#}
-        {#{% endif %}#}
-    </div>
-</div>
+{% include '@Store/Catalog/Taxon/pagination.html.twig' with { 'pagination': pagination } %}
