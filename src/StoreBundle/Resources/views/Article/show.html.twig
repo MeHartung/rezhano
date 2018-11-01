@@ -13,8 +13,10 @@
             {#</div>#}
             {#<div class="center_no-left cards-container__center_no-left">#}
 
-                <h1>{{ article.title }}</h1>
-                {{ article.text|raw }}
+                <h1 class="section-article__title">{{ article.title }}</h1>
+                <div class="section-article__text">
+                  {{ article.text|raw }}
+                </div>
             {#</div>#}
         </div>
     </section>

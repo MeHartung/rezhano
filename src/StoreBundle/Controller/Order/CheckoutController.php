@@ -138,7 +138,6 @@ class CheckoutController extends Controller
     $cart = $this->get('store.user.cart')->getCart();
     $cart->setShippingCityName($city);
     $orderClientApplicationAdapter = new OrderClientApplicationAdapter($cart, $this->get('accurateweb.shipping.manager'));
-   
     
     return new JsonResponse($orderClientApplicationAdapter->getShippingMethodClientModels()->toArray());
   }

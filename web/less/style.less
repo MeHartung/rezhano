@@ -43,6 +43,22 @@ h2 {
 
 /// custom inputs
 
+textarea {
+  width: 100%;
+  resize: none;
+  border: 2px solid @c_brand_black;
+  background-color: @c_white;
+
+  font-size: 17px;
+  font-family: alegreyasans-light;
+  color: @c_brand_black;
+
+  line-height: 28px;
+  padding: 3px 5px;
+
+  outline: none;
+}
+
 input[type="password"].input-text,
 input[type="text"].input-text {
   border: none;
@@ -2770,6 +2786,37 @@ aside {
   }
 }
 
+.error-icon {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  background: url("../images/icons/error-input.png") center no-repeat;
+  width: 24px;
+  height: 24px;
+
+  &__message {
+    border: 1px solid @c_black;
+    padding: 5px;
+    width: 200px;
+    background-color: @c_white;
+    font-family: Catorze27style1-medium;
+    font-size: 21px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    font-style: normal;
+    display: none;
+    z-index: 1
+  }
+
+  &:hover {
+
+    .error-icon__message {
+      display: block;
+    }
+  }
+}
+
 .cards-container__center_no-left {
   padding: 0 245px 0 0;
 
@@ -3552,5 +3599,55 @@ body .delivery-info {
       display: block;
     }
   }
+}
 
+// section-article
+.section-article {
+ padding-top: 70px;
+ padding-bottom: 70px;
+ margin-bottom: 160px;
+
+  &__title {
+    padding-bottom: 45px;
+  }
+
+ &__text {
+   font-size: 20px;
+   font-family: alegreyasans-regular;
+   color: #000000;
+
+   p {
+     font-size: 20px;
+     font-family: alegreyasans-regular;
+     color: #000000;
+   }
+ }
+}
+
+// section-question
+.section-question {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  margin-bottom: 160px;
+
+  .form-item {
+    position: relative;
+  }
+
+  &__title {
+    padding-bottom: 45px;
+  }
+
+  .container__wrap {
+    width: 500px;
+    margin: 0 auto;
+
+    .input-text {
+      margin-bottom: 25px;
+    }
+
+    textarea {
+      margin-bottom: 25px;
+    }
+  }
 }
