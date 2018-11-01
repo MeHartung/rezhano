@@ -16,9 +16,9 @@ define(function(require){
   <% } %>\n\
   </div>\n\
   <% if (attributes) { %>\n\
-      <% _.each(attributes, function(attr) { %>\n\
+      <% _.each(attributes, function(attr, key) { %>\n\
           <div class="layer__text-item">\n\
-              <div class="layer__text-title">С чем едят:</div> \n\
+              <div class="layer__text-title"><%= key %>:</div> \n\
               <div class="layer__text-text"><%= attr %></div> \n\
           </div>\n\
       <%});%>\n\
