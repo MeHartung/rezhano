@@ -413,6 +413,18 @@ button, a.button {
       border-color: @c_black;
     }
   }
+
+  &_yellow-yellow {
+    background-color: @rc_yellow;
+    color: @c_black;
+    border-color: @rc_yellow;
+
+    &:hover {
+      background-color: @rc_yellow-hover;
+      color: @c_black;
+      border-color: @rc_yellow-hover;
+    }
+  }
 }
 
 header {
@@ -2536,16 +2548,45 @@ aside {
 
         &.error {
 
-          &:after {
-            content: '';
+          //&:after {
+          //  content: '';
+          //  position: absolute;
+          //  top: 0;
+          //  right: 10px;
+          //  background: url("../images/icons/error-input.png") center no-repeat;
+          //  width: 24px;
+          //  height: 24px;
+          //}
+        }
+
+        .error-icon {
+          position: absolute;
+          top: 0;
+          right: 10px;
+          background: url("../images/icons/error-input.png") center no-repeat;
+          width: 24px;
+          height: 24px;
+
+          &__message {
+            border: 1px solid @c_black;
+            padding: 5px;
+            max-width: 150px;
+
             position: absolute;
-            top: 0;
-            right: 10px;
-            background: url("../images/icons/error-input.png") center no-repeat;
-            width: 24px;
-            height: 24px;
+            bottom: -5px;
+            left: 0;
+
+            display: none;
+          }
+
+          &:hover {
+
+            .error-icon__message {
+              display: block;
+            }
           }
         }
+
       }
 
       .custom-checkbox {
@@ -2848,6 +2889,18 @@ aside {
 
   h1 {
     margin-bottom: 10px;
+  }
+
+  .button {
+    background-color: @rc_yellow;
+    color: @c_black;
+    border-color: @rc_yellow;
+
+    &:hover {
+      background-color: @rc_yellow-hover;
+      color: @c_black;
+      border-color: @rc_yellow-hover;
+    }
   }
 }
 

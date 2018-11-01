@@ -768,6 +768,18 @@ a.button_on-yellow:hover {
   background-color: #000000;
   border-color: #000000;
 }
+button_yellow-yellow,
+a.button_yellow-yellow {
+  background-color: #ffcf40;
+  color: #000000;
+  border-color: #ffcf40;
+}
+button_yellow-yellow:hover,
+a.button_yellow-yellow:hover {
+  background-color: #ffbf02;
+  color: #000000;
+  border-color: #ffbf02;
+}
 header {
   height: 120px;
   position: absolute;
@@ -2342,14 +2354,25 @@ aside.right {
 .cards-container__step-container .step-item.step-item-input:last-of-type {
   margin-right: 0;
 }
-.cards-container__step-container .step-item.step-item-input.error:after {
-  content: '';
+.cards-container__step-container .step-item.step-item-input .error-icon {
   position: absolute;
   top: 0;
   right: 10px;
   background: url("../images/icons/error-input.png") center no-repeat;
   width: 24px;
   height: 24px;
+}
+.cards-container__step-container .step-item.step-item-input .error-icon__message {
+  border: 1px solid #000000;
+  padding: 5px;
+  max-width: 150px;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  display: none;
+}
+.cards-container__step-container .step-item.step-item-input .error-icon:hover .error-icon__message {
+  display: block;
 }
 .cards-container__step-container .step-item .custom-checkbox {
   margin-bottom: 25px;
@@ -2592,6 +2615,16 @@ aside.right {
 }
 .section-checkout h1 {
   margin-bottom: 10px;
+}
+.section-checkout .button {
+  background-color: #ffcf40;
+  color: #000000;
+  border-color: #ffcf40;
+}
+.section-checkout .button:hover {
+  background-color: #ffbf02;
+  color: #000000;
+  border-color: #ffbf02;
 }
 .cart-empty__wrap {
   text-align: center;

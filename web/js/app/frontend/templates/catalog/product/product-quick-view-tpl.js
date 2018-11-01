@@ -10,9 +10,19 @@ define(function(require){
 <a href="<%= product_url %>" class="layer__title layer-title"><%= name %></a>\n\
 <div class="layer__text-wrap scroll-pane">\n\
   <div class="layer__text-item">\n\
-    <div class="layer__text-title">Тип:</div> \n\
-    <div class="layer__text-text">это готовое самостоятельное блюдо. Можно посыпать солью, чёрным перцем, сбрызнуть оливковым маслом, и с помощью ломтика хлеба или крекера собирать жидкую начинку. А можно так же, как и Моцареллу —со свежими помидорами и базиликом, или овощами, пожаренными на гриле.</div> \n\
+  <% if (description) { %>\n\
+    <div class="layer__text-title">С чем едят:</div> \n\
+    <div class="layer__text-text"><%= description %></div> \n\
+  <% } %>\n\
   </div>\n\
+  <% if (attributes) { %>\n\
+      <% _.each(attributes, function(attr) { %>\n\
+          <div class="layer__text-item">\n\
+              <div class="layer__text-title">С чем едят:</div> \n\
+              <div class="layer__text-text"><%= attr %></div> \n\
+          </div>\n\
+      <%});%>\n\
+  <% } %>\
 </div>\n\
 <div class="product-item__characteristics">\n\
   <% if (package) { %>\n\

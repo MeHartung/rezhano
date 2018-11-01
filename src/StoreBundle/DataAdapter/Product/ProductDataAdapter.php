@@ -90,7 +90,7 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'isMeasured' => $isMeasured,
       'count_step' => $count_step,
       'min_count' => $min_count,
-      'decription' => $subject->getDescription(),
+      'description' => $subject->getDescription(),
       'attributes' => $subject->getProductAttributeValuesGrouped()
     );
   }
