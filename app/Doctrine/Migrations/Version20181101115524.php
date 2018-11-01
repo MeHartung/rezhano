@@ -14,9 +14,7 @@ class Version20181101115524 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-
-        $this->addSql('ALTER TABLE orders ADD CONSTRAINT FK_E52FFDEE5F7D6850 FOREIGN KEY (shipping_method_id) REFERENCES shipping_method (id)');
-        $this->addSql('CREATE INDEX IDX_E52FFDEE5F7D6850 ON orders (shipping_method_id)');
+        
         $this->addSql('ALTER TABLE shipping_method ADD cost INT DEFAULT NULL, ADD free_delivery_threshold INT DEFAULT NULL, DROP cost_info');
         $this->addSql('ALTER TABLE cheese_stories DROP title');
     }
