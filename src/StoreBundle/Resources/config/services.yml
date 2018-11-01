@@ -39,13 +39,25 @@ services:
 
     app.cart.adapter:
       class: StoreBundle\DataAdapter\Cart\CartDataAdapter
-      arguments: ['@app.cart_item.adapter']
+      arguments:
+        - '@app.cart_item.adapter'
+        - '@accuratecommerce.payment.method.manager'
+        - '@aw.client_application.transformer'
+        - '@doctrine.orm.entity_manager'
+        - '@accurateweb.shipping.manager'
+        - '@app.shipping_method.adapter'
       tags:
         - { name: aw.client_application.adapter, alias: cart }
 
     app.order.adapter:
       class: StoreBundle\DataAdapter\Order\OrderDataAdapter
-      arguments: ['@app.cart_item.adapter']
+      arguments:
+        - '@app.cart_item.adapter'
+        - '@accuratecommerce.payment.method.manager'
+        - '@aw.client_application.transformer'
+        - '@doctrine.orm.entity_manager'
+        - '@accurateweb.shipping.manager'
+        - '@app.shipping_method.adapter'
       tags:
         - { name: aw.client_application.adapter, alias: order }
 

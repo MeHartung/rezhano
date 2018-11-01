@@ -3,6 +3,7 @@
 namespace AccurateCommerce\Shipping\Method;
 
 use AccurateCommerce\Shipping\Shipment\Shipment;
+use StoreBundle\Entity\Store\Shipping\PickupPoint;
 
 /**
  * Способ доставки "Другая транспортная компания"

@@ -3,19 +3,33 @@
 namespace StoreBundle\DataAdapter\Cart;
 
 
+use AccurateCommerce\Component\Payment\Model\PaymentMethodManager;
+use AccurateCommerce\Shipping\ShippingManager;
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
+use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelTransformer;
+use Doctrine\ORM\EntityManagerInterface;
+use StoreBundle\DataAdapter\Logistic\ShippingMethodDataAdapter;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Order\OrderItem;
+use StoreBundle\Entity\Store\Shipping\ShippingMethod;
 use StoreBundle\Util\DateFormatter;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class CartDataAdapter implements ClientApplicationModelAdapterInterface
 {
-  private $cartItemDataAdapter;
+  private $cartItemDataAdapter, $paymentMethodManager, $applicationModelTransformer, $em, $shippingManager,
+    $shippingMethodDataAdapter;
 
-  public function __construct (CartItemDataAdapter $cartItemDataAdapter)
+  public function __construct (CartItemDataAdapter $cartItemDataAdapter, PaymentMethodManager $paymentMethodManager,
+                               ClientApplicationModelTransformer $applicationModelTransformer, EntityManagerInterface $em,
+                               ShippingManager $shippingManager, ShippingMethodDataAdapter $shippingMethodDataAdapter)
   {
     $this->cartItemDataAdapter = $cartItemDataAdapter;
+    $this->paymentMethodManager = $paymentMethodManager;
+    $this->applicationModelTransformer = $applicationModelTransformer;
+    $this->em = $em;
+    $this->shippingManager = $shippingManager;
+    $this->shippingMethodDataAdapter = $shippingMethodDataAdapter;
   }
 
   /**
@@ -39,6 +53,26 @@ class CartDataAdapter implements ClientApplicationModelAdapterInterface
     {
       $preorder_date = sprintf('%s %s', DateFormatter::formatMonth($expected_delivery_date), $expected_delivery_date->format('Y'));
     }
+    
+    $shippingMethodsTransfrom = [];
+    #$shippingMethods = $this->em->getRepository(ShippingMethod::class)->findAll();
+    $shippingMethods = $this->shippingManager->getShippingMethods();
+    
+    foreach ($shippingMethods as $shippingMethod)
+    {
+      $shippingMethodsTransfrom[] = $this->shippingMethodDataAdapter->transform($shippingMethod, ['shipment' => $subject->getShipments()[0]]);
+    }
+    
+    /*foreach ($shippingMethods as $method)
+    {
+      $_method = $this->shippingManager->getShippingMethodByUid($method->getUid());
+      
+      $shippingMethodsTransfrom[] = $this->applicationModelTransformer->getClientModelCollectionData(
+       $_method,
+        'shipping.choice',
+        ['shipment' => $_method ]
+      );
+    }*/
 
     return
       [
@@ -73,7 +107,8 @@ class CartDataAdapter implements ClientApplicationModelAdapterInterface
         'is_paid' => !is_null($subject->getPaymentStatus()) ? $subject->getPaymentStatus()->isPaid() : null,
         'payment_status_name' => !is_null($subject->getPaymentStatus()) ? $subject->getPaymentStatus()->getName() : null,
         'preorder_date' => $preorder_date,
-        'closest_pickup_date' => $subject->getClosestAvailablePickupDate()->format(\DateTime::ISO8601)
+        'closest_pickup_date' => $subject->getClosestAvailablePickupDate()->format(\DateTime::ISO8601),
+        'shipping_methods' => $shippingMethodsTransfrom
       ];
   }
 
