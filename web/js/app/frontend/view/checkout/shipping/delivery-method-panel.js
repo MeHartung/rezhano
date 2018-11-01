@@ -8,7 +8,6 @@ define(function(require){
       ShippingChoiceCollection = require('model/shipping/shipping-choice-collection'),
       ShippingChoiceListView = require('view/checkout/shipping/shipping-choice-list-view'),
       ListView = require('view/base/list-view');
-      require('/js/vendor/jquery-ui/jquery-ui.js');
 
   return Backbone.View.extend({
     events: {
