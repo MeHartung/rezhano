@@ -198,12 +198,12 @@ class ShippingManager
     usort($shippingMethods, array('ShippingManager', 'compareShippingChoices'));
   }
   
-  public static function getShippingMethodPriority(ShippingMethod $shippingMethod)
+  public static function getShippingMethodPriority(/*ShippingMethod*/ $shippingMethod)
   {
     $priorityMap = self::getShippingMethodPriorityMap();
     
     return isset($priorityMap[$shippingMethod->getUid()]) ? $priorityMap[$shippingMethod->getUid()] : (
-            $shippingMethod->getClsid() == ShippingMethod::CLSID_PICKUP ? self::DEFAULT_PRIORITY_PICKUP : self::DEFAULT_PRIORITY_COURIER);
+            $shippingMethod->getUid() == ShippingMethod::CLSID_PICKUP ? self::DEFAULT_PRIORITY_PICKUP : self::DEFAULT_PRIORITY_COURIER);
   }
   
   /**
