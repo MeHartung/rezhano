@@ -103,6 +103,7 @@ class CheckoutController extends Controller
    */
   public function shippingMethodListAction(Request $request)
   {
+    $city = $request->get('city');
    /* $cart = $this->get('store.user.cart')->getCart();
     $postcode = $request->get('postcode');
     $location = $this->get('store.geography.location');
@@ -135,7 +136,7 @@ class CheckoutController extends Controller
    */
    
     $cart = $this->get('store.user.cart')->getCart();
-    
+    $cart->setShippingCityName($city);
     $orderClientApplicationAdapter = new OrderClientApplicationAdapter($cart, $this->get('accurateweb.shipping.manager'));
    
     

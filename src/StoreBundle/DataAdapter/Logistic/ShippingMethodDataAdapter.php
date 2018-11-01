@@ -21,7 +21,7 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
   }
 
   /**
-   * @param $shippingMethod ShippingMethod
+   * @param $shippingMethod \StoreBundle\Entity\Store\Shipping\ShippingMethod
    * @param $options array
    * @return array
    */
@@ -32,26 +32,28 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
       throw new \Exception('Shipment required');
     }
 
-    if (!empty($options['skip_deffered']) && $shippingMethod->getDeferredEstimate())
+/*    if (!empty($options['skip_deffered']) && $shippingMethod->getDeferredEstimate())
     {
       $choices = null;
     }
     else
     {
       $choices = $this->getShippingChoiceList($shippingMethod, $options['shipment']);
-    }
+    }*/
 
     return array(
       'id' => $shippingMethod->getUid(),
       'name' => $shippingMethod->getName(),
       //'enabled' => $deliveryMethod->isApplicableTo(null, $this),
       //'details' => $deliveryMethod->getDetails($this),
-      'options' => array('recipient_address_required' => $shippingMethod->getClsid() != ShippingMethod::CLSID_PICKUP),
-      'clsid' => $shippingMethod->getClsid(),
-      //'help' => $deliveryMethod->getHelp(),
+      'options' => array('recipient_address_required' => $shippingMethod->getUid() != ShippingMethod::CLSID_PICKUP),
+      'uid' => $shippingMethod->getUid(),
+      'help' => $shippingMethod->getHelp(),
+      'cost' => $shippingMethod->getCost(),
+      'free_delivery_threshold' => $shippingMethod->getFreeDeliveryThreshold(),
       'priority' => ShippingManager::getShippingMethodPriority($shippingMethod),
-      'deferredEstimate' => $shippingMethod->getDeferredEstimate(),
-      'choices' => $choices
+      #'deferredEstimate' => $shippingMethod->getDeferredEstimate(),
+      #'choices' => $choices
     );
   }
 
@@ -64,24 +66,25 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
   {
     return $subject instanceof ShippingMethod;
   }
-
-  private function getShippingChoiceList (ShippingMethod $shippingMethod, Shipment $shipment)
+#ShippingMethod
+  private function getShippingChoiceList ( $shippingMethod, Shipment $shipment)
   {
     $choices = array();
 
-    if ($shippingMethod->isAvailable($shipment))
-    {
+ /*   if ($shippingMethod->isAvailable($shipment))
+    {*/
       $estimateCache = $shipment->getOrder()->getShippingEstimateCache();
 
       $choiceDefaults = array(
-        'clsid' => $shippingMethod->getClsid(),
+        'clsid' => $shippingMethod->getUid(),
         'priority' => ShippingManager::getShippingMethodPriority($shippingMethod),
         'embeddedCalculatorCode' => null === $shippingMethod->getEmbeddedCalculatorCode() ? null : base64_encode($shippingMethod->getEmbeddedCalculatorCode()),
       );
 
-      $estimate = $shippingMethod->estimate($shipment);
+      #$estimate = $shippingMethod->estimate($shipment);
+      $estimate = null;
 
-      if ($shippingMethod->getClsid() === ShippingMethod::CLSID_PICKUP)
+      if ($shippingMethod->getUid() === ShippingMethod::CLSID_PICKUP)
       {
         $estimateCache[$shippingMethod->getUid()] = [];
         $pickupPoints = $shippingMethod->getPickupPoints($shipment);
@@ -110,7 +113,7 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
       }
 
       $shipment->getOrder()->setShippingEstimateCache($estimateCache);
-    }
+  /*  }*/
 
     return $choices;
   }

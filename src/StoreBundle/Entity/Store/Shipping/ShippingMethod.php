@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @package StoreBundle\Entity\Store\Shipping
  * @ORM\Table()
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="StoreBundle\Repository\Store\Shipping\ShippingMethodRepository")
  */
 class ShippingMethod
 {
@@ -48,10 +48,16 @@ class ShippingMethod
   private $help;
   
   /**
-   * @var string|null
-   * @ORM\Column(type="string", length=512, nullable=true)
+   * @var integer|null
+   * @ORM\Column(type="integer", nullable=true)
    */
-  private $costInfo;
+  private $cost;
+  
+  /**
+   * @var integer|null
+   * @ORM\Column(type="integer", nullable=true)
+   */
+  private $freeDeliveryThreshold;
   
   /**
    * @var integer|null
@@ -159,17 +165,17 @@ class ShippingMethod
   /**
    * @return null|string
    */
-  public function getCostInfo(): ?string
+  public function getCost(): ?string
   {
-    return $this->costInfo;
+    return $this->cost;
   }
   
   /**
-   * @param null|string $costInfo
+   * @param null|string $cost
    */
-  public function setCostInfo(?string $costInfo): void
+  public function setCost(?string $cost): void
   {
-    $this->costInfo = $costInfo;
+    $this->cost = $cost;
   }
   
   public function __toString()
@@ -177,4 +183,19 @@ class ShippingMethod
     return $this->getName() ? $this->getName() : '';
   }
   
+  /**
+   * @return int|null
+   */
+  public function getFreeDeliveryThreshold(): ?int
+  {
+    return $this->freeDeliveryThreshold;
+  }
+  
+  /**
+   * @param int|null $freeDeliveryThreshold
+   */
+  public function setFreeDeliveryThreshold(?int $freeDeliveryThreshold): void
+  {
+    $this->freeDeliveryThreshold = $freeDeliveryThreshold;
+  }
 }

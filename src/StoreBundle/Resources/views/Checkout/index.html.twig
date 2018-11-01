@@ -466,6 +466,11 @@
                 <div id="name-errors">
 
                 </div>
+                <i class="error-icon">
+                  <span class="error-icon__message">
+                    Текст очень не приятной ошибки, хотя для кого то и очень приятной
+                  </span>
+                </i>
               </div>
 
               <div class="step-item step-item-input{% if (form.customer_phone.vars.errors|length) %} error{% endif %}">
@@ -641,7 +646,7 @@
               </div>
             </div>
 
-            <button type="submit" id="checkout_submit" name="checkout[submit]" class="button">
+            <button type="submit" id="checkout_submit" name="checkout[submit]" class="button button_yellow-yellow">
               <span>сделать заказ</span>
             </button>
 

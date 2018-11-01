@@ -36,6 +36,11 @@ class ShippingAdmin extends AbstractAdmin
   {
     $form
       ->add('name')
+
+      ->add('cost')
+      ->add('freeDeliveryThreshold', null, [
+        'help' => 'Начиная с этой цены доставка становится бесплатной'
+      ])
       ->add('help')
       ->add('uid', ChoiceType::class, [
         'choices' => $this->getShippingChoices(),

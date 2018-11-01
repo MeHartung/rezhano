@@ -80,7 +80,14 @@ class CheckoutProcessor
       #$shippingMethod = $this->shippingManager->getShippingMethodByUid($order->getShippingMethodId()->getUid());
       $shippingEstimate = $shippingMethod->estimate($shipments[0]);
 
-      $order->setShippingCost(0.00);
+      $shippingCost = $order->getShippingMethod()->getCost();
+      
+      if((int)$shippingCost !== 0)
+      {
+        $shippingCost = $order->getSubtotal() > $order->getShippingMethod()->getFreeDeliveryThreshold() ? 0.00 : $shippingCost;
+      }
+      
+      $order->setShippingCost($shippingCost);
       $order->setFee(0.00);
       $shippingEstimate = $shippingMethod->estimate($shipments[0]);
 

@@ -68,15 +68,15 @@ class OrderClientApplicationAdapter
    * @param Shipment $shipment
    * @return array
    */
-  public function getShippingChoiceList(ShippingMethod $shippingMethod, Shipment $shipment)
+  public function getShippingChoiceList( $shippingMethod, Shipment $shipment)
   {
     $choices = array();
-    if ($shippingMethod->isAvailable($shipment))
-    {
+  /*  if ($shippingMethod->isAvailable($shipment))
+    {*/
       $estimateCache = $shipment->getOrder()->getShippingEstimateCache();
 
       $choiceDefaults = array(
-          'clsid' => $shippingMethod->getClsid(),
+          'clsid' => $shippingMethod->getUid(),
           'priority' => ShippingManager::getShippingMethodPriority($shippingMethod),
           'embeddedCalculatorCode' => null === $shippingMethod->getEmbeddedCalculatorCode() ? null : base64_encode($shippingMethod->getEmbeddedCalculatorCode()),
       );
@@ -137,8 +137,8 @@ class OrderClientApplicationAdapter
         $estimateCache[$shippingMethod->getUid()] = $estimate;
 
         $choices[] = array_merge($choiceDefaults, array(
-          'id' => $shippingMethod->getUid(),
-          'clsid' => $shippingMethod->getClsid(),
+          'id' => $shippingMethod->getId(),
+          'uid' => $shippingMethod->getUid(),
           'name' => $shippingMethod->getName(),
           'cost' => $estimate->getCost(),
           'costString' => $estimate->formatCost(),
@@ -149,7 +149,7 @@ class OrderClientApplicationAdapter
       }
 
       $shipment->getOrder()->setShippingEstimateCache($estimateCache);
-    }
+   /* }*/
 
     return $choices;
   }

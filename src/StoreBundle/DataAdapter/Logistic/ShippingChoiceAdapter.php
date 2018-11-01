@@ -21,12 +21,13 @@ class ShippingChoiceAdapter implements ClientApplicationModelAdapterInterface
       throw new \Exception('Required shipment');
     }
 
-    if (!$shippingMethod->isAvailable($options['shipment']))
+  /*  if (!$shippingMethod->isAvailable($options['shipment']))
     {
       return array();
-    }
+    }*/
 
-    $estimate = $shippingMethod->estimate($options['shipment']);
+    #$estimate = $shippingMethod->estimate($options['shipment']);
+    $estimate = null;
 
     if (null === $estimate)
     {
@@ -37,7 +38,7 @@ class ShippingChoiceAdapter implements ClientApplicationModelAdapterInterface
       'id' => $shippingMethod->getUid(),
       'uid' => $shippingMethod->getUid(),
       'shippingMethodName' => $shippingMethod->getName(),
-      'clsid' => $shippingMethod->getClsid(),
+     # 'clsid' => $shippingMethod->getClsid(),
       'name' => $shippingMethod->getName(),
       'cost' => $estimate->getCost(),
       'priority' => ShippingManager::getShippingMethodPriority($shippingMethod),
