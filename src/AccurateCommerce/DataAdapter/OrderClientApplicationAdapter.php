@@ -49,14 +49,14 @@ class OrderClientApplicationAdapter
     $shippingMethodClientModels = new ClientApplicationModelCollection();
     foreach ($shippingMethods as $shippingMethod)
     {
-      if (!$shippingMethod->getDeferredEstimate())
+  /*    if (!$shippingMethod->getDeferredEstimate())
       {
         $choices = $this->getShippingChoiceList($shippingMethod, $shipments[0]);
       }
       else
-      {
+      {*/
         $choices = null;
-      }
+     # }
       $shippingMethodClientModels->append(new ShippingMethodClientModel($shippingMethod, $choices));
     }
 

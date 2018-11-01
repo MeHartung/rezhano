@@ -28,10 +28,14 @@ class CheeseStory implements ImageAwareInterface
   
   /**
    * @var string|null
-   * @ORM\Column(type="string", length=256, nullable=true)
+   * @ORM\Column(type="string", length=256)
    * @Assert\NotBlank(message="Поле не может быть пустым")
+   * @Assert\Length(min="1", max="256",
+   *   minMessage="Введите не менее 1 символа"),
+   *   maxMessage="Введите не более 256 символов" )
    */
-
+  private $title;
+  
   /**
    * @var string|null
    * @ORM\Column(type="text")
@@ -163,6 +167,7 @@ class CheeseStory implements ImageAwareInterface
   {
     $this->setTeaserImageFile($image ? $image->getResourceId() : null);
   }
+  
   /**
    * @return array
    */
@@ -181,10 +186,11 @@ class CheeseStory implements ImageAwareInterface
     
     return $this;
   }
+  
   /**
    * @return CheeseStoryImage
    */
-  public function getImage($id=null)
+  public function getImage($id = null)
   {
     if (!$this->teaserImageFile)
     {
@@ -201,6 +207,7 @@ class CheeseStory implements ImageAwareInterface
   {
     $this->teaserImageFile = $teaser ? $teaser->getResourceId() : null;
   }
+  
   /**
    * @return null|string
    */
@@ -216,11 +223,9 @@ class CheeseStory implements ImageAwareInterface
   {
     $this->title = $title;
   }
-
+  
   public function __toString()
   {
-    return $this->getText() === null ? '' :
-      (strlen($this->getText()) > 250 ?
-      strip_tags(substr($this->getText(), 0, 250)) . '...' : strip_tags($this->getText()));
+    return $this->getTitle() === null ? '' : $this->getTitle();
   }
 }

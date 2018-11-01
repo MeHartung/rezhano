@@ -31,8 +31,8 @@ class CheeseStoryAdmin extends AbstractAdmin
   {
     #$text = substr($this->getSubject()->getText(), 0, 50);
     $list
-      ->add('__toString', null, ['label' => 'Текст'])
-      #->add('title', null)
+      ->add('title')
+      #->add('__toString', null, ['label' => 'Текст'])
       ->add('_action', null, array(
           'actions' => array(
             'edit' => null,
@@ -50,7 +50,7 @@ class CheeseStoryAdmin extends AbstractAdmin
     /** @var CheeseStory $subject */
     $subject = $this->getSubject();
     $form
-    #  ->add('title')
+      ->add('title')
       ->add('text', TinyMceType::class)
     #  ->add('teaserImageFile', ImageType::class, array(
     #    'required' => $subject->getTeaser() === null
