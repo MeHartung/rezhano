@@ -2572,6 +2572,9 @@ aside.right {
 .section-purchase button.button {
   padding: 5px 22px 10px 22px;
 }
+.section-purchase .custom-select > select {
+  opacity: 0;
+}
 .section-checkout h1 {
   margin-bottom: 10px;
 }
@@ -3049,12 +3052,10 @@ body .delivery-info__message {
   color: #ca0d1b;
   font-weight: 500;
 }
-.step-item .help-block,
-.step-item .help-inline {
+.step-item .error-icon {
   display: none;
 }
-.step-item.error .help-block,
-.step-item.error .help-inline {
+.step-item.error .error-icon {
   display: block;
 }
 .section-article {
@@ -3083,6 +3084,12 @@ body .delivery-info__message {
 .section-question .form-item {
   position: relative;
 }
+.section-question .form-item .error-icon {
+  display: none;
+}
+.section-question .form-item.error .error-icon {
+  display: block;
+}
 .section-question__title {
   padding-bottom: 45px;
 }
@@ -3095,6 +3102,14 @@ body .delivery-info__message {
 }
 .section-question .container__wrap textarea {
   margin-bottom: 25px;
+}
+.section-question .cards-container__order-details {
+  font-size: 21px;
+  font-family: alegreyasans-regular;
+  color: #000000;
+}
+.section-question_success {
+  margin-bottom: 0;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

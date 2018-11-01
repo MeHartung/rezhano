@@ -25,10 +25,10 @@ class DocumentNumberGenerator
         ->getQuery()
         ->getSingleScalarResult() + 1;
 
-    $order_num = sprintf("%s-%d", date("dmy"), $num);
+    $order_num = sprintf("%s-%d", date("ymd"), $num);
     while (count($this->orderRepository->findBy(['documentNumber' => $order_num])) > 0)
     {
-      $order_num = sprintf("%s-%d", date("dmy"), ++$num);
+      $order_num = sprintf("%s-%d", date("ymd"), ++$num);
     }
 
     return $order_num;

@@ -1,27 +1,40 @@
 {% extends "::base.html.twig" %}
 
 {% block main %}
-    <section class="section-question">
+    <section class="section-question section-question_success">
         <div class="container">
-            <div class="section-title">
-                <div class="breadcrumbs">
-                    <a class="breadcrumbs__item">Главная страница</a>
-                    <span class="breadcrumbs__divide"></span>
-                    <a class="breadcrumbs__item breadcrumbs__item_active">Задать вопрос</a>
-                </div>
-                <span class="section-title__text section-title__text_in-product">Задать вопрос</span>
-            </div>
+            {#<div class="section-title">#}
+                {#<div class="breadcrumbs">#}
+                    {#<a class="breadcrumbs__item">Главная страница</a>#}
+                    {#<span class="breadcrumbs__divide"></span>#}
+                    {#<a class="breadcrumbs__item breadcrumbs__item_active">Задать вопрос</a>#}
+                {#</div>#}
+                {#<span class="section-title__text section-title__text_in-product">Задать вопрос</span>#}
+            {#</div>#}
 
-            <div class="center_no-left cards-container__center_no-left">
+            {#<div class="center_no-left cards-container__center_no-left">#}
                 <div class="cards-container cards-container__order">
-                    <div class="cards-container__header cards-container__question-sent">
+                    <div class="cards-container cards-container__question-sent">
                         <div class="cards-container__delivery-type">
-                            <span class="cards-container__order-title">Ваш вопрос был отправлен!</span>
-                            <span class="cards-container__order-details">{{ hotspot('customer_question_text', 'Через некоторое время мы отправим вам ответ по электронной почте') }}<br/><a href="{{ path('catalog_index') }}">Вернуться к покупкам</a></span>
+                            <h2>Ваш вопрос был отправлен!</h2>
+                            <span class="cards-container__order-details">{{ hotspot('customer_question_text', 'Через некоторое время мы отправим вам ответ по электронной почте') }}<br/>
+                            </span>
                         </div>
                     </div>
                 </div>
+            {#</div>#}
+        </div>
+    </section>
+
+    <section class="section-back-to-all">
+        <div class="container">
+            <div class="section-back-to-all__link">
+                <a href="{{ url('catalog_index') }}" ><  <span>вернуться к покупкам</span></a>
+            </div>
+            <div class="section-back-to-all__image">
+                <img  src="{{ asset('images/back-to-all.png') }}">
             </div>
         </div>
     </section>
+
 {% endblock %}

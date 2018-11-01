@@ -64,6 +64,11 @@ class ProductFilter extends BaseFilter
 
     parent::__construct($id);
 
+    $this->configure();
+  }
+
+  protected function configure()
+  {
     $this->addField(new RangeFilterField('price', array(
       'label' => 'Цена'
     )));
@@ -72,7 +77,7 @@ class ProductFilter extends BaseFilter
     )));
 
 
-    $qb = $taxon->getProductQueryBuilder();
+    $qb = $this->taxon->getProductQueryBuilder();
     /**
      * @var $qb QueryBuilder
      */

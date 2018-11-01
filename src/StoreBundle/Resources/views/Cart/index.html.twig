@@ -35,7 +35,7 @@
                             {% if item.product.images.count > 0 %}
                                 <img src="{{ image_url(item.product) }}" alt="">
                             {% else %}
-                                <img src="{{ asset('/images/TEST_DELETE.png') }}" alt="">
+                                <img src="{{ asset('/images/no-photo.png') }}" alt="">
                             {% endif %}
                         </a>
                         <div class="cards-container__item-info">

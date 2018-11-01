@@ -405,20 +405,21 @@
           <aside class="right">
             <div class="cards-container__payment-info">
               {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
+              {% for item in order.orderItems %}
+                <div class="payment-info__product">
+                  <span class="payment-info__product-name">{{ item.product.name }}</span>
+                  <span class="payment-info__product-value">{{ item.quantity }} шт. × {{ item.product.price | price }}</span>
+                </div>
+              {% endfor %}
 
               <div class="payment-info__product">
                 <span class="payment-info__product-name">Буррата</span>
                 <span class="payment-info__product-value">1 шт. × 169₽</span>
               </div>
 
-              <div class="payment-info__product">
-                <span class="payment-info__product-name">Буррата</span>
-                <span class="payment-info__product-value">1 шт. × 169₽</span>
-              </div>
-
-              <span class="payment-info__discount">
-          Скидка 10%
-          </span>
+              {#<span class="payment-info__discount">#}
+                {#Скидка 10%#}
+              {#</span>#}
 
               <div class="payment-info__value">
                 Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}₽</span>
@@ -463,25 +464,29 @@
               <div class="step-item step-item-input{% if (form.customer_first_name.vars.errors|length) %} error{% endif %}">
                 {#<input class="input-text" type="text" placeholder="ФИО">#}
                 {{ form_widget(form.customer_first_name, {'attr': {'placeholder': 'ФИО', 'class': 'input-text', 'data-validate':'name', 'data-description':'name', 'data-describedby': 'name-errors'}}) }}
-                <div id="name-errors">
-
-                </div>
                 <i class="error-icon">
-                  <span class="error-icon__message">
-                    Текст очень не приятной ошибки, хотя для кого то и очень приятной
+                  <span class="error-icon__message" id="name-errors">
+                    {{ form_errors(form.customer_first_name) }}
                   </span>
                 </i>
               </div>
 
               <div class="step-item step-item-input{% if (form.customer_phone.vars.errors|length) %} error{% endif %}">
                 {#<input class="input-text" type="text" placeholder="Телефон">#}
-                {{ form_widget(form.customer_phone, {'attr': {'placeholder': 'Телефон', 'class': 'input-text'}}) }}
-                <div id="phone-errors">
-
-                </div>
+                {{ form_widget(form.customer_phone, {'attr': {'placeholder': 'Телефон', 'class': 'input-text', 'data-validate':'phone', 'data-description':'phone', 'data-describedby': 'phone-errors'}}) }}
+                <i class="error-icon">
+                  <span class="error-icon__message" id="phone-errors">
+                    {{ form_errors(form.customer_phone) }}
+                  </span>
+                </i>
               </div>
               <div class="step-item step-item-input{% if (form.customer_email.vars.errors|length) %} error{% endif %}">
-                {{ form_widget(form.customer_email, {'attr': {'placeholder': 'Эл. почта', 'class': 'input-text'}}) }}
+                {{ form_widget(form.customer_email, {'attr': {'placeholder': 'Эл. почта', 'class': 'input-text', 'data-validate':'email', 'data-description':'email', 'data-describedby': 'email-errors'}}) }}
+                <i class="error-icon">
+                  <span class="error-icon__message" id="email-errors">
+                    {{ form_errors(form.customer_email) }}
+                  </span>
+                </i>
               </div>
             </div>
           </div>

@@ -8,7 +8,6 @@ define(function(require){
       ShippingChoiceCollection = require('model/shipping/shipping-choice-collection'),
       ShippingChoiceListView = require('view/checkout/shipping/shipping-choice-list-view'),
       ListView = require('view/base/list-view');
-      require('/js/vendor/jquery-ui/jquery-ui.js');
 
   return Backbone.View.extend({
     events: {
@@ -29,12 +28,13 @@ define(function(require){
       return this;
     },
     onCityChange: function (e) {
+      var self = this;
         $.ajax({
           url: urlPrefix + '/shipping/methods',
           type: 'POST',
-          data: data,
-          success: function (html) {
-          console.log(html)
+          data: {city: $(e.currentTarget).val()},
+          success: function (r) {
+            self.collection.set(r)
           }
         });
     }

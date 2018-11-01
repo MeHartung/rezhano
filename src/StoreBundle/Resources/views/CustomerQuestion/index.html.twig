@@ -4,108 +4,102 @@
     <section class="section-question">
         <div class="container">
             {#<div class="section-title">#}
-            {#<div class="breadcrumbs">#}
-            {#<a class="breadcrumbs__item">Главная страница</a>#}
-            {#<span class="breadcrumbs__divide"></span>#}
-            {#<a class="breadcrumbs__item breadcrumbs__item_active">Задать вопрос</a>#}
-            {#</div>#}
-            {#<span class="section-title__text section-title__text_in-product">Задать вопрос</span>#}
+                {#<div class="breadcrumbs">#}
+                    {#<a class="breadcrumbs__item">Главная страница</a>#}
+                    {#<span class="breadcrumbs__divide"></span>#}
+                    {#<a class="breadcrumbs__item breadcrumbs__item_active">Задать вопрос</a>#}
+                {#</div>#}
+                {#<span class="section-title__text section-title__text_in-product">Задать вопрос</span>#}
             {#</div>#}
 
             {#<div class="center_no-left cards-container__center_no-left">#}
-            {#<aside class="right">#}
-            {#<div class="ask-question-aside">#}
-            {#<p>Мы отправим вам ответ<br>по электронной почте.</p>#}
-            {#{% if not app.user %}#}
-            {#<p><a href="{{ path('fos_user_registration_register') }}"#}
-            {#class="ask-question-aside__registration">Пройдите регистрацию</a><br> и получайте#}
-            {#быстрые<br> ответы в личном кабинете.</p>#}
-            {#{% endif %}#}
-            {#</div>#}
-            {#</aside>#}
-            <h1 class="section-question__title">Ваш вопрос</h1>
-            {% form_theme form '@Store/CustomerQuestion/form_theme.html.twig' %}
-            <div class="section-wrap">
-                <div class="cards-container ask-question">
-                    {{ form_start(form) }}
-                    {{ form_errors(form) }}
-
-                    <div class="container__wrap">
-                        <div class="form-item">
-                            {{ form_widget(form.fio, {'attr': {'class': 'input-text', 'placeholder':'Фамилия и Имя'}}) }}
-                            {% if form.fio.vars.errors|length %}
-                                <i class="error-icon">
-                                      <span class="error-icon__message">
-                                          {% for fio_error in form.fio.vars.errors %}
-                                              {{ fio_error.message }}
-                                          {% endfor %}
-                                      </span>
-                                </i>
-                            {% endif %}
-                        </div>
-
-                        <div class="form-item">
-                            {{ form_widget(form.email, {'attr': {'class': 'input-text', 'placeholder':'Электронная почта'}}) }}
-                            {% if form.email.vars.errors|length %}
-                                <i class="error-icon">
-                                      <span class="error-icon__message">
-                                          {% for email_error in form.email.vars.errors %}
-                                              {{ email_error.message }}
-                                          {% endfor %}
-                                      </span>
-                                </i>
-                            {% endif %}
-                        </div>
-
-                        <div class="form-item">
-                            {{ form_widget(form.phone, {'attr': {'class': 'input-text', 'placeholder':'Номер телефона'}}) }}
-                            {% if form.phone.vars.errors|length %}
-                                <i class="error-icon">
-                                      <span class="error-icon__message">
-                                          {% for phone_error in form.phone.vars.errors %}
-                                              {{ phone_error.message }}
-                                          {% endfor %}
-                                      </span>
-                                </i>
-                            {% endif %}
-                        </div>
-
-                        {#{{ form_row(form.question, {'attr':{'cols':30, 'rows':10}}) }}#}
-                        <div class="delivery-container__item">
-                            <div class="delivery-container__header">
-                                {#{{ form_label(form.message) }}#}
-                            </div>
-                            <div class="delivery-container__item-info">
-                                <div class="custom-textarea">
-                                    {{ form_widget(form.text, {'attr':{'cols':30, 'rows':5}}) }}
-                                </div>
-                                {% if form.text.vars.errors|length %}
-                                    {% for text_error in form.text.vars.errors %}
-                                        {{ text_error.message }}
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cards-container__confirm">
+                {#<aside class="right">#}
+                    {#<div class="ask-question-aside">#}
+                        {#<p>Мы отправим вам ответ<br>по электронной почте.</p>#}
+                        {#{% if not app.user %}#}
+                            {#<p><a href="{{ path('fos_user_registration_register') }}"#}
+                                  {#class="ask-question-aside__registration">Пройдите регистрацию</a><br> и получайте#}
+                                {#быстрые<br> ответы в личном кабинете.</p>#}
+                        {#{% endif %}#}
+                    {#</div>#}
+                {#</aside>#}
+                <h1 class="section-question__title">Ваш вопрос</h1>
+                {% form_theme form '@Store/CustomerQuestion/form_theme.html.twig' %}
+                <div class="section-wrap">
+                    <div class="cards-container ask-question">
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        {% if form.userName is defined or form.userEmail is defined %}
                         <div class="container__wrap">
+                            {% if form.userName is defined %}
+                            {{ form_row(form.userName) }}
+                            {% endif %}
+                            {% if form.userEmail is defined %}
+                            {{ form_row(form.userEmail) }}
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        <div class="container__wrap">
+                            <div class="form-item">
+                                <input type="text" class="input-text" placeholder="Фамилия и Имя">
+                                <i class="error-icon">
+                                  <span class="error-icon__message">
+                                    Текст очень не приятной ошибки, хотя для кого то и очень приятной
+                                  </span>
+                                </i>
+                            </div>
+                            <div class="form-item">
+                                <input type="text" class="input-text" placeholder="Электронная почта">
+                                <i class="error-icon">
+                                  <span class="error-icon__message">
+                                    Текст очень не приятной ошибки, хотя для кого то и очень приятной
+                                  </span>
+                                </i>
+                            </div>
+                            <div class="form-item error">
+                                <input type="text" class="input-text" placeholder="Номер телефона">
+                                <i class="error-icon">
+                                  <span class="error-icon__message">
+                                    Текст очень не приятной ошибки, хотя для кого то и очень приятной
+                                  </span>
+                                </i>
+                            </div>
+
+                            {#{{ form_row(form.question, {'attr':{'cols':30, 'rows':10}}) }}#}
                             <div class="delivery-container__item">
                                 <div class="delivery-container__header">
-
+                                    {#{{ form_label(form.message) }}#}
                                 </div>
                                 <div class="delivery-container__item-info">
-                                    <button class="button">
-                                        <span>Отправить вопрос</span>
-                                    </button>
+                                    <div class="custom-textarea">
+                                        {{ form_widget(form.message, {'attr':{'cols':30, 'rows':5}}) }}
+                                    </div>
+                                    {% if  form_errors(form) %}
+                                        <div class="error-list">{{ form_errors(form) }}</div>
+                                    {% endif %}
                                 </div>
-
                             </div>
                         </div>
+
+                        <div class="cards-container__confirm">
+                            <div class="container__wrap">
+                                <div class="delivery-container__item">
+                                    <div class="delivery-container__header">
+
+                                    </div>
+                                    <div class="delivery-container__item-info">
+                                        <button class="button button_yellow-yellow">
+                                            <span>Отправить вопрос</span>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
                     </div>
-                    {{ form_end(form) }}
                 </div>
-            </div>
             {#</div>#}
         </div>
     </section>
