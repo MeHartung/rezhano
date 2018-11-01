@@ -83,30 +83,30 @@ define(function(require){
         },
         description : {
           name: {
-            required : '<ul class="error-list"><li>Представьтесь, пожалуйста</li></ul>'
+            required : '<div>Представьтесь, пожалуйста</div>'
           },
           email: {
-            required : '<ul class="error-list"><li>Укажите Ваш электронный адрес</li></ul>',
-            pattern : '<ul class="error-list"><li>Введен неверный адрес электронной почты</li></ul>'
+            required : '<div>Укажите Ваш электронный адрес</div>',
+            pattern : '<div>Введен неверный адрес электронной почты</div>'
           },
           phone: {
-            required: '<ul class="error-list"><li>Укажите Ваш телефон</li></ul>',
-            pattern: '<ul class="error-list"><li>Введен неверный номер телефона</li></ul>'
+            required: '<div>Укажите Ваш телефон</div>',
+            pattern: '<div>Введен неверный номер телефона</div>'
           },
           'address': {
-            conditional: '<ul class="error-list"><li>Укажите адрес доставки</li></ul>'
+            conditional: '<div>Укажите адрес доставки</div>'
           },
           payment: {
-            required : '<ul class="error-list"><li>Выберите способ оплаты</li></ul>'
+            required : '<div>Выберите способ оплаты</div>'
           },
           delivery: {
-            required : '<ul class="error-list"><li>Выберите способ доставки</li></ul>'
+            required : '<div>Выберите способ доставки</div>'
           },
           'personal-agreement': {
-            required: '<ul class="error-list"><li>Чтобы оформить заказ, вы должны согласиться с политикой компании условиями сотрудничества</li></ul>'
+            required: '<div>Чтобы оформить заказ, вы должны согласиться с политикой компании условиями сотрудничества</div>'
           },
           'tos-agreement': {
-            required: '<ul class="error-list"><li>Чтобы оформить заказ, вы должны согласиться с обработкой персональных данных</li></ul>'
+            required: '<div>Чтобы оформить заказ, вы должны согласиться с обработкой персональных данных</div>'
           }
         },
         conditional: {
