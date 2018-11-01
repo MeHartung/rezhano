@@ -47,7 +47,7 @@
         <div class="layer__images product-image__gallery" id="product-image-gallery" >
           <div class="main-image">
             {% for image in product.images %}
-              <a href="{{ image_url(image) }}" class="show-full-image" itemprop="image" rel="vm-additional-images[]">
+              <a href="{{ image_url(image) }}" class="show-full-image" itemprop="image" data-number="" rel="vm-additional-images[]">
                 <img src="{{ image_url(image) }}" alt="">
               </a>
             {% endfor %}

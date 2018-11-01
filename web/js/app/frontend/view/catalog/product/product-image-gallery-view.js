@@ -71,9 +71,16 @@ define(function(require){
          * @type {*}
          */
       var imgId = this.ppDefaults.images.indexOf(this.$('.main-image a').attr('href'));
+      var imageHref = [];
+      imageHref.push(e.currentTarget.href);
 
       if (this.ppDefaults.images.length){
-        $.prettyPhoto.open(this.ppDefaults.images, this.ppDefaults.titles, this.ppDefaults.descriptions);
+        if (this.$('.main-image').hasClass('slick-slider')) {
+          $.prettyPhoto.open(imageHref, this.ppDefaults.titles, this.ppDefaults.descriptions);
+        } else {
+          $.prettyPhoto.open(this.ppDefaults.images, this.ppDefaults.titles, this.ppDefaults.descriptions);
+        }
+
         $.prettyPhoto.changePage(imgId);
         $('.pp_gallery').addClass('disabled');
       }
