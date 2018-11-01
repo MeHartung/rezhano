@@ -153,4 +153,9 @@ class OrderClientApplicationAdapter
 
     return $choices;
   }
+  
+  public function setCurrentShipments($methods)
+  {
+  
+  }
 }
