@@ -39,7 +39,8 @@ define(function (require) {
         units: this.model.get('units'),
         price: Number(this.model.get('price')).toCurrencyString('₽', 0),
         description: this.model.get('description'),
-        attributes: this.model.get('attributes')
+        attributes: this.model.get('attributes'),
+        productId: this.model.get('id')
       }));
 
       $(function () {
