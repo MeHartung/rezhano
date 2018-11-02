@@ -224,6 +224,8 @@ class MoySkladSource extends BaseDataSource
           ]
         );
         
+        var_dump($product->barcode);die;
+        
         $moySkladProductsAsArray[$key] = [
           'name' => $productDb->getName(),
           'external_code' => $product->code,
