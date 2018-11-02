@@ -9,6 +9,9 @@ define(function(require){
   
   return ListItemView.extend({
     className: 'custom-radio',
+    events: {
+      'change input.radio' : 'onShippingMethodChange'
+    },
     initialize: function(){
       this.listenTo(this, 'attach', this._onAttached, this);
       this.listenTo(this.model, 'change', this.render, this);
@@ -16,7 +19,8 @@ define(function(require){
     render: function(){
       this.$el.html(template({
         id: this.model.get('id'),
-        name: this.model.get('name')
+        name: this.model.get('name'),
+        checked: this.model.get('is_active')
       }));
       
       return this;
@@ -27,6 +31,12 @@ define(function(require){
     },
     _onAttached: function(){
       this.render();
+    },
+    onShippingMethodChange: function (e) {
+
+      if ($(e.currentTarget).prop('checked')) {
+        this.model.set({'is_active': true});
+      }
     }
   })
 });

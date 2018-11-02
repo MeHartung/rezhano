@@ -7,7 +7,8 @@
  */
 define(function(require){
   var Backbone = require('backbone'),
-      ShippingPanel = require('view/checkout/shipping/delivery-method-panel');
+      ShippingPanel = require('view/checkout/shipping/delivery-method-panel'),
+      ShippingMethodCollection = require('model/order/shipping/shipping-method-collection');
 
   require('jquery-validate');
   require('vendor/inputmask/jquery.inputmask');
@@ -15,13 +16,15 @@ define(function(require){
   return Backbone.View.extend({
     initialize: function (options) {
 
-      this.shippingMethodsCollection = new Backbone.Collection(this.model.get('shipping_methods'));
+      this.shippingMethodsCollection = new ShippingMethodCollection(this.model.get('shipping_methods'));
 
       this.shippingPanel = new ShippingPanel({
         collection: this.shippingMethodsCollection
       });
 
       this.listenTo(this.shippingPanel, 'shippingMethodChange', this.onShippingMethodChange);
+      this.listenTo(this.shippingPanel, 'disableAddressValidation', this.disableAddressValidation);
+      this.listenTo(this.shippingPanel, 'enableAddressValidation', this.enableAddressValidation);
 
       this.addressRequired = true;
 
@@ -47,8 +50,6 @@ define(function(require){
           required: true
         }
       });
-      this.listenTo(this.shippingPanel, 'disableAddressValidation', this.disableAddressValidation);
-      this.listenTo(this.shippingPanel, 'enableAddressValidation', this.enableAddressValidation);
     },
     render: function () {
       this.shippingPanel.setElement(this.$('.shipping-panel'));
@@ -126,10 +127,6 @@ define(function(require){
     },
     enableAddressValidation: function () {
       this.addressRequired = true;
-    },
-    onShippingMethodChange: function (shipping_method_id) {
-      this.model.set('shipping_method_id', shipping_method_id);
-      this.model.save();
     }
   })
 });

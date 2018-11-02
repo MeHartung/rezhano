@@ -9,7 +9,7 @@ define(function(require){
   return Backbone.Model.extend({
     defaults:{
       name: '',
-      selected: false,
+      is_active: false,
       details: null
     },
     initialize: function() {

@@ -10,6 +10,16 @@ define(function(require){
     model: ShippingMethod,
     initialize: function(){
       this.isLoaded = false;
+      this.on('change:is_active', this.onChangeActive, this);
+    },
+    onChangeActive: function(model){
+      if (model.get('is_active') && !model.previousAttributes().is_active){
+        this.each(function(_model){
+          if (_model.cid !== model.cid){
+            _model.set({ 'is_active': false })
+          }
+        });
+      }
     },
     comparator: function(method){
       return -method.get('priority');
