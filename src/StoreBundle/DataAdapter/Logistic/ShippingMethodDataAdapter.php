@@ -53,7 +53,9 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
       'cost' => $shippingMethod->getCost(),
       'free_delivery_threshold' => $shippingMethod->getFreeDeliveryThreshold(),
       'priority' => ShippingManager::getShippingMethodPriority($shippingMethod),
-      'is_active' => $shippingMethod->isActive()
+      'is_active' => $shippingMethod->isActive(),
+      'address' => $shippingMethod->getUid() ===  ShippingMethodStorePickup::UID ? $shippingMethod->getAddress() : null,
+      'show_address' => $shippingMethod->getUid() === ShippingMethodStorePickup::UID ? $shippingMethod->getShowAddress() : null,
       #'deferredEstimate' => $shippingMethod->getDeferredEstimate(),
       #'choices' => $choices
     );
