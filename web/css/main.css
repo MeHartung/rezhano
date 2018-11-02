@@ -575,6 +575,7 @@ input[type="text"].input-text {
 }
 .custom-checkbox {
   position: relative;
+  white-space: nowrap;
 }
 .custom-checkbox input[type="checkbox"] {
   display: none;
@@ -584,6 +585,8 @@ input[type="text"].input-text {
   cursor: pointer;
   font-family: alegreyasans-light;
   font-size: 17px;
+  display: inline-block;
+  white-space: normal;
 }
 .custom-checkbox span a {
   text-decoration: none;
@@ -3059,7 +3062,7 @@ body .delivery-info__message {
 }
 .step-item-checkbox {
   position: relative;
-  padding-right: 30px;
+  padding-right: 70px;
 }
 .step-item .error-icon {
   display: none;
