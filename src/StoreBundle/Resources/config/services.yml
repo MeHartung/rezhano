@@ -66,9 +66,20 @@ services:
 
     app.product.adapter:
       class: StoreBundle\DataAdapter\Product\ProductDataAdapter
-      arguments: ['@router', '@aw.media.storage.file', '@security.token_storage', '@store.price.manager']
+      arguments:
+        - '@router'
+        - '@aw.media.storage.file'
+        - '@security.token_storage'
+        - '@store.price.manager'
+        - '@app.product_type.adapter'
       tags:
         - { name: aw.client_application.adapter, alias: product }
+
+    app.product_type.adapter:
+      class: StoreBundle\DataAdapter\Product\ProductTypeDataAdapter
+      arguments: ~
+      tags:
+        - { name: aw.client_application.adapter, alias: product_type }
 
     app.filter.schema.adapter:
       class: StoreBundle\DataAdapter\Taxon\Filter\FilterFieldSchemaDataAdapter

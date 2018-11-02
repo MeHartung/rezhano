@@ -18,13 +18,17 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
   private $mediaStorage;
   private $tokenStorage;
   private $priceManager;
+  private $productTypeAdapter;
 
-  public function __construct (RouterInterface $router, MediaStorageInterface $mediaStorage, TokenStorageInterface $tokenStorage, ProductPriceManager $priceManager)
+  public function __construct (RouterInterface $router, MediaStorageInterface $mediaStorage,
+                               TokenStorageInterface $tokenStorage, ProductPriceManager $priceManager,
+                               ProductTypeDataAdapter $productTypeDataAdapter)
   {
     $this->router = $router;
     $this->mediaStorage = $mediaStorage;
     $this->tokenStorage = $tokenStorage;
     $this->priceManager = $priceManager;
+    $this->productTypeAdapter = $productTypeDataAdapter;
   }
 
   /**
@@ -91,7 +95,8 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'count_step' => $count_step,
       'min_count' => $min_count,
       'description' => $subject->getDescription(),
-      'attributes' => $subject->getProductAttributeValuesGrouped()
+      'attributes' => $subject->getProductAttributeValuesGrouped(),
+      'type' => $this->productTypeAdapter->transform($subject->getProductType())
     );
   }
 

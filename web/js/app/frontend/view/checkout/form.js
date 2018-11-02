@@ -45,9 +45,6 @@ define(function(require){
         },
         'personal-agreement': {
           required: true
-        },
-        'tos-agreement': {
-          required: true
         }
       });
       this.listenTo(this.shippingPanel, 'disableAddressValidation', this.disableAddressValidation);
@@ -104,9 +101,6 @@ define(function(require){
           },
           'personal-agreement': {
             required: '<div>Чтобы оформить заказ, вы должны согласиться с политикой компании условиями сотрудничества</div>'
-          },
-          'tos-agreement': {
-            required: '<div>Чтобы оформить заказ, вы должны согласиться с обработкой персональных данных</div>'
           }
         },
         conditional: {

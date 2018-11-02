@@ -435,26 +435,26 @@
             </div>
 
             <div class="cards-container__step-container">
-              <div class="step-item">
-                <div class="custom-radio">
-                  <label>
-                    <input type="radio" class="radio" name="radio-group">
-                    <span class="custom-radio__radio"></span>
-                    <span>Частное лицо</span>
-                  </label>
-                </div>
+              {#<div class="step-item">#}
+                {#<div class="custom-radio">#}
+                  {#<label>#}
+                    {#<input type="radio" class="radio" name="radio-group">#}
+                    {#<span class="custom-radio__radio"></span>#}
+                    {#<span>Частное лицо</span>#}
+                  {#</label>#}
+                {#</div>#}
 
-                <div class="custom-radio">
-                  <label>
-                    <input type="radio" class="radio" name="radio-group">
-                    <span class="custom-radio__radio"></span>
-                    <span>Юридическое лицо</span>
-                  </label>
-                </div>
-                <div id="">
+                {#<div class="custom-radio">#}
+                  {#<label>#}
+                    {#<input type="radio" class="radio" name="radio-group">#}
+                    {#<span class="custom-radio__radio"></span>#}
+                    {#<span>Юридическое лицо</span>#}
+                  {#</label>#}
+                {#</div>#}
+                {#<div id="">#}
 
-                </div>
-              </div>
+                {#</div>#}
+              {#</div>#}
 
               <div class="step-item step-item-input{% if (form.customer_first_name.vars.errors|length) %} error{% endif %}">
                 {#<input class="input-text" type="text" placeholder="ФИО">#}
@@ -552,14 +552,15 @@
                 </div>
               </div>#}
 
-                <div class="step-item step-item-input step-item-input_biggest{% if (form.shipping_address.vars.errors|length) %} error{% endif %}">
-                  {{ form_widget(form.shipping_address, {'attr': {'placeholder': 'Адрес', 'class': 'input-text'}}) }}
-                  {#<input class="input-text" type="text" placeholder="Адрес">#}
-                  <div class="step-item-input__link">Ознакомьтесь с <a href="">условиями доставки и оплаты</a></div>
-                </div>
-
-                <div class="help-inline" data-error=""></div>
-                <div class="help-block"></div>
+              </div>
+              <div class="step-item step-item-input step-item-input_biggest{% if (form.shipping_address.vars.errors|length) %} error{% endif %}">
+                  {{ form_widget(form.shipping_address, {'attr': {'placeholder': 'Адрес', 'class': 'input-text', 'data-conditional':'address', 'data-description':'address', 'data-describedby': 'address-errors'}}) }}
+                <i class="error-icon">
+                    <span class="error-icon__message" id="address-errors">
+                      {{ form_errors(form.shipping_address) }}
+                    </span>
+                </i>
+                <div class="step-item-input__link">Ознакомьтесь с <a href="">условиями доставки и оплаты</a></div>
               </div>
             </div>
 
@@ -575,7 +576,7 @@
                   <div class="custom-checkbox font-alegreya" name="tos">
                     <label>
                       {# <input  name="tos" class="checkbox" type="checkbox">#}
-                      {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox'}}) }}
+                      {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox', 'data-validate':'personal-agreement', 'data-description':'personal-agreement', 'data-describedby': 'personal-agreement-errors'}}) }}
                       <span class="custom-checkbox__checkbox"></span>
                       <span>Я ознакомился и согласен с <a href="">Политикой Компании</a>, <a href="">условиями сотрудничества</a>, <a href="">условиями обработки персональных данных</a>
                   </span>
@@ -591,18 +592,21 @@
                   </span>
                     </label>
                   </div>#}
-                  <div class="help-inline" data-error=""></div>
-                  <div class="help-block"></div>
+                  <i class="error-icon">
+                    <span class="error-icon__message" id="personal-agreement-errors">
+                      {{ form_errors(form.tos_agreement) }}
+                    </span>
+                  </i>
                 </div>
 
-                <div class="step-item step-item-input step-item-input_350 step-item-card-number">
-                  <input class="input-text" type="text" placeholder="Введите номер карты">
-                  <a href="" class="button button_black">
-                    <span>Применить</span>
-                  </a>
-                  <div class="help-inline" data-error=""></div>
-                  <div class="help-block"></div>
-                </div>
+                {#<div class="step-item step-item-input step-item-input_350 step-item-card-number">#}
+                  {#<input class="input-text" type="text" placeholder="Введите номер карты">#}
+                  {#<a href="" class="button button_black">#}
+                    {#<span>Применить</span>#}
+                  {#</a>#}
+                  {#<div class="help-inline" data-error=""></div>#}
+                  {#<div class="help-block"></div>#}
+                {#</div>#}
 
 
                 <div class="step-item">

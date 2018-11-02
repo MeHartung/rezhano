@@ -46,6 +46,8 @@ class ShippingAdmin extends AbstractAdmin
         'choices' => $this->getShippingChoices(),
         'label' => 'Тип'
       ]);
+    
+   # if($this->getSubject()->getUid() === )
   }
   
   private function getShippingChoices()
