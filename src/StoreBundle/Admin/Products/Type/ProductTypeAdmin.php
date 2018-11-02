@@ -12,7 +12,10 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Form\Type\BooleanType;
+use StoreBundle\Entity\Store\Catalog\Product\Attributes\Type\ProductType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormEvents;
 
 class ProductTypeAdmin extends AbstractAdmin
 {
@@ -42,12 +45,18 @@ class ProductTypeAdmin extends AbstractAdmin
   {
     $form
       ->tab('Тип')
-        ->add('name')
+        ->add('name', null, [
+          'required' => true
+        ])
         ->add('measured', BooleanType::class, array(
           'transform' => true
         ))
-        ->add('minCount', NumberType::class)
-        ->add('countStep', NumberType::class)
+        ->add('minCount', NumberType::class, [
+          'required' => true,
+        ])
+        ->add('countStep', NumberType::class, [
+          'required' => true,
+        ])
       ->end()
       ->end()
 
@@ -56,6 +65,24 @@ class ProductTypeAdmin extends AbstractAdmin
       ->end()
       ->end()
     ;
+    
+    /** @var ProductType $subject */
+    $subject = $this->getSubject();
+    $form->getFormBuilder()->addEventListener(FormEvents::POST_SUBMIT,
+      function (\Symfony\Component\Form\FormEvent $event) use ($subject)
+      {
+        $form = $event->getForm();
+      
+        if($subject->getCountStep() < 0)
+        {
+          $form->get('countStep')->addError(new FormError('Шаг не может быть меньше 0'));
+        }
+      
+        if($subject->getMinCount() < 0)
+        {
+          $form->get('countStep')->addError(new FormError('Минимальное количество для заказа  не может быть меньше 0'));
+        }
+      });
   }
 
 
