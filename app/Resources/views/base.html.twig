@@ -47,7 +47,12 @@
           <a class="header-logo" title="Режано"
              {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
           {% block headerMenu %}
-            {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
+            {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu',
+                {
+                    '_route': app.request.get('_route'),
+                    '_route_params': app.request.get('_route_params'),
+                    'uri': app.request.requestUri
+                })) }}
           {% endblock %}
           <div class="header-controls">
             <a href="" class="header-controls__item header-controls__cabinet">

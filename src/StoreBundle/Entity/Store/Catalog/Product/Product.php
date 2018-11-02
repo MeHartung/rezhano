@@ -14,6 +14,7 @@ use StoreBundle\Entity\Store\Brand\Brand;
 use StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttribute;
 use StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttributeValue;
 use StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttributeValueToProduct;
+use StoreBundle\Entity\Store\Catalog\Product\Attributes\Type\ProductType;
 use StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon;
 
 use StoreBundle\Entity\Store\Logistics\Warehouse\ProductStock;
@@ -245,7 +246,7 @@ class Product implements SluggableInterface//, StockableInterface
   private $sphinxWeight;
 
   /**
-   * @var int
+   * @var ProductType
    * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Catalog\Product\Attributes\Type\ProductType", inversedBy="products")
    */
   private $productType;
@@ -903,7 +904,7 @@ class Product implements SluggableInterface//, StockableInterface
   }
 
   /**
-   * @return int
+   * @return ProductType
    */
   public function getProductType()
   {
@@ -911,7 +912,7 @@ class Product implements SluggableInterface//, StockableInterface
   }
 
   /**
-   * @param int
+   * @param ProductType
    */
   public function setProductType($productType)
   {
@@ -1254,6 +1255,11 @@ class Product implements SluggableInterface//, StockableInterface
   {
     return $this->package;
   }
+  
+  public function getFormattedPackage()
+  {
+    return $this->formatFloat($this->getPackage());
+  }
 
   /**
    * @param integer $package
@@ -1316,7 +1322,7 @@ class Product implements SluggableInterface//, StockableInterface
   {
     if ($number - floor($number) == 0)
     {
-      return rtrim($number, '.0');
+      return rtrim(rtrim($number, '0'), '.');
     }
 
     return $number;

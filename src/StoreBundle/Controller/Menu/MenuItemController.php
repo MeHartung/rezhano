@@ -11,11 +11,12 @@ namespace StoreBundle\Controller\Menu;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpFoundation\Request;
 
 class MenuItemController extends Controller
 {
   
-  public function headerMenuAction()
+  public function headerMenuAction(Request $request)
   {
     $headerMenuItems = $this->getDoctrine()
       ->getRepository('StoreBundle:Menu\MenuItem')
@@ -23,7 +24,8 @@ class MenuItemController extends Controller
     
     return $this->render('StoreBundle:Menu:headerMenu.html.twig', [
         'menuItems' => $headerMenuItems,
-      ]
+        'requestUri' => $request->get("uri") ? $request->get("uri") : "/",
+        ]
     );
   }
 

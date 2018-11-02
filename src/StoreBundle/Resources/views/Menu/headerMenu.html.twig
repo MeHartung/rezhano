@@ -1,4 +1,4 @@
-<div class="header-menu">
+{#<div class="header-menu">
     {% if menuItems|length > 0 %}
         {% for menuItem in menuItems %}
             {% if (menuItem.url) %}
@@ -11,4 +11,58 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-</div>
+</div>#}
+
+{% import _self as menu %}
+
+{% macro menu_item(label, url, withArrow, active, children, forceEnabled) %}
+    {#    {% set class = 'main-menu__link' %}
+        {% if withArrow|default(false) %}
+            {% set class = class ~ ' main-menu__link_arrow' %}
+        {% endif %}#}
+    {% set class = 'header-menu__item'  %}
+    {% if forceEnabled|default(false) %}
+        {% set class = class ~ ' header-menu__item ' %}
+    {% endif %}
+
+    {% if active|default(false) %}
+        {% set class = class ~ ' active' %}
+        <span class="{{ class }}">{{ label }}</span>
+    {% else %}
+        <a href="{{ url }}" class="{{ class }}">{{ label }}</a>
+    {% endif %}
+    {{ children|default('')|raw }}
+
+{% endmacro %}
+
+            {% if menuItems %}
+                {% set continue = false %}
+
+                {% for menuItem in menuItems %}
+
+                    {% if not continue %}
+
+                        {% set isActive = false %}
+                        {% if menuItem.url in requestUri %}
+                            {% set isActive = true %}
+                        {% endif %}
+
+                        {% set target = menuItem.url %}
+
+                        {% if app.environment == "dev" %}
+                            {% set target = "/app_dev.php" ~ menuItem.url %}
+                        {% endif %}
+                        {#
+                            Костыль, который не даёт главной быть активной, когда выбрана др. стр
+                        #}
+                        {% if menuItem.url == "/" and app.request.get("_route") != "homepage" %}
+                            {% set isActive = false %}
+                        {% endif %}
+
+                        {{ menu.menu_item( menuItem.name, target, false, isActive) }}
+                    {% endif %}
+                    {% if continue %}
+                        {% set continue = false %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
