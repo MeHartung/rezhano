@@ -67,6 +67,11 @@ class ShippingMethod
   private $position;
   
   /**
+   * @var bool
+   */
+  private $isActive = false;
+  
+  /**
    * @return int|null
    */
   public function getId(): ?int
@@ -199,6 +204,22 @@ class ShippingMethod
     $this->freeDeliveryThreshold = $freeDeliveryThreshold;
   }
   
+  /**
+   * @return bool
+   */
+  public function isActive(): bool
+  {
+    return $this->isActive;
+  }
+  
+  /**
+   * @param bool $isActive
+   */
+  public function setIsActive(bool $isActive): void
+  {
+    $this->isActive = $isActive;
+  }
+  
   public function toArray()
   {
     return
@@ -208,7 +229,8 @@ class ShippingMethod
         'name' => $this->getName(),
         'cost' => $this->getCost(),
         'free_delivery_threshold'=> $this->getFreeDeliveryThreshold(),
-        'help' => $this->getHelp()
+        'help' => $this->getHelp(),
+        'is_active' => false
       ];
   }
 }

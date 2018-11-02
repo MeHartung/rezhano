@@ -150,10 +150,24 @@ class CheckoutController extends Controller
     {
       $methods = $repo->findNotCountryDelivery();
     }
+    
+    $hasActiveMethod = false;
+    
     /** @var ShippingMethod $method */
     foreach ($methods as $method)
     {
+      if($method->getId() === $cart->getPaymentMethod()->getId())
+      {
+        $method->setIsActive(true);
+        $hasActiveMethod = true;
+      }
+      
       $result[] = $method->toArray();
+    }
+    
+    if(!$hasActiveMethod && count($result)>0)
+    {
+      $result[0]['is_active'] = true;
     }
     
     return new JsonResponse($result);
