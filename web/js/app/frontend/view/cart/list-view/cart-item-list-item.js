@@ -44,9 +44,10 @@ define(function(require){
 
       this.quantityWidget = new QuantityWidget({
         model: this.model,
-        min: 0,
-        max: this.model.get('product').available_stock
-      })
+        max: this.model.get('available_stock'),
+        min: this.model.get('min_count'),
+        step: this.model.get('count_step')
+      });
 
       this.previousQuantity = this.model.get('quantity');
       this.listenTo(this.model, 'change:quantity', this.onQuantityChanged, this);

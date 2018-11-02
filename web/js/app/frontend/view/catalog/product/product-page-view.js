@@ -120,7 +120,7 @@ define(function(require){
 
           self.onCartItemAdded(cartItem, self.cartItem.get('quantity'));
 
-          self.cartItem.set({ quantity: 1 });
+          self.cartItem.set({ quantity: self.model.get('min_count') });
         });
     }
   })

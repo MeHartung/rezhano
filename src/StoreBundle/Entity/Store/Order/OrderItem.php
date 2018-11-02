@@ -51,9 +51,9 @@ class OrderItem implements ShippableInterface
   private $product;
 
   /**
-   * @var int
+   * @var float
    *
-   * @ORM\Column(type="integer")
+   * @ORM\Column(type="decimal", scale=3)
    * @JMS\Expose
    */
   private $quantity;
@@ -137,11 +137,11 @@ class OrderItem implements ShippableInterface
   }
 
   /**
-   * @return int
+   * @return float
    */
   public function getQuantity()
   {
-    return $this->quantity;
+    return $this->formatFloat($this->quantity);
   }
 
   /**
@@ -268,5 +268,21 @@ class OrderItem implements ShippableInterface
   {
     $product = $this->getProduct();
     return $product ? (string)$product : '#'.(string)$this->getId();
+  }
+
+  /**
+   * Убирает нули после запятой, если число целое.
+   *
+   * @param $number
+   * @return string
+   */
+  private function formatFloat($number)
+  {
+    if ($number - floor($number) == 0)
+    {
+      return rtrim($number, '.0');
+    }
+
+    return $number;
   }
 }
