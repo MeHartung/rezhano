@@ -23,14 +23,14 @@ define(function(require){
       this.listenTo(this.collection, 'remove', this.onShippingMethodCollectionChange);
       this.listenTo(this.collection, 'reset', this.onShippingMethodCollectionChange);
       this.listenTo(this.collection, 'change:is_active', this.onShippingMethodChange);
-      
-      this.onShippingMethodChange(this.collection.findWhere({'is_active': true}));
     },
     render: function(){
       this.shippingChoiceListView.setElement(this.$('.shipping-method-list'));
       this.shippingChoiceListView.render();
 
       this.$('#checkout_shipping_city_name').selectmenu();
+
+      this.onShippingMethodChange(this.collection.findWhere({'is_active': true}));
 
       return this;
     },
