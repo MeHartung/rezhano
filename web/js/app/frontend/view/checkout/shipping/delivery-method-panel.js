@@ -29,8 +29,8 @@ define(function(require){
       this.shippingChoiceListView.render();
 
       this.$('#checkout_shipping_city_name').selectmenu();
-
-      this.onShippingMethodChange(this.collection.findWhere({'is_active': true}));
+      this.activeMethod = this.collection.findWhere({'is_active': true});
+      this.onShippingMethodChange(this.activeMethod);
 
       return this;
     },
@@ -62,7 +62,7 @@ define(function(require){
       this.onShippingMethodChange(this.collection.findWhere({'is_active': true}));
     },
     onShippingMethodChange: function (method) {
-      if (method.get('options')['recipient_address_required']) {
+      if (method && method.get('options')['recipient_address_required']) {
         this.enableAddressField();
       } else {
         this.disableAddressField();
