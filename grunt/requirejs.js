@@ -21,7 +21,8 @@ module.exports = {
         "jquery-checkbox": "../../../js/vendor/jquery.ui.checkbox",
         "prettyphoto": "../../../js/vendor/prettyphoto/js/jquery.prettyPhoto",
         "sinon": "../../../js/vendor/sinon/sinon",
-        "main": "../../../js/main"
+        "main": "../../../js/main",
+        "ymaps": "https://api-maps.yandex.ru/2.1/?lang=ru_RU"
       },
       "map": {
           "jquery-checkbox": {

@@ -66,7 +66,6 @@ define(function(require){
         product_stock: this.model.get('product').available_stock
       }));
 
-      console.log(this.model)
       this.quantityWidget.setElement(this.$('.quantity-wrap'));
       this.quantityWidget.render();
 
