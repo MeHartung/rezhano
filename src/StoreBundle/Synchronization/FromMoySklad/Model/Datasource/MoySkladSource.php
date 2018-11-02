@@ -201,6 +201,15 @@ class MoySkladSource extends BaseDataSource
       
       $salePrice = 0;
       $wholesalePrice = 0;
+  
+      $article = $this->slugifierYandex->slugify($product->name);
+      if(isset($product->barcodes))
+      {
+        if(count($product->barcodes) > 0)
+        {
+          $article = $product->barcodes[0];
+        }
+      }
       
       foreach ($product->salePrices as $price)
       {
@@ -224,9 +233,7 @@ class MoySkladSource extends BaseDataSource
           ]
         );
         
-        var_dump($product->barcode);die;
-        
-        $moySkladProductsAsArray[$key] = [
+      $moySkladProductsAsArray[$key] = [
           'name' => $productDb->getName(),
           'external_code' => $product->code,
           'wholesale_price' => $wholesalePrice,  # оптовая
@@ -241,7 +248,7 @@ class MoySkladSource extends BaseDataSource
           'reserved_stock' => 10,
           'is_free_delivery' => 0,
           'rank' => 0.00,
-          'sku' => $productDb->getSku(),
+          'sku' => $article,
           'short_description' => $productDb->getShortDescription(),
           'description' => $productDb->getDescription(),
         ];
@@ -263,14 +270,14 @@ class MoySkladSource extends BaseDataSource
           'is_free_delivery' => 0,
           'rank' => 0.00,
         ];
-  
-        if (isset($product->article))
+        $moySkladProductsAsArray[$key]['sku'] = $article;
+      /*  if (isset($product->article))
         {
-          $moySkladProductsAsArray[$key]['sku'] = $product->article;
+        
         } else
         {
           $moySkladProductsAsArray[$key]['sku'] = $moySkladProductsAsArray[$key]['slug'];
-        }
+        }*/
   
         if (isset($product->image)) $moySkladProductsAsArray[$key]['image'] = $product->image->meta->href;
         if (isset($product->description))
