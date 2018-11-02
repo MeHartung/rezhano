@@ -8,11 +8,11 @@ define(function(){
     <% } else { %>\n\
      <img src="/images/no_photo.png" alt="Нет фотографии"/>\n\
     <% } %>\n\
-    <% if (isSale) { %>\
-      <div class="product-item__discount-ticket">\
-        <span>-<%= discountValue %>%</span>\
-      </div>\
-    <% } %>\
+    <% /* < % if (isSale) { % >\
+       <div class="product-item__discount-ticket">\
+         <span>-< %= discountValue % >%</span>\
+       </div>\
+     < % } % > */ %>\
   </a>\
   <a href="<%= url %>" class="product-item__name  product-page-link"><%= name %></a>\n\
   <span class="product-item__type"><%= type %></span>\n\
