@@ -4,6 +4,7 @@ namespace StoreBundle\DataAdapter\Logistic;
 
 use AccurateCommerce\Shipping\Estimate\ShippingEstimate;
 use AccurateCommerce\Shipping\Method\ShippingMethod;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStorePickup;
 use AccurateCommerce\Shipping\Pickup\PickupPointInterface;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 use AccurateCommerce\Shipping\ShippingManager;
@@ -46,7 +47,7 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
       'name' => $shippingMethod->getName(),
       //'enabled' => $deliveryMethod->isApplicableTo(null, $this),
       //'details' => $deliveryMethod->getDetails($this),
-      'options' => array('recipient_address_required' => $shippingMethod->getUid() != ShippingMethod::CLSID_PICKUP),
+      'options' => array('recipient_address_required' => $shippingMethod->getUid() != ShippingMethodStorePickup::UID),
       'uid' => $shippingMethod->getUid(),
       'help' => $shippingMethod->getHelp(),
       'cost' => $shippingMethod->getCost(),
