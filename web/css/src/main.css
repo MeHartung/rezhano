@@ -2399,6 +2399,11 @@ aside.right {
 .cards-container__step-container .step-item .custom-checkbox {
   margin-bottom: 25px;
 }
+.cards-container__step-container .step-item .form-comment .step-item__title,
+.cards-container__step-container .step-item .form-comment .form-comment__textarea {
+  display: inline-block;
+  vertical-align: top;
+}
 .cards-container__step-container .custom-radio {
   margin-bottom: 25px;
 }
@@ -3217,6 +3222,11 @@ body .delivery-info__message {
 .layer-map .map-wrapper {
   width: 100%;
   height: 100%;
+}
+.help-inline {
+  display: inline-block;
+  font-size: 17px;
+  color: #ffcf40;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
