@@ -72,6 +72,18 @@ class ShippingMethod
   private $isActive = false;
   
   /**
+   * @var string|null
+   * @ORM\Column(type="string", length=512, nullable=true)
+   */
+  private $address;
+  
+  /**
+   * @var string|null
+   * @ORM\Column(type="string", length=512, nullable=true)
+   */
+  private $showAddress;
+  
+  /**
    * @return int|null
    */
   public function getId(): ?int
@@ -218,6 +230,38 @@ class ShippingMethod
   public function setIsActive(bool $isActive): void
   {
     $this->isActive = $isActive;
+  }
+  
+  /**
+   * @return null|string
+   */
+  public function getAddress(): ?string
+  {
+    return $this->address;
+  }
+  
+  /**
+   * @param null|string $address
+   */
+  public function setAddress(?string $address): void
+  {
+    $this->address = $address;
+  }
+  
+  /**
+   * @return null|string
+   */
+  public function getShowAddress(): ?string
+  {
+    return $this->showAddress;
+  }
+  
+  /**
+   * @param null|string $showAddress
+   */
+  public function setShowAddress(?string $showAddress): void
+  {
+    $this->showAddress = $showAddress;
   }
   
   public function toArray()

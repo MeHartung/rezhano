@@ -1,5 +1,10 @@
 <span class="custom-radio__radio"></span>
-<span>{{ value.name }}</span>
+{% if value.uid == constant('AccurateCommerce\\Shipping\\Method\\Store\\ShippingMethodStorePickup::UID') %}
+    <span>{{ value.name }}, c {{ value.showAddress }}</span>
+{% else %}
+    <span>{{ value.name }}</span>
+{% endif %}
+
 {#
 {% if value.cost %}
 <span class="delivery-info">
