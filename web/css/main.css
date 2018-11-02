@@ -3443,6 +3443,16 @@ body .delivery-info__message {
 .product-image__gallery__additional .slick-next:after {
   content: url("../images/c_slick-next-hover.png");
 }
+.step-item-input__link {
+  font-size: 17px;
+  font-family: alegreyasans-light;
+  color: #000000;
+  padding: 8px 4px;
+}
+.step-item-input__link a {
+  display: inline-block;
+  color: #ffcf40;
+}
 body.ui-widget {
   font-family: DINPro, sans-serif !important;
 }
