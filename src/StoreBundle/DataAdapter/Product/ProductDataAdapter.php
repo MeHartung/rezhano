@@ -85,7 +85,7 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'url' => $this->router->generate('product', array('slug' => $subject->getSlug())),
       'isFavorite' => $isFavorite,
       'background' => $subject->getBackground(),
-      'package' => $subject->getPackage(),
+      'package' => $subject->getFormattedPackage(),
       'units' => $subject->getUnits(),
       'isMeasured' => $isMeasured,
       'count_step' => $count_step,

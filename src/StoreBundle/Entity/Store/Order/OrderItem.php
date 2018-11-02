@@ -280,7 +280,7 @@ class OrderItem implements ShippableInterface
   {
     if ($number - floor($number) == 0)
     {
-      return rtrim($number, '.0');
+      return rtrim(rtrim($number, '0'), '.');
     }
 
     return $number;
