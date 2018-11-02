@@ -27,11 +27,11 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
    * @return array
    */
   public function transform ($shippingMethod, $options = [])
-  {
+  {/*
     if (!isset($options['shipment']) || !$options['shipment'] instanceof Shipment)
     {
       throw new \Exception('Shipment required');
-    }
+    }*/
 
 /*    if (!empty($options['skip_deffered']) && $shippingMethod->getDeferredEstimate())
     {
