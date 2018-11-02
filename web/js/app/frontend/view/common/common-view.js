@@ -8,11 +8,15 @@ define(function(require){
       CartWidgetView = require('view/cart/widget'),
       CatalogSearchFormView = require('view/catalog/search/catalog-search-form-view'),
       //CitySelectLinkView = require('view/common/header/city-select-link'),
-      UserPanelView = require('view/user/user-panel-view')//,
+      UserPanelView = require('view/user/user-panel-view'),
       //Location = require('model/geography/location')
+      MapViewDialog = require('view/common/map-view-dialog')
       ;
 
   return Backbone.View.extend({
+    events: {
+      'click .footer-maps__link': 'onShopClick'
+    },
     initialize: function(options){
       this.options = $.extend({
         cartWidget: true,
@@ -39,6 +43,8 @@ define(function(require){
       this.userPanelView = new UserPanelView({
         model: this.user
       });
+
+      this.mapViewDialog = null;
 
       this.listenTo(this.cart, 'item:add', this.onCartItemAdded);
     },
@@ -107,6 +113,29 @@ define(function(require){
       // });
 
       return this;
+    },
+    onShopClick: function (e) {
+      e.preventDefault();
+
+      var points = {
+        0: {
+          city: 'Екатеринбург',
+          address: 'ул. Красноармейская, 68 (с 10:00 до 21:00)',
+          coordinates: [56.830773, 60.618136]
+        },
+        1: {
+          city: 'Реж',
+          address: 'ул. Олега Кошевого, 16',
+          coordinates: [57.345120, 61.344415]
+        }
+      };
+
+      this.mapViewDialog = new MapViewDialog({
+        model: new Backbone.Model(points[e.currentTarget.dataset.point]),
+      });
+      this.mapViewDialog.render().$el.appendTo($('body'));
+
+      this.mapViewDialog.open();
     }
   });
 });
