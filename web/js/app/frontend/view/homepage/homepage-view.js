@@ -52,10 +52,10 @@ define(function(require){
         var headerSectionHeight = $('.header-section').height() - headerMenuHeight;
 
         $(window).scroll(function () {
-          if ( $(this).scrollTop()>headerSectionHeight ) {
+          if ( $(this).scrollTop()>headerMenuHeight-45 ) {
             $headerMenu.addClass('fixed');
 
-          } else if ( $(this).scrollTop()<headerSectionHeight) {
+          } else if ( $(this).scrollTop()<headerMenuHeight-45) {
             $headerMenu.removeClass('fixed');
           }
         });

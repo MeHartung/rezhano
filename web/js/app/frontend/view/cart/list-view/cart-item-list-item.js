@@ -14,7 +14,7 @@ define(function(require){
 '   </a>\n' +
 '   <div class="cards-container__item-info">\n' +
 '     <a href="<%= product_url %>" class="item-info__title"><%= product_name %></a>\n' +
-'     <span class="item-info__quantity"><%= product_sku %></span>\n' +
+'     <span class="item-info__quantity"><%= package %> <%= units %></span>\n' +
 '   </div>\n' +
 ' </div>' +
 '<div class="cards-container__price"><%= price.toCurrencyString() %></div>' +
@@ -64,9 +64,10 @@ define(function(require){
         product_sku: this.model.get('product').sku,
         product_url: this.model.get('product').url,
         city: this.model.get('warehouse')?this.model.get('warehouse').cityName:'',
-        product_stock: this.model.get('product').available_stock
+        product_stock: this.model.get('product').available_stock,
+        units: this.model.get('product').units,
+        package: this.model.get('product').package
       }));
-
       this.quantityWidget.setElement(this.$('.quantity-wrap'));
       this.quantityWidget.render();
 

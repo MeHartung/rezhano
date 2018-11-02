@@ -25,7 +25,7 @@
     {#<span class="product-item__type">мягкий сыр</span>#}
     <div class="product-item__characteristics">
         {% if product.package %}
-            <span class="product-item__quantity">{{ product.package }} {{ product.units }} / </span>
+            <span class="product-item__quantity">{{ product.formattedPackage }} {{ product.units }} / </span>
         {% endif %}
         <span class="product-item__price">{{ product.price|price }}</span>
     </div>

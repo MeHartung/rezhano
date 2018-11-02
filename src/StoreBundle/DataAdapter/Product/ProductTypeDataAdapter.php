@@ -15,6 +15,9 @@ class ProductTypeDataAdapter implements ClientApplicationModelAdapterInterface
    */
   public function transform ($subject, $options = array())
   {
+    if ($subject === null) {
+      return [];
+    }
     /**
      * @var $media MediaResource
      */

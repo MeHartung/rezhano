@@ -40,7 +40,7 @@
                         </a>
                         <div class="cards-container__item-info">
                             <a href="{{ path('product', { slug: item.product.slug }) }}" class="item-info__title">{{ item.product.name }}</a>
-                            <span class="item-info__quantity">320 г</span>
+                            <span class="item-info__quantity">{{ item.product.formattedPackage }} {{ item.product.units }}</span>
                             {#<span class="item-info__title-aside">Артикул – {{ item.product.sku }}</span>#}
                         </div>
                     </div>
