@@ -15,7 +15,7 @@ define(function(){
     <% } %>\
   </a>\
   <a href="<%= url %>" class="product-item__name  product-page-link"><%= name %></a>\n\
-  <span class="product-item__type">мягкий сыр</span>\n\
+  <span class="product-item__type"><%= type %></span>\n\
   <div class="product-item__characteristics">\n\
   <% if (package) { %>\
     <span class="product-item__quantity"><%= package %> <%= units %> / </span>\n\

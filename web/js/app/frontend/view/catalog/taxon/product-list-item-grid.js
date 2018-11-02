@@ -55,7 +55,8 @@ define(function(require){
         isPreorder: this.model.get('isPreorder'),
         isUserAuth: isUserAuth,
         package: this.model.get('package'),
-        units: this.model.get('units')
+        units: this.model.get('units'),
+        type: this.model.get('type') ? this.model.get('type').name : '',
       }));
       if (this.model.get('isPurchasable')){
         this.$el.removeClass('product-unavailable');
