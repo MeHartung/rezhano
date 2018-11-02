@@ -72,7 +72,7 @@ define(function(require){
         'name': this.model.get('name'),
         'quantityChanged': this.model.previousAttributes().quantity != this.model.get('quantity'),
         'product_url': this.model.get('product').url,
-        'quantity': this.quantity,
+        'quantity': this.formatFloat(this.quantity),
         'price':this.model.get('price') * this.quantity,
         'image': this.model.get('product').images instanceof Array && this.model.get('product').images[0] ? this.model.get('product').images[0] : '/images/medium-no_photo.png',
         'preview_image': this.model.get('product').preview_image ? this.model.get('product').preview_image : '/images/medium-no_photo.png',
@@ -90,6 +90,10 @@ define(function(require){
       var self = this;
       this.$overlay.fadeIn();
       this.$el.fadeIn();
+    },
+    formatFloat: function ($number) {
+      $number = +$number;
+      return $number - Math.floor($number) ? $number.toFixed(3) : $number;
     }
   });
 });

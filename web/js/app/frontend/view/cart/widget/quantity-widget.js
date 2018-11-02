@@ -69,12 +69,12 @@ define(function(require){
           _val = parseFloat(value);
       
       if (!isNaN(_val) && isFinite(_val) && this.__valueIsInBounds(_val)) {
-        _val = Math.floor(_val / this.step) * this.step;
+        _val = this.formatFloat(Math.floor(_val / this.step) * this.step);
 
         if (+self.model.get('quantity') === _val) {
           this.$quantityInput.val(this.formatFloat(+this.model.get('quantity')));
         } else {
-          self.model.set({ quantity: _val });
+          self.model.set({ quantity: +_val });
         }
 
       } else {
@@ -91,9 +91,9 @@ define(function(require){
       var value = this.$quantityInput.val(),
           _val = parseFloat(value);
       if (!isNaN(_val) && isFinite(_val)) {
-        this.model.set({ quantity: this.__ensureMaxLimit(_val + this.step) });
+        this.model.set({ quantity: +this.formatFloat(this.__ensureMaxLimit(_val + this.step)) });
       } else {
-        this.model.set({ quantity: 1 });
+        this.model.set({ quantity: this.minQuantity });
       }
       this.$quantityInput.focus();
     },
@@ -102,7 +102,7 @@ define(function(require){
 
       var value = this.$quantityInput.val();
       if (!isNaN(parseFloat(value)) && isFinite(value)) {
-        this.model.set({ quantity: Math.max(this.model.get('quantity') - this.step, this.minQuantity)});
+        this.model.set({ quantity: +this.formatFloat(Math.max(this.model.get('quantity') - this.step, this.minQuantity))});
       } else {
         this.model.set({ quantity: this.minQuantity });
       }

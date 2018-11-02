@@ -74,7 +74,7 @@ define(function (require) {
             remove: false
           });
           cart.trigger('item:add', cartItem, cartItem.quantity);
-          self.quantityWidget.model.set({quantity: 1});
+          self.quantityWidget.model.set({quantity: self.model.get('min_count')});
         });
     }
   });

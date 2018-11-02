@@ -1254,6 +1254,11 @@ class Product implements SluggableInterface//, StockableInterface
   {
     return $this->package;
   }
+  
+  public function getFormattedPackage()
+  {
+    return $this->formatFloat($this->getPackage());
+  }
 
   /**
    * @param integer $package
@@ -1316,7 +1321,7 @@ class Product implements SluggableInterface//, StockableInterface
   {
     if ($number - floor($number) == 0)
     {
-      return rtrim($number, '.0');
+      return rtrim(rtrim($number, '0'), '.');
     }
 
     return $number;
