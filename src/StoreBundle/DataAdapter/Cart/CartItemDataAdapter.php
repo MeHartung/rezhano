@@ -38,7 +38,7 @@ class CartItemDataAdapter implements ClientApplicationModelAdapterInterface
 
     return [
       'id' => $subject->getId(),
-      'quantity' => $subject->getQuantity(),
+      'quantity' => $subject->getFormattedQuantity(),
       'price' => $subject->getPrice(),
       'product_id' => $subject->getPurchasableId(),
       'name' => $subject->getProduct()->getName(),

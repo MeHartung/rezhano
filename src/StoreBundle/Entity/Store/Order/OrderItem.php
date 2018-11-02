@@ -141,9 +141,14 @@ class OrderItem implements ShippableInterface
    */
   public function getQuantity()
   {
-    return $this->formatFloat($this->quantity);
+    return $this->quantity;
   }
 
+  public function getFormattedQuantity()
+  {
+    return $this->formatFloat($this->getQuantity());
+  }
+  
   /**
    * @param int $quantity
    * @return OrderItem
@@ -213,7 +218,7 @@ class OrderItem implements ShippableInterface
 
     return [
       'id' => $this->getId(),
-      'quantity' => $this->getQuantity(),
+      'quantity' => $this->getFormattedQuantity(),
       'price' => $this->getPrice(),
       'product_id' => $this->getPurchasableId(),
       'name' => $this->getProduct()->getName(),

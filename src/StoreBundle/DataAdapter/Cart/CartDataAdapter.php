@@ -62,15 +62,28 @@ class CartDataAdapter implements ClientApplicationModelAdapterInterface
     {
       $shippingMethods = $this->em->getRepository(ShippingMethod::class)->findForRezhAndEkb();
     }
-    
+    $hasActiveMethod = false;
     #$shippingMethods = $this->shippingManager->getShippingMethods();
-    
+    /** @var ShippingMethod $shippingMethod */
     foreach ($shippingMethods as $shippingMethod)
     {
-      # $_shippingMethod = $this->shippingManager->getShippingMethodByUid($shippingMethod->getUid());
+      if($subject->getPaymentMethod() !== null)
+      {
+        if($shippingMethod->getId() === $subject->getPaymentMethod()->getId())
+        {
+          $shippingMethod->setIsActive(true);
+          $hasActiveMethod = true;
+          # $_shippingMethod = $this->shippingManager->getShippingMethodByUid($shippingMethod->getUid());
+        }
+      }
+
       $shippingMethodsTransfrom[] = $this->shippingMethodDataAdapter->transform($shippingMethod, ['shipment' => $subject->getShipments()[0]]);
     }
     
+    if(!$hasActiveMethod && count($shippingMethodsTransfrom)>0)
+    {
+      $result[0]['is_active'] = true;
+    }
     /*foreach ($shippingMethods as $method)
     {
       $_method = $this->shippingManager->getShippingMethodByUid($method->getUid());
