@@ -71,9 +71,8 @@ class TaxonomyController extends Controller
     }
 
     $presentationOptions = array(
-      'sort_column' => $request->query->get('column', 'price'),
+      'sort_column' => $request->query->get('column', 'rank'),
       'sort_order' => $request->query->get('order', 'asc'),
-      'sort_in_customer_region_first' => $request->query->getBoolean('icrf', true),
       'pagination_page' => $request->query->get('page', 1),
       'pagination_max_per_page' => $request->query->get('count', 15)
     );

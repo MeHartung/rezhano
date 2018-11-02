@@ -154,10 +154,10 @@ define(function (require) {
       this.loaderNotice.on('click', '.scroll-to-top', _.bind(this.onScrollToTopLinkClick, this));
     },
     showLoader: function () {
-      var $sectionFilter = $('.filter-section[data-field-id ='+ this.lastChangedWidgetId +' ]');
-
-      this.loaderNotice.css({top: $(document).scrollTop(), left: 0})
-                      .position({my: 'left center', at: 'right center', of: $sectionFilter});
+      // var $sectionFilter = $('.filter-section[data-field-id ='+ this.lastChangedWidgetId +' ]');
+      //
+      // this.loaderNotice.css({top: $(document).scrollTop(), left: 0})
+      //                 .position({my: 'left center', at: 'right center', of: $sectionFilter});
 
       this.loaderMessage.html('Загрузка... <img class="found-layer__loader" src="/images/ajax-loader-gpn.gif" alt="">');
       if (null !== this.loaderDisplayTimer) {

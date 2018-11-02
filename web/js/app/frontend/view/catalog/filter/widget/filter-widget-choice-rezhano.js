@@ -4,11 +4,13 @@ define(function (require) {
     var template = _.template('\
 <a href="" class="product-filter__link"><%= label %> <i class="ui-icon"></i></a>  \
 <div class="product-filter__filter">\
+  <% if (clearable) { %>\
   <span class="product-filter__row">\
     <a href="#" class="product-filter__clear">\
       <span>очистить</span>\
     </a>\
   </span>\
+  <% } %>\
   <% _.each(choices, function(choice){ %>\
     <span class="product-filter__custom-checkbox">\
       <label>\
@@ -42,8 +44,12 @@ define(function (require) {
                 name: this.generateName(),
                 label: this.schema.label,
                 choices: choices,
-                type: this.schema.type || 'checkbox'
+                type: this.schema.type || 'checkbox',
+                clearable: this.options.clearable || false
             }));
+
+            this.updateActiveState();
+
         },
         onCheckboxChange: function (e) {
             var _value = [];
@@ -57,6 +63,8 @@ define(function (require) {
             }
 
             this.model.set('value', _value);
+
+            this.updateActiveState();
         },
         reset: function(){
             FilterWidget.prototype.reset.apply(this, arguments);
@@ -67,7 +75,18 @@ define(function (require) {
         onProductFilterLinkClick: function(e){
             e.preventDefault();
 
-            this.$el.toggleClass('deployed')
+            this.toggle();
+        },
+        updateActiveState: function(){
+            var val = this.model.get('value');
+            if ('object' === typeof val && val.length){
+                this.$el.addClass('active');
+            } else {
+                this.$el.removeClass('active');
+            }
+        },
+        toggle: function(){
+            this.$el.toggleClass('deployed');
         }
     })
 });

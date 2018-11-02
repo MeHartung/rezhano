@@ -24,11 +24,11 @@ class ProductSortFactory implements ProductSortFactoryInterface
   public function create(array $options = [])
   {
     $resolver = new OptionsResolver();
-    $resolver->setRequired(['column', 'order', 'in_customer_region_first']);
+    $resolver->setRequired(['column', 'order']);
 
     $options = $resolver->resolve($options);
 
-    return new ProductSort($this->location, $options['column'], $options['order'], $options['in_customer_region_first']);
+    return new ProductSort($this->location, $options['column'], $options['order']);
   }
 
 

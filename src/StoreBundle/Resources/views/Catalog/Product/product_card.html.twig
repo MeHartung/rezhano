@@ -15,11 +15,11 @@
     <a class="product-item__image {% if product.background == constant('StoreBundle\\Entity\\Store\\Catalog\\Product\\Product::ORANGE_BACKGROUND') %}product-item__image_yellow{% endif %}" href="{{ path('product', { 'slug': product.slug }) }}">
         <img src="{% if image_url(product.mainImage) is not empty %}{{ image_url(product.mainImage) }}{% else %}{{ asset('/images/no_photo.png')}}{% endif %}" title="{{ product.name|e('html_attr') }}"/>
     </a>
-    {% if product.sale %}
-        <div class="product-item__discount-ticket">
-            <span>-{{ product.discountLevel }}%</span>
-        </div>
-    {% endif %}
+    {#{% if product.sale %}#}
+        {#<div class="product-item__discount-ticket">#}
+            {#<span>-{{ product.discountLevel }}%</span>#}
+        {#</div>#}
+    {#{% endif %}#}
     <a href="{{ path('product', {'slug': product.slug}) }}" class="product-item__name product-page-link" >{{ product.name }}</a>
     <span class="product-item__type">{{ product.productType }}</span>
     {#<span class="product-item__type">мягкий сыр</span>#}

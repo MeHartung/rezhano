@@ -50,7 +50,7 @@ class FilterFieldSchemaDataAdapter implements ClientApplicationModelAdapterInter
     }
     else
     {
-      $sort = new ProductSort('price', 'asc');
+      $sort = new ProductSort('rank', 'asc');
     }
 
     $data = array(
@@ -77,12 +77,12 @@ class FilterFieldSchemaDataAdapter implements ClientApplicationModelAdapterInter
       "sort" => array(
         'column' => $sort->getColumn(),
         'order' => $sort->getOrder(),
-        'next' => $sort->getOrder() == 'asc' ? 'desc' : 'asc',
-        'icrf' => $sort->isDisplayOffersInCustomerRegionFirst()
+        'next' => $sort->getOrder() == 'asc' ? 'desc' : 'asc'
       ),
       'sortColumns' => array(
-        'rank' => 'по популярности',
-        'price' => 'по цене'
+        'rank' => 'мы рекомендуем',
+        'novice' => 'сначала новинки',
+        'sale' => 'сначала акции'
       )
     );
 

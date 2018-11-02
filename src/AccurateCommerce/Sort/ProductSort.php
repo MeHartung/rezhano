@@ -28,16 +28,26 @@ class ProductSort implements ProductSortInterface
   {
     switch ($this->column)
     {
-      case 'price':
-      {
-        $queryBuilder->addOrderBy('p.price', $this->order == 'desc' ? 'desc' : 'asc');
-        break;
-      }
-//      case 'rank':
+//      case 'price':
 //      {
-//        $queryBuilder->addOrderBy('p.rank', $this->order == 'desc' ? 'desc' : 'asc');
+//        $queryBuilder->addOrderBy('p.price', $this->order == 'desc' ? 'desc' : 'asc');
 //        break;
 //      }
+      case 'rank':
+      {
+        $queryBuilder->addOrderBy('p.rank', $this->order == 'desc' ? 'desc' : 'asc');
+        break;
+      }
+      case 'sale':
+      {
+        $queryBuilder->addOrderBy('p.sale', $this->order == 'desc' ? 'desc' : 'asc');
+        break;
+      }
+      case 'novice':
+      {
+        $queryBuilder->addOrderBy('p.novice', $this->order == 'desc' ? 'desc' : 'asc');
+        break;
+      }
     }
   }
 
