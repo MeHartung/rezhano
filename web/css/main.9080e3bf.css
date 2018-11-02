@@ -3063,6 +3063,7 @@ body .delivery-info__message {
 .step-item-checkbox {
   position: relative;
   padding-right: 70px;
+  margin-bottom: 25px;
 }
 .step-item .error-icon {
   display: none;
@@ -3144,6 +3145,12 @@ body .delivery-info__message {
   font-size: 17px;
   color: #ffcf40;
   font-family: alegreyasans-regular;
+}
+.cards-container__order .cards-container__step-container {
+  padding-bottom: 0;
+}
+.cards-container__order .cards-container__step-container .step-item:last-child {
+  margin-bottom: 25px;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

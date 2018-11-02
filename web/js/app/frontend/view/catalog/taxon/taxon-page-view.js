@@ -46,7 +46,7 @@ define(function(require){
       CommonView.prototype.render.apply(this, arguments);
 
       this.productListView.setElement(this.$('#product-listview')).render();
-      this.productFilterView.setElement(this.$('.product-list-filter')).render();
+      this.productFilterView.setElement(this.$('.product-filter-group')).render();
       this.productPagerView.setElement(this.$('.pagination')).render();
       this.productPerPageSelectView.setElement(this.$('.display-number')).render();
       this.productSortPanelView.setElement(this.$('.product-list-sort')).render();

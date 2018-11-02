@@ -523,10 +523,18 @@
                           {{ child.vars.value | render_shipping_label | raw }}
                           {{ child.vars.value | render_shipping_info | raw }}
                       </label>
+                      {#<span class="delivery-info">#}
+                        {#/  от 250 ₽ <span class="delivery-info__message">#}
+                          {#Кстати, при заказе сыров от 1500₽ мы сделаем доставку бесплатно#}
+                        {#</span>#}
+                      {#</span>#}
                     </div>
                   {% endfor %}
                 </div>
-                {{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}
+
+                <div class="another-city-text" style="display: none">
+                    {{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}
+                </div>
 
                 {#{{ form_widget(form.shippingMethod) }}#}
 
@@ -572,33 +580,6 @@
               </div>
 
               <div class="cards-container__step-container">
-
-                <div class="step-item step-item-checkbox">
-                  <div class="custom-checkbox font-alegreya" name="tos">
-                    <label>
-                      {# <input  name="tos" class="checkbox" type="checkbox">#}
-                      {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox', 'data-validate':'personal-agreement', 'data-description':'personal-agreement', 'data-describedby': 'personal-agreement-errors'}}) }}
-                      <span class="custom-checkbox__checkbox"></span>
-                      <span>Я ознакомился и согласен с <a href="">Политикой Компании</a>, <a href="">условиями сотрудничества</a>, <a href="">условиями обработки персональных данных</a>
-                  </span>
-                    </label>
-                  </div>
-
-                  {#<div class="custom-checkbox font-alegreya">
-                    <label>
-                      #}{# <input  name="tos" class="checkbox" type="checkbox">#}{#
-                     #}{# {{ form_widget(form.personalInformationAgreement, {'attr': {'class': 'checkbox'}}) }}#}{#
-                      <span class="custom-checkbox__checkbox"></span>
-                      <span>Я ознакомился и согласен с <a href="">условиями обработки персональных данных</a>
-                  </span>
-                    </label>
-                  </div>#}
-                  <i class="error-icon">
-                    <span class="error-icon__message" id="personal-agreement-errors">
-                      {{ form_errors(form.tos_agreement) }}
-                    </span>
-                  </i>
-                </div>
 
                 {#<div class="step-item step-item-input step-item-input_350 step-item-card-number">#}
                   {#<input class="input-text" type="text" placeholder="Введите номер карты">#}
@@ -662,7 +643,32 @@
               </div>
             </div>
 
+            <div class="step-item step-item-checkbox">
+              <div class="custom-checkbox font-alegreya" name="tos">
+                <label>
+                    {# <input  name="tos" class="checkbox" type="checkbox">#}
+                    {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox', 'data-validate':'personal-agreement', 'data-description':'personal-agreement', 'data-describedby': 'personal-agreement-errors'}}) }}
+                  <span class="custom-checkbox__checkbox"></span>
+                  <span>Я ознакомился и согласен с <a href="">Политикой Компании</a>, <a href="">условиями сотрудничества</a>, <a href="">условиями обработки персональных данных</a>
+                  </span>
+                </label>
+              </div>
 
+                {#<div class="custom-checkbox font-alegreya">
+                  <label>
+                    #}{# <input  name="tos" class="checkbox" type="checkbox">#}{#
+                   #}{# {{ form_widget(form.personalInformationAgreement, {'attr': {'class': 'checkbox'}}) }}#}{#
+                    <span class="custom-checkbox__checkbox"></span>
+                    <span>Я ознакомился и согласен с <a href="">условиями обработки персональных данных</a>
+                </span>
+                  </label>
+                </div>#}
+              <i class="error-icon">
+                    <span class="error-icon__message" id="personal-agreement-errors">
+                      {{ form_errors(form.tos_agreement) }}
+                    </span>
+              </i>
+            </div>
 
             <button type="submit" id="checkout_submit" name="checkout[submit]" class="button button_yellow-yellow">
               <span>сделать заказ</span>

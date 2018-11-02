@@ -28,7 +28,10 @@ define(function (require) {
     //   'click .product-list-sort__type': 'sorting'
     // },
     initialize: function (options) {
-      this.options = options;
+      this.options = options = _.extend({
+          id: 'sort',
+          clearable: false
+      }, options);
 
       this.options.filter.on('filtered', this.render, this);
 
@@ -45,7 +48,8 @@ define(function (require) {
         state: {
           choices: sortChoices
         },
-        value: {}
+        value: [sort.column],
+        name: 'sort'
       });
 
       this.listenTo(this.model, 'change:value', this.sorting);
@@ -77,13 +81,14 @@ define(function (require) {
       var filter = this.options.filter;
 
       var sort = filter.get('sort'),
-          element = $(event.currentTarget);
+          val = this.model.get('value');
 
-      if (element) {
+      val = 'object' === typeof val && val.length ? val[0] : null;
+
         var newSort = {
-          column: this.model.get('value'),
-          order: 'asc',//element.data("order-direction-next"),
-          next: 'asc' //sort.next
+          column: val,
+          order: 'rank' === val ? 'asc' : 'desc',//element.data("order-direction-next"),
+          next: 'rank' === val ? 'asc' : 'desc' //sort.next
         };
 
         filter.set('sort', newSort);
@@ -91,11 +96,10 @@ define(function (require) {
         filter.getContent();
 
         this.render();
-      }
-    }
-  });
 
-  return SortingView;
+//        this.$el.removeClass('deployed');
+      }
+  });
 
 
 });

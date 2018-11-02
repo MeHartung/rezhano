@@ -119,6 +119,7 @@ define(function(require){
         valid: function(event, options){
           self.isInvalid = false;
           self.$('#checkout_submit').attr('disabled', 'disabled');
+
         }
       });
     },

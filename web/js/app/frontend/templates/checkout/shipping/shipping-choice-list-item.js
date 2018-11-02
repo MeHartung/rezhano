@@ -8,6 +8,11 @@ define(function(require){
       <span class="custom-radio__radio"></span>\n\
       <span><%= name %></span>\n\
     </label>\n\
-';
+    <% if (cost) { %>\
+      <span class="delivery-info">\n\
+        /  от <%= cost %> ₽ <span class="delivery-info__message"><%= help %></span>\n\
+      </span>\n\
+    <% } %>\
+    ';
 });
 

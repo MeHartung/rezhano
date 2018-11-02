@@ -95,9 +95,8 @@ class TaxonPresentationProducts implements TaxonPresentationInterface, TaxonPagi
     $optionsResolver->setDefaults([
       'pagination_page' => 1,
       'pagination_max_per_page' => 24,
-      'sort_column' => 'price',
-      'sort_order' => 'asc',
-      'sort_in_customer_region_first' => false
+      'sort_column' => 'rank',
+      'sort_order' => 'asc'
     ]);
 
     $optionsResolver->addAllowedValues('sort_order', ['asc', 'desc', null]);
@@ -176,7 +175,7 @@ class TaxonPresentationProducts implements TaxonPresentationInterface, TaxonPagi
       elseif (is_array($parameters['sort']))
       {
         $this->sort = new ProductSort(
-          isset($parameters['sort']['column'])?$parameters['sort']['column']:'price',
+          isset($parameters['sort']['column'])?$parameters['sort']['column']:'rank',
           isset($parameters['sort']['order'])?$parameters['sort']['order']:'asc'
         );
       }
@@ -211,7 +210,7 @@ class TaxonPresentationProducts implements TaxonPresentationInterface, TaxonPagi
       elseif (is_array($value))
       {
         $this->sort = new ProductSort(
-          isset($value['column'])?$value['column']:'price',
+          isset($value['column'])?$value['column']:'rank',
           isset($value['order'])?$value['order']:'asc'
         );
       }
@@ -241,8 +240,7 @@ class TaxonPresentationProducts implements TaxonPresentationInterface, TaxonPagi
   {
     return [
       'column' => $this->options['sort_column'],
-      'order' => $this->options['sort_order'],
-      'in_customer_region_first' => $this->options['sort_in_customer_region_first']
+      'order' => $this->options['sort_order']
     ];
   }
 }
