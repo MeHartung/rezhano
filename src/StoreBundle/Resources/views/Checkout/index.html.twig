@@ -526,6 +526,7 @@
                     </div>
                   {% endfor %}
                 </div>
+                {{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}
 
                 {#{{ form_widget(form.shippingMethod) }}#}
 
@@ -553,15 +554,15 @@
               </div>#}
 
               </div>
-              <div class="step-item step-item-input step-item-input_biggest{% if (form.shipping_address.vars.errors|length) %} error{% endif %}">
+              <div class="step-item step-item-input step-item-input_biggest{% if (form.shipping_address.vars.errors|length) %} error{% endif %}" id="shipping-address-input">
                   {{ form_widget(form.shipping_address, {'attr': {'placeholder': 'Адрес', 'class': 'input-text', 'data-conditional':'address', 'data-description':'address', 'data-describedby': 'address-errors'}}) }}
                 <i class="error-icon">
                     <span class="error-icon__message" id="address-errors">
                       {{ form_errors(form.shipping_address) }}
                     </span>
                 </i>
-                <div class="step-item-input__link">Ознакомьтесь с <a href="">условиями доставки и оплаты</a></div>
               </div>
+              <div class="step-item-input__link">Ознакомьтесь с <a href="">условиями доставки и оплаты</a></div>
             </div>
 
 
@@ -572,7 +573,7 @@
 
               <div class="cards-container__step-container">
 
-                <div class="step-item">
+                <div class="step-item step-item-checkbox">
                   <div class="custom-checkbox font-alegreya" name="tos">
                     <label>
                       {# <input  name="tos" class="checkbox" type="checkbox">#}
@@ -622,7 +623,6 @@
                   {% endfor %}
 
                   {# если выбран другой город #}
-                  {# {{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}#}
 
                   {#                  <input type="radio" class="radio" name="radio-delivery">
                                     <span class="custom-radio__radio"></span>

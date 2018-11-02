@@ -4,6 +4,7 @@ namespace StoreBundle\DataAdapter\Logistic;
 
 use AccurateCommerce\Shipping\Estimate\ShippingEstimate;
 use AccurateCommerce\Shipping\Method\ShippingMethod;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStorePickup;
 use AccurateCommerce\Shipping\Pickup\PickupPointInterface;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 use AccurateCommerce\Shipping\ShippingManager;
@@ -26,11 +27,11 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
    * @return array
    */
   public function transform ($shippingMethod, $options = [])
-  {
+  {/*
     if (!isset($options['shipment']) || !$options['shipment'] instanceof Shipment)
     {
       throw new \Exception('Shipment required');
-    }
+    }*/
 
 /*    if (!empty($options['skip_deffered']) && $shippingMethod->getDeferredEstimate())
     {
@@ -46,13 +47,15 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
       'name' => $shippingMethod->getName(),
       //'enabled' => $deliveryMethod->isApplicableTo(null, $this),
       //'details' => $deliveryMethod->getDetails($this),
-      'options' => array('recipient_address_required' => $shippingMethod->getUid() != ShippingMethod::CLSID_PICKUP),
+      'options' => array('recipient_address_required' => $shippingMethod->getUid() != ShippingMethodStorePickup::UID),
       'uid' => $shippingMethod->getUid(),
       'help' => $shippingMethod->getHelp(),
       'cost' => $shippingMethod->getCost(),
       'free_delivery_threshold' => $shippingMethod->getFreeDeliveryThreshold(),
       'priority' => ShippingManager::getShippingMethodPriority($shippingMethod),
-      'is_active' => $shippingMethod->isActive()
+      'is_active' => $shippingMethod->isActive(),
+      'address' => $shippingMethod->getUid() ===  ShippingMethodStorePickup::UID ? $shippingMethod->getAddress() : null,
+      'show_address' => $shippingMethod->getUid() === ShippingMethodStorePickup::UID ? $shippingMethod->getShowAddress() : null,
       #'deferredEstimate' => $shippingMethod->getDeferredEstimate(),
       #'choices' => $choices
     );

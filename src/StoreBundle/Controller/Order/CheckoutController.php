@@ -156,13 +156,16 @@ class CheckoutController extends Controller
     /** @var ShippingMethod $method */
     foreach ($methods as $method)
     {
-      if($method->getId() === $cart->getPaymentMethod()->getId())
+      if($cart->getPaymentMethod() !== null)
       {
-        $method->setIsActive(true);
-        $hasActiveMethod = true;
+        if($method->getId() === $cart->getPaymentMethod()->getId())
+        {
+          $method->setIsActive(true);
+          $hasActiveMethod = true;
+        }
       }
       
-      $result[] = $method->toArray();
+      $result[] = $this->get('app.shipping_method.adapter')->transform($method);
     }
     
     if(!$hasActiveMethod && count($result)>0)
