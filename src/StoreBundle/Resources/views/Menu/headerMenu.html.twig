@@ -37,32 +37,33 @@
 
             {% if menuItems %}
                 {% set continue = false %}
+                <div class="header-menu">
+                    {% for menuItem in menuItems %}
 
-                {% for menuItem in menuItems %}
+                        {% if not continue %}
 
-                    {% if not continue %}
-
-                        {% set isActive = false %}
-                        {% if menuItem.url in requestUri %}
-                            {% set isActive = true %}
-                        {% endif %}
-
-                        {% set target = menuItem.url %}
-
-                        {% if app.environment == "dev" %}
-                            {% set target = "/app_dev.php" ~ menuItem.url %}
-                        {% endif %}
-                        {#
-                            Костыль, который не даёт главной быть активной, когда выбрана др. стр
-                        #}
-                        {% if menuItem.url == "/" and app.request.get("_route") != "homepage" %}
                             {% set isActive = false %}
-                        {% endif %}
+                            {% if menuItem.url in requestUri %}
+                                {% set isActive = true %}
+                            {% endif %}
 
-                        {{ menu.menu_item( menuItem.name, target, false, isActive) }}
-                    {% endif %}
-                    {% if continue %}
-                        {% set continue = false %}
-                    {% endif %}
-                {% endfor %}
+                            {% set target = menuItem.url %}
+
+                            {% if app.environment == "dev" %}
+                                {% set target = "/app_dev.php" ~ menuItem.url %}
+                            {% endif %}
+                            {#
+                                Костыль, который не даёт главной быть активной, когда выбрана др. стр
+                            #}
+                            {% if menuItem.url == "/" and app.request.get("_route") != "homepage" %}
+                                {% set isActive = false %}
+                            {% endif %}
+
+                            {{ menu.menu_item( menuItem.name, target, false, isActive) }}
+                        {% endif %}
+                        {% if continue %}
+                            {% set continue = false %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             {% endif %}

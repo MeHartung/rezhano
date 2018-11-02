@@ -2399,11 +2399,6 @@ aside.right {
 .cards-container__step-container .step-item .custom-checkbox {
   margin-bottom: 25px;
 }
-.cards-container__step-container .step-item .form-comment .step-item__title,
-.cards-container__step-container .step-item .form-comment .form-comment__textarea {
-  display: inline-block;
-  vertical-align: top;
-}
 .cards-container__step-container .custom-radio {
   margin-bottom: 25px;
 }
@@ -3148,6 +3143,10 @@ body .delivery-info__message {
   color: #ca0d1b;
   font-weight: 500;
 }
+.step-item-checkbox {
+  position: relative;
+  padding-right: 30px;
+}
 .step-item .error-icon {
   display: none;
 }
@@ -3227,6 +3226,7 @@ body .delivery-info__message {
   display: inline-block;
   font-size: 17px;
   color: #ffcf40;
+  font-family: alegreyasans-regular;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
