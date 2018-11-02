@@ -36,14 +36,21 @@ define(function(require){
     },
     onCityChange: function (e) {
       var self = this;
-        $.ajax({
-          url: urlPrefix + '/shipping/methods',
-          type: 'POST',
-          data: {city: $(e.currentTarget).val()},
-          success: function (r) {
-            self.collection.set(r)
+      var city = $(e.currentTarget).val();
+      $.ajax({
+        url: urlPrefix + '/shipping/methods',
+        type: 'POST',
+        data: {city: city},
+        success: function (r) {
+          self.collection.reset(r);
+
+          if (city === 'Другой город') {
+            self.$('.another-city-text').show()
+          } else {
+            self.$('.another-city-text').hide()
           }
-        });
+        }
+      });
     },
     onShippingMethodCollectionChange: function () {
     if (this.collection.length > 1) {

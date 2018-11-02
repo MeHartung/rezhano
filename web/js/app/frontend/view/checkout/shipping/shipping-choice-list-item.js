@@ -20,7 +20,9 @@ define(function(require){
       this.$el.html(template({
         id: this.model.get('id'),
         name: this.model.get('name'),
-        checked: this.model.get('is_active')
+        checked: this.model.get('is_active'),
+        cost: this.model.get('cost'),
+        help: this.model.get('help')
       }));
       
       return this;
