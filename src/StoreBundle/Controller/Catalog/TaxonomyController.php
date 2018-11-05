@@ -94,11 +94,7 @@ class TaxonomyController extends Controller
       /*
        * Чтобы применить фильтра по каталогу, сначала необходимо создать форму фильтра и заполнить ее значениями
        */
-      $productFilterForm = $productFilter->createForm($this->container->get('form.factory'), array(
-        'attr' => array(
-          'class' => 'mcf_form'
-        )
-      ));
+      $productFilterForm = $productFilter->createForm($this->container->get('form.factory'));
 
       $filterValues = $request->get('f');
 

@@ -1,15 +1,35 @@
 {% use 'form_div_layout.html.twig' with form_label as base_form_label %}
 
+{% block form_start %}
+{% endblock %}
+
+{% block form_widget_compound %}
+    {%- if form is rootform -%}
+        {{ form_errors(form) }}
+    {%- endif -%}
+    {{- block('form_rows') -}}
+    {{- form_rest(form) -}}
+{% endblock %}
+
 {% block form_row %}
     {#filter-section_collapse#}
-    <div class="filter-field filter-section" data-field-id="{{ form.vars.name }}" data-field-name="{{ form.vars.full_name }}">
-        <div class="heading filter-section__title">
-            <span class="filter-heading-triangle">&nbsp;</span>
-            {{ block('base_form_label') }}
-        </div>
-        <div class="filter-section__content">
-        {{ form_widget(form) }}
-        {{ form_errors(form) }}
+    <div class="filter-field filter-section product-filter__item" data-field-id="{{ form.vars.name }}"
+         data-field-name="{{ form.vars.full_name }}">
+        <a href="#" class="product-filter__link">{{ form.vars.label }} <i class="ui-icon"></i></a>
+        <div class="product-filter__filter">
+            <span class="product-filter__row">
+                <a href="#" class="product-filter__clear">
+                  <span>очистить</span>
+                </a>
+            </span>
+                {#<div class="heading filter-section__title">#}
+            {#<span class="filter-heading-triangle">&nbsp;</span>#}
+            {#{{ block('base_form_label') }}#}
+            {#</div>#}
+            {#<div class="filter-section__content">#}
+            {{ form_widget(form) }}
+            {#{{ form_errors(form) }}#}
+            {#</div>#}
         </div>
     </div>
 {% endblock %}
@@ -18,10 +38,10 @@
     {%- if not render_rest is defined or render_rest -%}
         {{ form_rest(form) }}
     {%- endif -%}
-        {#<div class="form-buttons center">#}
-            {#<input class="button button-red" type="submit" value="Показать">#}
-            {#<a class="fullreset dashed" href="{{ path('taxon', { slug: form.vars.taxon.slug }) }}">Сбросить</a>#}
-        {#</div>#}
+    {#<div class="form-buttons center">#}
+    {#<input class="button button-red" type="submit" value="Показать">#}
+    {#<a class="fullreset dashed" href="{{ path('taxon', { slug: form.vars.taxon.slug }) }}">Сбросить</a>#}
+    {#</div>#}
     </form>
 {%- endblock form_end -%}
 
@@ -35,14 +55,15 @@
 
 
 {% block choice_widget_expanded %}
-      {% for child in form %}
-          <span class="custom-checkbox custom-checkbox_bg-blue">
+        {% for child in form %}
+            <span class="product-filter__custom-checkbox">
             <label>
-                {{ form_widget(child, { attr: { class: 'checkbox' }}) }}
-                <span class="custom-checkbox__checkbox"></span>
-                <span>{{ child.vars.label }}</span>
+              {{ form_widget(child, { attr: { class: 'checkbox' }}) }}
+              <span class="checkbox-link">{{ child.vars.label }}
+                <span class="custom-checkbox"></span>
+              </span>
             </label>
 
           </span>
-      {% endfor %}
+        {% endfor %}
 {% endblock %}

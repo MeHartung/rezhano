@@ -8,7 +8,7 @@ define(function(require){
     className: 'filter-controll',
     initialize: function(options){
       this.id = options.id;
-      this.schema = options.schema;
+      this.schema = _.extend({}, options.schema);
 
       this.isChanging = false;
 

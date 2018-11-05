@@ -9,6 +9,9 @@ interface TaxonPresentationInterface
   const TAXON_PRESENTATION_PRODUCTS = 1;
 
   const TAXON_PRESENTATION_CHILD_SECTIONS = 2;
+
+  const TAXON_PRESENTATION_CHEESE = 10;
+
   /**
    * @return TaxonInterface
    */

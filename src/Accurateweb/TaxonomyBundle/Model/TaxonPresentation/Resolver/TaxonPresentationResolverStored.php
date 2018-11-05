@@ -8,6 +8,7 @@ use Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Presentation\TaxonPresent
 use Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Presentation\TaxonPresentationProducts;
 use Accurateweb\TaxonomyBundle\Model\TaxonPresentation\TaxonPresentationInterface;
 use StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon;
+use StoreBundle\Model\Catalog\TaxonPresentation\TaxonPresentationCheese;
 
 /**
  * Предоставляет настройки представления для раздела
@@ -31,6 +32,8 @@ class TaxonPresentationResolverStored implements TaxonPresentationResolverInterf
         return new TaxonPresentationProducts($taxon, $this->productSortFactory, $options);
       case TaxonPresentationInterface::TAXON_PRESENTATION_CHILD_SECTIONS:
         return new TaxonPresentationChildSections($taxon, $options);
+      case TaxonPresentationInterface::TAXON_PRESENTATION_CHEESE:
+        return new TaxonPresentationCheese($taxon, $this->productSortFactory, $options);
     }
 
     return new TaxonPresentationProducts($taxon, $this->productSortFactory, $options);

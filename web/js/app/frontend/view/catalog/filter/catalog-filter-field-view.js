@@ -11,19 +11,19 @@ define(function(require){
     </div>\
   <% } %>\
   <% if (showTitle) { %>\
-    <div class="heading">\
-      <a href="#" class="filter-section__title">\
-       <label for="<%= id %>"><%= label %></label>\
+    <a href="#" class="filter-section__title product-filter__link"><%= label %> <i class="ui-icon"></i></a>\
+  <% } %>\n\
+  <div class="product-filter__filter filter-section__content">\
+    <span class="product-filter__row">\
+      <a href="#" class="product-filter__clear widget-reset-link">\
+        <span>очистить</span>\
       </a>\
-    </div>\
-  <% } %>\
-  <div class="filter-section__content">\
-    <a class="widget-reset-link" href="#" title="Сбросить фильтры"><i class="sr sr-16 sr-close"></i></a>\
+    </span>\
   </div>\
-  ');
+');
 
   return Backbone.View.extend({
-    className: "filter-section",
+    className: "product-filter__item",
     events: {
       'click .filter-section__title': 'onFilterCollapseLinkClick',
       'click .widget-reset-link': 'onFilterResetLinkClick'
@@ -38,11 +38,8 @@ define(function(require){
         this.editPanelHtml = $editPanel.html();
       }
 
-
-      var filterSchema = options.filter.get('schema'),
-          filterState = options.filter.get('state'),
-          fieldSchema = filterSchema[options.id],
-          fieldState = filterState[options.id];
+      var fieldSchema = this.getSchema(),
+          fieldState = this.getState();
 
       this.model = new Backbone.Model({
         id: options.id,
@@ -73,12 +70,12 @@ define(function(require){
         this.descriptionIcon.remove();
       }
 
-      // this.$el.html(template({
-      //   id: this.model.get('id'),
-      //   label: this.model.get('label'),
-      //   showTitle: this.model.get('showTitle'),
-      //   editPanelHtml: this.editPanelHtml
-      // }));
+      this.$el.html(template({
+        id: this.model.get('id'),
+        label: this.model.get('label'),
+        showTitle: this.model.get('showTitle'),
+        editPanelHtml: this.editPanelHtml
+      }));
 
       if (this.model.get('showCollapsed')){
         this.$el.addClass('filter-section_collapse');
@@ -133,6 +130,16 @@ define(function(require){
           state: filterState[this.options.id].state
         });
       }
+    },
+    getSchema: function(){
+      var filterSchema = this.options.filter.get('schema');
+
+      return filterSchema[this.options.id];
+    },
+    getState: function(){
+      var filterState = this.options.filter.get('state');
+
+      return filterState[this.options.id];
     }
-  })
-})
+  });
+});

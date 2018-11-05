@@ -5,7 +5,7 @@ define(function(require){
   var //IndependentFlagsWidget = require('view/catalog/filter/widget/filter-widget-independent-flags'),
       RangeSliderWidget = require('view/catalog/filter/widget/filter-widget-range-slider'),
       // EavRangeSliderWidget = require('view/catalog/filter/widget/filter-widget-eav-range-slider'),
-      SelectCheckboxWidget = require('view/catalog/filter/widget/filter-widget-select-checkbox');
+      SelectCheckboxWidget = require('view/catalog/filter/widget/filter-widget-choice-rezhano');
       // ExpandableSelectWidget = require('view/catalog/filter/widget/filter-widget-expandable-select');
 
   var widgetMap = {

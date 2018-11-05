@@ -55,6 +55,7 @@ class TaxonAdmin extends AbstractTreeAdmin
         'choices' => [
           'Товары' => TaxonPresentationInterface::TAXON_PRESENTATION_PRODUCTS,
           'Подкатегории' => TaxonPresentationInterface::TAXON_PRESENTATION_CHILD_SECTIONS,
+          'Сыр' => TaxonPresentationInterface::TAXON_PRESENTATION_CHEESE
         ],
         'label' => 'Вид отображения',
       ])

@@ -1,7 +1,10 @@
 define(function (require) {
-    var Backbone = require('backbone');
+    var Backbone = require('backbone'),
+        WidgetFactory = require('view/catalog/filter/catalog-filter-widget-factory'),
+        FilterField = require('view/catalog/filter/rezhano-filter-field-view')//,
+    ;
 
-    var FilterWidget = require('view/catalog/filter/widget/filter-widget-choice-rezhano');
+
 
 //   var template = _.template('\
 //     <span class="product-list-sort__title">Сортировать:</span>\
@@ -22,45 +25,34 @@ define(function (require) {
 //     ');
 
 
-  return FilterWidget.extend({
+  return FilterField.extend({
     className: 'product-filter__item product-list-sort',
     // events: {
     //   'click .product-list-sort__type': 'sorting'
     // },
     initialize: function (options) {
+      this._schema = {
+        label: 'сортировать',
+        type: 'radio',
+        widget: 'choice_expanded',
+        showCollapsed: false
+      };
       this.options = options = _.extend({
           id: 'sort',
-          clearable: false
+          name: 'sort',
+          widgetFactory: new WidgetFactory({
+              sort: this._schema
+          })
       }, options);
 
       this.options.filter.on('filtered', this.render, this);
 
-      var sort = this.options.filter.get('sort'),
-          order = sort ? sort.order : 'none',
-          sortColumns = this.options.filter.get('sortColumns'),
-          sortChoices = [];
+      // this.model = new Backbone.Model({
+      //   value: [sort.column],
+      //   name: 'sort'
+      // });
 
-      _.each(sortColumns, function(name, id){
-        sortChoices.push({ id: id, value: name, enabled: true });
-      });
-
-      this.model = new Backbone.Model({
-        state: {
-          choices: sortChoices
-        },
-        value: [sort.column],
-        name: 'sort'
-      });
-
-      this.listenTo(this.model, 'change:value', this.sorting);
-
-      options.schema = _.extend({
-          name: 'sort',
-          label: 'сортировать',
-          type: 'radio'
-      }, options.schema);
-
-      FilterWidget.prototype.initialize.apply(this, arguments);
+      FilterField.prototype.initialize.call(this, options);
     },
     // render: function () {
     //   var sort = this.options.filter.get('sort'),
@@ -77,6 +69,10 @@ define(function (require) {
     //   }));
     //
     // },
+    onValueChange: function(){
+      this.sorting();
+      this.updateState();
+    },
     sorting: function () {
       var filter = this.options.filter;
 
@@ -98,7 +94,29 @@ define(function (require) {
         this.render();
 
 //        this.$el.removeClass('deployed');
+      },
+      getSchema: function(){
+        return this._schema;
+      },
+      getState: function(){
+         var sort = this.options.filter.get('sort'),
+             order = sort ? sort.order : 'none',
+             sortColumns = this.options.filter.get('sortColumns'),
+             sortChoices = [];
+
+          _.each(sortColumns, function(name, id){
+              sortChoices.push({ id: id, value: name, enabled: true });
+          });
+
+        return _.extend({
+            state: {
+                choices: sortChoices
+            },
+            value: [sort.column]
+          }
+        );
       }
+
   });
 
 
