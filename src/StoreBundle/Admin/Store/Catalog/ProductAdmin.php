@@ -6,6 +6,7 @@
 namespace StoreBundle\Admin\Store\Catalog;
 
 use Accurateweb\MediaBundle\Form\ImageGalleryType;
+use Accurateweb\MediaBundle\Form\ImageType;
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Form\Catalog\Product\ProductTaxonType;
 use StoreBundle\Form\DataTransformer\NullableBooleanToBooleanTransformer;
@@ -171,8 +172,14 @@ class ProductAdmin extends AbstractAdmin
               'Оранжевая' => Product::ORANGE_BACKGROUND,
               'Черная' => Product::BLACK_BACKGROUND,
             ],
-            'required' => true
+            'required' => true,
+            #'help' => 'Выберите цвет подложки для фото товара.'
           ])
+        ->add('teaserImageFile', ImageType::class, array(
+          'required' => false,
+          'label' => 'Главное фото товара',
+          'help' => 'Отображается в списке товаров.'
+        ))
           ->add('productPhotos', ImageGalleryType::class, array(
             'gallery' => 'product-photo',
             'label' => false

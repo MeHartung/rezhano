@@ -7,7 +7,11 @@ namespace StoreBundle\Entity\Store\Catalog\Product;
 
 use Accurateweb\LogisticBundle\Model\ProductStockInterface;
 use Accurateweb\LogisticBundle\Model\StockableInterface;
+use Accurateweb\MediaBundle\Annotation\Image;
+use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
+use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use Accurateweb\MediaBundle\Model\Media\MediaInterface;
+use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use StoreBundle\Entity\Store\Brand\Brand;
@@ -19,6 +23,7 @@ use StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon;
 
 use StoreBundle\Entity\Store\Logistics\Warehouse\ProductStock;
 use StoreBundle\Entity\User\User;
+use StoreBundle\Media\Text\UnprocessedImage;
 use StoreBundle\Sluggable\SluggableInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -34,7 +39,7 @@ use Accurateweb\LogisticBundle\Validator\Constraints as LogisticAssert;
  * @ORM\Entity(repositoryClass="StoreBundle\Repository\Store\Catalog\Product\ProductRepository")
  *
  */
-class Product implements SluggableInterface//, StockableInterface
+class Product implements SluggableInterface, ImageAwareInterface//, StockableInterface
 {
   const ORANGE_BACKGROUND = 1;
   const BLACK_BACKGROUND = 2;
@@ -331,6 +336,19 @@ class Product implements SluggableInterface//, StockableInterface
    * @ORM\Column(type="decimal", scale=3, nullable=true)
    */
   private $package;
+  
+  /**
+   * @var string|null
+   * @ORM\Column(name="image", length=255)
+   * @Image(id="product/teaser")
+   */
+  private $teaserImageFile;
+  
+  /**
+   * @var array|null
+   * @ORM\Column(type="json_array", nullable=true)
+   */
+  private $teaserImageOptions;
   
   public function __construct()
   {
@@ -1327,4 +1345,112 @@ class Product implements SluggableInterface//, StockableInterface
 
     return $number;
   }
+  
+  
+  /**
+   * @param null $id
+   * @return ImageInterface|null|\StoreBundle\Media\Store\Catalog\Product\ProductImage
+   */
+  public function getImage($id = null)
+  {
+    if (!$this->teaserImageFile)
+    {
+      return null;
+    }
+    
+    return new \StoreBundle\Media\Store\Catalog\Product\ProductImage('teaser', $this->teaserImageFile, $this->getTeaserImageOptions());
+  }
+  
+  /**
+   * @param ImageInterface $teaser
+   * @return mixed|void
+   */
+  public function setImage(ImageInterface $teaser)
+  {
+    $this->teaserImageFile = $teaser ? $teaser->getResourceId() : null;
+  }
+  
+  /**
+   * @param $id
+   * @return mixed
+   */
+  public function getImageOptions($id)
+  {
+    return $this->getTeaserImageOptions();
+  }
+  
+  public function setImageOptions($id)
+  {
+    $this->setTeaserImageOptions($id);
+  }
+  
+  /**
+   * @return string
+   */
+  public function getTeaserImageFile()
+  {
+    return $this->teaserImageFile;
+  }
+  
+  /**
+   * @param string $teaserImageFile
+   * @return $this
+   */
+  public function setTeaserImageFile($teaserImageFile)
+  {
+    /*
+     * Не даем сбрасывать изображение из-за пустого значения в форме
+     */
+    if (null !== $teaserImageFile)
+    {
+      $this->teaserImageFile = $teaserImageFile;
+    }
+    
+    return $this;
+  }
+  
+  /**
+   * @return ImageInterface | null
+   */
+  public function getTeaserImageFileImage()
+  {
+    if (null == $this->teaserImageFile)
+    {
+      return null;
+    }
+    
+    return new \StoreBundle\Media\Store\Catalog\Product\ProductImage('product/teaser', $this->teaserImageFile, []);
+  }
+  
+  public function setTeaserImageFileImage(ImageInterface $image = null)
+  {
+    $this->setTeaserImageFile($image ? $image->getResourceId() : null);
+  }
+  
+  /**
+   * @return array
+   */
+  public function getTeaserImageOptions()
+  {
+    return $this->teaserImageOptions;
+  }
+  
+  /**
+   * @param array $teaserImageOptions
+   * @return $this
+   */
+  public function setTeaserImageOptions($teaserImageOptions)
+  {
+    $this->teaserImageOptions = $teaserImageOptions;
+    return $this;
+  }
+  
+  public function getThumbnailUrl($alias = '')
+  {
+    $image = $this->getTeaserImageFileImage();
+    $thumbnail = $image === null ? null : new ImageThumbnail($alias, $image);
+  
+    return $thumbnail ? '/uploads/' . $thumbnail->getResourceId() : null;
+  }
+  
 }
