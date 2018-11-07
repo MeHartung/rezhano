@@ -12,6 +12,7 @@ namespace StoreBundle\Entity\Text;
 use Accurateweb\MediaBundle\Annotation\Image;
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
+use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use StoreBundle\Media\Text\PartnerImage;
@@ -130,7 +131,7 @@ class Partner implements ImageAwareInterface
       return null;
     }
     
-    return new UnprocessedImage('partner/teaser', $this->teaserImageFile, []);
+    return new PartnerImage('partner/teaser', $this->teaserImageFile, []);
   }
   
   public function setTeaserImageFileImage(ImageInterface $image = null)
@@ -207,5 +208,13 @@ class Partner implements ImageAwareInterface
   public function __toString()
   {
     return $this->getName() ? $this->getName() : '';
+  }
+  
+  public function getThumbnailUrl($alias = '')
+  {
+    $image = $this->getTeaserImageFileImage();
+    $thumbnail = $image === null ? null : new ImageThumbnail($alias, $image);
+    
+    return $thumbnail ? '/uploads/' . $thumbnail->getResourceId() : null;
   }
 }
