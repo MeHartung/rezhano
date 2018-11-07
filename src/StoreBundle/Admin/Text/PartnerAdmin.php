@@ -84,6 +84,7 @@ class PartnerAdmin extends AbstractAdmin
     $imageInfo = pathinfo($imgPath);
     $ext = $imageInfo['extension'];
     $funcOpen = null;
+    $funcSave = null;
     
     switch ($ext)
     {
@@ -99,6 +100,12 @@ class PartnerAdmin extends AbstractAdmin
         $funcOpen = 'imagecreatefromjpeg';
         $funcSave = 'imagejpeg';
         break;
+    }
+    
+    if(null === $funcOpen || null === $funcSave)
+    {
+      $this->getRequest()->getSession()->getFlashBag()->add("success", "Не удалось обработать изображение. Загрузите jpg или png.");
+      return;
     }
     
     $im = $funcOpen($imgPath);
