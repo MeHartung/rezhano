@@ -1,8 +1,8 @@
 {% if value.cost %}
 <span class="delivery-info">
     / от {{ value.cost }}
-    {% if value.cost %}
-        <span class="delivery-info__message">{{ value.help }}</span>
-    {% endif %}
 </span>
+{% if value.cost %}
+  <span class="delivery-info__message">{{ value.help }}</span>
+{% endif %}
 {% endif %}

@@ -10,12 +10,13 @@ define(function(require){
       //CitySelectLinkView = require('view/common/header/city-select-link'),
       UserPanelView = require('view/user/user-panel-view'),
       //Location = require('model/geography/location')
-      MapViewDialog = require('view/common/map-view-dialog')
-      ;
+      MapViewDialog = require('view/common/map-view-dialog'),
+      QuestionDialogView = require('view/common/question-view-dialog');
 
   return Backbone.View.extend({
     events: {
-      'click .footer-maps__link': 'onShopClick'
+      'click .footer-maps__link': 'onShopClick',
+      'click .button-question': 'onQuestionClick'
     },
     initialize: function(options){
       this.options = $.extend({
@@ -45,6 +46,7 @@ define(function(require){
       });
 
       this.mapViewDialog = null;
+      this.questionDialogView = null;
 
       this.listenTo(this.cart, 'item:add', this.onCartItemAdded);
     },
@@ -99,19 +101,6 @@ define(function(require){
         }).render();
       });
 
-      // var $headerMenu = $('header');
-      // var headerMenuHeight = $('header').height();
-      // var headerSectionHeight = $('.header-section').height() - headerMenuHeight;
-      //
-      // $(window).scroll(function () {
-      //
-      //   if ( $(this).scrollTop()>headerSectionHeight ) {
-      //     $headerMenu.addClass('fixed');
-      //   } else if ( $(this).scrollTop()<headerSectionHeight ) {
-      //     $headerMenu.removeClass('fixed');
-      //   }
-      // });
-
       return this;
     },
     onShopClick: function (e) {
@@ -136,6 +125,16 @@ define(function(require){
       this.mapViewDialog.render().$el.appendTo($('body'));
 
       this.mapViewDialog.open();
+    },
+    onQuestionClick: function (e) {
+      e.preventDefault();
+
+      this.questionDialogView = new QuestionDialogView({
+
+      });
+      this.questionDialogView.render().$el.appendTo($('body'));
+
+      this.questionDialogView.open();
     }
   });
 });

@@ -798,14 +798,15 @@ a.button.button_yellow-yellow:hover {
   border-color: #ffbf02;
 }
 header {
-  height: 120px;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   text-align: right;
   z-index: 100;
-  padding: 37px 50px;
+  padding: 30px 50px;
+  -webkit-transition: padding-top 0.2s;
+  transition: padding-top 0.2s;
 }
 header .header-menu-wrap {
   margin: 0 auto;
@@ -814,12 +815,13 @@ header .header-menu-wrap {
 header .header-logo {
   display: inline-block;
   vertical-align: top;
-  background: url("../images/logo-rezhano.png") center no-repeat;
-  width: 226px;
-  height: 45px;
+  background: url("../images/logo-rezhano_sm_fix.png") center no-repeat;
+  width: 176px;
+  height: 35px;
   position: absolute;
   left: 50px;
   top: 3px;
+  margin-top: 8px;
 }
 header .header-menu {
   display: inline-block;
@@ -846,14 +848,19 @@ header .header-menu__item:after {
 header .header-menu__item:last-child:after {
   display: none;
 }
-header .header-menu__item:hover:before {
+header .header-menu__item:before {
   content: '';
   height: 2px;
-  width: 100%;
+  width: 0;
   position: absolute;
   background-color: #ffcf40;
   bottom: -6px;
   left: 0;
+}
+header .header-menu__item:hover:before {
+  width: 100%;
+  -webkit-transition: width .2s;
+  transition: width .2s;
 }
 header .header-menu__item.active {
   color: #ffcf40;
@@ -915,6 +922,7 @@ header .header-controls__cart:hover {
 header.fixed {
   background-color: #101010;
   position: fixed;
+  padding-top: 10px;
   -webkit-transition: all .2s;
   transition: all .2s;
 }
@@ -1399,12 +1407,6 @@ h1,
 }
 .product-list .product-item.yellow-back .product-item__image {
   background-color: #ffcf40;
-}
-.product-list .product-item .controls-wrap {
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
 }
 .product-list .product-item .controls-wrap .controls-title {
   font-size: 21px;
@@ -1970,7 +1972,17 @@ footer .footer-maps .button {
 }
 footer .footer-maps__link {
   color: #ffffff;
-  display: block;
+  display: inline-block;
+  position: relative;
+}
+footer .footer-maps__link:hover:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
 }
 footer .footer-maps__item {
   color: #ffcf40;
@@ -2203,10 +2215,6 @@ aside.right {
 }
 .cards-container {
   padding-bottom: 56px;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
 }
 .cards-container__step-title {
   display: block;
@@ -2493,6 +2501,9 @@ aside.right {
   background-color: #f3f3f3;
   padding: 12px 20px;
   margin-bottom: 20px;
+  position: relative;
+  -webkit-transition: top .2s;
+  transition: top .2s;
 }
 .cards-container__center_no-left .right .cards-container__payment-info .payment-info__title,
 .cards-container__center_no-left .right .cards-container__payment-info .payment-info__value {
@@ -2615,7 +2626,6 @@ body .delivery-info {
   font-size: 17px;
   font-family: alegreyasans-regular;
   color: #a5a5a5;
-  margin-bottom: -10px;
   margin-left: 5px;
   display: inline-block;
 }
@@ -2689,10 +2699,6 @@ body .delivery-info__message {
   position: relative;
   height: 100%;
   white-space: normal;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
 }
 .layer__title {
   white-space: normal;
