@@ -24,14 +24,9 @@ class PartnerImage extends Image
   public function getThumbnailDefinitions()
   {
     return array(
-      new ThumbnailDefinition('160x160', new FilterChain(array(
+      new ThumbnailDefinition('view', new FilterChain(array(
         array(
-          'id' => 'crop',
-          'options' => $this->getFilterOptions('crop'),
-          'resolver' => new CropFilterOptionsResolver()
-        ),
-        array(
-         'id' => 'resize', 'options' => array('size' => '160x160'),
+         'id' => 'resize', 'options' => array('size' => '310x81'),
         )
       )))
     );

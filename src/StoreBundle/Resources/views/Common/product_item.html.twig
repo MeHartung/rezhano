@@ -1,5 +1,5 @@
 <div class="product-item">
-    <a href="{{ path('product', {'slug': product.slug } ) }}" class="product-item__image" style="background: url({{ image_url(product.mainImage) }}) center no-repeat; background-size: cover"></a>
+    <a href="{{ path('product', {'slug': product.slug } ) }}" class="product-item__image" style="background: url({{ product.thumbnailUrl('catalog_prev') }}) center no-repeat; background-size: cover"></a>
     <div class="product-item__info">
         <a href="{{ path('product', {'slug': product.slug } ) }}" class="product-item__title">{{ product.name }}</a>
         <button class="button button_add-to-cart button-buy_in-product"><span>{{ product.price|price }}</span></button>

@@ -5,6 +5,7 @@ namespace StoreBundle\DataAdapter\Product;
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
 use Accurateweb\MediaBundle\Model\Media\Resource\MediaResource;
 use Accurateweb\MediaBundle\Model\Media\Storage\MediaStorageInterface;
+use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Entity\User\User;
 use StoreBundle\Service\Product\ProductPrice\ProductPriceManager;
@@ -38,8 +39,9 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
    */
   public function transform ($subject, $options = array())
   {
-    $image = $subject->getMainImage();
-    $media = $image ? $this->mediaStorage->retrieve($image) : null;
+    #$image = $subject->getMainImage();
+    #$image = $subject->getTeaserImageFileImage();
+    #$media = $image ? $this->mediaStorage->retrieve($image) : null;
     $token = $this->tokenStorage->getToken();
     $isFavorite = false;
     $primary_taxon = $subject->getPrimaryTaxon();
@@ -73,7 +75,7 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'brand' => $brand ? $brand->getName() : null,
       'sku' => $subject->getSku(),
       'images' => count($images)>0 ? $images : null,
-      'preview_image' => $subject->getFirstImage(),
+      'preview_image' => $subject->getFirstImage(), # вообще не юзается
       'taxon' => $primary_taxon?$primary_taxon->getName():'',
       'available_stock' => $subject->getAvailableStock(),
       'slug' => $subject->getSlug(),
@@ -81,7 +83,7 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'originalPrice' => $subject->getPrice(),
       'oldPrice' => $subject->getOldPrice(),
       'price' => $this->priceManager->getProductPrice($subject),
-      'image' => $media ? $media->getUrl() : null,
+      'image' => $subject->getThumbnailUrl('catalog_prev'),
       'isPurchasable' => $subject->isPurchasable(),
       'isHit' => $subject->isHit(),
       'isNovice' => $subject->isNovice(),

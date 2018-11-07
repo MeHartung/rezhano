@@ -76,15 +76,15 @@ class PartnerAdmin extends AbstractAdmin
     $subject = $this->getSubject();
     $pathPrefix = $this->getConfigurationPool()->getContainer()->getParameter('kernel.root_dir') .
       DIRECTORY_SEPARATOR . '..' .
-      DIRECTORY_SEPARATOR . 'web' .
-      DIRECTORY_SEPARATOR . 'uploads' .
-      DIRECTORY_SEPARATOR;
-    
-    $imgPath = $pathPrefix . $subject->getTeaserImageFile();
+      DIRECTORY_SEPARATOR . 'web' ;
+      #DIRECTORY_SEPARATOR . 'uploads' .
+    #  DIRECTORY_SEPARATOR;
+    $imgPath = $pathPrefix . $subject->getThumbnailUrl('view');
     
     $imageInfo = pathinfo($imgPath);
     $ext = $imageInfo['extension'];
     $funcOpen = null;
+    $funcSave = null;
     
     switch ($ext)
     {
@@ -94,92 +94,22 @@ class PartnerAdmin extends AbstractAdmin
         break;
       case 'jpg':
         $funcOpen = 'imagecreatefromjpeg';
+        $funcSave = 'imagejpeg';
         break;
       case 'jpeg':
         $funcOpen = 'imagecreatefromjpeg';
+        $funcSave = 'imagejpeg';
         break;
     }
     
-    $im = imagecreatefrompng($imgPath);
-    
-    $myRed = 255;
-    $myGreen = 207;
-    $myBlue = 64;
-    $myAlpha = 0;
-    
-    imageAlphaBlending($im, true);
-    imageSaveAlpha($im, true);
-    
-    if (imageistruecolor($im))
+    if(null === $funcOpen || null === $funcSave)
     {
-      $sx = imagesx($im);
-      $sy = imagesy($im);
-      
-      for ($x = 0;$x < $sx;$x++)
-      {
-        for ($y = 0;$y < $sy;$y++)
-        {
-          $c = imagecolorat($im, $x, $y);
-          $colors = imagecolorsforindex($im, $c);
-  /*        if ($colors['red'] == 255 && $colors['green'] == 255 && $colors['blue'] == 255)
-          {
-            var_dump($c);die;
-          }*/
-          $a = $c & 0xFF000000;
-          if ($colors['red'] !== 255 && $colors['green'] !== 255 && $colors['blue'] !== 255)
-          {
-            #$newColor = $a | $myRed << 16 | $myGreen << 8 | $myBlue;
-            $newColor = imagecolorallocate($im, 255, 207, 64);
-            imagesetpixel($im, $x, $y, $newColor);
-          }
-        
-        }
-      }
-    } else
-    {
-      $numColors = imagecolorstotal($im);
-      $transparent = imagecolortransparent($im);
-      
-      for ($i = 0;$i < $numColors;$i++)
-      {
-        if ($i != $transparent)
-          imagecolorset($im, $i, $myRed, $myGreen, $myBlue, $myAlpha);
-        
-      }
+      $this->getRequest()->getSession()->getFlashBag()->add("success", "Не удалось обработать изображение. Загрузите jpg или png.");
+      return;
     }
     
-    imagepng($im, $imgPath);
-    /*    $size = getimagesize($pathPrefix . $this->getSubject()->getTeaser());
-        
-        if (is_bool($size)) throw new FileNotFoundException("File $imgPath not found!");
-        
-        list($w, $h) = call_user_func_array(function ($size)
-        {
-          return array_splice($size, 0, 2);
-        }, [$size]);
-        
-        $x = $y = 0;
-        
-        while ($x < $w)
-        {
-          while ($y < $h)
-          {
-            $rgb = imagecolorat($image, $x, $y);
-            
-            $colors = imagecolorsforindex($image, $rgb);
-            if ($colors['red'] !== 255 && $colors['green'] !== 255 && $colors['blue'] !== 255)
-            {
-              $needleColor = imagecolorallocate($image, 255, 207, 64);
-              imagesetpixel($image, $x, $y, $needleColor);
-            }
-            
-            $y++;
-          }
-          $x++;
-          $y = 0;
-        }
-        
-        imagejpeg($image, $imgPath);*/
-    
+    $im = $funcOpen($imgPath);
+    imagefilter($im, IMG_FILTER_COLORIZE,  255, 207, 64);
+    $funcSave($im, $imgPath);
   }
 }
