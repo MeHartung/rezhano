@@ -9,7 +9,7 @@ define(function(require){
         <div class="layer__container">\
           <div class="layer__title">Товар добавлен в корзину</div>\
           <div class="add-to-cart-layer__wrap">\
-            <a href="<%= product_url %>" class="add-to-cart-layer__image <%= mountBg %>">\
+            <a href="<%= product_url %>" class="add-to-cart-layer__image ">\
               <img src="<%= preview_image %>" alt="">\
             </a>\
             <div class="add-to-cart-layer__info">\

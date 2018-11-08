@@ -2179,6 +2179,11 @@ footer .footer-aside__link.link_frukt:hover:after {
 .layer__text {
   padding: 40px 45px;
 }
+.layer__text .product-item__characteristics {
+  position: absolute;
+  left: 45px;
+  bottom: 100px;
+}
 .layer__images {
   width: 500px;
   height: 640px;
@@ -2249,7 +2254,7 @@ footer .footer-aside__link.link_frukt:hover:after {
 }
 .layer .add-to-cart-layer__image img {
   position: absolute;
-  max-width: 150px;
+  max-width: 100px;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -2936,6 +2941,9 @@ body .delivery-info__message {
 .section-in-product .show-full-image {
   width: 570px;
   height: 713px;
+}
+.section-in-product .layer__text .product-item__characteristics {
+  left: 60px;
 }
 .section-back-to-all {
   background-color: #ffcf40;
