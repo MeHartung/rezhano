@@ -15,7 +15,7 @@ define(function(require){
 
   return Backbone.View.extend({
     events: {
-      'click .footer-maps__link': 'onShopClick',
+      // 'click .footer-maps__link': 'onShopClick',
       'click .button-question': 'onQuestionClick'
     },
     initialize: function(options){

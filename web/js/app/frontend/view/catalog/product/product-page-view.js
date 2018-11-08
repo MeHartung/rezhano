@@ -8,7 +8,8 @@ define(function(require){
       PreorderButton = require('view/checkout/preorder/preorder-button'),
       QuantityWidget = require('view/cart/widget/quantity-widget'),
       AskQuestionLinkView = require('view/catalog/product/ask-question-link-view'),
-      ImageGalleryView = require('view/catalog/product/product-image-gallery-view');
+      ImageGalleryView = require('view/catalog/product/product-image-gallery-view'),
+      MapViewDialog = require('view/common/map-view-dialog');
 
   require('slick');
   require('jquery-ui/widgets/tabs');
@@ -18,7 +19,8 @@ define(function(require){
   return CommonView.extend({
     events: {
       'click .nn_tabs_tab': 'onTabHeaderClick',
-      'click .button-buy_in-product': 'onAddToCartButtonClick'
+      'click .button-buy_in-product': 'onAddToCartButtonClick',
+      // 'click .footer-maps__link': 'onShopClick',
     },
     initialize: function(options) {
       CommonView.prototype.initialize.apply(this, arguments);
@@ -36,6 +38,8 @@ define(function(require){
         min: this.model.get('min_count'),
         step: this.model.get('count_step')
       });
+
+      this.mapViewDialog = null;
 
       this.imageGalleryView = new ImageGalleryView();
     },
@@ -122,6 +126,29 @@ define(function(require){
 
           self.cartItem.set({ quantity: self.model.get('min_count') });
         });
-    }
+    },
+    onShopClick: function (e) {
+      e.preventDefault();
+
+      var points = {
+        0: {
+          city: 'Екатеринбург',
+          address: 'ул. Красноармейская, 68 (с 10:00 до 21:00)',
+          coordinates: [56.830773, 60.618136]
+        },
+        1: {
+          city: 'Реж',
+          address: 'ул. Олега Кошевого, 16',
+          coordinates: [57.345120, 61.344415]
+        }
+      };
+
+      this.mapViewDialog = new MapViewDialog({
+        model: new Backbone.Model(points[e.currentTarget.dataset.point]),
+      });
+      this.mapViewDialog.render().$el.appendTo($('body'));
+
+      this.mapViewDialog.open();
+    },
   })
 })
