@@ -24,7 +24,7 @@ class ShippingMethodRepository extends EntityRepository
     return $qb->getQuery()->getResult();
   }
   
-  public function findForRezhAndEkb($city = '')
+  public function findForRezhAndEkb($city = 'Екатеринбург')
   {
     $qb = $this->createQueryBuilder('sm')
       ->where('sm.uid != :uid')
