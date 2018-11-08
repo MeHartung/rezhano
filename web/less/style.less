@@ -2517,12 +2517,15 @@ aside {
 // cards container
 
 .cards-container {
-  padding-bottom: 56px;
 
   //-ms-user-select: none;
   //-moz-user-select: none;
   //-khtml-user-select: none;
   //-webkit-user-select: none;
+
+  &__container {
+    padding-bottom: 56px;
+  }
 
   &__step {
 
@@ -2574,8 +2577,6 @@ aside {
   &__step-container {
     padding-top: 72px;
     padding-bottom: 35px;
-
-
 
     .step-item {
       margin-bottom: 45px;
@@ -2838,6 +2839,17 @@ aside {
         font-weight: normal;
         color: #5b7e8a;
         line-height: 57px;
+      }
+
+      .cards-link-wrap:hover {
+
+        .cards-container__item-image {
+          background-color: @rc_yellow;
+        }
+
+        .cards-container__item-info .item-info__title {
+          color: @rc_yellow;
+        }
       }
     }
 

@@ -26,52 +26,57 @@
                 <div class="cards-container__remove cards-container__remove_header"><span>Удалить</span></div>
             </div>
 
-            {% for item in items %}
-                <div class="cards-container__wrap">
+            <div class="cards-container__container">
+              {% for item in items %}
+                  <div class="cards-container__wrap">
 
-                    <div class="cards-container__item">
+                      <div class="cards-container__item">
                         {# <a href="{{ path('product', { slug: item.product.slug }) }}" class="cards-container__item-image yellow"> #}
-                        <a href="{{ path('product', { slug: item.product.slug }) }}" class="cards-container__item-image">
-                            {% if item.product.images.count > 0 %}
-                                <img src="{{ image_url(item.product) }}" alt="">
-                            {% else %}
-                                <img src="{{ asset('/images/no-photo.png') }}" alt="">
-                            {% endif %}
-                        </a>
-                        <div class="cards-container__item-info">
-                            <a href="{{ path('product', { slug: item.product.slug }) }}" class="item-info__title">{{ item.product.name }}</a>
-                            <span class="item-info__quantity">{{ item.product.formattedPackage }} {{ item.product.units }}</span>
-                            {#<span class="item-info__title-aside">Артикул – {{ item.product.sku }}</span>#}
-                        </div>
-                    </div>
+                          <div class="cards-link-wrap">
+                              <a href="{{ path('product', { slug: item.product.slug }) }}" class="cards-container__item-image">
+                                {% if item.product.images.count > 0 %}
+                                    <img src="{{ image_url(item.product) }}" alt="">
+                                {% else %}
+                                    <img src="{{ asset('/images/no-photo.png') }}" alt="">
+                                {% endif %}
+                              </a>
+                              <div class="cards-container__item-info">
+                                  <a href="{{ path('product', { slug: item.product.slug }) }}" class="item-info__title">{{ item.product.name }}</a>
+                                  <span class="item-info__quantity">{{ item.product.formattedPackage }} {{ item.product.units }}</span>
+                                {#<span class="item-info__title-aside">Артикул – {{ item.product.sku }}</span>#}
+                              </div>
+                          </div>
 
-                    <div class="cards-container__price">{{ item.price|price }}</div>
+                      </div>
 
-                    <div class="quantity-widget quantity-wrap product-item__controls cards-container__quantity">
-                        <a class="controls-item controls-item__increase quantity-control quantity-control__down"></a>
-                        <input class="custom-input quantity-control__input" value="{{ item.quantity }}" type="text">
-                        <a class="controls-item controls-item__reduce quantity-control quantity-control__up"></a>
+                      <div class="cards-container__price">{{ item.price|price }}</div>
+
+                      <div class="quantity-widget quantity-wrap product-item__controls cards-container__quantity">
+                          <a class="controls-item controls-item__increase quantity-control quantity-control__down"></a>
+                          <input class="custom-input quantity-control__input" value="{{ item.quantity }}" type="text">
+                          <a class="controls-item controls-item__reduce quantity-control quantity-control__up"></a>
                         {#<span class="quantity-balance">всего {{ item.product.availableStock }} шт.</span>#}
-                    </div>
+                      </div>
 
-                    <div class="cards-container__cost">
-                        <div class="total-value">
-                            <span class="total-value__payment">{{ item.cost|price }}</span>
-                        </div>
-                    </div>
+                      <div class="cards-container__cost">
+                          <div class="total-value">
+                              <span class="total-value__payment">{{ item.cost|price }}</span>
+                          </div>
+                      </div>
 
-                    <div class="cards-container__controls">
-                        <a href="{{ path('cart_remove', { id: item.id }) }}" class="button-remove-from-favorites"></a>
-                    </div>
-                </div>
-            {% endfor %}
+                      <div class="cards-container__controls">
+                          <a href="{{ path('cart_remove', { id: item.id }) }}" class="button-remove-from-favorites"></a>
+                      </div>
+                  </div>
+              {% endfor %}
+            </div>
+
+
 
             <a href="{{ url('checkout') }}" class="button button_black">
                 <span>Оформить заказ</span>
             </a>
         </div>
-
-
 
     {#<div class="cards-container__step cards-container__order">#}
         {#<div class="cards-container__step-title">#}

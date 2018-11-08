@@ -2325,7 +2325,7 @@ aside.right {
   float: right;
   vertical-align: top;
 }
-.cards-container {
+.cards-container__container {
   padding-bottom: 56px;
 }
 .cards-container__step-title {
@@ -2566,6 +2566,12 @@ aside.right {
   font-weight: normal;
   color: #5b7e8a;
   line-height: 57px;
+}
+.cards-container__wrap .cards-container__item .cards-link-wrap:hover .cards-container__item-image {
+  background-color: #ffcf40;
+}
+.cards-container__wrap .cards-container__item .cards-link-wrap:hover .cards-container__item-info .item-info__title {
+  color: #ffcf40;
 }
 .cards-container__wrap .cards-container__price,
 .cards-container__wrap .cards-container__cost {
