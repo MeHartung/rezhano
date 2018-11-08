@@ -382,7 +382,10 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
     
     foreach ($this->productAttributeValues as $value)
     {
-      $result[$value->getProductAttribute()->getName()][] = $value->getValue();
+      if($value->getProductAttribute()->getShowInProduct() === true)
+      {
+        $result[$value->getProductAttribute()->getName()][] = $value->getValue();
+      }
     }
     
     return $result;
