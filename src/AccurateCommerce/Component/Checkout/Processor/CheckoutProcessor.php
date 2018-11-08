@@ -19,6 +19,7 @@ use AccurateCommerce\Component\Checkout\DocumentNumberGenerator;
 use AccurateCommerce\Component\Checkout\Event\OrderCheckoutEvent;
 use AccurateCommerce\Component\Payment\Model\PaymentMethodManager;
 use AccurateCommerce\Shipping\Method\ShippingMethod;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStoreCourier;
 use AccurateCommerce\Shipping\ShippingManager;
 use Accurateweb\EmailTemplateBundle\Email\Factory\EmailFactory;
 use Doctrine\ORM\EntityManager;
@@ -80,11 +81,11 @@ class CheckoutProcessor
       #$shippingMethod = $this->shippingManager->getShippingMethodByUid($order->getShippingMethodId()->getUid());
       $shippingEstimate = $shippingMethod->estimate($shipments[0]);
 
-      $shippingCost = $order->getShippingMethod()->getCost();
+      $shippingCost = 0.00;
       
-      if((int)$shippingCost !== 0)
+      if($shippingMethod->getUid() === ShippingMethodStoreCourier::UID)
       {
-        $shippingCost = $order->getSubtotal() > $order->getShippingMethod()->getFreeDeliveryThreshold() ? 0.00 : $shippingCost;
+        $shippingCost = $order->getSubtotal() >= 1000 ? 150.00 : 300.00;
       }
       
       $order->setShippingCost($shippingCost);

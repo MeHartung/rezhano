@@ -34,9 +34,9 @@
                         {# <a href="{{ path('product', { slug: item.product.slug }) }}" class="cards-container__item-image yellow"> #}
                           <div class="cards-link-wrap">
                               <a href="{{ path('product', { slug: item.product.slug }) }}" class="cards-container__item-image">
-                                {% if item.product.images.count > 0 %}
-                                    <img src="{{ image_url(item.product) }}" alt="">
-                                {% else %}
+                                  {% if item.product.thumbnailUrl('catalog_prev') %}
+                                      <img src="{{ item.product.thumbnailUrl('catalog_prev') }}" alt="">
+                                  {% else %}
                                     <img src="{{ asset('/images/no-photo.png') }}" alt="">
                                 {% endif %}
                               </a>
