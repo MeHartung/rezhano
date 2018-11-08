@@ -62,12 +62,12 @@ class PartnerAdmin extends AbstractAdmin
   
   public function postPersist($object)
   {
-    $this->changeColor();
+   # $this->changeColor();
   }
   
   public function postUpdate($object)
   {
-    $this->changeColor();
+   # $this->changeColor();
   }
   
   private function changeColor()
