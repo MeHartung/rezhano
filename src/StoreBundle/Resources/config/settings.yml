@@ -31,22 +31,32 @@ services:
       tags:
         - { name: aw.setting }
 
-    store.setting.ios_link:
+    store.setting.facebook_link:
       class: Accurateweb\SettingBundle\Model\Setting\StringSetting
       arguments:
         - '@aw.settings.storage'
-        - 'ios_link'
-        - 'Ссылка на приложение iOS'
+        - 'facebook_link'
+        - 'Ссылка Facebook'
         - ~
       tags:
         - { name: aw.setting }
 
-    store.setting.android_link:
+    store.setting.vk_link:
       class: Accurateweb\SettingBundle\Model\Setting\StringSetting
       arguments:
         - '@aw.settings.storage'
-        - 'android_link'
-        - 'Ссылка на приложение Android'
+        - 'vk_link'
+        - 'Ссылка Вконтакте'
+        - ~
+      tags:
+        - { name: aw.setting }
+
+    store.setting.instagram_link:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'instagram_link'
+        - 'Ссылка Instagram'
         - ~
       tags:
         - { name: aw.setting }

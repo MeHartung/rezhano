@@ -119,9 +119,15 @@
                     </div>
 
                     <div class="footer-social">
-                        <a href="" class="footer-social__item footer-social__facebook"></a>
-                        <a href="" class="footer-social__item footer-social__vkontakte"></a>
-                        <a href="" class="footer-social__item footer-social__instagram"></a>
+                        {% if setting('facebook_link')  %}
+                            <a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook"></a>
+                        {% endif %}
+                        {% if setting('vk_link')  %}
+                            <a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte"></a>
+                        {% endif %}
+                        {% if setting('instagram_link')  %}
+                            <a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram"></a>
+                        {% endif %}
                     </div>
                 </div>
 
