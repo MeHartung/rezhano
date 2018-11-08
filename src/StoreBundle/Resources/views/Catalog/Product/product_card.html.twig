@@ -24,9 +24,6 @@
       {% if product.sale %}
           <span class="product-item__label label-action"></span>
       {% endif %}
-      {% if product.hit %}
-          <span class="product-item__label label-action"></span>
-      {% endif %}
         </a>
         <a href="{{ path('product', {'slug': product.slug}) }}" class="product-item__name product-page-link" >{{ product.name }}</a>
 
