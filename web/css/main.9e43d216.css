@@ -928,7 +928,7 @@ header.fixed {
 }
 header.header-catalog {
   height: 550px;
-  background-color: #191919;
+  background-color: #0b090a;
   position: relative;
   padding: 0;
 }
@@ -948,6 +948,17 @@ header.header-catalog .header-catalog__wrap {
   height: 550px;
   max-width: 1850px;
   margin: 0 auto;
+  background-position-y: -195px;
+}
+header.header-catalog .header-catalog__wrap .header-menu-wrap {
+  position: absolute;
+  left: 0;
+  right: 30px;
+}
+@media (max-width: 2000px) {
+  header.header-catalog .header-catalog__wrap {
+    background-position-y: -175px;
+  }
 }
 .header-section {
   background: url("../images/section_bg.png") center no-repeat;
@@ -1301,6 +1312,9 @@ h1,
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+.product-list .product-item__image:hover {
+  background-color: #ffcf40;
+}
 .product-list .product-item__image:hover ~ .product-item__name {
   color: #ffcf40;
 }
@@ -1317,6 +1331,9 @@ h1,
 .product-list .product-item__name:hover {
   color: #ffcf40;
 }
+.product-list .product-item__name:hover .product-item__image {
+  background-color: #ffcf40;
+}
 .product-list .product-item__type {
   font-size: 20px;
   font-family: alegreyasans-light;
@@ -1326,6 +1343,12 @@ h1,
   text-align: center;
   margin-top: 8px;
   max-width: 350px;
+}
+.product-list .product-item__type p {
+  font-size: 20px;
+  font-family: alegreyasans-light;
+  line-height: 28px;
+  color: #000000;
 }
 .product-list .product-item__characteristics {
   text-align: center;
@@ -1423,6 +1446,12 @@ h1,
 .product-list .product-item .controls-wrap .product-item__controls {
   display: inline-block;
   vertical-align: baseline;
+}
+.product-list .product-item .product-link-wrap:hover .product-item__image {
+  background-color: #ffcf40;
+}
+.product-list .product-item .product-link-wrap:hover .product-item__name {
+  color: #ffcf40;
 }
 .product-item__controls .controls-title {
   font-size: 21px;
@@ -2764,6 +2793,15 @@ body .delivery-info__message {
 .section-in-product .layer__text {
   height: 713px;
   position: relative;
+}
+.section-in-product .layer__text:after {
+  content: '';
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background: url("../images/sidebar-product.png");
+  width: 37px;
+  height: 412px;
 }
 .section-in-product .product-item__info {
   position: absolute;
