@@ -7,6 +7,7 @@ namespace StoreBundle\Admin\Store\Catalog;
 
 use Accurateweb\MediaBundle\Form\ImageGalleryType;
 use Accurateweb\MediaBundle\Form\ImageType;
+use Sonata\CoreBundle\Validator\ErrorElement;
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Form\Catalog\Product\ProductTaxonType;
 use StoreBundle\Form\DataTransformer\NullableBooleanToBooleanTransformer;
@@ -109,10 +110,10 @@ class ProductAdmin extends AbstractAdmin
       ->end()
       ->end()
       ->tab('Описание')
-      ->add('description', TinyMceType::class)
-      ->add('shortDescription', TinyMceType::class, array(
-        'empty_data' => ''
+      ->add('shortDescription', TextType::class, array(
+        'empty_data' => '',
       ))
+      ->add('description', TinyMceType::class)
       ->end()
       ->end()
     ;
@@ -167,14 +168,14 @@ class ProductAdmin extends AbstractAdmin
     {
       $form
         ->tab('Фотогалерея')
-          ->add('background', ChoiceType::class, [
+ /*         ->add('background', ChoiceType::class, [
             'choices' => [
               'Оранжевая' => Product::ORANGE_BACKGROUND,
               'Черная' => Product::BLACK_BACKGROUND,
             ],
             'required' => true,
             #'help' => 'Выберите цвет подложки для фото товара.'
-          ])
+          ])*/
         ->add('teaserImageFile', ImageType::class, array(
           'required' => false,
           'label' => 'Главное фото товара',
@@ -220,5 +221,15 @@ class ProductAdmin extends AbstractAdmin
   public function postUpdate ($object)
   {
     $this->getConfigurationPool()->getContainer()->get('doctrine.orm.entity_manager')->flush();
+  }
+  
+  public function validate(ErrorElement $errorElement, $object)
+  {
+    $errorElement
+    ->with('shortDescription')
+      ->assertLength(array('max' => 32))
+      #->addViolation('Не более 32 символов!')
+      ->end()
+    ;
   }
 }
