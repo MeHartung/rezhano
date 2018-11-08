@@ -32,22 +32,24 @@ class TaxonomyController extends Controller
    */
   public function indexAction()
   {
-    try
-    {
-      $taxon = $this->get('aw.taxonomy.manager')->getTaxon('root');
-    }
-    catch (TaxonNotFoundException $e)
-    {
-      throw $this->createNotFoundException('Root taxon not found');
-    }
-
-    $presentation = new TaxonPresentationChildSections($taxon);
-    $presentation->prepare();
-
-    return $this->render('@Store/Catalog/Taxon/show.html.twig', [
-      'taxon' => $taxon,
-      'presentation' => $presentation,
-    ]);
+    return $this->redirectToRoute('taxon', array('slug' => 'syr'), 301);
+//
+//    try
+//    {
+//      $taxon = $this->get('aw.taxonomy.manager')->getTaxon('root');
+//    }
+//    catch (TaxonNotFoundException $e)
+//    {
+//      throw $this->createNotFoundException('Root taxon not found');
+//    }
+//
+//    $presentation = new TaxonPresentationChildSections($taxon);
+//    $presentation->prepare();
+//
+//    return $this->render('@Store/Catalog/Taxon/show.html.twig', [
+//      'taxon' => $taxon,
+//      'presentation' => $presentation,
+//    ]);
   }
 
   /**
