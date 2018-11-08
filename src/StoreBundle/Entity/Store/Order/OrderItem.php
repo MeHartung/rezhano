@@ -231,7 +231,8 @@ class OrderItem implements ShippableInterface
         'images' => count($images)>0 ? $images : null,
         'preview_image' => $product->getFirstImage(),
         'taxon' => $primary_taxon?$primary_taxon->getName():'',
-        'background' => $product->getBackground()
+        'background' => $product->getBackground(),
+        'units' => $product->getUnits()
       ] : null
     ];
   }

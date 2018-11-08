@@ -8,14 +8,18 @@ define(function(){
     <% } else { %>\n\
      <img src="/images/no_photo.png" alt="Нет фотографии"/>\n\
     <% } %>\n\
-    <% /* < % if (isSale) { % >\
-       <div class="product-item__discount-ticket">\
-         <span>-< %= discountValue % >%</span>\
-       </div>\
-     < % } % > */ %>\
+    <% if (isSale) { %>\n\
+       <span class="product-item__label label-action"></span>\n\
+    <% } %>\n\
+    <% if (isNovice) { %>\n\
+       <span class="product-item__label label-news"></span>\n\
+    <% } %>\n\
+    <% if (isHit) { %>\n\
+       <span class="product-item__label label-action"></span>\n\
+    <% } %>\
   </a>\
   <a href="<%= url %>" class="product-item__name  product-page-link"><%= name %></a>\n\
-  <span class="product-item__type"><%= type %></span>\n\
+  <span class="product-item__type"><%= short_description %></span>\n\
   <div class="product-item__characteristics">\n\
   <% if (package) { %>\
     <span class="product-item__quantity"><%= package %> <%= units %> / </span>\n\

@@ -57,6 +57,7 @@ define(function(require){
         package: this.model.get('package'),
         units: this.model.get('units'),
         type: this.model.get('type') ? this.model.get('type').name : '',
+        short_description: this.model.get('short_description')
       }));
       if (this.model.get('isPurchasable')){
         this.$el.removeClass('product-unavailable');

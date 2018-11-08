@@ -656,7 +656,7 @@ header {
     //background: url("../images/header-shop_bg.png") top no-repeat;
     //background-size: cover;
     height: 550px;
-    background-color: @c_brand_black;
+    background-color: #0b090a;
     position: relative;
     padding: 0;
     //
@@ -683,6 +683,17 @@ header {
 
       max-width: 1850px;
       margin: 0 auto;
+      background-position-y:-195px;
+
+      .header-menu-wrap {
+        position: absolute;
+        left: 0;
+        right: 30px;
+      }
+
+      @media(max-width: 2000px) {
+        background-position-y:-175px;
+      }
     }
   }
 }
@@ -3233,6 +3244,18 @@ body .delivery-info {
   .layer__text {
     height: 713px;
     position: relative;
+
+
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background: url("../images/sidebar-product.png");
+      width: 37px;
+      height: 412px;
+    }
   }
 
   .product-item__info {
