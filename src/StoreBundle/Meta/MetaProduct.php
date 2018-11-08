@@ -128,7 +128,7 @@ class MetaProduct implements MetaInterface, MetaOpenGraphInterface
 
   public function getDescription ()
   {
-    return $this->product?$this->product->getMetaDescription():null;
+    return $this->product?strip_tags($this->product->getMetaDescription()):null;
   }
 
   public function getDeterminer ()

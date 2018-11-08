@@ -24,6 +24,7 @@ parameters:
     security_provider_name: main
     aw.logistic.warehouse.entity: StoreBundle\Entity\Store\Logistics\Warehouse\Warehouse
     meta_default_title: "Сыроварня «Режано» - Интернет-магазин"
+    meta_default_keywords: ~
 
 framework:
     #esi:             ~

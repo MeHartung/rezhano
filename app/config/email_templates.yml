@@ -19,7 +19,7 @@ aw_email_templating:
         total: { description: "Стоимость заказа" }
         order_items: { description: "Состав заказа" }
       defaults:
-        subject: "Заказ в Интернет-магазине НВИ"
+        subject: "Заказ в Интернет-магазине Режано"
         body: |
           <table style="width: 100%%; min-width: 700px; background: #f6f6f6;" border="0" cellspacing="0" cellpadding="0" align="center">
           <tbody>

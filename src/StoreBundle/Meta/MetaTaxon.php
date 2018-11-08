@@ -58,7 +58,7 @@ class MetaTaxon implements MetaInterface
       return '';
     }
 
-    return $this->getTaxon()->getDescription();
+    return strip_tags($this->getTaxon()->getDescription());
   }
 
   public function getMetaKeywords ()
@@ -68,6 +68,6 @@ class MetaTaxon implements MetaInterface
       return '';
     }
 
-    sprintf('%s, купить цены стоимость продажа', $this->getTaxon()->getName());
+   return sprintf('%s, купить цены стоимость продажа', $this->getTaxon()->getName());
   }
 }
