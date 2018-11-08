@@ -125,7 +125,10 @@ services:
 
     app.shipping_method.adapter:
       class: StoreBundle\DataAdapter\Logistic\ShippingMethodDataAdapter
-      arguments: ['@app.shipping_choice.adapter', '@app.shipping_choice_pickup.adapter']
+      arguments:
+        - '@app.shipping_choice.adapter'
+        - '@app.shipping_choice_pickup.adapter'
+        - '@store.user.cart'
       tags:
         - { name: aw.client_application.adapter, alias: shipping.method }
 
