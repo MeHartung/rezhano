@@ -61,6 +61,16 @@ services:
       tags:
         - { name: aw.setting }
 
+    store.setting.root_catalog_redirect:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'root_catalog_redirect'
+        - 'Алиас, на который будет производиться редирект при попытке зайти в корневой радел каталога'
+        - 'syr'
+      tags:
+        - { name: aw.setting }
+
     #store.setting.synchronization.moy_sklad.products.folder:
     #  class: Accurateweb\SettingBundle\Model\Setting\JsonArraySetting
     #  arguments:

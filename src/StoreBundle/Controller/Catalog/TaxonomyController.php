@@ -32,7 +32,8 @@ class TaxonomyController extends Controller
    */
   public function indexAction()
   {
-    return $this->redirectToRoute('taxon', array('slug' => 'syr'), 301);
+    $slug = $this->get('aw.settings.manager')->getSetting('root_catalog_redirect')->getValue();
+    return $this->redirectToRoute('taxon', array('slug' => $slug), 301);
 //
 //    try
 //    {
