@@ -18,12 +18,13 @@
         {#{% endif %}" #}
        href="{{ path('product', { 'slug': product.slug }) }}">
         <img src="{% if product.thumbnailUrl is not empty %}{{ product.thumbnailUrl('catalog_prev') }}{% else %}{{ asset('/images/no_photo.png')}}{% endif %}" title="{{ product.name|e('html_attr') }}"/>
-      {% if product.novice %}
-          <span class="product-item__label label-news"></span>
-      {% endif %}
-      {% if product.sale %}
-          <span class="product-item__label label-action"></span>
-      {% endif %}
+
+            {% if product.novice %}
+               <span class="product-item__label label-news"></span>
+            {% endif %}
+            {% if product.hit %}
+               <span class="product-item__label label-action"></span>
+            {% endif %}
         </a>
         <a href="{{ path('product', {'slug': product.slug}) }}" class="product-item__name product-page-link" >{{ product.name }}</a>
 

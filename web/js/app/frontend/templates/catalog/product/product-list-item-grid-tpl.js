@@ -9,11 +9,11 @@ define(function(){
       <% } else { %>\n\
         <img src="/images/no_photo.png" alt="Нет фотографии"/>\n\
       <% } %>\n\
-      <% if (isSale) { %>\n\
-        <span class="product-item__label label-action"></span>\n\
-      <% } %>\n\
       <% if (isNovice) { %>\n\
         <span class="product-item__label label-news"></span>\n\
+      <% } %>\n\
+      <% if (isSale) { %>\n\
+          <span class="product-item__label label-action"></span>\n\
       <% } %>\n\
     </a>\n\
     <a href="<%= url %>" class="product-item__name  product-page-link"><%= name %></a>\n\

@@ -5,7 +5,7 @@ define(function(require){
 
   var template = _.template('\
     <h2>Адрес магазина</h2>\n\
-    <div class="layer-map__address">г.<%= city %>, <%= address %></div>\
+    <div class="layer-map__address"><%= address %></div>\
     <div class="layer__close"></div>\n\
     <div class="map-wrapper" id="map"></div>\n\
   ');
@@ -28,7 +28,7 @@ define(function(require){
 
       this.$el.html(template({
         address: this.model.get('address'),
-        city: this.model.get('city')
+        city: this.model.get('city') ? this.model.get('city') : ''
       }));
 
       return this;
@@ -58,23 +58,27 @@ define(function(require){
       ModalDialog.prototype.close.apply(this, arguments);
     },
     initMap: function () {
-      var self = this;
-
-      this.myMap = new ymaps.Map("map", {
-        center: [55.76, 37.64],
-        zoom: 7
-      });
-
       this.preparePlacemarks();
-      this.myMap.geoObjects.add(self.placemarkCollection);
-      this.myMap.setBounds(self.placemarkCollection.getBounds(), {zoomMargin: [50], checkZoomRange: true});
     },
     preparePlacemarks: function () {
-      var self = this;
       this.placemarkCollection = new ymaps.GeoObjectCollection();
-      var placemark = new ymaps.Placemark(this.model.get('coordinates'));
 
-      self.placemarkCollection.add(placemark);
+      var address = this.model.get('address');
+      ymaps.geocode( address.toString() ).then(
+        function (res) {
+          var geoObj = res.geoObjects.get(0),
+          bounds = geoObj.properties.get('boundedBy');
+          this.myMap = new ymaps.Map("map", {
+            center: geoObj.geometry.getCoordinates(),
+            zoom: 7
+          });
+          this.myMap.geoObjects.add(geoObj);
+          this.myMap.setBounds(bounds, {
+            zoomMargin: [50],
+            checkZoomRange: true
+          });
+        }
+      );
     }
   });
 });
