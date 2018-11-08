@@ -102,20 +102,20 @@
             <a {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %} class="header-logo"></a>
             <div class="footer-wrap">
                 <div class="footer-contacts">
-                    <div class="contact-item">+7 (343) 207-76-66
+                    <div class="contact-item">{{ hotspot_inline('contact_phone_1', '+7 (343) 207-76-66') }}
                         <span class="contact-item-separator">/</span>
-                        заказ сыров
+                        {{ hotspot_inline('contact_phone_info_1', 'заказ сыров') }}
                     </div>
-                    <div class="contact-item">+7 (343) 207-76-66
+                    <div class="contact-item">{{ hotspot_inline('contact_phone_2', '+7 (343) 207-76-66') }}
                         <span class="contact-item-separator">/</span>
-                        сотрудничество
+                        {{ hotspot_inline('contact_phone_info_2', 'сотрудничество') }}
                     </div>
-                    <div class="contact-item">+7 (343) 207-76-66
+                    <div class="contact-item">{{ hotspot_inline('contact_phone_3', '+7 (343) 207-76-66') }}
                         <span class="contact-item-separator">/</span>
-                        экскурсии
+                        {{ hotspot_inline('contact_phone_info_3', 'экскурсии') }}
                     </div>
                     <div class="contact-item">
-                        info@rezhano.ru
+                        {{ hotspot_inline('contact_email', 'info@rezhano.ru') }}
                     </div>
 
                     <div class="footer-social">
@@ -135,13 +135,13 @@
 
                 <div class="footer-maps">
                     <div class="footer-maps__item">
-                        Сырная лавка в Екатеринбурге
-                        <a href="" class="footer-maps__link" data-point="0">ул. Красноармейская, 68 (с 10:00 до 21:00)</a>
+                        {{ hotspot_inline('address_header_1', 'Сырная лавка в Екатеринбурге') }}
+                        <a href="" class="footer-maps__link" data-point="0">{{ hotspot_inline('address_1', 'ул. Красноармейская, 68 (с 10:00 до 21:00)') }}</a>
                     </div>
 
                     <div class="footer-maps__item">
-                        Экскурсии и продажа сыра в городе Реж
-                        <a href="" class="footer-maps__link" data-point="1">ул. Олега Кошевого, 16</a>
+                        {{ hotspot_inline('address_header_2', 'Экскурсии и продажа сыра в городе Реж') }}
+                        <a href="" class="footer-maps__link" data-point="1">{{ hotspot_inline('address_2', 'ул. Олега Кошевого, 16') }}</a>
                     </div>
 
                     {#<a href="{{ path('question') }}" class="button#}
