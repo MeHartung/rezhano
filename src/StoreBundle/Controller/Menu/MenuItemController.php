@@ -18,13 +18,14 @@ class MenuItemController extends Controller
   
   public function headerMenuAction(Request $request)
   {
+    $requestUri = $this->get('request_stack')->getParentRequest()->getPathInfo();
     $headerMenuItems = $this->getDoctrine()
       ->getRepository('StoreBundle:Menu\MenuItem')
       ->findBy(array('isHeaderDisplay' => true), array('treeLeft' => 'ASC'));;
     
     return $this->render('StoreBundle:Menu:headerMenu.html.twig', [
         'menuItems' => $headerMenuItems,
-        'requestUri' => $request->get("uri") ? $request->get("uri") : "/",
+        'requestUri' => $requestUri,
         ]
     );
   }
