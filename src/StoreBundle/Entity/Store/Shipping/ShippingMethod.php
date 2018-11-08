@@ -84,6 +84,12 @@ class ShippingMethod
   private $showAddress;
   
   /**
+   * @var string|null
+   * @ORM\Column(type="string", length=128, options={"default": "Екатеринбург"})
+   */
+  private $city;
+  
+  /**
    * @return int|null
    */
   public function getId(): ?int
@@ -262,6 +268,22 @@ class ShippingMethod
   public function setShowAddress(?string $showAddress): void
   {
     $this->showAddress = $showAddress;
+  }
+  
+  /**
+   * @return null|string
+   */
+  public function getCity(): ?string
+  {
+    return $this->city;
+  }
+  
+  /**
+   * @param null|string $city
+   */
+  public function setCity(?string $city): void
+  {
+    $this->city = $city;
   }
   
   public function toArray()

@@ -24,6 +24,7 @@ class ShippingAdmin extends AbstractAdmin
   {
     $list
       ->add('name')
+      ->add('city')
       ->add('_action', null, array(
           'actions' => array(
             'edit' => null,
@@ -50,6 +51,16 @@ class ShippingAdmin extends AbstractAdmin
      /* ->add('freeDeliveryThreshold', null, [
         'help' => 'Начиная с этой цены доставка становится бесплатной'
       ])*/
+
+     ->add('city', 'choice', [
+       'label' => 'Город',
+       'required' => true,
+       'choices' => [
+         'Екатеринбург' => 'Екатеринбург',
+         'Реж' => 'Реж',
+         'Другой город' => 'Другой город'
+       ]
+     ])
       ->add('help')
       ->add('uid', ChoiceType::class, [
         'choices' => $this->getShippingChoices(),
