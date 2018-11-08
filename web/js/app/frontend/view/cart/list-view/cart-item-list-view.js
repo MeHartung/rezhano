@@ -15,7 +15,7 @@ define(function(require){
     <div class="cards-container__remove cards-container__remove_header"><span>Удалить</span></div>\
   </div>\
   <div class="cards-container__container"></div>\
-  <a href="{{ url(\'checkout\') }}" class="button button_black"><span>Оформить заказ</span>\n\</a>\
+  <a href="<%= checkoutUrl %>" class="button button_black"><span>Оформить заказ</span>\n\</a>\
      ');
 
   return ListView.extend({
