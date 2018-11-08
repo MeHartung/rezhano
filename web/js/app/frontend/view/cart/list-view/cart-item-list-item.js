@@ -59,7 +59,7 @@ define(function(require){
         quantity: this.model.get('quantity'),
         price: Number(this.model.get('price')),
         cost: Number( this.model.get('cost')),
-        product_image: this.model.get('product').preview_image ? this.model.get('product').preview_image : '/images/no_photo.png',
+        product_image: this.model.get('product').image ? this.model.get('product').image : '/images/no_photo.png',
         product_name: this.model.get('product').name,
         product_sku: this.model.get('product').sku,
         product_url: this.model.get('product').url,
