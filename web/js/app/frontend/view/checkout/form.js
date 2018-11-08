@@ -127,7 +127,6 @@ define(function(require){
     },
     disableAddressValidation: function () {
       this.addressRequired = false;
-      console.log(this.model)
     },
     enableAddressValidation: function () {
       this.addressRequired = true;
