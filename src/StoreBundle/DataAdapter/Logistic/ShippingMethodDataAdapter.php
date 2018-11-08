@@ -43,7 +43,7 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
     }*/
 
     return array(
-      'id' => $shippingMethod->getUid(),
+      'id' => $shippingMethod->getId(),
       'name' => $shippingMethod->getName(),
       //'enabled' => $deliveryMethod->isApplicableTo(null, $this),
       //'details' => $deliveryMethod->getDetails($this),
