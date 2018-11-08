@@ -15,9 +15,6 @@ define(function(){
       <% if (isNovice) { %>\n\
         <span class="product-item__label label-news"></span>\n\
       <% } %>\n\
-      <% if (isHit) { %>\n\
-        <span class="product-item__label label-action"></span>\n\
-      <% } %>\n\
     </a>\n\
     <a href="<%= url %>" class="product-item__name  product-page-link"><%= name %></a>\n\
   </div>\
