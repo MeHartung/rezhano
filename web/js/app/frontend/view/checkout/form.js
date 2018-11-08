@@ -26,6 +26,9 @@ define(function(require){
       this.listenTo(this.shippingPanel, 'disableAddressValidation', this.disableAddressValidation);
       this.listenTo(this.shippingPanel, 'enableAddressValidation', this.enableAddressValidation);
 
+      this.listenTo(this.shippingPanel, 'enableShipping', this.enableShipping);
+      this.listenTo(this.shippingPanel, 'disableShipping', this.disableShipping);
+
       this.addressRequired = true;
 
       $.validateExtend({
@@ -57,7 +60,6 @@ define(function(require){
 
       this.$('#checkout_customer_phone').inputmask('+7 (999) 999-99-99');
       this.initValidation();
-
       return this;
     },
     initValidation: function () {
@@ -125,9 +127,16 @@ define(function(require){
     },
     disableAddressValidation: function () {
       this.addressRequired = false;
+      console.log(this.model)
     },
     enableAddressValidation: function () {
       this.addressRequired = true;
+    },
+    enableShipping: function () {
+      this.trigger('enableShipping');
+    },
+    disableShipping: function () {
+      this.trigger('disableShipping');
     }
   })
 });

@@ -2090,7 +2090,7 @@ footer .footer-aside__link.link_frukt:hover:after {
 .layer__images,
 .layer__text {
   width: 50%;
-  display: inline-block;
+  display: inline-block !important;
   vertical-align: top;
 }
 .layer__text {
@@ -3204,6 +3204,12 @@ body .delivery-info__message {
 .cards-container__order .cards-container__step-container .step-item:last-child {
   margin-bottom: 25px;
 }
+.cards-container__order .cards-container__step-payment .cards-container__step-container .step-item {
+  margin-bottom: 25px;
+}
+.cards-container__order .cards-container__step-payment .cards-container__step-container .step-item textarea {
+  min-height: 120px;
+}
 .map-wrapper h3 {
   font-size: 30px;
 }
@@ -3223,6 +3229,9 @@ body .delivery-info__message {
 }
 .delivery-address:hover:after {
   display: none;
+}
+.cards-container__payment-info {
+  width: 263px;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

@@ -64,8 +64,10 @@ define(function(require){
     onShippingMethodChange: function (method) {
       if (method && method.get('options')['recipient_address_required']) {
         this.enableAddressField();
+        this.trigger('enableShipping');
       } else {
         this.disableAddressField();
+        this.trigger('disableShipping');
       }
     },
     disableAddressField: function () {

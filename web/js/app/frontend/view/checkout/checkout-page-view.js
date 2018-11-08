@@ -3,7 +3,8 @@
  */
 define(function(require){
   var CommonView = require('view/common/common-view'),
-    CheckoutForm = require('view/checkout/form');
+    CheckoutForm = require('view/checkout/form'),
+    TotalsPanelView = require('view/cart/cart-totals-panel');
 
   return CommonView.extend({
     initialize: function(options) {
@@ -12,9 +13,18 @@ define(function(require){
       //Корзина
       this.order = options.cart;
 
+      this.shippingCost = false;
+
       this.checkoutForm = new CheckoutForm({
         model: this.order
       });
+      this.totalsPanelView = new TotalsPanelView({
+        model: this.order,
+      });
+
+      this.listenTo( this.checkoutForm, 'enableShipping', this.enableShipping);
+      this.listenTo( this.checkoutForm, 'disableShipping', this.disableShipping);
+
       $(window).on('scroll.'+this.cid, $.proxy(this.onWindowScroll, this));
     },
     render: function(){
@@ -23,22 +33,36 @@ define(function(require){
       this.checkoutForm.setElement(this.$('#checkoutForm'));
       this.checkoutForm.render();
 
+      this.totalsPanelView.setElement(this.$('.cards-container__payment-info'));
+      this.totalsPanelView.render();
       return this;
     },
     onWindowScroll: function () {
       var scroll = $(window).scrollTop();
       var max = $('.section-purchase').height();
-      var final = 0;
-      if(scroll > 200) {
+      if(scroll > 300) {
+        this.$('.cards-container__payment-info').css({
+          position: "fixed",
+          top: 0
+        });
         if(scroll < max) {
-          final = scroll - 250;
         } else {
-          final = max - 200;
+          this.$('.cards-container__payment-info').css({
+            position: "fixed",
+            top: 0
+          });
         }
       } else {
-        final = 0;
+        this.$('.cards-container__payment-info').css('position', 'relative');
       }
-      this.$('.cards-container__payment-info').css('top', final + "px");
+    },
+    enableShipping: function () {
+      this.shippingCost = true;
+      this.order.set('shippingCost', this.shippingCost )
+    },
+    disableShipping: function () {
+      this.shippingCost = false;
+      this.order.set('shippingCost', this.shippingCost )
     }
   })
 });

@@ -8,7 +8,7 @@ define(function(require){
       <span class="custom-radio__radio"></span>\n\
       <span><%= name %> \
         <% if (!recipient_address) { %>\
-          ,c <a class="delivery-address" data-address="<%= address %>"><%= show_address %></a>\
+          c <a class="delivery-address" data-address="<%= address %>"><%= show_address %></a>\
         <% } %>\
       </span>\n\
     </label>\n\

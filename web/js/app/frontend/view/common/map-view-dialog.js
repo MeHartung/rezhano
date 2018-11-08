@@ -4,7 +4,6 @@ define(function(require){
   require('ymaps');
 
   var template = _.template('\
-    <h2>Адрес магазина</h2>\n\
     <div class="layer-map__address"><%= address %></div>\
     <div class="layer__close"></div>\n\
     <div class="map-wrapper" id="map"></div>\n\

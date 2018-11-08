@@ -30,7 +30,9 @@ define(function(require){
         address: this.model.get('address'),
         recipient_address: this.model.get('options').recipient_address_required
       }));
-      
+
+
+
       return this;
     },
     dispose: function(){

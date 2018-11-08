@@ -2319,7 +2319,7 @@ footer {
 
   &__images, &__text {
     width: 50%;
-    display: inline-block;
+    display: inline-block !important;
     vertical-align: top;
   }
 
@@ -3855,6 +3855,20 @@ body .delivery-info {
       margin-bottom: 25px;
     }
   }
+
+  .cards-container__step-payment {
+
+    .cards-container__step-container {
+
+      .step-item {
+        margin-bottom: 25px;
+
+        textarea {
+          min-height: 120px;
+        }
+      }
+    }
+  }
 }
 
 .map-wrapper h3 {
@@ -3882,4 +3896,8 @@ body .delivery-info {
       display: none;
     }
   }
+}
+
+.cards-container__payment-info {
+  width: 263px;
 }
