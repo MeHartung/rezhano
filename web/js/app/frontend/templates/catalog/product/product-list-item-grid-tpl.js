@@ -2,23 +2,25 @@ define(function(){
   //var _ = require('underscore');
 
   return _.template('\
-  <a class="product-item__image product-page-link <% if (mountBg) { %>product-item__image_yellow<% } %> " title="<%= name %> купить" href="<%= url %>"> \
-    <% if (image) { %>\n\
-      <img src="<%= image %>" alt="Фотография товара <%= name %>"/>\n\
-    <% } else { %>\n\
-     <img src="/images/no_photo.png" alt="Нет фотографии"/>\n\
-    <% } %>\n\
-    <% if (isSale) { %>\n\
-       <span class="product-item__label label-action"></span>\n\
-    <% } %>\n\
-    <% if (isNovice) { %>\n\
-       <span class="product-item__label label-news"></span>\n\
-    <% } %>\n\
-    <% if (isHit) { %>\n\
-       <span class="product-item__label label-action"></span>\n\
-    <% } %>\
-  </a>\
-  <a href="<%= url %>" class="product-item__name  product-page-link"><%= name %></a>\n\
+  <div class="product-link-wrap">\
+    <a class="product-item__image product-page-link" title="<%= name %> купить" href="<%= url %>"> \n\
+      <% if (image) { %>\n\
+        <img src="<%= image %>" alt="Фотография товара <%= name %>"/>\n\
+      <% } else { %>\n\
+        <img src="/images/no_photo.png" alt="Нет фотографии"/>\n\
+      <% } %>\n\
+      <% if (isSale) { %>\n\
+        <span class="product-item__label label-action"></span>\n\
+      <% } %>\n\
+      <% if (isNovice) { %>\n\
+        <span class="product-item__label label-news"></span>\n\
+      <% } %>\n\
+      <% if (isHit) { %>\n\
+        <span class="product-item__label label-action"></span>\n\
+      <% } %>\n\
+    </a>\n\
+    <a href="<%= url %>" class="product-item__name  product-page-link"><%= name %></a>\n\
+  </div>\
   <span class="product-item__type"><%= short_description %></span>\n\
   <div class="product-item__characteristics">\n\
   <% if (package) { %>\

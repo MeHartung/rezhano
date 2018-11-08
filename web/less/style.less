@@ -1240,6 +1240,8 @@ h1, .popular-products__title {
         ~.product-item__name {
           color: @rc_yellow;
         }
+
+        background-color: @rc_yellow;
       }
 
       &_yellow {
@@ -1256,6 +1258,10 @@ h1, .popular-products__title {
 
       &:hover {
         color: @rc_yellow;
+
+        .product-item__image {
+          background-color: @rc_yellow;
+        }
       }
     }
 
@@ -1268,6 +1274,13 @@ h1, .popular-products__title {
       text-align: center;
       margin-top: 8px;
       max-width: 350px;
+
+      p {
+        font-size: 20px;
+        font-family: alegreyasans-light;
+        line-height: 28px;
+        color: @c_black;
+      }
     }
 
     &__characteristics {
@@ -1407,6 +1420,17 @@ h1, .popular-products__title {
       .product-item__controls {
         display: inline-block;
         vertical-align: baseline;
+      }
+    }
+
+    .product-link-wrap:hover {
+
+      .product-item__image {
+        background-color: @rc_yellow;
+      }
+
+      .product-item__name {
+        color: @rc_yellow;
       }
     }
   }

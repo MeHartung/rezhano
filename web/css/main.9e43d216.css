@@ -1312,6 +1312,9 @@ h1,
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+.product-list .product-item__image:hover {
+  background-color: #ffcf40;
+}
 .product-list .product-item__image:hover ~ .product-item__name {
   color: #ffcf40;
 }
@@ -1328,6 +1331,9 @@ h1,
 .product-list .product-item__name:hover {
   color: #ffcf40;
 }
+.product-list .product-item__name:hover .product-item__image {
+  background-color: #ffcf40;
+}
 .product-list .product-item__type {
   font-size: 20px;
   font-family: alegreyasans-light;
@@ -1337,6 +1343,12 @@ h1,
   text-align: center;
   margin-top: 8px;
   max-width: 350px;
+}
+.product-list .product-item__type p {
+  font-size: 20px;
+  font-family: alegreyasans-light;
+  line-height: 28px;
+  color: #000000;
 }
 .product-list .product-item__characteristics {
   text-align: center;
@@ -1434,6 +1446,12 @@ h1,
 .product-list .product-item .controls-wrap .product-item__controls {
   display: inline-block;
   vertical-align: baseline;
+}
+.product-list .product-item .product-link-wrap:hover .product-item__image {
+  background-color: #ffcf40;
+}
+.product-list .product-item .product-link-wrap:hover .product-item__name {
+  color: #ffcf40;
 }
 .product-item__controls .controls-title {
   font-size: 21px;
