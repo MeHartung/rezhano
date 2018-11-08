@@ -1914,7 +1914,7 @@ footer {
   height: auto;
   position: relative;
   margin-top: -160px;
-  padding-top: 160px;
+  padding-top: 209px;
 }
 footer .header-logo {
   display: inline-block;
@@ -2003,15 +2003,6 @@ footer .footer-maps__link {
   color: #ffffff;
   display: inline-block;
   position: relative;
-}
-footer .footer-maps__link:hover:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 100%;
-  height: 2px;
-  background-color: #ffffff;
 }
 footer .footer-maps__item {
   color: #ffcf40;

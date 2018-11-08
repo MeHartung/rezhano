@@ -20,7 +20,7 @@ define(function(require){
     events: {
       'click .nn_tabs_tab': 'onTabHeaderClick',
       'click .button-buy_in-product': 'onAddToCartButtonClick',
-      'click .footer-maps__link': 'onShopClick',
+      // 'click .footer-maps__link': 'onShopClick',
     },
     initialize: function(options) {
       CommonView.prototype.initialize.apply(this, arguments);
