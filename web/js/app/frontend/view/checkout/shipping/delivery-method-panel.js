@@ -69,7 +69,12 @@ define(function(require){
         this.disableAddressField();
         this.trigger('disableShipping');
       }
-      this.model.set('shipping_cost',  method.get('cost'))
+      if (method && method.get('cost')) {
+        this.model.set('shipping_cost',  method.get('cost'))
+      } else {
+        this.model.set('shipping_cost',  null)
+      }
+
     },
     disableAddressField: function () {
       this.trigger('disableAddressValidation');

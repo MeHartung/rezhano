@@ -3326,6 +3326,15 @@ body .delivery-info__message {
 .cards-container__payment-info {
   width: 263px;
 }
+.another-city-text {
+  font-size: 21px;
+  font-family: Catorze27style1-medium;
+}
+.product-filter__filter {
+  position: absolute;
+  width: 100%;
+  margin-top: -2px;
+}
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
   width: 24px;
