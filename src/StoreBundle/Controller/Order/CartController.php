@@ -173,14 +173,14 @@ class CartController extends Controller
 //      ->add('quantity', IntegerType::class)
 //      ->getForm();
 
-    try
+/*    try
     {
       $this->get('aw.logistic.availability.manager')->validate($cartItem->getProduct(), $itemData['quantity']);
     }
     catch (StockableNotAvailableException $e)
     {
       return new JsonResponse(['error' => $e->getMessage()], 400);
-    }
+    }*/
 
     $cartItem->setQuantity($itemData['quantity']);
 
