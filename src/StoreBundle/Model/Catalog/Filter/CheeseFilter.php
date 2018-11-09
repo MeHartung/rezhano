@@ -26,7 +26,9 @@ class CheeseFilter extends ProductFilter
   {
     $this->addField(new CheeseTypeFilterField('type', [
       'label' => 'Тип'
-    ]));
+    ],
+      $this->settingsManager
+    ));
     //$this->
   }
 }
