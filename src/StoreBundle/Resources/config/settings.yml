@@ -71,6 +71,27 @@ services:
       tags:
         - { name: aw.setting }
 
+    store.setting.cheese_hardness_property:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+        - '@aw.settings.storage'
+        - '@store.product.attribute.repository'
+        - 'cheese_hardness_property'
+        - 'Свойство твердости для фильтра по сырам'
+      tags:
+        - { name: aw.setting }
+
+
+    store.setting.cheese_mold_property:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+        - '@aw.settings.storage'
+        - '@store.product.attribute.repository'
+        - 'cheese_mold_property'
+        - 'Свойство вида плесени для фильтра по сырам'
+      tags:
+        - { name: aw.setting }
+
     #store.setting.synchronization.moy_sklad.products.folder:
     #  class: Accurateweb\SettingBundle\Model\Setting\JsonArraySetting
     #  arguments:

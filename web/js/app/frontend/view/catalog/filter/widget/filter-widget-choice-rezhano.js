@@ -48,17 +48,49 @@ define(function (require) {
 
         },
         onCheckboxChange: function (e) {
-            var _value = [];
+          var _value = [];
 
-            this.$(':checked').each(function () {
-                _value.push($(this).val());
+          if (e.currentTarget.value !== 'mold') {
+
+            this.$(':checked:not([value="mold"])').each(function () {
+              _value.push($(this).val());
             });
 
-            if (!_value.length) {
-                _value = null;
+            // Если выбраны все виды плесени, галочку "C плесенью" надо отметить, иначе снять
+
+            var allMold = true;
+
+            this.$('input[value *="m"]:not([value="mold"])').each(function () {
+              if (!$(this).prop('checked')) {
+                allMold = false;
+              }
+            });
+
+            if (allMold) {
+              _value.push('mold');
             }
 
-            this.model.set('value', _value);
+          } else {
+            // Если кликнули на "C плесенью"
+
+            // Добавляем все выбранные значения, кроме видов плесени
+            this.$(':checked:not([value *="m"]:not([value="mold"]))').each(function () {
+              _value.push($(this).val());
+            });
+
+            // Если пункт "C плесенью" выделили, то добавляем все виды плесени
+            if ($(e.currentTarget).prop('checked')) {
+              this.$('input[value *="m"]:not([value="mold"])').each(function () {
+                _value.push($(this).val());
+              });
+            }
+          }
+
+          if (!_value.length) {
+            _value = null;
+          }
+
+          this.model.set('value', _value);
         },
         reset: function(){
             FilterWidget.prototype.reset.apply(this, arguments);

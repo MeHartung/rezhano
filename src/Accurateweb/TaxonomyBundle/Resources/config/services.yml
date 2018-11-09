@@ -10,6 +10,7 @@ services:
       public: false
       arguments:
         - '@aw.product_sort.factory'
+        - '@aw.settings.manager'
       tags:
         - { name: aw.taxon_presentaion.resolver }
 
