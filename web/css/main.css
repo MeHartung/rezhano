@@ -3005,6 +3005,8 @@ body .delivery-info__message {
   display: inline-block;
   vertical-align: top;
   margin: 0 50px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   position: relative;
 }
 .product-filter__item .product-filter__filter {
@@ -3242,6 +3244,11 @@ body .delivery-info__message {
   position: absolute;
   width: 100%;
   margin-top: -2px;
+  background-color: #ffffff;
+  z-index: 1;
+}
+.filter-widget.range-slider.range-slider-measurable .input-text {
+  width: 85%;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
@@ -3920,28 +3927,28 @@ body.ui-widget textarea {
   padding-bottom: 0;
 }
 .custom-slider-range.ui-widget.ui-widget-content {
-  margin: 20px 0;
+  margin: 20px 15px;
   border: none;
   background-color: #f2f2f2;
   border-radius: 0;
   height: 8px;
   margin-top: 25px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .custom-slider-range.ui-widget.ui-widget-content .ui-slider-handle {
   border: none;
   border-radius: 50%;
-  background-color: #0070ba;
+  background-color: #000000;
   outline: none;
   width: 18px;
   height: 18px;
   cursor: pointer;
 }
 .custom-slider-range.ui-widget.ui-widget-content .ui-slider-handle:hover {
-  background-color: #027fd2;
+  background-color: #ffbf02;
 }
 .custom-slider-range.ui-widget.ui-widget-content .ui-slider-range {
-  background-color: #d1dee4;
+  background-color: #ffcf40;
 }
 .product-description .nav-tabs__wrap {
   padding: 0;
@@ -4071,6 +4078,16 @@ body.ui-widget textarea {
   color: #ffcf40 !important;
   margin: 0 !important;
   font-weight: 500 !important;
+  border: none !important;
+  border-bottom: 2px solid #000000 !important;
+}
+.filter-widget .ui-state-active,
+.filter-widget .ui-widget-content .ui-state-active {
+  background-color: #ffbf02 !important;
+  color: #ffcf40 !important;
+  font-weight: 500 !important;
+  margin-left: -0.6em !important;
+  top: -0.3em !important;
   border: none !important;
   border-bottom: 2px solid #000000 !important;
 }

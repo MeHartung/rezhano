@@ -7,6 +7,12 @@
 
 <div class="container">
     <div class="product-filter">
+      {% if filter is defined and parameters.showFilter is defined and parameters.showFilter %}
+        <div class="product-filter-group product-list-filter">
+          {% include '@Store/Catalog/Filter/filter.html.twig' %}
+        </div>
+      {% endif %}
+
         <div class="product-filter__item product-list-sort">{# deployed active  #}
             <a href="" class="product-filter__link">сортировать <i class="ui-icon"></i></a>
             <div class="product-filter__filter">
@@ -41,11 +47,7 @@
             </div>
         </div>
 
-        {% if filter is defined and parameters.showFilter is defined and parameters.showFilter %}
-            <div class="product-filter-group product-list-filter">
-                {% include '@Store/Catalog/Filter/filter.html.twig' %}
-            </div>
-        {% endif %}
+
 
 
         {#<div class="product-filter-group111">#}
