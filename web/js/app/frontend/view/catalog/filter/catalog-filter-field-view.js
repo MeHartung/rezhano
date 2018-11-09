@@ -82,8 +82,8 @@ define(function(require){
       }
 
       //@FIXME: Эта строчка добавлена здесь, чтобы очищать предварительно отрендеренные с сервера контролы. Не уверен, что это нужно делать именно так
-      this.$('.filter-section__content').html('');
-      this.$('.filter-section__content').prepend(this.widget.$el);
+      // this.$('.filter-section__content').html('');
+      this.$('.filter-section__content').append(this.widget.$el);
       this.widget.delegateEvents();
 
       this.widget.render();
