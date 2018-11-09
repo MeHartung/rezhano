@@ -16,7 +16,7 @@ class CheeseTypeFilterField extends DoctrineChoiceFilterField
 
   protected function evaluate($queryBuilder)
   {
-    $cheeseFirmness = clone $queryBuilder
+    $cheeseFirmness = (clone $queryBuilder)
       ->select('pav.id', 'pav.value')
       ->innerJoin('p.productAttributeValues', 'pav')
       ->orderBy('pav.value')
@@ -25,7 +25,7 @@ class CheeseTypeFilterField extends DoctrineChoiceFilterField
       ->getQuery()
       ->getResult();
 
-    $cheeseMolds = clone $queryBuilder
+    $cheeseMolds = (clone $queryBuilder)
       ->select('pav.id', 'pav.value')
       ->innerJoin('p.productAttributeValues', 'pav')
       ->orderBy('pav.value')

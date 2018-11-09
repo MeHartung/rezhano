@@ -4,6 +4,7 @@ namespace Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Resolver;
 
 use AccurateCommerce\Model\Taxonomy\TaxonInterface;
 use AccurateCommerce\Sort\ProductSortFactoryInterface;
+use Accurateweb\SettingBundle\Model\Manager\SettingManagerInterface;
 use Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Presentation\TaxonPresentationChildSections;
 use Accurateweb\TaxonomyBundle\Model\TaxonPresentation\Presentation\TaxonPresentationProducts;
 use Accurateweb\TaxonomyBundle\Model\TaxonPresentation\TaxonPresentationInterface;
@@ -19,9 +20,13 @@ class TaxonPresentationResolverStored implements TaxonPresentationResolverInterf
 {
   private $productSortFactory;
 
-  public function __construct(ProductSortFactoryInterface $productSortFactory)
+  private $settingManager;
+
+  public function __construct(ProductSortFactoryInterface $productSortFactory,
+    SettingManagerInterface $settingManager)
   {
     $this->productSortFactory = $productSortFactory;
+    $this->settingManager = $settingManager;
   }
 
   public function resolve(TaxonInterface $taxon, array $options = array())
@@ -33,7 +38,7 @@ class TaxonPresentationResolverStored implements TaxonPresentationResolverInterf
       case TaxonPresentationInterface::TAXON_PRESENTATION_CHILD_SECTIONS:
         return new TaxonPresentationChildSections($taxon, $options);
       case TaxonPresentationInterface::TAXON_PRESENTATION_CHEESE:
-        return new TaxonPresentationCheese($taxon, $this->productSortFactory, $options);
+        return new TaxonPresentationCheese($taxon, $this->productSortFactory, $options, $this->settingManager);
     }
 
     return new TaxonPresentationProducts($taxon, $this->productSortFactory, $options);
