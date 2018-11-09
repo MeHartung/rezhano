@@ -19,7 +19,8 @@ define(function(require){
       this.shippingMethodsCollection = new ShippingMethodCollection(this.model.get('shipping_methods'));
 
       this.shippingPanel = new ShippingPanel({
-        collection: this.shippingMethodsCollection
+        collection: this.shippingMethodsCollection,
+        model: this.model
       });
 
       this.listenTo(this.shippingPanel, 'shippingMethodChange', this.onShippingMethodChange);

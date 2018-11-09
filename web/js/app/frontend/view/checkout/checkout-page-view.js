@@ -40,20 +40,23 @@ define(function(require){
     onWindowScroll: function () {
       var scroll = $(window).scrollTop();
       var max = $('.section-purchase').height();
-      if(scroll > 300) {
+      if(scroll > 260) {
         this.$('.cards-container__payment-info').css({
           position: "fixed",
-          top: 0
+          top: 30
         });
         if(scroll < max) {
         } else {
           this.$('.cards-container__payment-info').css({
             position: "fixed",
-            top: 0
+            top: 30
           });
         }
       } else {
-        this.$('.cards-container__payment-info').css('position', 'relative');
+        this.$('.cards-container__payment-info').css({
+          position: "relative",
+          top: 0
+        });
       }
     },
     enableShipping: function () {

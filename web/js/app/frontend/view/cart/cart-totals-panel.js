@@ -50,11 +50,10 @@ define(function(require){
       this.$el.html(template({
         subtotal: this.model.get('subtotal'),
         order_items: this.model.get('order_items'),
-        shippingCost: this.model.changed.shippingCost,
-        shippingCount: this.model.get('shipping_methods').find(ship => ship.uid === 'eac20e0f-056a-4c10-9f43-7bee5c47167a').cost,
-        total: Number(this.model.get('subtotal') )+ Number(this.model.get('shipping_methods').find(ship => ship.uid === 'eac20e0f-056a-4c10-9f43-7bee5c47167a').cost)
+        shippingCost: this.model.get('shippingCost'),
+        shippingCount: this.model.get('shipping_cost'),
+        total: Number(this.model.get('subtotal') )+ Number(this.model.get('shipping_cost'))
       }));
-
       return this;
     }
   })
