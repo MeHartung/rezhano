@@ -1978,7 +1978,7 @@ footer {
   width: 100%;
   height: auto;
   position: relative;
-  margin-top: -160px;
+  margin-top: -209px;
   padding-top: 209px;
 }
 footer .header-logo {
@@ -2755,7 +2755,7 @@ body .delivery-info__message {
 }
 .cheese-card {
   background-color: #e8e8e8;
-  padding-bottom: 120px;
+  padding-bottom: 150px;
   overflow: visible;
   position: relative;
 }
@@ -2936,6 +2936,7 @@ body .delivery-info__message {
   padding-top: 45px;
   white-space: nowrap;
   margin-bottom: -50px;
+  padding-bottom: 100px;
 }
 .section-back-to-all__link {
   padding-top: 30px;
