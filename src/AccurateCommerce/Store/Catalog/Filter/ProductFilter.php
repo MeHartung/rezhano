@@ -86,6 +86,7 @@ class ProductFilter extends BaseFilter
       ->innerJoin('p.productAttributeValues', 'pav')
       ->innerJoin('pav.productAttribute', 'pa')
       ->select('pa.id', 'pa.name')
+      ->where('pa.showInFilter = 1')
       ->orderBy('pa.name')
       ->groupBy('pa.id')
       ->getQuery()
