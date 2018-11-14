@@ -44,9 +44,8 @@ define(function(require){
 
       this.quantityWidget = new QuantityWidget({
         model: this.model,
-        max: this.model.get('available_stock'),
-        min: this.model.get('min_count'),
-        step: this.model.get('count_step')
+        min: this.model.get('product').min_count,
+        step: this.model.get('product').count_step,
       });
 
       this.previousQuantity = this.model.get('quantity');
@@ -59,7 +58,7 @@ define(function(require){
         quantity: this.model.get('quantity'),
         price: Number(this.model.get('price')),
         cost: Number( this.model.get('cost')),
-        product_image: this.model.get('product').preview_image ? this.model.get('product').preview_image : '/images/no_photo.png',
+        product_image: this.model.get('product').image ? this.model.get('product').image : '/images/no_photo.png',
         product_name: this.model.get('product').name,
         product_sku: this.model.get('product').sku,
         product_url: this.model.get('product').url,

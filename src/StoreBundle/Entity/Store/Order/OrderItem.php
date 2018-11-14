@@ -229,9 +229,10 @@ class OrderItem implements ShippableInterface
         'sku' => $product->getSku(),
         'slug' => $product->getSlug(),
         'images' => count($images)>0 ? $images : null,
-        'preview_image' => $product->getFirstImage(),
+        'preview_image' => $product->getThumbnailUrl('catalog_prev'),
         'taxon' => $primary_taxon?$primary_taxon->getName():'',
-        'background' => $product->getBackground()
+        'background' => $product->getBackground(),
+        'units' => $product->getUnits()
       ] : null
     ];
   }

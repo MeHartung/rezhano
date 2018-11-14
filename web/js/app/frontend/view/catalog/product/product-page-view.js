@@ -18,7 +18,7 @@ define(function(require){
   return CommonView.extend({
     events: {
       'click .nn_tabs_tab': 'onTabHeaderClick',
-      'click .button-buy_in-product': 'onAddToCartButtonClick'
+      'click .button-buy_in-product': 'onAddToCartButtonClick',
     },
     initialize: function(options) {
       CommonView.prototype.initialize.apply(this, arguments);
@@ -32,7 +32,6 @@ define(function(require){
 
       this.quantityWidget = new QuantityWidget({
         model: this.cartItem,
-        max: this.model.get('available_stock'),
         min: this.model.get('min_count'),
         step: this.model.get('count_step')
       });
@@ -124,4 +123,4 @@ define(function(require){
         });
     }
   })
-})
+});

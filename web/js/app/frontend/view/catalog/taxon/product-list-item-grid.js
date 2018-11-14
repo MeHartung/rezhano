@@ -31,7 +31,6 @@ define(function(require){
           productId: this.model.get('id'),
           quantity: this.model.get('min_count')
         }),
-        max: this.model.get('available_stock'),
         min: this.model.get('min_count'),
         step: this.model.get('count_step')
       });
@@ -57,6 +56,7 @@ define(function(require){
         package: this.model.get('package'),
         units: this.model.get('units'),
         type: this.model.get('type') ? this.model.get('type').name : '',
+        short_description: this.model.get('short_description')
       }));
       if (this.model.get('isPurchasable')){
         this.$el.removeClass('product-unavailable');

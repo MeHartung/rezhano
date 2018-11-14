@@ -67,6 +67,12 @@ class ProductAttributeAdmin extends AbstractAdmin
           'Вариативное' => 2
         ],
       ])
+      ->add('showInFilter', null, [
+        'label' => 'Выводить аттрибут в фильтре'
+      ])
+      ->add('showInProduct', null, [
+        'label' => 'Выводить аттрибут в товаре'
+      ])
       ->end()
       ->end()
       ->tab('Значения свойства товара')

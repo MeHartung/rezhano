@@ -48,7 +48,7 @@ class ProductAttributeValue
   /**
    * @var string
    *
-   * @ORM\Column(name="value", length=1024)
+   * @ORM\Column(name="value", type="text")
    * @Assert\NotBlank()
    */
   private $value;

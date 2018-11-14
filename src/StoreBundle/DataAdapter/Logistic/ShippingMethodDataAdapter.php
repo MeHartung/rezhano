@@ -4,21 +4,26 @@ namespace StoreBundle\DataAdapter\Logistic;
 
 use AccurateCommerce\Shipping\Estimate\ShippingEstimate;
 use AccurateCommerce\Shipping\Method\ShippingMethod;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStoreCourier;
 use AccurateCommerce\Shipping\Method\Store\ShippingMethodStorePickup;
 use AccurateCommerce\Shipping\Pickup\PickupPointInterface;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 use AccurateCommerce\Shipping\ShippingManager;
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
+use StoreBundle\Service\Order\CartService;
 
 class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterface
 {
   private $shippingChoiceAdapter;
   private $shippingChoicePickupAdapter;
+  private $cartService;
 
-  public function __construct (ShippingChoiceAdapter $shippingChoiceAdapter, ShippingChoicePickupAdapter $shippingChoicePickupAdapter)
+  public function __construct (ShippingChoiceAdapter $shippingChoiceAdapter,
+                               ShippingChoicePickupAdapter $shippingChoicePickupAdapter, CartService $cartService)
   {
     $this->shippingChoiceAdapter = $shippingChoiceAdapter;
     $this->shippingChoicePickupAdapter = $shippingChoicePickupAdapter;
+    $this->cartService = $cartService;
   }
 
   /**
@@ -41,9 +46,16 @@ class ShippingMethodDataAdapter implements ClientApplicationModelAdapterInterfac
     {
       $choices = $this->getShippingChoiceList($shippingMethod, $options['shipment']);
     }*/
+    $cart = $this->cartService->getCart();
+    
+    if($shippingMethod->getUid() === ShippingMethodStoreCourier::UID)
+    {
+      $deliveryCost = $cart->getSubtotal() >= 1000  ? 150.00 : 300.00;
+      $shippingMethod->setCost($deliveryCost);
+    }
 
     return array(
-      'id' => $shippingMethod->getUid(),
+      'id' => $shippingMethod->getId(),
       'name' => $shippingMethod->getName(),
       //'enabled' => $deliveryMethod->isApplicableTo(null, $this),
       //'details' => $deliveryMethod->getDetails($this),

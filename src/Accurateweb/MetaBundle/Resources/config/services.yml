@@ -22,8 +22,7 @@ services:
     arguments:
       - '%meta_default_title%'
       - '%meta_default_title%'
-      - 'Газпром нефть
-         Реализация имущества'
+      - '%meta_default_keywords%'
     tags:
       - { name: aw.meta.resolver, priority: 100 }
 

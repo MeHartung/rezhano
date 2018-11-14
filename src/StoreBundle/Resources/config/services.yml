@@ -4,7 +4,7 @@ services:
       arguments:
         - '%meta_default_title%'
         - '%meta_default_title%'
-        - ~
+        - '%meta_default_keywords%'
       tags:
         - { name: aw.meta.route, route: homepage }
 
@@ -125,7 +125,10 @@ services:
 
     app.shipping_method.adapter:
       class: StoreBundle\DataAdapter\Logistic\ShippingMethodDataAdapter
-      arguments: ['@app.shipping_choice.adapter', '@app.shipping_choice_pickup.adapter']
+      arguments:
+        - '@app.shipping_choice.adapter'
+        - '@app.shipping_choice_pickup.adapter'
+        - '@store.user.cart'
       tags:
         - { name: aw.client_application.adapter, alias: shipping.method }
 
@@ -506,6 +509,12 @@ services:
       factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
       arguments:
         - StoreBundle\Entity\Store\Catalog\Product\Product
+
+    store.product.attribute.repository:
+      class: StoreBundle\Repository\Store\Catalog\Product\Attributes\ProductAttributeRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttribute
 
     store.taxon.repository:
       class: StoreBundle\Repository\Store\Catalog\Taxonomy\TaxonRepository

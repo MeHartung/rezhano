@@ -24,6 +24,7 @@ class ShippingAdmin extends AbstractAdmin
   {
     $list
       ->add('name')
+      ->add('city')
       ->add('_action', null, array(
           'actions' => array(
             'edit' => null,
@@ -44,10 +45,22 @@ class ShippingAdmin extends AbstractAdmin
     $form
       ->tab('Основное')
       ->add('name')
-      ->add('cost')
-      ->add('freeDeliveryThreshold', null, [
-        'help' => 'Начиная с этой цены доставка становится бесплатной'
+      ->add('cost', null, [
+        'help' => 'Цена доставки. Выводится у метода доставки жёлтым цветом. Пример: "Доставка курьером по Екатеринбургу / от 300 рублей"'
       ])
+     /* ->add('freeDeliveryThreshold', null, [
+        'help' => 'Начиная с этой цены доставка становится бесплатной'
+      ])*/
+
+     ->add('city', 'choice', [
+       'label' => 'Город',
+       'required' => true,
+       'choices' => [
+         'Екатеринбург' => 'Екатеринбург',
+         'Реж' => 'Реж',
+         'Другой город' => 'Другой город'
+       ]
+     ])
       ->add('help')
       ->add('uid', ChoiceType::class, [
         'choices' => $this->getShippingChoices(),

@@ -79,7 +79,22 @@ class ProductAttribute
    *
    */
   private $productAttributeValues;
-
+  
+  /**
+   * Значение флагак определяет, должен ли аттрибут выводиться в фильтре
+   * @var bool|null
+   * @ORM\Column(type="boolean", options={"default": "1"})
+   */
+  private $showInFilter;
+  
+  /**
+   * Значение флагак определяет, должен ли аттрибут выводиться в товаре
+   * @var bool|null
+   * @ORM\Column(type="boolean", options={"default": "1"})
+   */
+  private $showInProduct;
+  
+  
   public function __construct()
   {
     $this->productAttributeValues = new ArrayCollection();
@@ -215,6 +230,38 @@ class ProductAttribute
   public function setValueType($valueType)
   {
     $this->valueType = $valueType;
+  }
+  
+  /**
+   * @return bool|null
+   */
+  public function getShowInFilter(): ?bool
+  {
+    return $this->showInFilter;
+  }
+  
+  /**
+   * @param bool|null $showInFilter
+   */
+  public function setShowInFilter(?bool $showInFilter): void
+  {
+    $this->showInFilter = $showInFilter;
+  }
+  
+  /**
+   * @return bool|null
+   */
+  public function getShowInProduct(): ?bool
+  {
+    return $this->showInProduct;
+  }
+  
+  /**
+   * @param bool|null $showInProduct
+   */
+  public function setShowInProduct(?bool $showInProduct): void
+  {
+    $this->showInProduct = $showInProduct;
   }
 
 }

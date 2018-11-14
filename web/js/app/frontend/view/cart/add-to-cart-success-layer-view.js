@@ -9,12 +9,12 @@ define(function(require){
         <div class="layer__container">\
           <div class="layer__title">Товар добавлен в корзину</div>\
           <div class="add-to-cart-layer__wrap">\
-            <a href="<%= product_url %>" class="add-to-cart-layer__image <%= mountBg %>">\
+            <a href="<%= product_url %>" class="add-to-cart-layer__image ">\
               <img src="<%= preview_image %>" alt="">\
             </a>\
             <div class="add-to-cart-layer__info">\
               <a href="<%= product_url %>" class="add-to-cart-layer__product-name"><%= name %></a>\
-              <div class="add-to-cart-layer__product-value">количество <%= quantity %> &nbsp;&nbsp; <%= price.toCurrencyString() %></div>\
+              <div class="add-to-cart-layer__product-value">количество <%= quantity %> <%= units %> &nbsp;&nbsp; <%= price.toCurrencyString() %></div>\
             </div>\
           </div>\
         </div>\
@@ -76,7 +76,8 @@ define(function(require){
         'price':this.model.get('price') * this.quantity,
         'image': this.model.get('product').images instanceof Array && this.model.get('product').images[0] ? this.model.get('product').images[0] : '/images/medium-no_photo.png',
         'preview_image': this.model.get('product').preview_image ? this.model.get('product').preview_image : '/images/medium-no_photo.png',
-        'mountBg': this.model.get('product').background ? 'add-to-cart-layer__image_yellow' : ''
+        'mountBg': this.model.get('product').background ? 'add-to-cart-layer__image_yellow' : '',
+        'units': this.model.get('product').units ? this.model.get('product').units : ''
       }));
 
       return this;

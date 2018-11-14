@@ -19,12 +19,16 @@ define(function(require){
       this.shippingMethodsCollection = new ShippingMethodCollection(this.model.get('shipping_methods'));
 
       this.shippingPanel = new ShippingPanel({
-        collection: this.shippingMethodsCollection
+        collection: this.shippingMethodsCollection,
+        model: this.model
       });
 
       this.listenTo(this.shippingPanel, 'shippingMethodChange', this.onShippingMethodChange);
       this.listenTo(this.shippingPanel, 'disableAddressValidation', this.disableAddressValidation);
       this.listenTo(this.shippingPanel, 'enableAddressValidation', this.enableAddressValidation);
+
+      this.listenTo(this.shippingPanel, 'enableShipping', this.enableShipping);
+      this.listenTo(this.shippingPanel, 'disableShipping', this.disableShipping);
 
       this.addressRequired = true;
 
@@ -57,7 +61,6 @@ define(function(require){
 
       this.$('#checkout_customer_phone').inputmask('+7 (999) 999-99-99');
       this.initValidation();
-
       return this;
     },
     initValidation: function () {
@@ -128,6 +131,12 @@ define(function(require){
     },
     enableAddressValidation: function () {
       this.addressRequired = true;
+    },
+    enableShipping: function () {
+      this.trigger('enableShipping');
+    },
+    disableShipping: function () {
+      this.trigger('disableShipping');
     }
   })
 });

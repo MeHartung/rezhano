@@ -97,6 +97,7 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'count_step' => $count_step,
       'min_count' => $min_count,
       'description' => $subject->getDescription(),
+      'short_description' => htmlentities($subject->getShortDescription()),
       'attributes' => $subject->getProductAttributeValuesGrouped(),
       'type' => $this->productTypeAdapter->transform($subject->getProductType())
     );

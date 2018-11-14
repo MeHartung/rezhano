@@ -408,7 +408,7 @@
               {% for item in order.orderItems %}
                 <div class="payment-info__product">
                   <span class="payment-info__product-name">{{ item.product.name }}</span>
-                  <span class="payment-info__product-value">{{ item.quantity }} шт. × {{ item.product.price | price }}</span>
+                  <span class="payment-info__product-value">{{ item.quantity }} {{ item.product.units }} × {{ item.product.price | price }}</span>
                 </div>
               {% endfor %}
 
@@ -574,7 +574,7 @@
             </div>
 
 
-            <div class="cards-container__step cards-container__order">
+            <div class="cards-container__step cards-container__order cards-container__step-payment">
               <div class="cards-container__step-title">
                 <span class="step-title__number">3</span>оплата заказа
               </div>
@@ -634,7 +634,8 @@
                       Комментарий к заказу
                     </span>
                     <label>
-                      <textarea name="" id="" cols="30" rows="5"></textarea>
+                      {#<textarea name="" id="" cols="30" rows="5"></textarea>#}
+                      {{ form_widget(form.customer_comment, {'attrs': {'cols':"30", 'rows':"100"}}) }}
                     </label>
 
                   </div>

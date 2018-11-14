@@ -7,21 +7,36 @@ use Doctrine\ORM\EntityRepository;
 
 class ShippingMethodRepository extends EntityRepository
 {
-  public function findNotCountryDelivery()
+  
+  public function findNotCountryDelivery($city = null)
   {
-    return $this->createQueryBuilder('sm')
+    $qb = $this->createQueryBuilder('sm')
       ->where('sm.uid = :uid')
-      ->orderBy('sm.position')
-      ->setParameter('uid', ShippingMethodUserDefined::UID)
-      ->getQuery()->getResult();
+      ->setParameter('uid', ShippingMethodUserDefined::UID);
+    
+    if ($city !== null)
+    {
+      $qb->andWhere("sm.city = '$city'");
+    }
+    
+    $qb->orderBy('sm.position');
+    
+    return $qb->getQuery()->getResult();
   }
   
-  public function findForRezhAndEkb()
+  public function findForRezhAndEkb($city = 'Екатеринбург')
   {
-    return $this->createQueryBuilder('sm')
+    $qb = $this->createQueryBuilder('sm')
       ->where('sm.uid != :uid')
-      ->orderBy('sm.position')
-      ->setParameter('uid', ShippingMethodUserDefined::UID)
-      ->getQuery()->getResult();
+      ->setParameter('uid', ShippingMethodUserDefined::UID);
+  
+    if ($city !== null)
+    {
+      $qb->andWhere("sm.city = '$city'");
+    }
+  
+    $qb->orderBy('sm.position');
+  
+    return $qb->getQuery()->getResult();
   }
 }

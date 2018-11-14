@@ -139,11 +139,11 @@ class CheckoutType extends AbstractType
       ->add('shipping_address', TextType::class, [
         'required' => false,
         'label' => false
-      ])/*
+      ])
       ->add('customer_comment', TextareaType::class, [
         'label' => false,
         'required' => false
-      ])*/
+      ])
       ->add('payment_method', EntityType::class, [
         'class' => PaymentMethod::class,
         'required' => true,
@@ -178,14 +178,13 @@ class CheckoutType extends AbstractType
       ])*/
     ;
   
-    $builder->get('shipping_city_name')->addEventListener(
+  /*  $builder->get('shipping_city_name')->addEventListener(
       FormEvents::POST_SUBMIT,
       function (\Symfony\Component\Form\FormEvent $event) use ($formModifier) {
-        /** @var Order $data */
         $data = $event->getForm()->getData();
         $formModifier($event->getForm()->getParent(), $data);
       }
-    );
+    );*/
     
 /*    $builder->add('shippingMethod', null, [
       'required' => true,

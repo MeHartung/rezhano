@@ -6,6 +6,7 @@
 namespace StoreBundle\Controller\Order;
 
 use AccurateCommerce\DataAdapter\OrderClientApplicationAdapter;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStoreCourier;
 use StoreBundle\DataAdapter\Logistic\InternalPickupPointAdapter;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Payment\Method\PaymentMethod;
@@ -93,7 +94,7 @@ class CheckoutController extends Controller
     return $this->render('@Store/Checkout/index.html.twig', array(
       'form' => $form->createView(),
       'items' => $items,
-      'order' => $order
+      'order' => $order,
     ));
   }
   
@@ -141,11 +142,12 @@ class CheckoutController extends Controller
     $cart->setShippingCityName($city);
     $orderClientApplicationAdapter = new OrderClientApplicationAdapter($cart, $this->get('accurateweb.shipping.manager'));
     $result = [];
+    
     /** TODO восстановить логику работы калькулятора доставки и выпилить ЭТО */
     $repo = $this->getDoctrine()->getRepository(ShippingMethod::class);
     if($city !== 'Другой город')
     {
-      $methods = $repo->findForRezhAndEkb();
+      $methods = $repo->findForRezhAndEkb($city);
     }else
     {
       $methods = $repo->findNotCountryDelivery();
@@ -163,6 +165,12 @@ class CheckoutController extends Controller
           $method->setIsActive(true);
           $hasActiveMethod = true;
         }
+      }
+      
+      if($method->getUid() === ShippingMethodStoreCourier::UID)
+      {
+        $deliveryCost = $cart->getSubtotal() >= 1000  ? 150.00 : 300.00;
+        $method->setCost($deliveryCost);
       }
       
       $result[] = $this->get('app.shipping_method.adapter')->transform($method);
