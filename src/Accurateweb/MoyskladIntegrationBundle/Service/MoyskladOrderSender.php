@@ -3,6 +3,8 @@
 namespace Accurateweb\MoyskladIntegrationBundle\Service;
 
 use AccurateCommerce\Component\CdekShipping\Shipping\Method\ShippingMethodCdekTerminal;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStoreCourier;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStorePickup;
 use Accurateweb\MoyskladIntegrationBundle\Event\MoyskladOrderCreateEvent;
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladExceptionFactory;
@@ -73,12 +75,22 @@ class MoyskladOrderSender
     {
       throw new MoyskladException(sprintf('Organization %s was not found', $this->organization_id));
     }
-
+    
+    $contragentAddres = $order->getShippingAddress() ? $order->getShippingAddress() : '-';
+    
+    if($order->getShippingAddress() == null && $order->getShippingMethod()->getUid() === ShippingMethodStorePickup::UID)
+    {
+      if($order->getShippingMethod()->getAddress() !== null)
+      {
+        $contragentAddres = $order->getShippingMethod()->getAddress();
+      }
+    }
+    
     $contragent = $this->getOrCreateContragentByEmail(
       $order->getCustomerEmail(),
       $order->getCustomerFullName(),
       $order->getCustomerPhone(),
-      $order->getShippingAddress()
+      $contragentAddres
     );
 
     $customerOrder = new CustomerOrder($this->sklad->getSklad(), [
