@@ -339,7 +339,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   
   /**
    * @var string|null
-   * @ORM\Column(name="image", length=255)
+   * @ORM\Column(name="image", length=255, nullable=true)
    * @Image(id="product/teaser")
    */
   private $teaserImageFile;

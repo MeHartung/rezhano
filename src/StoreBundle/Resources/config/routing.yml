@@ -18,13 +18,13 @@ product:
   path:     /products/{slug}
   defaults: { _controller: StoreBundle:Catalog/Product:show }
 
-catalog_search:
-  path:  /search
-  defaults: { _controller: StoreBundle:Catalog/Search:search }
+#catalog_search:
+#  path:  /search
+#  defaults: { _controller: StoreBundle:Catalog/Search:search }
 
-catalog_search_suggest:
-  path: /search/suggest
-  defaults: { _controller: StoreBundle:Catalog/Search:suggest }
+#catalog_search_suggest:
+#  path: /search/suggest
+#  defaults: { _controller: StoreBundle:Catalog/Search:suggest }
 
 news_index:
   path:      /news
@@ -116,13 +116,13 @@ special_offers_show:
   path: /offers/{slug}
   defaults: { _controller: StoreBundle:Text/SpecialOffer:show}
 
-contacts_index:
-  path: /contacts
-  defaults: { _controller: StoreBundle:Logistics/Geography:contacts }
+#contacts_index:
+#  path: /contacts
+#  defaults: { _controller: StoreBundle:Logistics/Geography:contacts }
 
-contacts_cities:
-  path: /contacts/cities
-  defaults: { _controller: StoreBundle:Logistics/Geography:contactsCityList }
+#contacts_cities:
+#  path: /contacts/cities
+#  defaults: { _controller: StoreBundle:Logistics/Geography:contactsCityList }
 
 product_question:
   path: /api/products/{slug}/question

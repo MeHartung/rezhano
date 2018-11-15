@@ -33,23 +33,41 @@ class CheeseTypeFilterField extends DoctrineChoiceFilterField
 
   protected function evaluate($queryBuilder)
   {
-    $cheeseFirmness = (clone $queryBuilder)
-      ->select('pav.id', 'pav.value')
-      ->innerJoin('p.productAttributeValues', 'pav')
-      ->orderBy('pav.value')
-      ->andWhere('IDENTITY(pav.productAttribute) = :productAttributeId')
-      ->setParameter('productAttributeId', $this->settingsManager->getSetting('cheese_hardness_property')->getValue()->getId())
+    $cheeseHardnessProp = $this->settingsManager->getSetting('cheese_hardness_property')->getValue();
+    if ($cheeseHardnessProp)
+    {
+      $cheeseFirmness = (clone $queryBuilder)
+        ->select('pav.id', 'pav.value')
+        ->innerJoin('p.productAttributeValues', 'pav')
+        ->orderBy('pav.value')
+        ->andWhere('IDENTITY(pav.productAttribute) = :productAttributeId')
+        ->setParameter('productAttributeId', $cheeseHardnessProp->getId())
       ->getQuery()
       ->getResult();
+    }
+    else
+    {
+      $cheeseFirmness = [];
+    }
 
-    $cheeseMolds = (clone $queryBuilder)
-      ->select('pav.id', 'pav.value')
-      ->innerJoin('p.productAttributeValues', 'pav')
-      ->orderBy('pav.value')
-      ->andWhere('IDENTITY(pav.productAttribute) = :productAttributeId')
-      ->setParameter('productAttributeId',  $this->settingsManager->getSetting('cheese_mold_property')->getValue()->getId())
+    $cheeseMoldProp = $this->settingsManager->getSetting('cheese_mold_property')->getValue();
+
+    if ($cheeseMoldProp)
+    {
+      $cheeseMolds = (clone $queryBuilder)
+        ->select('pav.id', 'pav.value')
+        ->innerJoin('p.productAttributeValues', 'pav')
+        ->orderBy('pav.value')
+        ->andWhere('IDENTITY(pav.productAttribute) = :productAttributeId')
+        ->setParameter('productAttributeId',  $cheeseMoldProp->getId())
       ->getQuery()
       ->getResult();
+    }
+    else
+    {
+      $cheeseMolds = [];
+    }
+
 
     $choices =  [];
     foreach ($cheeseFirmness as $cheeseFirmnessValue)
