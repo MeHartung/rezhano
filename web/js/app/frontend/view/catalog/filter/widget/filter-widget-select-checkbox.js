@@ -7,23 +7,23 @@ define(function(require){
   require('jquery-checkbox');
 
   var template = _.template('\
-  <% _.each(choices, function(choice){ %>\
-    <span class="custom-checkbox custom-checkbox_bg-blue">\
+      <% _.each(choices, function(choice){ %>\
+    <span class="product-filter__custom-checkbox">\
       <label>\
-        <input name="<%= name %>[]" type="checkbox" value="<%= choice.id %>" id="<%= id %>_<%= choice.id %>"<% if (choice.checked) { %> checked<% } %> class="checkbox filter-widget<% if (!choice.enabled){ %> disabled<% } %>" style="display: none;">\
-        <span class="custom-checkbox__checkbox"></span>\
-        <span class="custom-checkbox__label"><%= choice.value.trim() %></span>\
+        <input name="<%= name %>[]" type="<%= type %>" class="checkbox" value="<%= choice.id %>" id="<%= id %>_<%= choice.id %>"<% if (choice.checked) { %> checked<% } %> class="checkbox filter-widget<% if (!choice.enabled){ %> disabled<% } %>" style="display: none;">\
+        <span class="checkbox-link">\
+            <%= choice.value.trim() %>\
+            <span class="custom-checkbox"></span>\n\
+        </span>\
       </label>\
     </span>\
   <% }); %>\
-');
+</div>\
+        ');
 
   return FilterWidget.extend({
     events: {
-      'click .custom-checkbox__label': 'onLabelClick',
-      'mouseenter .custom-checkbox__label': 'onLabelMouseEnter',
-      'mouseleave .custom-checkbox__label': 'onLabelMouseLeave',
-      'change input[type="checkbox"]': 'onCheckboxChange'
+      'change input': 'onCheckboxChange'
     },
     initialize: function(){
       FilterWidget.prototype.initialize.apply(this, arguments);
@@ -45,7 +45,9 @@ define(function(require){
       this.$el.html(template({
         id: this.generateId(),
         name: this.generateName(),
-        choices: choices
+        label: this.schema.label,
+        choices: choices,
+        type: this.schema.type || 'checkbox'
       }));
 
       // this.$('input[type="checkbox"]').checkbox();
