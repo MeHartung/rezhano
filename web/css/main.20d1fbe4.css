@@ -1913,7 +1913,7 @@ footer {
   width: 100%;
   height: auto;
   position: relative;
-  margin-top: -160px;
+  margin-top: -210px;
   padding-top: 209px;
 }
 footer .header-logo {
@@ -2057,7 +2057,7 @@ footer .footer-aside__link.link_frukt:hover:after {
   background: url("../images/icons/frukt-hover.png");
 }
 .catalog-section {
-  padding-bottom: 165px;
+  padding-bottom: 215px;
   padding-top: 120px;
 }
 .layer {
@@ -2666,7 +2666,7 @@ body .delivery-info__message {
 }
 .cheese-card {
   background-color: #e8e8e8;
-  padding-bottom: 120px;
+  padding-bottom: 170px;
   overflow: visible;
   position: relative;
 }
@@ -2846,7 +2846,6 @@ body .delivery-info__message {
   background-color: #ffcf40;
   padding-top: 45px;
   white-space: nowrap;
-  margin-bottom: -50px;
 }
 .section-back-to-all__link {
   padding-top: 30px;
