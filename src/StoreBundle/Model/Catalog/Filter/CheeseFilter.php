@@ -9,6 +9,7 @@ use AccurateCommerce\Model\Taxonomy\TaxonInterface;
 use AccurateCommerce\Store\Catalog\Filter\EavFilter;
 use AccurateCommerce\Store\Catalog\Filter\ProductFilter;
 use Accurateweb\SettingBundle\Model\Manager\SettingManagerInterface;
+use Doctrine\ORM\QueryBuilder;
 use StoreBundle\Model\Catalog\Filter\Field\CheeseTypeFilterField;
 
 class CheeseFilter extends ProductFilter
