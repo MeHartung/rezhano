@@ -47,8 +47,8 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
     $primary_taxon = $subject->getPrimaryTaxon();
     $brand = $subject->getBrand();
     $isMeasured = $subject->getMeasured();
-    $count_step = $subject->getMinCount();
-    $min_count = $subject->getCountStep();
+    $count_step = $subject->getCountStep();
+    $min_count = $subject->getMinCount();
 
     $images = [];
     foreach ($subject->getImages() as $image)
