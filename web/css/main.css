@@ -974,6 +974,36 @@ header.header-catalog .header-catalog__wrap .header-menu-wrap {
   position: relative;
   top: -135px;
 }
+.header-section .header-slider__teaser {
+  position: absolute;
+  right: -300px;
+  bottom: 15px;
+}
+@media (min-width: 1400px) {
+  .header-section .header-slider__teaser {
+    right: -250px;
+  }
+}
+@media (min-width: 1600px) {
+  .header-section .header-slider__teaser {
+    right: -150px;
+  }
+}
+@media (min-width: 1700px) {
+  .header-section .header-slider__teaser {
+    right: -100px;
+  }
+}
+@media (min-width: 1800px) {
+  .header-section .header-slider__teaser {
+    right: -50px;
+  }
+}
+@media (min-width: 1900px) {
+  .header-section .header-slider__teaser {
+    right: 0;
+  }
+}
 .header-section .header-slider__item {
   height: 970px;
   position: relative;
