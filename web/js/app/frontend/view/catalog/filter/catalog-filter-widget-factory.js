@@ -5,14 +5,16 @@ define(function(require){
   var //IndependentFlagsWidget = require('view/catalog/filter/widget/filter-widget-independent-flags'),
       RangeSliderWidget = require('view/catalog/filter/widget/filter-widget-range-slider'),
       // EavRangeSliderWidget = require('view/catalog/filter/widget/filter-widget-eav-range-slider'),
-      SelectCheckboxWidget = require('view/catalog/filter/widget/filter-widget-choice-rezhano');
+      CheeseSelectCheckboxWidget = require('view/catalog/filter/widget/filter-widget-choice-rezhano'),
+      SelectCheckboxWidget = require('view/catalog/filter/widget/filter-widget-select-checkbox');
       // ExpandableSelectWidget = require('view/catalog/filter/widget/filter-widget-expandable-select');
 
   var widgetMap = {
 //    'asWidgetFormIndependentFlags': IndependentFlagsWidget,
     'range_slider': RangeSliderWidget,
     // 'sprWidgetFormRangeSliderEav': EavRangeSliderWidget,
-    'choice_expanded': SelectCheckboxWidget
+    'choice_expanded': SelectCheckboxWidget,
+    'choice_expanded_cheese': CheeseSelectCheckboxWidget
     // 'asWidgetFormFilterSelectCheckbox': SelectCheckboxWidget,
     // 'sprWidgetFormFilterSelectCheckboxExpandable': ExpandableSelectWidget
   };

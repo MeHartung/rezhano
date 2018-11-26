@@ -16,11 +16,11 @@ class TaxonPresentationProductsAdminExtension extends AbstractAdminExtension
   {
     /** @var Taxon $subject */
     $subject = $formMapper->getAdmin()->getSubject();
-
-    if (null !== $subject->getPresentationId() && $subject->getPresentationId() !== TaxonPresentationInterface::TAXON_PRESENTATION_PRODUCTS)
+/*
+    if (null !== $subject->getPresentationId() && $subject->getPresentationId() !== TaxonPresentationInterface::TAXON_PRESENTATION_CHEESE)
     {
       return null;
-    }
+    }*/
 
     //@TODO: Заменить на вызов PresentationOptionsResolver::resolve()
     $options = $subject->getPresentationOptions() ?: array();
@@ -55,10 +55,10 @@ class TaxonPresentationProductsAdminExtension extends AbstractAdminExtension
    */
   public function preUpdate (AdminInterface $admin, $object)
   {
-    if ($object->getPresentationId() !== TaxonPresentationInterface::TAXON_PRESENTATION_PRODUCTS)
+/*    if ($object->getPresentationId() !== TaxonPresentationInterface::TAXON_PRESENTATION_PRODUCTS)
     {
       return null;
-    }
+    }*/
 
     $showSubCategories = $admin->getForm()->get('showSubCategories')->getData();
     $showFilter = $admin->getForm()->get('showFilter')->getData();

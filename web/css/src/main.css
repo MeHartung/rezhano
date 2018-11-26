@@ -981,6 +981,36 @@ header.header-catalog .header-catalog__wrap .header-menu-wrap {
   position: relative;
   top: -135px;
 }
+.header-section .header-slider__teaser {
+  position: absolute;
+  right: -300px;
+  bottom: 15px;
+}
+@media (min-width: 1400px) {
+  .header-section .header-slider__teaser {
+    right: -250px;
+  }
+}
+@media (min-width: 1600px) {
+  .header-section .header-slider__teaser {
+    right: -150px;
+  }
+}
+@media (min-width: 1700px) {
+  .header-section .header-slider__teaser {
+    right: -100px;
+  }
+}
+@media (min-width: 1800px) {
+  .header-section .header-slider__teaser {
+    right: -50px;
+  }
+}
+@media (min-width: 1900px) {
+  .header-section .header-slider__teaser {
+    right: 0;
+  }
+}
 .header-section .header-slider__item {
   height: 970px;
   position: relative;
@@ -1978,7 +2008,7 @@ footer {
   width: 100%;
   height: auto;
   position: relative;
-  margin-top: -160px;
+  margin-top: -210px;
   padding-top: 209px;
 }
 footer .header-logo {
@@ -2125,7 +2155,7 @@ footer .footer-aside__link.link_frukt:hover:after {
   background: url("../images/icons/frukt-hover.png");
 }
 .catalog-section {
-  padding-bottom: 165px;
+  padding-bottom: 215px;
   padding-top: 120px;
 }
 .layer {
@@ -2755,7 +2785,7 @@ body .delivery-info__message {
 }
 .cheese-card {
   background-color: #e8e8e8;
-  padding-bottom: 120px;
+  padding-bottom: 170px;
   overflow: visible;
   position: relative;
 }
@@ -2935,7 +2965,6 @@ body .delivery-info__message {
   background-color: #ffcf40;
   padding-top: 45px;
   white-space: nowrap;
-  margin-bottom: -50px;
 }
 .section-back-to-all__link {
   padding-top: 30px;
@@ -3097,6 +3126,8 @@ body .delivery-info__message {
   display: inline-block;
   vertical-align: top;
   margin: 0 50px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   position: relative;
 }
 .product-filter__item .product-filter__filter {
@@ -3334,6 +3365,11 @@ body .delivery-info__message {
   position: absolute;
   width: 100%;
   margin-top: -2px;
+  background-color: #ffffff;
+  z-index: 1;
+}
+.filter-widget.range-slider.range-slider-measurable .input-text {
+  width: 85%;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
@@ -4019,28 +4055,28 @@ body.ui-widget textarea {
   padding-bottom: 0;
 }
 .custom-slider-range.ui-widget.ui-widget-content {
-  margin: 20px 0;
+  margin: 20px 15px;
   border: none;
   background-color: #f2f2f2;
   border-radius: 0;
   height: 8px;
   margin-top: 25px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .custom-slider-range.ui-widget.ui-widget-content .ui-slider-handle {
   border: none;
   border-radius: 50%;
-  background-color: #0070ba;
+  background-color: #000000;
   outline: none;
   width: 18px;
   height: 18px;
   cursor: pointer;
 }
 .custom-slider-range.ui-widget.ui-widget-content .ui-slider-handle:hover {
-  background-color: #027fd2;
+  background-color: #ffbf02;
 }
 .custom-slider-range.ui-widget.ui-widget-content .ui-slider-range {
-  background-color: #d1dee4;
+  background-color: #ffcf40;
 }
 .product-description .nav-tabs__wrap {
   padding: 0;
@@ -4171,6 +4207,16 @@ body.ui-widget textarea {
   color: #ffcf40 !important;
   margin: 0 !important;
   font-weight: 500 !important;
+  border: none !important;
+  border-bottom: 2px solid #000000 !important;
+}
+.filter-widget .ui-state-active,
+.filter-widget .ui-widget-content .ui-state-active {
+  background-color: #ffbf02 !important;
+  color: #ffcf40 !important;
+  font-weight: 500 !important;
+  margin-left: -0.6em !important;
+  top: -0.3em !important;
   border: none !important;
   border-bottom: 2px solid #000000 !important;
 }

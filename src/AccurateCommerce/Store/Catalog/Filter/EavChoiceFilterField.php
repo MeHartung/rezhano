@@ -9,6 +9,7 @@
 namespace AccurateCommerce\Store\Catalog\Filter;
 
 use AccurateCommerce\Store\Catalog\Filter\Applicator\EavFilterApplicator;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -52,6 +53,7 @@ class EavChoiceFilterField extends FilterField
 
   /**
    * @param QueryBuilder $queryBuilder
+   * @return array
    */
   protected function evaluate($queryBuilder)
   {
@@ -72,7 +74,10 @@ class EavChoiceFilterField extends FilterField
 
     return $choices;
   }
-
+  
+  /**
+   * @param $queryBuilder QueryBuilder
+   */
   public function apply($queryBuilder)
   {
     $fieldValue = $this->getValue();
@@ -84,13 +89,17 @@ class EavChoiceFilterField extends FilterField
     if ($fieldValue && !empty($fieldValue))
     {
       $queryBuilder
-        ->andWhere($queryBuilder->expr()->in('p.productAttributeValues', $fieldValue));
+       ->join('p.productAttributeValues', 'pava')
+       #->andWhere($queryBuilder->expr()->in('p.productAttributeValues', $fieldValue));
+        ->andWhere($queryBuilder->expr()->in('pava.id', $fieldValue));
 //      $alias = 'pavtp' . $this->getId();
 //
 //      $queryBuilder
 //        ->innerJoin('p.productAttributeValuesToProducts', $alias)
 //        ->andWhere($queryBuilder->expr()->in($alias . '.productAttributeValue', $fieldValue));
     }
+    
+    #var_dump($queryBuilder->getQuery());die;
   }
 
   protected function getWidgetId()

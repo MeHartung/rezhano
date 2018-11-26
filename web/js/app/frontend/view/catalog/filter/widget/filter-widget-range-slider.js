@@ -6,8 +6,8 @@ define(function (require){
       slider = require('jquery-ui/widgets/slider');
 
   var template = _.template('\
-<input type="text"<% if (minValueInputName) { %> name="<%= minValueInputName %>"<% } %> placeholder="<%= rangeMin %>" class="slider-min-value" id="<%= minValueInputId %>"<% if (null !== minValue) { %> value="<%= minValue %><% } %>"> \
-<input type="text"<% if (maxValueInputName) { %> name="<%= maxValueInputName %>"<% } %> placeholder="<%= rangeMax %>" class="slider-max-value" id="<%= maxValueInputId %>"<% if (null !== maxValue) { %> value="<%= maxValue %><% } %>">\
+<input type="text"<% if (minValueInputName) { %> name="<%= minValueInputName %>"<% } %> placeholder="<%= rangeMin %>" class="slider-min-value input-text" id="<%= minValueInputId %>"<% if (null !== minValue) { %> value="<%= minValue %><% } %>"> \
+<input type="text"<% if (maxValueInputName) { %> name="<%= maxValueInputName %>"<% } %> placeholder="<%= rangeMax %>" class="slider-max-value input-text" id="<%= maxValueInputId %>"<% if (null !== maxValue) { %> value="<%= maxValue %><% } %>">\
 <div class="slider custom-slider-range">\
   ');
 

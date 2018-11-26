@@ -24,13 +24,13 @@ class TransferHandler extends BaseDataHandler
     $sql = $this->getTransferInsertSql();
     if (!empty($sql))
     {
-      try
-      {
+//      try
+//      {
         $this->query($this->processTemplate($sql), $connection);
-      } catch (\Exception $exception)
-      {
-        return $exception;
-      }
+//      } catch (\Exception $exception)
+//      {
+//        return $exception;
+//      }
     }
   }
   
