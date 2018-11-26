@@ -40,8 +40,14 @@ class ContactPhoneAdmin extends AbstractAdmin
       ->add('name')
       ->add('phone')
       ->add('published', null, [
-        'inline' => true
+        'editable' => true,
       ])
+      ->add('_action', null, array(
+        'actions' => [
+          'edit' => [],
+          'delete' => []
+        ]
+      ));
     ;
   }
 }

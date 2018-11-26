@@ -118,6 +118,16 @@ class ContactPhone
     return $this;
   }
 
+  /**
+   * Возвращает телефон, очищенный от символов, кроме цифр и +
+   *
+   * @return null|string|string[]
+   */
+  public function getCleanPhone()
+  {
+    return preg_replace('/[^\+\d]+/', '', $this->getPhone());
+  }
+
   public function __toString()
   {
     return $this->getName() ?: 'Новый контактный номер телефона';
