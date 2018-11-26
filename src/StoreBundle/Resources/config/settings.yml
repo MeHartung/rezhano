@@ -161,3 +161,13 @@ services:
     #    - { 0: 'Сыр в КГ' }
     #  tags:
     #    - { name: aw.setting }
+
+    store.setting.contact_email:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'contact_email'
+        - 'Контактный e-mail'
+        - 'info@rezhano.ru'
+      tags:
+        - { name: aw.setting }

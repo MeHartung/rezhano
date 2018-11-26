@@ -477,7 +477,7 @@ header {
   .header-logo {
     display: inline-block;
     vertical-align: top;
-    background: url("../images/logo-rezhano_sm_fix.png") center no-repeat;
+    background: url("../images/svg/logo.svg") center no-repeat;
     width: 176px;
     height: 35px;
     position: absolute;
@@ -1002,10 +1002,8 @@ header {
 
 .advantages {
   background-color: @c_black;
-  //padding-top: 120px;  сделать у популярных
   margin-top: -120px;
-
-  padding-bottom: 200px;
+  padding-top: 120px;
   overflow: hidden;
 
   .advantages-item__wrap {
@@ -1173,11 +1171,14 @@ h1, .popular-products__title {
 
 //
 .popular-products {
+  margin-top: -120px;
+  background-color: @c_white;
+
   &:before {
     content: '';
-    top: -100px;
+    top: -125px;
     left: 50%;
-    background: url("../images/popular-section.png");
+    background: url("../images/popular-section.png") center no-repeat;
     position: absolute;
     height: 147px;
     -webkit-transform: translateX(-50%);
@@ -1572,14 +1573,14 @@ h1, .popular-products__title {
   background-color: @rc_yellow;
   position: relative;
   padding-top: 120px;
-  padding-bottom: 155px;
+  padding-bottom: 166px;
 
   &__image {
     background: url("../images/presents-image.png") center no-repeat;
     width: 841px;
     height: 563px;
     position: absolute;
-    bottom: -130px;
+    bottom: -115px;
     right: 176px;
 
     @media(max-width: 1864px) {
@@ -1594,23 +1595,6 @@ h1, .popular-products__title {
   &__wrap {
     margin-left: 33px;
   }
-
-  //&:after {
-  //  content: '';
-  //  background: url("../images/presents-bottom.png") center no-repeat;
-  //  position: absolute;
-  //  height: 82px;
-  //  width: 100%;
-  //  bottom: -82px;
-  //
-  //  left: 50%;
-  //  -webkit-transform: translateX(-50%);
-  //  -webkit-transform: translateX(-50%);
-  //  -moz-transform: translateX(-50%);
-  //  -ms-transform: translateX(-50%);
-  //  -o-transform: translateX(-50%);
-  //  transform: translateX(-50%);
-  //}
 
   &__text {
     font-size: 45px;
@@ -1905,6 +1889,12 @@ h1, .popular-products__title {
 
     .slick-dots {
       position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
       list-style: none;
       padding: 0;
       margin: 24px 0;
@@ -2000,12 +1990,14 @@ h1, .popular-products__title {
   }
 
   &__title {
+    margin: 0 auto;
     margin-bottom: 55px;
+    text-align: center;
   }
 
   &__text {
 
-    width: 471px;
+    width: 660px;
 
     p {
       font-size: 20px;
@@ -2112,7 +2104,7 @@ footer {
   .header-logo {
     display: inline-block;
     vertical-align: top;
-    background: url(../images/logo-rezhano.png) center no-repeat;
+    background: url(../images/svg/logo.svg) center no-repeat;
     width: 226px;
     height: 45px;
     position: absolute;
@@ -3952,5 +3944,123 @@ body .delivery-info {
 
   .input-text {
     width: 85%;
+  }
+}
+
+@media (min-width: 2000px) {
+
+  .advantages .advantages-item__wrap.advantages-item__wrap_left .advantages-image {
+    left: 0;
+  }
+
+  .advantages .advantages-image {
+    right: 0;
+    -webkit-transform: scale(1.35, 1.35);
+    -moz-transform: scale(1.35, 1.35);
+    -ms-transform: scale(1.35, 1.35);
+    -o-transform: scale(1.35, 1.35);
+    transform: scale(1.35, 1.35);
+  }
+
+  .advantages .advantages-step {
+    padding-top: 245px;
+  }
+
+  .advantages .advantages-item__wrap.advantages-item__wrap_left .advantages-step {
+    margin-left: 60%;
+  }
+
+  .advantages .advantages-image {
+    right: 160px;
+  }
+
+  .advantages .advantages-item__wrap.advantages-item__wrap_left .advantages-image {
+    left: 100px;
+  }
+
+  .advantages .advantages-item__wrap:last-child {
+    margin-bottom: 111px;
+  }
+
+  .choice {
+    padding-bottom: 357px;
+    padding-top: 200px;
+  }
+
+  .choice__link {
+    width: 620px;
+    height: 446px;
+    background-size: contain;
+  }
+  .wholesale {
+
+    &__image {
+      top: -55px;
+    }
+
+    &__text {
+      padding-top: 92px;
+    }
+  }
+
+
+  .wholesale:after {
+    z-index: -1;
+    top: -100px;
+  }
+
+  .tour {
+    padding-top:  255px;
+    padding-bottom: 285px;
+  }
+
+  .tour__image-bg .image-bg__right {
+    top: -400px;
+    right: -472px;
+    -webkit-transform: scale(1.15, 1.15);
+    -moz-transform: scale(1.15, 1.15);
+    -ms-transform: scale(1.15, 1.15);
+    -o-transform: scale(1.15, 1.15);
+    transform: scale(1.15, 1.15);
+    margin-bottom: 60px;
+  }
+
+  .tour__image {
+    -webkit-transform: scale(1.25, 1.25);
+    -moz-transform: scale(1.25, 1.25);
+    -ms-transform: scale(1.25, 1.25);
+    -o-transform: scale(1.25, 1.25);
+    transform: scale(1.25, 1.25);
+  }
+
+  .tour__wrap {
+    padding-top: 60px;
+  }
+
+  .notes {
+    padding-top: 117px;
+    padding-bottom: 110px;
+
+    //.container {
+    //  padding-left: 255px;
+    //}
+
+    .notes-images-gallery {
+      top: auto;
+      bottom: -195px;
+    }
+
+    .notes__image-top {
+      left: -86px;
+    }
+  }
+
+  .notes .container {
+    width: 660px;
+    margin: 0 auto;
+  }
+
+  .notes .notes-slider {
+    width: 660px;
   }
 }

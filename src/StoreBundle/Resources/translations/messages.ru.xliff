@@ -535,6 +535,14 @@
                 <source>Background</source>
                 <target>Цвет подолжки</target>
             </trans-unit>
+            <trans-unit id="Contact Phone List">
+                <source>Contact Phone List</source>
+                <target>Контактные номера телефонов</target>
+            </trans-unit>
+            <trans-unit id="Contact Phone Create">
+                <source>Contact Phone Create</source>
+                <target>Новый контактный номер телефона</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>

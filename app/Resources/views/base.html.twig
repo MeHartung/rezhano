@@ -102,21 +102,14 @@
             <a {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %} class="header-logo"></a>
             <div class="footer-wrap">
                 <div class="footer-contacts">
-                    <div class="contact-item">{{ hotspot_inline('contact_phone_1', '+7 (343) 207-76-66') }}
-                        <span class="contact-item-separator">/</span>
-                        {{ hotspot_inline('contact_phone_info_1', 'заказ сыров') }}
-                    </div>
-                    <div class="contact-item">{{ hotspot_inline('contact_phone_2', '+7 (343) 207-76-66') }}
-                        <span class="contact-item-separator">/</span>
-                        {{ hotspot_inline('contact_phone_info_2', 'сотрудничество') }}
-                    </div>
-                    <div class="contact-item">{{ hotspot_inline('contact_phone_3', '+7 (343) 207-76-66') }}
-                        <span class="contact-item-separator">/</span>
-                        {{ hotspot_inline('contact_phone_info_3', 'экскурсии') }}
-                    </div>
-                    <div class="contact-item">
-                        {{ hotspot_inline('contact_email', 'info@rezhano.ru') }}
-                    </div>
+
+                    {{ render(controller('StoreBundle:Common:_footerContacts')) }}
+
+                    {% if setting('contact_email')  %}
+                        <div class="contact-item">
+                            <a class="contact-item" href="mailto:{{ setting('contact_email') }}?subject=Письмо с сайта rezhano.ru">{{ setting('contact_email') }}</a>
+                        </div>
+                    {% endif %}
 
                     <div class="footer-social">
                         {% if setting('facebook_link')  %}
@@ -152,9 +145,9 @@
                 </div>
 
                 <div class="footer-aside">
-                    <div class="footer-aside__copyright">© 2015–2018 Сыроварня «Режано»</div>
+                    <div class="footer-aside__copyright">{{ hotspot_inline('copyright', '© 2015–2018 Сыроварня «Режано»') }}</div>
 
-                    <a href="" class="footer-aside__link link_frukt">Дизайн сайта</a>
+                    <a href="http://fruktdesign.com/" class="footer-aside__link link_frukt" target="_blank">Дизайн сайта</a>
                     <a href="https://accurateweb.ru" class="footer-aside__link link_accurateweb" target="_blank">Разработка
                         <span>ACCURATEWEB</span></a>
                 </div>
