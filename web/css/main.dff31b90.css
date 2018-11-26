@@ -815,7 +815,7 @@ header .header-menu-wrap {
 header .header-logo {
   display: inline-block;
   vertical-align: top;
-  background: url("../images/logo-rezhano_sm_fix.png") center no-repeat;
+  background: url("../images/svg/logo.svg") center no-repeat;
   width: 176px;
   height: 35px;
   position: absolute;
@@ -1158,7 +1158,6 @@ header.header-catalog .header-catalog__wrap .header-menu-wrap {
 .advantages {
   background-color: #000000;
   margin-top: -120px;
-  padding-bottom: 200px;
   overflow: hidden;
 }
 .advantages .advantages-item__wrap {
@@ -1269,11 +1268,15 @@ h1,
   padding-top: 45px;
   padding-bottom: 115px;
 }
+.popular-products {
+  margin-top: -120px;
+  background-color: #ffffff;
+}
 .popular-products:before {
   content: '';
   top: -100px;
   left: 50%;
-  background: url("../images/popular-section.png");
+  background: url("../images/popular-section.png") center no-repeat;
   position: absolute;
   height: 147px;
   -webkit-transform: translateX(-50%);
@@ -1949,7 +1952,7 @@ footer {
 footer .header-logo {
   display: inline-block;
   vertical-align: top;
-  background: url(../images/logo-rezhano.png) center no-repeat;
+  background: url(../images/svg/logo.svg) center no-repeat;
   width: 226px;
   height: 45px;
   position: absolute;
@@ -3278,6 +3281,17 @@ body .delivery-info__message {
 }
 .filter-widget.range-slider.range-slider-measurable .input-text {
   width: 85%;
+}
+@media (min-width: 2000px) {
+  .advantages .advantages-item__wrap.advantages-item__wrap_left .advantages-image {
+    left: 0;
+  }
+  .advantages .advantages-image {
+    right: 0;
+  }
+  .advantages .advantages-step {
+    padding-top: 295px;
+  }
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
