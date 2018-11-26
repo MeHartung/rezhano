@@ -50,4 +50,14 @@ class CommonController extends Controller
       'repository' => $taxonRepository
     ]);
   }
+
+  public function _footerContactsAction()
+  {
+    $contactPhones = $this->getDoctrine()->getRepository('StoreBundle:Text\ContactPhone')
+      ->findBy(['published' => true]);
+
+    return $this->render('StoreBundle:Common:_footer_contacts.html.twig', [
+      'contactPhones' => $contactPhones
+    ]);
+  }
 }

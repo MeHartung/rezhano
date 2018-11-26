@@ -92,6 +92,42 @@ services:
       tags:
         - { name: aw.setting }
 
+    store.setting.warehouse_rezh:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - warehouse_rezh
+       - "Id склада, к которому будут привязываться заказы для города Реж"
+       - '2ade3f32-889b-11e7-7a6c-d2a900028be0'
+      tags:
+        - { name: aw.setting }
+
+    store.setting.warehouse_ekb:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - warehouse_ekb
+       - "Id склада, к которому будут привязываться заказы для города Екатеринбург"
+       - '88a8756a-889c-11e7-7a69-8f5500016d1c'
+      tags:
+        - { name: aw.setting }
+
+    store.setting.warehouse_other_city:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - warehouse_other_city
+       - "Id склада, к которому будут привязываться заказы для города получения «Другой город»"
+       - '88a8756a-889c-11e7-7a69-8f5500016d1c'
+      tags:
+        - { name: aw.setting }
+
     #store.setting.synchronization.moy_sklad.products.folder:
     #  class: Accurateweb\SettingBundle\Model\Setting\JsonArraySetting
     #  arguments:
@@ -101,3 +137,13 @@ services:
     #    - { 0: 'Сыр в КГ' }
     #  tags:
     #    - { name: aw.setting }
+
+    store.setting.contact_email:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'contact_email'
+        - 'Контактный e-mail'
+        - 'info@rezhano.ru'
+      tags:
+        - { name: aw.setting }

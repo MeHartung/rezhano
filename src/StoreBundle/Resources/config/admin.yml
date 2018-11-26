@@ -84,3 +84,16 @@ services:
       arguments: [~, StoreBundle\Entity\Common\HomeBanner, 'PixSortableBehaviorBundle:SortableAdmin']
       tags:
         - {name: sonata.admin, manager_type: orm, group: homepage, label: "Тизерные блоки"}
+
+    app.admin.contact_phone:
+      class: StoreBundle\Admin\Text\ContactPhoneAdmin
+      tags:
+        -
+          name: sonata.admin
+          manager_type: orm
+          group: settings
+          label: Контактные телефоны
+      arguments:
+        - null
+        - StoreBundle\Entity\Text\ContactPhone
+        - ~
