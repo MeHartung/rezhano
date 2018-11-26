@@ -11,6 +11,7 @@ use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladExceptionFactory;
 use Accurateweb\MoyskladIntegrationBundle\Model\MoyskladManager;
 use Accurateweb\MoyskladIntegrationBundle\Model\OrderItemTransformer;
 use Accurateweb\SettingBundle\Model\Manager\SettingManagerInterface;
+use MoySklad\Entities\Store;
 use StoreBundle\Entity\Store\Logistics\Delivery\Cdek\CdekRawPvzlist;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Order\OrderItem;
@@ -66,6 +67,7 @@ class MoyskladOrderSender
    */
   public function sendOrder(Order $order)
   {
+    $warehouse = $this->getWarehouse($order->getShippingCityName());
     
     $orid = $this->sklad->getRepository('MoySklad\\Entities\\Organization')->findAll();
     $organization = $orid[0];
@@ -102,6 +104,10 @@ class MoyskladOrderSender
     ]);
 
     $customerOrderCreation = $customerOrder->buildCreation();
+    if($warehouse !== null)
+    {
+      $customerOrderCreation->addStore($warehouse);
+    }
     $meta = $this->sklad->getRepository('MoySklad\\Entities\\Documents\\Orders\\CustomerOrder')->getClassMetadata();
     /**
      * Этот кусок на данный момент выпилен, ибо работает он с кастомными полями
@@ -300,5 +306,28 @@ class MoyskladOrderSender
     }
 
     return $list;
+  }
+  
+  /**
+   * Возращает склад для города, если он есть
+   * @param $cityName string
+   * @return Store|null
+   */
+  private function getWarehouse($cityName)
+  {
+    $warehouse = null;
+    $repo = $this->sklad->getRepository('MoySklad\\Entities\\Store');
+    if($cityName === 'Реж')
+    {
+     $warehouse = $repo->find($this->settingManager->getSetting('warehouse_rezh')->getValue());
+    }elseif($cityName === 'Екатеринбург')
+    {
+      $warehouse = $repo->find($this->settingManager->getSetting('warehouse_ekb')->getValue());
+    }else
+    {
+      $warehouse = $repo->find($this->settingManager->getSetting('warehouse_other_city')->getValue());
+    }
+  
+   return $warehouse;
   }
 }

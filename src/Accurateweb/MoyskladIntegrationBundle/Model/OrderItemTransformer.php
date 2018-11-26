@@ -36,8 +36,8 @@ class OrderItemTransformer
     {
       throw new \Exception(sprintf('Product %s not found in Moysklad with code %s', $product->getId(), $skald_code));
     }
-
-    $sklad_product->quantity = (int)$orderItem->getQuantity();
+    
+    $sklad_product->quantity = (float)$orderItem->getQuantity();
     /*
      * Методом проб и ошибок пришел к тому, что они принимают копейки, а не рубли
      */
