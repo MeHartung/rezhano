@@ -128,6 +128,30 @@ services:
       tags:
         - { name: aw.setting }
 
+    store.setting.legal_customer_tag:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - legal_customer_tag
+       - "Группа, к которой будет привязан контрагент, являющийся юр. лицом"
+       - 'Новый опт'
+      tags:
+        - { name: aw.setting }
+
+    store.setting.individual_customer_tag:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - individual_customer_tag
+       - "Группа, к которой будет привязан контрагент, являющийся физ. лицом"
+       - 'Покупатели Интернет-магазина'
+      tags:
+        - { name: aw.setting }
+
     #store.setting.synchronization.moy_sklad.products.folder:
     #  class: Accurateweb\SettingBundle\Model\Setting\JsonArraySetting
     #  arguments:

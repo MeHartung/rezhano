@@ -92,7 +92,8 @@ class MoyskladOrderSender
       $order->getCustomerEmail(),
       $order->getCustomerFullName(),
       $order->getCustomerPhone(),
-      $contragentAddres
+      $contragentAddres,
+      $order->getCustomerType()
     );
 
     $customerOrder = new CustomerOrder($this->sklad->getSklad(), [
@@ -261,9 +262,11 @@ class MoyskladOrderSender
    * @param string $phone
    * @param string $fullName
    * @param string $email
+   * @param string $customerType - тип покупателя, юр или физ. лицо
    * @return Counterparty
    */
-  protected function getOrCreateContragentByEmail($email, $fullName, $phone='', $actualAddress='')
+  protected function getOrCreateContragentByEmail($email, $fullName, $phone='', $actualAddress='',
+                                                  $customerType = Order::CUSTOMER_TYPE_INDIVIDUAL)
   {
     $repository = $this->sklad->getRepository('MoySklad\\Entities\\Counterparty');
     $contragent = $repository
@@ -271,11 +274,15 @@ class MoyskladOrderSender
 
     if (!$contragent)
     {
+      $settingName = $customerType == Order::CUSTOMER_TYPE_INDIVIDUAL ? 'individual_customer_tag' : 'legal_customer_tag';
+      
       $contragent = $repository->createNewObject([
         'name' => $fullName,
         'phone' => $phone,
         'email' => $email,
         'actualAddress' => $actualAddress,
+        'tags' => [$this->settingManager->getSetting($settingName)->getValue()],
+        'companyType' => $customerType
       ]);
     }
 
