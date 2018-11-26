@@ -24,7 +24,7 @@ define(function(require){
     '              <span>Запомнить</span>\n' +
     '            </label>\n' +
     '          </span>\n' +
-    '          <a class="restore-link js-restore" href="">Забыли пароль?</a>\n' +
+    '          <!-- <a class="restore-link js-restore" href="">Забыли пароль?</a> -->\n' +
     '        </div>\n' +
     '        <div class="buttons">\n' +
     '          <button class="button layer__button" type="submit" name="_submit" value="Войти">Войти</button>\n' +

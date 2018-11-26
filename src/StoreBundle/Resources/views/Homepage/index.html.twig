@@ -28,7 +28,7 @@
                     {% for banner in banners  %}
                     <div class="header-slider__item" >
 
-                        <img src="{{ image_url(banner, 'homepage-banner/teaser') }}" alt="" style="position: absolute; right: 0; bottom: 15px;">
+                        <img class="header-slider__teaser" src="{{ image_url(banner, 'homepage-banner/teaser') }}" alt="">
 
                         <div class="container">
                             <div class="header-section__image">
@@ -177,7 +177,8 @@
                 <h2 class="partners__title">Наши партнёры</h2>
                 <div class="partners-wrap">
                     {% for partner in partners %}
-                        <span class="partner-item" style=" background: url('{{ partner.thumbnailUrl('view') }}') center no-repeat;  width: 310px; height: 83px;"></span>
+                        {#{{ partner.thumbnailUrl('view') }}#}
+                        <span class="partner-item" style=" background: url('{{ image_url(partner.teaserImageFile) }}') center no-repeat;  min-width: 310px; height: 83px;"></span>
                     {% endfor %}
                 </div>
             </div>

@@ -981,6 +981,36 @@ header.header-catalog .header-catalog__wrap .header-menu-wrap {
   position: relative;
   top: -135px;
 }
+.header-section .header-slider__teaser {
+  position: absolute;
+  right: -300px;
+  bottom: 15px;
+}
+@media (min-width: 1400px) {
+  .header-section .header-slider__teaser {
+    right: -250px;
+  }
+}
+@media (min-width: 1600px) {
+  .header-section .header-slider__teaser {
+    right: -150px;
+  }
+}
+@media (min-width: 1700px) {
+  .header-section .header-slider__teaser {
+    right: -100px;
+  }
+}
+@media (min-width: 1800px) {
+  .header-section .header-slider__teaser {
+    right: -50px;
+  }
+}
+@media (min-width: 1900px) {
+  .header-section .header-slider__teaser {
+    right: 0;
+  }
+}
 .header-section .header-slider__item {
   height: 970px;
   position: relative;
@@ -1978,7 +2008,7 @@ footer {
   width: 100%;
   height: auto;
   position: relative;
-  margin-top: -209px;
+  margin-top: -210px;
   padding-top: 209px;
 }
 footer .header-logo {
@@ -2125,7 +2155,7 @@ footer .footer-aside__link.link_frukt:hover:after {
   background: url("../images/icons/frukt-hover.png");
 }
 .catalog-section {
-  padding-bottom: 165px;
+  padding-bottom: 215px;
   padding-top: 120px;
 }
 .layer {
@@ -2755,7 +2785,7 @@ body .delivery-info__message {
 }
 .cheese-card {
   background-color: #e8e8e8;
-  padding-bottom: 150px;
+  padding-bottom: 170px;
   overflow: visible;
   position: relative;
 }
@@ -2935,8 +2965,6 @@ body .delivery-info__message {
   background-color: #ffcf40;
   padding-top: 45px;
   white-space: nowrap;
-  margin-bottom: -50px;
-  padding-bottom: 100px;
 }
 .section-back-to-all__link {
   padding-top: 30px;

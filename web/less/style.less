@@ -719,6 +719,36 @@ header {
     top: -135px;
     //right: -240px;
 
+    &__teaser {
+      position: absolute;
+      right: -300px;
+      bottom: 15px;
+
+      @media(min-width: 1400px) {
+        right: -250px;
+      }
+
+      @media(min-width: 1600px) {
+        right: -150px;
+      }
+
+      @media(min-width: 1700px) {
+        right: -100px;
+      }
+
+      @media(min-width: 1800px) {
+        right: -50px;
+      }
+
+      @media(min-width: 1900px) {
+        right: 0;
+      }
+      //
+      //@media(max-width: 1864px) {
+      //  right: -166px;
+      //}
+    }
+
     &__item {
       //background: url("../images/header-slider1.png") center no-repeat;
       //width: 956px;
@@ -2075,7 +2105,7 @@ footer {
   height: auto;
   position: relative;
   //margin-top: -105px;
-  margin-top: -209px;
+  margin-top: -210px;
   //padding-top: 260px;
   padding-top: 209px;
 
@@ -2271,7 +2301,7 @@ footer {
 }
 ////
 .catalog-section {
-  padding-bottom: 165px;
+  padding-bottom: 215px;
   padding-top: 120px;
 }
 
@@ -3113,7 +3143,7 @@ body .delivery-info {
 /////
 .cheese-card {
   background-color: #e8e8e8;
-  padding-bottom: 150px;
+  padding-bottom: 170px;
   overflow: visible;
   position: relative;
 
@@ -3357,9 +3387,7 @@ body .delivery-info {
   background-color: @rc_yellow;
   padding-top: 45px;
   white-space: nowrap;
-  margin-bottom: -50px;
-
-  padding-bottom: 100px;
+  //margin-bottom: -50px;
 
   &__link {
     padding-top: 30px;

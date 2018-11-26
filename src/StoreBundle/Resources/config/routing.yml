@@ -18,13 +18,13 @@ product:
   path:     /products/{slug}
   defaults: { _controller: StoreBundle:Catalog/Product:show }
 
-catalog_search:
-  path:  /search
-  defaults: { _controller: StoreBundle:Catalog/Search:search }
+#catalog_search:
+#  path:  /search
+#  defaults: { _controller: StoreBundle:Catalog/Search:search }
 
-catalog_search_suggest:
-  path: /search/suggest
-  defaults: { _controller: StoreBundle:Catalog/Search:suggest }
+#catalog_search_suggest:
+#  path: /search/suggest
+#  defaults: { _controller: StoreBundle:Catalog/Search:suggest }
 
 news_index:
   path:      /news
@@ -116,13 +116,13 @@ special_offers_show:
   path: /offers/{slug}
   defaults: { _controller: StoreBundle:Text/SpecialOffer:show}
 
-contacts_index:
-  path: /contacts
-  defaults: { _controller: StoreBundle:Logistics/Geography:contacts }
+#contacts_index:
+#  path: /contacts
+#  defaults: { _controller: StoreBundle:Logistics/Geography:contacts }
 
-contacts_cities:
-  path: /contacts/cities
-  defaults: { _controller: StoreBundle:Logistics/Geography:contactsCityList }
+#contacts_cities:
+#  path: /contacts/cities
+#  defaults: { _controller: StoreBundle:Logistics/Geography:contactsCityList }
 
 product_question:
   path: /api/products/{slug}/question
@@ -169,11 +169,11 @@ api_admin_cancel_status:
   path: /api/admin/template/status/cancel
   defaults: { _controller: StoreBundle:Order\OrderStatus:cancelStatusTemplate }
 
-cabinet:
-    path: /cabinet
-    defaults:
-        _controller: FrameworkBundle:Redirect:urlRedirect
-        path: /cabinet/orders
+#cabinet:
+#    path: /cabinet
+#    defaults:
+#        _controller: FrameworkBundle:Redirect:urlRedirect
+#        path: /cabinet/orders
 
 #profile_order_history:
 #  path: /cabinet/orders
@@ -183,54 +183,54 @@ cabinet:
 #  path: /cabinet/profile
 #  defaults: { _controller: FOSUserBundle:Profile:show }
 
-fos_user_profile_show:
-  path: /cabinet/profile
-  defaults: { _controller: StoreBundle:Profile\Profile:show }
-
-fos_user_profile_edit:
-  path: /cabinet/profile/edit
-  defaults: { _controller: FOSUserBundle:Profile:edit }
-
-fos_user_notice_show:
-  path: /cabinet/notice
-  defaults: { _controller: StoreBundle:Profile\Profile:notice }
-
-api_notice_list:
-  path: /api/notice
-  methods: [GET]
-  defaults: { _controller: StoreBundle:Profile\Notification:list }
-
-api_notice_read:
-  path: /api/notice/{id}
-  methods: [GET]
-  defaults: { _controller: StoreBundle:Profile\Notification:read }
-
-api_notice_update:
-  path: /api/notice/{id}
-  methods: [PUT, POST]
-  defaults: { _controller: StoreBundle:Profile\Notification:update }
-
-api_dialog_message_list:
-  path: /api/dialog/message/{dialogId}
-  methods: [GET]
-  defaults: { _controller: StoreBundle:Profile\Dialog:messagesList }
-
-api_dialog_message_add:
-  path: /api/dialog/message/{dialogId}
-  methods: [PUT, POST]
-  defaults: { _controller: StoreBundle:Profile\Dialog:addMessage }
+#fos_user_profile_show:
+#  path: /cabinet/profile
+#  defaults: { _controller: StoreBundle:Profile\Profile:show }
+#
+#fos_user_profile_edit:
+#  path: /cabinet/profile/edit
+#  defaults: { _controller: FOSUserBundle:Profile:edit }
+#
+#fos_user_notice_show:
+#  path: /cabinet/notice
+#  defaults: { _controller: StoreBundle:Profile\Profile:notice }
+#
+#api_notice_list:
+#  path: /api/notice
+#  methods: [GET]
+#  defaults: { _controller: StoreBundle:Profile\Notification:list }
+#
+#api_notice_read:
+#  path: /api/notice/{id}
+#  methods: [GET]
+#  defaults: { _controller: StoreBundle:Profile\Notification:read }
+#
+#api_notice_update:
+#  path: /api/notice/{id}
+#  methods: [PUT, POST]
+#  defaults: { _controller: StoreBundle:Profile\Notification:update }
+#
+#api_dialog_message_list:
+#  path: /api/dialog/message/{dialogId}
+#  methods: [GET]
+#  defaults: { _controller: StoreBundle:Profile\Dialog:messagesList }
+#
+#api_dialog_message_add:
+#  path: /api/dialog/message/{dialogId}
+#  methods: [PUT, POST]
+#  defaults: { _controller: StoreBundle:Profile\Dialog:addMessage }
 
 #api_notice_delete:
 #  path: /api/notice/{id}
 #  methods: [DELETE]
 
-api_profile_order_history:
-  path: /api/cabinet/orders/{id}
-  defaults: { _controller: StoreBundle:Profile\UserOrderHistory:orderInfo }
-
-api_order_statuses_history:
-  path: /api/cabinet/order/statuses/{orderId}
-  defaults: { _controller: StoreBundle:Profile\UserOrderHistory:orderStatusesHistory }
+#api_profile_order_history:
+#  path: /api/cabinet/orders/{id}
+#  defaults: { _controller: StoreBundle:Profile\UserOrderHistory:orderInfo }
+#
+#api_order_statuses_history:
+#  path: /api/cabinet/order/statuses/{orderId}
+#  defaults: { _controller: StoreBundle:Profile\UserOrderHistory:orderStatusesHistory }
 
 #api_profile_disable_club_popup:
 #  path: /api/cabinet/club-popup
