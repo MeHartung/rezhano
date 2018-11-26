@@ -377,8 +377,18 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   public function getProductAttributeValuesGrouped()
   {
     $result = [];
-    
+    $attrs = [];
     if ($this->getProductAttributeValues()->count() === 0) return $result;
+  
+    foreach ($this->productAttributeValues as $value)
+    {
+      if($value->getProductAttribute()->getShowInProduct() === true)
+      {
+        $attrs[$value->getProductAttribute()->getName()] = $value->getProductAttribute()->getWeight();
+      }
+    }
+    
+    ksort($attrs);
     
     foreach ($this->productAttributeValues as $value)
     {
@@ -388,7 +398,13 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
       }
     }
     
-    return $result;
+    foreach ($result as $key=>$val)
+    {
+      $attrs[$key] = $val;
+    }
+
+    
+    return $attrs;
   }
 
   /**

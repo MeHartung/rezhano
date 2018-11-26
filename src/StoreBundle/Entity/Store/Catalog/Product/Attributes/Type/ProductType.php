@@ -51,6 +51,7 @@ class ProductType
    * @ORM\JoinTable(name="product_types_to_product_attributes",
    *      joinColumns={@ORM\JoinColumn(name="product_type_id", referencedColumnName="id", onDelete="CASCADE")},
    *      inverseJoinColumns={@ORM\JoinColumn(name="product_attribute_id", referencedColumnName="id", onDelete="CASCADE")})
+   * @ORM\OrderBy({"weight" = "DESC"})
    */
   private $productAttributes;
 

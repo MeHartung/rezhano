@@ -543,6 +543,14 @@
                 <source>Contact Phone Create</source>
                 <target>Новый контактный номер телефона</target>
             </trans-unit>
+            <trans-unit id="Product Attributes">
+                <source>Product Attributes</source>
+                <target>Аттрибуты товара</target>
+            </trans-unit>
+            <trans-unit id="Product Attribute Value List">
+                <source>Product Attribute Value List</source>
+                <target>Список атрибутов товаров</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>

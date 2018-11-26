@@ -55,6 +55,12 @@ class ProductAttribute
    * @ORM\Column(name="value_type", type="integer")
    */
   private $valueType;
+  
+  /**
+   * @var integer
+   * @ORM\Column(type="integer", options={"default": 0})
+   */
+  private $weight;
 
 //  /**
 //   * @var ArrayCollection
@@ -263,5 +269,20 @@ class ProductAttribute
   {
     $this->showInProduct = $showInProduct;
   }
-
+  
+  /**
+   * @return int
+   */
+  public function getWeight(): ?int
+  {
+    return $this->weight;
+  }
+  
+  /**
+   * @param int $weight
+   */
+  public function setWeight(?int $weight): void
+  {
+    $this->weight = $weight;
+  }
 }
