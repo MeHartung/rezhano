@@ -1422,7 +1422,7 @@ h1,
   -webkit-box-shadow: none;
           box-shadow: none;
   outline: none;
-  width: 80px;
+  width: 60px;
   display: inline-block;
   vertical-align: sub;
 }
@@ -1504,7 +1504,7 @@ h1,
   -webkit-box-shadow: none;
           box-shadow: none;
   outline: none;
-  width: 80px;
+  width: 60px;
   display: inline-block;
   vertical-align: sub;
 }
@@ -2417,13 +2417,13 @@ aside.right {
   white-space: normal;
 }
 .cards-container__item {
-  width: 620px;
+  width: 590px;
 }
 .cards-container__price {
   width: 120px;
 }
 .cards-container__quantity {
-  width: 160px;
+  width: 190px;
 }
 .cards-container__cost {
   width: 100px;
@@ -3367,6 +3367,10 @@ body .delivery-info__message {
   .notes .notes-slider {
     width: 660px;
   }
+}
+.quantity-widget__units {
+  margin-right: 6px;
+  font-size: 20px;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

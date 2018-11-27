@@ -93,8 +93,7 @@ define(function(require){
       this.$el.fadeIn();
     },
     formatFloat: function ($number) {
-      $number = +$number;
-      return $number - Math.floor($number) ? $number.toFixed(3) : $number;
+      return +$number.toFixed(2);
     }
   });
 });

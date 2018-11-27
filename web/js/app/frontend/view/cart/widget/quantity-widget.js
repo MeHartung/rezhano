@@ -5,6 +5,17 @@ define(function(require){
 
   var template = _.template(require('templates/cart/widget/quantity-widget'));
 
+  var quantityScales = [
+    {
+      units: "кг",
+      multiplicator: 1
+    },
+    {
+      units: "г",
+      multiplicator: 1000
+    }
+  ];
+
   /**
    * Представление виджета изменения количества товара в корзине
    */
@@ -13,7 +24,8 @@ define(function(require){
     defaults:{
       min: 1,
       max: null,
-      step: 1
+      step: 1,
+      units: 'шт'
     },
     events:{
       'keydown  .quantity-control__input': 'onCartActionsQuantityInputKeydown',
@@ -39,13 +51,22 @@ define(function(require){
       if (typeof this.options.step !== 'undefined') this.step = parseFloat(this.options.step);
       else this.step = this.defaults.step;
 
+      // if (typeof this.options.units !== 'undefined') this.units = this.options.units;
+      // else this.units = this.defaults.units;
+      this.units = this.defaults.units;
+
       this.$quantityInput =  this.$('.quantity-control__input');
+
+      this.scale = null;
+
+      this.adjustScale();
     },
     render: function(){
       this.$el.html(template({
-        quantity: this.formatFloat(+this.model.get('quantity')),
+        quantity: this.formatFloat(this.modelToView(+this.model.get('quantity'))),
         product_stock: this.model.get('product')?this.model.get('product').available_stock:null,
-        showButtons: this.options.showButtons
+        showButtons: this.options.showButtons,
+        units: this.scale ? this.scale.units : this.units
       }));
 
       this.$quantityInput =  this.$('.quantity-control__input');
@@ -68,43 +89,53 @@ define(function(require){
       var value = self.$quantityInput.val(),
           _val = parseFloat(value);
       
-      if (!isNaN(_val) && isFinite(_val) && this.__valueIsInBounds(_val)) {
-        _val = this.formatFloat(Math.floor(_val / this.step) * this.step);
+      if (!isNaN(_val) && isFinite(_val) /*&& this.__valueIsInBounds(_val)*/) {
+        // _val = this.formatFloat(Math.floor(_val / this.step) * this.step);
 
-        if (+self.model.get('quantity') === _val) {
-          this.$quantityInput.val(this.formatFloat(+this.model.get('quantity')));
-        } else {
-          self.model.set({ quantity: +_val });
-        }
+        // if (+self.model.get('quantity') === _val) {
+        //   this.$quantityInput.val(this.formatFloat(+this.model.get('quantity')));
+        // } else {
+          self.model.set({ quantity: self.viewToModel(+_val) });
+        // }
 
       } else {
         if (value.length > 0){
-          this.$quantityInput.val(this.formatFloat(+self.previousValue));
+          this.$quantityInput.val(+self.previousValue);
         }
       }
     },
     onQuantityChanged: function(){
-      this.$quantityInput.val(this.formatFloat(+this.model.get('quantity')));
+      this.adjustScale();
+
+      this.$quantityInput.val(this.formatFloat(this.modelToView(+this.model.get('quantity'))));
+
+      var units = this.scale ? this.scale.units : this.units;
+      var $units = this.$('.quantity-widget__units');
+
+      if ($units.text() !== units) {
+        $units.text(units);
+        $units.css({'color': '#ffcf40'}).animate({'color': '#000'});
+      }
     },
     onAppendClick: function(e){
       e.preventDefault();
       var value = this.$quantityInput.val(),
           _val = parseFloat(value);
       if (!isNaN(_val) && isFinite(_val)) {
-        this.model.set({ quantity: +this.formatFloat(this.__ensureMaxLimit(_val + this.step)) });
+        this.model.set({ quantity: this.viewToModel(+this.formatFloat(this.__ensureMaxLimit(_val + this.scaledStep()))) });
       } else {
-        this.model.set({ quantity: this.minQuantity });
+        this.model.set({ quantity: this.viewToModel(this.scaledMinQuantity()) });
       }
       this.$quantityInput.focus();
     },
     onSubtractClick: function(e){
       e.preventDefault();
 
-      var value = this.$quantityInput.val();
+      var value = +this.$quantityInput.val();
       if (!isNaN(parseFloat(value)) && isFinite(value)) {
-        this.model.set({ quantity: +this.formatFloat(Math.max(this.model.get('quantity') - this.step, this.minQuantity))});
+        this.model.set({ quantity: this.viewToModel(+this.formatFloat(Math.max(value - this.scaledStep(), this.scaledMinQuantity())))});
       } else {
-        this.model.set({ quantity: this.minQuantity });
+        this.model.set({ quantity: this.viewToModel(this.scaledMinQuantity()) });
       }
       this.$quantityInput.focus();
     },
@@ -129,7 +160,71 @@ define(function(require){
       return v >= this.minQuantity && (Math.abs(v - this.__ensureMaxLimit(v)) < 0.001);
     },
     formatFloat: function ($number) {
-      return $number - Math.floor($number) ? $number.toFixed(3) : $number;
+      return +$number.toFixed(2);
+    },
+    /**
+     * Выбирает наиболее подходящую шкалу для конвертации значения
+     * @param v
+     */
+    adjustScale: function(v){
+      var self = this;
+
+      if (!this.model.get('product').isMeasured){
+        this.scale = null;
+        return;
+      }
+      if (!this.scale){
+        this.scale = quantityScales[0]; //@FIXME выбирать шкалу с мультипликатором 1
+      }
+
+      //1. Ищем подходящую шкалу для значения 0.xxx
+      var q = +this.model.get('quantity'), scaleAdjusted = false;
+      if (q < 1){
+        _.each(quantityScales, function(scale){
+          //Предполагаем, что шкалы уже отсортированы в порядке возрастания масштаба
+          if (scale.multiplicator > self.scale.multiplicator && q*scale.multiplicator > 1){
+            self.scale = scale;
+            scaleAdjusted = true;
+            return false;
+          }
+        });
+      }
+      if (!scaleAdjusted){
+        _.each(quantityScales, function(scale){
+          //Предполагаем, что шкалы уже отсортированы в порядке возрастания масштаба
+          if (q >= scale.multiplicator){
+            self.scale = scale;
+            scaleAdjusted = true;
+            return false;
+          }
+        });
+      }
+
+    },
+    /**
+     * Конвертирует отображаемое значение в значение, хранимое в модели (в кг)
+     *
+     * @param v
+     */
+    viewToModel: function(v){
+      if (!this.scale){
+        return v;
+      }
+
+      return v / this.scale.multiplicator;
+    },
+    modelToView: function(v){
+      if (!this.scale){
+        return v;
+      }
+
+      return v * this.scale.multiplicator;
+    },
+    scaledStep: function(){
+      return this.scale ? this.scale.multiplicator*this.step : this.step;
+    },
+    scaledMinQuantity: function(){
+      return this.scale ? this.scale.multiplicator*this.minQuantity : this.minQuantity;
     }
   });
 });

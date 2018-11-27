@@ -250,7 +250,7 @@
 			),
 
 			// Clean up precision
-			usePrecision = checkPrecision(opts.precision),
+    usePrecision = checkPrecision(opts.precision),
 
 			// Do some calc:
 			negative = number < 0 ? "-" : "",

@@ -332,6 +332,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    main.twig.quantity:
+        class: StoreBundle\Twig\QuantityExtension
+        public: false
+        arguments: []
+        tags:
+            - { name: twig.extension }
+
     store.twig.checkout:
         class: StoreBundle\Twig\CheckoutExtension
         arguments: ['@doctrine.orm.entity_manager']
