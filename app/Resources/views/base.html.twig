@@ -42,7 +42,7 @@
     {% endif %}
 
     {% block header %}
-      <header style="" class="{% block header_class %}header{% endblock %}">
+      <header style="" class="header__fixed {% block header_class %}header{% endblock %}">
         <div class="header-menu-wrap">
           <a class="header-logo" title="Режано"
              {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>

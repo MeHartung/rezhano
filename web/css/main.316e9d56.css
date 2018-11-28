@@ -808,6 +808,16 @@ header {
   -webkit-transition: padding-top 0.2s;
   transition: padding-top 0.2s;
 }
+@media only screen and (max-width: 320px) {
+  header {
+    position: fixed;
+  }
+}
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+  header {
+    position: fixed;
+  }
+}
 header .header-menu-wrap {
   margin: 0 auto;
   position: relative;
@@ -926,6 +936,23 @@ header.fixed {
   -webkit-transition: all .2s;
   transition: all .2s;
 }
+.header__fixed {
+  padding: 30px 50px;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: absolute;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+.header__fixed.fixed {
+  background-color: #101010;
+  position: fixed;
+  padding-top: 10px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  z-index: 1;
+}
 header.header-catalog {
   height: 550px;
   background-color: #0b090a;
@@ -946,6 +973,7 @@ header.header-catalog .header-catalog__wrap {
   background: url("../images/header-shop_bg.png") center no-repeat;
   background-size: cover;
   height: 550px;
+  margin-top: -70px;
   max-width: 1850px;
   margin: 0 auto;
   background-position-y: -195px;
@@ -1924,6 +1952,13 @@ h1,
   top: 50%;
   right: 0;
 }
+.notes .container {
+  width: 660px;
+  margin: 0 auto;
+}
+.notes .notes-slider {
+  width: 660px;
+}
 .notes__go-instagram {
   font-size: 21px;
   font-family: Catorze27style1-medium;
@@ -1954,7 +1989,7 @@ h1,
   transform: translate(-50%, -50%);
 }
 footer {
-  background: url("../images/footer_bg.png") bottom no-repeat;
+  background: url("../images/footer_bg.png") top no-repeat;
   width: 100%;
   height: auto;
   position: relative;
@@ -3366,17 +3401,14 @@ body .delivery-info__message {
   .notes .notes__image-top {
     left: -86px;
   }
-  .notes .container {
-    width: 660px;
-    margin: 0 auto;
-  }
-  .notes .notes-slider {
-    width: 660px;
-  }
 }
 .quantity-widget__units {
   margin-right: 6px;
   font-size: 20px;
+}
+.section-checkout,
+.section-purchase {
+  margin-top: 105px;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

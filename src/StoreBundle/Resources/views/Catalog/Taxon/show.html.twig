@@ -27,7 +27,7 @@
 
 {% block header %}
   <header class="header-catalog">
-    <div class="header-catalog__wrap">
+    <div class="header__fixed ">
       <div class="header-menu-wrap header-menu-wrap">
         <a class="header-logo" title="Режано"
            {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
@@ -50,6 +50,9 @@
           </a>
         </div>
       </div>
+    </div>
+
+    <div class="header-catalog__wrap">
     </div>
   </header>
 {% endblock header %}
