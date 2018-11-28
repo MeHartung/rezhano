@@ -1435,11 +1435,9 @@ h1, .popular-products__title {
 
 
       .controls-title {
-        font-size: 21px;
-        font-family: Catorze27style1-semibold;
-        color: #000000;
+        .input-font(21px);
+
         display: inline-block;
-        vertical-align: sub;
         margin-right: 5px;
       }
 
@@ -1472,19 +1470,15 @@ h1, .popular-products__title {
 .product-item__controls {
 
   .controls-title {
-    font-size: 21px;
-    font-family: Catorze27style1-semibold;
-    color: @c_black;
+    .input-font(21px);
 
     display: inline-block;
-    vertical-align: sub;
     margin-right: 5px;
   }
 
   .custom-input {
-    font-size: 25px;
-    font-family: Catorze27style1-medium;
-    color: @c_black;
+    .input-font();
+
     text-align: center;
 
     border: none;
@@ -1493,7 +1487,10 @@ h1, .popular-products__title {
     width: 60px;
 
     display: inline-block;
-    vertical-align: sub;
+  }
+
+  .quantity-widget__units {
+    .input-font();
   }
 
   .controls-item {

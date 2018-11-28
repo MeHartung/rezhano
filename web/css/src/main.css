@@ -1497,10 +1497,10 @@ h1,
 }
 .product-list .product-item .controls-wrap .controls-title {
   font-size: 21px;
-  font-family: Catorze27style1-semibold;
+  font-family: Catorze27style1-medium;
   color: #000000;
-  display: inline-block;
   vertical-align: sub;
+  display: inline-block;
   margin-right: 5px;
 }
 .product-list .product-item .controls-wrap .controls-title {
@@ -1519,22 +1519,28 @@ h1,
 }
 .product-item__controls .controls-title {
   font-size: 21px;
-  font-family: Catorze27style1-semibold;
+  font-family: Catorze27style1-medium;
   color: #000000;
-  display: inline-block;
   vertical-align: sub;
+  display: inline-block;
   margin-right: 5px;
 }
 .product-item__controls .custom-input {
   font-size: 25px;
   font-family: Catorze27style1-medium;
   color: #000000;
+  vertical-align: sub;
   text-align: center;
   border: none;
   box-shadow: none;
   outline: none;
   width: 60px;
   display: inline-block;
+}
+.product-item__controls .quantity-widget__units {
+  font-size: 25px;
+  font-family: Catorze27style1-medium;
+  color: #000000;
   vertical-align: sub;
 }
 .product-item__controls .controls-item {
