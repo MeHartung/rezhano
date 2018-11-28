@@ -809,16 +809,6 @@ header {
   -o-transition: padding-top 0.2s;
   transition: padding-top 0.2s;
 }
-@media only screen and (max-width: 320px) {
-  header {
-    position: fixed;
-  }
-}
-@media only screen and (min-width: 321px) and (max-width: 768px) {
-  header {
-    position: fixed;
-  }
-}
 header .header-menu-wrap {
   margin: 0 auto;
   position: relative;
@@ -955,6 +945,16 @@ header.fixed {
   -o-transition: all .2s;
   transition: all .2s;
 }
+@media only screen and (max-width: 320px) {
+  .header__fixed {
+    position: fixed;
+  }
+}
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+  .header__fixed {
+    position: fixed;
+  }
+}
 .header__fixed.fixed {
   background-color: #101010;
   position: fixed;
@@ -964,7 +964,7 @@ header.fixed {
   -ms-transition: all .2s;
   -o-transition: all .2s;
   transition: all .2s;
-  z-index: 1;
+  z-index: 10;
 }
 header.header-catalog {
   height: 550px;
