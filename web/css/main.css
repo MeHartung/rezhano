@@ -3104,7 +3104,8 @@ body .delivery-info__message {
   width: 100%;
   z-index: 1;
 }
-.product-filter__item.active .product-filter__link {
+.product-filter__item.active .product-filter__link,
+.product-filter__item.changed .product-filter__link {
   color: #ffcf40;
 }
 .product-filter__link {
