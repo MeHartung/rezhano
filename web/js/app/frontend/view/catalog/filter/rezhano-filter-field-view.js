@@ -14,9 +14,12 @@ define(function (require) {
             this.$el.toggleClass('deployed');
         },
         updateState: function () {
+            console.log(this.model.get('value'))
             var val = this.model.get('value');
             if ($.isArray(val) && val.length) {
-                this.$el.addClass('active');
+              console.log(this.$el)
+
+              this.$el.addClass('active');
             } else {
                 this.$el.removeClass('active');
             }
