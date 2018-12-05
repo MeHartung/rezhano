@@ -28,8 +28,8 @@ define(function(require){
       units: 'шт'
     },
     events:{
-      'keydown  .quantity-control__input': 'onCartActionsQuantityInputKeydown',
-      'keyup    .quantity-control__input': 'onCartActionsQuantityInputKeyup',
+      // 'keydown  .quantity-control__input': 'onCartActionsQuantityInputKeydown',
+      'change    .quantity-control__input': 'onCartActionsQuantityInputKeyup',
       'click    .quantity-control__up': 'onAppendClick',
       'click    .quantity-control__down': 'onSubtractClick'
     },
