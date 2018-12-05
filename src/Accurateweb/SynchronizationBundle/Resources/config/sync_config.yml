@@ -40,3 +40,16 @@ services:
       - 'moy_sklad_image'
     tags:
       - { name: 'aw.synchronization.config' }
+
+  aw.synchronization.configuration.moy_sklad.warehouses:
+    class: Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration
+    arguments:
+      - '@event_dispatcher'
+      - '@doctrine.dbal.default_connection'
+   #   - '@aw.synchronization.sync.moy_sklad'
+      - '@aw.synchronization.subject.moy_sklad.warehouses'
+      - '@aw.synchronization.datasource.moy_sklad.warehouse'
+      - '%kernel.root_dir%'
+      - 'moy_sklad_warehouses'
+    tags:
+      - { name: 'aw.synchronization.config' }

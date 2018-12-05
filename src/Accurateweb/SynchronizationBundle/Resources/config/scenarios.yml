@@ -7,7 +7,7 @@ services:
     arguments:
       - "@event_dispatcher"
       - 'moy_sklad'
-      - { moy_sklad_folder: '@aw.synchronization.subject.moy_sklad.products_folders', moy_sklad: '@aw.synchronization.subject.moy_sklad.products', moy_sklad_product_photo: '@aw.synchronization.subject.moy_sklad.products.images' }
+      - { moy_sklad_folder: '@aw.synchronization.subject.moy_sklad.products_folders', moy_sklad: '@aw.synchronization.subject.moy_sklad.products', moy_sklad_product_photo: '@aw.synchronization.subject.moy_sklad.products.images', moy_sklad_warehouse: '@aw.synchronization.subject.moy_sklad.warehouses' }
       - "@doctrine.orm.default_entity_manager"
       - "@logger"
       - '%kernel.root_dir%'

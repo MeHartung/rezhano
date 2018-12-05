@@ -74,6 +74,15 @@ Call it with:
     #$syncService = $this->getContainer()->get('aw.serrvice.synchronization');
     #$syncService = $this->getContainer()->get('aw.serrvice.synchronization');
     
+    $subjectParam = $input->getArgument('subject');
+    if(count($subjectParam) > 0)
+    {
+      $subjects = explode(',', $subjectParam[0]);
+    }else
+    {
+      $subjects = [];
+    }
+
     $output->writeln('Pre execute started');
   
     $dispatcher = $this->getContainer()->get('event_dispatcher');
@@ -95,6 +104,14 @@ Call it with:
     /** @var SynchronizationSubjectInterface $subject */
     foreach ($scenario as $subject)
     {
+      if(count($subjects) > 0)
+      {
+        if(!in_array($subject->getName(), $subjects))
+        {
+          continue;
+        }
+      }
+      
       $config = $this->getContainer()->get('aw.synchronization.configuration_manager')->get($subject->getName());
       $syncService = new SynchronizationService(null, $config, null);
       try
@@ -113,7 +130,7 @@ Call it with:
     $output->writeln('Post execute started');
     try
     {
-      $scenario->postExecute();
+      $scenario->postExecute($subjects);
     }catch (\Exception $exception)
     {
       $this->getContainer()->get('logger')->addError("Post execute error: " . $exception->getMessage());

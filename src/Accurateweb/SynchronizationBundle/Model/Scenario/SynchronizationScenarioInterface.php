@@ -28,9 +28,10 @@ interface SynchronizationScenarioInterface extends \Iterator, \ArrayAccess
    *
    * Позволяет выполнить дополнительные задачи после выполнения сценария синхронизации, такие как очистка или запуск
    * внешних скриптов
+   * @param array $subjects
    * @return void
    */
-  public function postExecute();
+  public function postExecute($subjects);
   
   /**
    * @param EventDispatcherInterface|null $dispatcher

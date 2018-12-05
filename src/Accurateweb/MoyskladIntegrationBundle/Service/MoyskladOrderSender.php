@@ -8,6 +8,7 @@ use AccurateCommerce\Shipping\Method\Store\ShippingMethodStorePickup;
 use Accurateweb\MoyskladIntegrationBundle\Event\MoyskladOrderCreateEvent;
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladExceptionFactory;
+use Accurateweb\MoyskladIntegrationBundle\Model\Logistic\MoySkladWarehouse;
 use Accurateweb\MoyskladIntegrationBundle\Model\MoyskladManager;
 use Accurateweb\MoyskladIntegrationBundle\Model\OrderItemTransformer;
 use Accurateweb\SettingBundle\Model\Manager\SettingManagerInterface;
@@ -322,19 +323,27 @@ class MoyskladOrderSender
    */
   private function getWarehouse($cityName)
   {
+    /** @var MoySkladWarehouse|null $warehouse */
     $warehouse = null;
     $repo = $this->sklad->getRepository('MoySklad\\Entities\\Store');
+    $warehouseInternal = null;
+    
     if($cityName === 'Реж')
     {
-     $warehouse = $repo->find($this->settingManager->getSetting('warehouse_rezh')->getValue());
+      $warehouseInternal = $this->settingManager->getSetting('warehouse_rezh')->getValue();
     }elseif($cityName === 'Екатеринбург')
     {
-      $warehouse = $repo->find($this->settingManager->getSetting('warehouse_ekb')->getValue());
+      $warehouseInternal = $this->settingManager->getSetting('warehouse_ekb')->getValue();
     }else
     {
-      $warehouse = $repo->find($this->settingManager->getSetting('warehouse_other_city')->getValue());
+      $warehouseInternal = $this->settingManager->getSetting('warehouse_other_city')->getValue();
     }
-  
-   return $warehouse;
+    /** @var  $warehouseInternal MoySkladWarehouse */
+    if($warehouseInternal)
+    {
+      $warehouse = $repo->find($warehouseInternal->getExternalId());
+    }
+    
+    return $warehouse;
   }
 }

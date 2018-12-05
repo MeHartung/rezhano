@@ -75,55 +75,59 @@ class MoySkladScenario extends SynchronizationScenario
   }
   
   
-  public function postExecute()
+  public function postExecute($subjects)
   {
-    $isUseImageSubject = false;
-    
-    /**
-     * Если была синхронизация картинок
-     * @var SynchronizationSubjectInterface $subject
-     */
-    foreach ($this->subjects as $subject)
+    if(in_array('', $subjects) || $subjects)
     {
-      if($subject->getName() == 'moy_sklad_image')
+      $isUseImageSubject = false;
+  
+      /**
+       * Если была синхронизация картинок
+       * @var SynchronizationSubjectInterface $subject
+       */
+      foreach ($this->subjects as $subject)
       {
-        $isUseImageSubject = true;
-        break;
+        if($subject->getName() == 'moy_sklad_image')
+        {
+          $isUseImageSubject = true;
+          break;
+        }
       }
-    }
-    
-    if($isUseImageSubject === true)
-    {
-      $this->dispatcher->dispatch(
-        'aw.sync.order_event.message',
-        new GenericEvent("Try create ProductImage thumbnails, use media:thumbnails:generate command")
-      );
-      
-      # ибо консоль в bin
-      $kernel = $this->kernelRootDir . '\\..\\bin';
-      $className = ProductImage::class;
-      $process = new Process("php $kernel/console media:thumbnails:generate $className");
-      $process->run();
-
-// executes after the command finishes
-      if (!$process->isSuccessful())
+  
+      if($isUseImageSubject === true)
       {
-        $errorText = $process->getErrorOutput();
-        $errorCode = $process->getExitCode();
         $this->dispatcher->dispatch(
           'aw.sync.order_event.message',
-          new GenericEvent("Can't create thumbnail. Error code: $errorCode. Text: \n $errorText")
+          new GenericEvent("Try create ProductImage thumbnails, use media:thumbnails:generate command")
         );
-        
-        $this->logger->error("Can't create thumbnail. Error code: $errorCode. Text: \n $errorText");
+    
+        # ибо консоль в bin
+        $kernel = $this->kernelRootDir . '\\..\\bin';
+        $className = ProductImage::class;
+        $process = new Process("php $kernel/console media:thumbnails:generate $className");
+        $process->run();
+
+// executes after the command finishes
+        if (!$process->isSuccessful())
+        {
+          $errorText = $process->getErrorOutput();
+          $errorCode = $process->getExitCode();
+          $this->dispatcher->dispatch(
+            'aw.sync.order_event.message',
+            new GenericEvent("Can't create thumbnail. Error code: $errorCode. Text: \n $errorText")
+          );
+      
+          $this->logger->error("Can't create thumbnail. Error code: $errorCode. Text: \n $errorText");
+        }
+    
+        $this->dispatcher->dispatch(
+          'aw.sync.order_event.message',
+          new GenericEvent("Thumbnails generated!")
+        );
+    
       }
-      
-      $this->dispatcher->dispatch(
-        'aw.sync.order_event.message',
-        new GenericEvent("Thumbnails generated!")
-      );
-      
     }
+   
    
   }
 }

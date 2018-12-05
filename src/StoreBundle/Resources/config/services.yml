@@ -1141,3 +1141,9 @@ services:
       arguments: ['@doctrine.orm.entity_manager']
       tags:
         - { name: kernel.event_listener, event: moysklad.order.create, method: onMoyskladOrderCreate }
+
+    store.moysklad.warehouse_repository:
+      class: StoreBundle\Repository\Store\Logistics\Delivery\Warehouse\MoySkladWarehouseRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Store\Logistics\Warehouse\MoySkladWarehouse

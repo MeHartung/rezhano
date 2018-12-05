@@ -101,7 +101,7 @@ class SynchronizationScenario implements SynchronizationScenarioInterface
    * Позволяет выполнить дополнительные задачи после выполнения сценария синхронизации, такие как очистка или запуск
    * внешних скриптов
    */
-  public function postExecute()
+  public function postExecute($subjects)
   {    
   }
 

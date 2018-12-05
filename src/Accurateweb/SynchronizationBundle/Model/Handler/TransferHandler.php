@@ -4,6 +4,7 @@ namespace Accurateweb\SynchronizationBundle\Model\Handler;
 
 use Accurateweb\SynchronizationBundle\Model\Handler\Base\BaseDataHandler;
 use Accurateweb\SynchronizationBundle\Model\Schema\Base\BaseSchema;
+use Symfony\Component\EventDispatcher\GenericEvent;
 
 class TransferHandler extends BaseDataHandler implements TransferHandlerInterface
 {
@@ -82,7 +83,10 @@ class TransferHandler extends BaseDataHandler implements TransferHandlerInterfac
             $this->query($this->processTemplate($sql), $connection);
         }catch (\Exception $exception)
         {
-
+          $this->dispatcher->dispatch(
+            'aw.sync.order_event.message',
+            new GenericEvent((sprintf('%s.', $exception->getMessage())))
+          );
         }
     }
     
