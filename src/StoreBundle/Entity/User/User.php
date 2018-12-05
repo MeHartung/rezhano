@@ -27,6 +27,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
  * @ORM\Entity()
  * @StoreAssert\JuridicalUserCompanyRequired()
  * @StoreAssert\UserRoles()
+ * @StoreAssert\UserEmail()
+ * @StoreAssert\UserPassword()
  * @DoctrineAssert\UniqueEntity(fields={"email"}, message="Пользователь с таким E-mail уже зарегистрирован", errorPath="#")
  */
 class User extends BaseUser
@@ -89,7 +91,7 @@ class User extends BaseUser
   private $company;
 
   /**
-   * @var
+   * @var string
    * @Assert\Length(
    *      min = 5,
    *      max = 255,
@@ -516,4 +518,21 @@ class User extends BaseUser
 
     return $this;
   }
+  
+  /**
+   * @return mixed
+   */
+  public function getPlainPassword()
+  {
+    return $this->plainPassword;
+  }
+  
+  /**
+   * @param mixed $plainPassword
+   */
+  public function setPlainPassword($plainPassword): void
+  {
+    $this->plainPassword = $plainPassword;
+  }
+
 }
