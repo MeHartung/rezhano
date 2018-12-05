@@ -384,7 +384,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
     {
       if($value->getProductAttribute()->getShowInProduct() === true)
       {
-        $attrs[$value->getProductAttribute()->getName()] = $value->getProductAttribute()->getWeight();
+        $attrs[$value->getProductAttribute()->getName()] = $value->getProductAttribute()->getPosition();
       }
     }
     

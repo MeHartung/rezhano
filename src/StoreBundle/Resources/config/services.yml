@@ -279,7 +279,7 @@ services:
 
     app.admin.products.attributes:
       class: StoreBundle\Admin\Products\ProductAttributeAdmin
-      arguments: [~, StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttribute, ~]
+      arguments: [~, StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttribute, 'PixSortableBehaviorBundle:SortableAdmin']
       tags:
         - {name: sonata.admin, manager_type: orm, group: catalog, label: "Свойства товаров"}
 
