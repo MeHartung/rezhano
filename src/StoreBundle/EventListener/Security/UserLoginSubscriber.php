@@ -67,7 +67,8 @@ class UserLoginSubscriber implements EventSubscriberInterface
       //Редиректим со страницы входа пользователя в профиль, если он авторизован
       if ($this->authorization_checker->isGranted(User::ROLE_DEFAULT) && $event->getRequest()->get('_route') == self::AUTH_ROUTE)
       {
-        $event->setResponse(new RedirectResponse($this->router->generate('fos_user_profile_show'), 302));
+        $event->setResponse(new RedirectResponse($this->router->generate('homepage'), 302));
+        #$event->setResponse(new RedirectResponse($this->router->generate('fos_user_profile_show'), 302));
       }
     }
     catch (AuthenticationCredentialsNotFoundException $e)
