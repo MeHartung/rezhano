@@ -37,7 +37,8 @@ define(function(require){
         'price': this.get('price'),
         'brand': product.brand,
         'category': product.taxon,
-        'quantity': this.get('quantity')
+        'quantity': this.get('quantity'),
+        'isMeasured': product.isMeasured
       }, options)
     }
   });

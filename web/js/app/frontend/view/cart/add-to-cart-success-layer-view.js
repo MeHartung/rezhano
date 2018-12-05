@@ -68,16 +68,21 @@ define(function(require){
 
     },
     render: function(){
+      var units = 'шт';
+      if (this.model.get('product').isMeasured) {
+        units = this.model.get('product').units ? this.model.get('product').units : '';
+      }
+
       this.$el.html(template({
         'name': this.model.get('name'),
         'quantityChanged': this.model.previousAttributes().quantity != this.model.get('quantity'),
         'product_url': this.model.get('product').url,
-        'quantity': this.formatFloat(this.quantity),
+        'quantity': this.formatFloat(+this.quantity),
         'price':this.model.get('price') * this.quantity,
         'image': this.model.get('product').images instanceof Array && this.model.get('product').images[0] ? this.model.get('product').images[0] : '/images/medium-no_photo.png',
         'preview_image': this.model.get('product').preview_image ? this.model.get('product').preview_image : '/images/medium-no_photo.png',
         'mountBg': this.model.get('product').background ? 'add-to-cart-layer__image_yellow' : '',
-        'units': this.model.get('product').units ? this.model.get('product').units : ''
+        'units': units
       }));
 
       return this;

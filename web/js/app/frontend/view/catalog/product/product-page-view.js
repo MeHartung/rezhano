@@ -38,8 +38,6 @@ define(function(require){
       });
 
       this.imageGalleryView = new ImageGalleryView();
-
-      this.listenTo(this.cart, 'item:add', this.onCartItemAdd)
     },
     render: function(){
       var _self = this;
@@ -65,7 +63,7 @@ define(function(require){
       //   });
       // }
 
-      if (this.$('.quantity-widget').length){
+      if (this.$('.product-item__controls').length){
         this.quantityWidget.setElement($('.product-item__controls'));
         this.quantityWidget.render();
       }
@@ -127,15 +125,13 @@ define(function(require){
             cart.items.set(cartItem, {
               remove: false
             });
-            cart.trigger('item:add', cartItem, self.cartItem.get('quantity'));
+            cart.trigger('item:add', cartItem, cartItem.quantity);
+            cartItem.set({ quantity: self.model.get('min_count') });
           });
       } else {
         // Если количество не валидно, говорим об этом пользователю
         cart.trigger('item:invalid', cartItem, this.model);
       }
-    },
-    onCartItemAdd: function () {
-      this.cartItem.set({ quantity: this.model.get('min_count') });
     }
   })
 });
