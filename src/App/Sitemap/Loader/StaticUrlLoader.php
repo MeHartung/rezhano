@@ -20,7 +20,7 @@ class StaticUrlLoader extends ArraySitemapLoader
     parent::__construct(array(
       new SitemapUrl($router->generate('news_index', array(), Router::ABSOLUTE_URL), 'weekly', 0.56),
       new SitemapUrl($router->generate('special_offers_index', array(), Router::ABSOLUTE_URL), 'weekly', 0.56),
-      new SitemapUrl($router->generate('contacts_index', array(), Router::ABSOLUTE_URL), 'weekly', 0.56),
+      #new SitemapUrl($router->generate('contacts_index', array(), Router::ABSOLUTE_URL), 'weekly', 0.56),
       new SitemapUrl($router->generate('articles_index', array(), Router::ABSOLUTE_URL), 'weekly', 0.56),
     ));
   }
