@@ -10,6 +10,20 @@ services:
                                          parent_guid: { type: VARCHAR, size: 36 },
                                          name: { type: VARCHAR, size: 255 }
                                         }}
+
+  aw.synchronization.schema.moy_sklad.warehouses:
+    class: Accurateweb\SynchronizationBundle\Model\Schema\CommonSchema
+    arguments:
+      - { tableName: moy_sklad_warehouse, columns: {
+                                         name: { type: VARCHAR, size: 36 },
+                                         external_id: { type: VARCHAR, size: 255 },
+                                         description: { type: TEXT },
+                                         code: { type: VARCHAR, size: 36 },
+                                         archived: { type: tinyint } ,
+                                         parent: { type: VARCHAR, size: 36 },
+                                         path_name: { type: VARCHAR, size: 36 }
+                                        }}
+
   aw.synchronization.schema.common:
     class: Accurateweb\SynchronizationBundle\Model\Schema\CommonSchema
     arguments:

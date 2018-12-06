@@ -92,6 +92,64 @@ services:
       tags:
         - { name: aw.setting }
 
+    store.setting.warehouse_rezh:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+       - '@aw.settings.storage'
+       - '@store.moysklad.warehouse_repository'
+       - 'warehouse_rezh'
+       - "Id склада, к которому будут привязываться заказы для города Реж"
+      tags:
+        - { name: aw.setting }
+
+    store.setting.warehouse_ekb:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - '@store.moysklad.warehouse_repository'
+       - 'warehouse_ekb'
+       - "Id склада, к которому будут привязываться заказы для города Екатеринбург"
+      tags:
+        - { name: aw.setting }
+
+    store.setting.warehouse_other_city:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - '@store.moysklad.warehouse_repository'
+       - 'warehouse_other_city'
+       - "Id склада, к которому будут привязываться заказы для города получения «Другой город»"
+      tags:
+        - { name: aw.setting }
+
+    store.setting.legal_customer_tag:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - legal_customer_tag
+       - "Группа, к которой будет привязан контрагент, являющийся юр. лицом"
+       - 'Новый опт'
+      tags:
+        - { name: aw.setting }
+
+    store.setting.individual_customer_tag:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      public: false
+      autowire: false
+      arguments:
+       - '@aw.settings.storage'
+       - individual_customer_tag
+       - "Группа, к которой будет привязан контрагент, являющийся физ. лицом"
+       - 'Покупатели Интернет-магазина'
+      tags:
+        - { name: aw.setting }
+
     #store.setting.synchronization.moy_sklad.products.folder:
     #  class: Accurateweb\SettingBundle\Model\Setting\JsonArraySetting
     #  arguments:
@@ -101,3 +159,13 @@ services:
     #    - { 0: 'Сыр в КГ' }
     #  tags:
     #    - { name: aw.setting }
+
+    store.setting.contact_email:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'contact_email'
+        - 'Контактный e-mail'
+        - 'info@rezhano.ru'
+      tags:
+        - { name: aw.setting }

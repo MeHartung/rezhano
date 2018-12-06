@@ -31,3 +31,14 @@ services:
         - {}
       tags:
         - { name: 'aw.parser' }
+
+  aw.synchronization.parser.json_parser.warehouses:
+      class: StoreBundle\Synchronization\Parser\JsonParser
+      arguments:
+        - ~
+        - ~
+        - '@aw.synchronization.entity_factory.moy_sklad'
+        - '@aw.synchronization.schema.moy_sklad.warehouses'
+        - {}
+      tags:
+        - { name: 'aw.parser' }

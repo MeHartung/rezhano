@@ -127,7 +127,9 @@ define(function(require){
           var previousQuantity = this.quantityWidget.previousValue;
           var dlg = $('<div></div>').dialog({
             autoOpen: true,
+            draggable: false,
             title: 'Удаление товара',
+            dialogClass: "layer layer-card",
             resizable: false,
             close: function() {
               __self.model.set({ quantity: previousQuantity });

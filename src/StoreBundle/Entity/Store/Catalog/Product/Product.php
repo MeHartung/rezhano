@@ -377,8 +377,18 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   public function getProductAttributeValuesGrouped()
   {
     $result = [];
-    
+    $attrs = [];
     if ($this->getProductAttributeValues()->count() === 0) return $result;
+  
+    foreach ($this->productAttributeValues as $value)
+    {
+      if($value->getProductAttribute()->getShowInProduct() === true)
+      {
+        $attrs[$value->getProductAttribute()->getName()] = $value->getProductAttribute()->getPosition();
+      }
+    }
+    
+    ksort($attrs);
     
     foreach ($this->productAttributeValues as $value)
     {
@@ -388,7 +398,13 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
       }
     }
     
-    return $result;
+    foreach ($result as $key=>$val)
+    {
+      $attrs[$key] = $val;
+    }
+
+    
+    return $attrs;
   }
 
   /**
@@ -831,7 +847,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   }
 
   /**
-   * @return ProductImage
+   * @return ProductImage|null
    */
   public function getMainImage()
   {
@@ -841,6 +857,11 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
              ->setMaxResults(1);
 
     $images =  $this->images->matching($criteria);
+
+    if (!count($images))
+    {
+      return null;
+    }
 
     return $images->first();
   }

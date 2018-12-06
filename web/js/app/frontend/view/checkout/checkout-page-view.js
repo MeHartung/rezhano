@@ -40,16 +40,16 @@ define(function(require){
     onWindowScroll: function () {
       var scroll = $(window).scrollTop();
       var max = $('.section-purchase').height();
-      if(scroll > 260) {
+      if(scroll > 205) {
         this.$('.cards-container__payment-info').css({
           position: "fixed",
-          top: 30
+          top: 95
         });
         if(scroll < max) {
         } else {
           this.$('.cards-container__payment-info').css({
             position: "fixed",
-            top: 30
+            top: 95
           });
         }
       } else {

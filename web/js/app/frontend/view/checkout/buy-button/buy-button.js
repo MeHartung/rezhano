@@ -17,6 +17,7 @@ define(function(require){
       var self = this,
         cart = this.cart,
         cartItem = this.cart.createItem({
+          product: this.model.attributes,
           product_id: this.model.get('id') ,
           quantity: 1,
         });

@@ -3,10 +3,10 @@ return array(
     'staticAssets' => array(
         'app' => array(
             'css' => array(
-                '/css/main.77a0ac97.css',
+                '/css/main.5c6f498a.css',
             ),
             'js' => array(
-                '/js/frontend.31c4af6b.js',
+                '/js/frontend.991540be.js',
             ),
         ),
     )

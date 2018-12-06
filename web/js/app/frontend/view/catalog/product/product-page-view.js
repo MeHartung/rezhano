@@ -26,6 +26,7 @@ define(function(require){
       this.model = new Product(ObjectCache.Product || {});
 
       this.cartItem = this.cart.createItem({
+        product: this.model.attributes,
         product_id: this.model.get('id'),
         quantity: this.model.get('min_count')
       });
@@ -62,7 +63,7 @@ define(function(require){
       //   });
       // }
 
-      if (this.$('.quantity-widget').length){
+      if (this.$('.product-item__controls').length){
         this.quantityWidget.setElement($('.product-item__controls'));
         this.quantityWidget.render();
       }
@@ -108,19 +109,29 @@ define(function(require){
 
       var self = this,
           cart = this.cart,
-          cartItem = this.cart.createItem(_.pick(this.cartItem.attributes, ['product_id', 'quantity']));
+          cartItem = this.cart.createItem(_.extend({}, _.pick(this.cartItem.attributes, ['product_id', 'quantity']), {product: this.model.attributes})),
+          quantity = +this.quantityWidget.model.get('quantity'),
+          step = +this.model.get('count_step'),
+          minCount = +this.model.get('min_count');
 
-      cartItem
-        .save()
-        .done(function(){
-          cart.items.set(cartItem, {
-            remove: false
+      // Если количество кратно шагу и больше минимального, можно добавлять в корзину
+      var _q = (quantity - minCount).toFixed(3);
+      var isValid = _q >= 0 && (_q % step) < 0.0001;
+
+      if (isValid) {
+        cartItem
+          .save()
+          .done(function(){
+            cart.items.set(cartItem, {
+              remove: false
+            });
+            cart.trigger('item:add', cartItem, cartItem.quantity);
+            cartItem.set({ quantity: self.model.get('min_count') });
           });
-
-          self.onCartItemAdded(cartItem, self.cartItem.get('quantity'));
-
-          self.cartItem.set({ quantity: self.model.get('min_count') });
-        });
+      } else {
+        // Если количество не валидно, говорим об этом пользователю
+        cart.trigger('item:invalid', cartItem, this.model);
+      }
     }
   })
 });

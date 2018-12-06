@@ -47,18 +47,18 @@ define(function(require){
           arrows: true
         });
 
-        var $headerMenu = $('header');
-        var headerMenuHeight = $('header').height();
-        var headerSectionHeight = $('.header-section').height() - headerMenuHeight;
-
-        $(window).scroll(function () {
-          if ( $(this).scrollTop()>headerMenuHeight-40 ) {
-            $headerMenu.addClass('fixed');
-
-          } else if ( $(this).scrollTop()<headerMenuHeight) {
-            $headerMenu.removeClass('fixed');
-          }
-        });
+        // var $headerMenu = $('header');
+        // var headerMenuHeight = $('header').height();
+        // var headerSectionHeight = $('.header-section').height() - headerMenuHeight;
+        //
+        // $(window).scroll(function () {
+        //   if ( $(this).scrollTop()>headerMenuHeight-40 ) {
+        //     $headerMenu.addClass('fixed');
+        //
+        //   } else if ( $(this).scrollTop()<headerMenuHeight) {
+        //     $headerMenu.removeClass('fixed');
+        //   }
+        // });
       });
 
       return this;

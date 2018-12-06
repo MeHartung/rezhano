@@ -14,9 +14,11 @@ define(function(require){
       'change input.radio' : 'onShippingMethodChange',
       'click .delivery-address' : 'onAddressClick'
     },
-    initialize: function(){
+    initialize: function(options){
+      this.cart = options.cart;
       this.listenTo(this, 'attach', this._onAttached, this);
       this.listenTo(this.model, 'change', this.render, this);
+      this.listenTo(this.cart, 'change:total', this.render, this);
       this.mapViewDialog = null;
     },
     render: function(){
@@ -28,7 +30,8 @@ define(function(require){
         help: this.model.get('help'),
         show_address: this.model.get('show_address'),
         address: this.model.get('address'),
-        recipient_address: this.model.get('options').recipient_address_required
+        recipient_address: this.model.get('options').recipient_address_required,
+        showHelp: this.model.get('help') && this.cart.get('total') < 1000
       }));
 
 

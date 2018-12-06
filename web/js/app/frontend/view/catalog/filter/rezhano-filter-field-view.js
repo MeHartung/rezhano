@@ -16,7 +16,8 @@ define(function (require) {
         updateState: function () {
             var val = this.model.get('value');
             if ($.isArray(val) && val.length) {
-                this.$el.addClass('active');
+
+              this.$el.addClass('active');
             } else {
                 this.$el.removeClass('active');
             }

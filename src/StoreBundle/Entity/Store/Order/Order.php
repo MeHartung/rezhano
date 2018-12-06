@@ -50,6 +50,9 @@ class Order implements ClientApplicationModelAdapterInterface
   const CHECKOUT_STATE_CART_CHECKOUT = 0x09; //Оформленная корзина
 
   const CHECKOUT_STATE_NAME_COMPLETE = 'Заказ оформлен';
+  
+  const CUSTOMER_TYPE_INDIVIDUAL = 'individual'; // тип покупателя физ. лицо
+  const CUSTOMER_TYPE_LEGAL = 'legal'; // тип покупателя юр. лицо
 
   /**
    * @var int
@@ -277,6 +280,12 @@ class Order implements ClientApplicationModelAdapterInterface
    * @ORM\OneToOne(targetEntity="StoreBundle\Entity\Integration\MoyskladQueue", mappedBy="order")
    */
   private $moysklad_queue;
+  
+  /**
+   * @var string
+   * @ORM\Column(type="string", options={"default": "individual"})
+   */
+  private $customerType = self::CUSTOMER_TYPE_INDIVIDUAL;
   
   /**
    * Конструктор.
@@ -1151,4 +1160,19 @@ class Order implements ClientApplicationModelAdapterInterface
     $this->moysklad_queue = $moysklad_queue;
   }
   
+  /**
+   * @return string
+   */
+  public function getCustomerType(): ?string
+  {
+    return $this->customerType;
+  }
+  
+  /**
+   * @param string $customerType
+   */
+  public function setCustomerType(?string $customerType): void
+  {
+    $this->customerType = $customerType;
+  }
 }

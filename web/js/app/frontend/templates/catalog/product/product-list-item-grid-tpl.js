@@ -32,6 +32,7 @@ define(function(){
        <div class="product-item__controls quantity-widget quantity-wrap">\n\
           <a class="controls-item controls-item__increase"></a>\n\
           <input type="text" class="custom-input" value="1">\n\
+          <span class="quantity-widget_units"><%= units %></span>\n\
           <a class="controls-item controls-item__reduce"></a>\n\
        </div>\
     </div>\

@@ -12,10 +12,20 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\Filter\NumberType;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Range;
 
 class ProductAttributeAdmin extends AbstractAdmin
 {
+  protected $datagridValues = array(
+    '_page' => 1,
+    '_sort_order' => 'ASC',
+    '_sort_by' => 'position',
+  );
+  
   protected $translationDomain = 'messages';
 
   public function configureListFields(ListMapper $list)
@@ -41,10 +51,17 @@ class ProductAttributeAdmin extends AbstractAdmin
         'property' => 'value',
         'label' => 'Значения свойства товара'
       ))
+/*      ->add('weight', null, array(
+        'label' => 'Вес',
+        'editable' => true
+      ))*/
       ->add('_action', null, [
         'actions' => [
           'edit' => [],
-          'delete' => []
+          'delete' => [],
+          'move' => array(
+            'template' => 'PixSortableBehaviorBundle:Default:_sort_drag_drop.html.twig'
+          ),
         ]
       ]);
   }
@@ -67,6 +84,14 @@ class ProductAttributeAdmin extends AbstractAdmin
           'Вариативное' => 2
         ],
       ])
+ /*     ->add('weight', \Symfony\Component\Form\Extension\Core\Type\NumberType::class, array(
+        'required' => true,
+        'constraints' => array(
+          new NotBlank(),
+          new Range(['min'=> 0, 'minMessage' => 'Введите число не менее 0'])
+        ),
+        'label' => 'Вес'
+      ))*/
       ->add('showInFilter', null, [
         'label' => 'Выводить аттрибут в фильтре'
       ])
@@ -101,5 +126,10 @@ class ProductAttributeAdmin extends AbstractAdmin
     {
       $value->setProductAttribute($object);
     }
+  }
+  
+  protected function configureRoutes(RouteCollection $collection)
+  {
+    $collection->add('move', $this->getRouterIdParameter() . '/move/{position}');
   }
 }

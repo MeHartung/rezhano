@@ -82,6 +82,25 @@ class CheckoutType extends AbstractType
     );
     
     $builder
+      ->add('customerType', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, [
+        'required' => true,
+        'label' => false,
+        'choices' => [
+          'Частное лицо' => Order::CUSTOMER_TYPE_INDIVIDUAL,
+          'Юридическое лицо' => Order::CUSTOMER_TYPE_LEGAL,
+        ],
+        'expanded' => true,
+        'multiple' => false,
+        'constraints' => [
+          new NotBlank(['message' => 'Пожалуйста, укажите лицо']),
+          //new Regex(['pattern' => '/\+7\s\(\d{3}\)\s\d{3}\-\d{2}\-\d{2}/'])
+        ],
+        'block_name' => 'customer_type_block',
+       /* 'choice_attr' => function($choiceValue, $key, $value) {
+          // adds a class like attending_yes, attending_no, etc
+          return ['class' => 'attending_'];
+        },*/
+      ])
       ->add('customer_phone', TextType::class, [
         'required' => true,
         'label' => false,

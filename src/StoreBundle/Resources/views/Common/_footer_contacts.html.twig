@@ -1,0 +1,6 @@
+{% for contactPhone in contactPhones %}
+    <div class="contact-item">
+        <a class="contact-item" href="tel:{{ contactPhone.cleanPhone }}"
+            >{{ contactPhone.phone }}<span class="contact-item-separator">/</span>{{ contactPhone.name }}</a>
+    </div>
+{% endfor %}

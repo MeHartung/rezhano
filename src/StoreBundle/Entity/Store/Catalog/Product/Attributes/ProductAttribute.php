@@ -11,6 +11,7 @@ namespace StoreBundle\Entity\Store\Catalog\Product\Attributes;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Таблица атрибутов товара
@@ -55,6 +56,13 @@ class ProductAttribute
    * @ORM\Column(name="value_type", type="integer")
    */
   private $valueType;
+  
+  /**
+   * @var integer
+   * @ORM\Column(type="integer")
+   * @Gedmo\SortablePosition()
+   */
+  private $position;
 
 //  /**
 //   * @var ArrayCollection
@@ -263,5 +271,20 @@ class ProductAttribute
   {
     $this->showInProduct = $showInProduct;
   }
-
+  
+  /**
+   * @return int
+   */
+  public function getPosition(): ?int
+  {
+    return $this->position;
+  }
+  
+  /**
+   * @param int $position
+   */
+  public function setPosition(?int $position): void
+  {
+    $this->position = $position;
+  }
 }

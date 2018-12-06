@@ -3,12 +3,16 @@
 namespace Accurateweb\MoyskladIntegrationBundle\Service;
 
 use AccurateCommerce\Component\CdekShipping\Shipping\Method\ShippingMethodCdekTerminal;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStoreCourier;
+use AccurateCommerce\Shipping\Method\Store\ShippingMethodStorePickup;
 use Accurateweb\MoyskladIntegrationBundle\Event\MoyskladOrderCreateEvent;
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladExceptionFactory;
+use Accurateweb\MoyskladIntegrationBundle\Model\Logistic\MoySkladWarehouse;
 use Accurateweb\MoyskladIntegrationBundle\Model\MoyskladManager;
 use Accurateweb\MoyskladIntegrationBundle\Model\OrderItemTransformer;
 use Accurateweb\SettingBundle\Model\Manager\SettingManagerInterface;
+use MoySklad\Entities\Store;
 use StoreBundle\Entity\Store\Logistics\Delivery\Cdek\CdekRawPvzlist;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Order\OrderItem;
@@ -64,6 +68,7 @@ class MoyskladOrderSender
    */
   public function sendOrder(Order $order)
   {
+    $warehouse = $this->getWarehouse($order->getShippingCityName());
     
     $orid = $this->sklad->getRepository('MoySklad\\Entities\\Organization')->findAll();
     $organization = $orid[0];
@@ -73,12 +78,23 @@ class MoyskladOrderSender
     {
       throw new MoyskladException(sprintf('Organization %s was not found', $this->organization_id));
     }
-
+    
+    $contragentAddres = $order->getShippingAddress() ? $order->getShippingAddress() : '-';
+    
+    if($order->getShippingAddress() == null && $order->getShippingMethod()->getUid() === ShippingMethodStorePickup::UID)
+    {
+      if($order->getShippingMethod()->getAddress() !== null)
+      {
+        $contragentAddres = $order->getShippingMethod()->getAddress();
+      }
+    }
+    
     $contragent = $this->getOrCreateContragentByEmail(
       $order->getCustomerEmail(),
       $order->getCustomerFullName(),
       $order->getCustomerPhone(),
-      $order->getShippingAddress() ?: ''
+      $contragentAddres,
+      $order->getCustomerType()
     );
 
     $customerOrder = new CustomerOrder($this->sklad->getSklad(), [
@@ -90,6 +106,10 @@ class MoyskladOrderSender
     ]);
 
     $customerOrderCreation = $customerOrder->buildCreation();
+    if($warehouse !== null)
+    {
+      $customerOrderCreation->addStore($warehouse);
+    }
     $meta = $this->sklad->getRepository('MoySklad\\Entities\\Documents\\Orders\\CustomerOrder')->getClassMetadata();
     /**
      * Этот кусок на данный момент выпилен, ибо работает он с кастомными полями
@@ -243,9 +263,11 @@ class MoyskladOrderSender
    * @param string $phone
    * @param string $fullName
    * @param string $email
+   * @param string $customerType - тип покупателя, юр или физ. лицо
    * @return Counterparty
    */
-  protected function getOrCreateContragentByEmail($email, $fullName, $phone='', $actualAddress='')
+  protected function getOrCreateContragentByEmail($email, $fullName, $phone='', $actualAddress='',
+                                                  $customerType = Order::CUSTOMER_TYPE_INDIVIDUAL)
   {
     $repository = $this->sklad->getRepository('MoySklad\\Entities\\Counterparty');
     $contragent = $repository
@@ -253,11 +275,15 @@ class MoyskladOrderSender
 
     if (!$contragent)
     {
+      $settingName = $customerType == Order::CUSTOMER_TYPE_INDIVIDUAL ? 'individual_customer_tag' : 'legal_customer_tag';
+      
       $contragent = $repository->createNewObject([
         'name' => $fullName,
         'phone' => $phone,
         'email' => $email,
         'actualAddress' => $actualAddress,
+        'tags' => [$this->settingManager->getSetting($settingName)->getValue()],
+        'companyType' => $customerType
       ]);
     }
 
@@ -288,5 +314,36 @@ class MoyskladOrderSender
     }
 
     return $list;
+  }
+  
+  /**
+   * Возращает склад для города, если он есть
+   * @param $cityName string
+   * @return Store|null
+   */
+  private function getWarehouse($cityName)
+  {
+    /** @var MoySkladWarehouse|null $warehouse */
+    $warehouse = null;
+    $repo = $this->sklad->getRepository('MoySklad\\Entities\\Store');
+    $warehouseInternal = null;
+    
+    if($cityName === 'Реж')
+    {
+      $warehouseInternal = $this->settingManager->getSetting('warehouse_rezh')->getValue();
+    }elseif($cityName === 'Екатеринбург')
+    {
+      $warehouseInternal = $this->settingManager->getSetting('warehouse_ekb')->getValue();
+    }else
+    {
+      $warehouseInternal = $this->settingManager->getSetting('warehouse_other_city')->getValue();
+    }
+    /** @var  $warehouseInternal MoySkladWarehouse */
+    if($warehouseInternal)
+    {
+      $warehouse = $repo->find($warehouseInternal->getExternalId());
+    }
+    
+    return $warehouse;
   }
 }

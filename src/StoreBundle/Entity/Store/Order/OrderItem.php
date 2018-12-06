@@ -232,6 +232,7 @@ class OrderItem implements ShippableInterface
         'preview_image' => $product->getThumbnailUrl('catalog_prev'),
         'taxon' => $primary_taxon?$primary_taxon->getName():'',
         'background' => $product->getBackground(),
+        'isMeasured' => $product->getMeasured(),
         'units' => $product->getUnits()
       ] : null
     ];

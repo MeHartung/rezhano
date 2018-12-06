@@ -39,6 +39,17 @@ define(function(require){
 <!--</div>-->\
 ');
 
+  var quantityScales = [
+    {
+      units: "кг",
+      multiplicator: 1
+    },
+    {
+      units: "г",
+      multiplicator: 1000
+    }
+  ];
+
   return ModalDialogView.extend({
     id: 'facebox',
     className: 'layer add-to-cart-layer',
@@ -51,6 +62,11 @@ define(function(require){
     },
     initialize: function(options){
       this.quantity = options.quantity;
+
+      this.units = 'шт';
+      this.scale = null;
+
+      this.adjustScale();
 
       ModalDialogView.prototype.initialize.apply(this, arguments);
     },
@@ -68,16 +84,21 @@ define(function(require){
 
     },
     render: function(){
+      var units = 'шт';
+      if (this.model.get('product').isMeasured) {
+        units = this.model.get('product').units ? this.model.get('product').units : '';
+      }
+
       this.$el.html(template({
         'name': this.model.get('name'),
         'quantityChanged': this.model.previousAttributes().quantity != this.model.get('quantity'),
         'product_url': this.model.get('product').url,
-        'quantity': this.formatFloat(this.quantity),
+        'quantity': this.formatFloat(this.modelToView(+this.quantity)),
         'price':this.model.get('price') * this.quantity,
         'image': this.model.get('product').images instanceof Array && this.model.get('product').images[0] ? this.model.get('product').images[0] : '/images/medium-no_photo.png',
         'preview_image': this.model.get('product').preview_image ? this.model.get('product').preview_image : '/images/medium-no_photo.png',
         'mountBg': this.model.get('product').background ? 'add-to-cart-layer__image_yellow' : '',
-        'units': this.model.get('product').units ? this.model.get('product').units : ''
+        'units': this.scale ? this.scale.units : this.units
       }));
 
       return this;
@@ -93,8 +114,65 @@ define(function(require){
       this.$el.fadeIn();
     },
     formatFloat: function ($number) {
-      $number = +$number;
-      return $number - Math.floor($number) ? $number.toFixed(3) : $number;
+      return +$number.toFixed(2);
+    },
+    /**
+     * Выбирает наиболее подходящую шкалу для конвертации значения
+     * @param v
+     */
+    adjustScale: function(v){
+      var self = this;
+
+      if (!this.model.get('product').isMeasured){
+        this.scale = null;
+        return;
+      }
+      if (!this.scale){
+        this.scale = quantityScales[0]; //@FIXME выбирать шкалу с мультипликатором 1
+      }
+
+      //1. Ищем подходящую шкалу для значения 0.xxx
+      var q = +this.quantity, scaleAdjusted = false;
+      if (q < 1){
+        _.each(quantityScales, function(scale){
+          //Предполагаем, что шкалы уже отсортированы в порядке возрастания масштаба
+          if (scale.multiplicator > self.scale.multiplicator && q*scale.multiplicator > 1){
+            self.scale = scale;
+            scaleAdjusted = true;
+            return false;
+          }
+        });
+      }
+      if (!scaleAdjusted){
+        _.each(quantityScales, function(scale){
+          //Предполагаем, что шкалы уже отсортированы в порядке возрастания масштаба
+          if (q >= scale.multiplicator){
+            self.scale = scale;
+            scaleAdjusted = true;
+            return false;
+          }
+        });
+      }
+
+    },
+    /**
+     * Конвертирует отображаемое значение в значение, хранимое в модели (в кг)
+     *
+     * @param v
+     */
+    viewToModel: function(v){
+      if (!this.scale){
+        return v;
+      }
+
+      return v / this.scale.multiplicator;
+    },
+    modelToView: function(v){
+      if (!this.scale){
+        return v;
+      }
+
+      return v * this.scale.multiplicator;
     }
   });
 });

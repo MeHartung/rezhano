@@ -5,6 +5,7 @@ define(function(require){
   var Backbone = require('backbone'),
       $ = require('jquery'),
       AddToCartSuccessLayerView = require('view/cart/add-to-cart-success-layer-view'),
+      AddToCartInvalidLayerView = require('view/cart/add-to-cart-invalid-layer-view'),
       CartWidgetView = require('view/cart/widget'),
       CatalogSearchFormView = require('view/catalog/search/catalog-search-form-view'),
       //CitySelectLinkView = require('view/common/header/city-select-link'),
@@ -25,6 +26,7 @@ define(function(require){
       this.user = options.user;
 
       this.addToCartSuccessLayer = null;
+      this.addToCartInvalidLayerView = null;
 
       if (this.options.cartWidget){
         this.cartWidget = new CartWidgetView({
@@ -46,6 +48,7 @@ define(function(require){
       this.questionDialogView = null;
 
       this.listenTo(this.cart, 'item:add', this.onCartItemAdded);
+      this.listenTo(this.cart, 'item:invalid', this.onCartItemInvalid);
     },
     onCartItemAdded: function(model, quantity){
       if (this.addToCartSuccessLayer){
@@ -75,6 +78,21 @@ define(function(require){
         }
       });
     },
+    onCartItemInvalid: function (item, product) {
+      if (this.addToCartInvalidLayerView){
+        this.addToCartInvalidLayerView.dispose();
+        this.addToCartInvalidLayerView = null;
+      }
+      this.addToCartInvalidLayerView = new AddToCartInvalidLayerView({
+        cartItem: item,
+        cart: this.cart,
+        quantity: item.get('quantity'),
+        product: product
+      });
+      this.addToCartInvalidLayerView.$el.appendTo($('body'));
+      this.addToCartInvalidLayerView.render();
+      this.addToCartInvalidLayerView.open();
+    },
     render: function(){
       var self = this;
 
@@ -96,6 +114,18 @@ define(function(require){
           el: $(item),
           dialog: self.userPanelView
         }).render();
+      });
+
+      var $headerMenu = $('.header__fixed');
+      var headerMenuHeight = $('.header__fixed').height();
+
+      $(window).scroll(function () {
+        if ( $(this).scrollTop()>headerMenuHeight-40 ) {
+          $headerMenu.addClass('fixed');
+
+        } else if ( $(this).scrollTop()<headerMenuHeight) {
+          $headerMenu.removeClass('fixed');
+        }
       });
 
       return this;

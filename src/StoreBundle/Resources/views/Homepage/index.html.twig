@@ -28,7 +28,7 @@
                     {% for banner in banners  %}
                     <div class="header-slider__item" >
 
-                        <img src="{{ image_url(banner, 'homepage-banner/teaser') }}" alt="" style="position: absolute; right: 0; bottom: 15px;">
+                        <img class="header-slider__teaser" src="{{ image_url(banner, 'homepage-banner/teaser') }}" alt="">
 
                         <div class="container">
                             <div class="header-section__image">
@@ -151,8 +151,8 @@
         <div class="container container_no-padding container_2000">
             <h2 class="choice__title">Сложный выбор?</h2>
 
-            <a href="{{ url('taxon', { slug: 'syr', "f[type]": "casual"}) }}" class="choice__link choice__everyday"></a>
-            <a href="{{ url('taxon', { slug: 'syr', "f[type]": "gourmet"}) }}" class="choice__link choice__gourmet"></a>
+            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "8"}) }}" class="choice__link choice__everyday"></a>
+            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "7"}) }}" class="choice__link choice__gourmet"></a>
         </div>
     </section>
 
@@ -214,11 +214,11 @@
                     {% endfor %}
                 </div>
 
-                <div class="notes-images-gallery">
-                    <img class="notes-image-gallery__item" src="/images/Anna.png" alt="">
+                {#<div class="notes-images-gallery">#}
+                    {#<img class="notes-image-gallery__item" src="/images/Anna.png" alt="">#}
 
-                    <span class="notes-image-gallery__text-aside">Анна — хозяйка сыроварни</span>
-                </div>
+                    {#<span class="notes-image-gallery__text-aside">Анна — хозяйка сыроварни</span>#}
+                {#</div>#}
 
                 <a href="" class="notes__go-instagram">
                     <span>ещё больше интересного здесь</span>

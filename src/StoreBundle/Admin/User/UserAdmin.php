@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
@@ -46,16 +47,24 @@ class UserAdmin extends AbstractAdmin
     $form
       ->tab('Основное')
       ->add('email', null, [
-        'disabled' => !$is_edit
+      #  'disabled' => !$is_edit
       ])
       ->add('firstname')
       ->add('middlename')
       ->add('lastname')
+      ->add('plainPassword', PasswordType::class, [
+        'label' => !$is_edit ? 'Пароль' : 'Новый пароль',
+        'help' => 'Не менее 5 символов',
+        'attr' => [
+          'placeholder' => '*****'
+        ],
+        'required' => !$is_edit
+      ])
       ->add('phone')
       ->add('enabled')
-      ->add('city', null, [
+      /*->add('city', null, [
         'required' => false,
-      ])
+      ])*/
       ->add('roles', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
         'expanded' => true,
         'multiple' => true,
@@ -63,19 +72,20 @@ class UserAdmin extends AbstractAdmin
           'Администратор' => User::ROLE_ADMIN,
         ]
       ])
-      ->add('contragentStatus', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
+     /* ->add('contragentStatus', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
         'choices' => User::getAvailableContragentStatuses()
-      ])
+      ])*/
       ->end()
-      ->end()
-      ->tab('Компания')
+      ->end();
+/*      ->tab('Компания')
         ->add('company', 'StoreBundle\Form\User\CompanyFormType', [
           'required' => false,
         ])
-      ->end();
+      ->end();*/
 
-    $builder = $form->getFormBuilder();
-    $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'preSubmit']);
+    #$builder = $form->getFormBuilder();
+    #$builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'preSubmit']);
+    #$builder->addEventListener(FormEvents::POST_SUBMIT, [$this, 'postSubmit']);
   }
 
   protected function configureDatagridFilters(DatagridMapper $filter)
@@ -97,17 +107,17 @@ class UserAdmin extends AbstractAdmin
         ->add('fio')
         ->add('phone')
         ->add('email')
-        ->add('city')
+      #  ->add('city')
         ->add('roles', null, [
           'label' => 'Роль',
           'template' => '@Store/Admin/User/main_role_show.html.twig',
         ])
       ->end()
-      ->with('Документы')
+ /*     ->with('Документы')
         ->add('documents', null, [
           'template' => '@Store/Admin/User/documents_show_array.html.twig',
         ])
-      ->end();
+      ->end()*/;
   }
 
   public function preSubmit(FormEvent $event)
@@ -127,6 +137,20 @@ class UserAdmin extends AbstractAdmin
         unset($data['company']);
         $event->setData($data);
       }
+    }
+  }
+  
+  /**
+   * @param $object User
+   */
+  public function preUpdate($object)
+  {
+    parent::preUpdate($object);
+    
+    if($object->getPlainPassword())
+    {
+      $userManager = $this->getConfigurationPool()->getContainer()->get('fos_user.user_manager');
+      $userManager->updateUser($object, false);
     }
   }
 }

@@ -28,13 +28,17 @@ define(function(require){
       this.cart = options.cart;
       this.quantityWidget = new QuantityWidget({
         model: this.cart.createItem({
+          product: this.model.attributes,
           productId: this.model.get('id'),
           quantity: this.model.get('min_count')
         }),
         min: this.model.get('min_count'),
-        step: this.model.get('count_step')
+        step: this.model.get('count_step'),
+        units: this.model.get('units')
       });
       this.productQuickViewDialog = null;
+
+      this.listenTo(this.cart, 'item:add', this.onCartItemAdd)
     },
     render: function(){
       var isUserAuth = User.getCurrentUser().isNew() == false;
@@ -77,21 +81,34 @@ define(function(require){
 
       var self = this,
         productId = $(e.currentTarget).data('product-id'),
-        cart = this.cart;
-      var cartItem = this.cart.createItem({
-        product_id: productId,
-        quantity: this.quantityWidget.model.get('quantity')
-      });
+        cart = this.cart,
+        quantity = +this.quantityWidget.model.get('quantity'),
+        step = +this.model.get('count_step'),
+        minCount = +this.model.get('min_count');
 
-      cartItem
-        .save()
-        .done(function(){
-          cart.items.set(cartItem, {
-            remove: false
+      // Если количество кратно шагу и больше минимального, можно добавлять в корзину
+      var _q = (quantity - minCount).toFixed(3);
+      var isValid = _q >= 0 && (_q % step) < 0.0001;
+      //var isValid = Math.ceil(_q / step) - _q / step === 0 && quantity >= minCount;
+
+      var cartItem = this.cart.createItem({
+        product: this.model.attributes,
+        product_id: productId,
+        quantity: quantity
+      });
+      if (isValid) {
+        cartItem
+          .save()
+          .done(function(){
+            cart.items.set(cartItem, {
+              remove: false
+            });
+            cart.trigger('item:add', cartItem, cartItem.quantity);
           });
-          cart.trigger('item:add', cartItem, cartItem.quantity);
-          self.quantityWidget.model.set({ quantity: self.model.get('min_count') });
-        });
+      } else {
+        // Если количество не валидно, говорим об этом пользователю
+        cart.trigger('item:invalid', cartItem, this.model);
+      }
     },
     onProductPageLinkClick: function(e){
       e.preventDefault();
@@ -105,6 +122,9 @@ define(function(require){
       }
 
       this.productQuickViewDialog.open();
+    },
+    onCartItemAdd: function () {
+      this.quantityWidget.model.set({ quantity: this.model.get('min_count') });
     }
   })
 });

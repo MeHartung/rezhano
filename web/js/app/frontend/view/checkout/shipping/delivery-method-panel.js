@@ -16,7 +16,8 @@ define(function(require){
     },
     initialize: function () {
       this.shippingChoiceListView = new ShippingChoiceListView({
-        collection: this.collection
+        collection: this.collection,
+        cart: this.model
       });
 
       this.listenTo(this.collection, 'add', this.onShippingMethodCollectionChange);
@@ -31,6 +32,12 @@ define(function(require){
       this.$('#checkout_shipping_city_name').selectmenu();
       this.activeMethod = this.collection.findWhere({'is_active': true});
       this.onShippingMethodChange(this.activeMethod);
+
+      if (this.collection.length > 1) {
+        this.shippingChoiceListView.$el.show();
+      } else {
+        this.shippingChoiceListView.$el.hide();
+      }
 
       return this;
     },

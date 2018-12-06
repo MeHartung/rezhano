@@ -2,6 +2,8 @@
 
 namespace Accurateweb\SynchronizationBundle\Command;
 
+use Accurateweb\SynchronizationBundle\Event\SynchronizationScenarioEvent;
+use Accurateweb\SynchronizationBundle\Event\SynchronizationScenarionSubjectEvent;
 use Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration;
 use Accurateweb\SynchronizationBundle\Model\Subject\SynchronizationSubjectInterface;
 use Accurateweb\SynchronizationBundle\Model\SynchronizationMode;
@@ -74,6 +76,15 @@ Call it with:
     #$syncService = $this->getContainer()->get('aw.serrvice.synchronization');
     #$syncService = $this->getContainer()->get('aw.serrvice.synchronization');
     
+    $subjectParam = $input->getArgument('subject');
+    if(count($subjectParam) > 0)
+    {
+      $subjects = explode(',', $subjectParam[0]);
+    }else
+    {
+      $subjects = [];
+    }
+
     $output->writeln('Pre execute started');
   
     $dispatcher = $this->getContainer()->get('event_dispatcher');
@@ -87,6 +98,7 @@ Call it with:
     try
     {
       $scenario->preExecute();
+      $dispatcher->dispatch('synchronization.scenario.pre_execute', new SynchronizationScenarioEvent($scenario));
     }catch (\Exception $exception)
     {
       $this->logger->addError($exception->getTraceAsString());
@@ -95,31 +107,45 @@ Call it with:
     /** @var SynchronizationSubjectInterface $subject */
     foreach ($scenario as $subject)
     {
+      if(count($subjects) > 0)
+      {
+        if(!in_array($subject->getName(), $subjects))
+        {
+          continue;
+        }
+      }
+      
       $config = $this->getContainer()->get('aw.synchronization.configuration_manager')->get($subject->getName());
       $syncService = new SynchronizationService(null, $config, null);
       try
       {
         $output->writeln($subject->getName() . ' synchronization start');
+        $dispatcher->dispatch('synchronization.scenario.subject.start', new SynchronizationScenarionSubjectEvent($scenario, $subject));
         $syncService->pull($subject);
         $this->getContainer()->get('logger')->addInfo("SynchronizationResult: " . SynchronizationResult::OK);
+        $dispatcher->dispatch('synchronization.scenario.subject.end', new SynchronizationScenarionSubjectEvent($scenario, $subject));
       }catch (\Exception $exception)
       {
         $this->getContainer()->get('logger')->addError($exception->getMessage());
         $this->getContainer()->get('logger')->addError($exception->getTraceAsString());
         $output->writeln('Synchronization error. Info in log');
+        $dispatcher->dispatch('synchronization.error');
+        $dispatcher->dispatch('synchronization.scenario.subject.error', new SynchronizationScenarionSubjectEvent($scenario, $subject));
       }
     }
 
     $output->writeln('Post execute started');
     try
     {
-      $scenario->postExecute();
+      $scenario->postExecute($subjects);
+      $dispatcher->dispatch('synchronization.scenario.post_execute', new SynchronizationScenarioEvent($scenario));;
     }catch (\Exception $exception)
     {
       $this->getContainer()->get('logger')->addError("Post execute error: " . $exception->getMessage());
       $output->writeln('Post execute error. '. $exception->getMessage());
     }
-    
+
+    $dispatcher->dispatch('synchronization.complete');
     $output->writeln('Synchronization complete.');
   
     /*

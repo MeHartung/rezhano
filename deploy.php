@@ -36,6 +36,14 @@ host('192.168.1.4')
     ->set('bin/php', '/usr/bin/php71')
     ->set('branch', 'development');
 
+host('rezhano.beget.tech')
+  ->stage('prod-beta')
+  ->user('rezhano')
+  ->set('deploy_path', '/home/r/rezhano/beta.rezhano.ru')
+  ->set('bin/php', '/usr/local/bin/php7.2')
+  ->set('branch', 'development')
+  ->set('http_user', 'rezhano');
+
 /*host('94.130.148.164')
     ->stage('prod')
     ->user('deployer')

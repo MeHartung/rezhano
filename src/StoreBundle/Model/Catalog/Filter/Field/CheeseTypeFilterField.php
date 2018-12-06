@@ -117,4 +117,9 @@ class CheeseTypeFilterField extends DoctrineChoiceFilterField
       $this->applyForAttribute($query, 'pavm', $mValues);
     }
   }
+
+  protected function getWidgetId()
+  {
+    return 'choice_expanded_cheese';
+  }
 }

@@ -1,5 +1,4 @@
 services:
-
   aw.moysklad:
     class: Accurateweb\MoyskladIntegrationBundle\Model\MoyskladManager
     arguments:

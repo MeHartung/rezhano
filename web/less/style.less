@@ -450,8 +450,6 @@ button, a.button {
 }
 
 header {
-  //height: 120px;
-
   position: absolute;
   top: 0;
   left: 0;
@@ -459,17 +457,14 @@ header {
   text-align: right;
   z-index: 100;
   padding: 30px 50px;
-
-
+  
   -webkit-transition: padding-top .2s;
   -moz-transition: padding-top .2s;
   -ms-transition: padding-top .2s;
   -o-transition: padding-top .2s;
   transition: padding-top .2s;
 
-
   .header-menu-wrap {
-    //max-width: 1400px;
     margin: 0 auto;
     position: relative;
   }
@@ -477,7 +472,7 @@ header {
   .header-logo {
     display: inline-block;
     vertical-align: top;
-    background: url("../images/logo-rezhano_sm_fix.png") center no-repeat;
+    background: url("../images/svg/logo.svg") center no-repeat;
     width: 176px;
     height: 35px;
     position: absolute;
@@ -650,6 +645,41 @@ header {
   }
 }
 
+.header__fixed {
+  padding: 30px 50px;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: absolute;
+
+  @media only screen and (max-width:320px) {
+    position: fixed;
+  }
+  @media only screen and (min-width:321px) and (max-width:768px) {
+    position: fixed;
+  }
+
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
+}
+
+.header__fixed.fixed {
+  background-color: #101010;
+  position: fixed;
+
+  padding-top: 10px;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
+
+  z-index: 10;
+}
+
 header {
 
   &.header-catalog {
@@ -680,7 +710,7 @@ header {
       background: url("../images/header-shop_bg.png") center no-repeat;
       background-size: cover;
       height: 550px;
-
+      margin-top: -70px;
       max-width: 1850px;
       margin: 0 auto;
       background-position-y:-195px;
@@ -718,6 +748,36 @@ header {
     position: relative;
     top: -135px;
     //right: -240px;
+
+    &__teaser {
+      position: absolute;
+      right: -300px;
+      bottom: 15px;
+
+      @media(min-width: 1400px) {
+        right: -250px;
+      }
+
+      @media(min-width: 1600px) {
+        right: -150px;
+      }
+
+      @media(min-width: 1700px) {
+        right: -100px;
+      }
+
+      @media(min-width: 1800px) {
+        right: -50px;
+      }
+
+      @media(min-width: 1900px) {
+        right: 0;
+      }
+      //
+      //@media(max-width: 1864px) {
+      //  right: -166px;
+      //}
+    }
 
     &__item {
       //background: url("../images/header-slider1.png") center no-repeat;
@@ -972,10 +1032,8 @@ header {
 
 .advantages {
   background-color: @c_black;
-  //padding-top: 120px;  сделать у популярных
   margin-top: -120px;
-
-  padding-bottom: 200px;
+  padding-top: 120px;
   overflow: hidden;
 
   .advantages-item__wrap {
@@ -1143,11 +1201,14 @@ h1, .popular-products__title {
 
 //
 .popular-products {
+  margin-top: -120px;
+  background-color: @c_white;
+
   &:before {
     content: '';
-    top: -100px;
+    top: -125px;
     left: 50%;
-    background: url("../images/popular-section.png");
+    background: url("../images/popular-section.png") center no-repeat;
     position: absolute;
     height: 147px;
     -webkit-transform: translateX(-50%);
@@ -1328,7 +1389,7 @@ h1, .popular-products__title {
         border: none;
         box-shadow: none;
         outline: none;
-        width: 80px;
+        width: 60px;
 
         display: inline-block;
         vertical-align: sub;
@@ -1404,11 +1465,9 @@ h1, .popular-products__title {
 
 
       .controls-title {
-        font-size: 21px;
-        font-family: Catorze27style1-semibold;
-        color: #000000;
+        .input-font(21px);
+
         display: inline-block;
-        vertical-align: sub;
         margin-right: 5px;
       }
 
@@ -1441,28 +1500,27 @@ h1, .popular-products__title {
 .product-item__controls {
 
   .controls-title {
-    font-size: 21px;
-    font-family: Catorze27style1-semibold;
-    color: @c_black;
+    .input-font(21px);
 
     display: inline-block;
-    vertical-align: sub;
     margin-right: 5px;
   }
 
   .custom-input {
-    font-size: 25px;
-    font-family: Catorze27style1-medium;
-    color: @c_black;
+    .input-font();
+
     text-align: center;
 
     border: none;
     box-shadow: none;
     outline: none;
-    width: 80px;
+    width: 60px;
 
     display: inline-block;
-    vertical-align: sub;
+  }
+
+  .quantity-widget__units {
+    .input-font();
   }
 
   .controls-item {
@@ -1542,14 +1600,14 @@ h1, .popular-products__title {
   background-color: @rc_yellow;
   position: relative;
   padding-top: 120px;
-  padding-bottom: 155px;
+  padding-bottom: 166px;
 
   &__image {
     background: url("../images/presents-image.png") center no-repeat;
     width: 841px;
     height: 563px;
     position: absolute;
-    bottom: -130px;
+    bottom: -115px;
     right: 176px;
 
     @media(max-width: 1864px) {
@@ -1564,23 +1622,6 @@ h1, .popular-products__title {
   &__wrap {
     margin-left: 33px;
   }
-
-  //&:after {
-  //  content: '';
-  //  background: url("../images/presents-bottom.png") center no-repeat;
-  //  position: absolute;
-  //  height: 82px;
-  //  width: 100%;
-  //  bottom: -82px;
-  //
-  //  left: 50%;
-  //  -webkit-transform: translateX(-50%);
-  //  -webkit-transform: translateX(-50%);
-  //  -moz-transform: translateX(-50%);
-  //  -ms-transform: translateX(-50%);
-  //  -o-transform: translateX(-50%);
-  //  transform: translateX(-50%);
-  //}
 
   &__text {
     font-size: 45px;
@@ -1875,6 +1916,12 @@ h1, .popular-products__title {
 
     .slick-dots {
       position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
       list-style: none;
       padding: 0;
       margin: 24px 0;
@@ -1970,12 +2017,14 @@ h1, .popular-products__title {
   }
 
   &__title {
+    margin: 0 auto;
     margin-bottom: 55px;
+    text-align: center;
   }
 
   &__text {
 
-    width: 471px;
+    width: 660px;
 
     p {
       font-size: 20px;
@@ -2022,6 +2071,15 @@ h1, .popular-products__title {
       top: 50%;
       right: 0;
     }
+  }
+  
+  .container {
+    width: 660px;
+    margin: 0 auto;
+  }
+  
+  .notes-slider {
+    width: 660px;
   }
 }
 
@@ -2070,19 +2128,19 @@ h1, .popular-products__title {
 
 //
 footer {
-  background: url("../images/footer_bg.png") bottom no-repeat;
+  background: url("../images/footer_bg.png") top no-repeat;
   width: 100%;
   height: auto;
   position: relative;
   //margin-top: -105px;
-  margin-top: -160px;
+  margin-top: -210px;
   //padding-top: 260px;
   padding-top: 209px;
 
   .header-logo {
     display: inline-block;
     vertical-align: top;
-    background: url(../images/logo-rezhano.png) center no-repeat;
+    background: url(../images/svg/logo.svg) center no-repeat;
     width: 226px;
     height: 45px;
     position: absolute;
@@ -2097,6 +2155,8 @@ footer {
   .footer-contacts {
     display: inline-block;
     vertical-align: top;
+
+    max-width: 396px;
 
     .contact-item {
       font-size: 18px;
@@ -2150,7 +2210,7 @@ footer {
   .footer-links {
     display: inline-block;
     vertical-align: top;
-    width: 245px;
+    width: 210px;
     margin-left: 150px;
 
     @media(min-width: 2000px) {
@@ -2271,7 +2331,7 @@ footer {
 }
 ////
 .catalog-section {
-  padding-bottom: 165px;
+  padding-bottom: 215px;
   padding-top: 120px;
 }
 
@@ -2498,6 +2558,9 @@ footer {
     }
   }
 
+  &.layer-card {
+
+  }
 }
 
 //
@@ -2725,7 +2788,7 @@ aside {
 
   &__item {
     //width: 400px;
-    width: 620px;
+    width: 590px;
   }
 
   &__price {
@@ -2733,7 +2796,7 @@ aside {
   }
 
   &__quantity {
-    width: 160px;
+    width: 190px;
   }
 
   &__cost {
@@ -3113,7 +3176,7 @@ body .delivery-info {
 /////
 .cheese-card {
   background-color: #e8e8e8;
-  padding-bottom: 120px;
+  padding-bottom: 170px;
   overflow: visible;
   position: relative;
 
@@ -3357,7 +3420,7 @@ body .delivery-info {
   background-color: @rc_yellow;
   padding-top: 45px;
   white-space: nowrap;
-  margin-bottom: -50px;
+  //margin-bottom: -50px;
 
   &__link {
     padding-top: 30px;
@@ -3591,7 +3654,7 @@ body .delivery-info {
       }
     }
 
-    &.active {
+    &.active, &.changed {
 
       .product-filter__link {
         color: @rc_yellow;
@@ -3923,4 +3986,123 @@ body .delivery-info {
   .input-text {
     width: 85%;
   }
+}
+
+@media (min-width: 2000px) {
+
+  .advantages .advantages-item__wrap.advantages-item__wrap_left .advantages-image {
+    left: 0;
+  }
+
+  .advantages .advantages-image {
+    right: 0;
+    -webkit-transform: scale(1.35, 1.35);
+    -moz-transform: scale(1.35, 1.35);
+    -ms-transform: scale(1.35, 1.35);
+    -o-transform: scale(1.35, 1.35);
+    transform: scale(1.35, 1.35);
+  }
+
+  .advantages .advantages-step {
+    padding-top: 245px;
+  }
+
+  .advantages .advantages-item__wrap.advantages-item__wrap_left .advantages-step {
+    margin-left: 60%;
+  }
+
+  .advantages .advantages-image {
+    right: 160px;
+  }
+
+  .advantages .advantages-item__wrap.advantages-item__wrap_left .advantages-image {
+    left: 100px;
+  }
+
+  .advantages .advantages-item__wrap:last-child {
+    margin-bottom: 111px;
+  }
+
+  .choice {
+    padding-bottom: 357px;
+    padding-top: 200px;
+  }
+
+  .choice__link {
+    width: 620px;
+    height: 446px;
+    background-size: contain;
+  }
+  .wholesale {
+
+    &__image {
+      top: -55px;
+    }
+
+    &__text {
+      padding-top: 92px;
+    }
+  }
+
+
+  .wholesale:after {
+    z-index: -1;
+    top: -100px;
+  }
+
+  .tour {
+    padding-top:  255px;
+    padding-bottom: 285px;
+  }
+
+  .tour__image-bg .image-bg__right {
+    top: -400px;
+    right: -472px;
+    -webkit-transform: scale(1.15, 1.15);
+    -moz-transform: scale(1.15, 1.15);
+    -ms-transform: scale(1.15, 1.15);
+    -o-transform: scale(1.15, 1.15);
+    transform: scale(1.15, 1.15);
+    margin-bottom: 60px;
+  }
+
+  .tour__image {
+    -webkit-transform: scale(1.25, 1.25);
+    -moz-transform: scale(1.25, 1.25);
+    -ms-transform: scale(1.25, 1.25);
+    -o-transform: scale(1.25, 1.25);
+    transform: scale(1.25, 1.25);
+  }
+
+  .tour__wrap {
+    padding-top: 60px;
+  }
+
+  .notes {
+    padding-top: 117px;
+    padding-bottom: 110px;
+
+    //.container {
+    //  padding-left: 255px;
+    //}
+
+    .notes-images-gallery {
+      top: auto;
+      bottom: -195px;
+    }
+
+    .notes__image-top {
+      left: -86px;
+    }
+  }
+}
+
+.quantity-widget__units {
+  margin-right: 6px;
+  font-size: 20px;
+}
+
+//28.11 fixed menu all page
+.section-checkout, .section-purchase {
+  margin-top: 105px;
 }
