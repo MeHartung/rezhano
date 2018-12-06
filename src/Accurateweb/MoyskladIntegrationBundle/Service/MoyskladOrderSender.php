@@ -78,7 +78,7 @@ class MoyskladOrderSender
       $order->getCustomerEmail(),
       $order->getCustomerFullName(),
       $order->getCustomerPhone(),
-      $order->getShippingAddress()
+      $order->getShippingAddress() ?: ''
     );
 
     $customerOrder = new CustomerOrder($this->sklad->getSklad(), [
