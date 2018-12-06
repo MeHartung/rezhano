@@ -96,7 +96,6 @@ define(function(require){
         product_id: productId,
         quantity: quantity
       });
-      console.log(cartItem)
       if (isValid) {
         cartItem
           .save()

@@ -5,33 +5,47 @@ define(function(require){
   var ModalDialogView = require('view/dialog/base/modal-dialog-view');
 
   var template = _.template('\
-  <% if (quantity >= minQuantity) { %>\
+  <% if (enough) { %>\
     <div class="layer__close"></div>\
     <div class="layer__container">\
       <div class="layer__title">Уточнение количества</div>\
       <div class="add-to-cart-layer__wrap">\
-        <p>Товар «<%= name %>» нельзя добавить в корзину в количестве <%= quantity %>&nbsp;<%= units %>.</p>\
-        <p>Вы можете добавить <%= validQuantity %>&nbsp;<%= units %> или <%= nextValidQuantity %>&nbsp;<%= units %></p>\
+        <p>Товар «<%= name %>» нельзя добавить в корзину в количестве <%= quantity %>&nbsp;<%= quantityUnits %>.</p>\
+        <p>Вы можете добавить <%= validQuantity %>&nbsp;<%= validQuantityUnits %> или <%= nextValidQuantity %>&nbsp;<%= nextValidQuantityUnits %></p>\
       </div>\
     </div>\
     <div class="buttons">\
-      <a class="button button_black button_yellow-yellow add-valid-quantity" href="<%= urlPrefix %>/cart">Добавить <%= validQuantity %> <%= units %></a>\
-      <a class="button button_black button_yellow-yellow add-next-valid-quantity" href="#">Добавить <%= nextValidQuantity %> <%= units %></a>\
+      <a class="button button_black button_yellow-yellow add-valid-quantity" href="<%= urlPrefix %>/cart">Добавить <%= validQuantity %> <%= validQuantityUnits %></a>\
+      <a class="button button_black button_yellow-yellow add-next-valid-quantity" href="#">Добавить <%= nextValidQuantity %> <%= nextValidQuantityUnits %></a>\
     </div>\
   <% } else { %>\
     <div class="layer__close"></div>\n\
     <div class="layer__container">\n\
       <div class="layer__title">Уточнение количества</div>\n\
       <div class="add-to-cart-layer__wrap">\n\
-        <p>Товар «<%= name %>» нельзя добавить в корзину в количестве <%= quantity %>&nbsp;<%= units %>.</p>\
-        <p>Минимальное доступное количество для заказа <%= minQuantity %>&nbsp;<%= units %></p>\n\
+        <p>Товар «<%= name %>» нельзя добавить в корзину в количестве <%= quantity %>&nbsp;<%= quantityUnits %>.</p>\
+        <p>Минимальное доступное количество для заказа <%= minQuantity %>&nbsp;<%= minQuantityUnits %></p>\n\
       </div>\n\
     </div>\n\
     <div class="buttons">\n\
-      <a class="button button_black button_yellow-yellow add-min-quantity" href="<%= urlPrefix %>/cart">Добавить <%= minQuantity %> <%= units %></a>\n\
+      <a class="button button_black button_yellow-yellow add-min-quantity" href="<%= urlPrefix %>/cart">Добавить <%= minQuantity %> <%= minQuantityUnits %></a>\n\
     </div>\n\
   <% } %>\
 ');
+
+
+  // FIXME Это вынести в отдельный модуль
+  var quantityScales = [
+    {
+      units: "кг",
+      multiplicator: 1
+    },
+    {
+      units: "г",
+      multiplicator: 1000
+    }
+  ];
+
 
   return ModalDialogView.extend({
     id: 'facebox',
@@ -54,9 +68,10 @@ define(function(require){
 
       var _q = options.quantity - this.minQuantity,
           modul = _q % this.step,
-          min = modul > 0.0001 ? options.quantity - modul : options.quantity,
+          min = modul > 0.0001 ? options.quantity - modul : this.minQuantity,
           max = modul > 0.0001 ? min + this.step : options.quantity;
 
+      this.units = 'шт';
 
       this.validQuantity = this.formatFloat(min);
       this.nextValidQuantity = this.formatFloat(max);
@@ -69,14 +84,23 @@ define(function(require){
       this.close();
     },
     render: function(){
+      var quantityScale = this.getScale(this.quantity);
+      var validQuantityScale = this.getScale(this.validQuantity);
+      var nextValidQuantityScale = this.getScale(this.nextValidQuantity);
+      var minQuantityScale = this.getScale(this.minQuantity);
+
       this.$el.html(template({
-        'validQuantity': this.validQuantity,
-        'nextValidQuantity': this.nextValidQuantity,
+        'validQuantity': this.formatFloat(this.modelToView(+this.validQuantity, validQuantityScale)),
+        'nextValidQuantity': this.formatFloat(this.modelToView(+this.nextValidQuantity, nextValidQuantityScale)),
         'step': this.step,
-        'units': this.product.get('units') ? this.product.get('units') : '',
-        'minQuantity': this.minQuantity,
-        'quantity': this.quantity,
-        'name': this.product.get('name')
+        'quantityUnits': quantityScale ? quantityScale.units : this.units,
+        'validQuantityUnits': validQuantityScale ? validQuantityScale.units : this.units,
+        'nextValidQuantityUnits': nextValidQuantityScale ? nextValidQuantityScale.units : this.units,
+        'minQuantityUnits': minQuantityScale ? minQuantityScale.units : this.units,
+        'minQuantity': this.formatFloat(this.modelToView(+this.minQuantity, minQuantityScale)),
+        'quantity': this.formatFloat(this.modelToView(+this.quantity, quantityScale)),
+        'name': this.product.get('name'),
+        'enough': this.quantity >= this.minQuantity
       }));
 
       return this;
@@ -118,6 +142,68 @@ define(function(require){
     },
     formatFloat: function ($number) {
       return +$number.toFixed(2);
+    },
+    /**
+     * FIXME всю эту настройку шкал нужно вынести в отдельный модуль
+     * Выбирает наиболее подходящую шкалу для конвертации значения
+     * @param v
+     */
+    getScale: function(v){
+      var self = this,
+          result = null;
+
+      if (!this.product.get('isMeasured')){
+        return result;
+      }
+      if (!result){
+        result = quantityScales[0]; //@FIXME выбирать шкалу с мультипликатором 1
+      }
+
+      //1. Ищем подходящую шкалу для значения 0.xxx
+      var q = +v, scaleAdjusted = false;
+      if (q < 1){
+        _.each(quantityScales, function(scale){
+          //Предполагаем, что шкалы уже отсортированы в порядке возрастания масштаба
+          if (scale.multiplicator > result.multiplicator && q*scale.multiplicator > 1){
+            result = scale;
+            scaleAdjusted = true;
+
+            return false;
+          }
+        });
+      }
+      if (!scaleAdjusted){
+        _.each(quantityScales, function(scale){
+          //Предполагаем, что шкалы уже отсортированы в порядке возрастания масштаба
+          if (q >= scale.multiplicator){
+            result = scale;
+            scaleAdjusted = true;
+            return false;
+          }
+        });
+      }
+
+      return result;
+    },
+    /**
+     * Конвертирует отображаемое значение в значение, хранимое в модели (в кг)
+     *
+     * @param v
+     * @param scale
+     */
+    viewToModel: function(v, scale){
+      if (!scale){
+        return v;
+      }
+
+      return v / scale.multiplicator;
+    },
+    modelToView: function(v, scale){
+      if (!scale){
+        return v;
+      }
+
+      return v * scale.multiplicator;
     }
   });
 });
