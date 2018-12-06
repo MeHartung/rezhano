@@ -2,7 +2,7 @@
 <span class="delivery-info">
     / {{ value.cost }}
 </span>
-{% if value.cost %}
+{% if value.help and total < 1000 %}
   <span class="delivery-info__message">{{ value.help }}</span>
 {% endif %}
 {% endif %}
