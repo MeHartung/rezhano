@@ -6,7 +6,10 @@ define(function(require){
       CourierShippingChoiceListItem = require('view/checkout/shipping/shipping-choice-list-item');
   
   return ListView.extend({
-    itemView: CourierShippingChoiceListItem
+    itemView: CourierShippingChoiceListItem,
+    _createItemView: function(item, index){
+      return new this.itemView({ model: item, index: index, cart: this.options.cart });
+    }
   });
 });
 

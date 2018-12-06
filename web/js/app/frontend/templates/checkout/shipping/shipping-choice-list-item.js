@@ -17,7 +17,7 @@ define(function(require){
         /  <%= cost %> ₽ \n\
       </span>\n\
     <% } %>\
-    <% if (help) { %>\
+    <% if (showHelp) { %>\
       <span class="delivery-info__message"><%= help %></span>\
     <% } %>\
     ';
