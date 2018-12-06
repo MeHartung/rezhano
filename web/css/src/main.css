@@ -4488,6 +4488,76 @@ body .custom-select_filter .ui-selectmenu-button {
 .section-purchase .cards-container__step-container .custom-select .ui-selectmenu-button {
   width: 225px;
 }
+.layer.layer-card.ui-dialog {
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+.layer.layer-card.ui-dialog .ui-dialog-titlebar {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+.layer.layer-card.ui-dialog .ui-dialog-titlebar-close {
+  border: none;
+}
+.layer.layer-card.ui-dialog .ui-dialog-titlebar-close .ui-icon-closethick {
+  background: url(../images/icons/close.png) center no-repeat !important;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: -82px;
+  left: 92px;
+  cursor: pointer;
+  background-size: auto;
+  -webkit-transition: background-size 0.2s;
+  transition: background-size 0.2s;
+}
+.layer.layer-card.ui-dialog .ui-dialog-titlebar-close .ui-icon-closethick:hover {
+  background-size: 90%;
+  -webkit-transition: background-size 0.2s;
+  transition: background-size 0.2s;
+}
+.layer.layer-card.ui-dialog .ui-dialog-title {
+  font-family: Catorze27style1-bold;
+  font-size: 35px;
+  margin: 0;
+  padding: 0;
+}
+.layer.layer-card.ui-dialog .ui-dialog-content p {
+  font-family: alegreyasans-regular !important;
+  font-size: 20px;
+  line-height: 1.2;
+}
+.layer.layer-card.ui-dialog .ui-dialog-content p .ui-icon {
+  display: none;
+}
+.layer.layer-card.ui-dialog .ui-dialog-buttonpane {
+  border: none;
+  padding: 0;
+}
+.layer.layer-card.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  float: left;
+}
+.layer.layer-card.ui-dialog .ui-dialog-buttonpane .ui-button {
+  border: 2px solid #ffcf40;
+  font-size: 21px;
+  font-family: Catorze27style1-medium !important;
+  text-transform: lowercase;
+  padding: 5px 15px 10px 15px;
+  outline: none;
+  text-decoration: none;
+  background-color: #ffcf40;
+  color: #000000;
+  border-color: #ffcf40;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.layer.layer-card.ui-dialog .ui-dialog-buttonpane .ui-button:hover {
+  background-color: #ffbf02;
+  color: #000000;
+  border-color: #ffbf02;
+}
 .jspPane {
   width: 335px !important;
 }
