@@ -2086,6 +2086,7 @@ footer .footer-wrap {
 footer .footer-contacts {
   display: inline-block;
   vertical-align: top;
+  max-width: 396px;
 }
 footer .footer-contacts .contact-item {
   font-size: 18px;
@@ -2126,7 +2127,7 @@ footer .footer-social .footer-social__instagram:hover {
 footer .footer-links {
   display: inline-block;
   vertical-align: top;
-  width: 245px;
+  width: 210px;
   margin-left: 150px;
 }
 @media (min-width: 2000px) {
