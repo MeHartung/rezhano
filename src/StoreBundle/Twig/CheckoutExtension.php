@@ -43,14 +43,15 @@ class CheckoutExtension extends \Twig_Extension
       'value' => $value
     ]);
   }
-  public function renderValueInfo(\Twig_Environment $twig, $valueId)
+  public function renderValueInfo(\Twig_Environment $twig, $valueId, $total)
   {
     $value = $this->em->getRepository(ShippingMethod::class)->find($valueId);
-    
+
     if(!$value) return null;
     
     return $twig->render('@Store/Checkout/patrial/shipping_info.html.twig', [
-      'value' => $value
+      'value' => $value,
+      'total' => $total
     ]);
   }
   

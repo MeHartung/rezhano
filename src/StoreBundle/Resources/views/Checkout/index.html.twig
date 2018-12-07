@@ -539,7 +539,7 @@
                                             <label>
                                                 {{ form_widget(child, { attr: { 'class': 'radio'} }) }}
                                                 {{ child.vars.value | render_shipping_label | raw }}
-                                                {{ child.vars.value | render_shipping_info | raw }}
+                                                {{ child.vars.value | render_shipping_info(cart.total) | raw }}
                                             </label>
                                             {#<span class="delivery-info">#}
                                             {#/  от 250 ₽ <span class="delivery-info__message">#}

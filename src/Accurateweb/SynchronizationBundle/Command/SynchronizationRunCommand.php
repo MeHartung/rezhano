@@ -2,6 +2,8 @@
 
 namespace Accurateweb\SynchronizationBundle\Command;
 
+use Accurateweb\SynchronizationBundle\Event\SynchronizationScenarioEvent;
+use Accurateweb\SynchronizationBundle\Event\SynchronizationScenarionSubjectEvent;
 use Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration;
 use Accurateweb\SynchronizationBundle\Model\Subject\SynchronizationSubjectInterface;
 use Accurateweb\SynchronizationBundle\Model\SynchronizationMode;
@@ -96,6 +98,7 @@ Call it with:
     try
     {
       $scenario->preExecute();
+      $dispatcher->dispatch('synchronization.scenario.pre_execute', new SynchronizationScenarioEvent($scenario));
     }catch (\Exception $exception)
     {
       $this->logger->addError($exception->getTraceAsString());
@@ -117,13 +120,17 @@ Call it with:
       try
       {
         $output->writeln($subject->getName() . ' synchronization start');
+        $dispatcher->dispatch('synchronization.scenario.subject.start', new SynchronizationScenarionSubjectEvent($scenario, $subject));
         $syncService->pull($subject);
         $this->getContainer()->get('logger')->addInfo("SynchronizationResult: " . SynchronizationResult::OK);
+        $dispatcher->dispatch('synchronization.scenario.subject.end', new SynchronizationScenarionSubjectEvent($scenario, $subject));
       }catch (\Exception $exception)
       {
         $this->getContainer()->get('logger')->addError($exception->getMessage());
         $this->getContainer()->get('logger')->addError($exception->getTraceAsString());
         $output->writeln('Synchronization error. Info in log');
+        $dispatcher->dispatch('synchronization.error');
+        $dispatcher->dispatch('synchronization.scenario.subject.error', new SynchronizationScenarionSubjectEvent($scenario, $subject));
       }
     }
 
@@ -131,12 +138,14 @@ Call it with:
     try
     {
       $scenario->postExecute($subjects);
+      $dispatcher->dispatch('synchronization.scenario.post_execute', new SynchronizationScenarioEvent($scenario));;
     }catch (\Exception $exception)
     {
       $this->getContainer()->get('logger')->addError("Post execute error: " . $exception->getMessage());
       $output->writeln('Post execute error. '. $exception->getMessage());
     }
-    
+
+    $dispatcher->dispatch('synchronization.complete');
     $output->writeln('Synchronization complete.');
   
     /*

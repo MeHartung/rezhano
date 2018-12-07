@@ -847,7 +847,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   }
 
   /**
-   * @return ProductImage
+   * @return ProductImage|null
    */
   public function getMainImage()
   {
@@ -857,6 +857,11 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
              ->setMaxResults(1);
 
     $images =  $this->images->matching($criteria);
+
+    if (!count($images))
+    {
+      return null;
+    }
 
     return $images->first();
   }
