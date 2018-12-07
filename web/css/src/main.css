@@ -4553,11 +4553,21 @@ body .custom-select_filter .ui-selectmenu-button {
   border-color: #ffcf40;
   margin-top: 0;
   margin-bottom: 0;
+  border-radius: 0;
 }
 .layer.layer-card.ui-dialog .ui-dialog-buttonpane .ui-button:hover {
   background-color: #ffbf02;
   color: #000000;
   border-color: #ffbf02;
+}
+.layer.layer-card.ui-dialog .ui-dialog-buttonpane .ui-button.black {
+  border-color: #000000;
+  color: #000000;
+  background-color: transparent;
+}
+.layer.layer-card.ui-dialog .ui-dialog-buttonpane .ui-button.black:hover {
+  color: #fff;
+  background-color: #000000;
 }
 .jspPane {
   width: 335px !important;

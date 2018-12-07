@@ -149,6 +149,9 @@ define(function(require){
                 dlg.dialog('destroy');
                 $('.ui-widget-overlay').detach();
               }
+            },
+            create: function () {
+              $(this).closest(".ui-dialog").find(".ui-button").eq(1).addClass('black');
             }
           }).html('<p><i class="ui-icon ui-icon-alert"></i>Вы действительно хотите удалить товар из корзины?</p>');
         } else {

@@ -942,11 +942,23 @@ body .custom-select {
       border-color: #ffcf40;
       margin-top: 0;
       margin-bottom: 0;
+      border-radius: 0;
 
       &:hover {
         background-color: #ffbf02;
         color: #000000;
         border-color: #ffbf02;
+      }
+
+      &.black {
+        border-color: #000000;
+        color: #000000;
+        background-color: transparent;
+
+        &:hover {
+          color: #fff;
+          background-color: @c_black;
+        }
       }
     }
   }
