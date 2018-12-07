@@ -449,10 +449,10 @@
                         </div>
 
                         <div class="cards-container__step-container">
-                            <div class="step-item">
+                            {#<div class="step-item">
                                 {{ form_widget( form.customerType, {'attr': {'class': 'radio'}}) }}
 
-                                {#                <div class="custom-radio">
+                                #}{#                <div class="custom-radio">
                                                   <label>
                                                     <input type="radio" class="radio" name="radio-group"
                                                            value="{{ constant('StoreBundle\\Entity\\Store\\Order\\Order::CUSTOMER_TYPE_INDIVIDUAL') }}">
@@ -471,8 +471,8 @@
                                                 </div>
                                                 <div id="">
 
-                                                </div>#}
-                            </div>
+                                                </div>#}{#
+                            </div>#}
 
                             <div class="step-item step-item-input{% if (form.customer_first_name.vars.errors|length) %} error{% endif %}">
                                 {#<input class="input-text" type="text" placeholder="ФИО">#}
