@@ -645,11 +645,11 @@ services:
         - { name: doctrine.event_subscriber, connection: default }
 
 
-    #store.supervisor.product_publication:
-    #  class: StoreBundle\EventListener\ProductPublicationSupervisor
-    #  arguments: ['@store.product.publication.manager']
-    #  tags:
-    #    - { name: doctrine.event_subscriber, connection: default }
+    store.supervisor.product_publication:
+      class: StoreBundle\EventListener\ProductPublicationSupervisor
+      arguments: ['@store.product.publication.manager']
+      tags:
+        - { name: doctrine.event_subscriber, connection: default }
 
     store.checkout.processor:
       class: AccurateCommerce\Component\Checkout\Processor\CheckoutProcessor
@@ -1074,10 +1074,10 @@ services:
         - { name: doctrine.event_listener, event: postPersist }
         - { name: doctrine.event_listener, event: postUpdate }
 
-    store.product.voter.publication_allowed:
-      class: StoreBundle\Resolver\Product\PublicationAllowedPublicationResolver
-      tags:
-        - { name: product.publication.resolver }
+#    store.product.voter.publication_allowed:
+#      class: StoreBundle\Resolver\Product\PublicationAllowedPublicationResolver
+#      tags:
+#        - { name: product.publication.resolver }
 
 #    store.product.voter.stock:
 #      class: StoreBundle\Resolver\Product\ProductStockPublicationResolver
@@ -1091,6 +1091,12 @@ services:
 
     store.product.publication.manager:
       class: StoreBundle\Resolver\Product\ProductPublicationManager
+
+    store.resolver_product.image_exists_resolver:
+      class: StoreBundle\Resolver\Product\ImageExistsResolver
+      arguments: ['@aw.media.storage.file']
+      tags:
+        - { name: product.publication.resolver }
 
     store.voter.product_publication:
       class: StoreBundle\Voter\ProductPublicationVoter
@@ -1147,3 +1153,9 @@ services:
       factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
       arguments:
         - StoreBundle\Entity\Store\Logistics\Warehouse\MoySkladWarehouse
+
+    store.synchronization.complete.publication:
+      class: StoreBundle\EventListener\Synchronization\SynchronizationPostProductPublication
+      arguments: ['@doctrine.orm.entity_manager', '@store.product.publication.manager']
+      tags:
+        - { name: kernel.event_listener, event: synchronization.scenario.post_execute, method: postExecute }

@@ -2,6 +2,7 @@
 
 namespace Accurateweb\SynchronizationBundle\Model\Handler;
 
+use Accurateweb\SynchronizationBundle\Event\TransferHandlerEvent;
 use Accurateweb\SynchronizationBundle\Model\Handler\Base\BaseDataHandler;
 use Accurateweb\SynchronizationBundle\Model\Schema\Base\BaseSchema;
 use Symfony\Component\EventDispatcher\GenericEvent;
@@ -38,6 +39,7 @@ class TransferHandler extends BaseDataHandler implements TransferHandlerInterfac
       $logger->info('Preparing transfer...');
     }*/
     $this->preTransfer();
+    $this->dispatcher->dispatch('synchronization.handler.pre_transfer', new TransferHandlerEvent($this));
 
 /*    if ($logger)
     {
@@ -50,6 +52,7 @@ class TransferHandler extends BaseDataHandler implements TransferHandlerInterfac
       $logger->info('Performing post-transfer operations...');
     }*/
     $this->postTransfer();
+    $this->dispatcher->dispatch('synchronization.handler.post_transfer', new TransferHandlerEvent($this));
   }
 
   protected function postTransfer()

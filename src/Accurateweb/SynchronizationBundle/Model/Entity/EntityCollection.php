@@ -90,7 +90,7 @@ class EntityCollection implements \Iterator
 
     $columnDefinitions = implode(',' . PHP_EOL, $sqlParts);
     $sql = sprintf('DROP TABLE IF EXISTS %s;', $tempTableName) . PHP_EOL;
-    $sql .= sprintf('CREATE TEMPORARY TABLE IF NOT EXISTS %s (%s);', $tempTableName, $columnDefinitions) . PHP_EOL;
+    $sql .= sprintf('CREATE TEMPORARY TABLE IF NOT EXISTS %s (%s) collate = utf8_unicode_ci;', $tempTableName, $columnDefinitions) . PHP_EOL;
     foreach ($indices as $i => $idxColumn)
     {
       if (is_array($idxColumn))
