@@ -1901,6 +1901,7 @@ h1,
 .notes {
   position: relative;
   padding-top: 145px;
+  padding-bottom: 90px;
   overflow: initial;
   margin-bottom: 215px;
 }
@@ -3267,11 +3268,14 @@ body .delivery-info__message {
   margin-bottom: 75px;
 }
 .section-login {
-  padding-top: 100px;
-  padding-bottom: 250px;
+  margin-top: 105px;
+  padding-top: 15px;
+  padding-bottom: 280px;
 }
-.section-login h2 {
+.section-login h1 {
   text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 70px;
 }
 .section-login .form-page-wrap {
   display: block;
