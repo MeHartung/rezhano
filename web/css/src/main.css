@@ -1004,6 +1004,41 @@ header.header-catalog .header-catalog__wrap .header-menu-wrap {
     background-position-y: -175px;
   }
 }
+header.header-contacts {
+  height: 550px;
+  background-color: #0b090a;
+  position: relative;
+  padding: 0;
+}
+header.header-contacts:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: url("../images/catalog-header-bottom.png") center no-repeat;
+  height: 98px;
+  bottom: -5px;
+}
+header.header-contacts .header-catalog__wrap {
+  padding: 37px 50px;
+  background: url("../images/contacts-header-bg.png") center no-repeat;
+  background-size: cover;
+  height: 550px;
+  margin-top: -70px;
+  max-width: 1850px;
+  margin: 0 auto;
+  background-position-y: -195px;
+}
+header.header-contacts .header-catalog__wrap .header-menu-wrap {
+  position: absolute;
+  left: 0;
+  right: 30px;
+}
+@media (max-width: 2000px) {
+  header.header-contacts .header-catalog__wrap {
+    background-position-y: -159px;
+  }
+}
 .header-section {
   background: url("../images/section_bg.png") center no-repeat;
   background-size: cover;
@@ -2234,6 +2269,31 @@ footer .footer-aside__link.link_frukt:after {
 footer .footer-aside__link.link_frukt:hover:after {
   background: url("../images/icons/frukt-hover.png");
 }
+.footer-social .footer-social__item {
+  width: 39px;
+  height: 39px;
+  background: url("../images/icons/social.png");
+  display: inline-block;
+  margin-right: 8px;
+}
+.footer-social .footer-social__facebook {
+  background-position: 0 0;
+}
+.footer-social .footer-social__facebook:hover {
+  background-position: 0 39px;
+}
+.footer-social .footer-social__vkontakte {
+  background-position: 90px 0;
+}
+.footer-social .footer-social__vkontakte:hover {
+  background-position: 90px 39px;
+}
+.footer-social .footer-social__instagram {
+  background-position: 39px 0;
+}
+.footer-social .footer-social__instagram:hover {
+  background-position: 39px 39px;
+}
 .catalog-section {
   padding-bottom: 215px;
   padding-top: 120px;
@@ -3397,6 +3457,48 @@ body .delivery-info__message {
   font-size: 20px;
   font-family: alegreyasans-regular;
   color: #000000;
+}
+.contacts-section {
+  padding-bottom: 215px;
+}
+.contacts-section h1 {
+  padding-top: 17px;
+}
+.contacts-section__wrap {
+  white-space: nowrap;
+}
+.contacts-section__col-left,
+.contacts-section__col-right {
+  width: 50%;
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+.contacts-section__col-left:after {
+  content: '';
+  background-color: #7f7f7f;
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.contacts-section .col-title {
+  color: #a3a3a3;
+  font-family: alegreyasans-bolditalic;
+  font-size: 20px;
+  display: block;
+  margin: 0 auto;
+  white-space: normal;
+}
+.contacts-section .col-text {
+  font-size: 45px;
+  font-family: Catorze27style1-bold;
+  color: #000000;
+  display: block;
+  margin: 0 auto;
+  white-space: normal;
 }
 .section-question {
   padding-top: 70px;

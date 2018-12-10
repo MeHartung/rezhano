@@ -116,9 +116,9 @@ special_offers_show:
   path: /offers/{slug}
   defaults: { _controller: StoreBundle:Text/SpecialOffer:show}
 
-#contacts_index:
-#  path: /contacts
-#  defaults: { _controller: StoreBundle:Logistics/Geography:contacts }
+contacts_index:
+  path: /contacts
+  defaults: { _controller: StoreBundle:Logistics/Geography:contacts }
 
 #contacts_cities:
 #  path: /contacts/cities

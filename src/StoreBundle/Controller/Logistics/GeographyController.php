@@ -147,20 +147,20 @@ class GeographyController extends Controller
 
   public function contactsAction()
   {
-    $legacyCdekCatalogue = new CdekCatalogue(
-      $this->get('store.geography.location'),
-      $this->getParameter('kernel.root_dir'),
-      $this->get('accuratecommerce.cdek.api')
-    );
-
-    $phoneMsk = $this->get('store.geography.location')->getContactPhoneByCity('msk');
-    $phoneEkb = $this->get('store.geography.location')->getContactPhoneByCity('ekb');
+//    $legacyCdekCatalogue = new CdekCatalogue(
+//      $this->get('store.geography.location'),
+//      $this->getParameter('kernel.root_dir'),
+//      $this->get('accuratecommerce.cdek.api')
+//    );
+//
+//    $phoneMsk = $this->get('store.geography.location')->getContactPhoneByCity('msk');
+//    $phoneEkb = $this->get('store.geography.location')->getContactPhoneByCity('ekb');
 
     return $this->render('@Store/Contacts/index.html.twig', array(
-      'mainRegions' => $legacyCdekCatalogue->getMainRegions(),
-      'current_region_id' => $legacyCdekCatalogue->getCurrentRegion(),
-      'phoneMsk' => $phoneMsk,
-      'phoneEkb' => $phoneEkb
+//      'mainRegions' => $legacyCdekCatalogue->getMainRegions(),
+//      'current_region_id' => $legacyCdekCatalogue->getCurrentRegion(),
+//      'phoneMsk' => $phoneMsk,
+//      'phoneEkb' => $phoneEkb
     ));
   }
 
