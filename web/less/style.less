@@ -1238,7 +1238,9 @@ h1, .popular-products__title {
 .product-list {
   position: relative;
   overflow: visible;
-  text-align: center;
+  //text-align: center;
+  text-align: left;
+  padding-left: 20px;
 
   &__title {
     font-size: 65px;
@@ -2577,6 +2579,69 @@ footer {
 
   &.layer-card {
 
+  }
+
+  &.layer-questions {
+    //overflow: hidden;
+    padding: 70px 100px;
+
+    h2 {
+      text-align: center;
+      font-size: 66px;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: url("../images/question-form-img.png") center right no-repeat;
+      width: 182px;
+      height: 300px;
+    }
+
+    h2 {
+      position: relative;
+    }
+
+    .step-item {
+      display: inline-block;
+      position: relative;
+    }
+
+    .input-text {
+      height: 40px;
+      line-height: 40px;
+    }
+
+    .input-text__name {
+      margin-right: 25px;
+    }
+
+    .input-text__email {
+      margin-left: 25px;
+    }
+
+    .input-text__name, .input-text__email {
+      width: 375px;
+    }
+
+    .input-text__question {
+      width: 100%;
+    }
+
+    .question-wrapper {
+      padding: 88px 0 75px 0;
+    }
+
+    .question-wrapper__row {
+      white-space: nowrap;
+      margin-bottom: 70px;
+    }
+
+    .custom-checkbox {
+      margin-bottom: 10px;
+    }
   }
 }
 

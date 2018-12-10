@@ -4,16 +4,50 @@ define(function(require){
   var template = _.template('\
     <h2>Какой у вас вопрос?</h2>\n\
     <div class="layer__close"></div>\n\
-    <div class="question-wrapper">\
-      <input class="input-text" type="text" placeholder="ФИО">\
-      <input class="input-text" type="text" placeholder="Телефон или эл.почта">\
-      <input class="input-text" type="text" placeholder="Расскажите, что вас интересует">\
-    </div>\n\
-  ');
+    <form action="">\
+      <div class="question-wrapper">\
+        <div class="question-wrapper__row">\
+          <div class="step-item input-text__name">\
+            <input class="input-text " type="text" placeholder="ФИО">\n\
+              <i class="error-icon">\n\
+                 <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>\n\
+              </i>\n\
+          </div>\
+          <div class="step-item input-text__email">\
+            <input class="input-text " type="text" placeholder="Телефон или эл.почта">\n\
+            <i class="error-icon">\n\
+              <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>\n\
+            </i>\n\
+           </div>\
+        </div>\
+        <div class="step-item input-text__question">\
+            <input class="input-text "  type="text" placeholder="Расскажите, что вас интересует">\n\
+            <i class="error-icon">\n\
+              <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>\n\
+            </i>\n\
+          </div>\
+      </div>\n\
+      <div class="step-item step-item-checkbox">\n\
+        <div class="custom-checkbox font-alegreya" name="tos">\n\
+          <label>\n\
+            <input type="checkbox" id="" name="" required="required" class="checkbox" data-validate="" data-description="" data-describedby="" value="">\n\
+            <span class="custom-checkbox__checkbox"></span>\n\
+            <span>Я согласен с условиями <a href="">передачи информации</a></span>\n\
+          </label>\n\
+        </div>\n\
+        <i class="error-icon">\n\
+          <span class="error-icon__message" ></span>\n\
+        </i>\n\
+      </div>\n\
+      <div class="step-item" style="display: block">\n\
+        <a href="" class="button button_black"><span>отправить</span></a>\n\
+      </div>\
+    </form>\n\
+      ');
 
   return ModalDialog.extend({
     tagName: 'div',
-    className: 'layer layer-map',
+    className: 'layer layer-questions',
     template: template,
     events: {
       'click .layer__close': 'close'

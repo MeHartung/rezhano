@@ -1355,7 +1355,8 @@ h1,
 .product-list {
   position: relative;
   overflow: visible;
-  text-align: center;
+  text-align: left;
+  padding-left: 20px;
 }
 .product-list__title {
   font-size: 65px;
@@ -2416,6 +2417,56 @@ footer .footer-aside__link.link_frukt:hover:after {
 }
 .layer.add-to-cart-layer .buttons .button {
   margin: 0 5px;
+}
+.layer.layer-questions {
+  padding: 70px 100px;
+}
+.layer.layer-questions h2 {
+  text-align: center;
+  font-size: 66px;
+}
+.layer.layer-questions:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../images/question-form-img.png") center right no-repeat;
+  width: 182px;
+  height: 300px;
+}
+.layer.layer-questions h2 {
+  position: relative;
+}
+.layer.layer-questions .step-item {
+  display: inline-block;
+  position: relative;
+}
+.layer.layer-questions .input-text {
+  height: 40px;
+  line-height: 40px;
+}
+.layer.layer-questions .input-text__name {
+  margin-right: 25px;
+}
+.layer.layer-questions .input-text__email {
+  margin-left: 25px;
+}
+.layer.layer-questions .input-text__name,
+.layer.layer-questions .input-text__email {
+  width: 375px;
+}
+.layer.layer-questions .input-text__question {
+  width: 100%;
+}
+.layer.layer-questions .question-wrapper {
+  padding: 88px 0 75px 0;
+}
+.layer.layer-questions .question-wrapper__row {
+  white-space: nowrap;
+  margin-bottom: 70px;
+}
+.layer.layer-questions .custom-checkbox {
+  margin-bottom: 10px;
 }
 aside.left {
   width: 285px;
