@@ -219,11 +219,12 @@
 
                     {#<span class="notes-image-gallery__text-aside">Анна — хозяйка сыроварни</span>#}
                 {#</div>#}
-
-                <a href="" class="notes__go-instagram">
-                    <span>ещё больше интересного здесь</span>
-                    <i class="icon-instagram"></i>
-                </a>
+                {% if setting('instagram_link')  %}
+                    <a href="{{ setting('instagram_link') }}" class="notes__go-instagram">
+                        <span>ещё больше интересного здесь</span>
+                        <i class="icon-instagram"></i>
+                    </a>
+                {% endif %}
             </div>
         </section>
     {% endif %}
