@@ -1883,6 +1883,21 @@ h1,
   top: -300px;
   right: -300px;
 }
+@media (min-width: 1745px) {
+  .tour__image-bg .image-bg__right {
+    right: -360px;
+  }
+}
+@media (min-width: 1870px) {
+  .tour__image-bg .image-bg__right {
+    right: -400px;
+    -webkit-transform: scale(1.05, 1.05);
+    -moz-transform: scale(1.05, 1.05);
+    -ms-transform: scale(1.05, 1.05);
+    -o-transform: scale(1.05, 1.05);
+    transform: scale(1.05, 1.05);
+  }
+}
 .notes {
   position: relative;
   padding-top: 145px;

@@ -1894,6 +1894,19 @@ h1, .popular-products__title {
       position: absolute;
       top: -300px;
       right: -300px;
+
+      @media (min-width: 1745px) {
+        right: -360px
+      }
+
+      @media (min-width: 1870px) {
+        right: -400px;
+        -webkit-transform: scale(1.05, 1.05);
+        -moz-transform: scale(1.05, 1.05);
+        -ms-transform: scale(1.05, 1.05);
+        -o-transform: scale(1.05, 1.05);
+        transform: scale(1.05, 1.05);
+      }
     }
   }
 }
