@@ -755,6 +755,9 @@ a.button {
   padding: 5px 15px 10px 15px;
   outline: none;
   text-decoration: none;
+  display: inline-block;
+  height: 44px;
+  line-height: 1.2;
 }
 button span,
 a.button span {
