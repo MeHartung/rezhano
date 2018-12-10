@@ -183,7 +183,12 @@ class ProductAdmin extends AbstractAdmin
         ))
           ->add('productPhotos', ImageGalleryType::class, array(
             'gallery' => 'product-photo',
-            'label' => false
+            'label' => false,
+            'crop' => [
+              'size' => '160x160', //Размеры поля кропа (отношение сторон будет сохранено)
+              'boxWidth' => 800, //Размеры модального окна
+              'boxHeight' => 600
+            ]
           ))
         ->end()
         ->end()

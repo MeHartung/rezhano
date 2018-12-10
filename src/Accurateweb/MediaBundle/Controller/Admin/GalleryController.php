@@ -4,6 +4,7 @@ namespace Accurateweb\MediaBundle\Controller\Admin;
 
 use Accurateweb\MediaBundle\Generator\ImageThumbnailGenerator;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
+use Accurateweb\MediaBundle\Model\Media\MediaCroppableInterface;
 use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -63,10 +64,11 @@ class GalleryController extends Controller
 
     $thumbnailResource = $mediaStorage->retrieve($thumbnail);
     $mediaResource = $mediaStorage->retrieve($media);
+    $crop = array(null, null, null, null);
 
     return [
       'id' => $media->getId(),
-      'crop' => array(null, null, null, null),
+      'crop' => ($media instanceof MediaCroppableInterface)?$media->getCrop():$crop,
       'preview' => array(
         'id' => $thumbnail->getId(),
         'src' => $thumbnailResource ? $thumbnailResource->getUrl() : null

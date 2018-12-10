@@ -165,6 +165,10 @@ api_image_move:
   path:     /admin/api/image_move
   defaults: { _controller: StoreBundle:Image:move }
 
+api_image_crop:
+  path:     /admin/api/image_crop
+  defaults: { _controller: StoreBundle:Image:crop }
+
 api_admin_cancel_status:
   path: /api/admin/template/status/cancel
   defaults: { _controller: StoreBundle:Order\OrderStatus:cancelStatusTemplate }

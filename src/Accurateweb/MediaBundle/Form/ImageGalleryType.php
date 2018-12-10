@@ -73,24 +73,33 @@ class ImageGalleryType extends AbstractType
   protected function getCropOptions($options)
   {
     $cropOptions = $options['crop'];
-
     $crop = null;
 
     if (false !== $cropOptions)
     {
       $crop = array();
 
-      if (!isset($options['size']))
-        throw new InvalidArgumentException('Crop option requires size parameter to be set');
+      if (!isset($cropOptions['size']))
+      {
+        throw new \InvalidArgumentException('Crop option requires size parameter to be set');
+      }
 
-      if (isset($options['boxwidth']))
-        $crop['boxWidth'] = $options['boxwidth'];
-      if (isset($options['boxheight']))
-        $crop['boxHeight'] = $options['boxheight'];
+      if (isset($cropOptions['boxWidth']))
+      {
+        $crop['boxWidth'] = $cropOptions['boxWidth'];
+      }
 
-      $size = $options['size'];
+      if (isset($cropOptions['boxHeight']))
+      {
+        $crop['boxHeight'] = $cropOptions['boxHeight'];
+      }
+
+      $size = $cropOptions['size'];
+
       if (is_string($size))
+      {
         $size = explode('x', $size);
+      }
 
       $crop['aspectRatio'] = $size[1] > 0 ? round($size[0] / $size[1], 2) : 1;
       $crop['minSize'] = $size;

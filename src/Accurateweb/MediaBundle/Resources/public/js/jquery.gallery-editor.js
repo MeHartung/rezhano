@@ -6,49 +6,49 @@
 (function($){
 
   var defaults = {
-     images: [],
-     crop: { },
-     pp_settings: {
-       social_tools: false
-     },
-     onCrop: null,
-     onRemove: null,
-     onMove: null,
-     onEdit: null
+    images: [],
+    crop: { },
+    pp_settings: {
+      social_tools: false
+    },
+    onCrop: null,
+    onRemove: null,
+    onMove: null,
+    onEdit: null
   };
 
   var cropDefaults = {
-    allowSelect: false    
+    allowSelect: false
   }
 
   /**
    * @class {GalleryEditor}
-   * 
+   *
    */
   function GalleryEditor(element, options) {
-    
+
     this.options = $.extend({}, defaults, options);
     this.element = $(element);
 
     this.fn = this.prototype;
-  
+
     this.initialize();
   }
-  
+
   $.extend(GalleryEditor.prototype, {
-    
+
     initialize: function(){
       var self = this;
       var listContainer = $('<div class="gallery-image-list-container"></div>').appendTo(this.element);
-      
+
       this.imageList = $('<ul class="gallery-image-list"></ul>').appendTo(listContainer);
       this.uploaderLink = $('<a href="#" class="gallery-uploader-link">Загрузить изображения</a>');
       this.element.append(this.uploaderLink);
       this.loader = $('<img src="/bundles/accuratewebmedia/images/ajax-loader.gif" alt="Загрузка"/>').appendTo(this.element).hide();
-      
+
       this._loadImages();
       this._initUploader();
-      
+
       listContainer.delegate('.gallery-image-crop-link', 'click', function(event){
         event.preventDefault();
 
@@ -59,22 +59,22 @@
         var cropCoords = li.galleryEditorImage('getCrop');
 
         var cropOptions = $.extend({}, cropDefaults, self.options.crop, {
-              onChange: function(c) {
-                cropCoords = [c.x, c.y, c.x + c.w, c.y + c.h]
-              }
-        });        
-        
+          onChange: function(c) {
+            cropCoords = [c.x, c.y, c.x + c.w, c.y + c.h]
+          }
+        });
+
         if (null === cropCoords[0]) {
           cropOptions.allowSelect = true;
         } else {
           cropOptions.setSelect = cropCoords;
         }
-        
+
         var imgdata = li.galleryEditorImage('getAllStuff'),
-            boxWeight = 0;
+          boxWidth = 0;
 
         if (typeof self.options.crop.boxWidth !== 'undefined')
-          boxWeight = parseInt(self.options.crop.boxWidth);
+          boxWidth = parseInt(self.options.crop.boxWidth);
 
         $dialog.find('img').Jcrop(cropOptions, function(){
           jcrop_api = this;
@@ -82,7 +82,7 @@
             modal: true,
             title: 'Изменение изображения',
             close: function(){ $dialog.remove(); },
-            width: (boxWeight > 0 ? boxWeight : jcrop_api.getBounds()[0]) + 34,
+            width: (boxWidth > 0 ? boxWidth : jcrop_api.getBounds()[0]) + 34,
             resizable: false,
             buttons: {
               'OK': function(){
@@ -104,48 +104,48 @@
             }
           })
         });
-        
+
       });
       listContainer.delegate('.gallery-image-remove-link', 'click', function(event){
         var $dialog = $('<div><p style="padding-top: 10px;"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Вы уверены, что хотите удалить это изображение?</p></div>');
         var li = $(this).parents('li:first');
-        
+
         $dialog.dialog({
           modal: true,
           title: 'Подтверждение удаления',
           close: function(){ $dialog.remove(); },
           resizable: false,
-            buttons: {
-              'Да': function(){
-                $dialog.dialog('close');
+          buttons: {
+            'Да': function(){
+              $dialog.dialog('close');
 
-                var imgdata = li.galleryEditorImage('getAllStuff');
-                var data = {                  
-                          image: {
-                            id: imgdata.id,
-                            obj: li
-                          }
-                        }
-
-                if ($.isFunction(self.options.onRemove))        
-                  self.options.onRemove(self, data);
-
-                li.galleryEditorImage('destroy');        
-                li.remove();              
-              },
-              'Нет': function(){
-                $dialog.dialog('close');
+              var imgdata = li.galleryEditorImage('getAllStuff');
+              var data = {
+                image: {
+                  id: imgdata.id,
+                  obj: li
+                }
               }
-            }          
-        })       
-      });     
+
+              if ($.isFunction(self.options.onRemove))
+                self.options.onRemove(self, data);
+
+              li.galleryEditorImage('destroy');
+              li.remove();
+            },
+            'Нет': function(){
+              $dialog.dialog('close');
+            }
+          }
+        })
+      });
       listContainer.delegate('.gallery-image-edit-link', 'click', function(event){
         event.preventDefault();
-         var li = $(this).parents('li:first');
+        var li = $(this).parents('li:first');
         if ('string' ===  typeof self.options.onEdit){
           var img = $(this).find('img'),
-              src = img.attr('src'),
-              imgdata = li.galleryEditorImage('getAllStuff');
+            src = img.attr('src'),
+            imgdata = li.galleryEditorImage('getAllStuff');
           img.attr('src', '/bundles/accuratewebmedia/images/ajax-loader-snake.gif');
           $.ajax({
             url: self.options.onEdit,
@@ -172,9 +172,9 @@
                         } else {
                           form.html(r.f);
                         }
-                      }                      
+                      }
                     })
-                    
+
                   },
                   'Отмена': function(){
                     $dlg.dialog('destroy');
@@ -183,7 +183,7 @@
               })
             },
             error: function(){
-               var $dlg = $('<div>').dialog({
+              var $dlg = $('<div>').dialog({
                 autoOpen: true,
                 resizable: false,
                 title: 'Ошибка',
@@ -198,50 +198,50 @@
             complete: function(){
               img.attr('src', src);
             }
-          })          
+          })
         }
       })
-            
+
       this.imageList.sortable({
-          placeholder: "ui-state-highlight",
-          start: function(event, ui){
-            self.sorting(true);
-          },
-          stop: function(event, ui){
-            //Добавдяем задержку, чтобы костылировать prettyPhoto, который норовит открыть изображение по клику и никак не отключается
-            setTimeout(function() { self.sorting(false) }, 100);
-            var li = ui.item;
-            if ($.isFunction(self.options.onMove)){
-              var imgdata = li.galleryEditorImage('getAllStuff');
-              var data = {      
-                        position: li.index()+1,
-                        image: {
-                          id: imgdata.id,
-                          obj: li
-                        }
-                      }
-              self.options.onMove(self, data)
+        placeholder: "ui-state-highlight",
+        start: function(event, ui){
+          self.sorting(true);
+        },
+        stop: function(event, ui){
+          //Добавдяем задержку, чтобы костылировать prettyPhoto, который норовит открыть изображение по клику и никак не отключается
+          setTimeout(function() { self.sorting(false) }, 100);
+          var li = ui.item;
+          if ($.isFunction(self.options.onMove)){
+            var imgdata = li.galleryEditorImage('getAllStuff');
+            var data = {
+              position: li.index()+1,
+              image: {
+                id: imgdata.id,
+                obj: li
+              }
             }
+            self.options.onMove(self, data)
           }
+        }
       });
       this.imageList.disableSelection();
-      
+
       //Грязный хак для кривого prettyPhoto, задающий для него настройки по умолчанию
       $().prettyPhoto(this.options.pp_settings);
     },
     destroy: function(){
-      
+
     },
     _initUploader: function(){
       var self = this;
-      
+
       this.uploadDialog = $('<div></div>').galleryUploadDialog({
         uploadUrl: this.options.uploadUrl,
         onUploadComplete: function(){
           self._loadImages();
         }
       });
-      
+
       this.uploaderLink.bind('click.gallery-editor', function(e){
         e.preventDefault();
         self.uploadDialog.galleryUploadDialog('open');
@@ -249,13 +249,13 @@
     },
     _loadImages: function(){
       var imageSource = this.options.images, self = this;
-      
+
       this.imageList.html('');
       if ($.isArray(imageSource)){
         $.each(r, function(){
           self._addImage(this);
         })
-      } else if ('string' == typeof imageSource) {        
+      } else if ('string' == typeof imageSource) {
         this.loader.show();
         this.imageList.hide();
         $.ajax({
@@ -281,12 +281,12 @@
     _addImage: function(image){
       var img = $('<li class="gallery-image-container"><a class="gallery-image-full" href="'+image.src+'" rel="prettyPhoto"><img src="'+image.preview.src+'" title="" alt="" /></a></li>');
       this.imageList.append(img);
-      
+
       //img.galleryEditorImage($.extend({}, image, { canEdit: null !== this.options.onEdit }));
       img.galleryEditorImage($.extend({}, image, { canEdit: this.options.canEdit }));
     },
     _getUploaderType: function(){
-     
+
     },
     sorting: function(v){
       this.imageList.find('li.gallery-image-container').each(function(){
@@ -294,11 +294,11 @@
       });
     }
   })
-  
+
   $.fn.galleryEditor = function(method){
     return this.each(function(){
       var inst = $.data(this, 'galleryEditor');
-      
+
       if ((typeof method === 'object' || ! method ) && !inst){
         $.data(this, 'galleryEditor', new GalleryEditor(this, method))
       } else if ('string' == typeof method && method[0] != '_' && inst && inst.fn[method] ) {
@@ -306,54 +306,54 @@
       }
     })
   }
-  
+
   var imageDefaults = {
     crop: [0, 0, 0, 0],
     canEdit: true
   }
-  
+
   /**
    * Вспомогательный класс изображения редактора галереи
    */
-  
+
   function GalleryEditorImage(element, options){
     this.options = $.extend({}, imageDefaults, options);
     this.element = $(element);
-    
+
     this.fn = GalleryEditorImage.prototype;
-    
+
     this.initialize();
   }
-  
+
   $.extend(GalleryEditorImage.prototype, {
     initialize: function(){
       var self = this;
-      
+
       this.previewEnabled = true;
-      
+
       this.element.find('a').bind('click', function(e){
         e.preventDefault();
         /*
          * Отключаем всплытие события, чтобы предотвратить открывание prettyPhoto, 
          * так как саму по себе эту кривую хрень нельзя отключить
-         */        
+         */
         if (self.previewEnabled)
           $.prettyPhoto.open([$(this).attr('href')]);
-        
-      });      
-      
+
+      });
+
       this.image = this.element.find('img');
       this.imageSrc = this.image.attr('src');
-      
+
       this.controlHolder = $('<div class="gallery-image-actions"></div>').prependTo(this.element);
       $('<a class="gallery-image-crop-link"><img src="/bundles/accuratewebmedia/images/crop.png" width="16" height="16" alt="Обрезать изображение" /></a>')
-        .appendTo(this.controlHolder);      
+        .appendTo(this.controlHolder);
       if (self.options.canEdit)
         $('<a class=gallery-image-edit-link><img src="/bundles/accuratewebmedia/images/edit.png" width="16" height="16" alt="Параметры изображения"/></a>')
-        .appendTo(this.controlHolder);
+          .appendTo(this.controlHolder);
       $('<a class="gallery-image-remove-link"><img src="/bundles/accuratewebmedia/images/remove.png" width="16" height="16" alt="Удалить изображение" /></a>')
         .appendTo(this.controlHolder);
-        
+
     },
     getCrop: function(){
       return this.options.crop
@@ -376,8 +376,8 @@
       this.previewEnabled = v;
     }
   });
-  
-  $.fn.galleryEditorImage = function(method){    
+
+  $.fn.galleryEditorImage = function(method){
     var returnValue = this;
     var args = arguments;
 
@@ -392,7 +392,7 @@
         $.error( 'Method ' +  method + ' does not exist on jQuery.element' );
       }
     });
-    
+
     return returnValue;
   }
 })(jQuery);
