@@ -3,6 +3,9 @@
  */
 define(function(require){
   var Backbone = require('backbone');
+  var ListView = require('view/base/list-view');
+
+  var CartTotalsPanelListView = require('view/cart/cart-totals-panel-list-view');
  //
  //  var template = _.template('\
  // <span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>\
@@ -21,17 +24,13 @@ define(function(require){
  //  <span class="payment-info__cost"><%= Number(subtotal).toCurrencyString() %></span>\
  // </div>');
 
-  var template = _.template('<% _.each(order_items, function(order_item){ %>\n\
-    <div class="payment-info__product">\n\
-       <span class="payment-info__product-name"> <%= order_item.name %></span>\n\
-       <span class="payment-info__product-value"> <%= order_item.quantity %> <%= order_item.product.units %> × <%= order_item.product.price %>₽</span>\n\
-    </div>\n\
-  <% }) %>\n\
+  var template = _.template('\
+   <div class="payment-info__product-wrap"></div>\
   <% if (shippingCost) { %>\
-  <div class="payment-info__product">\n\n  \
-     <span class="payment-info__product-name">Доставка</span>\n\n \
-     <span class="payment-info__product-value"> 1 шт. × <%= shippingCount %>₽</span>\n\n\
-  </div>\n\
+    <div class="payment-info__product">\n\n  \
+       <span class="payment-info__product-name">Доставка</span>\n\n \
+       <span class="payment-info__product-value"> 1 шт. × <%= shippingCount %>₽</span>\n\n\
+    </div>\n\
   <% } %>\n\
  <div class="payment-info__value">Итого\n\
    <% if (shippingCost) { %>\n\
@@ -41,19 +40,26 @@ define(function(require){
    <% } %>\
  </div>');
 
-  return Backbone.View.extend({
+  return ListView.extend({
     className: 'cards-container__payment-info',
     initialize: function(){
+      var self = this;
       this.listenTo(this.model, 'change', this.render);
+
+      this.cartProductListView = new CartTotalsPanelListView({
+        collection: new Backbone.Collection(self.model.get('order_items'))
+      })
     },
     render: function(){
       this.$el.html(template({
         subtotal: this.model.get('subtotal'),
-        order_items: this.model.get('order_items'),
         shippingCost: this.model.get('shippingCost'),
         shippingCount: this.model.get('shipping_cost'),
         total: Number(this.model.get('subtotal') )+ Number(this.model.get('shipping_cost'))
       }));
+
+      this.cartProductListView.setElement(this.$('.payment-info__product-wrap')).render();
+
       return this;
     }
   })

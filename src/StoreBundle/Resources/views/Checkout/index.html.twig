@@ -420,7 +420,8 @@
                             {% for item in order.orderItems %}
                                 <div class="payment-info__product">
                                     <span class="payment-info__product-name">{{ item.product.name }}</span>
-                                    <span class="payment-info__product-value">{{ item.quantity }} {{ item.product.units }}
+                                    <span class="payment-info__product-value">{{ item.quantity }}
+                                      {# {{ item.product.units }} #}
                                         × {{ item.product.price | price }}</span>
                                 </div>
                             {% endfor %}
