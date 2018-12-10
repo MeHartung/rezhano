@@ -21,7 +21,7 @@
           crop: {{ crop|json_encode|raw }},
           onCrop: function(editor, data){
             $.ajax({
-              url: "%s",
+              url: "{{ path('api_image_crop') }}",
               data: { coords: data.coords, image_id: data.image.id },
               dataType: 'json',
               success: function(){

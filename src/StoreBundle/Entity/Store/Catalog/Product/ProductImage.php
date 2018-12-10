@@ -9,6 +9,7 @@ use Accurateweb\ImagingBundle\Filter\CropFilterOptionsResolver;
 use Accurateweb\ImagingBundle\Filter\FilterChain;
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
+use Accurateweb\MediaBundle\Model\Media\MediaCroppableInterface;
 use Accurateweb\MediaBundle\Model\Media\MediaInterface;
 use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
 use Accurateweb\MediaBundle\Model\Thumbnail\ThumbnailDefinition;
@@ -23,7 +24,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="product_images")
  * @ORM\Entity(repositoryClass="StoreBundle\Repository\Store\Catalog\Product\ProductImageRepository")
  */
-class ProductImage implements ImageInterface, ImageAwareInterface
+class ProductImage implements ImageInterface, ImageAwareInterface, MediaCroppableInterface
 {
   /**
    * @var int
@@ -61,6 +62,11 @@ class ProductImage implements ImageInterface, ImageAwareInterface
    */
   private $product;
 
+  /**
+   * @var array|null
+   * @ORM\Column(type="simple_array", nullable=true)
+   */
+  private $crop;
 
   /**
    * @return int
@@ -181,7 +187,7 @@ class ProductImage implements ImageInterface, ImageAwareInterface
       new ThumbnailDefinition('preview', new FilterChain(array(
         array(
           'id' => 'crop',
-          'options' => array(),
+          'options' => $this->getCrop(),
           'resolver' => new CropFilterOptionsResolver()),
         array('id' => 'resize', 'options' => array('size' => '80x80'))
       ))),
@@ -191,10 +197,17 @@ class ProductImage implements ImageInterface, ImageAwareInterface
       new ThumbnailDefinition('50x50', new FilterChain(array(
         array(
           'id' => 'crop',
-          'options' => array(),
+          'options' => $this->getCrop(),
           'resolver' => new CropFilterOptionsResolver()),
         array('id' => 'resize', 'options' => array('size' => '50x50'))
       ))),
+//      new ThumbnailDefinition('640x640', new FilterChain(array(
+//        array(
+//          'id' => 'crop',
+//          'options' => $this->getCrop(),
+//          'resolver' => new CropFilterOptionsResolver()),
+//        array('id' => 'resize', 'options' => array('size' => '640x640'))
+//      ))),
     );
   }
 
@@ -251,5 +264,27 @@ class ProductImage implements ImageInterface, ImageAwareInterface
   public function setImageOptions($id)
   {
     // TODO: Implement setImageOptions() method.
+  }
+
+  /**
+   * @return array|null
+   */
+  public function getCrop ()
+  {
+    if (!$this->crop || count($this->crop) < 4)
+    {
+      return array(null, null, null, null);
+    }
+    return $this->crop;
+  }
+
+  /**
+   * @param array|null $crop
+   * @return $this
+   */
+  public function setCrop ($crop)
+  {
+    $this->crop = $crop;
+    return $this;
   }
 }
