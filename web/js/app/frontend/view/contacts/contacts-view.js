@@ -1,6 +1,7 @@
 define(function(require){
   var Backbone = require('backbone'),
     CommonView = require('view/common/common-view'),
+    Question = require('model/text/question'),
     MapViewDialog = require('view/common/map-view-dialog');
 
   return CommonView.extend({
@@ -10,6 +11,10 @@ define(function(require){
     initialize: function(options){
       CommonView.prototype.initialize.apply(this, [options]);
       this.mapViewDialog = null;
+
+      // var q = new Question();
+      // q.set('text', 'asd');
+      // q.save();
     },
     render: function(){
 

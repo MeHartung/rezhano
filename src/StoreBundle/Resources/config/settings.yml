@@ -169,3 +169,25 @@ services:
         - 'info@rezhano.ru'
       tags:
         - { name: aw.setting }
+
+    store.setting.yclient_ul:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'yclients'
+        - 'Ссылка на yclients'
+        - ~
+      tags:
+        - { name: aw.setting }
+
+
+    store.setting.tos:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+        - '@aw.settings.storage'
+        - '@store.article.repository'
+        - 'tos_article'
+        - 'Условия передачи информации'
+        - ~
+      tags:
+        - { name: aw.setting }

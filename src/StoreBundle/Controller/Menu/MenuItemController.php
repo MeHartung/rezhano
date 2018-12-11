@@ -62,4 +62,14 @@ class MenuItemController extends Controller
       'nodes' => $headerMenuItems,
     ));
   }
+
+  public function footerMapsAction()
+  {
+    $stores = $this->getDoctrine()->getRepository('StoreBundle:Store\Store')->findBy([
+      'showFooter' => true,
+    ]);
+    return $this->render('StoreBundle:Menu:footerMaps.html.twig', [
+      'stores' => $stores,
+    ]);
+  }
 }

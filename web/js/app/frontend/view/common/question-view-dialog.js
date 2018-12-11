@@ -1,5 +1,6 @@
 define(function(require){
-  var ModalDialog = require('view/dialog/base/modal-dialog-view');
+  var ModalDialog = require('view/dialog/base/modal-dialog-view'),
+      Backbone = require('backbone');
 
   var template = _.template('\
     <h2>Какой у вас вопрос?</h2>\n\
@@ -32,7 +33,7 @@ define(function(require){
           <label>\n\
             <input type="checkbox" id="" name="" required="required" class="checkbox" data-validate="" data-description="" data-describedby="" value="">\n\
             <span class="custom-checkbox__checkbox"></span>\n\
-            <span>Я согласен с условиями <a href="">передачи информации</a></span>\n\
+            <span>Я согласен с условиями <a href="<%= tosUrl %>">передачи информации</a></span>\n\
           </label>\n\
         </div>\n\
         <i class="error-icon">\n\
@@ -55,11 +56,18 @@ define(function(require){
     initialize: function(options){
       ModalDialog.prototype.initialize.apply(this, arguments);
       this.address = options.address;
+      this.tosArticle = new Backbone.Model(ObjectCache.TosArticle || {});
     },
     render: function(){
       // ModalDialog.prototype.render.apply(this, arguments);
+      var tosUrl = '#';
+      if (this.tosArticle.get('slug')){
+        tosUrl = urlPrefix + '/' + this.tosArticle.get('slug');
+      }
 
-      this.$el.html(template());
+      this.$el.html(template({
+        tosUrl: tosUrl,
+      }));
 
       return this;
     },

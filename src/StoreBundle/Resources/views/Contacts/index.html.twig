@@ -152,7 +152,7 @@
               <label>
                 <input type="checkbox" id="" name="" required="required" class="checkbox" data-validate="" data-description="" data-describedby="" value="">
                 <span class="custom-checkbox__checkbox"></span>
-                <span>Я согласен с условиями <a href="">передачи информации</a></span>
+                <span>Я согласен с условиями <a target="_blank" href="{% if setting('tos_article') %}{{ path('article_show',{'slug':setting('tos_article').slug}) }}{% else %}#{% endif %}">передачи информации</a></span>
               </label>
             </div>
             <i class="error-icon">

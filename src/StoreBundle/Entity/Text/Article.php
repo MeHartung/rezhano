@@ -415,4 +415,8 @@ class Article implements SluggableInterface, ImageAwareInterface
     $this->teaserImageFile = $teaser ? $teaser->getResourceId() : null;
   }
 
+  public function __toString ()
+  {
+    return $this->getTitle()?:'';
+  }
 }
