@@ -6,8 +6,12 @@
 namespace Accurateweb\MediaBundle\EventListener;
 
 
+use Accurateweb\ImagingBundle\Filter\FilterChain;
+use Accurateweb\MediaBundle\Annotation\Thumbnail;
+use Accurateweb\MediaBundle\Generator\ImageThumbnailGenerator;
 use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
 use Accurateweb\MediaBundle\Model\Media\ImageInterface;
+use Accurateweb\MediaBundle\Model\Thumbnail\ThumbnailDefinition;
 use Accurateweb\MediaBundle\Service\ImageUploader;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -25,11 +29,13 @@ class ImageUploadListener
   private $annotationReader;
 
   private $propertyAccessor;
+  private $imageThumbnailGenerator;
 
-  public function __construct(ImageUploader $uploader, AnnotationReader $annotationReader)
+  public function __construct(ImageUploader $uploader, AnnotationReader $annotationReader, ImageThumbnailGenerator $imageThumbnailGenerator)
   {
     $this->uploader = $uploader;
     $this->annotationReader = $annotationReader;
+    $this->imageThumbnailGenerator = $imageThumbnailGenerator;
     $this->propertyAccessor = PropertyAccess::createPropertyAccessor();
 
   }
@@ -94,6 +100,29 @@ class ImageUploadListener
         $this->uploader->upload($image, $file);
 
         $this->propertyAccessor->setValue($object, $prop->name.'_image', $image);
+        $thumbnailDefinitions = $ann->thumbnails;
+
+        if (count($thumbnailDefinitions))
+        {
+          $definitions = [];
+
+          foreach ($thumbnailDefinitions as $thumbnailDefinition)
+          {
+            $ffs = [];
+
+            foreach ($thumbnailDefinition->filters as $filter)
+            {
+              $ffs[] = [
+                'id' => $filter->id,
+                'options' => $filter->options,
+              ];
+            }
+
+            $definitions[] = new ThumbnailDefinition($thumbnailDefinition->id, new FilterChain($ffs));
+          }
+
+          $this->imageThumbnailGenerator->generate($image, null, $definitions);
+        }
       }
     }
   }

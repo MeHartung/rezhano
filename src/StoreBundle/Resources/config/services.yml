@@ -1159,3 +1159,31 @@ services:
       arguments: ['@doctrine.orm.entity_manager', '@store.product.publication.manager']
       tags:
         - { name: kernel.event_listener, event: synchronization.scenario.post_execute, method: postExecute }
+
+    store.data_adapter_store.store_data_adapter:
+      class: StoreBundle\DataAdapter\Store\StoreDataAdapter
+      arguments: ['@aw.media.storage.file']
+      tags:
+        - { name: aw.client_application.adapter, alias: store }
+
+    store.admin_store.store_admin:
+       class: StoreBundle\Admin\Store\StoreAdmin
+       arguments: [~, StoreBundle\Entity\Store\Store, ~, ~]
+       tags:
+         - {name: sonata.admin, manager_type: orm, group: settings, label: "Точки реализации"}
+
+    store.repository.store:
+      class: StoreBundle\Repository\Store\StoreRepository
+      factory: ['@doctrine.orm.entity_manager', 'getRepository']
+      arguments: ['StoreBundle\Entity\Store\Store']
+
+    store.repository.contact_phone:
+      class: StoreBundle\Repository\Store\Text\ContactPhoneRepository
+      factory: ['@doctrine.orm.entity_manager', 'getRepository']
+      arguments: ['StoreBundle\Entity\Text\ContactPhone']
+
+    store.validator_constraints.contact_place_validator:
+      class: StoreBundle\Validator\Constraints\ContactPlaceValidator
+      arguments: ['@store.repository.contact_phone']
+      tags:
+        - { name: validator.constraint_validator }

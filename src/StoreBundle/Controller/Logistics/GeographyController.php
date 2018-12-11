@@ -11,6 +11,8 @@ use App\Logistics\Legacy\CdekCatalogue;
 use StoreBundle\DataAdapter\CityClientModelAdapter;
 use StoreBundle\DataAdapter\LocationClientModelAdapter;
 use StoreBundle\DataAdapter\RegionClientModelAdapter;
+use StoreBundle\Entity\Store\Store;
+use StoreBundle\Entity\Text\ContactPhone;
 use StoreBundle\Repository\Store\Logistics\Delivery\Cdek\CdekCityRepository;
 use AccurateCommerce\Util\EndingFormatter;
 use StoreBundle\Service\Geography\Location;
@@ -156,11 +158,16 @@ class GeographyController extends Controller
 //    $phoneMsk = $this->get('store.geography.location')->getContactPhoneByCity('msk');
 //    $phoneEkb = $this->get('store.geography.location')->getContactPhoneByCity('ekb');
 
+    $stores = $this->getDoctrine()->getRepository('StoreBundle:Store\Store')->findAll();
+    $leftPhone = $this->getDoctrine()->getRepository('StoreBundle:Text\ContactPhone')
+      ->findOneBy(['published' => true, 'showPlace' => ContactPhone::SHOW_PLACE_LEFT]);
+    $rightPhone = $this->getDoctrine()->getRepository('StoreBundle:Text\ContactPhone')
+      ->findOneBy(['published' => true, 'showPlace' => ContactPhone::SHOW_PLACE_RIGHT]);
+
     return $this->render('@Store/Contacts/index.html.twig', array(
-//      'mainRegions' => $legacyCdekCatalogue->getMainRegions(),
-//      'current_region_id' => $legacyCdekCatalogue->getCurrentRegion(),
-//      'phoneMsk' => $phoneMsk,
-//      'phoneEkb' => $phoneEkb
+      'stores' => $stores,
+      'leftPhone' => $leftPhone,
+      'rightPhone' => $rightPhone,
     ));
   }
 

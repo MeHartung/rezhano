@@ -22,4 +22,9 @@ final class Image
    * @Required()
    */
   public $id;
+
+  /**
+   * @var array<\Accurateweb\MediaBundle\Annotation\Thumbnail>
+   */
+  public $thumbnails;
 }

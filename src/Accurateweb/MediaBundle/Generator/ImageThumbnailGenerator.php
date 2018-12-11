@@ -34,10 +34,19 @@ class ImageThumbnailGenerator
   /**
    * @param ImageInterface $media
    * @param null $id Thumbnail ID
+   * @param null $definitions
    */
-  public function generate(ImageInterface $media, $id=null)
+  public function generate(ImageInterface $media, $id=null, $definitions=null)
   {
-    $thumbnailDefinitions = $media->getThumbnailDefinitions();
+    if (!$definitions)
+    {
+      $thumbnailDefinitions = $media->getThumbnailDefinitions();
+    }
+    else
+    {
+      $thumbnailDefinitions = $definitions;
+    }
+
     foreach ($thumbnailDefinitions as $definition)
     {
       /** @var $definition ThumbnailDefinition */

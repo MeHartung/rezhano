@@ -551,6 +551,18 @@
                 <source>Product Attribute Value List</source>
                 <target>Список атрибутов товаров</target>
             </trans-unit>
+            <trans-unit id="Store List">
+                <source>Store List</source>
+                <target>Точки реализации</target>
+            </trans-unit>
+            <trans-unit id="Work Time">
+                <source>Work Time</source>
+                <target>Время работы</target>
+            </trans-unit>
+            <trans-unit id="Store Create">
+                <source>Store Create</source>
+                <target>Добавление точки реализации</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>
