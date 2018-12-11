@@ -97,6 +97,12 @@ class Store implements ImageInterface, ImageAwareInterface
   protected $description;
 
   /**
+   * @var string|null
+   * @ORM\Column(type="text",nullable=true)
+   */
+  protected $fullAddress;
+
+  /**
    * Get id.
    *
    * @return int
@@ -388,6 +394,26 @@ class Store implements ImageInterface, ImageAwareInterface
   {
     return $this;
   }
+
+  /**
+   * @return null|string
+   */
+  public function getFullAddress ()
+  {
+    return $this->fullAddress;
+  }
+
+  /**
+   * @param null|string $fullAddress
+   * @return $this
+   */
+  public function setFullAddress ($fullAddress)
+  {
+    $this->fullAddress = $fullAddress;
+    return $this;
+  }
+
+
 
 
 }

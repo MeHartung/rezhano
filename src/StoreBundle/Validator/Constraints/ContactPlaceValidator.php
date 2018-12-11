@@ -26,14 +26,21 @@ class ContactPlaceValidator extends ConstraintValidator
 
     if ($place !== ContactPhone::SHOW_PLACE_HIDE)
     {
-      $existingPlace = $this->contactPhoneRepository
+      $query = $this->contactPhoneRepository
         ->createQueryBuilder('s')
         ->where('s.showPlace = :place')
         ->andWhere('s.published = true')
-        ->andWhere('s != :store')
         ->setParameter('place', $place)
-        ->setParameter('store', $value)
-        ->setMaxResults(1)
+        ->setMaxResults(1);
+
+      if ($value->getId())
+      {
+        $query
+          ->andWhere('s != :store')
+          ->setParameter('store', $value);
+      }
+
+      $existingPlace = $query
         ->getQuery()
         ->getOneOrNullResult();
 

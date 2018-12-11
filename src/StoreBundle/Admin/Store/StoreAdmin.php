@@ -24,6 +24,9 @@ class StoreAdmin extends AbstractAdmin
         ])
         //      ->add('description')
         ->add('address')
+        ->add('fullAddress', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
+          'label' => 'Полный адрес',
+        ])
         ->add('phone')
         //      ->add('email')
         ->add('workTime')

@@ -149,15 +149,6 @@ class GeographyController extends Controller
 
   public function contactsAction()
   {
-//    $legacyCdekCatalogue = new CdekCatalogue(
-//      $this->get('store.geography.location'),
-//      $this->getParameter('kernel.root_dir'),
-//      $this->get('accuratecommerce.cdek.api')
-//    );
-//
-//    $phoneMsk = $this->get('store.geography.location')->getContactPhoneByCity('msk');
-//    $phoneEkb = $this->get('store.geography.location')->getContactPhoneByCity('ekb');
-
     $stores = $this->getDoctrine()->getRepository('StoreBundle:Store\Store')->findAll();
     $leftPhone = $this->getDoctrine()->getRepository('StoreBundle:Text\ContactPhone')
       ->findOneBy(['published' => true, 'showPlace' => ContactPhone::SHOW_PLACE_LEFT]);

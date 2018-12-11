@@ -34,6 +34,7 @@ class StoreDataAdapter implements ClientApplicationModelAdapterInterface
     return [
       'name' => $subject->getName(),
       'address' => $subject->getAddress(),
+      'fullAddress' => $subject->getFullAddress(),
       'latitude' => $subject->getLatitude(),
       'longitude' => $subject->getLongitude(),
       'showFooter' => $subject->isShowFooter(),
