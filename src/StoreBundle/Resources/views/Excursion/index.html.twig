@@ -1,0 +1,103 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+  <header class="header-excursion">
+    <div class="header__fixed ">
+      <div class="header-menu-wrap header-menu-wrap">
+        <a class="header-logo" title="Режано"
+           {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
+        {% block headerMenu %}
+          {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
+        {% endblock %}
+
+        <div class="header-controls">
+          <a href="" class="header-controls__item header-controls__cabinet">
+        <span class="header-controls__notice">
+          <span class="notice-count">1</span>
+        </span>
+          </a>
+          <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
+            {% if cart.orderItems|length %}
+              <span class="header-controls__notice">
+            <span class="notice-count">{{ cart.orderItems|length }}</span>
+          </span>
+            {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-catalog__wrap">
+    </div>
+  </header>
+{% endblock header %}
+
+{% block main %}
+  <section class="section-excursion">
+    <div class="container container_no-padding">
+      <h1 class="section-excursion__title">Экскурсии туда, где варят сыр</h1>
+      <div class="section-excursion__text">
+        Теперь вы можете увидеть, как варят настоящий сыр!<br> Наша сыроварня находится в городе Реж и только здесь вы можете посмотреть на работу сыроваров через панорамное стекло.<br> Мы проводим групповые экскурсии на сыроварню для детей,<br> взрослых и организаций.
+      </div>
+
+      <div class="section-excursion__steps">
+        <div class="section-excursion__step-item">
+          <div class="step-item__image"><img src="{{ asset('images/excursion/ico-1.png') }}" alt=""></div>
+          <div class="step-item__title">Экскурсия</div>
+          <div class="step-item__text">вы услышите об истории<br> сыроделия, видах<br> и технологии изготовления сыра</div>
+        </div>
+
+        <div class="section-excursion__step-item">
+          <div class="step-item__image"><img src="{{ asset('images/excursion/ico-2.png') }}" alt=""></div>
+          <div class="step-item__title">Дегустация</div>
+          <div class="step-item__text">разных сортов сыра,<br> находящихся<br> на производстве</div>
+        </div>
+
+        <div class="section-excursion__step-item">
+          <div class="step-item__image"><img src="{{ asset('images/excursion/ico-3.png') }}" alt=""></div>
+          <div class="step-item__title">Мастер-класс</div>
+          <div class="step-item__text">на котором вы сами сделаете<br> моцареллу и заберете<br>её с собой</div>
+        </div>
+
+        <div class="section-excursion__step-item">
+          <div class="step-item__image"><img src="{{ asset('images/excursion/ico-4.png') }}" alt=""></div>
+          <div class="step-item__title">Сырный шоппинг</div>
+          <div class="step-item__text">после экскурсии вы сможете<br> приобрести наши<br>фирменные сыры</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-details">
+    <div class="container container_no-padding">
+      <div class="col-wrap">
+        <div class="col-left">
+          <span class="col-image">
+            <img src="{{ asset('images/details-phone-ico.png') }}" alt="">
+          </span>
+          <span class="col-title">Чтобы узнать подробности — просто позвоните нам</span>
+          <span class="col-text">+7 (922) 145-62-37</span>
+        </div>
+        <div class="col-right">
+           <span class="col-image">
+            <img src="{{ asset('images/details-time-ico.png') }}" alt="">
+          </span>
+          <span class="col-title">Узнать доступное время и записаться можно здесь</span>
+          <a href="" class="button button_white">
+            <span>записаться на экскурсию</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-reviews">
+    <div class="container container_no-padding">
+      <h1 class="section-reviews__title">Отзывы наших посетителей</h1>
+    </div>
+  </section>
+{% endblock %}
+
+{% block footer %}
+{% endblock footer %}

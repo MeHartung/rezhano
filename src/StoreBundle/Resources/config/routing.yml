@@ -124,6 +124,10 @@ contacts_index:
 #  path: /contacts/cities
 #  defaults: { _controller: StoreBundle:Logistics/Geography:contactsCityList }
 
+excursion_index:
+  path: /excursion
+  defaults: { _controller: StoreBundle:Logistics/Geography:excursion }
+
 product_question:
   path: /api/products/{slug}/question
   defaults: { _controller: StoreBundle:Catalog/Product:askQuestion }

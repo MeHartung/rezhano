@@ -164,6 +164,13 @@ class GeographyController extends Controller
     ));
   }
 
+  public function excursionAction()
+  {
+    return $this->render('@Store/Excursion/index.html.twig', array(
+
+    ));
+  }
+
   public function contactsCityListAction()
   {
     $legacyCdekCatalogue = new CdekCatalogue(
