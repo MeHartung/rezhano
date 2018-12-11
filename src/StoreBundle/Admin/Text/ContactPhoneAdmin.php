@@ -39,6 +39,9 @@ class ContactPhoneAdmin extends AbstractAdmin
         'choices' => array_flip($placesChoices),
         'label' => 'Позиция на странице контактов',
       ])
+      ->add('showExcursion', null, [
+        'label' => 'Отображать на странице экскурсий',
+      ])
       ->add('published')
     ;
   }

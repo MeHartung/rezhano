@@ -36,56 +36,47 @@
 
   <section class="section-excursion">
     <div class="container container_no-padding">
-      <h1 class="section-excursion__title">Экскурсии туда, где варят сыр</h1>
+      <h1 class="section-excursion__title">{{ hotspot('excursion_title', 'Экскурсии туда, где варят сыр') }}</h1>
       <div class="section-excursion__text">
-        Теперь вы можете увидеть, как варят настоящий сыр!<br> Наша сыроварня находится в городе Реж и только здесь вы можете посмотреть на работу сыроваров через панорамное стекло.<br> Мы проводим групповые экскурсии на сыроварню для детей,<br> взрослых и организаций.
+        {{ hotspot('excursion_body', 'Теперь вы можете увидеть, как варят настоящий сыр!<br> Наша сыроварня находится в городе Реж и только здесь вы можете посмотреть на работу сыроваров через панорамное стекло.<br> Мы проводим групповые экскурсии на сыроварню для детей,<br> взрослых и организаций.') }}
       </div>
 
+      {% if teasers|length %}
       <div class="section-excursion__steps">
+        {% for teaser in teasers %}
         <div class="section-excursion__step-item">
-          <div class="step-item__image"><img src="{{ asset('images/excursion/ico-1.png') }}" alt=""></div>
-          <div class="step-item__title">Экскурсия</div>
-          <div class="step-item__text">вы услышите об истории<br> сыроделия, видах<br> и технологии изготовления сыра</div>
+          <div class="step-item__image">
+            {% if image_exists(teaser) %}
+            <img src="{{ image_url(teaser) }}" alt="">
+            {% endif %}
+          </div>
+          <div class="step-item__title">{{ teaser.title }}</div>
+          <div class="step-item__text">{{ teaser.description|raw }}</div>
         </div>
-
-        <div class="section-excursion__step-item">
-          <div class="step-item__image"><img src="{{ asset('images/excursion/ico-2.png') }}" alt=""></div>
-          <div class="step-item__title">Дегустация</div>
-          <div class="step-item__text">разных сортов сыра,<br> находящихся<br> на производстве</div>
-        </div>
-
-        <div class="section-excursion__step-item">
-          <div class="step-item__image"><img src="{{ asset('images/excursion/ico-3.png') }}" alt=""></div>
-          <div class="step-item__title">Мастер-класс</div>
-          <div class="step-item__text">на котором вы сами сделаете<br> моцареллу и заберете<br>её с собой</div>
-        </div>
-
-        <div class="section-excursion__step-item">
-          <div class="step-item__image"><img src="{{ asset('images/excursion/ico-4.png') }}" alt=""></div>
-          <div class="step-item__title">Сырный шоппинг</div>
-          <div class="step-item__text">после экскурсии вы сможете<br> приобрести наши<br>фирменные сыры</div>
-        </div>
-
+        {% endfor %}
       </div>
+      {% endif %}
     </div>
   </section>
 
   <section class="section-details">
     <div class="container container_no-padding">
       <div class="col-wrap">
+        {% if excursionPhone %}
         <div class="col-left">
           <span class="col-image">
             <img src="{{ asset('images/details-phone-ico.png') }}" alt="">
           </span>
           <span class="col-title">Чтобы узнать подробности — просто позвоните нам</span>
-          <span class="col-text">+7 (922) 145-62-37</span>
+          <span class="col-text">{{ excursionPhone.phone }}</span>
         </div>
+        {% endif %}
         <div class="col-right">
            <span class="col-image">
             <img src="{{ asset('images/details-time-ico.png') }}" alt="">
           </span>
           <span class="col-title">Узнать доступное время и записаться можно здесь</span>
-          <a href="" class="button button_white">
+          <a href="{{ setting('yclients') }}" class="button button_white">
             <span>записаться на экскурсию</span>
           </a>
         </div>
@@ -143,7 +134,7 @@
     <div class="container container_no-padding container_narrow">
       <div class="section-cooked__title">
         <span class="section-cooked__title-title">Хочу туда, где варят сыр!</span>
-        <a href="" class="button button_black button-transparent-white">
+        <a href="{{ setting('yclients') }}" class="button button_black button-transparent-white">
           <span>записаться</span>
         </a>
       </div>

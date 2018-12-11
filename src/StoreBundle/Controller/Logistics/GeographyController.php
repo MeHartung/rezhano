@@ -166,10 +166,17 @@ class GeographyController extends Controller
   {
     $testimonials = $this->getDoctrine()->getRepository('StoreBundle:Store\Excursion\Testimonial')->findBy(['enabled' => true]);
     $banners = $this->getDoctrine()->getRepository('StoreBundle:Store\Excursion\ExcursionBanner')->findBy(['enabled' => true]);
+    $teasers = $this->getDoctrine()->getRepository('StoreBundle:Store\Excursion\Teaser')->findBy(['enabled'=>true]);
+    $excursionPhone = $this->getDoctrine()->getRepository('StoreBundle:Text\ContactPhone')->findOneBy([
+      'showExcursion' => true,
+      'published' => true,
+    ]);
 
     return $this->render('@Store/Excursion/index.html.twig', array(
       'testimonials' => $testimonials,
       'banners' => $banners,
+      'teasers' => $teasers,
+      'excursionPhone' => $excursionPhone,
     ));
   }
 

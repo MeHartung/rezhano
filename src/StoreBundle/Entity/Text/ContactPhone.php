@@ -58,6 +58,12 @@ class ContactPhone
   protected $showPlace;
 
   /**
+   * @var boolean
+   * @ORM\Column(type="boolean", nullable=false, options={"default"=0})
+   */
+  protected $showExcursion=false;
+
+  /**
    * @return int
    */
   public function getId()
@@ -165,6 +171,24 @@ class ContactPhone
   public function __toString()
   {
     return $this->getName() ?: 'Новый контактный номер телефона';
+  }
+
+  /**
+   * @return bool
+   */
+  public function isShowExcursion ()
+  {
+    return $this->showExcursion;
+  }
+
+  /**
+   * @param bool $showExcursion
+   * @return $this
+   */
+  public function setShowExcursion ($showExcursion)
+  {
+    $this->showExcursion = $showExcursion;
+    return $this;
   }
 
   /**

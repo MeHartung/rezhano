@@ -1200,6 +1200,12 @@ services:
        tags:
          - {name: sonata.admin, manager_type: orm, group: excursion, label: "Баннеры"}
 
+    store.admin.excursion_teaser:
+       class: StoreBundle\Admin\ExcursionTeaserAdmin
+       arguments: [~, StoreBundle\Entity\Store\Excursion\Teaser, ~, ~]
+       tags:
+         - {name: sonata.admin, manager_type: orm, group: excursion, label: "Тизеры"}
+
     store.data_adapter_text.question_adapter:
       class: StoreBundle\DataAdapter\Text\QuestionAdapter
       tags:
