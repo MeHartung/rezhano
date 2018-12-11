@@ -17,6 +17,7 @@ define(function(require){
       ProfileHistoryView = require('view/user/user-profile-history-view'),
       HomepageView = require('view/homepage/homepage-view'),
       CommonView = require('view/common/common-view'),
+      ContactPageView = require('view/contact/contact-page-view'),
       PasswordResetView = require('view/user/password-reset/password-reset-view'),
       CheckoutDeliveryStepView = require('view/checkout/delivery/checkout-delivery-step-page-view'),
       Cart = require('model/cart/cart'),
@@ -50,6 +51,9 @@ define(function(require){
     },
     checkoutAction: function(){
       this.defaultPageAction(CheckoutPageView);
+    },
+    contactPageAction: function(){
+      this.defaultPageAction(ContactPageView);
     },
     commonAction: function(){
       this.defaultPageAction(CommonView)
@@ -108,6 +112,7 @@ define(function(require){
       this.route(routePrefix + 'cabinet/orders', this.profileHistoryAction);
       this.route(routePrefix + 'passwordreset/reset/:token', this.passwordResetAction);
       this.route(routePrefix + 'checkout/delivery', this.checkoutDeliveryStepAction);
+      this.route(routePrefix + 'contacts', this.contactPageAction);
     }
   });
 });

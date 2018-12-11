@@ -55,7 +55,7 @@ class QuestionController extends Controller
 
         if ($request->isXmlHttpRequest())
         {
-          return new JsonResponse();
+          return new JsonResponse($this->get('aw.client_application.transformer')->getClientModelData($questionData, 'question'));
         }
 
         return $this->redirectToRoute('customer_question_success');

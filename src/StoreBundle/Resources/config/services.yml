@@ -1199,3 +1199,8 @@ services:
        arguments: [~, StoreBundle\Entity\Store\Excursion\ExcursionBanner, ~, ~]
        tags:
          - {name: sonata.admin, manager_type: orm, group: excursion, label: "Баннеры"}
+
+    store.data_adapter_text.question_adapter:
+      class: StoreBundle\DataAdapter\Text\QuestionAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: question }

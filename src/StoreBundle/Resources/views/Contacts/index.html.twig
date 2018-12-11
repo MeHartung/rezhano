@@ -61,7 +61,7 @@
 
               <a href="" class="maps-link">
                 <span class="maps-link__map">
-                  <img src="{% if image_exists(store) %}{{ image_thumbnail_url(store, 'contact') }}{% else %}{{ asset('images/krasno-map.png') }}{% endif %}"
+                  <img src="{% if image_exists(store) %}{{ image_thumbnail_url(store, null, 'contact') }}{% else %}{{ asset('images/krasno-map.png') }}{% endif %}"
                        alt="">
                 </span>
                 <span class="maps-link__link">открыть на карте</span>
@@ -97,7 +97,7 @@
 
               <a href="" class="maps-link">
                 <span class="maps-link__map">
-                  <img src="{% if image_exists(store) %}{{ image_thumbnail_url(store, 'contact') }}{% else %}{{ asset('images/krasno-map.png') }}{% endif %}"
+                  <img src="{% if image_exists(store) %}{{ image_thumbnail_url(store, null, 'contact') }}{% else %}{{ asset('images/krasno-map.png') }}{% endif %}"
                        alt="">
                 </span>
                 <span class="maps-link__link">открыть на карте</span>
