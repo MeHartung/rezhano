@@ -69,6 +69,12 @@ class Question
    * @ORM\Column(type="text", nullable=true)
    */
   private $answer;
+
+  /**
+   * @var string
+   * @ORM\Column(type="string", length=50)
+   */
+  private $source;
   
   /**
    * @return int|null
@@ -196,6 +202,24 @@ class Question
   public function setAnswer(?string $answer): void
   {
     $this->answer = $answer;
+  }
+
+  /**
+   * @return string
+   */
+  public function getSource ()
+  {
+    return $this->source;
+  }
+
+  /**
+   * @param string $source
+   * @return $this
+   */
+  public function setSource ($source)
+  {
+    $this->source = $source;
+    return $this;
   }
   
   public function __toString()

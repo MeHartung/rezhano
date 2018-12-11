@@ -11,6 +11,8 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class UserQuestionType extends AbstractType
 {
@@ -23,6 +25,12 @@ class UserQuestionType extends AbstractType
       ])
       ->add('email', null, [
         'required' => false
+      ])
+      ->add('source', 'Symfony\Component\Form\Extension\Core\Type\HiddenType', [
+        'constraints' => [
+          new NotNull(),
+//          new Choice([])
+        ]
       ])
       ->add('text')
       ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event)

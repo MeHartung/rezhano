@@ -17,37 +17,54 @@ class QuestionController extends Controller
   public function askQuestionAction(Request $request)
   {
     $question = new Question();
-    
+    $question->setSource('question');
     $form = $this->createForm(UserQuestionType::class, $question);
-    
     $form->handleRequest($request);
-    
-    if ($form->isSubmitted() && $form->isValid())
+
+    if ($request->isXmlHttpRequest())
     {
-      $questionData = $form->getData();
-      
-      $em = $this->getDoctrine()->getManager();
-      
-      $em->persist($questionData);
-      $em->flush();
-      $request->getSession()->set('last.question.id', $questionData->getId());
-      $operatorEmail = $this->getParameter('operator_email');
-      if ($operatorEmail)
+      $data = json_decode($request->getContent(), true);
+      $form->submit($data);
+    }
+    
+    if ($form->isSubmitted())
+    {
+      if ($form->isValid())
       {
-        $email = $this->get('aw_email_templating.template.factory')->createMessage(
-          'user_question_operator',
-          array($this->getParameter('mailer_from') => $this->getParameter('mailer_sender_name')),
-          array($operatorEmail => ''),
-          array(
-            'customer_name' => $question->getFio(),
-            'customer_email' => $question->getEmail(),
-            'question' => $question->getText()
-          ));
-        
-        $this->get('mailer')->send($email);
+        $questionData = $form->getData();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($questionData);
+        $em->flush();
+        $request->getSession()->set('last.question.id', $questionData->getId());
+        $operatorEmail = $this->getParameter('operator_email');
+
+        if ($operatorEmail)
+        {
+          $email = $this->get('aw_email_templating.template.factory')->createMessage(
+            'user_question_operator',
+            array($this->getParameter('mailer_from') => $this->getParameter('mailer_sender_name')),
+            array($operatorEmail => ''),
+            array(
+              'customer_name' => $question->getFio(),
+              'customer_email' => $question->getEmail(),
+              'question' => $question->getText()
+            ));
+
+          $this->get('mailer')->send($email);
+        }
+
+        if ($request->isXmlHttpRequest())
+        {
+          return new JsonResponse();
+        }
+
+        return $this->redirectToRoute('customer_question_success');
       }
-      
-      return $this->redirectToRoute('customer_question_success');
+
+      if ($request->isXmlHttpRequest())
+      {
+        return new JsonResponse($this->get('aw.client_application.transformer')->getClientModelData($form, 'form.error'), 400);
+      }
     }
     
     return $this->render('@Store/CustomerQuestion/index.html.twig', [
