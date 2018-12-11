@@ -2269,30 +2269,40 @@ footer .footer-aside__link.link_frukt:after {
 footer .footer-aside__link.link_frukt:hover:after {
   background: url("../images/icons/frukt-hover.png");
 }
-.footer-social .footer-social__item {
-  width: 39px;
-  height: 39px;
-  background: url("../images/icons/social.png");
+footer.low {
+  background: #000000;
+  padding: 0;
+  margin: 0;
+}
+footer.low .footer-aside {
+  margin: 0;
+  border: none;
+  height: 70px;
+}
+.contacts-social .footer-social__item {
+  width: 52px;
+  height: 52px;
+  background: url("../images/sprite-contacts-page.png");
   display: inline-block;
   margin-right: 8px;
 }
-.footer-social .footer-social__facebook {
-  background-position: 0 0;
+.contacts-social .footer-social__facebook {
+  background-position: -5px -5px;
 }
-.footer-social .footer-social__facebook:hover {
-  background-position: 0 39px;
+.contacts-social .footer-social__facebook:hover {
+  background-position: -5px 119px;
 }
-.footer-social .footer-social__vkontakte {
-  background-position: 90px 0;
+.contacts-social .footer-social__vkontakte {
+  background-position: 124px -5px;
 }
-.footer-social .footer-social__vkontakte:hover {
-  background-position: 90px 39px;
+.contacts-social .footer-social__vkontakte:hover {
+  background-position: -72px -67px;
 }
-.footer-social .footer-social__instagram {
-  background-position: 39px 0;
+.contacts-social .footer-social__instagram {
+  background-position: 56px -5px;
 }
-.footer-social .footer-social__instagram:hover {
-  background-position: 39px 39px;
+.contacts-social .footer-social__instagram:hover {
+  background-position: -140px -67px;
 }
 .catalog-section {
   padding-bottom: 215px;
@@ -3461,8 +3471,12 @@ body .delivery-info__message {
 .contacts-section {
   padding-bottom: 215px;
 }
+.contacts-section .contacts-social {
+  padding-top: 10px;
+}
 .contacts-section h1 {
   padding-top: 17px;
+  padding-bottom: 80px;
 }
 .contacts-section__wrap {
   white-space: nowrap;
@@ -3481,16 +3495,20 @@ body .delivery-info__message {
   width: 2px;
   height: 100%;
   position: absolute;
-  top: 0;
+  top: -10px;
   right: 0;
+}
+.contacts-section .col-item {
+  margin-bottom: 78px;
 }
 .contacts-section .col-title {
   color: #a3a3a3;
   font-family: alegreyasans-bolditalic;
   font-size: 20px;
   display: block;
-  margin: 0 auto;
   white-space: normal;
+  padding: 0 30px;
+  margin-bottom: 12px;
 }
 .contacts-section .col-text {
   font-size: 45px;
@@ -3499,6 +3517,137 @@ body .delivery-info__message {
   display: block;
   margin: 0 auto;
   white-space: normal;
+}
+.contacts-section .col-link {
+  position: relative;
+  display: inline-block;
+}
+.contacts-section .col-link:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background-color: #000000;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+}
+.contacts-section .col-link:hover:after {
+  display: none;
+}
+.maps-link {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: -3px;
+}
+.maps-link__map {
+  width: 227px;
+  height: 227px;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 8px solid #ffffff;
+  box-shadow: 0 0 2px transparent;
+  position: relative;
+}
+.maps-link__map:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: url("../images/icons/map-tick.png") center no-repeat;
+  width: 52px;
+  height: 67px;
+}
+.maps-link__map img {
+  width: 100%;
+  height: 100%;
+}
+.maps-link__link {
+  font-family: alegreyasans-regular;
+  font-size: 18px;
+  color: #000000;
+  display: inline-block;
+  padding-top: 10px;
+}
+.maps-link:hover .maps-link__map {
+  box-shadow: 0 0 0 2px #ffbf02;
+}
+.maps-link:hover .maps-link__link {
+  color: #ffbf02;
+}
+.section-write {
+  background-color: #ffcf40;
+}
+.section-write .step-item {
+  display: inline-block;
+  position: relative;
+}
+.section-write .input-text {
+  height: 40px;
+  line-height: 40px;
+}
+.section-write .input-text__name {
+  margin-right: 25px;
+}
+.section-write .input-text__email {
+  margin-left: 25px;
+}
+.section-write .input-text__name,
+.section-write .input-text__email {
+  width: 375px;
+}
+.section-write .input-text__question {
+  width: 100%;
+}
+.section-write .question-wrapper {
+  padding: 88px 0 75px 0;
+}
+.section-write .question-wrapper__row {
+  white-space: nowrap;
+  margin-bottom: 70px;
+}
+.section-write .custom-checkbox {
+  margin-bottom: 10px;
+}
+.section-write .custom-checkbox.font-alegreya span a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.section-write .custom-checkbox.font-alegreya span a:hover {
+  text-decoration: none;
+}
+.section-write .layer-questions {
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 75px;
+  padding-bottom: 124px;
+}
+.section-write .layer-questions .button_black:hover {
+  border-color: #000000;
+}
+.section-write .layer-questions h1 {
+  padding-bottom: 0;
+}
+.section-write .layer-questions .question-wrapper {
+  padding-top: 50px;
+}
+.section-write .layer-questions .custom-checkbox:hover.font-alegreya span a {
+  color: #ffffff;
+}
+.section-write .layer-questions .custom-checkbox:hover .custom-checkbox__checkbox {
+  border-color: #000000;
+}
+.section-write .layer-questions .custom-checkbox .checkbox:checked + .custom-checkbox__checkbox {
+  background-color: #000000;
+  border-color: #000000;
+}
+.section-write .layer-questions .custom-checkbox .checkbox:checked + .custom-checkbox__checkbox:after {
+  content: url(../images/icons/checkbox-checked-yellow.png);
 }
 .section-question {
   padding-top: 70px;

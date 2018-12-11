@@ -47,11 +47,19 @@
           <div class="col-item">
             <span class="col-title">Сырная лавка в Екатеринбурге</span>
             <span class="col-text">ул. Красноармейская, 68</span>
+
+            <a href="" class="maps-link">
+            <span class="maps-link__map">
+              <img src="{{ asset('images/krasno-map.png')}}" alt="">
+            </span>
+              <span class="maps-link__link">открыть на карте</span>
+            </a>
+
           </div>
 
           <div class="col-item">
             <span class="col-title">Тут мы публикуем много всего интересного</span>
-            <div class="footer-social">
+            <div class="contacts-social">
                 <a href="#" target="_blank" class="footer-social__item footer-social__facebook"></a>
                 <a href="#" target="_blank" class="footer-social__item footer-social__vkontakte"></a>
                 <a href="#" target="_blank" class="footer-social__item footer-social__instagram"></a>
@@ -60,15 +68,94 @@
 
         </div>
         <div class="contacts-section__col-right">
-          <span class="col-title">Экскурсии на сыроварню</span>
-          <span class="col-text">+7 (922) 145-62-37</span>
-          <span class="col-title">Сыроварня и лавка в городе Реж</span>
-          <span class="col-text">ул. Олега Кошевого, 16</span>
+          <div class="col-item">
+            <span class="col-title">Экскурсии на сыроварню</span>
+            <span class="col-text">+7 (922) 145-62-37</span>
+          </div>
 
-          <span class="col-title">Наша почта</span>
+          <div class="col-item">
+            <span class="col-title">Сыроварня и лавка в городе Реж</span>
+            <span class="col-text">ул. Олега Кошевого, 16</span>
+
+            <a href="" class="maps-link">
+              <span class="maps-link__map">
+                <img src="{{ asset('images/krasno-map.png')}}" alt="">
+              </span>
+              <span class="maps-link__link">открыть на карте</span>
+            </a>
+          </div>
+
+          <div class="col-item">
+            <span class="col-title">Наша почта</span>
+            <a class="col-text col-link">info@rezhano.ru</a>
+          </div>
+
         </div>
       </div>
+    </div>
+  </section>
 
+  <section class="section-write">
+    <div class="container container_no-padding">
+      <div class="layer-questions">
+      <h1>Написать нам</h1>
+        <form action="">
+          <div class="question-wrapper">
+            <div class="question-wrapper__row">
+              <div class="step-item input-text__name">
+                <input class="input-text " type="text" placeholder="ФИО">
+                <i class="error-icon">
+                  <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>
+                </i>
+              </div>
+              <div class="step-item input-text__email">
+                <input class="input-text " type="text" placeholder="Телефон или эл.почта">
+                <i class="error-icon">
+                  <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>
+                </i>
+              </div>
+            </div>
+            <div class="step-item input-text__question">
+              <input class="input-text " type="text" placeholder="Расскажите, что вас интересует">
+              <i class="error-icon">
+                <span class="error-icon__message" id="name-errors">
+                  <div>Представьтесь, пожалуйста</div>
+                </span>
+              </i>
+            </div>
+          </div>
+          <div class="step-item step-item-checkbox">
+            <div class="custom-checkbox font-alegreya" name="tos">
+              <label>
+                <input type="checkbox" id="" name="" required="required" class="checkbox" data-validate="" data-description="" data-describedby="" value="">
+                <span class="custom-checkbox__checkbox"></span>
+                <span>Я согласен с условиями <a href="">передачи информации</a></span>
+              </label>
+            </div>
+            <i class="error-icon">
+              <span class="error-icon__message"></span>
+            </i>
+          </div>
+          <div class="step-item" style="display: block">
+            <a href="" class="button button_black"><span>отправить</span></a>
+          </div>
+        </form>
+      </div>
     </div>
   </section>
 {% endblock %}
+
+{% block footer %}
+  <footer class="low">
+    <div class="container">
+      <div class="footer-aside">
+        <div class="footer-aside__copyright">
+          © 2015–2018 Сыроварня «Режано»
+        </div>
+        <a href="http://fruktdesign.com/" class="footer-aside__link link_frukt" target="_blank">Дизайн сайта</a>
+        <a href="https://accurateweb.ru" class="footer-aside__link link_accurateweb" target="_blank">Разработка
+          <span>ACCURATEWEB</span></a>
+      </div>
+    </div>
+  </footer>
+{% endblock footer %}

@@ -96,7 +96,7 @@
       {#</div>#}
     {#{% endblock footer %}#}
   {#</footer>#}
-    {% block footer %}
+  {% block footer %}
     <footer>
         <div class="container">
             <a {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %} class="header-logo"></a>
