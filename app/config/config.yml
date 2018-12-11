@@ -149,6 +149,8 @@ sonata_admin:
             label: Настройки уведомлений
         homepage:
             label: "Главная страница"
+        excursion:
+            label: "Страница экскурсии"
         text:
             label: "Текстовые разделы"
         questions:

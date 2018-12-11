@@ -164,8 +164,12 @@ class GeographyController extends Controller
 
   public function excursionAction()
   {
-    return $this->render('@Store/Excursion/index.html.twig', array(
+    $testimonials = $this->getDoctrine()->getRepository('StoreBundle:Store\Excursion\Testimonial')->findBy(['enabled' => true]);
+    $banners = $this->getDoctrine()->getRepository('StoreBundle:Store\Excursion\ExcursionBanner')->findBy(['enabled' => true]);
 
+    return $this->render('@Store/Excursion/index.html.twig', array(
+      'testimonials' => $testimonials,
+      'banners' => $banners,
     ));
   }
 

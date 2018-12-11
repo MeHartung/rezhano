@@ -1187,3 +1187,15 @@ services:
       arguments: ['@store.repository.contact_phone']
       tags:
         - { name: validator.constraint_validator }
+
+    store.admin.testimonial:
+       class: StoreBundle\Admin\TestimonialAdmin
+       arguments: [~, StoreBundle\Entity\Store\Excursion\Testimonial, ~, ~]
+       tags:
+         - {name: sonata.admin, manager_type: orm, group: excursion, label: "Отзывы"}
+
+    store.admin.excursion_banner:
+       class: StoreBundle\Admin\ExcursionBannerAdmin
+       arguments: [~, StoreBundle\Entity\Store\Excursion\ExcursionBanner, ~, ~]
+       tags:
+         - {name: sonata.admin, manager_type: orm, group: excursion, label: "Баннеры"}
