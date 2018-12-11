@@ -59,7 +59,7 @@
               <span class="col-title">{{ store.name }}</span>
               <span class="col-text">{{ store.address }}</span>
 
-              <a href="" class="maps-link">
+              <a href="#" data-address="{{ store.fullAddress }}" class="maps-link">
                 <span class="maps-link__map">
                   <img src="{% if image_exists(store) %}{{ image_thumbnail_url(store, 'contact') }}{% else %}{{ asset('images/krasno-map.png') }}{% endif %}"
                        alt="">

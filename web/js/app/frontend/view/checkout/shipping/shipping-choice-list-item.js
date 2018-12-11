@@ -4,7 +4,7 @@
 define(function(require){
   var Backbone = require('backbone'),
       ListItemView = require('view/base/list-item-view'),
-    MapViewDialog = require('view/common/map-view-dialog');;
+    MapViewDialog = require('view/common/map-view-dialog');
   
   var template = _.template(require('templates/checkout/shipping/shipping-choice-list-item'));
   
@@ -33,8 +33,6 @@ define(function(require){
         recipient_address: this.model.get('options').recipient_address_required,
         showHelp: this.model.get('help') && this.cart.get('total') < 1000
       }));
-
-
 
       return this;
     },
