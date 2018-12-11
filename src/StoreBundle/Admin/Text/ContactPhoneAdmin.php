@@ -16,6 +16,11 @@ class ContactPhoneAdmin extends AbstractAdmin
 {
   protected function configureFormFields(FormMapper $form)
   {
+    $placesChoices = [
+      0 => 'Не отображать',
+      1 => 'Отображать слева',
+      2 => 'Отображать справа',
+    ];
     $form
       ->add('name')
       ->add('phone', PhoneType::class, [
@@ -29,6 +34,10 @@ class ContactPhoneAdmin extends AbstractAdmin
             'message' => 'Некорректный номер телефона'
           ))
         )
+      ])
+      ->add('showPlace', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
+        'choices' => array_flip($placesChoices),
+        'label' => 'Позиция на странице контактов',
       ])
       ->add('published')
     ;

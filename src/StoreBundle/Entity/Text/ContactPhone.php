@@ -6,16 +6,21 @@
 namespace StoreBundle\Entity\Text;
 
 use Doctrine\ORM\Mapping as ORM;
+use StoreBundle\Validator\Constraints as Assert;
 
 /**
  * Class ContactPhone
  * @package StoreBundle\Entity\Text
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="StoreBundle\Repository\Store\Text\ContactPhoneRepository")
  * @ORM\Table()
+ * @Assert\ContactPlace
  */
 class ContactPhone
 {
+  const SHOW_PLACE_HIDE = 0;
+  const SHOW_PLACE_LEFT = 1;
+  const SHOW_PLACE_RIGHT = 2;
   /**
    * @var integer
    *
@@ -45,6 +50,12 @@ class ContactPhone
    * @ORM\Column(type="boolean", options={"default":0})
    */
   private $published = false;
+
+  /**
+   * @var integer
+   * @ORM\Column(type="integer", nullable=false, options={"default"=0})
+   */
+  protected $showPlace;
 
   /**
    * @return int
@@ -119,6 +130,29 @@ class ContactPhone
   }
 
   /**
+   * @return int
+   */
+  public function getShowPlace ()
+  {
+    return $this->showPlace;
+  }
+
+  /**
+   * @param int $showPlace
+   * @return $this
+   */
+  public function setShowPlace ($showPlace)
+  {
+    if (!in_array($showPlace, self::getAvailableShowPlace()))
+    {
+      throw new \InvalidArgumentException(sprintf('Available places: [%s]', implode(', ', self::getAvailableShowPlace())));
+    }
+
+    $this->showPlace = $showPlace;
+    return $this;
+  }
+
+  /**
    * Возвращает телефон, очищенный от символов, кроме цифр и +
    *
    * @return null|string|string[]
@@ -131,6 +165,18 @@ class ContactPhone
   public function __toString()
   {
     return $this->getName() ?: 'Новый контактный номер телефона';
+  }
+
+  /**
+   * @return array
+   */
+  public static function getAvailableShowPlace()
+  {
+    return [
+      self::SHOW_PLACE_HIDE,
+      self::SHOW_PLACE_LEFT,
+      self::SHOW_PLACE_RIGHT
+    ];
   }
 
 }
