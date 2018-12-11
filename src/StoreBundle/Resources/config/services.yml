@@ -1210,3 +1210,13 @@ services:
       class: StoreBundle\DataAdapter\Text\QuestionAdapter
       tags:
         - { name: aw.client_application.adapter, alias: question }
+
+    store.article.repository:
+      class: StoreBundle\Repository\Text\ArticleRepository
+      factory: ['@doctrine.orm.entity_manager', 'getRepository']
+      arguments: ['StoreBundle\Entity\Text\Article']
+
+    store.article.adapter:
+      class: StoreBundle\DataAdapter\Text\ArticleAdapter
+      tags:
+        - { name: aw.client_application.adapter, alias: article }

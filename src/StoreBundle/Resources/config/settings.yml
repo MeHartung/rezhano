@@ -179,3 +179,15 @@ services:
         - ~
       tags:
         - { name: aw.setting }
+
+
+    store.setting.tos:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+        - '@aw.settings.storage'
+        - '@store.article.repository'
+        - 'tos_article'
+        - 'Условия передачи информации'
+        - ~
+      tags:
+        - { name: aw.setting }

@@ -31,6 +31,9 @@
       {{ app.user.favoriteProductList.products|client_model_collection('product', 'FavoriteProducts') }}
     {% endif %}
     {{ cart|client_model('cart') }}
+    {% if setting('tos_article') %}
+        {{ setting('tos_article')|client_model('article', {}, 'TosArticle') }}
+    {% endif %}
   {% endblock %}
 
 </head>
