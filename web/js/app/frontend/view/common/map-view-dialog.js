@@ -60,18 +60,26 @@ define(function(require){
       this.preparePlacemarks();
     },
     preparePlacemarks: function () {
-      this.placemarkCollection = new ymaps.GeoObjectCollection();
+      var mapIcon = {
+        iconLayout: 'default#image',
+        iconImageHref: '/images/icons/map-tick.png',
+        iconImageSize: [52, 67],
+        iconImageOffset:[-25, -67]
+      };
+
+      var baloonContent = ('<h4>'+ this.model.get('address') +'</h4>');
 
       var address = this.model.get('address');
       ymaps.geocode( address.toString() ).then(
         function (res) {
           var geoObj = res.geoObjects.get(0),
-          bounds = geoObj.properties.get('boundedBy');
+            bounds = geoObj.properties.get('boundedBy');
+          var placemark = new ymaps.Placemark(geoObj.geometry.getCoordinates(), {balloonContent: baloonContent}, mapIcon, {draggable: false});
           this.myMap = new ymaps.Map("map", {
             center: geoObj.geometry.getCoordinates(),
             zoom: 7
           });
-          this.myMap.geoObjects.add(geoObj);
+          this.myMap.geoObjects.add(placemark);
           this.myMap.setBounds(bounds, {
             zoomMargin: [50],
             checkZoomRange: true

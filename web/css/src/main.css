@@ -402,6 +402,10 @@ h3 {
   font-family: Catorze27style1-bold;
   font-size: 45px;
 }
+h4 {
+  font-family: Catorze27style1-bold;
+  font-size: 20px;
+}
 body {
   font-family: 'DINPro', sans-serif;
   font-size: 18px;
@@ -1193,16 +1197,21 @@ header.header-excursion .header-catalog__wrap .header-menu-wrap {
 }
 .header-section .header-slider .slick-dots li {
   display: inline-block;
-  padding: 15px;
+  padding: 10px;
   cursor: pointer;
+  background: transparent !important;
+  width: 60px !important;
+  height: 2px !important;
+  margin-right: 0;
 }
 .header-section .header-slider .slick-dots li:hover button {
   background-color: #ffcf40;
 }
 .header-section .header-slider .slick-dots li button {
+  display: block!important;
   position: relative;
-  width: 39px;
-  height: 2px;
+  width: 39px !important;
+  height: 2px !important;
   background-color: #ffffff;
   font-size: 0;
   border: none;

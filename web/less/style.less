@@ -942,8 +942,12 @@ header {
 
       li {
         display: inline-block;
-        padding: 15px;
+        padding: 10px;
         cursor: pointer;
+        background: transparent !important;
+        width: 60px !important;
+        height: 2px !important;
+        margin-right: 0;
 
         &:hover {
           button {
@@ -952,9 +956,11 @@ header {
         }
 
         button {
+          display: block!important;
+
           position: relative;
-          width: 39px;
-          height: 2px;
+          width: 39px !important;
+          height: 2px !important;
           background-color: @c_white;
           font-size: 0;
           border: none;
