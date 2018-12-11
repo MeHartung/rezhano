@@ -123,3 +123,8 @@
 // //   $('.custom-border-select select').selectmenu();
 // });
 
+// (function ($) {
+//   $('#reviewsSliders').slick({
+//
+//   });
+// })(jQuery);

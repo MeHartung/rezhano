@@ -1,158 +1,235 @@
+//
+
+body button {
+
+  &.slick-arrow {
+    font-size: 0;
+    border: none;
+    outline: none;
+    background: url("../images/icons/arrows_quote.png") no-repeat;
+    width: 26px;
+    height: 46px;
+
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  &.slick-prev {
+    background-position: -23px 0;
+    left: -68px;
+
+    &:hover {
+      background-position: 4px 0;
+    }
+  }
+
+  &.slick-next {
+    background-position: -49px 0;
+    right: -40px;
+
+    &:hover {
+      background-position: -76px 0;
+    }
+  }
+}
+
+
+
+body .slick-dots {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+
+  li {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: @c_black;
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 10px;
+
+    &:hover {
+      background-color: @rc_yellow;
+    }
+
+    &.slick-active {
+      background-color: @rc_yellow;
+    }
+
+    button {
+      display: none;
+    }
+  }
+}
 
 .slick-initialized .slick-slide {
   outline: none;
-  //
-  //&>div {
-  //  max-height: 280px;
-  //}
 }
-
-.section-slider {
-
-  .slick-dots {
-    bottom: -20px;
-  }
-  .slick-dots li {
-    margin: 0 2px;
-  }
-  .slick-dots li button {
-    width: 8px;
-    height: 8px;
-    padding: 0;
-
-    &:before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background-color: @c_brand_dark;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  .slick-dots li.slick-active button:before {
-    opacity: 1;
-  }
-
-  .slick-initialized {
-    overflow: visible !important;
-  }
-
-  .slick-initialized .slick-slide {
-    outline: none;
-    //
-    //&>div {
-    //  max-height: 280px;
-    //}
-  }
-
-  .slick-prev {
-    background: url("../images/svg/arrow-left.svg") no-repeat;
-    width: 25px;
-    height: 49px;
-    z-index: 1;
-    top: 48%;
-    left: 23px;
-
-    &:before {
-      content: '';
-      color: transparent;
-    }
-
-    &:hover {
-      background: url("../images/svg/arrow-left.svg") no-repeat;
-    }
-  }
-
-  .slick-next {
-    background: url("../images/svg/arrow-right.svg") no-repeat;
-    width: 25px;
-    height: 49px;
-    z-index: 1;
-    top: 48%;
-    right: 25px;
-
-    &:before {
-      content: '';
-      color: transparent;
-    }
-
-    &:hover {
-      background: url("../images/svg/arrow-right.svg") no-repeat;
-    }
-  }
-
-  .slick-dotted.slick-slider {
-    margin-bottom: 40px;
-  }
-
-  .slick-dots li button:hover {
-    opacity: 0.6 !important;
-  }
-}
-
-
-.product-image__gallery__additional {
-  overflow: hidden;
-
-  &.slick-initialized {
-    overflow: visible;
-  }
-
-  .slick-arrow {
-    display: block;
-    width: 18px;
-    height: 18px;
-    //border-radius: 50%;
-    //background-color: @grey_lightest;
-
-    &:before {
-      display: none;
-    }
-
-    &:after {
-      content: '';
-      width: 10px;
-      height: 11px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  .slick-prev {
-
-    &:after {
-      content: url("../images/c_slick-prev-hover.png");
-    }
-  }
-
-  .slick-next {
-
-    &:after {
-      content: url("../images/c_slick-next-hover.png");
-    }
-  }
-}
-
-.step-item-input__link {
-  font-size: 17px;
-  font-family: alegreyasans-light;
-  color: #000000;
-  padding: 8px 4px;
-
-  a {
-    display: inline-block;
-    color: #ffcf40;
-  }
-}
+//  //&>div {
+//  //  max-height: 280px;
+//  //}
+//}
+//
+//.section-slider {
+//
+//  .slick-dots {
+//    bottom: -20px;
+//  }
+//  .slick-dots li {
+//    margin: 0 2px;
+//  }
+//  .slick-dots li button {
+//    width: 8px;
+//    height: 8px;
+//    padding: 0;
+//
+//    &:before {
+//      content: '';
+//      width: 8px;
+//      height: 8px;
+//      background-color: @c_brand_dark;
+//      top: 50%;
+//      left: 50%;
+//      -webkit-transform: translate(-50%, -50%);
+//      -moz-transform: translate(-50%, -50%);
+//      -ms-transform: translate(-50%, -50%);
+//      -o-transform: translate(-50%, -50%);
+//      transform: translate(-50%, -50%);
+//    }
+//  }
+//
+//  .slick-dots li.slick-active button:before {
+//    opacity: 1;
+//  }
+//
+//  .slick-initialized {
+//    overflow: visible !important;
+//  }
+//
+//  .slick-initialized .slick-slide {
+//    outline: none;
+//    //
+//    //&>div {
+//    //  max-height: 280px;
+//    //}
+//  }
+//
+//  .slick-prev {
+//    background: url("../images/svg/arrow-left.svg") no-repeat;
+//    width: 25px;
+//    height: 49px;
+//    z-index: 1;
+//    top: 48%;
+//    left: 23px;
+//
+//    &:before {
+//      content: '';
+//      color: transparent;
+//    }
+//
+//    &:hover {
+//      background: url("../images/svg/arrow-left.svg") no-repeat;
+//    }
+//  }
+//
+//  .slick-next {
+//    background: url("../images/svg/arrow-right.svg") no-repeat;
+//    width: 25px;
+//    height: 49px;
+//    z-index: 1;
+//    top: 48%;
+//    right: 25px;
+//
+//    &:before {
+//      content: '';
+//      color: transparent;
+//    }
+//
+//    &:hover {
+//      background: url("../images/svg/arrow-right.svg") no-repeat;
+//    }
+//  }
+//
+//  .slick-dotted.slick-slider {
+//    margin-bottom: 40px;
+//  }
+//
+//  .slick-dots li button:hover {
+//    opacity: 0.6 !important;
+//  }
+//}
+//
+//
+//.product-image__gallery__additional {
+//  overflow: hidden;
+//
+//  &.slick-initialized {
+//    overflow: visible;
+//  }
+//
+//  .slick-arrow {
+//    display: block;
+//    width: 18px;
+//    height: 18px;
+//    //border-radius: 50%;
+//    //background-color: @grey_lightest;
+//
+//    &:before {
+//      display: none;
+//    }
+//
+//    &:after {
+//      content: '';
+//      width: 10px;
+//      height: 11px;
+//      position: absolute;
+//      top: 50%;
+//      left: 50%;
+//      -webkit-transform: translate(-50%, -50%);
+//      -moz-transform: translate(-50%, -50%);
+//      -ms-transform: translate(-50%, -50%);
+//      -o-transform: translate(-50%, -50%);
+//      transform: translate(-50%, -50%);
+//    }
+//  }
+//
+//  .slick-prev {
+//
+//    &:after {
+//      content: url("../images/c_slick-prev-hover.png");
+//    }
+//  }
+//
+//  .slick-next {
+//
+//    &:after {
+//      content: url("../images/c_slick-next-hover.png");
+//    }
+//  }
+//}
+//
+//.step-item-input__link {
+//  font-size: 17px;
+//  font-family: alegreyasans-light;
+//  color: #000000;
+//  padding: 8px 4px;
+//
+//  a {
+//    display: inline-block;
+//    color: #ffcf40;
+//  }
+//}

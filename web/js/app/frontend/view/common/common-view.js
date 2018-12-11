@@ -35,6 +35,28 @@ define(function(require){
         });
       }
 
+      $('#reviewsSliders').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear'
+      });
+
+      $('#oneEyeSlider').on('init', function (e, slick) {
+        // console.log('init', e, slick)
+        //
+        // var overlay = $(e.currentTarget).
+
+      }).slick({
+        dots: true,
+        infinite: true,
+        // centerMode: true,
+        centerPadding: '120px'
+
+      });
+
       // this.location = new Location(ObjectCache.Location);
 
       // this.citySelectLinkView = new CitySelectLinkView({

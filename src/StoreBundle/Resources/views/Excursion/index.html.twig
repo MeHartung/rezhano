@@ -33,6 +33,7 @@
 {% endblock header %}
 
 {% block main %}
+
   <section class="section-excursion">
     <div class="container container_no-padding">
       <h1 class="section-excursion__title">Экскурсии туда, где варят сыр</h1>
@@ -94,10 +95,83 @@
 
   <section class="section-reviews">
     <div class="container container_no-padding">
-      <h1 class="section-reviews__title">Отзывы наших посетителей</h1>
+      <h2 class="section-reviews__title">Отзывы наших посетителей</h2>
+
+      <div class="reviews-sliders-wrap">
+        <div class="reviews-sliders" id="reviewsSliders">
+          <div class="reviews-sliders__item">
+            <img src="{{ asset('images/skan_test.jpg') }}" alt="">
+          </div>
+
+          <div class="reviews-sliders__item">
+            <img src="{{ asset('images/skan_test.jpg') }}" alt="">
+          </div>
+
+          <div class="reviews-sliders__item">
+            <img src="{{ asset('images/skan_test.jpg') }}" alt="">
+          </div>
+
+          <div class="reviews-sliders__item">
+            <img src="{{ asset('images/skan_test.jpg') }}" alt="">
+          </div>
+
+          <div class="reviews-sliders__item">
+            <img src="{{ asset('images/skan_test.jpg') }}" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="section-reviews__bg-left"></div>
+      <div class="section-reviews__bg-right"></div>
+    </div>
+  </section>
+
+  <section class="section-one-eye">
+    <div class="container container_no-padding">
+      <h2 class="section-one-eye__title">Одним глазком, на то, что вас ждёт</h2>
+
+        <div class="section-one-eye-slider" id="oneEyeSlider">
+
+          <div class="section-one-eye-slider__item">
+            <div class="section-one-eye-slider__item-image">
+              <img src="{{ asset('images/TEST_DELETE_2.png') }}" alt="">
+            </div>
+          </div>
+
+          <div class="section-one-eye-slider__item">
+            <div class="section-one-eye-slider__item-image">
+              <img src="{{ asset('images/TEST_DELETE_2.png') }}" alt="">
+            </div>
+          </div>
+
+          <div class="section-one-eye-slider__item">
+            <div class="section-one-eye-slider__item-image">
+              <img src="{{ asset('images/TEST_DELETE_2.png') }}" alt="">
+            </div>
+          </div>
+
+          <div class="section-one-eye-slider__item">
+            <div class="section-one-eye-slider__item-image">
+              <img src="{{ asset('images/TEST_DELETE_2.png') }}" alt="">
+            </div>
+          </div>
+
+
+        </div>
+
+    </div>
+  </section>
+
+  <section class="section-cooked">
+    <div class="container container_no-padding container_narrow">
+      <div class="section-cooked__title">
+        <span class="section-cooked__title-title">Хочу туда, где варят сыр!</span>
+        <a href="" class="button button_black button-transparent-white">
+          <span>записаться</span>
+        </a>
+      </div>
+      <div class="section-cooked__image">
+        <img src="{{ asset('images/cheese-cooked.png') }}">
+      </div>
     </div>
   </section>
 {% endblock %}
-
-{% block footer %}
-{% endblock footer %}
