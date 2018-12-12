@@ -24,10 +24,12 @@ class StoreAdmin extends AbstractAdmin
         ])
         //      ->add('description')
         ->add('address')
-        ->add('fullAddress', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
-          'label' => 'Полный адрес',
+        ->add('phone', null, [
+          'attr' => [
+            'class' => 'inputmask',
+            'data-inputmask' => "'mask': '+7 (999) 999-99-99'",
+          ]
         ])
-        ->add('phone')
         //      ->add('email')
         ->add('workTime')
       ->add('showFooter', null, [
@@ -38,6 +40,9 @@ class StoreAdmin extends AbstractAdmin
       ->tab('Местоположение')
         ->add('longitude')
         ->add('latitude')
+        ->add('fullAddress', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
+          'label' => 'Полный адрес',
+        ])
         ->add('teaser', 'Accurateweb\MediaBundle\Form\ImageType', [
           'label' => 'Превью карты',
           'image_id' => 'store'
