@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\NotNull;
 
 class UserQuestionType extends AbstractType
@@ -33,6 +34,13 @@ class UserQuestionType extends AbstractType
         ]
       ])
       ->add('text')
+      ->add('tos', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', [
+        'required' => false,
+        'mapped' => false,
+        'constraints' => [
+          new IsTrue(),
+        ]
+      ])
       ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event)
       {
         /** @var Question $question */

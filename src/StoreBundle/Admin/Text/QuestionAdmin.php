@@ -17,6 +17,9 @@ class QuestionAdmin extends AbstractAdmin
       ->add('fio')
       ->add('email')
       ->add('phone')
+      ->add('source', null, [
+        'label' => 'Источник записи'
+      ])
       ->add('createdAt', 'datetime', [
         'format' => 'd.m.Y H:i',
       ])
