@@ -12,7 +12,7 @@ use StoreBundle\Media\Text\UnprocessedImage;
 /**
  * Teaser
  *
- * @ORM\Table(name="store_excursion_teaser")
+ * @ORM\Table(name="excursion_teaser")
  * @ORM\Entity(repositoryClass="StoreBundle\Repository\Store\Excursion\TeaserRepository")
  */
 class Teaser implements ImageAwareInterface

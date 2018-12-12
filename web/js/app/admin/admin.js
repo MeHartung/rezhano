@@ -12,3 +12,6 @@ function fillNote() {
   var note = $('#status_admin_reasonChoice').val();
   $('#status_admin_reason').val(note);
 }
+$(function () {
+  $('.inputmask').inputmask();
+});

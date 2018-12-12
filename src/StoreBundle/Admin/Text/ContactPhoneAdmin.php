@@ -27,6 +27,8 @@ class ContactPhoneAdmin extends AbstractAdmin
         'label' => 'Телефон',
         'attr' => [
           'placeholder' => '+7 (___) ___ - __ - __',
+          'class' => 'inputmask',
+          'data-inputmask' => "'mask': '+7 (999) 999-99-99'",
         ],
         'constraints' => array(
           new Regex(array(
