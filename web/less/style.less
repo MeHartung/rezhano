@@ -2763,6 +2763,7 @@ footer {
   &.layer-questions {
     //overflow: hidden;
     padding: 70px 100px;
+    margin-left: -50px;
 
     h2 {
       text-align: center;
@@ -4293,6 +4294,11 @@ body .delivery-info {
 .section-write {
   background-color: @rc_yellow;
 
+  button {
+    border-color: #000;
+    color: #000;
+  }
+
   .step-item {
     display: inline-block;
     position: relative;
@@ -4344,9 +4350,20 @@ body .delivery-info {
   //
   .layer-questions {
     width: 800px;
+    height: 700px;
     margin: 0 auto;
     padding-top: 75px;
     padding-bottom: 124px;
+
+    .question-layer-message__text {
+      font-size: 45px;
+      font-family: Catorze27style1-bold;
+      color: #000000;
+      padding-top: 170px;
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+    }
 
     .button_black:hover {
       border-color: @c_black;

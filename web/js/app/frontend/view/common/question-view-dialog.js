@@ -1,7 +1,6 @@
 define(function(require){
   var ModalDialog = require('view/dialog/base/modal-dialog-view'),
       Question = require('model/text/question'),
-      QuestionForm = require('view/common/question-view-dialog-form'),
       Backbone = require('backbone');
 
   require('jquery-validate');

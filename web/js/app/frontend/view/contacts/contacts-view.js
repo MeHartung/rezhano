@@ -1,6 +1,7 @@
 define(function(require){
   var Backbone = require('backbone'),
     CommonView = require('view/common/common-view'),
+    ContactsForm = require ('view/contacts/contacts-form'),
     Question = require('model/text/question'),
     MapViewDialog = require('view/common/map-view-dialog');
 
@@ -15,8 +16,14 @@ define(function(require){
       // var q = new Question();
       // q.set('text', 'asd');
       // q.save();
+      this.questionForm = new ContactsForm({
+        model: Question
+      });
+
     },
     render: function(){
+      this.questionForm.setElement(this.$('#questionForm'));
+      this.questionForm.render();
 
       return this;
     },

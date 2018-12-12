@@ -121,48 +121,65 @@
   <section class="section-write">
     <div class="container container_no-padding">
       <div class="layer-questions">
-      <h1>Написать нам</h1>
-        <form action="">
-          <div class="question-wrapper">
-            <div class="question-wrapper__row">
-              <div class="step-item input-text__name">
-                <input class="input-text " type="text" placeholder="ФИО">
-                <i class="error-icon">
-                  <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>
-                </i>
-              </div>
-              <div class="step-item input-text__email">
-                <input class="input-text " type="text" placeholder="Телефон или эл.почта">
-                <i class="error-icon">
-                  <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>
-                </i>
-              </div>
-            </div>
-            <div class="step-item input-text__question">
-              <input class="input-text " type="text" placeholder="Расскажите, что вас интересует">
-              <i class="error-icon">
-                <span class="error-icon__message" id="name-errors">
-                  <div>Представьтесь, пожалуйста</div>
-                </span>
-              </i>
-            </div>
-          </div>
-          <div class="step-item step-item-checkbox">
-            <div class="custom-checkbox font-alegreya" name="tos">
-              <label>
-                <input type="checkbox" id="" name="" required="required" class="checkbox" data-validate="" data-description="" data-describedby="" value="">
-                <span class="custom-checkbox__checkbox"></span>
-                <span>Я согласен с условиями <a target="_blank" href="{% if setting('tos_article') %}{{ path('article_show',{'slug':setting('tos_article').slug}) }}{% else %}#{% endif %}">передачи информации</a></span>
-              </label>
-            </div>
-            <i class="error-icon">
-              <span class="error-icon__message"></span>
-            </i>
-          </div>
-          <div class="step-item" style="display: block">
-            <a href="" class="button button_black"><span>отправить</span></a>
-          </div>
-        </form>
+         <div class="question-layer-wrap">
+           <h1>Написать нам</h1>
+           <form id="questionForm">
+             <div class="question-wrapper">
+               <div class="question-wrapper__row">
+                 <div class="step-item input-text__name">
+                   <input class="input-text " name="name" required="required" data-validate="name" data-description="name" data-describedby="name-errors" id="question_customer_name" type="text" placeholder="ФИО">
+                   <i class="error-icon">
+                     <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>
+                   </i>
+                 </div>
+                 <div class="step-item input-text__email">
+                   <input class="input-text " required="required" name="phone" data-validate="phone" data-description="phone" data-describedby="phone-errors" id="question_customer_phone" type="text" placeholder="Телефон">
+                   <i class="error-icon">
+                     <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>
+                   </i>
+                 </div>
+               </div>
+               <div class="step-item input-text__question">
+                 <input class="input-text " required="required" name="text" type="text" data-validate="text" data-description="text" data-describedby="text-errors" id="question_customer_text" placeholder="Расскажите, что вас интересует">
+                 <i class="error-icon">
+                  <span class="error-icon__message" id="name-errors">
+                    <div>Представьтесь, пожалуйста</div>
+                  </span>
+                 </i>
+               </div>
+             </div>
+             <div class="step-item step-item-checkbox">
+               <div class="custom-checkbox font-alegreya" name="tos">
+                 <label>
+                   <input type="checkbox" id="question_customer_tos" required="required" class="checkbox" data-validate="tos" data-description="tos" data-describedby="tos-errors">
+                   <span class="custom-checkbox__checkbox"></span>
+                   <span>Я согласен с условиями <a target="_blank" href="{% if setting('tos_article') %}{{ path('article_show',{'slug':setting('tos_article').slug}) }}{% else %}#{% endif %}">передачи информации</a></span>
+                 </label>
+               </div>
+               <i class="error-icon">
+                 <span class="error-icon__message"></span>
+               </i>
+             </div>
+             <div class="step-item" style="display: block">
+               <button class="button button-transparent-white" type="submit"><span>отправить</span></button>
+             </div>
+           </form>
+         </div>
+
+        <div class="question-layer-success" style="display: none">
+          <span class="question-layer-message__text">Спасибо!<br>
+            Сыровары обязательно<br>
+            вам ответят.
+          </span>
+        </div>
+
+        <div class="question-layer-error" style="display: none">
+          <span class="question-layer-message__text">Что-то пошло не так...<br>
+            Не отчаивайтесь и попробуйте<br>
+            ещё раз!
+          </span>
+        </div>
+
       </div>
     </div>
   </section>
