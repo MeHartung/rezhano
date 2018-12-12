@@ -2821,6 +2821,62 @@ footer {
     .custom-checkbox {
       margin-bottom: 10px;
     }
+
+    .question-layer-message {
+      text-align: center;
+      margin: 135px 40px;
+
+      &__text {
+        font-size: 45px;
+        font-family: Catorze27style1-bold;
+        color: @c_black;
+
+        padding-top: 62px;
+        display: inline-block;
+      }
+    }
+
+    .question-layer-error {
+      width: 723px;
+      height: 305px;
+
+      background-color: #f58888;
+      position: relative;
+
+      &:after {
+        content: '';
+        border-style: solid;
+        border-width: 22px 0 0 22px;
+        border-color: transparent transparent transparent #f58888;
+
+        position: absolute;
+        top: -20px;
+        left: 35px;
+      }
+    }
+
+    .question-layer-success {
+      width: 723px;
+      height: 305px;
+
+      background-color: @rc_yellow;
+      position: relative;
+
+      &:after {
+        content: '';
+        border-style: solid;
+        border-width: 22px 0 0 22px;
+        border-color: transparent transparent transparent @rc_yellow;
+
+        position: absolute;
+        top: -20px;
+        left: 35px;
+      }
+    }
+
+    .error-icon__message {
+      white-space: normal;
+    }
   }
 }
 

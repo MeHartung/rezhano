@@ -2636,6 +2636,50 @@ footer.low .footer-aside {
 .layer.layer-questions .custom-checkbox {
   margin-bottom: 10px;
 }
+.layer.layer-questions .question-layer-message {
+  text-align: center;
+  margin: 135px 40px;
+}
+.layer.layer-questions .question-layer-message__text {
+  font-size: 45px;
+  font-family: Catorze27style1-bold;
+  color: #000000;
+  padding-top: 62px;
+  display: inline-block;
+}
+.layer.layer-questions .question-layer-error {
+  width: 723px;
+  height: 305px;
+  background-color: #f58888;
+  position: relative;
+}
+.layer.layer-questions .question-layer-error:after {
+  content: '';
+  border-style: solid;
+  border-width: 22px 0 0 22px;
+  border-color: transparent transparent transparent #f58888;
+  position: absolute;
+  top: -20px;
+  left: 35px;
+}
+.layer.layer-questions .question-layer-success {
+  width: 723px;
+  height: 305px;
+  background-color: #ffcf40;
+  position: relative;
+}
+.layer.layer-questions .question-layer-success:after {
+  content: '';
+  border-style: solid;
+  border-width: 22px 0 0 22px;
+  border-color: transparent transparent transparent #ffcf40;
+  position: absolute;
+  top: -20px;
+  left: 35px;
+}
+.layer.layer-questions .error-icon__message {
+  white-space: normal;
+}
 aside.left {
   width: 285px;
   margin-left: -298px;
