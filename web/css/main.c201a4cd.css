@@ -4148,6 +4148,15 @@ body .delivery-info__message {
 .section-purchase {
   margin-top: 105px;
 }
+.ymaps-title {
+  margin-bottom: 10px;
+}
+.ymaps-text {
+  font-family: alegreyasans-light;
+  font-size: 17px;
+  color: #191919;
+  display: block;
+}
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
   width: 24px;

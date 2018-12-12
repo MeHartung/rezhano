@@ -4,7 +4,6 @@ define(function(require){
   require('ymaps');
 
   var template = _.template('\
-    <div class="layer-map__address"><%= address %></div>\
     <div class="layer__close"></div>\n\
     <div class="map-wrapper" id="map"></div>\n\
   ');
@@ -21,15 +20,17 @@ define(function(require){
       this.address = options.address;
 
       this.myMap = null;
+      this.store = this.model.get('store');
     },
     render: function(){
       // ModalDialog.prototype.render.apply(this, arguments);
-
+      var self = this;
       this.$el.html(template({
         address: this.model.get('address'),
         city: this.model.get('city') ? this.model.get('city') : ''
       }));
 
+      this.store = this.model.get('store');
       return this;
     },
     show: function(){
@@ -67,7 +68,10 @@ define(function(require){
         iconImageOffset:[-25, -67]
       };
 
-      var baloonContent = ('<h4>'+ this.model.get('address') +'</h4>');
+      var baloonContent = !this.store ? ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>') :
+        ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>' +
+          '<span class="ymaps-text">Контактные данные: '+ this.store.phone +'</span>' +
+          '<span class="ymaps-text">Режим работы: '+ this.store.workTime +'</span>');
 
       var address = this.model.get('address');
       ymaps.geocode( address.toString() ).then(
@@ -80,6 +84,7 @@ define(function(require){
             zoom: 7
           });
           this.myMap.geoObjects.add(placemark);
+          placemark.balloon.open();
           this.myMap.setBounds(bounds, {
             zoomMargin: [50],
             checkZoomRange: true

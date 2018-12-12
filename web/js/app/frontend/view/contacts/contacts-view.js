@@ -16,6 +16,8 @@ define(function(require){
       // var q = new Question();
       // q.set('text', 'asd');
       // q.save();
+      this.stores = new Backbone.Collection(ObjectCache.Stores || {});
+
       this.questionForm = new ContactsForm({
         model: Question
       });
@@ -29,12 +31,15 @@ define(function(require){
     },
     onAddressClick: function (e) {
       e.preventDefault();
-
+      var self = this;
+      var currentStore = self.stores.where({fullAddress:$(e.currentTarget).attr('data-address')})[0];
       this.mapViewDialog = new MapViewDialog({
         model: new Backbone.Model({
-          address: $(e.currentTarget).attr('data-address')
+          address: $(e.currentTarget).attr('data-address'),
+          store: currentStore.attributes
         }),
       });
+      // console.log(currentStore.attributes);
       this.mapViewDialog.render().$el.appendTo($('body'));
 
       this.mapViewDialog.open();
