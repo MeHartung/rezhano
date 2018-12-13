@@ -38,9 +38,9 @@
 {% endblock header %}
 
 {% block main %}
-  {% set limit = (stores|length/2)|round(0, 'ceil') %}
-  {% set leftStores = stores[:limit] %}
-  {% set rightStores = stores[limit:] %}
+  {#{% set limit = (stores|length/2)|round(0, 'ceil') %}#}
+  {#{% set leftStores = stores[:limit] %}#}
+  {#{% set rightStores = stores[limit:] %}#}
   <section class="contacts-section">
     <div class="container container_no-padding">
       <h1>Контакты</h1>
@@ -54,7 +54,8 @@
           </div>
           {% endif %}
 
-          {% for store in leftStores %}
+          {% for i, store in stores %}
+            {% if i is even %}
             <div class="col-item">
               <span class="col-title">{{ store.name }}</span>
               <span class="col-text">{{ store.address }}</span>
@@ -68,6 +69,7 @@
               </a>
 
             </div>
+            {% endif %}
           {% endfor %}
 
         {% if setting('facebook_link') or setting('vk_link') or setting('instagram_link') %}
@@ -90,7 +92,8 @@
               </div>
             {% endif %}
 
-          {% for store in rightStores %}
+          {% for i, store in stores %}
+            {% if i is odd %}
             <div class="col-item">
               <span class="col-title">{{ store.name }}</span>
               <span class="col-text">{{ store.address }}</span>
@@ -104,6 +107,7 @@
               </a>
 
             </div>
+            {% endif %}
           {% endfor %}
 
           {% if setting('contact_email') %}
