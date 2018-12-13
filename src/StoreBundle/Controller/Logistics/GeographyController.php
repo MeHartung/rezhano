@@ -149,7 +149,9 @@ class GeographyController extends Controller
 
   public function contactsAction()
   {
-    $stores = $this->getDoctrine()->getRepository('StoreBundle:Store\Store')->findAll();
+    $stores = $this->getDoctrine()->getRepository('StoreBundle:Store\Store')->findBy([
+      'published' => true,
+    ]);
     $leftPhone = $this->getDoctrine()->getRepository('StoreBundle:Text\ContactPhone')
       ->findOneBy(['published' => true, 'showPlace' => ContactPhone::SHOW_PLACE_LEFT]);
     $rightPhone = $this->getDoctrine()->getRepository('StoreBundle:Text\ContactPhone')

@@ -31,10 +31,11 @@ class StoreAdmin extends AbstractAdmin
           ]
         ])
         //      ->add('email')
-        ->add('workTime')
-      ->add('showFooter', null, [
-        'label' => 'Отображать в футере',
-      ])
+        ->add('workTime', 'Symfony\Component\Form\Extension\Core\Type\TextareaType')
+        ->add('showFooter', null, [
+          'label' => 'Отображать в футере',
+        ])
+        ->add('published')
         ->end()
       ->end()
       ->tab('Местоположение')
@@ -57,6 +58,9 @@ class StoreAdmin extends AbstractAdmin
       ->add('name')
       ->add('address')
       ->add('phone')
+      ->add('published', null, [
+        'editable' => true,
+      ])
       ->add('_action', null, array(
           'actions' => array(
             'edit' => null,

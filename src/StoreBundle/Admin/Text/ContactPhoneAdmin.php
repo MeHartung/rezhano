@@ -23,6 +23,9 @@ class ContactPhoneAdmin extends AbstractAdmin
     ];
     $form
       ->add('name')
+      ->add('title', null, [
+        'label' => 'Полное название',
+      ])
       ->add('phone', PhoneType::class, [
         'label' => 'Телефон',
         'attr' => [
