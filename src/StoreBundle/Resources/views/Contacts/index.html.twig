@@ -50,7 +50,7 @@
           {% if leftPhone %}
           <div class="col-item">
             <span class="col-title">{{ leftPhone.name }}</span>
-            <span class="col-text">{{ leftPhone.phone }}</span>
+            <span class="col-text"><a href="tel:{{ leftPhone.phone }}">{{ leftPhone.phone }}</a></span>
           </div>
           {% endif %}
 
@@ -86,7 +86,7 @@
             {% if rightPhone %}
               <div class="col-item">
                 <span class="col-title">{{ rightPhone.name }}</span>
-                <span class="col-text">{{ rightPhone.phone }}</span>
+                <span class="col-text"><a href="tel:{{ rightPhone.phone }}">{{ rightPhone.phone }}</a></span>
               </div>
             {% endif %}
 
@@ -109,7 +109,7 @@
           {% if setting('contact_email') %}
           <div class="col-item">
             <span class="col-title">Наша почта</span>
-            <a href="mail:{{ setting('contact_email') }}" class="col-text col-link">{{ setting('contact_email') }}</a>
+            <a href="mailto:{{ setting('contact_email') }}" class="col-text col-link">{{ setting('contact_email') }}</a>
           </div>
           {% endif %}
 

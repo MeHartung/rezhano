@@ -64,6 +64,12 @@ class ContactPhone
   protected $showExcursion=false;
 
   /**
+   * @var string|null
+   * @ORM\Column(type="string", length=255)
+   */
+  protected $title;
+
+  /**
    * @return int
    */
   public function getId()
@@ -188,6 +194,24 @@ class ContactPhone
   public function setShowExcursion ($showExcursion)
   {
     $this->showExcursion = $showExcursion;
+    return $this;
+  }
+
+  /**
+   * @return null|string
+   */
+  public function getTitle ()
+  {
+    return $this->title;
+  }
+
+  /**
+   * @param null|string $title
+   * @return $this
+   */
+  public function setTitle ($title)
+  {
+    $this->title = $title;
     return $this;
   }
 

@@ -103,6 +103,12 @@ class Store implements ImageInterface, ImageAwareInterface
   protected $fullAddress;
 
   /**
+   * @var boolean
+   * @ORM\Column(type="boolean", options={"default"=false})
+   */
+  protected $published=false;
+
+  /**
    * Get id.
    *
    * @return int
@@ -413,7 +419,22 @@ class Store implements ImageInterface, ImageAwareInterface
     return $this;
   }
 
+  /**
+   * @return bool
+   */
+  public function isPublished ()
+  {
+    return $this->published;
+  }
 
-
+  /**
+   * @param bool $published
+   * @return $this
+   */
+  public function setPublished ($published)
+  {
+    $this->published = $published;
+    return $this;
+  }
 
 }
