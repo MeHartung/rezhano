@@ -47,6 +47,7 @@ define(function(require){
         </div>\n\
         <div class="step-item" style="display: block">\n\
           <button id="questionFormSubmit" class="button button_black" type="submit"><span>отправить</span></button>\n\
+          <div class="submit-loader-wrap" style="display: none"><span class="submit-loader"></span></div>\n\
         </div>\
       </form>\n\
     </div>\
@@ -190,16 +191,19 @@ define(function(require){
       this.model.set('tos', $(e.currentTarget).val());
     },
     onSubmit: function (e) {
+      $('.submit-loader-wrap').show();
       e.preventDefault();
       var self = this;
       this.model.save(null, {
         success: function () {
           self.$('.question-layer-wrap').hide();
           self.$('.question-layer-success').show();
+          $('.submit-loader-wrap').hide();
         },
         error: function () {
           self.$('.question-layer-wrap').hide();
           self.$('.question-layer-error').show();
+          $('.submit-loader-wrap').hide();
         }
       })
     }

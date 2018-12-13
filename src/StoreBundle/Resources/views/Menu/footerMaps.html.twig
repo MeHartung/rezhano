@@ -12,7 +12,7 @@
 
         <div class="footer-maps__item">
         {{ store.name }}
-        <span class="footer-maps__link" data-point="1">{{ store.address }}</span>
+        <span class="footer-maps__link" data-address="{{ store.fullAddress}}">{{ store.address }}</span>
         </div>
     {% endfor %}
 

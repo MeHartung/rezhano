@@ -2393,6 +2393,7 @@ footer {
       display: inline-block;
       position: relative;
 
+      cursor: pointer;
       //&:hover {
       //
       //  &:after {
@@ -2880,9 +2881,40 @@ footer {
     }
   }
 }
+//
+.submit-loader-wrap {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 25px;
+  //position: relative;
+  
+  .submit-loader {
+    background: url("../images/load-60px.gif") center no-repeat;
+    width: 60px;
+    height: 60px;
+
+    display: block;
+    
+    position: absolute;
+    top: 50%;
+    left: 150px;
+
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    //@media (min-width: 2000px) {
+    //  background: url("../images/load-120px.gif") center no-repeat;
+    //  width: 120px;
+    //  height: 120px;
+    //}
+  }
+}
+
 
 //
-
 aside {
 
   &.left {

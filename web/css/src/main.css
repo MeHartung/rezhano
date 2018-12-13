@@ -2311,6 +2311,7 @@ footer .footer-maps__link {
   color: #ffffff;
   display: inline-block;
   position: relative;
+  cursor: pointer;
 }
 footer .footer-maps__item {
   color: #ffcf40;
@@ -2680,6 +2681,25 @@ footer.low .footer-aside {
 }
 .layer.layer-questions .error-icon__message {
   white-space: normal;
+}
+.submit-loader-wrap {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 25px;
+}
+.submit-loader-wrap .submit-loader {
+  background: url("../images/load-60px.gif") center no-repeat;
+  width: 60px;
+  height: 60px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 150px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 aside.left {
   width: 285px;

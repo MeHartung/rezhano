@@ -24,7 +24,7 @@ define(function(require){
 
     },
     render: function(){
-      this.questionForm.setElement(this.$('#questionForm'));
+      this.questionForm.setElement(this.$('#contactsQuestionForm'));
       this.questionForm.render();
 
       return this;

@@ -11,11 +11,13 @@ define(function(require){
       //CitySelectLinkView = require('view/common/header/city-select-link'),
       UserPanelView = require('view/user/user-panel-view'),
       //Location = require('model/geography/location')
+      MapViewDialog = require('view/common/map-view-dialog'),
       QuestionDialogView = require('view/common/question-view-dialog');
 
   return Backbone.View.extend({
     events: {
-      'click .button-question': 'onQuestionClick'
+      'click .button-question': 'onQuestionClick',
+      'click .footer-maps__link' : 'onAddressClick'
     },
     initialize: function(options){
       this.options = $.extend({
@@ -45,16 +47,11 @@ define(function(require){
       });
 
       $('#oneEyeSlider').on('init', function (e, slick) {
-        // console.log('init', e, slick)
-        //
-        // var overlay = $(e.currentTarget).
 
       }).slick({
         dots: true,
         infinite: true,
-        // centerMode: true,
         centerPadding: '120px'
-
       });
 
       // this.location = new Location(ObjectCache.Location);
@@ -99,6 +96,18 @@ define(function(require){
           }
         }
       });
+    },
+    onAddressClick: function(e) {
+      var self = this;
+      this.mapViewDialog = new MapViewDialog({
+        model: new Backbone.Model({
+          address: $(e.currentTarget).attr('data-address'),
+          store: ''
+        }),
+      });
+      this.mapViewDialog.render().$el.appendTo($('body'));
+
+      this.mapViewDialog.open();
     },
     onCartItemInvalid: function (item, product) {
       if (this.addToCartInvalidLayerView){
