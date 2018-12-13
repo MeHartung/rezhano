@@ -4206,6 +4206,14 @@ body .delivery-info {
     display: block;
     margin: 0 auto;
     white-space: normal;
+
+    a {
+      color: @c_black;
+
+      &:hover {
+        color: @rc_yellow-hover;
+      }
+    }
   }
 
   .col-link {
@@ -4774,6 +4782,8 @@ body .delivery-info {
 
   .slick-dots {
     bottom: -131px;
+
+    width: max-content;
   }
 
   .slick-dots li {

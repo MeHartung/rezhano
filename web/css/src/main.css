@@ -3661,6 +3661,12 @@ body .delivery-info__message {
   margin: 0 auto;
   white-space: normal;
 }
+.contacts-section .col-text a {
+  color: #000000;
+}
+.contacts-section .col-text a:hover {
+  color: #ffbf02;
+}
 .contacts-section .col-link {
   position: relative;
   display: inline-block;
@@ -4086,6 +4092,7 @@ body .delivery-info__message {
 }
 .section-reviews .slick-dots {
   bottom: -131px;
+  width: max-content;
 }
 .section-reviews .slick-dots li {
   background-color: #ffcf40;
