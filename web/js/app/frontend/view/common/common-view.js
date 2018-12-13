@@ -27,6 +27,8 @@ define(function(require){
       this.cart = options.cart;
       this.user = options.user;
 
+      this.stores = new Backbone.Collection(ObjectCache.Stores || {});
+
       this.addToCartSuccessLayer = null;
       this.addToCartInvalidLayerView = null;
 
@@ -99,10 +101,11 @@ define(function(require){
     },
     onAddressClick: function(e) {
       var self = this;
+      var currentStore = self.stores.where({fullAddress:$(e.currentTarget).attr('data-address')})[0];
       this.mapViewDialog = new MapViewDialog({
         model: new Backbone.Model({
           address: $(e.currentTarget).attr('data-address'),
-          store: ''
+          store: currentStore.attributes
         }),
       });
       this.mapViewDialog.render().$el.appendTo($('body'));

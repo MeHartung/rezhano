@@ -855,7 +855,7 @@ header {
       margin-top: -70px;
       max-width: 1850px;
       margin: 0 auto;
-      background-position-y:-78px;
+      background-position-y:-62px;
 
       .header-menu-wrap {
         position: absolute;
@@ -4602,11 +4602,12 @@ body .delivery-info {
 
 //excursion-section
 .section-excursion {
-  padding-bottom: 140px;
+  padding-bottom: 130px;
 
   .section-excursion__title {
     position: relative;
     margin-bottom: 20px;
+    padding-top: 15px;
 
     &:after {
       content: '';
@@ -4636,7 +4637,7 @@ body .delivery-info {
   &__steps {
     white-space: nowrap;
     text-align: center;
-    margin-top: 125px;
+    margin-top: 115px;
 
     .section-excursion__step-item {
       display: inline-block;
@@ -4701,20 +4702,20 @@ body .delivery-info {
 //section-details
 
 .section-details {
-  padding-top: 75px;
+  padding-top: 60px;
   background-color: @rc_yellow;
   position: relative;
   overflow: visible;
-
+  padding-bottom: 75px;
   z-index: 1;
 
   &:after {
     content: '';
     position: absolute;
-    background: url(../images/section-details-bottom.png) center no-repeat;
+    background: url(../images/excursion-bottom.png) center no-repeat;
     width: 100%;
-    height: 148px;
-    bottom: -146px;
+    height: 87px;
+    bottom: -85px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
@@ -4738,7 +4739,7 @@ body .delivery-info {
 .section-reviews {
   background: url(../images/section_bg.png) center no-repeat;
   background-size: cover;
-  padding-top: 180px;
+  padding-top: 140px;
   padding-bottom: 220px;
   position: relative;
 
@@ -4813,8 +4814,7 @@ body .delivery-info {
   }
 
   .slick-dots {
-    bottom: -131px;
-
+    bottom: -148px;
     width: max-content;
   }
 
@@ -4832,7 +4832,27 @@ body .delivery-info {
 }
 //section-one-eye
 .section-one-eye {
+  padding-top: 90px;
   padding-bottom: 178px;
+  position: relative;
+  overflow: visible;
+
+  &:after {
+    content: '';
+    position: absolute;
+    padding-top: 100px;
+    top: -90px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background: url("../images/one-eye-top.png") center no-repeat;
+    width: 100%;
+    height: 101px;
+
+  }
 
   &__title {
     color: @c_black;
@@ -4871,6 +4891,14 @@ body .delivery-info {
 
     button.slick-arrow {
       z-index: 2;
+    }
+
+    button.slick-prev {
+      left: 50px;
+    }
+
+    button.slick-next {
+      right: 50px;
     }
 
     .slick-dots {
@@ -5040,6 +5068,31 @@ body .delivery-info {
       left: -86px;
     }
   }
+
+  .section-one-eye {
+    padding-bottom: 200px;
+
+    .section-one-eye-slider {
+      max-height: 900px;
+
+      .slick-dots {
+        bottom: -105px;
+      }
+    }
+
+    .section-one-eye-slider__item img {
+      height: 900px;
+    }
+
+    .section-one-eye-slider button.slick-prev {
+      left: -20px;
+    }
+
+    .section-one-eye-slider button.slick-next {
+      right: -20px;
+    }
+  }
+
 }
 
 .quantity-widget__units {
