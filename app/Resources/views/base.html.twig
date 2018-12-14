@@ -26,7 +26,9 @@
     <script type="text/javascript" src="{{ asset('js/vendor/jquery.daterange/jquery.daterange.js') }}"></script>
 
     <script>
+      if(navigator.userAgent.indexOf('Mac') > 0) {
         document.getElementsByTagName('html')[0].className = 'mac-os';
+      }
     </script>
 
     {% include '@ContentHotspot/Asset/content_hotspot.html.twig' with {'jquery': false, 'tinymce': true} %}
