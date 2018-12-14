@@ -2795,6 +2795,41 @@ footer {
       line-height: 40px;
     }
 
+    .input-text__question {
+      position: relative;
+
+      &:after {
+        content: '';
+        height: 2px;
+        width: 100%;
+        background-color: #000;
+
+        position: absolute;
+        bottom: -5px;
+
+      }
+    }
+
+    .input-textarea {
+      line-height: 1.2;
+      max-height: 100px;
+      position: relative;
+      //
+      border-color: transparent;
+      //height: 41px;
+
+      &:after {
+        content: '';
+        height: 2px;
+        width: 100%;
+        background-color: #000;
+
+        position: absolute;
+        bottom: -5px;
+
+      }
+    }
+
     .input-text__name {
       margin-right: 25px;
     }
@@ -2809,10 +2844,18 @@ footer {
 
     .input-text__question {
       width: 100%;
+      //border-color: transparent transparent #000 transparent;
+      //height: 41px;
+
+      //.error-icon {
+      //  top: 10px;
+      //}
     }
 
     .question-wrapper {
-      padding: 88px 0 75px 0;
+      padding: 88px 0 0 0;
+      height: 325px;
+
     }
 
     .question-wrapper__row {
@@ -4159,9 +4202,9 @@ body .delivery-info {
 
 // section-article
 .section-article {
- padding-top: 70px;
- padding-bottom: 70px;
- margin-bottom: 160px;
+  padding-top: 140px;
+  padding-bottom: 200px;
+  margin-bottom: 160px;
 
   &__title {
     padding-bottom: 45px;
@@ -4434,6 +4477,30 @@ body .delivery-info {
 
     .custom-checkbox .checkbox:checked + .custom-checkbox__checkbox:after {
       content: url(../images/icons/checkbox-checked-yellow.png)
+    }
+  }
+
+  .input-text__question {
+    line-height: 1.2;
+    max-height: 100px;
+    position: relative;
+    border-color: transparent;
+
+    &:after {
+      content: '';
+      height: 2px;
+      width: 100%;
+      background-color: #000;
+      position: absolute;
+      bottom: -5px;
+    }
+
+    .input-textarea {
+      line-height: 1.2;
+      max-height: 100px;
+      position: relative;
+      border-color: transparent;
+      background-color: @rc_yellow;
     }
   }
 }

@@ -28,7 +28,7 @@ requirejs.config({
     "cleave": "/js/vendor/cleave/cleave",
     "cleave-phone": "/js/vendor/cleave/cleave-phone.ru",
     "sinon": "/js/vendor/sinon/sinon",
-    "ymaps": "https://api-maps.yandex.ru/2.1/?lang=ru_RU",
+    "ymaps": "https://api-maps.yandex.ru/2.1/?lang=ru_RU"
   },
   map: {
     "jquery-checkbox": {

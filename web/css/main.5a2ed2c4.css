@@ -2520,6 +2520,31 @@ footer.low .footer-aside {
   height: 40px;
   line-height: 40px;
 }
+.layer.layer-questions .input-text__question {
+  position: relative;
+}
+.layer.layer-questions .input-text__question:after {
+  content: '';
+  height: 2px;
+  width: 100%;
+  background-color: #000;
+  position: absolute;
+  bottom: -5px;
+}
+.layer.layer-questions .input-textarea {
+  line-height: 1.2;
+  max-height: 100px;
+  position: relative;
+  border-color: transparent;
+}
+.layer.layer-questions .input-textarea:after {
+  content: '';
+  height: 2px;
+  width: 100%;
+  background-color: #000;
+  position: absolute;
+  bottom: -5px;
+}
 .layer.layer-questions .input-text__name {
   margin-right: 25px;
 }
@@ -2534,7 +2559,8 @@ footer.low .footer-aside {
   width: 100%;
 }
 .layer.layer-questions .question-wrapper {
-  padding: 88px 0 75px 0;
+  padding: 88px 0 0 0;
+  height: 325px;
 }
 .layer.layer-questions .question-wrapper__row {
   white-space: nowrap;
@@ -3507,8 +3533,8 @@ body .delivery-info__message {
   display: block;
 }
 .section-article {
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 140px;
+  padding-bottom: 200px;
   margin-bottom: 160px;
 }
 .section-article__title {
@@ -3723,6 +3749,27 @@ body .delivery-info__message {
 }
 .section-write .layer-questions .custom-checkbox .checkbox:checked + .custom-checkbox__checkbox:after {
   content: url(../images/icons/checkbox-checked-yellow.png);
+}
+.section-write .input-text__question {
+  line-height: 1.2;
+  max-height: 100px;
+  position: relative;
+  border-color: transparent;
+}
+.section-write .input-text__question:after {
+  content: '';
+  height: 2px;
+  width: 100%;
+  background-color: #000;
+  position: absolute;
+  bottom: -5px;
+}
+.section-write .input-text__question .input-textarea {
+  line-height: 1.2;
+  max-height: 100px;
+  position: relative;
+  border-color: transparent;
+  background-color: #ffcf40;
 }
 .section-question {
   padding-top: 70px;

@@ -26,7 +26,7 @@ define(function(require){
     '                 </div>\n' +
     '               </div>\n' +
     '               <div class="step-item input-text__question">\n' +
-    '                 <input class="input-text " required="required" name="text" type="text" data-validate="text" data-description="text" data-describedby="text-errors" id="question_customer_text" placeholder="Расскажите, что вас интересует">\n' +
+    '                 <textarea rows="1" class="input-textarea " required="required" name="text" type="text" data-validate="text" data-description="text" data-describedby="text-errors" id="question_customer_text" placeholder="Расскажите, что вас интересует"/>\n' +
     '                 <i class="error-icon">\n' +
     '                  <span class="error-icon__message" id="name-errors">\n' +
     '                    <div>Представьтесь, пожалуйста</div>\n' +
@@ -75,7 +75,8 @@ define(function(require){
       'change #question_customer_name' : 'onNameChange',
       'change #question_customer_phone' : 'onMailOrPhoneChange',
       'change #question_customer_text' : 'onTextChange',
-      'change #question_customer_tos' : 'onTosChange'
+      'change #question_customer_tos' : 'onTosChange',
+      'keydown .input-textarea' : 'autosizeR',
     },
     initialize: function(options){
       CommonView.prototype.initialize.apply(this, arguments);
@@ -160,6 +161,13 @@ define(function(require){
           self.onSubmit(event);
         }
       });
+    },
+    autosizeR: function (e){
+      var el = e.currentTarget;
+      setTimeout(function(){
+        el.style.cssText = 'height:auto; padding:0';
+        el.style.cssText = 'height:' + (el.scrollHeight+10) + 'px';
+      },0);
     },
     onNameChange: function (e) {
       this.model.set('fio', $(e.currentTarget).val());

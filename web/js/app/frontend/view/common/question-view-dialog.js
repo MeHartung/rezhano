@@ -27,7 +27,7 @@ define(function(require){
              </div>\
           </div>\
           <div class="step-item input-text__question">\
-              <input class="input-text " required="required" name="text" type="text" data-validate="text" data-description="text" data-describedby="text-errors" id="question_customer_text" placeholder="Расскажите, что вас интересует">\n\
+              <textarea rows="1" class="input-textarea " required="required" name="text" type="text" data-validate="text" data-description="text" data-describedby="text-errors" id="question_customer_text" placeholder="Расскажите, что вас интересует"/>\n\
               <i class="error-icon">\n\
                 <span class="error-icon__message" id="text-errors"><div>Введите текст вопроса</div></span>\n\
               </i>\n\
@@ -73,12 +73,15 @@ define(function(require){
       'change #question_customer_name' : 'onNameChange',
       'change #question_customer_phone' : 'onMailOrPhoneChange',
       'change #question_customer_text' : 'onTextChange',
-      'change #question_customer_tos' : 'onTosChange'
+      'change #question_customer_tos' : 'onTosChange',
+      'keydown .input-textarea' : 'autosizeR',
     },
     initialize: function(options){
       ModalDialog.prototype.initialize.apply(this, arguments);
       this.isInvalid = true;
       this.address = options.address;
+
+      // $('#question_customer_text').res
 
       this.model = new Question();
 
@@ -183,6 +186,13 @@ define(function(require){
     },
     onTextChange: function (e) {
       this.model.set('text', $(e.currentTarget).val());
+    },
+   autosizeR: function (e){
+    var el = e.currentTarget;
+     setTimeout(function(){
+       el.style.cssText = 'height:auto; padding:0';
+       el.style.cssText = 'height:' + (el.scrollHeight+10) + 'px';
+     },0);
     },
     isValidEmail: function(val){
       return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(val)
