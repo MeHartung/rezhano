@@ -806,6 +806,9 @@ a.button {
 button span,
 a.button span {
   line-height: 18px;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 4px;
 }
 button:hover,
 a.button:hover {
@@ -4400,6 +4403,9 @@ body .delivery-info__message {
   font-size: 17px;
   color: #191919;
   display: block;
+}
+.step-item .error-icon__message {
+  white-space: normal;
 }
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;

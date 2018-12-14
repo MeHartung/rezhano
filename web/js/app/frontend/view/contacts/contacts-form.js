@@ -21,15 +21,15 @@ define(function(require){
     '                 <div class="step-item input-text__email">\n' +
     '                   <input class="input-text " required="required" name="phone" data-validate="phone" data-description="phone" data-describedby="phone-errors" id="question_customer_phone" type="text" placeholder="Телефон">\n' +
     '                   <i class="error-icon">\n' +
-    '                     <span class="error-icon__message" id="name-errors"><div>Представьтесь, пожалуйста</div></span>\n' +
+    '                     <span class="error-icon__message" id="phone-errors"><div>Укажите Ваш номер телефона</div></span>\n' +
     '                   </i>\n' +
     '                 </div>\n' +
     '               </div>\n' +
     '               <div class="step-item input-text__question">\n' +
     '                 <textarea rows="1" class="input-textarea " required="required" name="text" type="text" data-validate="text" data-description="text" data-describedby="text-errors" id="question_customer_text" placeholder="Расскажите, что вас интересует"/>\n' +
     '                 <i class="error-icon">\n' +
-    '                  <span class="error-icon__message" id="name-errors">\n' +
-    '                    <div>Представьтесь, пожалуйста</div>\n' +
+    '                  <span class="error-icon__message" id="text-errors">\n' +
+    '                    <div>Введите текст вопроса</div>\n' +
     '                  </span>\n' +
     '                 </i>\n' +
     '               </div>\n' +
@@ -43,7 +43,7 @@ define(function(require){
     '                 </label>\n' +
     '               </div>\n' +
     '               <i class="error-icon">\n' +
-    '                 <span class="error-icon__message"></span>\n' +
+    '                 <span class="error-icon__message">Вы должны принять условия</span>\n' +
     '               </i>\n' +
     '             </div>\n' +
     '             <div class="step-item" style="display: block">\n' +
