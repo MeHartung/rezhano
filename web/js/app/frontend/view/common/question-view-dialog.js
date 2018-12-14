@@ -81,8 +81,6 @@ define(function(require){
       this.isInvalid = true;
       this.address = options.address;
 
-      // $('#question_customer_text').res
-
       this.model = new Question();
 
       this.tosArticle = new Backbone.Model(ObjectCache.TosArticle || {});
@@ -117,6 +115,12 @@ define(function(require){
       this.initValidation();
 
       return this;
+    },
+    _center_coords: function() {
+      var top = $(window).scrollTop() + Math.max(($(window).height() - this.$el.outerHeight(true))/2, 15);
+      var left = $(window).width()/2 - this.$el.width()/2;
+
+      return [top, left];
     },
     initValidation: function () {
       var self = this;

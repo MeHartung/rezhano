@@ -116,6 +116,8 @@ define(function(require){
       this.$('#question_customer_phone').inputmask('+7 (999) 999-99-99');
       this.initValidation();
 
+      this._restorePosition();
+
       return this;
     },
     initValidation: function () {

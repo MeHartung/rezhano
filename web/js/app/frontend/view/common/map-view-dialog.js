@@ -70,8 +70,8 @@ define(function(require){
 
       var baloonContent = !this.store ? ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>') :
         ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>' +
-          '<span class="ymaps-text">Контактные данные: '+ this.store.phone +'</span>' +
-          '<span class="ymaps-text">Режим работы: '+ this.store.workTime +'</span>');
+          '<span class="ymaps-text">'+ this.store.phone +'</span>' +
+          '<span class="ymaps-text">'+ this.store.workTime +'</span>');
 
       var address = this.model.get('address');
       ymaps.geocode( address.toString() ).then(
