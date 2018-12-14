@@ -4283,6 +4283,11 @@ body .delivery-info__message {
 .step-item .error-icon__message {
   white-space: normal;
 }
+.mac-os button span,
+.mac-os a.button span {
+  display: inline-block;
+  padding-top: 7px;
+}
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
   width: 24px;
