@@ -3,7 +3,7 @@ return array(
     'staticAssets' => array(
         'app' => array(
             'css' => array(
-                '/css/main.7f4bc93f.css',
+                '/css/main.ae268574.css',
             ),
             'js' => array(
                 '/js/frontend.344885c7.js',

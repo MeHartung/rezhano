@@ -3771,6 +3771,7 @@ body .delivery-info__message {
   width: 100%;
   background-color: #000;
   position: absolute;
+  left: 0;
   bottom: -5px;
 }
 .section-write .input-text__question .input-textarea {
