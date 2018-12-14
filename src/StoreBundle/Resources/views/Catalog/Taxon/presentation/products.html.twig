@@ -5,7 +5,9 @@
 {{ products|client_model_collection('product', 'ProductList') }}
 {{ presentation|client_model('filter') }}
 
-<div class="container">
+<h1>{{ taxon.name }}</h1>
+
+<div class="container ">
     <div class="product-filter">
         <div class="product-filter__item product-list-sort">{# deployed active  #}
             <a href="" class="product-filter__link">сортировать <i class="ui-icon"></i></a>
@@ -159,7 +161,6 @@
     </div>
 
 </div>
-<h1>{{ taxon.name }}</h1>
 
 <div class="product-list" id="product-listview">
     {% for product in products %}

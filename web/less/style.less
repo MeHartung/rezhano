@@ -754,7 +754,12 @@ header {
 header {
 
   &.header-catalog {
-    height: 550px;
+    //height: 550px;
+    height: 366px;
+    overflow: hidden;
+
+    //
+
     background-color: #0b090a;
     position: relative;
     padding: 0;
@@ -787,7 +792,7 @@ header {
       }
 
       @media(max-width: 2000px) {
-        background-position-y:-175px;
+        background-position-y:-250px;
       }
     }
   }
@@ -2531,7 +2536,15 @@ footer {
 ////
 .catalog-section {
   padding-bottom: 215px;
-  padding-top: 120px;
+  //padding-top: 120px;
+
+  h1 {
+    padding-bottom: 50px;
+  }
+
+  .product-filter {
+    padding-bottom: 150px;
+  }
 }
 
 // layer

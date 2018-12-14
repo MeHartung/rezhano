@@ -1021,7 +1021,8 @@ header.fixed {
   z-index: 10;
 }
 header.header-catalog {
-  height: 550px;
+  height: 366px;
+  overflow: hidden;
   background-color: #0b090a;
   position: relative;
   padding: 0;
@@ -1052,7 +1053,7 @@ header.header-catalog .header-catalog__wrap .header-menu-wrap {
 }
 @media (max-width: 2000px) {
   header.header-catalog .header-catalog__wrap {
-    background-position-y: -175px;
+    background-position-y: -250px;
   }
 }
 header.header-contacts {
@@ -2325,7 +2326,12 @@ footer.low .footer-aside {
 }
 .catalog-section {
   padding-bottom: 215px;
-  padding-top: 120px;
+}
+.catalog-section h1 {
+  padding-bottom: 50px;
+}
+.catalog-section .product-filter {
+  padding-bottom: 150px;
 }
 .layer {
   width: 1000px;
