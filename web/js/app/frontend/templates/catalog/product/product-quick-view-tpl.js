@@ -19,7 +19,6 @@ define(function(require){
   <% } %>\n\
   <% if (description) { %>\n\
     <div class="layer__text-item">\n\
-      <div class="layer__text-title"></div> \n\
       <div class="layer__text-text"><%= description %></div> \n\
     </div>\n\
   <% } %>\n\
