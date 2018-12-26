@@ -10,6 +10,7 @@ use Accurateweb\ImagingBundle\Crop\AutoCrop;
 use Accurateweb\ImagingBundle\Crop\Crop;
 use Accurateweb\ImagingBundle\Image\Image;
 use Accurateweb\ImagingBundle\Primitive\Point;
+use Accurateweb\ImagingBundle\Primitive\Size;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -66,7 +67,7 @@ class CropFilterOptionsResolver implements FilterOptionsResolverInterface
     {
       $cropOptions = $resolver->resolve($options);
 
-      $crop = new Crop(new Point($cropOptions['left'], $cropOptions['top'], $cropOptions['width'], $cropOptions['height']));
+      $crop = new Crop(new Point($cropOptions['left'], $cropOptions['top']), new Size($cropOptions['width'], $cropOptions['height']));
     }
     catch (InvalidArgumentException $e)
     {

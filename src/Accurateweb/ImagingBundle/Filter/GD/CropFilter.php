@@ -43,6 +43,17 @@ class CropFilter extends GdFilter
   public function process(Image $image)
   {
     $resource = $image->getResource();
+
+    if ($this->options['width'] == 0)
+    {
+      $this->options['width'] = $image->getWidth();
+    }
+
+    if ($this->options['height'] == 0)
+    {
+      $this->options['height'] = $image->getHeight();
+    }
+
     $dest_resource = $this->createTransparentImage($image, $this->options['width'], $this->options['height']);
 
     // Preserving transparency for alpha PNGs

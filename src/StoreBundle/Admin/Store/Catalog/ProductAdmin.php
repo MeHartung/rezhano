@@ -185,7 +185,7 @@ class ProductAdmin extends AbstractAdmin
             'gallery' => 'product-photo',
             'label' => false,
             'crop' => [
-              'size' => '160x160', //Размеры поля кропа (отношение сторон будет сохранено)
+              'size' => '570x713', //Размеры поля кропа (отношение сторон будет сохранено)
               'boxWidth' => 800, //Размеры модального окна
               'boxHeight' => 600
             ]
