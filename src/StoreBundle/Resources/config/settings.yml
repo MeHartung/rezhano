@@ -191,3 +191,13 @@ services:
         - ~
       tags:
         - { name: aw.setting }
+
+    store.setting.operator_email:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'operator_email'
+        - 'E-mail оператора'
+        - %operator_email%
+      tags:
+        - { name: aw.setting }

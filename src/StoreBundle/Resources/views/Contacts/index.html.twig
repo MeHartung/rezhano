@@ -72,7 +72,7 @@
             {% endif %}
           {% endfor %}
 
-        {% if setting('facebook_link') or setting('vk_link') or setting('instagram_link') %}
+        {% if stores|length is even and (setting('facebook_link') or setting('vk_link') or setting('instagram_link')) %}
           <div class="col-item">
             <span class="col-title">Тут мы публикуем много всего интересного</span>
             <div class="contacts-social">
@@ -109,6 +109,17 @@
             </div>
             {% endif %}
           {% endfor %}
+
+            {% if stores|length is odd and (setting('facebook_link') or setting('vk_link') or setting('instagram_link')) %}
+              <div class="col-item">
+                <span class="col-title">Тут мы публикуем много всего интересного</span>
+                <div class="contacts-social">
+                    {% if setting('facebook_link') %}<a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook"></a>{% endif %}
+                    {% if setting('vk_link') %}<a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte"></a>{% endif %}
+                    {% if setting('instagram_link') %}<a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram"></a>{% endif %}
+                </div>
+              </div>
+            {% endif %}
 
           {% if setting('contact_email') %}
           <div class="col-item">

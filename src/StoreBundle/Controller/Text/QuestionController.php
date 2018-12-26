@@ -36,21 +36,29 @@ class QuestionController extends Controller
         $em->persist($questionData);
         $em->flush();
         $request->getSession()->set('last.question.id', $questionData->getId());
-        $operatorEmail = $this->getParameter('operator_email');
+//        $operatorEmail = $this->getParameter('operator_email');
+        $operatorEmail = $this->get('aw.settings.manager')->getValue('operator_email');
 
         if ($operatorEmail)
         {
-          $email = $this->get('aw_email_templating.template.factory')->createMessage(
-            'user_question_operator',
-            array($this->getParameter('mailer_from') => $this->getParameter('mailer_sender_name')),
-            array($operatorEmail => ''),
-            array(
-              'customer_name' => $question->getFio(),
-              'customer_email' => $question->getEmail(),
-              'question' => $question->getText()
-            ));
+          try
+          {
+            $email = $this->get('aw_email_templating.template.factory')->createMessage(
+              'user_question_operator',
+              array($this->getParameter('mailer_from') => $this->getParameter('mailer_sender_name')),
+              array($operatorEmail => ''),
+              array(
+                'customer_name' => $question->getFio(),
+                'customer_email' => $question->getEmail(),
+                'question' => $question->getText()
+              ));
 
-          $this->get('mailer')->send($email);
+            $this->get('mailer')->send($email);
+          }
+          catch (\Exception $e)
+          {
+            $this->get('logger')->error(sprintf('Failed to send email for operator. %s', $e->getMessage()));
+          }
         }
 
         if ($request->isXmlHttpRequest())
