@@ -6,7 +6,7 @@ return array(
                 '/css/main.7c2776d0.css',
             ),
             'js' => array(
-                '/js/frontend.e19a5118.js',
+                '/js/frontend.05186c0b.js',
             ),
         ),
     )
