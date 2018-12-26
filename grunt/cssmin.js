@@ -13,6 +13,6 @@ module.exports = {
     },
     site: {
         src: ['web/css/main.css'],
-        dest: 'web/css/main.min.css'
+        dest: 'web/css/main.css'
     }
 };
