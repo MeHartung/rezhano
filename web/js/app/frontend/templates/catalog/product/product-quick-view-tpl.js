@@ -3,7 +3,7 @@ define(function(require){
 <div class="layer__images">\n\
 <% _.each(images, function(image) { %>  \n\
   <a href="<%= product_url %>" class="show-full-image">\n\
-    <img src="/uploads/<%= image %>" alt="">\n\
+    <img src="<%= image %>" alt="">\n\
   </a>\n\
 <%});%></div>\
 <div class="layer__text">\n\

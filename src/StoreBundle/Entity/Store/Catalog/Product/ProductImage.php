@@ -204,23 +204,23 @@ class ProductImage implements ImageInterface, ImageAwareInterface, MediaCroppabl
       ];
     }
     return array(
-//      new ThumbnailDefinition('preview', new FilterChain(array(
-//        array(
-//          'id' => 'crop',
-//          'options' => $this->getCrop(),
-//          'resolver' => new CropFilterOptionsResolver()),
-//        array('id' => 'resize', 'options' => array('size' => '80x80'))
-//      ))),
-//      new ThumbnailDefinition('160x160', new FilterChain(array(
-//        array('id' => 'resize', 'options' => array('size' => '160x160'))
-//      ))),
-//      new ThumbnailDefinition('50x50', new FilterChain(array(
-//        array(
-//          'id' => 'crop',
-//          'options' => $this->getCrop(),
-//          'resolver' => new CropFilterOptionsResolver()),
-//        array('id' => 'resize', 'options' => array('size' => '50x50'))
-//      ))),
+      new ThumbnailDefinition('preview', new FilterChain(array(
+        array(
+          'id' => 'crop',
+          'options' => $this->getCrop(),
+          'resolver' => new CropFilterOptionsResolver()),
+        array('id' => 'resize', 'options' => array('size' => '80x80'))
+      ))),
+      new ThumbnailDefinition('160x160', new FilterChain(array(
+        array('id' => 'resize', 'options' => array('size' => '160x160'))
+      ))),
+      new ThumbnailDefinition('50x50', new FilterChain(array(
+        array(
+          'id' => 'crop',
+          'options' => $this->getCrop(),
+          'resolver' => new CropFilterOptionsResolver()),
+        array('id' => 'resize', 'options' => array('size' => '50x50'))
+      ))),
       new ThumbnailDefinition('570x713', new FilterChain(array(
         array(
           'id' => 'crop',

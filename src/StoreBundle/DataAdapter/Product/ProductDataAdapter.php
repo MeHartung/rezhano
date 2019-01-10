@@ -3,6 +3,8 @@
 namespace StoreBundle\DataAdapter\Product;
 
 use Accurateweb\ClientApplicationBundle\DataAdapter\ClientApplicationModelAdapterInterface;
+use Accurateweb\MediaBundle\Model\Image\ImageAwareInterface;
+use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use Accurateweb\MediaBundle\Model\Media\Resource\MediaResource;
 use Accurateweb\MediaBundle\Model\Media\Storage\MediaStorageInterface;
 use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
@@ -51,9 +53,38 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
     $min_count = $subject->getMinCount();
 
     $images = [];
+    $galleryImages = [];
+    $thumbnails = [];
+
     foreach ($subject->getImages() as $image)
     { /** @var  $image Image */
       $images[] = $image->getResourceId();
+    }
+
+    foreach ($subject->getImages() as $image)
+    {
+      $thumb = $image->getThumbnail('570x713');
+
+      if ($this->mediaStorage->exists($thumb))
+      {
+        $galleryImages[] = $this->mediaStorage->retrieve($thumb)->getUrl();
+      }
+    }
+
+    /** @var ImageInterface $image */
+    $image = $subject->getImages()->first();
+
+    if ($image)
+    {
+      foreach ($image->getThumbnailDefinitions() as $thumbnail)
+      {
+        $thumb = $image->getThumbnail($thumbnail->getId());
+
+        if ($this->mediaStorage->exists($thumb))
+        {
+          $thumbnails[$thumbnail->getId()] = $this->mediaStorage->retrieve($thumb)->getUrl();
+        }
+      }
     }
 
     if ($token)
@@ -75,6 +106,7 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'brand' => $brand ? $brand->getName() : null,
       'sku' => $subject->getSku(),
       'images' => count($images)>0 ? $images : null,
+      'gallery_images' => $galleryImages,
       'preview_image' => $subject->getFirstImage(), # вообще не юзается
       'taxon' => $primary_taxon?$primary_taxon->getName():'',
       'available_stock' => $subject->getAvailableStock(),
@@ -84,6 +116,7 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'oldPrice' => $subject->getOldPrice(),
       'price' => $this->priceManager->getProductPrice($subject),
       'image' => $subject->getThumbnailUrl('catalog_prev'),
+      'thumbnails' => $thumbnails,
       'isPurchasable' => $subject->isPurchasable(),
       'isHit' => $subject->isHit(),
       'isNovice' => $subject->isNovice(),
