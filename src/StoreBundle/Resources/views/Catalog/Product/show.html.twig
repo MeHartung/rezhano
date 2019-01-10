@@ -56,7 +56,7 @@
         <div class="layer__text" title="Без ГМО, без красителей, без консервантов" alt="Без ГМО, без красителей, без консервантов">
           <h2 class="layer__title" itemprop="name">{{ product.name }}</h2>
           {#<div class="layer__text-wrap scroll-pane">#}
-          <div class="layer__text-wrap">
+          <div class="layer__text-wrap scroll-pane">
             {% if product.productAttributeValuesGrouped | length > 0 %}
                 {% for attribure_name, attribute in product.productAttributeValuesGrouped %}
                   <div class="layer__text-item">
