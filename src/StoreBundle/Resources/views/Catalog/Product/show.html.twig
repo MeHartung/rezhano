@@ -48,7 +48,7 @@
           <div class="main-image">
             {% for image in product.images %}
               <a href="{{ image_url(image) }}" class="show-full-image" itemprop="image" data-number="" rel="vm-additional-images[]">
-                <img src="{{ image_url(image) }}" alt="">
+                <img src="{{ image_thumbnail_url(image, null, '570x713') }}" alt="">
               </a>
             {% endfor %}
           </div>

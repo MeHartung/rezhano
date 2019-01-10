@@ -30,11 +30,12 @@ define(function (require) {
     },
     render: function () {
       var _self = this;
-
+      var thumbnails = this.model.get('thumbnails');
       this.$el.html(template({
         name: this.model.get('name'),
         isPurchasable: this.model.get('isPurchasable'),
-        images: this.model.get('images') instanceof Array && this.model.get('images') ? this.model.get('images') : '/images/medium-no_photo.png',
+        // images: this.model.get('images') instanceof Array && this.model.get('images') ? this.model.get('images') : '/images/medium-no_photo.png',
+        images: this.model.get('gallery_images') instanceof Array && this.model.get('gallery_images') ? this.model.get('gallery_images') : '/images/medium-no_photo.png',
         preview_image: this.model.get('preview_image') ? this.model.get('preview_image') : '/images/medium-no_photo.png',
         product_url: this.model.get('url'),
         package: this.model.get('package'),

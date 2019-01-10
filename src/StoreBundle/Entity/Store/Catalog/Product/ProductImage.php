@@ -183,6 +183,26 @@ class ProductImage implements ImageInterface, ImageAwareInterface, MediaCroppabl
    */
   public function getThumbnailDefinitions()
   {
+    $cropResolverOptions = [
+      'auto_crop' => true,
+      'auto_crop_aspect_ratio' => 1,
+      'auto_crop_position' => 'center'
+    ];
+    $cropOptions = [];
+
+    if ($this->crop && !is_null($this->crop[0]))
+    {
+      $cropResolverOptions = [
+        'auto_crop' => false,
+      ];
+
+      $cropOptions = [
+        'left' => $this->crop[0],
+        'top' => $this->crop[1],
+        'width' => $this->crop[2] - $this->crop[0],
+        'height' => $this->crop[3] - $this->crop[1],
+      ];
+    }
     return array(
       new ThumbnailDefinition('preview', new FilterChain(array(
         array(
@@ -201,13 +221,14 @@ class ProductImage implements ImageInterface, ImageAwareInterface, MediaCroppabl
           'resolver' => new CropFilterOptionsResolver()),
         array('id' => 'resize', 'options' => array('size' => '50x50'))
       ))),
-//      new ThumbnailDefinition('640x640', new FilterChain(array(
-//        array(
-//          'id' => 'crop',
-//          'options' => $this->getCrop(),
-//          'resolver' => new CropFilterOptionsResolver()),
-//        array('id' => 'resize', 'options' => array('size' => '640x640'))
-//      ))),
+      new ThumbnailDefinition('570x713', new FilterChain(array(
+        array(
+          'id' => 'crop',
+          'options' => $cropOptions,
+          'resolver' => new CropFilterOptionsResolver($cropResolverOptions),
+        ),
+//        array('id' => 'resize', 'options' => array('size' => '570x713'))
+      ))),
     );
   }
 

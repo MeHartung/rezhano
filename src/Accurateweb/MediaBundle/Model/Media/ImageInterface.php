@@ -6,13 +6,14 @@
 namespace Accurateweb\MediaBundle\Model\Media;
 
 use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
+use Accurateweb\MediaBundle\Model\Thumbnail\ThumbnailDefinition;
 
 interface ImageInterface extends MediaInterface
 {
   /**
    * Get thumbnail definitions
    *
-   * @return mixed
+   * @return ThumbnailDefinition[]
    */
   public function getThumbnailDefinitions();
 

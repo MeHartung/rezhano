@@ -42,11 +42,13 @@ define(function(require){
     },
     render: function(){
       var isUserAuth = User.getCurrentUser().isNew() == false;
+      var thumbnails = this.model.get('thumbnails');
       this.$el.html(template({
         id: this.model.get('id'),
         slug: this.model.get('slug'),
         name: this.model.get('name'),
         url: this.model.get('url'),
+        // image: thumbnails['570x713']?thumbnails['570x713']:this.model.get('image'),
         image: this.model.get('image'),
         price: Number(this.model.get('price')).toCurrencyString('₽', 0),
         discountValue: this.model.get('isSale') ? Math.round((1 - this.model.get('price') / this.model.get('oldPrice')) * 100) : null,
