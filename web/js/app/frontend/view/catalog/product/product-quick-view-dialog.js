@@ -20,6 +20,13 @@ define(function(require){
       show: function(){
           this.$overlay.stop().fadeIn();
           this.$el.stop().fadeIn();
+      },
+      close: function () {
+         ModalDialog.prototype.close.apply(this, arguments);
+
+        $('body').css({
+          overflow: 'auto'
+        });
       }
    });
 });

@@ -29,7 +29,7 @@
 
 {% block main %}
 
-  <section class="section-in-product">
+  <section class="section-in-product" itemscope="" itemtype="http://schema.org/Product">
     <div class="container">
 
       {#<div class="section-title">#}
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="layer__text" title="Без ГМО, без красителей, без консервантов" alt="Без ГМО, без красителей, без консервантов">
-          <h2 class="layer__title">{{ product.name }}</h2>
+          <h2 class="layer__title" itemprop="name">{{ product.name }}</h2>
           {#<div class="layer__text-wrap scroll-pane">#}
           <div class="layer__text-wrap">
             {% if product.productAttributeValuesGrouped | length > 0 %}
@@ -80,7 +80,13 @@
             </div>
             {% endif %}
           </div>
-          <div class="product-item__characteristics">
+          <div class="product-item__characteristics" itemprop="offers" itemscope=""
+               itemtype="http://schema.org/Offer">
+
+            <meta itemprop="availability" content="http://schema.org/InStock">
+            <meta itemprop="price" content="{{ product.price | price }}">
+            <meta itemprop="priceCurrency" content="RUB">
+
               {% if product.package %}
                 <span class="product-item__quantity">{{ product.formattedPackage }} {{ product.units }} / </span>
               {% endif %}

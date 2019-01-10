@@ -120,7 +120,9 @@ define(function(require){
         });
         this.productQuickViewDialog.render().$el.appendTo($('body'));
       }
-
+      $('body').css({
+        overflow: 'hidden'
+      });
       this.productQuickViewDialog.open();
     },
     onCartItemAdd: function () {
