@@ -73,11 +73,12 @@ class TaxonomyController extends Controller
       throw $this->createNotFoundException(sprintf('Категория %s не найдена', $request->get('slug')));
     }
 
+    // TODO: REZHANO-121 надо было быстро, поэтому в кач-ве "выключателя" пагинации поставлено 1000 товаров
     $presentationOptions = array(
       'sort_column' => $request->query->get('column', 'rank'),
       'sort_order' => $request->query->get('order', 'asc'),
       'pagination_page' => $request->query->get('page', 1),
-      'pagination_max_per_page' => $request->query->get('count', 15)
+      'pagination_max_per_page' => $request->query->get('count', 1000)
     );
 
     try
