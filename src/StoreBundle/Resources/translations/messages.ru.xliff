@@ -563,6 +563,18 @@
                 <source>Store Create</source>
                 <target>Добавление точки реализации</target>
             </trans-unit>
+            <trans-unit id="Partner List">
+                <source>Partner List</source>
+                <target>Список партнёров</target>
+            </trans-unit>
+            <trans-unit id="Teaser Image File">
+                <source>Teaser Image File</source>
+                <target>Изображение</target>
+            </trans-unit>
+            <trans-unit id="Partner Create">
+                <source>Partner Create</source>
+                <target>Добавить партнёра</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>

@@ -17,6 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use StoreBundle\Media\Text\PartnerImage;
 use StoreBundle\Media\Text\UnprocessedImage;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Partner
@@ -36,6 +37,7 @@ class Partner implements ImageAwareInterface
   /**
    * @var string|null
    * @ORM\Column(type="string")
+   * @Assert\NotNull(message="Поле «Имя» не может быть пустым!")
    */
   private $name;
   

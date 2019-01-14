@@ -37,7 +37,9 @@ class PartnerAdmin extends AbstractAdmin
     $subject = $this->getSubject();
     
     $form
-      ->add('name')
+      ->add('name', null, [
+        'required' => true,
+      ])
       ->add('teaser_image_file', ImageType::class, [
         'required' => !!$this->getSubject()->getTeaserImageFile(),
         'image_id' => 'partner/teaser'
