@@ -48,9 +48,13 @@ define(function(require){
         cssEase: 'linear'
       });
 
-      $('#oneEyeSlider').on('init', function (e, slick) {
+      $('#oneEyeSlider').on('init', function (e, slick) {}).slick({
+        dots: true,
+        infinite: true,
+        centerPadding: '120px'
+      });
 
-      }).slick({
+      $('#productionSlider').on('init', function (e, slick) {}).slick({
         dots: true,
         infinite: true,
         centerPadding: '120px'

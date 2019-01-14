@@ -491,6 +491,51 @@ a {
   height: 450px;
   overflow: auto;
 }
+.about-stage__sub-text {
+  width: 650px;
+  margin: 0 auto;
+  color: #a3a3a3;
+  font-family: alegreyasans-mediumitalic;
+  font-size: 20px;
+  display: block;
+  white-space: normal;
+  text-align: center;
+  position: relative;
+}
+.about-stage__sub-text:after {
+  content: '—';
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.about-stage__title {
+  width: 650px;
+  margin: 0 auto;
+  font-family: Catorze27style1-bold;
+  font-size: 45px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.about-stage__text {
+  text-align: left;
+  font-family: "Alegreya Sans";
+  font-size: 20px;
+  color: #000000;
+  margin: 0 auto;
+  width: 650px;
+}
+.about-stage__text p {
+  font-family: "Alegreya Sans";
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 13px;
+}
 section {
   overflow: hidden;
 }
@@ -1132,6 +1177,36 @@ header.header-excursion .header-catalog__wrap {
   background-position-y: -62px;
 }
 header.header-excursion .header-catalog__wrap .header-menu-wrap {
+  position: absolute;
+  left: 0;
+  right: 30px;
+}
+header.header-about {
+  overflow: hidden;
+  height: 550px;
+  background-color: #0b090a;
+  position: relative;
+  padding: 0;
+}
+header.header-about:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: url("../images/catalog-header-bottom.png") center no-repeat;
+  height: 98px;
+  bottom: -5px;
+}
+header.header-about .header-catalog__wrap {
+  padding: 37px 50px;
+  background: url("../images/about-header-bg.png") center no-repeat;
+  height: 908px;
+  margin-top: -70px;
+  max-width: 1850px;
+  margin: 0 auto;
+  background-position-y: -160px;
+}
+header.header-about .header-catalog__wrap .header-menu-wrap {
   position: absolute;
   left: 0;
   right: 30px;
@@ -3666,6 +3741,124 @@ body .delivery-info__message {
   font-family: alegreyasans-regular;
   color: #000000;
 }
+.section-about-history {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 60px;
+}
+.section-about-history__photo {
+  width: 265px;
+  margin: 0 auto;
+  margin-bottom: 54px;
+}
+.section-about-history__photo-image {
+  background: url("../images/ann-photo.png") center no-repeat;
+  width: 140px;
+  height: 140px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 22px;
+}
+.section-about-history__photo-image:after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background: url("../images/crown.png") center no-repeat;
+  width: 80px;
+  height: 57px;
+}
+.section-about-history__name-hostess {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 15px;
+  font-family: alegreyasans-regular;
+  width: 70px;
+  margin-left: 25px;
+}
+.section-about-history__title {
+  padding-top: 18px;
+  padding-bottom: 66px;
+}
+.section-about-history__text {
+  font-size: 25px;
+  font-family: alegreyasans-medium;
+  line-height: 36px;
+  width: 860px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  text-align: center;
+  color: #000000;
+}
+.section-about-history__text p {
+  font-size: 20px;
+  font-family: alegreyasans-regular;
+  color: #000000;
+}
+.section-wt-chesee {
+  background-color: #ffcf40;
+  padding-top: 114px;
+  padding-bottom: 140px;
+  position: relative;
+  overflow: visible;
+  padding-bottom: 75px;
+  z-index: 1;
+}
+.section-wt-chesee .about-stage__title {
+  margin-bottom: 40px;
+}
+.section-customer-happiness {
+  padding-top: 80px;
+}
+.section-good-food {
+  background-color: #555555;
+}
+.section-good-food .about-stage {
+  color: #ffffff;
+}
+.section-good-food .about-stage__title,
+.section-good-food .about-stage__text {
+  color: #ffffff;
+}
+.section-good-food .about-stage__title p,
+.section-good-food .about-stage__text p {
+  color: #ffffff;
+}
+.section-do-good {
+  background-color: #ffcf40;
+}
+.section-do-good .about-stage__text {
+  font-family: alegreyasans-medium;
+  text-align: center;
+}
+.section-how-cook .about-stage {
+  color: #ffffff;
+}
+.section-how-cook .about-stage__title,
+.section-how-cook .about-stage__text {
+  color: #ffffff;
+}
+.section-how-cook .about-stage__title p,
+.section-how-cook .about-stage__text p {
+  color: #ffffff;
+}
+.section-see-works .about-stage {
+  color: #ffffff;
+}
+.section-see-works .about-stage__title,
+.section-see-works .about-stage__text {
+  color: #ffffff;
+}
+.section-see-works .about-stage__title p,
+.section-see-works .about-stage__text p {
+  color: #ffffff;
+}
 .contacts-section {
   padding-bottom: 90px;
 }
@@ -4252,6 +4445,61 @@ body .delivery-info__message {
 .section-one-eye .section-one-eye-slider .slick-dots li.slick-active {
   background-color: #000000;
 }
+.section-photo-production {
+  padding-top: 90px;
+  padding-bottom: 178px;
+  position: relative;
+  overflow: visible;
+}
+.section-photo-production__title {
+  color: #000000;
+  display: block;
+  text-align: center;
+  font-size: 45px;
+  margin-bottom: 40px;
+}
+.section-photo-production .section-production-slider {
+  overflow: hidden;
+  max-height: 600px;
+}
+.section-photo-production .section-production-slider__item {
+  overflow: hidden;
+}
+.section-photo-production .section-production-slider__item img {
+  display: block;
+  margin: 0 auto;
+}
+.section-photo-production .section-production-slider__item-image {
+  width: 100%;
+  height: 100%;
+}
+.section-photo-production .section-production-slider.slick-initialized {
+  overflow: visible;
+}
+.section-photo-production .section-production-slider .slick-list {
+  overflow: visible;
+}
+.section-photo-production .section-production-slider button.slick-arrow {
+  z-index: 2;
+}
+.section-photo-production .section-production-slider button.slick-prev {
+  left: 50px;
+}
+.section-photo-production .section-production-slider button.slick-next {
+  right: 50px;
+}
+.section-photo-production .section-production-slider .slick-dots {
+  bottom: -90px;
+}
+.section-photo-production .section-production-slider .slick-dots li {
+  background-color: #ffcf40;
+}
+.section-photo-production .section-production-slider .slick-dots li:hover {
+  background-color: #000000;
+}
+.section-photo-production .section-production-slider .slick-dots li.slick-active {
+  background-color: #000000;
+}
 .section-cooked {
   background-color: #e8e8e8;
   padding-top: 45px;
@@ -4285,6 +4533,42 @@ body .delivery-info__message {
   margin-left: 16px;
 }
 .section-cooked .button {
+  display: block;
+  width: 145px;
+}
+.section-choose {
+  background-color: #e8e8e8;
+  padding-top: 45px;
+  white-space: nowrap;
+  overflow: visible;
+  padding-bottom: 65px;
+}
+.section-choose__title {
+  padding-top: 21px;
+  font-size: 45px;
+  font-family: Catorze27style1-bold;
+  color: #000000;
+  text-align: left;
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+}
+.section-choose__title .section-choose__title-title {
+  display: inline-block;
+  margin-left: -40px;
+  margin-bottom: 30px;
+}
+.section-choose__image {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+  text-align: center;
+}
+.section-choose__image img {
+  margin-top: -71px;
+  margin-left: 16px;
+}
+.section-choose .button {
   display: block;
   width: 145px;
 }

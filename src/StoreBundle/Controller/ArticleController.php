@@ -31,6 +31,11 @@ class ArticleController extends Controller
       ]);
   }
 
+  public function aboutAction()
+  {
+    return $this->render('StoreBundle:About:index.html.twig');
+  }
+
   public function showAction($slug)
   {
     $article = $this->getDoctrine()

@@ -25,6 +25,63 @@ a {
   overflow: auto;
 }
 
+
+.about-stage {
+
+  &__sub-text {
+    width: 650px;
+    margin: 0 auto;
+    color: #a3a3a3;
+    font-family: alegreyasans-mediumitalic;
+    font-size: 20px;
+    display: block;
+    white-space: normal;
+    text-align: center;
+    
+    position: relative;
+    
+    &:after {
+      content: '—';
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+  }
+
+  &__title {
+    width: 650px;
+    margin: 0 auto;
+    font-family: Catorze27style1-bold;
+    font-size: 45px;
+    color: @c_black;
+    text-align: center;
+
+    margin-bottom: 50px
+  }
+
+  &__text {
+    text-align: left;
+    font-family: "Alegreya Sans";
+    font-size: 20px;
+    color: @c_black;
+    margin: 0 auto;
+    width: 650px;
+
+    p {
+      font-family: "Alegreya Sans";
+      font-size: 20px;
+      color: @c_black;
+      margin-bottom: 13px;
+    }
+  }
+}
+
+
 section {
   overflow: hidden;
 
@@ -864,6 +921,42 @@ header {
       max-width: 1850px;
       margin: 0 auto;
       background-position-y:-62px;
+
+      .header-menu-wrap {
+        position: absolute;
+        left: 0;
+        right: 30px;
+      }
+    }
+  }
+
+  &.header-about {
+    overflow: hidden;
+
+    height: 550px;
+    background-color: #0b090a;
+    position: relative;
+    padding: 0;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      background: url("../images/catalog-header-bottom.png") center no-repeat;
+      height: 98px;
+      bottom: -5px;
+    }
+
+    .header-catalog__wrap {
+      padding: 37px 50px;
+
+      background: url("../images/about-header-bg.png") center no-repeat;
+      height: 908px;
+      margin-top: -70px;
+      max-width: 1850px;
+      margin: 0 auto;
+      background-position-y:-160px;
 
       .header-menu-wrap {
         position: absolute;
@@ -4239,6 +4332,161 @@ body .delivery-info {
  }
 }
 
+
+// section-about-history
+.section-about-history {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 60px;
+
+  &__photo {
+    width: 265px;
+    margin: 0 auto;
+    margin-bottom: 54px;
+  }
+
+  &__photo-image {
+    background: url("../images/ann-photo.png") center no-repeat;
+    width: 140px;
+    height: 140px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 22px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+
+      background: url("../images/crown.png") center no-repeat;
+      width: 80px;
+      height: 57px;
+    }
+  }
+
+  &__name-hostess {
+    display: inline-block;
+    vertical-align: middle;
+
+    font-size: 15px;
+    font-family: alegreyasans-regular;
+    width: 70px;
+    margin-left: 25px;
+  }
+
+  &__title {
+    padding-top: 18px;
+    padding-bottom: 66px;
+  }
+
+  &__text {
+    font-size: 25px;
+    font-family: alegreyasans-medium;
+    line-height: 36px;
+    width: 860px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    text-align: center;
+    color: @c_black;
+
+    p {
+      font-size: 20px;
+      font-family: alegreyasans-regular;
+      color: #000000;
+    }
+  }
+}
+//
+
+//section-wt-chesee
+.section-wt-chesee {
+  background-color: @rc_yellow;
+  padding-top: 114px;
+  padding-bottom: 140px;
+  position: relative;
+  overflow: visible;
+  padding-bottom: 75px;
+  z-index: 1;
+
+  .about-stage__title {
+    margin-bottom: 40px;
+  }
+}
+// section-customer-happiness
+.section-customer-happiness {
+
+  padding-top: 80px;
+}
+
+//section-good-food
+.section-good-food {
+background-color: #555555;
+
+  .about-stage {
+    color: @c_white;
+
+    &__title, &__text {
+      color: @c_white;
+
+      p {
+        color: @c_white;
+      }
+    }
+  }
+}
+
+//section-do-good
+.section-do-good{
+  background-color: @rc_yellow;
+
+  .about-stage {
+
+    &__text {
+      font-family: alegreyasans-medium;
+      text-align: center;
+    }
+  }
+}
+
+//section-how-cook
+.section-how-cook {
+
+  .about-stage {
+    color: @c_white;
+
+    &__title, &__text {
+      color: @c_white;
+
+      p {
+        color: @c_white;
+      }
+    }
+  }
+}
+
+//section-see-works
+.section-see-works {
+
+  .about-stage {
+    color: @c_white;
+
+    &__title, &__text {
+      color: @c_white;
+
+      p {
+        color: @c_white;
+      }
+    }
+  }
+}
+
 //contacts-section
 
 .contacts-section {
@@ -5003,8 +5251,97 @@ body .delivery-info {
 
   }
 }
-// section-cooked
 
+//section-photo-production
+.section-photo-production {
+  padding-top: 90px;
+  padding-bottom: 178px;
+  position: relative;
+  overflow: visible;
+
+  //&:after {
+  //  content: '';
+  //  position: absolute;
+  //  padding-top: 100px;
+  //  top: -90px;
+  //  left: 50%;
+  //  -webkit-transform: translateX(-50%);
+  //  -moz-transform: translateX(-50%);
+  //  -ms-transform: translateX(-50%);
+  //  -o-transform: translateX(-50%);
+  //  transform: translateX(-50%);
+  //  background: url("../images/one-eye-top.png") center no-repeat;
+  //  width: 100%;
+  //  height: 101px;
+  //}
+
+  &__title {
+    color: @c_black;
+    display: block;
+    text-align: center;
+    font-size: 45px;
+    margin-bottom: 40px;
+  }
+
+  .section-production-slider {
+    overflow: hidden;
+    max-height: 600px;
+
+    &__item {
+      //width: 1140px !important;
+      overflow: hidden;
+
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    &__item-image {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.slick-initialized {
+      overflow: visible;
+    }
+
+    .slick-list {
+      overflow: visible;
+    }
+
+    button.slick-arrow {
+      z-index: 2;
+    }
+
+    button.slick-prev {
+      left: 50px;
+    }
+
+    button.slick-next {
+      right: 50px;
+    }
+
+    .slick-dots {
+      bottom: -90px;
+
+      li {
+        background-color: @rc_yellow;
+
+        &:hover {
+          background-color: @c_black;
+        }
+      }
+
+      li.slick-active {
+        background-color: @c_black;
+      }
+    }
+
+  }
+}
+
+// section-cooked
 .section-cooked {
   background-color: #e8e8e8;
   padding-top: 45px;
@@ -5047,6 +5384,52 @@ body .delivery-info {
     width: 145px;
   }
 }
+
+// section-choose
+.section-choose {
+  background-color: #e8e8e8;
+  padding-top: 45px;
+  white-space: nowrap;
+  overflow: visible;
+  padding-bottom: 65px;
+  //margin-bottom: -50px;
+
+  &__title {
+    padding-top: 21px;
+    font-size: 45px;
+    font-family: Catorze27style1-bold;
+    color: @c_black;
+    text-align: left;
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+
+    .section-choose__title-title {
+      display: inline-block;
+      margin-left: -40px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__image {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    text-align: center;
+
+    img {
+      margin-top: -71px;
+      margin-left: 16px;
+    }
+  }
+
+  .button {
+    display: block;
+    width: 145px;
+  }
+}
+
+
 
 ////////////////////////////////////
 @media (min-width: 2000px) {

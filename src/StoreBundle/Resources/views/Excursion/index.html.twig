@@ -111,19 +111,20 @@
     <div class="container container_no-padding">
       <h2 class="section-one-eye__title">Одним глазком, на то, что вас ждёт</h2>
 
-        <div class="section-one-eye-slider" id="oneEyeSlider">
+      <div class="section-one-eye-slider" id="oneEyeSlider">
 
-          {% for banner in banners %}
-              {% if image_exists(banner) %}
-              <div class="section-one-eye-slider__item">
-                <div class="section-one-eye-slider__item-image">
-                  <img src="{{ image_url(banner) }}" alt="">
-                </div>
+        {% for banner in banners %}
+            {% if image_exists(banner) %}
+            <div class="section-one-eye-slider__item">
+              <div class="section-one-eye-slider__item-image">
+                <img src="{{ image_url(banner) }}" alt="">
               </div>
-            {% endif %}
-          {% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
 
-        </div>
+      </div>
+
     </div>
   </section>
   {% endif %}

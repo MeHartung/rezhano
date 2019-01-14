@@ -1,0 +1,181 @@
+{% extends "::base.html.twig" %}
+
+{% block header %}
+  <header class="header-about">
+    <div class="header__fixed ">
+      <div class="header-menu-wrap header-menu-wrap">
+        <a class="header-logo" title="Режано"
+           {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
+        {% block headerMenu %}
+          {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
+        {% endblock %}
+
+        <div class="header-controls">
+          <a href="" class="header-controls__item header-controls__cabinet">
+        <span class="header-controls__notice">
+          <span class="notice-count">1</span>
+        </span>
+          </a>
+          <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
+            {% if cart.orderItems|length %}
+              <span class="header-controls__notice">
+            <span class="notice-count">{{ cart.orderItems|length }}</span>
+          </span>
+            {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-catalog__wrap"></div>
+  </header>
+{% endblock header %}
+
+{% block main %}
+  <section class="section-about-history">
+    <div class="container container_no-padding">
+
+      <h1 class="section-about-history__title">История одной сыроварни</h1>
+
+      <div class="section-about-history__photo">
+        <div class="section-about-history__photo-image">
+
+        </div>
+        <span class="section-about-history__name-hostess">
+          Анна —хозяйка сыроварни
+        </span>
+      </div>
+
+      <div class="section-about-history__text">
+        Любовь Анны к сыру началась в горах, пока она каталась на лыжах в Мерибеле.<br>
+        Она вернулась в Екатеринбург с колесом сыра Beaufort Chalet d'Alpage,<br>
+        после которого жизнь уже не была прежней.
+      </div>
+
+      <div class="about-stage__title">Открытие</div>
+      <div class="about-stage__text">
+
+        <p>Спустя два года после этого она решила рискнуть и «сделать что-нибудь с сыром», не обращая внимания на все признаки упадка экономики, появилась заинтересованная команда и проект «Режано».</p>
+
+        <p>15 ноября 2015 года мы открыли входную дверь в нашу собственную сыроварню. </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section-wt-chesee">
+    <div class="container container_no-padding">
+      <div class="about-stage__title">С тех пор много раз спрашивали:<br>«Почему сыр?» и ответ прост </div>
+      <div class="about-stage__text">
+
+        <p>После множества бутербродов с сыром, после почти что сырного клуба у себя дома, сырных конференции, стажировок у французского аффинера Александра Пелесcье, путешествий по Европе и тысячи вкусных кусочков сыра, оттачивались  истинные увлечения. </p>
+
+        <p>Затем, однажды вечером за бутылкой вина, стало понятно, что работа сыроваром сделает жизнь счастливее: можно есть отличный сыр, общаться с довольными клиентами,  путешествовать по миру, продвигать сырную культуру.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-customer-happiness">
+    <div class="container container_no-padding">
+      <div class="about-stage__sub-text">
+        Сыроварня в прямом смысле «прозрачна» и открыта для посетителей,  любой может приехать и посмотреть через стеклянную стену на работу сыроделов. Группы детей и взрослых съезжаются со всего региона, чтобы познакомиться поближе с культурой сыра и сделать его своими руками. А сам сыр, наоборот, путешествует по всей России, наземным и воздушным видом транспорта.
+      </div>
+      <div class="about-stage__title">Мы сосредоточились в первую очередь<br>на «счастье» на  ших клиентов</div>
+      <div class="about-stage__text">
+
+        <p>Заходя на сайт, вы найдете много фотографий предлагаемых нами продуктов. </p>
+
+        <p>К сожалению, вы не можете попробовать их через экран. Так что приезжайте в гости и позвольте нашей страстной команде сыроделов делать то, что они делают лучше всего: поделиться историями о своих любимых продуктах и предложить вкусные сочетания, чтобы заставить вас улыбнуться.</p>
+        <p>Надеемся вскоре вас увидеть.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-good-food">
+    <div class="container container_no-padding">
+
+      <div class="about-stage__title">Хорошая еда и Слоуфуд</div>
+      <div class="about-stage__text">
+        <p>Мы работаем над тем, чтобы следовать принципам движения «Слоуфуд» в создании «хороших, чистых и справедливых» товаров, а также движению «Хорошая еда» в производстве продуктов «вкусных, аутентичных из ответственных источников»</p>
+        <p>Мы сотрудничаем с хозяйствами, которые управляют своими землями  регенеративно, заботятся о своих стадах гуманно, добывают сырье с этической точки зрения и ведут свой бизнес честно.</p>
+        <p>Поддерживая нас, вы поддерживаете и фермеров. Это позитивный круг поддержки и любви.</p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section-do-good">
+    <div class="container container_no-padding">
+
+      <div class="about-stage__text">Наша миссия:</div>
+      <div class="about-stage__title">Делай добро. Ешь хорошо.</div>
+
+      <div class="about-stage__text">Наши основные принципы:</div>
+      <div class="about-stage__title">Быть правдой. Для себя. Других.<br>Улучшения каждый день.</div>
+
+    </div>
+  </section>
+
+  <section class="section-how-cook">
+    <div class="container container_no-padding">
+      <div class="about-stage__title">Как мы варим сыр</div>
+
+    </div>
+  </section>
+
+  <section class="section-see-works">
+    <div class="container container_no-padding">
+      <div class="about-stage__title">Взгляни, как у нас всё устроено</div>
+
+    </div>
+  </section>
+
+  <section class="section-photo-production">
+    <div class="container container_no-padding">
+      <h2 class="section-one-eye__title">Фото с производства</h2>
+
+      <div class="section-production-slider" id="productionSlider">
+
+        {#{% for banner in banners %}#}
+          {#{% if image_exists(banner) %}#}
+            <div class="section-production-slider__item">
+              <div class="section-production-slider__item-image">
+                {#<img src="{{ image_url(banner) }}" alt="">#}
+                <img src="{{ asset('../images/production-slider/1.jpg') }}" alt="">
+              </div>
+            </div>
+          {#{% endif %}#}
+        {#{% endfor %}#}
+
+        <div class="section-production-slider__item">
+          <div class="section-production-slider__item-image">
+            {#<img src="{{ image_url(banner) }}" alt="">#}
+            <img src="{{ asset('../images/production-slider/2.jpg') }}" alt="">
+          </div>
+        </div>
+        <div class="section-production-slider__item">
+          <div class="section-production-slider__item-image">
+            {#<img src="{{ image_url(banner) }}" alt="">#}
+            <img src="{{ asset('../images/production-slider/3.jpg') }}" alt="">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section-choose">
+    <div class="container container_no-padding container_narrow">
+      <div class="section-choose__title">
+        <span class="section-choose__title-title">У нас всегда можно выбрать<br> подходящий сыр</span>
+        <a href="{{ setting('yclients') }}" class="button button_black button-transparent-white">
+          <span>записаться</span>
+        </a>
+      </div>
+      <div class="section-choose__image">
+        <img src="{{ asset('images/cheese-cooked.png') }}">
+      </div>
+    </div>
+  </section>
+{% endblock %}
