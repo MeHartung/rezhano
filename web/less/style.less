@@ -43,7 +43,7 @@ a {
     &:after {
       content: '—';
       position: absolute;
-      bottom: -30px;
+      bottom: -40px;
       left: 50%;
       -webkit-transform: translateX(-50%);
       -moz-transform: translateX(-50%);
@@ -931,8 +931,6 @@ header {
   }
 
   &.header-about {
-    overflow: hidden;
-
     height: 550px;
     background-color: #0b090a;
     position: relative;
@@ -4339,6 +4337,10 @@ body .delivery-info {
   padding-bottom: 0;
   margin-bottom: 60px;
 
+  z-index: 1;
+  background-color: @c_white;
+  position: relative;
+
   &__photo {
     width: 265px;
     margin: 0 auto;
@@ -4412,8 +4414,20 @@ body .delivery-info {
   padding-bottom: 140px;
   position: relative;
   overflow: visible;
-  padding-bottom: 75px;
-  z-index: 1;
+  padding-bottom: 140px;
+
+  &__image {
+    position: absolute;
+  }
+
+  &__image_right {
+    background: url("../images/wtf-chesee.png") center no-repeat;
+    width: 184px;
+    height: 174px;
+
+    top: 246px;
+    right: 125px;
+  }
 
   .about-stage__title {
     margin-bottom: 40px;
@@ -4421,13 +4435,108 @@ body .delivery-info {
 }
 // section-customer-happiness
 .section-customer-happiness {
-
   padding-top: 80px;
+  padding-bottom: 80px;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+
+  &__image {
+    position: absolute;
+  }
+
+  &__image_left {
+    background: url("../images/wtf-fir-chesee.png") center no-repeat;
+    width: 424px;
+    height: 490px;
+    top: -314px;
+    left: -157px;
+
+    .image-name {
+
+      &__arrow {
+        background: url("../images/icons/arrow-wtf.png") center no-repeat;
+        width: 25px;
+        height: 90px;
+
+        position: absolute;
+        bottom: 23px;
+        left: 354px;
+      }
+
+      &__text {
+        font-size: 18px;
+        font-family: alegreyasans-regular;
+        color: #868686;
+
+        position: absolute;
+        bottom: -44px;
+        left: 310px;
+
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  &__image_right {
+    background: url("../images/wtf-ricotta-chesee.png") center no-repeat;
+    width: 444px;
+    height: 417px;
+    bottom: -220px;
+    right: -160px;
+
+    .image-name {
+
+      &__arrow {
+        background: url("../images/icons/arrow-wtf-1.png") center no-repeat;
+        width: 28px;
+        height: 110px;
+
+        position: absolute;
+        top: -48px;
+        left: 118px;
+      }
+
+      &__text {
+        font-size: 15px;
+        font-family: alegreyasans-regular;
+        color: #868686;
+
+        position: absolute;
+        top: -121px;
+        left: 91px;
+
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .about-stage__sub-text {
+    margin-bottom: 60px;
+  }
+
+  .about-stage__title {
+    margin-bottom: 40px;
+  }
 }
 
 //section-good-food
 .section-good-food {
-background-color: #555555;
+  background-color: #555555;
+  padding-top: 110px;
+  position: relative;
+
+  &__image {
+    position: absolute;
+  }
 
   .about-stage {
     color: @c_white;
@@ -4439,12 +4548,36 @@ background-color: #555555;
         color: @c_white;
       }
     }
+
+    &__title {
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 155px;
+        left: -190px;
+
+        background: url("../images/good-food.png") center no-repeat;
+        width: 102px;
+        height: 159px;
+      }
+    }
+  }
+
+  &__bg {
+    background: url("../images/about-good-food1.png") top no-repeat;
+    margin: 0 auto;
+    width: 1400px;
+    height: 933px;
+    margin-top: -95px;
   }
 }
 
 //section-do-good
 .section-do-good{
   background-color: @rc_yellow;
+  padding-top: 150px;
 
   .about-stage {
 
@@ -4452,11 +4585,29 @@ background-color: #555555;
       font-family: alegreyasans-medium;
       text-align: center;
     }
+
+    &__title {
+      margin-bottom: 113px;
+    }
   }
 }
 
 //section-how-cook
 .section-how-cook {
+  background: url("../images/section_bg.png") center no-repeat;
+  background-size: cover;
+  padding-top: 140px;
+  padding-bottom: 70px;
+  position: relative;
+
+  &__title {
+    margin-bottom: 80px;
+  }
+
+  &__image {
+    display: block;
+    margin: 0 auto;
+  }
 
   .about-stage {
     color: @c_white;
@@ -4474,6 +4625,36 @@ background-color: #555555;
 //section-see-works
 .section-see-works {
 
+  &__shadow-box {
+    background-color: #0a0a0a;
+    padding-top: 100px;
+    position: relative;
+    z-index: 3;
+    -webkit-box-shadow: 0 0 50px 35px #0a0a0a;
+    -moz-box-shadow:  0 0 50px 35px #0a0a0a;
+    box-shadow:  0 0 50px 35px #0a0a0a;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 895px;
+      height: 2px;
+      background-color: #3b3b3b;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+  }
+
+  &__title {
+    position: relative;
+    margin-bottom: 0;
+  }
+
   .about-stage {
     color: @c_white;
 
@@ -4485,6 +4666,75 @@ background-color: #555555;
       }
     }
   }
+
+  &__video {
+    margin-top: -60px;
+    position: relative;
+    object-fit: cover;
+    background-color: #0a0a0a;
+
+    video {
+      display: block;
+    }
+  }
+
+  &__video-play {
+    z-index: 1;
+
+    width: 140px;
+    height: 140px;
+    cursor: pointer;
+    display: block;
+    background-color: @c_black;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    &:after {
+      content: '';
+      position: absolute;
+
+      top: 50%;
+      left: 55%;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 29px 0 29px 48px;
+      border-color: transparent transparent transparent #ffffff;
+    }
+  }
+
+
+  &__video-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    cursor: pointer;
+
+    &:hover {
+
+      .section-see-works__video-play {
+        background-color: @rc_yellow-hover;
+      }
+    }
+  }
+
 }
 
 //contacts-section
@@ -5254,8 +5504,8 @@ background-color: #555555;
 
 //section-photo-production
 .section-photo-production {
-  padding-top: 90px;
-  padding-bottom: 178px;
+  padding-top: 100px;
+  padding-bottom: 150px;
   position: relative;
   overflow: visible;
 
@@ -5388,14 +5638,14 @@ background-color: #555555;
 // section-choose
 .section-choose {
   background-color: #e8e8e8;
-  padding-top: 45px;
+  padding-top: 50px;
   white-space: nowrap;
   overflow: visible;
-  padding-bottom: 65px;
+  padding-bottom: 5px;
   //margin-bottom: -50px;
 
   &__title {
-    padding-top: 21px;
+    padding-top: 18px;
     font-size: 45px;
     font-family: Catorze27style1-bold;
     color: @c_black;
@@ -5406,8 +5656,31 @@ background-color: #555555;
 
     .section-choose__title-title {
       display: inline-block;
-      margin-left: -40px;
+      margin-left: -30px;
       margin-bottom: 30px;
+
+      a {
+        color: @c_black;
+        position: relative;
+        display: inline-block;
+
+        &:after {
+          content: '';
+          width: 100%;
+          height: 2px;
+          background-color: #000;
+          position: absolute;
+          bottom: -3px;
+          left: 0;
+        }
+
+        &:hover {
+
+          &:after {
+            display: none;
+          }
+        }
+      }
     }
   }
 
@@ -5418,8 +5691,8 @@ background-color: #555555;
     text-align: center;
 
     img {
-      margin-top: -71px;
-      margin-left: 16px;
+      margin-left: 75px;
+      margin-top: 105px;
     }
   }
 
@@ -5560,6 +5833,40 @@ background-color: #555555;
     }
   }
 
+  .section-photo-production {
+    padding-bottom: 200px;
+
+    .section-production-slider {
+      max-height: 900px;
+
+      .slick-dots {
+        bottom: -105px;
+      }
+    }
+
+    .section-production-slider__item img {
+      height: 900px;
+    }
+
+    .section-production-slider button.slick-prev {
+      left: -20px;
+    }
+
+    .section-production-slider button.slick-next {
+      right: -20px;
+    }
+  }
+
+  .section-customer-happiness {
+
+    &__image-left {
+      left: 0;
+    }
+
+    &__image-right {
+      right: 0;
+    }
+  }
 }
 
 .quantity-widget__units {
