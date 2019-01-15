@@ -5838,6 +5838,7 @@ body.ui-widget textarea {
 }
 body .ui-widget-overlay {
   background-color: rgba(0, 0, 0, 0.9);
+  opacity: 1 !important;
 }
 body .custom-select .ui-selectmenu-button {
   border-radius: 0;
