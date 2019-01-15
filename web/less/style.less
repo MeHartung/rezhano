@@ -4568,11 +4568,18 @@ body .delivery-info {
   }
 
   &__bg {
-    background: url("../images/about-good-food1.png") top no-repeat;
+    //background: url("../images/about-good-food.png") top no-repeat;
     margin: 0 auto;
-    width: 1400px;
-    height: 933px;
-    margin-top: -95px;
+    margin-top: -110px;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    @media (min-width: 2000px) {
+      margin-top: -383px;
+    }
   }
 }
 
@@ -4580,12 +4587,44 @@ body .delivery-info {
 .section-do-good{
   background-color: @rc_yellow;
   padding-top: 150px;
+  padding-bottom: 35px;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -87px;
+    left: 0;
+    right: 0;
+
+    background: url("../images/about-wtf-top.png") center no-repeat;
+    height: 90px;
+    display: block;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -70px;
+    left: 0;
+    right: 0;
+
+    background: url("../images/about-wtf-bottom.png") center no-repeat;
+    height: 75px;
+    display: block;
+  }
+
 
   .about-stage {
 
     &__text {
       font-family: alegreyasans-medium;
       text-align: center;
+
+      margin-top: -3px;
+      padding-bottom: 8px;
     }
 
     &__title {
