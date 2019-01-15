@@ -2491,7 +2491,7 @@ footer {
 
     &__link {
       color: @c_white;
-      display: inline-block;
+      display: block;
       position: relative;
 
       cursor: pointer;
@@ -4626,15 +4626,28 @@ body .delivery-info {
 
 //section-see-works
 .section-see-works {
+  overflow: visible;
 
   &__shadow-box {
     background-color: #0a0a0a;
     padding-top: 100px;
     position: relative;
     z-index: 3;
-    -webkit-box-shadow: 0 0 50px 35px #0a0a0a;
-    -moz-box-shadow:  0 0 50px 35px #0a0a0a;
-    box-shadow:  0 0 50px 35px #0a0a0a;
+    -webkit-box-shadow: 0 0 75px 40px #0a0a0a;
+    -moz-box-shadow:  0 0 75px 40px #0a0a0a;
+    box-shadow:  0 0 75px 40px #0a0a0a;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      top: 0;
+      -webkit-box-shadow: 0 0 75px 40px #0a0a0a;
+      -moz-box-shadow:  0 0 75px 40px #0a0a0a;
+      box-shadow:  0 0 75px 40px #0a0a0a;
+    }
 
     &:after {
       content: '';

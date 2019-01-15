@@ -2387,7 +2387,7 @@ footer .footer-maps .button {
 }
 footer .footer-maps__link {
   color: #ffffff;
-  display: inline-block;
+  display: block;
   position: relative;
   cursor: pointer;
 }
@@ -3969,14 +3969,28 @@ body .delivery-info__message {
 .section-how-cook .about-stage__text p {
   color: #ffffff;
 }
+.section-see-works {
+  overflow: visible;
+}
 .section-see-works__shadow-box {
   background-color: #0a0a0a;
   padding-top: 100px;
   position: relative;
   z-index: 3;
-  -webkit-box-shadow: 0 0 50px 35px #0a0a0a;
-  -moz-box-shadow: 0 0 50px 35px #0a0a0a;
-  box-shadow: 0 0 50px 35px #0a0a0a;
+  -webkit-box-shadow: 0 0 75px 40px #0a0a0a;
+  -moz-box-shadow: 0 0 75px 40px #0a0a0a;
+  box-shadow: 0 0 75px 40px #0a0a0a;
+}
+.section-see-works__shadow-box:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  top: 0;
+  -webkit-box-shadow: 0 0 75px 40px #0a0a0a;
+  -moz-box-shadow: 0 0 75px 40px #0a0a0a;
+  box-shadow: 0 0 75px 40px #0a0a0a;
 }
 .section-see-works__shadow-box:after {
   content: '';
