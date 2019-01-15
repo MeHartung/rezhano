@@ -187,13 +187,17 @@ define(function(require){
       if (!this.playAboutVideo) {
         this.playAboutVideo = true;
         this.$('.section-see-works__video video').get(0).play();
+        this.$('.section-see-works__video').addClass('show-controls');
         this.$('.section-see-works__video video').prop("controls","controls");
         this.$('.section-see-works__video-play').fadeOut();
+
+
 
         this.$('.section-see-works__video-play-overlay').css('z-index', 0)
       } else {
         this.playAboutVideo = false;
         this.$('.section-see-works__video video').get(0).pause();
+        // this.$('.section-see-works__video').addClass('.show-controls');
         this.$('.section-see-works__video video').prop("controls", null);
         this.$('.section-see-works__video-play').fadeIn();
 
@@ -203,6 +207,7 @@ define(function(require){
       this.$('.section-see-works__video video').bind('ended', function () {
         self.playAboutVideo = false;
         self.$('.section-see-works__video-play').fadeIn();
+        self.$('.section-see-works__video').removeClass('.show-controls');
         self.$('.section-see-works__video video').prop("controls", null);
 
         self.$('.section-see-works__video-play-overlay').css('z-index', 3)

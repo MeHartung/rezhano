@@ -936,6 +936,8 @@ header {
     position: relative;
     padding: 0;
 
+    //overflow: hidden;
+
     &:after {
       content: '';
       position: absolute;
@@ -950,7 +952,7 @@ header {
       padding: 37px 50px;
 
       background: url("../images/about-header-bg.png") center no-repeat;
-      height: 908px;
+      height: 535px;
       margin-top: -70px;
       max-width: 1850px;
       margin: 0 auto;
@@ -4673,9 +4675,33 @@ body .delivery-info {
     object-fit: cover;
     background-color: #0a0a0a;
 
+    &:after {
+      height: 50px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: @c_white;
+      content: '';
+    }
+
+    &.show-controls {
+
+      &:after {
+        display: none;
+      }
+    }
+
     video {
       display: block;
+      position: relative;
     }
+
+    video[poster]{
+      height:120%;
+      margin-top: 10px;
+    }
+
   }
 
   &__video-play {

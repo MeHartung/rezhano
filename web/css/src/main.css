@@ -1199,7 +1199,7 @@ header.header-about:after {
 header.header-about .header-catalog__wrap {
   padding: 37px 50px;
   background: url("../images/about-header-bg.png") center no-repeat;
-  height: 908px;
+  height: 535px;
   margin-top: -70px;
   max-width: 1850px;
   margin: 0 auto;
@@ -4013,8 +4013,25 @@ body .delivery-info__message {
   object-fit: cover;
   background-color: #0a0a0a;
 }
+.section-see-works__video:after {
+  height: 50px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  content: '';
+}
+.section-see-works__video.show-controls:after {
+  display: none;
+}
 .section-see-works__video video {
   display: block;
+  position: relative;
+}
+.section-see-works__video video[poster] {
+  height: 120%;
+  margin-top: 10px;
 }
 .section-see-works__video-play {
   z-index: 1;
