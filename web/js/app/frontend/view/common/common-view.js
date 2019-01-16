@@ -17,7 +17,8 @@ define(function(require){
   return Backbone.View.extend({
     events: {
       'click .button-question': 'onQuestionClick',
-      'click .footer-maps__link' : 'onAddressClick'
+      'click .footer-maps__link' : 'onAddressClick',
+      'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay'
     },
     initialize: function(options){
       this.options = $.extend({
@@ -29,6 +30,7 @@ define(function(require){
 
       this.stores = new Backbone.Collection(ObjectCache.Stores || {});
 
+      this.playAboutVideo = false;
       this.addToCartSuccessLayer = null;
       this.addToCartInvalidLayerView = null;
 
@@ -48,9 +50,13 @@ define(function(require){
         cssEase: 'linear'
       });
 
-      $('#oneEyeSlider').on('init', function (e, slick) {
+      $('#oneEyeSlider').on('init', function (e, slick) {}).slick({
+        dots: true,
+        infinite: true,
+        centerPadding: '120px'
+      });
 
-      }).slick({
+      $('#productionSlider').on('init', function (e, slick) {}).slick({
         dots: true,
         infinite: true,
         centerPadding: '120px'
@@ -173,6 +179,39 @@ define(function(require){
       this.questionDialogView.render().$el.appendTo($('body'));
 
       this.questionDialogView.open();
+    },
+    onAboutVideoPlay: function (e) {
+      e.preventDefault();
+      var self = this;
+
+      if (!this.playAboutVideo) {
+        this.playAboutVideo = true;
+        this.$('.section-see-works__video video').get(0).play();
+        this.$('.section-see-works__video').addClass('show-controls');
+        this.$('.section-see-works__video video').prop("controls","controls");
+        this.$('.section-see-works__video-play').fadeOut();
+
+
+
+        this.$('.section-see-works__video-play-overlay').css('z-index', 0)
+      } else {
+        this.playAboutVideo = false;
+        this.$('.section-see-works__video video').get(0).pause();
+        // this.$('.section-see-works__video').addClass('.show-controls');
+        this.$('.section-see-works__video video').prop("controls", null);
+        this.$('.section-see-works__video-play').fadeIn();
+
+        this.$('.section-see-works__video-play-overlay').css('z-index', 3)
+      }
+
+      this.$('.section-see-works__video video').bind('ended', function () {
+        self.playAboutVideo = false;
+        self.$('.section-see-works__video-play').fadeIn();
+        self.$('.section-see-works__video').removeClass('.show-controls');
+        self.$('.section-see-works__video video').prop("controls", null);
+
+        self.$('.section-see-works__video-play-overlay').css('z-index', 3)
+      })
     }
   });
 });

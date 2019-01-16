@@ -128,6 +128,10 @@ excursion_index:
   path: /tours
   defaults: { _controller: StoreBundle:Logistics/Geography:excursion }
 
+about_index:
+  path: /about
+  defaults: { _controller: StoreBundle:Article:about }
+
 product_question:
   path: /api/products/{slug}/question
   defaults: { _controller: StoreBundle:Catalog/Product:askQuestion }
