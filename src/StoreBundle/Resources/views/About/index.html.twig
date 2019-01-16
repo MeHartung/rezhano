@@ -134,42 +134,42 @@
 
     </div>
   </section>
-
-  <section class="section-see-works">
-    <div class="section-see-works__shadow-box">
-      <div class="about-stage__title">{{ hotspot_inline('o_nas_8', 'Взгляни, как у нас всё устроено') }}</div>
-    </div>
-    <div class="section-see-works__video">
-      <div class="section-see-works__video-play-overlay">
-        <span class="section-see-works__video-play"></span>
+  {% if  setting('about_us_video_cover') %}
+    <section class="section-see-works">
+      <div class="section-see-works__shadow-box">
+        <div class="about-stage__title">{{ hotspot_inline('o_nas_8', 'Взгляни, как у нас всё устроено') }}</div>
       </div>
-
-      <video width="100%"  poster="{{ '/uploads/videos/cover/' ~ setting('about_us_video_cover') }}">
-        {#<source src="{{ asset('/images/small.mp4') }}" type="video/mp4">#}
-        <source src="{{ '/uploads/videos/' ~ setting('about_us_video') }}" type="video/mp4">
-      </video>
-    </div>
-  </section>
-
-  <section class="section-photo-production">
-    <div class="container container_no-padding">
-      <h2 class="section-one-eye__title">{{ hotspot_inline('o_nas_9', 'Фото с производства') }}</h2>
-      {% if gallery %}
-        {% if gallery.images.count != 0 %}
-          <div class="section-production-slider" id="productionSlider">
-            {% for image in gallery.images %}
-            <div class="section-production-slider__item">
-              <div class="section-production-slider__item-image">
-                  <img src="{{ image_url(image) }}" alt="">
-              </div>
+          <div class="section-see-works__video">
+            <div class="section-see-works__video-play-overlay">
+              <span class="section-see-works__video-play"></span>
             </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endif %}
-    </div>
-  </section>
+            <video width="100%"  poster="{{ '/uploads/videos/cover/' ~ setting('about_us_video_cover') }}">
+              <source src="{{ '/uploads/videos/' ~ setting('about_us_video') }}" type="video/mp4">
+            </video>
+      </div>
+    </section>
+  {% endif %}
 
+  {% if gallery %}
+    {% if gallery.images.count != 0 %}
+      <section class="section-photo-production">
+        <div class="container container_no-padding">
+          <h2 class="section-one-eye__title">{{ hotspot_inline('o_nas_9', 'Фото с производства') }}</h2>
+
+              <div class="section-production-slider" id="productionSlider">
+                {% for image in gallery.images %}
+                <div class="section-production-slider__item">
+                  <div class="section-production-slider__item-image">
+                      <img src="{{ image_url(image) }}" alt="">
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+
+        </div>
+      </section>
+    {% endif %}
+  {% endif %}
   <section class="section-choose">
     <div class="container container_no-padding container_narrow">
       <div class="section-choose__title">
