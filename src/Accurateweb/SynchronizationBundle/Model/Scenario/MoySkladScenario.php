@@ -77,6 +77,11 @@ class MoySkladScenario extends SynchronizationScenario
   
   public function postExecute($subjects)
   {
+    if(count($subjects) == 0)
+    {
+      $subjects = $this->getSubjects();
+    }
+    
     if(in_array('', $subjects) || $subjects)
     {
       $isUseImageSubject = false;
@@ -87,7 +92,7 @@ class MoySkladScenario extends SynchronizationScenario
        */
       foreach ($this->subjects as $subject)
       {
-        if($subject->getName() == 'moy_sklad_image')
+        if($subject->getName() == 'moy_sklad_image' || $subject->getName() == 'moy_sklad_bundle_image')
         {
           $isUseImageSubject = true;
           break;
@@ -129,5 +134,10 @@ class MoySkladScenario extends SynchronizationScenario
     }
    
    
+  }
+  
+  private function getSubjects()
+  {
+    return $this->subjects;
   }
 }

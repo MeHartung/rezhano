@@ -6,6 +6,7 @@ use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
 use Accurateweb\SlugifierBundle\Model\SlugifierInterface;
 use Accurateweb\SynchronizationBundle\Model\Datasource\Base\BaseDataSource;
 use Doctrine\ORM\EntityManagerInterface;
+use MoySklad\Entities\Products\Bundle;
 use MoySklad\Entities\Products\Product;
 use MoySklad\Exceptions\RequestFailedException;
 use MoySklad\Lists\EntityList;
@@ -14,7 +15,10 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
-class MoySkladSource extends BaseDataSource
+/**
+ * Выгружает комплекты
+ */
+class MoySkladSourceBundles extends BaseDataSource
 {
   private
     $em, $moySkladLogin, $moySkladPassword,
@@ -72,13 +76,13 @@ class MoySkladSource extends BaseDataSource
     }
     
     /**
-     * Все товары с моего склада
-     *
+     * Все комплекты с моего склада
      * @var EntityList $moySkladProducts
      */
     try
     {
-      $moySkladProducts = Product::query($sklad)->getList();
+      $moySkladProducts = Bundle::query($sklad)->getList();
+      
     } catch (MoyskladException $e)
     {
       $this->dispatcher->dispatch(
@@ -133,7 +137,7 @@ class MoySkladSource extends BaseDataSource
         }
       }
     }
-    
+    # Подарочные корзины
     $moySkladProductsAsArray = [];
     
     /**
@@ -195,7 +199,7 @@ class MoySkladSource extends BaseDataSource
         continue;
       }
       
-      if ($folderData->name !== 'Сыр в кг') continue;
+      if ($folderData->name !== 'Подарочные корзины') continue;
       
       $now = new \DateTime('now');
       
@@ -238,7 +242,7 @@ class MoySkladSource extends BaseDataSource
           'external_code' => $product->code,
           'wholesale_price' => $wholesalePrice,  # оптовая
           'price' => $salePrice,
-          'purchase_price' => $product->buyPrice->value/100,
+          'purchase_price' => $salePrice,# $product->buyPrice->value/100,
           'slug' => $this->slugifierYandex->slugify($product->name),
           'created_at' => $now->format('Y-m-d H:i:s'),
           'is_with_gift' => 0,
@@ -251,7 +255,7 @@ class MoySkladSource extends BaseDataSource
           'sku' => $article,
           'short_description' => $productDb->getShortDescription(),
           'description' => $productDb->getDescription(),
-          'bundle' => 0  # обозначает, что товар на стороне МС не составной
+          'bundle' => 1 # обозначает, что товар на стороне МС составной
         ];
       }else
       {
@@ -260,7 +264,7 @@ class MoySkladSource extends BaseDataSource
           'name' => $product->name,
           'wholesale_price' => $wholesalePrice,  # оптовая
           'price' => $salePrice,
-          'purchase_price' => $product->buyPrice->value/100,
+          'purchase_price' => $salePrice,#$product->buyPrice->value/100,
           'slug' => $this->slugifierYandex->slugify($product->name),
           'created_at' => $now->format('Y-m-d H:i:s'),
           'is_with_gift' => 0,
@@ -270,17 +274,9 @@ class MoySkladSource extends BaseDataSource
           'reserved_stock' => 10,
           'is_free_delivery' => 0,
           'rank' => 0.00,
-          'bundle' => 0  # обозначает, что товар на стороне МС не составной
+          'bundle' => 1 # обозначает, что товар на стороне МС составной
         ];
         $moySkladProductsAsArray[$key]['sku'] = $article;
-        /*  if (isset($product->article))
-          {
-          
-          } else
-          {
-            $moySkladProductsAsArray[$key]['sku'] = $moySkladProductsAsArray[$key]['slug'];
-          }*/
-  
         if (isset($product->image)) $moySkladProductsAsArray[$key]['image'] = $product->image->meta->href;
         if (isset($product->description))
         {
@@ -298,7 +294,7 @@ class MoySkladSource extends BaseDataSource
         }
   
       }
-     
+  
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
         new GenericEvent('Product ' . $product->name . ' was loaded from MoySklad.')

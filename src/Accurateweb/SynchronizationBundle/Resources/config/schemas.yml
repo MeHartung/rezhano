@@ -44,7 +44,32 @@ services:
                                           total_stock: { type: int },
                                           reserved_stock: { type: int },
                                           is_free_delivery: { type: tinyint },
-                                          rank: { type: DOUBLE }
+                                          rank: { type: DOUBLE },
+                                          bundle: { type: tinyint }
+                                          }}
+
+  aw.synchronization.schema.bundles:
+    class: Accurateweb\SynchronizationBundle\Model\Schema\CommonSchema
+    arguments:
+      - { tableName: products, columns: {
+                                          external_code: { type: VARCHAR, size: 255 },
+                                          name: { type: VARCHAR, size: 1000},
+                                          price: { type: DECIMAL, size: 10},
+                                          wholesale_price: { type: DECIMAL, size: 10},
+                                          purchase_price: { type: DECIMAL, size: 10},
+                                          sku: { type: VARCHAR, size: 1000, mapped_with: sku },
+                                          slug: { type: VARCHAR, size: 1000 },
+                                          description: { type: longtext },
+                                          short_description: { type: VARCHAR, size: 1000 },
+                                          is_with_gift: { type: tinyint },
+                                          is_publication_allowed: { type: tinyint },
+                                          published: { type: tinyint },
+                                          created_at: { type: VARCHAR, size: 512 },
+                                          total_stock: { type: int },
+                                          reserved_stock: { type: int },
+                                          is_free_delivery: { type: tinyint },
+                                          rank: { type: DOUBLE },
+                                          bundle: { type: tinyint }
                                           }}
 
   aw.synchronization.schema.moy_sklad.product_images:

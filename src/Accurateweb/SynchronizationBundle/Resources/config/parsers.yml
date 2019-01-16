@@ -10,6 +10,17 @@ services:
       tags:
         - { name: 'aw.parser' }
 
+  aw.synchronization.parser.json_parser.bundles:
+      class: StoreBundle\Synchronization\Parser\JsonParser
+      arguments:
+        - ~
+        - ~
+        - '@aw.synchronization.entity_factory.moy_sklad'
+        - '@aw.synchronization.schema.bundles'
+        - {}
+      tags:
+        - { name: 'aw.parser' }
+
   aw.synchronization.parser.json_parser.product_images:
       class: StoreBundle\Synchronization\Parser\JsonParser
       arguments:
