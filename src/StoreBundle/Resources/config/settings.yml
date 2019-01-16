@@ -207,7 +207,7 @@ services:
       arguments:
         - '@aw.settings.storage'
         - 'about_us_video'
-        - 'Видео на странице "О нас"'
+        - 'Видео на странице «О нас»'
         - ~
         - 'uploads/videos/'
       tags:
@@ -218,7 +218,7 @@ services:
       arguments:
         - '@aw.settings.storage'
         - 'about_us_video_cover'
-        - 'Обложка видео на странице "О нас"'
+        - 'Обложка видео на странице «О нас»'
         - ~
         - 'uploads/videos/cover/'
       tags:
