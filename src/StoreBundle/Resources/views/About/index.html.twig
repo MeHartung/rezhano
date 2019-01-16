@@ -144,8 +144,9 @@
         <span class="section-see-works__video-play"></span>
       </div>
 
-      <video width="100%"  poster="{{ asset('/images/cheese-video-poster.jpg') }}">
-        <source src="{{ asset('/images/small.mp4') }}" type="video/mp4">
+      <video width="100%"  poster="{{ '/uploads/videos/cover/' ~ setting('about_us_video_cover') }}">
+        {#<source src="{{ asset('/images/small.mp4') }}" type="video/mp4">#}
+        <source src="{{ '/uploads/videos/' ~ setting('about_us_video') }}" type="video/mp4">
       </video>
     </div>
   </section>
