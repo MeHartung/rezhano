@@ -7,6 +7,7 @@ namespace StoreBundle\Controller;
 
 
 use StoreBundle\Entity\Store\Logistics\Delivery\Cdek\CdekCity;
+use StoreBundle\Entity\Text\About\AboutUsGallery;
 use StoreBundle\Entity\Text\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,7 +34,11 @@ class ArticleController extends Controller
 
   public function aboutAction()
   {
-    return $this->render('StoreBundle:About:index.html.twig');
+    $gallery = $this->getDoctrine()->getRepository(AboutUsGallery::class)->findOneBy([]);
+    
+    return $this->render('StoreBundle:About:index.html.twig', [
+      'gallery' => $gallery
+    ]);
   }
 
   public function showAction($slug)

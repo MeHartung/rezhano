@@ -201,3 +201,14 @@ services:
         - %operator_email%
       tags:
         - { name: aw.setting }
+
+    store.setting.about_us.video:
+      class: Accurateweb\SettingBundle\Model\Setting\FileSetting
+      arguments:
+        - '@aw.settings.storage'
+        - 'about_us_video'
+        - 'Видео на странице "О нас"'
+        - ~
+        - 'uploads/videos/'
+      tags:
+        - { name: aw.setting }

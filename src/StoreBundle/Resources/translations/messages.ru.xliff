@@ -575,6 +575,10 @@
                 <source>Partner Create</source>
                 <target>Добавить партнёра</target>
             </trans-unit>
+            <trans-unit id="About Us Gallery List">
+                <source>About Us Gallery List</source>
+                <target>Галерея</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>
