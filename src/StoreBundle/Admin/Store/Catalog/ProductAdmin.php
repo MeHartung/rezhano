@@ -99,6 +99,15 @@ class ProductAdmin extends AbstractAdmin
       ))
       ->add('units')
       ->add('package', NumberType::class, ['required' => false])
+      ->add('multiplier', ChoiceType::class,
+        [
+          'required' => true,
+          'choices' => [
+            1 => 1,
+            1000 => 1000,
+          ],
+          'help' => 'Выберите 1000, если вес в гр., 1 если в кг'
+        ])
 //      ->add('isPurchasable', BooleanType::class, array(
 //        'transform' => true,
 //        'help' => 'Если нет, товар будет отображен, как «Снят с производства»'

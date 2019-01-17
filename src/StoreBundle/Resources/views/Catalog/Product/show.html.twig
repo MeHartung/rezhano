@@ -90,11 +90,11 @@
               {% if product.package %}
                 <span class="product-item__quantity">{{ product.formattedPackage }} {{ product.units }} / </span>
               {% endif %}
-              <span class="product-item__price">{{ product.price | price }}</span>
+              <span class="product-item__price">{{ product.measuredPartPrice | price }}</span>
             </div>
           <div class="product-item__info">
             {#<% if (isPurchasable) { %>#}
-              <a class="button button_black button_add-to-cart button-buy_in-product button_yellow-yellow" data-product-id="{{ product.id }}">
+              <a class="button button_black button_add-to-cart button-buy_in-product button_yИтого ellow-yellow" data-product-id="{{ product.id }}">
                   <span>В корзину</span>
                 </a>
               <span class="product-item__controls-title">количество</span>

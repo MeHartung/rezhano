@@ -50,7 +50,7 @@ define(function(require){
         url: this.model.get('url'),
         // image: thumbnails['570x713']?thumbnails['570x713']:this.model.get('image'),
         image: this.model.get('image'),
-        price: Number(this.model.get('price')).toCurrencyString('₽', 0),
+        price: Number(this.model.get('measuredPartPrice')).toCurrencyString('₽', 0),
         discountValue: this.model.get('isSale') ? Math.round((1 - this.model.get('price') / this.model.get('oldPrice')) * 100) : null,
         mountBg: this.model.get('background'),
         isSale: this.model.get('isSale'),

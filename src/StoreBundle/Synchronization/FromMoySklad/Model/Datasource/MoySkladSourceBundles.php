@@ -255,6 +255,7 @@ class MoySkladSourceBundles extends BaseDataSource
           'sku' => $article,
           'short_description' => $productDb->getShortDescription(),
           'description' => $productDb->getDescription(),
+          'package' => 1.000,
           'bundle' => 1 # обозначает, что товар на стороне МС составной
         ];
       }else
@@ -274,6 +275,7 @@ class MoySkladSourceBundles extends BaseDataSource
           'reserved_stock' => 10,
           'is_free_delivery' => 0,
           'rank' => 0.00,
+          'package' => 1.000,
           'bundle' => 1 # обозначает, что товар на стороне МС составной
         ];
         $moySkladProductsAsArray[$key]['sku'] = $article;
