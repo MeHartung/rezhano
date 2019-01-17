@@ -416,24 +416,29 @@
                 {% block sidebar %}
                     <aside class="right">
                         <div class="cards-container__payment-info">
-                            {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
-                            {% for item in order.orderItems %}
-                                <div class="payment-info__product">
-                                    <span class="payment-info__product-name">{{ item.product.name }}</span>
-                                    <span class="payment-info__product-value">{{ item.quantity }}
-                                      {# {{ item.product.units }} #}
-                                        × {{ item.product.measuredPartPrice | price }}</span>
+                            <div class="cards-container__payment-info-wrap">
+                                {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
+                                {% for item in order.orderItems %}
+                                    <div class="payment-info__product">
+                                        <span class="payment-info__product-name">{{ item.product.name }}</span>
+                                        <span class="payment-info__product-value">{{ item.quantity }}
+                                          {# {{ item.product.units }} #}
+                                            × {{ item.product.measuredPartPrice | price }}</span>
+                                    </div>
+                                {% endfor %}
+
+                                {#<span class="payment-info__discount">#}
+                                {#Скидка 10%#}
+                                {#</span>#}
+
+                                <div class="payment-info__value">
+                                    Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}
+                                        ₽</span>
+                                    {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
                                 </div>
-                            {% endfor %}
-
-                            {#<span class="payment-info__discount">#}
-                            {#Скидка 10%#}
-                            {#</span>#}
-
-                            <div class="payment-info__value">
-                                Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}
-                                    ₽</span>
-                                {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
+                            </div>
+                            <div class="submessage" style="color: #a5a5a5; font-size: 17px; font-family: alegreyasans-regular;">
+                                {{ hotspot_inline('checkout_sidebar_submessage', "Цена может измениться")}}
                             </div>
                         </div>
                         {#<a href="{{ path('checkout_shipping') }}" class="button button_black">#}

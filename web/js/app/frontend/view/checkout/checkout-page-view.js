@@ -33,7 +33,7 @@ define(function(require){
       this.checkoutForm.setElement(this.$('#checkoutForm'));
       this.checkoutForm.render();
 
-      this.totalsPanelView.setElement(this.$('.cards-container__payment-info'));
+      this.totalsPanelView.setElement(this.$('.cards-container__payment-info-wrap'));
       this.totalsPanelView.render();
       return this;
     },
