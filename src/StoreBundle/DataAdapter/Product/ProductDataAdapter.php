@@ -136,7 +136,8 @@ class ProductDataAdapter implements ClientApplicationModelAdapterInterface
       'description' => $subject->getDescription(),
       'short_description' => htmlentities($subject->getShortDescription()),
       'attributes' => $subject->getProductAttributeValuesGrouped(),
-      'type' => $this->productTypeAdapter->transform($subject->getProductType())
+      'type' => $this->productTypeAdapter->transform($subject->getProductType()),
+      'bundle' => $subject->isBundle()
     );
   }
 

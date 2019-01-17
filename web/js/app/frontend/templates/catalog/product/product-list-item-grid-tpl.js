@@ -1,5 +1,7 @@
 define(function(){
   //var _ = require('underscore');
+// <a class="product-item__image <% if (bundle) { %> product-item__bundle <% } %> product-page-link" title="<%= name %> купить" href="<%= url %>">
+
 
   return _.template('\
   <div class="product-link-wrap">\

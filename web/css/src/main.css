@@ -1766,6 +1766,13 @@ h1,
 .product-list .product-item .product-link-wrap:hover .product-item__name {
   color: #ffcf40;
 }
+.product-list .product-item__bundle {
+  background-color: transparent !important;
+}
+.product-list .product-item__bundle img {
+  max-height: 100%;
+  width: 100%;
+}
 .product-item__controls .controls-title {
   font-size: 21px;
   font-family: Catorze27style1-medium;
