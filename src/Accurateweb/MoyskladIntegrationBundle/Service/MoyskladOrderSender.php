@@ -108,6 +108,7 @@ class MoyskladOrderSender
       'externalCode' => $order->getDocumentNumber(),
       'moment' => $order->getCreatedAt()?$order->getCreatedAt()->format('Y-m-d H:i:s'):null,
       'created' => $order->getCreatedAt()?$order->getCreatedAt()->format('Y-m-d H:i:s'):null,
+      'applicable' => false, # заказ не проведён (черновик)
     ]);
 
     $customerOrderCreation = $customerOrder->buildCreation();
