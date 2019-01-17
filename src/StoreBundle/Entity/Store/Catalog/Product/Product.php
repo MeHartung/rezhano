@@ -331,11 +331,18 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   private $relatedProducts;
 
   /**
+   * Исп. для цены за единицу
    * @var float
-   *
-   * @ORM\Column(type="decimal", scale=3, nullable=true)
+   * @ORM\Column(type="decimal", scale=3, nullable=false, options={"default": 1})
    */
   private $package;
+  
+  /**
+   * Вес условной единицы (в упаковке, штуке и тд)
+   * @var float
+   * @ORM\Column(type="decimal", scale=3, nullable=false, options={"default": 1})
+   */
+  private $unitWeight;
   
   /**
    * @var string|null
@@ -356,6 +363,12 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
    * @ORM\Column(type="json_array", nullable=true)
    */
   private $teaserImageOptions;
+  
+  /**
+   * @var int|null
+   * @ORM\Column(type="integer", nullable=false, options={"default": 1})
+   */
+  private $multiplier;
   
   public function __construct()
   {
@@ -1499,4 +1512,75 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   {
     $this->bundle = $bundle;
   }
+  
+  /**
+   * @return ArrayCollection
+   */
+  public function getOrderItems(): ArrayCollection
+  {
+    return $this->orderItems;
+  }
+  
+  /**
+   * @param ArrayCollection $orderItems
+   */
+  public function setOrderItems(ArrayCollection $orderItems): void
+  {
+    $this->orderItems = $orderItems;
+  }
+  
+  /**
+   * @return int|null
+   */
+  public function getMultiplier(): ?int
+  {
+    return $this->multiplier;
+  }
+  
+  /**
+   * @param int|null $multiplier
+   */
+  public function setMultiplier(?int $multiplier): void
+  {
+    $this->multiplier = $multiplier;
+  }
+  
+  /**
+   * @return float
+   */
+  public function getUnitWeight(): float
+  {
+    return $this->unitWeight;
+  }
+  
+  /**
+   * @param float $unitWeight
+   */
+  public function setUnitWeight(?float $unitWeight): void
+  {
+    $this->unitWeight = $unitWeight;
+  }
+  
+  /**
+   * Возращает цену за еденицу товара, исходя из множителя веса
+   * @return float
+   */
+  public function getUnitPrice()
+  {
+    if($this->getMeasured()) {
+      return $this->getPrice();
+    }
+    return $this->getPrice() / $this->getMultiplier() * $this->getUnitWeight();
+  }
+  
+  /**
+   * Служит только для того, чтобы вывести цену за весовой товар
+   * TODO переделать по-человечески в PriceManager
+   * @return float|int
+   */
+  function getMeasuredPartPrice()
+  {
+    return $this->getPrice() / $this->getMultiplier() * $this->getUnitWeight();
+  }
+  
 }

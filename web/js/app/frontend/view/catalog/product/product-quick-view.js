@@ -40,7 +40,7 @@ define(function (require) {
         product_url: this.model.get('url'),
         package: this.model.get('package'),
         units: this.model.get('units'),
-        price: Number(this.model.get('price')).toCurrencyString('₽', 0),
+        price: Number(this.model.get('measuredPartPrice')).toCurrencyString('₽', 0),
         description: this.model.get('description'),
         attributes: this.model.get('attributes'),
         productId: this.model.get('id')

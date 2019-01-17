@@ -45,7 +45,9 @@ services:
                                           reserved_stock: { type: int },
                                           is_free_delivery: { type: tinyint },
                                           rank: { type: DOUBLE },
-                                          bundle: { type: tinyint }
+                                          bundle: { type: tinyint },
+                                          package: {type: DECIMAL, size: 10 },
+                                          unit_weight: {type: DECIMAL, size: 10 }
                                           }}
 
   aw.synchronization.schema.bundles:
@@ -69,7 +71,9 @@ services:
                                           reserved_stock: { type: int },
                                           is_free_delivery: { type: tinyint },
                                           rank: { type: DOUBLE },
-                                          bundle: { type: tinyint }
+                                          bundle: { type: tinyint },
+                                          package: {type: DECIMAL, size: 10 },
+                                          unit_weight: {type: DECIMAL, size: 10 }
                                           }}
 
   aw.synchronization.schema.moy_sklad.product_images:

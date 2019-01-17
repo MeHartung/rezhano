@@ -56,7 +56,7 @@ define(function(require){
       this.$el.html(template({
         name: this.model.get('name'),
         quantity: this.model.get('quantity'),
-        price: Number(this.model.get('price')),
+        price: Number(this.model.get('product').measuredPartPrice),
         cost: Number( this.model.get('cost')),
         product_image: this.model.get('product').image ? this.model.get('product').image : '/images/no_photo.png',
         product_name: this.model.get('product').name,

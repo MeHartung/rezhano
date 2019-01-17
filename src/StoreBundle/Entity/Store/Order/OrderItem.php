@@ -169,7 +169,8 @@ class OrderItem implements ShippableInterface
     {
       $product = $this->getProduct();
 
-      return $product ? $product->getPrice() : null;
+      return $product ? $product->getUnitPrice() : null;
+      #return $product ? $product->getPrice() : null;
     }
 
     return $this->price;
