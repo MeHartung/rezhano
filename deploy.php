@@ -42,7 +42,17 @@ host('rezhano.beget.tech')
   ->set('deploy_path', '/home/r/rezhano/beta.rezhano.ru')
   ->set('bin/php', '/usr/local/bin/php7.2')
   ->set('branch', 'development')
-  ->set('http_user', 'rezhano');
+  ->set('http_user', 'rezhano')
+  ->set('keep_releases', 1);
+
+host('rezhano.beget.tech')
+  ->stage('prod')
+  ->user('rezhano')
+  ->set('deploy_path', '/home/r/rezhano/rezhano.ru')
+  ->set('bin/php', '/usr/local/bin/php7.2')
+  ->set('branch', 'development')
+  ->set('http_user', 'rezhano')
+  ->set('keep_releases', 3);
 
 /*host('94.130.148.164')
     ->stage('prod')

@@ -20,6 +20,10 @@ Options FollowSymlinks
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    RewriteCond %{HTTP_HOST} ^rezhano\.ru [NC]
+    RewriteCond %{SERVER_PORT} 80
+    RewriteRule ^(.*)$ https://rezhano.ru/$1 [R,L]
+
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
     # project in a subdirectory, the base path will be prepended to allow proper
@@ -53,31 +57,31 @@ Options FollowSymlinks
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule .? - [L]
 
-    RewriteRule ^/about/        /about [R=301,L]
-    RewriteRule ^/testimonials  /about [R=301,L]
-    RewriteRule ^/contact/      /contacts [R=301,L]
-    RewriteRule ^/how/          / [R=301,L]
-    RewriteRule ^/wholesalers/  /b2b [R=301,L]
-    RewriteRule ^/cheese/shemudin/ /products/shemudin [R=301,L]
-    RewriteRule ^/cheese/bushe/ /products/bushe [R=301,L]
-    RewriteRule ^/cheese/trevizo/ /products/trevizo [R=301,L]
-    RewriteRule ^/cheese/gorgonzola/ /products/monte-blun [R=301,L]
-    RewriteRule ^/cheese/montazio-vyderzhka-4-mesyatsa-2/ /products/rezhano-6-mesyacev [R=301,L]
-    RewriteRule ^/cheese/montazio/ /products/montazio-2-mesyaca [R=301,L]
-    RewriteRule ^/cheese/azolo/ /catalog/syr [R=301,L]
-    RewriteRule ^/cheese/skamortsa/ /products/skamorca [R=301,L]
-    RewriteRule ^/cheese/kachotta-s-sushenym-tomatom/ /products/kachotta-s-sushenym-tomatom [R=301,L]
-    RewriteRule ^/cheese/kachotta-s-pepperonchini/ /products/kachotta-s-paprikoj [R=301,L]
-    RewriteRule ^/cheese/kachottaspertsem/ /products/kachotta-s-rozovym-percem [R=301,L]
-    RewriteRule ^/cheese/jogurt-termostatnyj/ /catalog [R=301,L]
-    RewriteRule ^/cheese/kachotta-s-provanskimi-travami/ /products/kachotta-s-provanskimi-travami [R=301,L]
-    RewriteRule ^/cheese/kachotta/ /products/kachotta-bez-dobavok [R=301,L]
-    RewriteRule ^/cheese/rikotta/ /products/rikotta [R=301,L]
-    RewriteRule ^/cheese/motsarella/ /products/mocarella [R=301,L]
-    RewriteRule ^/cheese/buratta/ /products/burrata [R=301,L]
-    RewriteRule ^/cheese/strachatella/ /products/strachatella [R=301,L]
-    RewriteRule ^/cheese/podarochnaya-korzina-1/ /products/podarochnyj-nabor-1 [R=301,L]
-    RewriteRule ^/cheese/kopchenaya-skamortsa/ /products/skamorca [R=301,L]
+    RedirectMatch 301 ^/about/        /about
+    RedirectMatch 301 ^/testimonials  /about
+    RedirectMatch 301 ^/contact/      /contacts
+    RedirectMatch 301 ^/how/          /
+    RedirectMatch 301 ^/wholesalers/  /b2b
+    RedirectMatch 301 ^/cheese/shemudin/ /products/shemudin
+    RedirectMatch 301 ^/cheese/bushe/ /products/bushe
+    RedirectMatch 301 ^/cheese/trevizo/ /products/trevizo
+    RedirectMatch 301 ^/cheese/gorgonzola/ /products/monte-blun
+    RedirectMatch 301 ^/cheese/montazio-vyderzhka-4-mesyatsa-2/ /products/rezhano-6-mesyacev
+    RedirectMatch 301 ^/cheese/montazio/ /products/montazio-2-mesyaca
+    RedirectMatch 301 ^/cheese/azolo/ /catalog/syr
+    RedirectMatch 301 ^/cheese/skamortsa/ /products/skamorca
+    RedirectMatch 301 ^/cheese/kachotta-s-sushenym-tomatom/ /products/kachotta-s-sushenym-tomatom
+    RedirectMatch 301 ^/cheese/kachotta-s-pepperonchini/ /products/kachotta-s-paprikoj
+    RedirectMatch 301 ^/cheese/kachottaspertsem/ /products/kachotta-s-rozovym-percem
+    RedirectMatch 301 ^/cheese/jogurt-termostatnyj/ /catalog
+    RedirectMatch 301 ^/cheese/kachotta-s-provanskimi-travami/ /products/kachotta-s-provanskimi-travami
+    RedirectMatch 301 ^/cheese/kachotta/ /products/kachotta-bez-dobavok
+    RedirectMatch 301 ^/cheese/rikotta/ /products/rikotta
+    RedirectMatch 301 ^/cheese/motsarella/ /products/mocarella
+    RedirectMatch 301 ^/cheese/buratta/ /products/burrata
+    RedirectMatch 301 ^/cheese/strachatella/ /products/strachatella
+    RedirectMatch 301 ^/cheese/podarochnaya-korzina-1/ /products/podarochnyj-nabor-1
+    RedirectMatch 301 ^/cheese/kopchenaya-skamortsa/ /products/skamorca
 
     # Rewrite all other queries to the front controller.
     RewriteRule .? %{ENV:BASE}/app.php [L]
@@ -93,3 +97,13 @@ Options FollowSymlinks
     </IfModule>
 </IfModule>
 
+#Защита beta.rezhano.ru паролем
+SetEnvIf Host beta.rezhano.ru passreq
+AuthType Basic
+AuthName "Password Required"
+AuthUserFile /home/r/rezhano/beta.rezhano.ru/.htpasswd
+Require valid-user
+Order allow,deny
+Allow from all
+Deny from env=passreq
+Satisfy any
