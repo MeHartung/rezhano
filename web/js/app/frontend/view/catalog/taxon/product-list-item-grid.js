@@ -30,7 +30,8 @@ define(function(require){
         model: this.cart.createItem({
           product: this.model.attributes,
           productId: this.model.get('id'),
-          quantity: this.model.get('min_count')
+          quantity: this.model.get('min_count'),
+          bundle: this.model.get('bundle')
         }),
         min: this.model.get('min_count'),
         step: this.model.get('count_step'),

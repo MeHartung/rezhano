@@ -3,7 +3,7 @@ define(function(){
 
   return _.template('\
   <div class="product-link-wrap">\
-    <a class="product-item__image product-page-link" title="<%= name %> купить" href="<%= url %>"> \n\
+    <a class="product-item__image <% if (bundle) { %> product-item__bundle <% } %> product-page-link" title="<%= name %> купить" href="<%= url %>"> \n\
       <% if (image) { %>\n\
         <img src="<%= image %>" alt="Фотография товара <%= name %>"/>\n\
       <% } else { %>\n\
