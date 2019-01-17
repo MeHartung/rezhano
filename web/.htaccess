@@ -66,3 +66,29 @@ Options FollowSymlinks
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+Redirect 301 /about/        /about
+Redirect 301 /testimonials  /about
+Redirect 301 /contact/      /contacts
+Redirect 301 /how/          /
+Redirect 301 /wholesalers/  /b2b
+Redirect 301 /cheese/shemudin/ /products/shemudin
+Redirect 301 /cheese/bushe/ /products/bushe
+Redirect 301 /cheese/trevizo/ /products/trevizo
+Redirect 301 /cheese/gorgonzola/ /products/monte-blun
+Redirect 301 /cheese/montazio-vyderzhka-4-mesyatsa-2/ /products/rezhano-6-mesyacev
+Redirect 301 /cheese/montazio/ /products/montazio-2-mesyaca
+Redirect 301 /cheese/azolo/ /catalog/syr
+Redirect 301 /cheese/skamortsa/ /products/skamorca
+Redirect 301 /cheese/kachotta-s-sushenym-tomatom/ /products/kachotta-s-sushenym-tomatom
+Redirect 301 /cheese/kachotta-s-pepperonchini/ /products/kachotta-s-paprikoj
+Redirect 301 /cheese/kachottaspertsem/ /products/kachotta-s-rozovym-percem
+Redirect 301 /cheese/jogurt-termostatnyj/ /catalog
+Redirect 301 /cheese/kachotta-s-provanskimi-travami/ /products/kachotta-s-provanskimi-travami
+Redirect 301 /cheese/kachotta/ /products/kachotta-bez-dobavok
+Redirect 301 /cheese/rikotta/ /products/rikotta
+Redirect 301 /cheese/motsarella/ /products/mocarella
+Redirect 301 /cheese/buratta/ /products/burrata
+Redirect 301 /cheese/strachatella/ /products/strachatella
+Redirect 301 /cheese/podarochnaya-korzina-1/
+Redirect 301 /cheese/kopchenaya-skamortsa/ /products/skamorca
