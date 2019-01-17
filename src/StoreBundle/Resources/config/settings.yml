@@ -223,3 +223,25 @@ services:
         - 'uploads/videos/cover/'
       tags:
         - { name: aw.setting }
+
+    store.setting.terms_of_service:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+        - '@aw.settings.storage'
+        - '@store.article.repository'
+        - 'terms_of_service'
+        - 'Правила продажи'
+        - ~
+      tags:
+        - { name: aw.setting }
+
+    store.setting.personal_data_policy:
+      class: Accurateweb\SettingBundle\Model\Setting\EntitySetting
+      arguments:
+        - '@aw.settings.storage'
+        - '@store.article.repository'
+        - 'personal_data_policy'
+        - 'Политика обработки персональных данных'
+        - ~
+      tags:
+        - { name: aw.setting }

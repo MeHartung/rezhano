@@ -669,8 +669,8 @@
                                     {# <input  name="tos" class="checkbox" type="checkbox">#}
                                     {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox', 'data-validate':'personal-agreement', 'data-description':'personal-agreement', 'data-describedby': 'personal-agreement-errors'}}) }}
                                     <span class="custom-checkbox__checkbox"></span>
-                                    <span>Я ознакомился и согласен с <a href="">Политикой Компании</a>, <a href="">условиями сотрудничества</a>, <a
-                                                href="">условиями обработки персональных данных</a>
+                                    <span>Я ознакомился и согласен с <a href="{{ setting('terms_of_service') }}" target="_blank">правилами продажи</a> и <a
+                                                href="{{ setting('personal_data_policy') }}"  target="_blank">политикой обработки персональных данных</a>
                   </span>
                                 </label>
                             </div>
