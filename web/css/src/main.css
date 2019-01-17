@@ -1566,8 +1566,7 @@ h1,
 .product-list {
   position: relative;
   overflow: visible;
-  text-align: left;
-  padding-left: 20px;
+  text-align: center;
 }
 .product-list__title {
   font-size: 65px;

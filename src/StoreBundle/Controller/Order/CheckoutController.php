@@ -90,11 +90,16 @@ class CheckoutController extends Controller
         ]);
       }
     }
-    
+
+    $personalDataPolicyArticle = $this->get('aw.settings.manager')->getValue('personal_data_policy');
+    $termsOfServiceArticle = $this->get('aw.settings.manager')->getValue('terms_of_service');
+
     return $this->render('@Store/Checkout/index.html.twig', array(
       'form' => $form->createView(),
       'items' => $items,
       'order' => $order,
+      'personalDataPolicyArticle' => $personalDataPolicyArticle,
+      'termsOfServiceArticle' => $termsOfServiceArticle
     ));
   }
   
