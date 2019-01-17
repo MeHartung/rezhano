@@ -122,7 +122,8 @@ class OrderTotalCalculateSubscriber implements EventSubscriber
 
       if ($order && ($order->getCheckoutStateId() < Order::CHECKOUT_STATE_COMPLETE) && $subject->getProduct())
       {
-        $subject->setPrice($this->priceManager->getProductPrice($subject->getProduct()));
+        $subject->setPrice($subject->getProduct()->getUnitPrice());
+        #$subject->setPrice($this->priceManager->getProductPrice($subject->getProduct()));
       }
     }
   }
@@ -141,7 +142,8 @@ class OrderTotalCalculateSubscriber implements EventSubscriber
 
       if ($order && ($order->getCheckoutStateId() < Order::CHECKOUT_STATE_COMPLETE) && $subject->getProduct())
       {
-        $subject->setPrice($this->priceManager->getProductPrice($subject->getProduct()));
+        $subject->setPrice($subject->getProduct()->getUnitPrice());
+        #$subject->setPrice($this->priceManager->getProductPrice($subject->getProduct()));
       }
     }
   }
@@ -195,7 +197,8 @@ class OrderTotalCalculateSubscriber implements EventSubscriber
 
     foreach ($items as $item)
     {
-      $total += $this->priceManager->getProductPrice($item->getProduct()) * $item->getQuantity();
+      $total += $item->getProduct()->getUnitPrice() * $item->getQuantity();
+      #$total += $this->priceManager->getProductPrice($item->getProduct()) * $item->getQuantity();
     }
 
     return $total;

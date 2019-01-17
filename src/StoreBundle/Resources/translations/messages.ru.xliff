@@ -579,6 +579,14 @@
                 <source>About Us Gallery List</source>
                 <target>Галерея</target>
             </trans-unit>
+            <trans-unit id="Multiplier">
+                <source>Multiplier</source>
+                <target>Множитель</target>
+            </trans-unit>
+            <trans-unit id="Unit Weight">
+                <source>Unit Weight</source>
+                <target>Вес условной единицы товара</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>

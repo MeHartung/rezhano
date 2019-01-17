@@ -36,7 +36,7 @@ define(function(require) {
         name: this.model.get('name'),
         quantity: this.formatFloat(this.modelToView(+this.model.get('quantity'))),
         units: this.scale ? this.scale.units : this.units,
-        price: this.model.get('product').price
+        price: this.model.get('product').measuredPartPrice
       }));
       return this;
     },
