@@ -252,6 +252,7 @@ class MoySkladSource extends BaseDataSource
           'short_description' => $productDb->getShortDescription(),
           'description' => $productDb->getDescription(),
           'package' => 1.000,
+          'unit_weight' => 1.000,
           'bundle' => 0  # обозначает, что товар на стороне МС не составной
         ];
       }else
@@ -272,6 +273,7 @@ class MoySkladSource extends BaseDataSource
           'is_free_delivery' => 0,
           'rank' => 0.00,
           'package' => 1.000,
+          'unit_weight' => 1.000,
           'bundle' => 0  # обозначает, что товар на стороне МС не составной
         ];
         $moySkladProductsAsArray[$key]['sku'] = $article;

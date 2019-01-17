@@ -99,6 +99,7 @@ class ProductAdmin extends AbstractAdmin
       ))
       ->add('units')
       ->add('package', NumberType::class, ['required' => false])
+      ->add('unitWeight', NumberType::class, ['required' => false])
       ->add('multiplier', ChoiceType::class,
         [
           'required' => true,

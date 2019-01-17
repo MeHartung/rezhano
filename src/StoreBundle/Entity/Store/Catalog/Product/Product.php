@@ -331,11 +331,18 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   private $relatedProducts;
 
   /**
+   * Исп. для цены за единицу
    * @var float
-   *
    * @ORM\Column(type="decimal", scale=3, nullable=false, options={"default": 1})
    */
   private $package;
+  
+  /**
+   * Вес условной единицы (в упаковке, штуке и тд)
+   * @var float
+   * @ORM\Column(type="decimal", scale=3, nullable=false, options={"default": 1})
+   */
+  private $unitWeight;
   
   /**
    * @var string|null
@@ -1539,6 +1546,22 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   }
   
   /**
+   * @return float
+   */
+  public function getUnitWeight(): float
+  {
+    return $this->unitWeight;
+  }
+  
+  /**
+   * @param float $unitWeight
+   */
+  public function setUnitWeight(?float $unitWeight): void
+  {
+    $this->unitWeight = $unitWeight;
+  }
+  
+  /**
    * Возращает цену за еденицу товара, исходя из множителя веса
    * @return float
    */
@@ -1547,7 +1570,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
     if($this->getMeasured()) {
       return $this->getPrice();
     }
-    return $this->getPrice() / $this->getMultiplier() * $this->getPackage();
+    return $this->getPrice() / $this->getMultiplier() * $this->getUnitWeight();
   }
   
   /**
@@ -1557,7 +1580,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
    */
   function getMeasuredPartPrice()
   {
-    return $this->getPrice() / $this->getMultiplier() * $this->getPackage();
+    return $this->getPrice() / $this->getMultiplier() * $this->getUnitWeight();
   }
   
 }
