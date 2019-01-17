@@ -49,7 +49,7 @@ class PaymentMethodValidator extends ConstraintValidator
     if (!$isValid) {
       $this->context->buildViolation($constraint->message)
         ->atPath('payment_method')
-        ->setParameter('payment_method', $order->getPaymentMethodId())
+        ->setParameter('payment_method', (string)$order->getPaymentMethod())
         ->addViolation();
     }
   }

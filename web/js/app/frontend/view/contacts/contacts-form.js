@@ -39,7 +39,7 @@ define(function(require){
     '                 <label>\n' +
     '                   <input type="checkbox" id="question_customer_tos" required="required" class="checkbox" data-validate="tos" data-description="tos" data-describedby="tos-errors">\n' +
     '                   <span class="custom-checkbox__checkbox"></span>\n' +
-    '                   <span>Я согласен с условиями <a target="_blank" href="{% if setting(\'tos_article\') %}{{ path(\'article_show\',{\'slug\':setting(\'tos_article\').slug}) }}{% else %}#{% endif %}">передачи информации</a></span>\n' +
+    '                   <span>Я согласен с условиями <a target="_blank" href="<%= tosUrl %>">передачи информации</a></span>\n' +
     '                 </label>\n' +
     '               </div>\n' +
     '               <i class="error-icon">\n' +
@@ -110,7 +110,7 @@ define(function(require){
       }
 
       this.$el.html(template({
-        tosUrl: tosUrl,
+        tosUrl: tosUrl
       }));
 
       this.$('#question_customer_phone').inputmask('+7 (999) 999-99-99');
