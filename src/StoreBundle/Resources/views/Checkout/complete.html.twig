@@ -214,15 +214,14 @@
 {% endblock %}
 
 {% block main %}
-  <div class="container main content">
-    <div class="collection_nav">
-      <h1 class="collection_title">Заказ оформлен</h1>
+  <section class="section-article">
+    <div class="container ">
+      <h1 class="section-article__title">Заказ оформлен</h1>
+      <div class="section-article__text">
+        <p>Благодарим Вас за заказ. Номер Вашего заказа <b>{{ order.documentNumber }}</b>.</p>
+        <p>В ближайшее время наши сотрудники свяжутся с вами.</p>
+        <a class="button button_primary" href="{{ path('catalog_index') }}">Продолжить покупки</a>
+      </div>
     </div>
-
-    <div class="section clearfix">
-      <p>Благодарим Вас за заказ. Номер Вашего заказа <b>{{ order.documentNumber }}</b>.</p>
-      <p>В ближайшее время наши сотрудники свяжутся с вами.</p>
-      <a class="button button_primary" href="{{ path('catalog_index') }}">Продолжить покупки</a>
-    </div>
-  </div>
+  </section>
 {% endblock %}

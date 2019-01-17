@@ -4069,6 +4069,13 @@ body .delivery-info {
 
   &__filter {
     border: 2px solid #000000;
+
+    &.deployed {
+
+      .ui-icon {
+        background-position: 0 0;
+      }
+    }
   }
 
   &__custom-checkbox {
@@ -5034,7 +5041,8 @@ body .delivery-info {
   //
   .layer-questions {
     width: 800px;
-    height: 700px;
+    min-height: 700px;
+    max-height: 100%;
     margin: 0 auto;
     padding-top: 75px;
     padding-bottom: 124px;
@@ -5083,9 +5091,11 @@ body .delivery-info {
 
   .input-text__question {
     line-height: 1.2;
-    max-height: 100px;
+    max-height: 100%;
+    //max-height: 100px;
     position: relative;
     border-color: transparent;
+    //overflow: hidden;
 
     &:after {
       content: '';
@@ -5099,10 +5109,14 @@ body .delivery-info {
 
     .input-textarea {
       line-height: 1.2;
-      max-height: 100px;
+      max-height: 100%;
+      //max-height: 100px;
       position: relative;
       border-color: transparent;
       background-color: @rc_yellow;
+      display: block;
+
+      overflow: hidden;
     }
   }
 }
@@ -5989,3 +6003,28 @@ body .delivery-info {
     padding-top: 7px;
   }
 }
+
+//.product-filter__item {
+//
+//  .product-filter__link .ui-icon {
+//    background-position: 0 -13px;
+//  }
+//
+//  &:hover {
+//
+//    .product-filter__link .ui-icon {
+//      background-position: 0 -26px;
+//    }
+//  }
+//}
+//
+//.filter-section_collapse {
+//
+//  .product-filter__filter {
+//    display: block;
+//  }
+//
+//  .product-filter__link .ui-icon {
+//    background-position: 0 0;
+//  }
+//}
