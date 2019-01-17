@@ -345,6 +345,13 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   private $teaserImageFile;
   
   /**
+   * Является лди товар составным на стороне моего скалада
+   * @var boolean
+   * @ORM\Column(type="boolean", options={"default": 0})
+   */
+  private $bundle;
+  
+  /**
    * @var array|null
    * @ORM\Column(type="json_array", nullable=true)
    */
@@ -1477,4 +1484,19 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
     return $thumbnail ? '/uploads/' . $thumbnail->getResourceId() : null;
   }
   
+  /**
+   * @return bool
+   */
+  public function isBundle(): ?bool
+  {
+    return $this->bundle;
+  }
+  
+  /**
+   * @param bool $bundle
+   */
+  public function setBundle(?bool $bundle): void
+  {
+    $this->bundle = $bundle;
+  }
 }

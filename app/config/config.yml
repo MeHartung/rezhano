@@ -151,6 +151,8 @@ sonata_admin:
             label: "Главная страница"
         excursion:
             label: "Страница экскурсии"
+        about_us:
+            label: "Страница «О нас»"
         text:
             label: "Текстовые разделы"
         questions:

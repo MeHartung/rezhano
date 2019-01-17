@@ -138,7 +138,7 @@ Call it with:
     try
     {
       $scenario->postExecute($subjects);
-      $dispatcher->dispatch('synchronization.scenario.post_execute', new SynchronizationScenarioEvent($scenario));;
+      $dispatcher->dispatch('synchronization.scenario.post_execute', new SynchronizationScenarioEvent($scenario));
     }catch (\Exception $exception)
     {
       $this->getContainer()->get('logger')->addError("Post execute error: " . $exception->getMessage());

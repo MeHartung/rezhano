@@ -22,6 +22,16 @@ services:
     tags:
       - { name: 'aw.synchronization.handler.transfer' }
 
+  aw.synchronization.handler.transfer_moy_sklad.bundles:
+    class: StoreBundle\Synchronization\FromMoySklad\Model\Handler\TransferHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@aw.synchronization.schema.bundles"
+      - "@event_dispatcher"
+      - { key: external_code }
+    tags:
+      - { name: 'aw.synchronization.handler.transfer' }
+
   aw.synchronization.handler.insert_moy_sklad.product.folders:
     class: \Accurateweb\SynchronizationBundle\Model\Handler\InsertHandler
     arguments:
@@ -43,6 +53,16 @@ services:
       - { name: 'aw.synchronization.handler.transfer' }
 
   aw.synchronization.handler.insert_moy_sklad:
+    class: \Accurateweb\SynchronizationBundle\Model\Handler\InsertHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@aw.synchronization.schema.common"
+      - "@event_dispatcher"
+      - {}
+    tags:
+      - { name: 'aw.synchronization.handler.insert' }
+
+  aw.synchronization.handler.insert_moy_sklad.bundles:
     class: \Accurateweb\SynchronizationBundle\Model\Handler\InsertHandler
     arguments:
       - "@doctrine.dbal.default_connection"

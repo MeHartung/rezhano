@@ -10,6 +10,7 @@ use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladExceptionFactory;
 use Accurateweb\MoyskladIntegrationBundle\Model\Logistic\MoySkladWarehouse;
 use Accurateweb\MoyskladIntegrationBundle\Model\MoyskladManager;
+use Accurateweb\MoyskladIntegrationBundle\Model\OrderItemToBundleTransformer;
 use Accurateweb\MoyskladIntegrationBundle\Model\OrderItemTransformer;
 use Accurateweb\SettingBundle\Model\Manager\SettingManagerInterface;
 use MoySklad\Entities\Store;
@@ -30,8 +31,12 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class MoyskladOrderSender
 {
+  # обычный товар в МС
+  const PRODUCT_TYPE_SINGLE = 'single';
+  # составной товар из МС
+  const PRODUCT_TYPE_BUNDLE = 'bundle';
   # это всё пока не надо
-/*  const ATTRIBUTE_ORDER_NUM = 'ac2633f9-6f98-11e8-9109-f8fc00013baa'; //Номер заказа ИМ string
+  /*  const ATTRIBUTE_ORDER_NUM = 'ac2633f9-6f98-11e8-9109-f8fc00013baa'; //Номер заказа ИМ string
   const ATTRIBUTE_CDEK_ORDER_NUM = 'ac263d50-6f98-11e8-9109-f8fc00013bab'; //Номер заказа СДЭК string
   const ATTRIBUTE_CDEK_ORDER_STATUS = 'ac266038-6f98-11e8-9109-f8fc00013bb4'; //Статус СДЭК string
   const ATTRIBUTE_RECIEVER = 'ac264708-6f98-11e8-9109-f8fc00013bad'; //Получатель string
@@ -103,6 +108,7 @@ class MoyskladOrderSender
       'externalCode' => $order->getDocumentNumber(),
       'moment' => $order->getCreatedAt()?$order->getCreatedAt()->format('Y-m-d H:i:s'):null,
       'created' => $order->getCreatedAt()?$order->getCreatedAt()->format('Y-m-d H:i:s'):null,
+      'applicable' => false, # заказ не проведён (черновик)
     ]);
 
     $customerOrderCreation = $customerOrder->buildCreation();
@@ -199,9 +205,12 @@ class MoyskladOrderSender
     }*/
 
     $productList = $this->getProductList($order->getOrderItems());
+    $bundleList = $this->getBundleList($order->getOrderItems());
+    
     $customerOrderCreation
       ->addCounterparty($contragent)
       ->addPositionList($productList)
+      ->addPositionList($bundleList)
       ->addOrganization($organization);
 
     try
@@ -300,9 +309,38 @@ class MoyskladOrderSender
   {
     $transformer = new OrderItemTransformer($this->sklad->getRepository('MoySklad\\Entities\\Products\\Product'));
     $list = new EntityList($this->sklad->getSklad());
+  
+    foreach ($items as $item)
+    {
+      if($item->getProduct()->isBundle()) continue;
+      
+      try
+      {
+        $list->push($transformer->transform($item));
+      } catch (\Exception $e)
+      {
+        throw new MoyskladException($e->getMessage());
+      }
+    }
+  
+    return $list;
+  }
+  
+  /**
+   * Преобразуем товары из заказы в товары для отправки
+   * @param $items OrderItem[]
+   * @return array|EntityList
+   * @throws MoyskladException
+   */
+  protected function getBundleList($items)
+  {
+    $transformer = new OrderItemToBundleTransformer($this->sklad->getRepository('MoySklad\\Entities\\Products\\Bundle'));
+    $list = new EntityList($this->sklad->getSklad());
 
     foreach ($items as $item)
     {
+      if(!$item->getProduct()->isBundle()) continue;
+  
       try
       {
         $list->push($transformer->transform($item));

@@ -54,8 +54,36 @@ services:
     tags:
       - { name: 'aw.datasource' }
 
+  aw.synchronization.datasource.moy_sklad_bundle:
+    class: StoreBundle\Synchronization\FromMoySklad\Model\Datasource\MoySkladSourceBundles
+    arguments:
+      - {}
+      - ~
+      - "@doctrine.orm.default_entity_manager"
+      - '%moysklad_username%'
+      - '%moysklad_password%'
+      - '%kernel.root_dir%'
+      - '@event_dispatcher'
+      - '@accurateweb.slugifier.yandex'
+      - '@logger'
+    tags:
+      - { name: 'aw.datasource' }
+
   aw.synchronization.datasource.moy_sklad.products.image:
     class: StoreBundle\Synchronization\FromMoySklad\Model\Datasource\MoySkladProductImageDataSource
+    arguments:
+      - {}
+      - ~
+      - "@doctrine.orm.default_entity_manager"
+      - '%moysklad_username%'
+      - '%moysklad_password%'
+      - '%kernel.root_dir%'
+      - '@event_dispatcher'
+    tags:
+      - { name: 'aw.datasource' }
+
+  aw.synchronization.datasource.moy_sklad.bundles.image:
+    class: StoreBundle\Synchronization\FromMoySklad\Model\Datasource\MoySkladBundleImageDataSource
     arguments:
       - {}
       - ~

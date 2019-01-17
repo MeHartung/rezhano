@@ -28,6 +28,19 @@ services:
     tags:
       - { name: 'aw.synchronization.config' }
 
+  aw.synchronization.configuration.moy_sklad_bundles:
+    class: Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration
+    arguments:
+      - '@event_dispatcher'
+      - '@doctrine.dbal.default_connection'
+   #   - '@aw.synchronization.sync.moy_sklad'
+      - '@aw.synchronization.subject.moy_sklad.bundles'
+      - '@aw.synchronization.datasource.moy_sklad_bundle'
+      - '%kernel.root_dir%'
+      - 'moy_sklad_bundles'
+    tags:
+      - { name: 'aw.synchronization.config' }
+
   aw.synchronization.configuration.moy_sklad.product.images:
     class: Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration
     arguments:
@@ -38,6 +51,19 @@ services:
       - '@aw.synchronization.datasource.moy_sklad.products.image'
       - '%kernel.root_dir%'
       - 'moy_sklad_image'
+    tags:
+      - { name: 'aw.synchronization.config' }
+
+  aw.synchronization.configuration.moy_sklad.bundle.images:
+    class: Accurateweb\SynchronizationBundle\Model\Configuration\SynchronizationServiceConfiguration
+    arguments:
+      - '@event_dispatcher'
+      - '@doctrine.dbal.default_connection'
+   #   - '@aw.synchronization.sync.moy_sklad'
+      - '@aw.synchronization.subject.moy_sklad.bundles.images'
+      - '@aw.synchronization.datasource.moy_sklad.bundles.image'
+      - '%kernel.root_dir%'
+      - 'moy_sklad_bundle_image'
     tags:
       - { name: 'aw.synchronization.config' }
 

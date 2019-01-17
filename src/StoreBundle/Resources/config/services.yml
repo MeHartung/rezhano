@@ -1220,3 +1220,30 @@ services:
       class: StoreBundle\DataAdapter\Text\ArticleAdapter
       tags:
         - { name: aw.client_application.adapter, alias: article }
+
+    store.admin.about_us_gallery:
+       class: StoreBundle\Admin\Text\About\GalleryAdmin
+       arguments: [~, StoreBundle\Entity\Text\About\AboutUsGallery, ~, ~]
+       tags:
+         - {name: sonata.admin, manager_type: orm, group: about_us, label: "Галерея"}
+
+    store.gallery.provider.about_image:
+      class: App\Media\Gallery\AboutPhoto\GalleryPhotoMediaGalleryProvider
+      arguments:
+        - '@doctrine.orm.entity_manager'
+        - '@store.about.image.repository'
+        - '@store.about.repository'
+      tags:
+        - { name: "aw.media.gallery_provider", alias: "about-image" }
+
+    store.about.repository:
+      class: StoreBundle\Repository\Text\About\AboutUsGalleryRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Text\About\AboutUsGallery
+
+    store.about.image.repository:
+      class: StoreBundle\Repository\Text\About\AboutUsImageRepository
+      factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+      arguments:
+        - StoreBundle\Entity\Text\About\AboutUsImage
