@@ -8,7 +8,7 @@ namespace App\Media\Gallery\ProductPhoto;
 use Accurateweb\MediaBundle\Model\Gallery\MediaGalleryProviderInterface;
 use Accurateweb\MediaBundle\Model\Gallery\MediaGallery;
 use Doctrine\ORM\EntityManager;
-use StoreBundle\Media\Store\Catalog\Product\GalleryPhotoMediaObjectManager;
+use StoreBundle\Media\Store\Catalog\Product\ProductPhotoMediaObjectManager;
 use StoreBundle\Repository\Store\Catalog\Product\ProductImageRepository;
 use StoreBundle\Repository\Store\Catalog\Product\ProductRepository;
 
@@ -36,7 +36,7 @@ class ProductPhotoMediaGalleryProvider implements MediaGalleryProviderInterface
     return new MediaGallery(
       $id,
       null,
-      new GalleryPhotoMediaObjectManager($this->entityManager, new ProductPhotoRepository($id, $this->repository)),
+      new ProductPhotoMediaObjectManager($this->entityManager, new ProductPhotoRepository($id, $this->repository)),
       new ProductPhotoMediaFactory($this->productRepository)
     );
   }
