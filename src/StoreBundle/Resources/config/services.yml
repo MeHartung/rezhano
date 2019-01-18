@@ -748,7 +748,7 @@ services:
     store.subscriber.ordertotal:
         class: StoreBundle\EventListener\OrderTotalCalculateSubscriber
         arguments:
-          - '@store.price.manager'
+          - '@store.order.total_calculator'
         tags:
            - { name: doctrine.event_subscriber, connection: default }
 
@@ -1247,3 +1247,7 @@ services:
       factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
       arguments:
         - StoreBundle\Entity\Text\About\AboutUsImage
+
+    store.order.total_calculator:
+      class: StoreBundle\Service\Order\TotalCalculator
+      arguments: ['@store.price.manager']
