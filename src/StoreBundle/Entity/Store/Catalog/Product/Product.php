@@ -1570,7 +1570,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
     if($this->getMeasured()) {
       return $this->getPrice();
     }
-    return $this->getPrice() / $this->getMultiplier() * $this->getUnitWeight();
+    return round($this->getPrice() / $this->getMultiplier() * $this->getUnitWeight(), 2);
   }
   
   /**
@@ -1580,7 +1580,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
    */
   function getMeasuredPartPrice()
   {
-    return $this->getPrice() / $this->getMultiplier() * $this->getUnitWeight();
+    return round($this->getPrice() / $this->getMultiplier() * $this->getUnitWeight(), 2);
   }
   
 }
