@@ -161,6 +161,11 @@ class CheckoutType extends AbstractType
       ->add('payment_method', EntityType::class, [
         'class' => PaymentMethod::class,
         'required' => true,
+        'query_builder' => function (EntityRepository $er) {
+          return $er->createQueryBuilder('pm')
+            ->where('pm.enabled = 1')
+            ->orderBy('pm.position', "ASC");
+        },
         'error_bubbling' => false,
         'constraints' => [
           new NotBlank(['message' => 'Пожалуйста, укажите способ оплаты заказа'])
