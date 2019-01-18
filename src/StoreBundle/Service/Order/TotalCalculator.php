@@ -61,7 +61,7 @@ class TotalCalculator
   private function calculateTotal(Order $order)
   {
     $total = $order->getSubtotal()
-//      + $order->getShippingCost() //GPNNVI-151
+      + $order->getShippingCost()
       + $order->getFee();
 
     $order->setTotal((float)$total);
