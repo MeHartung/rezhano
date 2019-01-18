@@ -1478,9 +1478,9 @@ h1, .popular-products__title {
 .product-list {
   position: relative;
   overflow: visible;
-  text-align: center;
-  //text-align: left;
-  //padding-left: 20px;
+  //text-align: center;
+  text-align: left;
+  padding-left: 15px;
 
   &__title {
     font-size: 65px;
@@ -1497,6 +1497,10 @@ h1, .popular-products__title {
     width: 370px;
     text-align: center;
     margin-bottom: 90px;
+
+    &__twig {
+      width: 366px;
+    }
 
     &__label {
       display: inline-block;
@@ -5807,6 +5811,10 @@ body .delivery-info {
 
 ////////////////////////////////////
 @media (min-width: 2000px) {
+
+  .product-list {
+    padding-left: 7px;
+  }
 
   .advantages .advantages-item__wrap.advantages-item__wrap_left .advantages-image {
     left: 0;

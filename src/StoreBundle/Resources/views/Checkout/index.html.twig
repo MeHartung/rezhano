@@ -448,7 +448,7 @@
                 {% endblock %}
                 <div class="section-wrap">
                     {{ form_start(form, { attr: { id: "checkoutForm", name: "checkoutForm", 'novalidate': 'novalidate'} }) }}
-
+                    {{ form_errors(form) }}
                     <div class="cards-container__step cards-container__order">
                         <div class="cards-container__step-title">
                             <span class="step-title__number">1</span>ваши данные
