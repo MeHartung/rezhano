@@ -1548,7 +1548,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   /**
    * @return float
    */
-  public function getUnitWeight(): float
+  public function getUnitWeight(): ?float
   {
     return $this->unitWeight;
   }
