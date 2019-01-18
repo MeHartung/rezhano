@@ -163,7 +163,8 @@ class CheckoutType extends AbstractType
         'required' => true,
         'query_builder' => function (EntityRepository $er) {
           return $er->createQueryBuilder('pm')
-            ->where('pm.enabled = 1');
+            ->where('pm.enabled = 1')
+            ->orderBy('pm.position', "ASC");
         },
         'error_bubbling' => false,
         'constraints' => [
