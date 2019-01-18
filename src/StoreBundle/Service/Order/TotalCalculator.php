@@ -84,7 +84,8 @@ class TotalCalculator
 
       if ($item->getProduct())
       {
-        $itemPrice = $this->priceManager->getProductPrice($item->getProduct());
+        $itemPrice = $item->getProduct()->getUnitPrice();
+        #$itemPrice = $this->priceManager->getProductPrice($item->getProduct());
       }
 
       $total += $itemPrice * $item->getQuantity();
@@ -109,7 +110,8 @@ class TotalCalculator
     {
       if ($item->getProduct())
       {
-        $total += $this->priceManager->getProductPriceDiff($item->getProduct());
+        $total += $item->getProduct()->getUnitPrice() * $item->getQuantity();
+        #$total += $this->priceManager->getProductPriceDiff($item->getProduct());
       }
     }
 
