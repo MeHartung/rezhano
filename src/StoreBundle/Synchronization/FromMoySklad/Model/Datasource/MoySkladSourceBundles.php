@@ -255,8 +255,8 @@ class MoySkladSourceBundles extends BaseDataSource
           'sku' => $article,
           'short_description' => $productDb->getShortDescription(),
           'description' => $productDb->getDescription(),
-          'package' => 1.000,
-          'unit_weight' => 1.000,
+          'package' => $productDb->getPackage(),
+          'unit_weight' => $productDb->getUnitWeight(),
           'bundle' => 1 # обозначает, что товар на стороне МС составной
         ];
       }else
@@ -301,7 +301,7 @@ class MoySkladSourceBundles extends BaseDataSource
   
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent('Product ' . $product->name . ' was loaded from MoySklad.')
+        new GenericEvent("Bundle {$folderData->name}/{$product->name} was loaded from MoySklad ")
       );
     }
     
