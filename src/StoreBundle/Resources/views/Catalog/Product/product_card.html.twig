@@ -13,9 +13,9 @@
     {#{% endif %}#}
     <div class="product-link-wrap">
         <a class="product-item__image
-        {% if product.bundle %}
-             product-item__bundle
-        {% endif %}"
+        {#{% if product.bundle %}#}
+             {#product-item__bundle#}
+        {#{% endif %}"#}
        href="{{ path('product', { 'slug': product.slug }) }}">
         <img src="{% if product.thumbnailUrl is not empty %}{{ product.thumbnailUrl('catalog_prev') }}{% else %}{{ asset('/images/no_photo.png')}}{% endif %}" title="{{ product.name|e('html_attr') }}"/>
 

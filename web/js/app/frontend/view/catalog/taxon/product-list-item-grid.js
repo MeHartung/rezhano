@@ -30,8 +30,7 @@ define(function(require){
         model: this.cart.createItem({
           product: this.model.attributes,
           productId: this.model.get('id'),
-          quantity: this.model.get('min_count'),
-          bundle: this.model.get('bundle')
+          quantity: this.model.get('min_count')
         }),
         min: this.model.get('min_count'),
         step: this.model.get('count_step'),
@@ -63,7 +62,8 @@ define(function(require){
         package: this.model.get('package'),
         units: this.model.get('units'),
         type: this.model.get('type') ? this.model.get('type').name : '',
-        short_description: this.model.get('short_description')
+        short_description: this.model.get('short_description'),
+        // bundle: this.model.get('bundle')
       }));
       if (this.model.get('isPurchasable')){
         this.$el.removeClass('product-unavailable');

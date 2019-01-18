@@ -416,24 +416,29 @@
                 {% block sidebar %}
                     <aside class="right">
                         <div class="cards-container__payment-info">
-                            {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
-                            {% for item in order.orderItems %}
-                                <div class="payment-info__product">
-                                    <span class="payment-info__product-name">{{ item.product.name }}</span>
-                                    <span class="payment-info__product-value">{{ item.quantity }}
-                                      {# {{ item.product.units }} #}
-                                        × {{ item.product.measuredPartPrice | price }}</span>
+                            <div class="cards-container__payment-info-wrap">
+                                {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
+                                {% for item in order.orderItems %}
+                                    <div class="payment-info__product">
+                                        <span class="payment-info__product-name">{{ item.product.name }}</span>
+                                        <span class="payment-info__product-value">{{ item.quantity }}
+                                          {# {{ item.product.units }} #}
+                                            × {{ item.product.measuredPartPrice | price }}</span>
+                                    </div>
+                                {% endfor %}
+
+                                {#<span class="payment-info__discount">#}
+                                {#Скидка 10%#}
+                                {#</span>#}
+
+                                <div class="payment-info__value">
+                                    Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}
+                                        ₽</span>
+                                    {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
                                 </div>
-                            {% endfor %}
-
-                            {#<span class="payment-info__discount">#}
-                            {#Скидка 10%#}
-                            {#</span>#}
-
-                            <div class="payment-info__value">
-                                Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}
-                                    ₽</span>
-                                {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
+                            </div>
+                            <div class="submessage" style="color: #a5a5a5; font-size: 17px; font-family: alegreyasans-regular;">
+                                {{ hotspot_inline('checkout_sidebar_submessage', "Цена может измениться")}}
                             </div>
                         </div>
                         {#<a href="{{ path('checkout_shipping') }}" class="button button_black">#}
@@ -669,8 +674,8 @@
                                     {# <input  name="tos" class="checkbox" type="checkbox">#}
                                     {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox', 'data-validate':'personal-agreement', 'data-description':'personal-agreement', 'data-describedby': 'personal-agreement-errors'}}) }}
                                     <span class="custom-checkbox__checkbox"></span>
-                                    <span>Я ознакомился и согласен с <a href="">Политикой Компании</a>, <a href="">условиями сотрудничества</a>, <a
-                                                href="">условиями обработки персональных данных</a>
+                                    <span>Я ознакомился и согласен с <a href="{% if termsOfServiceArticle %}{{ path('article_show', { slug: termsOfServiceArticle.slug }) }}{% else %}#{% endif %}" target="_blank">правилами продажи</a> и <a
+                                                href="{% if personalDataPolicyArticle %}{{ path('article_show', { slug: personalDataPolicyArticle.slug }) }}{% else %}#{% endif %}"  target="_blank">политикой обработки персональных данных</a>
                   </span>
                                 </label>
                             </div>

@@ -11,7 +11,7 @@ define(function (require) {
             this.toggle();
         },
         toggle: function () {
-            this.$el.toggleClass('deployed');
+            // this.$el.toggleClass('deployed');
         },
         updateState: function () {
             var val = this.model.get('value');
