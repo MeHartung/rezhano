@@ -13,8 +13,8 @@ class OrderNotification extends Notification
 {
   /**
    * @var Order
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\Order")
-   * @ORM\JoinColumn(name="order_id")
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\Order", inversedBy="notifications")
+   * @ORM\JoinColumn(name="order_id", onDelete="CASCADE")
    */
   protected $order;
 

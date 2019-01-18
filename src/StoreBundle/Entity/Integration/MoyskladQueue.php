@@ -30,7 +30,7 @@ class MoyskladQueue
   /**
    * @var Order
    * @ORM\OneToOne(targetEntity="StoreBundle\Entity\Store\Order\Order", inversedBy="moysklad_queue", cascade={"remove", "persist"})
-   * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+   * @ORM\JoinColumn(name="order_id", referencedColumnName="id", onDelete="CASCADE")
    */
   private $order;
   

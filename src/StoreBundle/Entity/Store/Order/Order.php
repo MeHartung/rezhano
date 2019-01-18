@@ -15,6 +15,7 @@ use AccurateCommerce\Shipping\Shipment\Address;
 use AccurateCommerce\Shipping\Shipment\Shipment;
 use AccurateCommerce\Util\UUID;
 use StoreBundle\Entity\Integration\MoyskladQueue;
+use StoreBundle\Entity\Notification\OrderNotification;
 use StoreBundle\Entity\Store\Order\Status\OrderStatusHistory;
 use StoreBundle\Entity\Store\Order\Status\OrderStatus;
 use StoreBundle\Entity\Store\Payment\Method\PaymentMethod;
@@ -286,6 +287,12 @@ class Order implements ClientApplicationModelAdapterInterface
    * @ORM\Column(type="string", options={"default": "individual"})
    */
   private $customerType = self::CUSTOMER_TYPE_INDIVIDUAL;
+
+  /**
+   * @var OrderNotification[]|ArrayCollection
+   * @ORM\OneToMany(targetEntity="StoreBundle\Entity\Notification\OrderNotification",mappedBy="order",orphanRemoval=true)
+   */
+  private $notifications;
   
   /**
    * Конструктор.
@@ -296,7 +303,8 @@ class Order implements ClientApplicationModelAdapterInterface
     $this->uid = $this->generateUid();
     $this->checkoutStateId = self::CHECKOUT_STATE_CART;
     $this->orderStatusHistory = new ArrayCollection();
-    
+    $this->notifications = new ArrayCollection();
+
     $this->discountSum = 0;
   }
 
