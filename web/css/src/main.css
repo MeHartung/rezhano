@@ -2122,7 +2122,7 @@ h1,
 }
 .notes {
   position: relative;
-  padding-top: 145px;
+  padding-top: 100px;
   padding-bottom: 90px;
   overflow: initial;
   margin-bottom: 215px;
@@ -2270,6 +2270,7 @@ h1,
 }
 .notes .notes__title {
   text-align: left;
+  font-size: 60px;
 }
 .notes .notes__text p,
 .notes .notes-slider {
@@ -3782,7 +3783,7 @@ body .delivery-info__message {
   margin-bottom: 54px;
 }
 .section-about-history__photo-image {
-  background: url("../images/ann-photo.png") center no-repeat;
+  background: url("../images/ann-photo-new.png") center no-repeat;
   width: 140px;
   height: 140px;
   position: relative;
@@ -3793,7 +3794,7 @@ body .delivery-info__message {
 .section-about-history__photo-image:after {
   content: '';
   position: absolute;
-  top: -30px;
+  top: -27px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
