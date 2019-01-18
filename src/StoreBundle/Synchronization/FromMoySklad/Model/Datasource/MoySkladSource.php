@@ -22,6 +22,15 @@ class MoySkladSource extends BaseDataSource
     $logger;
   
   /**
+   * Поддериживаемые директории товаров (в терминологии моего склада группы - это папки)
+   * @var array
+   */
+  private $supportFolders = [
+    'Сыр в кг',
+    'Подарочные корзины'
+  ];
+  
+  /**
    * MoySkladSource constructor.
    *
    * @param array $options
@@ -146,16 +155,16 @@ class MoySkladSource extends BaseDataSource
       # нельзя взять и отфильтовать по папке
       # возможно, стоит заменить на FilterIterator
       $folderDataHref = null;
-      
+  
       if (isset($product->relations->productFolder->fields->meta->href))
       {
         $folderDataHref = $product->relations->productFolder->fields->meta->href;
-        
+    
       } else
       {
         continue;
       }
-      
+  
       try
       {
         $folderData = $sklad->getClient()->get($folderDataHref);
@@ -173,29 +182,32 @@ class MoySkladSource extends BaseDataSource
           'aw.sync.order_event.message',
           new GenericEvent((sprintf('%s.', $e->getMessage())))
         );
-  
+    
         $errorsMessage = '';
         if (isset($e->getDump()['response']->errors))
         {
           foreach ($e->getDump()['response']->errors as $error)
           {
-            $errorsMessage .= sprintf('[%s]%s.', $error->code, $error->error). "\n";
+            $errorsMessage .= sprintf('[%s]%s.', $error->code, $error->error) . "\n";
           }
         }
-  
+    
         $this->logger->error(sprintf('[%s]%s.', $e->getCode(), $errorsMessage));
         throw new \Exception($errorsMessage);
       } catch (\Exception $exception)
       {
-        $this->logger->error('Products list not loaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
+        $this->logger->error('Products list not loaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
         $this->dispatcher->dispatch(
           'aw.sync.order_event.message',
           new GenericEvent('Products list not loaded from MoySklad:' . "\n" . $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString())
         );
         continue;
       }
-      
-      if ($folderData->name !== 'Сыр в кг') continue;
+  
+      if(!in_array($folderData->name, $this->supportFolders))
+      {
+        continue;
+      }
       
       $now = new \DateTime('now');
       
@@ -224,7 +236,7 @@ class MoySkladSource extends BaseDataSource
         }
       }
       # если есть такой товар, то не трогать:
-      # Наименование, описание, краткое описание и артикул
+      # Наименование, описание, краткое описание, артикул, вес и условный вес
       if(in_array($product->code, $foundInDbProductsCodes) === true)
       {
         $productDb = $this->em->getRepository('StoreBundle:Store\Catalog\Product\Product')->findOneBy(
@@ -251,8 +263,8 @@ class MoySkladSource extends BaseDataSource
           'sku' => $article,
           'short_description' => $productDb->getShortDescription(),
           'description' => $productDb->getDescription(),
-          'package' => 1.000,
-          'unit_weight' => 1.000,
+          'package' => $productDb->getPackage(),
+          'unit_weight' => $productDb->getUnitWeight(),
           'bundle' => 0  # обозначает, что товар на стороне МС не составной
         ];
       }else
@@ -305,7 +317,7 @@ class MoySkladSource extends BaseDataSource
      
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent('Product ' . $product->name . ' was loaded from MoySklad.')
+        new GenericEvent("Product {$folderData->name}/{$product->name} was loaded from MoySklad.")
       );
     }
     

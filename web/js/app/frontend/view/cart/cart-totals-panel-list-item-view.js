@@ -5,7 +5,7 @@ define(function(require) {
   var template = _.template('' +
     '<div class="payment-info__product">\n' +
     ' <span class="payment-info__product-name"><%= name %></span>\n' +
-    ' <span class="payment-info__product-value"><%= quantity %> <%= units %> × <%= price %> ₽</span>\n\n   ' +
+    ' <span class="payment-info__product-value"><%= quantity %> <%= units %> × <%= price.toFixed() %> ₽</span>\n\n   ' +
     '</div>\n');
 
   var quantityScales = [

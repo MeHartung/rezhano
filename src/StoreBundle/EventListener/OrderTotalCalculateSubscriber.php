@@ -4,29 +4,30 @@ namespace StoreBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use Doctrine\Common\Persistence\ObjectManager;
 use StoreBundle\Entity\Store\Order\Order;
 use StoreBundle\Entity\Store\Order\OrderItem;
-use StoreBundle\Entity\User\User;
-use StoreBundle\Service\Product\ProductPrice\ProductPriceManager;
+use StoreBundle\Service\Order\TotalCalculator;
 
 /*
  * Пересчитываем стоимость order и orderitem при сохранении
  */
 class OrderTotalCalculateSubscriber implements EventSubscriber
 {
-  private $priceManager;
+  private $calculator;
 
-  public function __construct (ProductPriceManager $priceManager)
+  public function __construct (TotalCalculator $calculator)
   {
-    $this->priceManager = $priceManager;
+    $this->calculator = $calculator;
   }
 
   public function getSubscribedEvents ()
   {
+    /*
+     * Изменение в PreUpdate ломало определение изменений в данных и данные не обновлялись в бд
+     */
     return [
       'prePersist',
-      'preUpdate',
+      //      'preUpdate',
       'postPersist',
       'postUpdate',
       'postRemove'
@@ -42,12 +43,17 @@ class OrderTotalCalculateSubscriber implements EventSubscriber
       $em = $args->getObjectManager();
       $order = $subject->getOrder();
 
+      if ($order->getOrderItems()->contains($subject))
+      {
+        $order->getOrderItems()->removeElement($subject);
+      }
+
       if ($order)
       {
         $total = $order->getTotal();
         $subTotal = $order->getSubtotal();
         $discount = $order->getDiscountSum();
-        $this->updateOrderPrices($order);
+        $this->calculator->calculate($order);
 
         if ($total !== $order->getTotal() || $subTotal !== $order->getSubtotal() || $discount !== $order->getDiscountSum())
         {
@@ -72,7 +78,7 @@ class OrderTotalCalculateSubscriber implements EventSubscriber
         $total = $order->getTotal();
         $subTotal = $order->getSubtotal();
         $discount = $order->getDiscountSum();
-        $this->updateOrderPrices($order);
+        $this->calculator->calculate($order);
 
         if ($total !== $order->getTotal() || $subTotal !== $order->getSubtotal() || $discount !== $order->getDiscountSum())
         {
@@ -97,7 +103,7 @@ class OrderTotalCalculateSubscriber implements EventSubscriber
         $total = $order->getTotal();
         $subTotal = $order->getSubtotal();
         $discount = $order->getDiscountSum();
-        $this->updateOrderPrices($order);
+        $this->calculator->calculate($order);
 
         if ($total !== $order->getTotal() || $subTotal !== $order->getSubtotal() || $discount !== $order->getDiscountSum())
         {
@@ -114,18 +120,29 @@ class OrderTotalCalculateSubscriber implements EventSubscriber
 
     if ($subject instanceof Order)
     {
-      $this->updateOrderPrices($subject);
+      $this->calculator->calculate($subject);
     }
-    elseif ($subject instanceof OrderItem)
-    {
-      $order = $subject->getOrder();
-
-      if ($order && ($order->getCheckoutStateId() < Order::CHECKOUT_STATE_COMPLETE) && $subject->getProduct())
-      {
-        $subject->setPrice($subject->getProduct()->getUnitPrice());
-        #$subject->setPrice($this->priceManager->getProductPrice($subject->getProduct()));
-      }
-    }
+    //    elseif ($subject instanceof OrderItem)
+    //    {
+    //      $order = $subject->getOrder();
+    //
+    //      if ($order)
+    //      {
+    //        $em = $args->getObjectManager();
+    //        $total = $order->getTotal();
+    //        $subTotal = $order->getSubtotal();
+    //        $discount = $order->getDiscountSum();
+    //        $this->calculator->calculate($order);
+    //
+    //        if (($total !== $order->getTotal() || $subTotal !== $order->getSubtotal() || $discount !== $order->getDiscountSum())
+    //          && $order->getId()
+    //        )
+    //        {
+    //          $em->persist($order);
+    //          $em->flush();
+    //        }
+    //      }
+    //    }
   }
 
   public function preUpdate(LifecycleEventArgs $args)
@@ -134,73 +151,28 @@ class OrderTotalCalculateSubscriber implements EventSubscriber
 
     if ($subject instanceof Order)
     {
-      $this->updateOrderPrices($subject);
+      $this->calculator->calculate($subject);
     }
-    elseif ($subject instanceof OrderItem)
-    {
-      $order = $subject->getOrder();
-
-      if ($order && ($order->getCheckoutStateId() < Order::CHECKOUT_STATE_COMPLETE) && $subject->getProduct())
-      {
-        $subject->setPrice($subject->getProduct()->getUnitPrice());
-        #$subject->setPrice($this->priceManager->getProductPrice($subject->getProduct()));
-      }
-    }
-  }
-
-  protected function updateOrderPrices(Order $order)
-  {
-    $order->setTotal($this->calculateOrderTotal($order));
-    $order->setSubtotal($this->calculateOrderSubTotal($order));
-    $order->setDiscountSum($this->calculateOrderDiscount($order));
-  }
-
-  /**
-   * Сумма скидки
-   * @param Order $order
-   * @return float|int
-   */
-  private function calculateOrderDiscount(Order $order)
-  {
-    $items = $order->getOrderItems();
-    $total = 0;
-
-    foreach ($items as $item)
-    {
-      $total += $this->priceManager->getProductPriceDiff($item->getProduct());
-    }
-
-    return $total;
-  }
-
-  /**
-   * Стоимость заказа
-   * @param Order $order
-   * @return float
-   */
-  private function calculateOrderTotal (Order $order)
-  {
-    return $this->calculateOrderSubTotal($order)
-      + $order->getShippingCost()
-      + $order->getFee();
-  }
-
-  /**
-   * Стоимость товаров
-   * @param Order $order
-   * @return float
-   */
-  private function calculateOrderSubTotal(Order $order)
-  {
-    $items = $order->getOrderItems();
-    $total = 0;
-
-    foreach ($items as $item)
-    {
-      $total += $item->getProduct()->getUnitPrice() * $item->getQuantity();
-      #$total += $this->priceManager->getProductPrice($item->getProduct()) * $item->getQuantity();
-    }
-
-    return $total;
+    //    elseif ($subject instanceof OrderItem)
+    //    {
+    //      $order = $subject->getOrder();
+    //
+    //      if ($order)
+    //      {
+    //        $em = $args->getObjectManager();
+    //        $total = $order->getTotal();
+    //        $subTotal = $order->getSubtotal();
+    //        $discount = $order->getDiscountSum();
+    //        $this->calculator->calculate($order);
+    //
+    //        if (($total !== $order->getTotal() || $subTotal !== $order->getSubtotal() || $discount !== $order->getDiscountSum())
+    //          && $order->getId()
+    //        )
+    //        {
+    //          $em->persist($order);
+    //          $em->flush();
+    //        }
+    //      }
+    //    }
   }
 }
