@@ -126,9 +126,10 @@ class OrderAdmin extends AbstractAdmin
       ->add('payment_method', EntityType::class, array(
         'class' => PaymentMethod::class
       ))
-      ->add('shipping_method', ChoiceType::class, array(
-        'choices' => $this->getShippingChoices()
-      ))
+//      ->add('shipping_method', ChoiceType::class, array(
+//        'choices' => $this->getShippingChoices()
+//      ))
+      ->add('shippingMethod')
       ->add('shipping_city_name', TextType::class)
       ->add('shipping_postcode', TextType::class)
       ->add('shipping_address', TextType::class)

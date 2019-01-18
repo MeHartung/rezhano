@@ -41,9 +41,13 @@ class ShippingMethodValidator extends ConstraintValidator
     $availableShippingMethods = $this->shippingManager->getAvailableShippingMethodsForShipment($shipments[0]);
     $allShippingMethods = $this->shippingManager->getShippingMethods();
 
+    $orderShippingMethodUid = ($order->getShippingMethod() instanceof \StoreBundle\Entity\Store\Shipping\ShippingMethod)?
+      $order->getShippingMethod()->getUid():
+      $order->getShippingMethod();
+
     foreach ($availableShippingMethods as $shippingMethod)
     {
-      if ($shippingMethod->getUid() === $order->getShippingMethod()->getUid())
+      if ($shippingMethod->getUid() === $orderShippingMethodUid)
       {
         $isValid = true;
         break;
@@ -55,7 +59,7 @@ class ShippingMethodValidator extends ConstraintValidator
       $selectedShippingMethod = null;
       foreach ($allShippingMethods as $shippingMethod)
       {
-        if ($shippingMethod->getUid() == $order->getShippingMethod())
+        if ($shippingMethod->getUid() == $orderShippingMethodUid)
         {
           $selectedShippingMethod = $shippingMethod;
           break;

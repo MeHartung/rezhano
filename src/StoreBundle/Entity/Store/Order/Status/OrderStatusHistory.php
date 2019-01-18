@@ -35,6 +35,7 @@ class OrderStatusHistory
    * @var $order Order
    * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\Order", inversedBy="orderStatus",
    *                cascade={"persist", "remove"})
+   * @ORM\JoinColumn(onDelete="CASCADE")
    */
   private $order;
 
