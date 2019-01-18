@@ -2275,6 +2275,12 @@ h1,
 .notes .notes-slider {
   width: 457px;
 }
+@media (min-width: 2000px) {
+  .notes .notes__text p,
+  .notes .notes-slider {
+    width: 600px;
+  }
+}
 .note-wrap .notes-slider,
 .note-wrap .notes-images-gallery {
   display: inline-block;
