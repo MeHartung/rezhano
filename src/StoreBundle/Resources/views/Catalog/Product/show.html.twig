@@ -8,6 +8,12 @@
   {#content="{{ product.name }} по низким ценам в Интернет-магазине Store. {{ product.name }}, купить с доставкой по РФ">#}
   {#<meta name="keywords"#}
   {#content="{{ product.name }}, купить цены стоимость продажа Store">#}
+  <meta name="title" content="{{ metaTitle() }}"/>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ path('product', {'slug': product.slug } ) }}" />
+  {% for image in product.images %}
+    {% if loop.index %}<meta property="og:image" content="{{ image_url(image) }}" /> {% endif %}
+  {% endfor %}
 {% endblock %}
 
 {% block stylesheets %}
