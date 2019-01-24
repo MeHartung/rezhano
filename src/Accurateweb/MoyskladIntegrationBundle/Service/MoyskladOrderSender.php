@@ -106,8 +106,8 @@ class MoyskladOrderSender
       'name' => $order->getDocumentNumber(),
       'sum' => $order->getTotal(),
       'externalCode' => $order->getDocumentNumber(),
-      'moment' => $order->getCreatedAt()?$order->getCreatedAt()->format('Y-m-d H:i:s'):null,
-      'created' => $order->getCreatedAt()?$order->getCreatedAt()->format('Y-m-d H:i:s'):null,
+      'moment' => $order->getCheckoutAt()?$order->getCheckoutAt()->format('Y-m-d H:i:s'):null,
+      'created' => $order->getCheckoutAt()?$order->getCheckoutAt()->format('Y-m-d H:i:s'):null,
       'applicable' => false, # заказ не проведён (черновик)
     ]);
 

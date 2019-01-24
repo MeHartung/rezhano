@@ -2413,26 +2413,51 @@ h1, .popular-products__title {
     border-radius: 50%;
     background-color: @rc_yellow;
     position: absolute;
-
     top: -16px;
     right: -50px;
 
     &:after {
-      content: url("../images/icons/instagram.png");
-
-
+      content: "";
+      background: url("../images/icons/instagram.png") center no-repeat;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
+      //top: 50%;
+      //left: 50%;
+      //-webkit-transform: translate(-50%, -50%);
+      //-moz-transform: translate(-50%, -50%);
+      //-ms-transform: translate(-50%, -50%);
+      //-o-transform: translate(-50%, -50%);
+      //transform: translate(-50%, -50%);
+      top: 15px;
+      left: 16px;
+
+      width: 32px;
+      height: 32px;
+
+      -webkit-transition: background .2s;
+      -moz-transition: background .2s;
+      -ms-transition: background .2s;
+      -o-transition: background .2s;
+      transition: background .2s;
     }
   }
   
-  
+  &:hover {
+    color: @c_black;
+
+    .icon-instagram {
+
+      &:after {
+        content: "";
+        background: url("../images/icons/instagram-white.png") center no-repeat;
+
+        -webkit-transition: background .2s;
+        -moz-transition: background .2s;
+        -ms-transition: background .2s;
+        -o-transition: background .2s;
+        transition: background .2s;
+      }
+    }
+  }
 }
 
 //
