@@ -40,7 +40,7 @@ class OrderAdmin extends AbstractAdmin
     '_sort_order' => 'DESC',
 
     // name of the ordered field (default = the model's id field, if any)
-    '_sort_by' => 'createdAt',
+    '_sort_by' => 'checkoutAt',
   );
 
   /** @var $shippingManager ShippingManager */
