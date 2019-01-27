@@ -39,7 +39,10 @@ class MetaProduct implements MetaInterface, MetaOpenGraphInterface
       return '';
     }
 
-    return sprintf('%s, купить по низким ценам с доставкой по РФ', $this->product->getName());
+    return $this->product->isBundle() ?
+      sprintf('%s — %s — в Интернет-магазине сыроварни «Режано» с доставкой в Екатеринбурге, Реже', $this->product->getName(), mb_strtolower($this->product->getShortDescription()))
+      :
+      sprintf('Купите сыр %s — %s — в Интернет-магазине сыроварни «Режано» с доставкой в Екатеринбурге, Реже', $this->product->getName(), mb_strtolower($this->product->getShortDescription()));
   }
 
   public function getMetaDescription ()
@@ -49,8 +52,10 @@ class MetaProduct implements MetaInterface, MetaOpenGraphInterface
       return '';
     }
 
-    return sprintf('%s по низким ценам, Купить с доставкой по РФ', $this->product->getName(), $this->product->getName());
-  }
+    return $this->product->isBundle() ?
+      sprintf('%s. Вы можете заказать доставку товара %s в Интернет-магазине сыроварни «Режано»', $this->product->getDescription(), $this->product->getName())
+      :
+      sprintf('%s. Вы можете заказать доставку сыра %s в Интернет-магазине сыроварни «Режано»', $this->product->getDescription(), $this->product->getName());  }
 
   public function getMetaKeywords ()
   {
@@ -59,27 +64,22 @@ class MetaProduct implements MetaInterface, MetaOpenGraphInterface
       return null;
     }
 
+    $taxon = $this->product->isBundle() ? $this->product->getPrimaryTaxon()->getStringName().' ' : '';
+
     $keywords = [
-      '%s купить',
-      '%s цена',
-      '%s Екатеринбург',
-      '%s интернет магазин',
-      '%s продажа',
-      '%s заказ',
-      '%s доставка',
-      '%s в подарок',
-      '%s в кредит',
-      '%s аксессуары',
-      '%s отзывы',
-      '%s описание',
-      '%s фото',
-      '%s инструкции'
+      $taxon.'сыр',
+      'сыроварня',
+      'сыровары',
+      'купить сыр от сыроваров',
+      'частная сыроварня',
+      mb_strtolower($this->product->getShortDescription()),
+      'доставка свежего сыра',
     ];
 
-    foreach ($keywords as &$keyword)
-    {
-      $keyword = sprintf($keyword, $this->product->getName());
-    }
+//    foreach ($keywords as &$keyword)
+//    {
+//      $keyword = sprintf($keyword, $this->product->getName());
+//    }
 
     return implode(', ', $keywords);
   }
