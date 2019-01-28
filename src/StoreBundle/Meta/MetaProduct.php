@@ -53,9 +53,9 @@ class MetaProduct implements MetaInterface, MetaOpenGraphInterface
     }
 
     return $this->product->isBundle() ?
-      sprintf('%s. Вы можете заказать доставку товара %s в Интернет-магазине сыроварни «Режано»', strip_tags(str_replace(array("\r\n", "\r", "\n"),"",$this->product->getDescription()), $this->product->getName()))
+      sprintf('%s. Вы можете заказать доставку товара %s в Интернет-магазине сыроварни «Режано»', strip_tags(str_replace(array("\r\n", "\r", "\n"),"",$this->product->getDescription())), $this->product->getName())
       :
-      sprintf('%s. Вы можете заказать доставку сыра %s в Интернет-магазине сыроварни «Режано»', strip_tags(str_replace(array("\r\n", "\r", "\n"),"",$this->product->getDescription()), $this->product->getName()));
+      sprintf('%s. Вы можете заказать доставку сыра %s в Интернет-магазине сыроварни «Режано»', strip_tags(str_replace(array("\r\n", "\r", "\n"),"",$this->product->getDescription())), $this->product->getName());
   }
 
   public function getMetaKeywords ()
