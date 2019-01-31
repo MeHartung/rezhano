@@ -40,9 +40,9 @@ class MetaProduct implements MetaInterface, MetaOpenGraphInterface
     }
 
     return $this->product->isBundle() ?
-      sprintf('%s — %s — в Интернет-магазине сыроварни «Режано» с доставкой в Екатеринбурге, Реже', $this->product->getName(), mb_strtolower($this->product->getShortDescription()))
+      sprintf('%s — %s — в Интернет-магазине сыроварни «Режано» с доставкой в Екатеринбурге, Реже', $this->product->getName(), mb_strtolower(strip_tags(str_replace(array("\r\n", "\r", "\n"),"",$this->product->getShortDescription()))))
       :
-      sprintf('Купите сыр %s — %s — в Интернет-магазине сыроварни «Режано» с доставкой в Екатеринбурге, Реже', $this->product->getName(), mb_strtolower($this->product->getShortDescription()));
+      sprintf('Купите сыр %s — %s — в Интернет-магазине сыроварни «Режано» с доставкой в Екатеринбурге, Реже', $this->product->getName(), mb_strtolower(strip_tags(str_replace(array("\r\n", "\r", "\n"),"",$this->product->getShortDescription()))));
   }
 
   public function getMetaDescription ()
@@ -53,9 +53,10 @@ class MetaProduct implements MetaInterface, MetaOpenGraphInterface
     }
 
     return $this->product->isBundle() ?
-      sprintf('%s. Вы можете заказать доставку товара %s в Интернет-магазине сыроварни «Режано»', $this->product->getDescription(), $this->product->getName())
+      sprintf('%s Вы можете заказать доставку товара %s в Интернет-магазине сыроварни «Режано»', strip_tags(str_replace(array("\r\n", "\r", "\n"),"",$this->product->getDescription())), $this->product->getName())
       :
-      sprintf('%s. Вы можете заказать доставку сыра %s в Интернет-магазине сыроварни «Режано»', $this->product->getDescription(), $this->product->getName());  }
+      sprintf('%s Вы можете заказать доставку сыра %s в Интернет-магазине сыроварни «Режано»', strip_tags(str_replace(array("\r\n", "\r", "\n"),"",$this->product->getDescription())), $this->product->getName());
+  }
 
   public function getMetaKeywords ()
   {
@@ -72,7 +73,7 @@ class MetaProduct implements MetaInterface, MetaOpenGraphInterface
       'сыровары',
       'купить сыр от сыроваров',
       'частная сыроварня',
-      mb_strtolower($this->product->getShortDescription()),
+      mb_strtolower(strip_tags(str_replace(array("\r\n", "\r", "\n"),"", $this->product->getShortDescription()))),
       'доставка свежего сыра',
     ];
 

@@ -3307,11 +3307,14 @@ body .delivery-info__message {
   font-family: Catorze27style1-bold;
   color: #000000;
   display: inline-block;
-  max-width: 350px;
+  max-width: 325px;
   margin-left: 80px;
   vertical-align: top;
   margin-top: 37px;
   position: relative;
+}
+.cheese-card__title p {
+  font-size: 30px;
 }
 .cheese-card__image {
   display: inline-block;
