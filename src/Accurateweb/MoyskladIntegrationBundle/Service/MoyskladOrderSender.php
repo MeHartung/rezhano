@@ -35,6 +35,8 @@ class MoyskladOrderSender
   const PRODUCT_TYPE_SINGLE = 'single';
   # составной товар из МС
   const PRODUCT_TYPE_BUNDLE = 'bundle';
+  
+  const ATTRIBUTE_STORE_ORDER_NUM = 'Номер заказа ИМ'; //Номер заказа на стороне ИМ
   # это всё пока не надо
   /*  const ATTRIBUTE_ORDER_NUM = 'ac2633f9-6f98-11e8-9109-f8fc00013baa'; //Номер заказа ИМ string
   const ATTRIBUTE_CDEK_ORDER_NUM = 'ac263d50-6f98-11e8-9109-f8fc00013bab'; //Номер заказа СДЭК string
@@ -103,7 +105,7 @@ class MoyskladOrderSender
     );
 
     $customerOrder = new CustomerOrder($this->sklad->getSklad(), [
-      'name' => $order->getDocumentNumber(),
+     # 'name' => $order->getDocumentNumber(),
       'sum' => $order->getTotal(),
       'externalCode' => $order->getDocumentNumber(),
       'moment' => $order->getCheckoutAt()?$order->getCheckoutAt()->format('Y-m-d H:i:s'):null,
@@ -121,88 +123,17 @@ class MoyskladOrderSender
      * Этот кусок на данный момент выпилен, ибо работает он с кастомными полями
      * @var EntityList $attributes
      */
-   /* $attributes = $meta->attributes;
+    $attributes = $meta->attributes;
     foreach ($attributes as $attribute)
     {
-      switch ($attribute->id)
+      switch ($attribute->name)
       {
-        case self::ATTRIBUTE_RECIEVER:
-          $attribute->value = $order->getCustomerFullName();
-          $customerOrderCreation->addAttribute($attribute);
-          break;
-        case self::ATTRIBUTE_RECIEVER_PHONE:
-          $attribute->value = $order->getCustomerPhone();
-          $customerOrderCreation->addAttribute($attribute);
-          break;
-        case self::ATTRIBUTE_ORDER_NUM:
+        case self::ATTRIBUTE_STORE_ORDER_NUM:
           $attribute->value = $order->getDocumentNumber();
           $customerOrderCreation->addAttribute($attribute);
           break;
-        case self::ATTRIBUTE_CDEK_PVZ:
-          if ($order->getShippingMethodId() == ShippingMethodCdekTerminal::UID)
-          {
-            # При заказе через ПВЗ СДЕК в поле shipping_address лежит адрес из сдэка - подставляем его
-            $shipping_info = $order->getShippingInfo();
-            $addr = null;
-
-            # Ищем по информации о ПВЗ
-            if (isset($shipping_info['pvz']))
-            {
-              # @ var CdekRawPvzlist $pvz
-              $pvz = $this->pvzlistRepository->find($shipping_info['pvz']);
-
-              if ($pvz)
-              {
-                $addr = $pvz->getFullAddress();
-              }
-            }
-
-            # Ищем по адресу заказа
-            if (!isset($pvz))
-            {
-              $pvz = $this->pvzlistRepository->findOneBy(['address' => $order->getShippingAddress()]);
-
-              if ($pvz)
-              {
-                $addr = $pvz->getFullAddress();
-              }
-            }
-
-            if (!$addr)
-            {
-//              $this->logger->warning(sprintf('Pvz address not found for %s', $order->getDocumentNumber()));
-              #Если ничего нет, вставляем просто адрес из заказа
-              $addr = $order->getShippingAddress();
-            }
-
-            # Атрибут ПВЗ - справочник, поэтому делаем CustomEntity как атрибут
-            $customAttribute = new CustomEntity($this->sklad->getSklad());
-            $customAttribute->meta = $attribute->customEntityMeta;
-            $customAttribute->name = $addr;
-
-            $attribute->value = $customAttribute;
-            $customerOrderCreation->addAttribute($attribute);
-          }
-
-          break;
-        case self::ATTRIBUTE_CITY:
-          $attribute->value = $order->getShippingCityName();
-          $customerOrderCreation->addAttribute($attribute);
-          break;
-        case self::ATTRIBUTE_ADDRESS:
-          if ($order->getShippingMethodId() != ShippingMethodCdekTerminal::UID)
-          {
-            # Для заказа через СДЕК Не нужно указывать адрес доставки
-            $attribute->value = $order->getShippingAddress();
-            $customerOrderCreation->addAttribute($attribute);
-          }
-          break;
-        case self::ATTRIBUTE_COMMENT:
-          $attribute->value = $order->getCustomerComment();
-          $customerOrderCreation->addAttribute($attribute);
-          break;
       }
-    }*/
+    }
 
     $productList = $this->getProductList($order->getOrderItems());
     $bundleList = $this->getBundleList($order->getOrderItems());
