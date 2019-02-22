@@ -14,6 +14,8 @@ define(function(require){
       MapViewDialog = require('view/common/map-view-dialog'),
       QuestionDialogView = require('view/common/question-view-dialog');
 
+  var device = require('current-device').default;
+
   return Backbone.View.extend({
     events: {
       'click .button-question': 'onQuestionClick',
