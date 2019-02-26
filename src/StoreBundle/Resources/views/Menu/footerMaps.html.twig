@@ -16,6 +16,31 @@
         </div>
     {% endfor %}
 
+    <div class="footer-contacts_mobile">
+      <div class="footer-contacts">
+
+        {{ render(controller('StoreBundle:Common:_footerContacts')) }}
+
+        {% if setting('contact_email')  %}
+          <div class="contact-item">
+            <a class="contact-item" href="mailto:{{ setting('contact_email') }}?subject=Письмо с сайта rezhano.ru">{{ setting('contact_email') }}</a>
+          </div>
+        {% endif %}
+
+        <div class="footer-social">
+          {% if setting('facebook_link')  %}
+            <a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook"></a>
+          {% endif %}
+          {% if setting('vk_link')  %}
+            <a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte"></a>
+          {% endif %}
+          {% if setting('instagram_link')  %}
+            <a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram"></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
     <a href="{{ path('question') }}" class="button
                     button-question
                     ">

@@ -7,7 +7,11 @@ html {
 }
 
 body {
-  min-width: @min_width;
+  width: 100%;
+
+  @media(min-width: @min_width) {
+    min-width: @min_width;
+  }
 }
 
 main {
@@ -24,35 +28,41 @@ main {
 }
 
 .container {
-  width: 1141px;
-  //min-width: @min_width;
-  //max-width: @max_width;
-  padding: 0 @site_padd;
-  margin: 0 auto;
+  width: 100%;
+  //min-width: 640px;
   position: relative;
+  padding: 0 @site_padd;
 
-  @media (min-width: 2000px) {
-    width: 1494px;
-  }
 
-  &_no-padding {
-    padding: 0;
-  }
+  @media(min-width: @min_width){
 
-  &_service-page {
-    min-width: 580px + @site_padd + @site_padd;
-    width: 580px + @site_padd + @site_padd;
-  }
+    width: 1141px;
+    margin: 0 auto;
 
-  &_2000 {
 
-    @media(min-width: 2000px) {
-      width: auto;
+    @media (min-width: 2000px) {
+      width: 1494px;
     }
-  }
 
-  &_narrow {
-    width: 900px;
+    &_no-padding {
+      padding: 0;
+    }
+
+    &_service-page {
+      min-width: 580px + @site_padd + @site_padd;
+      width: 580px + @site_padd + @site_padd;
+    }
+
+    &_2000 {
+
+      @media(min-width: 2000px) {
+        width: auto;
+      }
+    }
+
+    &_narrow {
+      width: 900px;
+    }
   }
 }
 
