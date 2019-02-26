@@ -1926,24 +1926,28 @@ h1, .popular-products__title {
     text-align: center;
     position: relative;
 
-    &:after {
-      content: '';
-      background: url("../images/choice-arrow.png") center no-repeat;
-      width: 323px;
-      height: 113px;
-      bottom: -135px;
-      position: absolute;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      -moz-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      -o-transform: translateX(-50%);
-      transform: translateX(-50%);
+    @media(min-width: @min_width) {
+
+      &:after {
+        content: '';
+        background: url("../images/choice-arrow.png") center no-repeat;
+        width: 323px;
+        height: 113px;
+        bottom: -135px;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+      }
     }
   }
 
   &__link {
-    display: inline-block;
+    display: block;
+    margin: 0 auto;
     margin-top: 85px;
     position: relative;
     top: 0;
@@ -1963,6 +1967,13 @@ h1, .popular-products__title {
       -o-transition: top .2s;
       transition: top .2s;
     }
+
+    @media(min-width: @min_width) {
+      display: inline-block;
+      margin: 0;
+      margin-top: 85px;
+    }
+
   }
 
   &__everyday {
@@ -1992,7 +2003,12 @@ h1, .popular-products__title {
 .wholesale {
   position: relative;
   background-color: @rc_yellow;
-  height: 500px;
+  height: 790px;
+
+  @media(min-width: @min_width) {
+    height: 500px;
+  }
+
   overflow: initial;
   z-index: 2;
 
@@ -2018,17 +2034,39 @@ h1, .popular-products__title {
     height: 665px;
     display: inline-block;
     vertical-align: top;
-
     position: absolute;
-    top: -50px;
-    left: 0;
+    top: 280px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+
+    @media(min-width: @min_width) {
+      top: -50px;
+      left: 0;
+
+      -webkit-transform: translateX(0);
+      -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+      -o-transform: translateX(0);
+      transform: translateX(0);
+    }
   }
 
   &__text {
-    display: inline-block;
-    text-align: right;
-    margin-left: 641px;
-    padding-top: 111px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+
+    @media(min-width: @min_width){
+      display: inline-block;
+      margin: 0;
+      margin-left: 641px;
+      text-align: right;
+      padding-top: 111px;
+    }
 
     @media (min-width: 2000px) {
       margin-left: 915px;
@@ -2075,44 +2113,17 @@ h1, .popular-products__title {
     padding: 0 70px;
 
     .partner-item {
-      display: inline-block;
-      vertical-align: middle;
+      display: block;
 
+      @media(min-width: @min_width){
+        display: inline-block;
+      }
+
+      vertical-align: middle;
       margin: 0 15px;
       margin-bottom: 35px;
       position: relative;
-
       top: 0;
-    }
-
-    .partner-auchan {
-      background: url("../images/auchan.png") center no-repeat;
-      width: 176px;
-      height: 72px;
-    }
-
-    .partner-metro {
-      background: url("../images/metro.png") center no-repeat;
-      width: 224px;
-      height: 83px;
-    }
-
-    .partner-lenta {
-      background: url("../images/lenta.png") center no-repeat;
-      width: 229px;
-      height: 83px;
-    }
-
-    .partner-5-shop {
-      background: url("../images/5-shop.png") center no-repeat;
-      width: 290px;
-      height: 83px;
-    }
-
-    .partner-perek {
-      background: url("../images/perekrestok.png") center no-repeat;
-      width: 309px;
-      height: 83px;
     }
   }
 }
@@ -2132,6 +2143,12 @@ h1, .popular-products__title {
   &__wrap {
     text-align: center;
     width: 500px;
+    margin: 0 auto;
+
+    @media(min-width: @min_width){
+      margin: 0 ;
+    }
+
   }
 
   &__contacts {
@@ -2158,7 +2175,12 @@ h1, .popular-products__title {
   }
 
   &__image-bg {
-    
+    display: none;
+
+    @media(min-width: @min_width){
+      display: block;
+    }
+
     .image-bg__right {
       background: url("../images/tour-right-image.png") center no-repeat;
       width: 856px;
@@ -2317,6 +2339,11 @@ h1, .popular-products__title {
     position: absolute;
     top: -190px;
     left: -88px;
+    display: none;
+
+    @media(min-width: @min_width) {
+      display: block;
+    }
   }
 
   &:before {
@@ -2437,6 +2464,7 @@ h1, .popular-products__title {
   color: @c_black;
   position: relative;
   margin: 0 auto;
+  margin-left: -15px;
 
   span {
     z-index: 1;
@@ -2493,6 +2521,10 @@ h1, .popular-products__title {
         transition: background .2s;
       }
     }
+  }
+
+  @media(min-width: @min_width){
+    margin-left: 0;
   }
 }
 
