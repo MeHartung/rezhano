@@ -1217,9 +1217,10 @@ header {
     &_left {
       top: 306px;
       left: -185px;
+      display: none;
 
-      img {
-
+      @media(min-width: @min_width) {
+        display: block;
       }
 
       .image-name {
@@ -1259,6 +1260,11 @@ header {
       }
 
       .image-name {
+        display: none;
+
+        @media(min-width: @min_width) {
+         display: block;
+        }
 
         &__arrow {
           background: url("../images/icons/first-slide-arrow_2.png") center no-repeat;
@@ -1293,27 +1299,46 @@ header {
 .advantages {
   background-color: @c_black;
   margin-top: -120px;
-  padding-top: 120px;
+  padding-top: 220px;
+
+  @media(min-width: @min_width) {
+    padding-top: 120px;
+  }
+
   overflow: hidden;
 
   .advantages-item__wrap {
     position: relative;
+    padding-top: 100px;
+
+    @media(min-width: @min_width) {
+      padding-top: 0%
+    }
 
     min-height: 860px;
   }
 
   .advantages-image {
-    position: absolute;
+
+    @media(min-width: @min_width) {
+      position: absolute;
+    }
+
     right: -200px;
     top: -15px;
   }
 
   .advantages-step {
-    padding-top: 200px;
     position: relative;
 
     .advantages-image {
-      position: absolute;
+      padding-top: 100px;
+
+      @media(min-width: @min_width) {
+        position: absolute;
+        padding-top: 200px;
+      }
+
       right: -200px;
       top: -15px;
     }
@@ -1322,6 +1347,11 @@ header {
       width: 500px;
       text-align: center;
       position: relative;
+      margin: 0 auto;
+
+      @media(min-width: @min_width) {
+        margin: 0;
+      }
 
       &__image {
         margin-bottom: 45px;
@@ -1380,7 +1410,12 @@ header {
     }
 
     .advantages-text {
-      margin-left: 50%;
+      margin: 0 auto;
+
+      @media(min-width: @min_width) {
+        margin: 0;
+        margin-left: 50%;
+      }
     }
   }
 
@@ -1397,7 +1432,10 @@ header {
     }
 
     .advantages-text {
-      margin-left: 50%;
+
+      @media(min-width: @min_width) {
+        margin-left: 50%;
+      }
 
       &__image {
         background: url("../images/advantages_2_2.png") center no-repeat;
@@ -1444,7 +1482,10 @@ header {
       }
 
       .advantages-step {
-        margin-left: 50%;
+
+        @media(min-width: @min_width) {
+          margin-left: 50%;
+        }
       }
     }
   }
@@ -1495,9 +1536,12 @@ h1, .popular-products__title {
 .product-list {
   position: relative;
   overflow: visible;
-  //text-align: center;
-  text-align: left;
+  text-align: center;
   padding-left: 15px;
+
+  @media(min-width: @min_width) {
+    text-align: left;
+  }
 
   &__title {
     font-size: 65px;
@@ -1874,23 +1918,45 @@ h1, .popular-products__title {
 .presents {
   background-color: @rc_yellow;
   position: relative;
-  padding-top: 120px;
-  padding-bottom: 166px;
+  padding-top: 60px;
+  padding-bottom: 340px;
+  text-align: center;
+
+  @media(min-width: @min_width) {
+    text-align: left;
+    padding-top: 120px;
+    padding-bottom: 166px;
+  }
 
   &__image {
     background: url("../images/presents-image.png") center no-repeat;
     width: 841px;
     height: 563px;
     position: absolute;
-    bottom: -115px;
-    right: 176px;
+    right: -170px;
+    bottom: -180px;
+
+    //left: 50%;
+    //-webkit-transform: translateX(-50%);
+    //-moz-transform: translateX(-50%);
+    //-ms-transform: translateX(-50%);
+    //-o-transform: translateX(-50%);
+    //transform: translateX(-50%);
 
     @media(max-width: 1864px) {
+      left: auto;
       right: 0;
     }
 
     @media(max-width: 1864px) {
+      left: auto;
       right: -166px;
+    }
+
+    @media(min-width: @min_width) {
+      left: auto;
+      right: -166px;
+      bottom: -115px;
     }
   }
 
@@ -1977,15 +2043,23 @@ h1, .popular-products__title {
   }
 
   &__everyday {
-    background: url("../images/choice-everyday.png") left no-repeat;
+    background: url("../images/choice-everyday.png") center no-repeat;
     width: 550px;
     height: 385px;
+
+    @media(min-width: @min_width) {
+      background: url("../images/choice-everyday.png") left no-repeat;
+    }
   }
 
   &__gourmet {
-    background: url('../images/choice-gourmet.png') right no-repeat;
+    background: url('../images/choice-gourmet.png') center no-repeat;
     width: 550px;
     height: 385px;
+
+    @media(min-width: @min_width) {
+      background: url('../images/choice-gourmet.png') right no-repeat;
+    }
   }
 
   @media(min-width: 2000px) {
