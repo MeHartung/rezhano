@@ -1380,6 +1380,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   display: block;
   margin: 0 auto;
   width: 100%;
+  max-width: 640px;
 }
 @media (min-width: 1141px) {
   .header-section .header-slider__wrap.slick-initialized .header-slider__item img {
@@ -5545,6 +5546,7 @@ body .delivery-info__message {
     max-height: 200px;
     max-width: 50%;
     line-height: 1.2;
+    white-space: normal;
   }
 }
 .user-icon {
