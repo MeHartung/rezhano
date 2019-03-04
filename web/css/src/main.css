@@ -365,6 +365,12 @@ body {
     min-width: 1141px;
   }
 }
+@supports (padding: max(0px)) {
+  body .post {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
 .wrapper {
   overflow: hidden;
 }
