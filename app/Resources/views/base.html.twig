@@ -30,6 +30,11 @@
       if(navigator.userAgent.indexOf('Mac') > 0) {
         document.getElementsByTagName('html')[0].className = 'mac-os';
       }
+
+      window.addEventListener("orientationchange", function() {
+        // Выводим числовое значение ориентации
+        alert($(window).width());
+      }, false);
     </script>
 
     {#{% include '@ContentHotspot/Asset/content_hotspot.html.twig' with {'jquery': false, 'tinymce': true} %}#}
