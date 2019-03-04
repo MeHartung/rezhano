@@ -97,8 +97,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="advantages-image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat;
-                              width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;height: {{ image_height(promoBanner, 'homepage-promo-banner/teaser') }}px">
+                        <img class="advantages-image_mobile" src="{{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}"/>
+                        <div class="advantages-image" 
+                            style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat;
+                              width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;
+                              height: {{ image_height(promoBanner, 'homepage-promo-banner/teaser') }}px">
                         </div>
                     </div>
 
@@ -121,7 +124,8 @@
 
                 <div class="popular-products__show-more">
                     <a href="{{ url("taxon", { slug: "syr" }) }}" class="button button_black">
-                        <span>У нас ещё много вкусного и интересного</span>
+                        <span class="wide-device-width">У нас ещё много вкусного и интересного</span>
+                        <span class="sm-device-width">Ещё больше вкусного</span>
                     </a>
                 </div>
 
@@ -130,7 +134,6 @@
     {% endif %}
 
     <section class="presents">
-        <div class="presents__image"></div>
         <div class="container">
             <div class="presents__wrap">
 
@@ -145,28 +148,33 @@
                 </a>
             </div>
         </div>
+        <img class="presents__image" src="{{ asset('/images/presents-image.png') }}">
     </section>
 
     <section class="choice">
         <div class="container container_no-padding container_2000">
             <h2 class="choice__title">Сложный выбор?</h2>
 
-            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "8"}) }}" class="choice__link choice__everyday"></a>
-            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "7"}) }}" class="choice__link choice__gourmet"></a>
+            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "8"}) }}" 
+                class="choice__link choice__everyday">
+                <img src="{{ asset('/images/choice-everyday.png') }}" class="">    
+            </a>
+            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "7"}) }}" 
+            class="choice__link choice__gourmet">
+                <img src="{{ asset('/images/choice-gourmet.png') }}" class="">    
+            </a>
         </div>
     </section>
 
     <section class="wholesale">
         <div class="container container_no-padding">
-
-            <div class="wholesale__image">
-            </div>
             <div class="wholesale__text">
                 <p>Ты оптовый покупатель?<br>Сделай заказ в специальном<br> разделе сайта</p>
                 <a href="{{ url('contacts_index') }}" class="button button_on-yellow">
                     <span>купить оптом</span>
                 </a>
             </div>
+            <img src="{{ asset('/images/wholesale-sections-image.png') }}" class="wholesale__image">
         </div>
     </section>
 
@@ -186,7 +194,7 @@
     <section class="tour">
         <div class="container">
             <div class="tour__wrap">
-                <div class="tour__image"></div>
+                <img src="{{ asset('/images/tour-left-image.png') }}" class="tour__image">
                 <span class="tour__contacts">{{ hotspot_inline('tour_phone', '+7 (922) 145-62-37') }}</span>
                 <a href="/tours" class="button">
                     <span>подробности</span>
