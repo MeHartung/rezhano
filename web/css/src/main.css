@@ -357,10 +357,12 @@ html {
 }
 body {
   width: 100%;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   body {
-    min-width: 1141px;
+    min-width: 1200px;
   }
 }
 .wrapper {
@@ -374,7 +376,7 @@ body {
   position: relative;
   padding: 0 30px;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .container {
     width: 1141px;
     margin: 0 auto;
@@ -390,12 +392,12 @@ body {
     width: 900px;
   }
 }
-@media (min-width: 1141px) and (min-width: 2000px) {
+@media (min-width: 1200px) and (min-width: 2000px) {
   .container {
     width: 1494px;
   }
 }
-@media (min-width: 1141px) and (min-width: 2000px) {
+@media (min-width: 1200px) and (min-width: 2000px) {
   .container_2000 {
     width: auto;
   }
@@ -1933,7 +1935,7 @@ h1,
   text-align: center;
   position: relative;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .choice__title:after {
     content: '';
     background: url("../images/choice-arrow.png") center no-repeat;
@@ -1969,7 +1971,7 @@ h1,
   -o-transition: top .2s;
   transition: top .2s;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .choice__link {
     display: inline-block;
     margin: 0;
@@ -1999,7 +2001,7 @@ h1,
   overflow: initial;
   z-index: 2;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .wholesale {
     height: 500px;
   }
@@ -2033,7 +2035,7 @@ h1,
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .wholesale__image {
     top: -50px;
     left: 0;
@@ -2049,7 +2051,7 @@ h1,
   margin: 0 auto;
   text-align: center;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .wholesale__text {
     display: inline-block;
     margin: 0;
@@ -2104,7 +2106,7 @@ h1,
   position: relative;
   top: 0;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .partners .partners-wrap .partner-item {
     display: inline-block;
   }
@@ -2121,7 +2123,7 @@ h1,
   width: 500px;
   margin: 0 auto;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .tour__wrap {
     margin: 0 ;
   }
@@ -2149,7 +2151,7 @@ h1,
 .tour__image-bg {
   display: none;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .tour__image-bg {
     display: block;
   }
@@ -2220,7 +2222,7 @@ h1,
   padding: 0;
   margin: 24px 0;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .notes .notes-slider .slick-dots {
     left: 20px;
     -webkit-transform: translateX(0);
@@ -2278,7 +2280,7 @@ h1,
 .notes .notes-slider button.slick-next:hover {
   background-position: -76px 0;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .notes .notes-slider {
     display: inline-block;
   }
@@ -2292,7 +2294,7 @@ h1,
   left: -88px;
   display: none;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .notes__image-top {
     display: block;
   }
@@ -2317,7 +2319,7 @@ h1,
   text-align: center;
   font-size: 60px;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .notes__title {
     text-align: left;
   }
@@ -2359,7 +2361,7 @@ h1,
   top: 53%;
   right: 0;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .notes .notes-images-gallery {
     display: block;
   }
@@ -2377,7 +2379,7 @@ h1,
     width: 600px;
   }
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .notes .container {
     text-align: left;
   }
@@ -2429,7 +2431,7 @@ h1,
   -o-transition: background .2s;
   transition: background .2s;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .notes__go-instagram {
     margin-left: 0;
   }
@@ -2453,7 +2455,7 @@ footer .header-logo {
   left: 30px;
   top: 37px;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   footer .header-logo {
     left: 50px;
   }
@@ -2620,7 +2622,7 @@ footer.low .footer-aside {
   border: none;
   height: 70px;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   footer {
     background-position-x: center;
     padding-top: 209px;
@@ -5211,7 +5213,7 @@ body .delivery-info__message {
   display: inline-block;
   padding-top: 7px;
 }
-@media (min-width: 1141px) {
+@media (min-width: 1200px) {
   .header-section .header-slider__wrap .header-slider__item img,
   .header-section .header-slider__wrap .header-slider__item .header-slider__teaser {
     display: none;
