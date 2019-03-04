@@ -1367,7 +1367,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   margin: 0 auto;
   margin-top: 220px;
   display: block;
-  height: 130%;
+  height: auto;
   width: 100%;
 }
 @media (min-width: 1141px) {
