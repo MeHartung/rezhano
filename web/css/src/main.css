@@ -350,6 +350,9 @@ th {
   background: none;
 }
 /*SPRITE*/
+html {
+  -webkit-text-size-adjust: none;
+}
 body,
 html {
   width: 100%;
