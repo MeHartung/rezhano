@@ -219,7 +219,10 @@ define(function(require){
     onShowMobileMenu: function (e) {
       e.preventDefault();
 
-      $(e.currentTarget).toggleClass('active')
+      $(e.currentTarget).toggleClass('active');
+      $(e.currentTarget).parent().find('.header-mobile').toggleClass('active');
+      $('body').toggleClass('no-scroll');
+
     }
   });
 });

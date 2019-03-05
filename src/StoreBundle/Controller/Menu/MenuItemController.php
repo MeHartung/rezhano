@@ -51,7 +51,21 @@ class MenuItemController extends Controller
 //      'nodes_rest' => $tree
 //    ));
 //  }
-  
+
+  public function mobileHeaderMenuAction()
+  {
+    $requestUri = $this->get('request_stack')->getParentRequest()->getPathInfo();
+    $headerMenuItems = $this->getDoctrine()
+      ->getRepository('StoreBundle:Menu\MenuItem')
+      ->findBy(array('isHeaderDisplay' => true), array('treeLeft' => 'ASC'));;
+
+    return $this->render('StoreBundle:Menu:mobileHeaderMenu.html.twig', [
+        'menuItems' => $headerMenuItems,
+        'requestUri' => $requestUri,
+      ]
+    );
+  }
+
   public function footerMenuAction()
   {
     $headerMenuItems = $this->getDoctrine()

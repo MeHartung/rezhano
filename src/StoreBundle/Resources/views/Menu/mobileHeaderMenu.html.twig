@@ -1,0 +1,69 @@
+{#<div class="header-menu">
+    {% if menuItems|length > 0 %}
+        {% for menuItem in menuItems %}
+            {% if (menuItem.url) %}
+                {% if menuItem.url | is_active %}
+                    <a href="#" class="header-menu__item active">{{ menuItem.name }}</a>
+                {% else %}
+                    <a href="{{ menuItem.url|menu_url }}"
+                       class="header-menu__item">{{ menuItem.name }}</a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>#}
+
+{% import _self as menu %}
+
+{% macro menu_item(label, url, withArrow, active, children, forceEnabled) %}
+    {#    {% set class = 'main-menu__link' %}
+        {% if withArrow|default(false) %}
+            {% set class = class ~ ' main-menu__link_arrow' %}
+        {% endif %}#}
+    {% set class = 'header-menu__item'  %}
+    {% if forceEnabled|default(false) %}
+        {% set class = class ~ ' header-menu__item ' %}
+    {% endif %}
+
+    {% if active|default(false) %}
+        {% set class = class ~ ' active' %}
+        <span class="{{ class }}">{{ label }}</span><br/>
+    {% else %}
+        <a href="{{ url }}" class="{{ class }}">{{ label }}</a><br/>
+    {% endif %}
+    {{ children|default('')|raw }}
+
+{% endmacro %}
+
+            {% if menuItems %}
+                {% set continue = false %}
+                <div class="header-menu">
+                    {% for menuItem in menuItems %}
+
+                        {% if not continue %}
+
+                            {% set isActive = false %}
+                            {% if menuItem.url in requestUri %}
+                                {% set isActive = true %}
+                            {% endif %}
+
+                            {% set target = menuItem.url %}
+
+                            {% if app.environment == "dev" %}
+                                {% set target = "/app_dev.php" ~ menuItem.url %}
+                            {% endif %}
+                            {#
+                                Костыль, который не даёт главной быть активной, когда выбрана др. стр
+                            #}
+                            {% if menuItem.url == "/" and app.request.get("_route") != "homepage" %}
+                                {% set isActive = false %}
+                            {% endif %}
+
+                            {{ menu.menu_item( menuItem.name, target, false, isActive) }}
+                        {% endif %}
+                        {% if continue %}
+                            {% set continue = false %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
