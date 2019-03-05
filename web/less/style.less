@@ -666,12 +666,12 @@ header {
     position: absolute;
     left: 0;
     top: 3px;
-    margin-top: 8px;
     z-index: 1;
 
     @media(min-width: @min_width){
       left: 50px;
       z-index: auto;
+      margin-top: 8px;
     }
   }
 
@@ -749,8 +749,11 @@ header {
   .header-controls {
     display: inline-block;
     vertical-align: top;
+    padding-top: 8px;
 
-    padding-top: 19px;
+    @media(min-width: @min_width){
+      padding-top: 19px;
+    }
 
     &__item {
       display: inline-block;
@@ -2312,7 +2315,8 @@ h1, .popular-products__title {
     vertical-align: top;
     margin-left: -10%;
     margin-top: 10px;
-    margin-bottom: -70px;
+    margin-bottom: -22%;
+
 
     @media(min-width: @min_width) {
       margin-top: 0;
@@ -2446,12 +2450,21 @@ h1, .popular-products__title {
   }
 
   &__contacts {
-    font-size: 45px;
     font-family: Catorze27style1-bold;
     color: @c_white;
     line-height: 67px;
     display: block;
     margin: 0 auto;
+    font-size: 2em;
+
+    @media(orientation: landscape) {
+      font-size: 3em;
+    }
+
+    @media(min-width: @min_width){
+      font-size: 45px;
+    }
+
   }
 
   .button {
