@@ -2896,7 +2896,10 @@ footer {
   .footer-maps {
     display: block;
     vertical-align: top;
-    width: 310px;
+
+    @media(min-width: @min_width) {
+      width: 310px;
+    }
 
     .button {
       margin-top: 30px;
