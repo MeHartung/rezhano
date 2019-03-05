@@ -2125,7 +2125,7 @@ h1, .popular-products__title {
     display: block;
     margin-left: 33%;
     width: 111%;
-    margin-bottom: -100px;
+    margin-bottom: -26%;
     margin-top: -20px;
 
     @media(min-width: @min_width) {
@@ -2661,7 +2661,7 @@ h1, .popular-products__title {
     content: '';
     position: absolute;
     background: url("../images/notes.section-top.png") center no-repeat;
-    width: 100%;
+    width: 102%;
     height: 139px;
     top: -138px;
     left: 50%;
@@ -2670,6 +2670,10 @@ h1, .popular-products__title {
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
+
+    @media(min-width: @min_width){
+      width: 100%;
+    }
   }
 
   &__title {
@@ -2903,10 +2907,16 @@ footer {
       display: inline-block;
       vertical-align: bottom;
       width: 100%;
+      white-space: nowrap;
 
       .footer-contacts {
         display: inline-block;
         width: 50%;
+        white-space: normal;
+
+        .contact-item {
+          margin-top: 3px;
+        }
       }
 
       .button-question-wrap {
