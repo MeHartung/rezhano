@@ -20,7 +20,8 @@ define(function(require){
     events: {
       'click .button-question': 'onQuestionClick',
       'click .footer-maps__link' : 'onAddressClick',
-      'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay'
+      'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
+      'click .cmn-toggle-switch' : 'onShowMobileMenu'
     },
     initialize: function(options){
       this.options = $.extend({
@@ -214,6 +215,11 @@ define(function(require){
 
         self.$('.section-see-works__video-play-overlay').css('z-index', 3)
       })
+    },
+    onShowMobileMenu: function (e) {
+      e.preventDefault();
+
+      $(e.currentTarget).toggleClass('active')
     }
   });
 });
