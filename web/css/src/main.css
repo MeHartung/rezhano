@@ -1500,8 +1500,8 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   }
 }
 .first-slide .container p {
-  font-size: 6vw;
-  line-height: 8vw;
+  font-size: 1.5em;
+  line-height: 1.1em;
   font-family: alegreyasans-medium;
   color: #000000;
   max-width: 660px;
@@ -2412,7 +2412,12 @@ h1,
   z-index: 1;
 }
 .partners__title {
-  margin-bottom: 85px;
+  margin-bottom: 50px;
+}
+@media (min-width: 1200px) {
+  .partners__title {
+    margin-bottom: 85px;
+  }
 }
 .partners:after {
   content: '';
@@ -5720,7 +5725,7 @@ body .delivery-info__message {
   transform: rotate(45deg);
 }
 .cmn-toggle-switch__htx.active span::after {
-  bottom: 1px;
+  bottom: 2px;
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);

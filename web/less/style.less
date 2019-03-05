@@ -1269,8 +1269,8 @@ header {
   }
 
   .container p {
-    font-size: 6vw;
-    line-height: 8vw;
+    font-size: 1.5em;
+    line-height: 1.1em;
     font-family: alegreyasans-medium;
     color: @c_black;
     max-width: 660px;
@@ -2374,7 +2374,11 @@ h1, .popular-products__title {
   z-index: 1;
 
   &__title {
-    margin-bottom: 85px;
+    margin-bottom: 50px;
+
+    @media(min-width: @min_width) {
+      margin-bottom: 85px;
+    }
   }
 
   &:after {
@@ -6705,7 +6709,7 @@ body .delivery-info {
 }
 
 .cmn-toggle-switch__htx.active span::after {
-  bottom: 1px;
+  bottom: 2px;
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
