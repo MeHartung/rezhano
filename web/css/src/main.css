@@ -1003,6 +1003,8 @@ header {
   -ms-transition: padding-top 0.2s;
   -o-transition: padding-top 0.2s;
   transition: padding-top 0.2s;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left);
 }
 header .header-menu-wrap {
   margin: 0 auto;
@@ -1193,6 +1195,7 @@ header.fixed {
 header.header-catalog {
   height: 18rem;
   overflow: hidden;
+  z-index: 10;
   background-color: #ffffff;
   position: relative;
   padding: 0;
@@ -1866,7 +1869,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 }
 h1,
 .popular-products__title {
-  font-size: 12vw;
+  font-size: 5rem;
   font-family: Catorze27style1-bold;
   display: block;
   text-align: center;
@@ -3150,6 +3153,12 @@ footer.low .footer-aside {
 }
 .catalog-section h1 {
   padding-bottom: 0.5em;
+}
+@media (orientation: landscape) {
+  .catalog-section h1 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 @media (min-width: 1200px) {
   .catalog-section h1 {

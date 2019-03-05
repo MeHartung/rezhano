@@ -163,9 +163,9 @@ define(function(require){
       var headerMenuHeight = $('.header__fixed').height();
 
       $(window).scroll(function () {
-        console.log( $(this).scrollTop(), headerMenuHeight);
 
-        if ( $(this).scrollTop()>1 ) {
+        // if ( $(this).scrollTop()>headerMenuHeight ) {
+        if ( $(this).scrollTop()>2 ) {
           $headerMenu.addClass('fixed');
         } else if ( $(this).scrollTop()<headerMenuHeight) {
           $headerMenu.removeClass('fixed');

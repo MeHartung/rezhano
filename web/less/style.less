@@ -648,6 +648,10 @@ header {
   -o-transition: padding-top .2s;
   transition: padding-top .2s;
 
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left);
+
+
   .header-menu-wrap {
     margin: 0 auto;
     position: relative;
@@ -891,7 +895,7 @@ header {
     //height: 550px;
     height: 18rem;
     overflow: hidden;
-
+    z-index: 10;
     background-color: @c_white;
 
     @media(min-width: @min_width) {
@@ -1681,7 +1685,7 @@ header {
 }
 
 h1, .popular-products__title {
-  font-size: 12vw;
+  font-size: 5rem;
   font-family: Catorze27style1-bold;
   display: block;
   text-align: center;
@@ -3239,6 +3243,11 @@ footer {
 
   h1 {
     padding-bottom: 0.5em;
+
+    @media(orientation: landscape) {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
 
     @media(min-width: @min_width) {
       padding-bottom: 50px;
