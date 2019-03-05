@@ -118,16 +118,15 @@
             <button class="cmn-toggle-switch cmn-toggle-switch__htx">
               <span></span>
             </button>
-
             <div class="header-mobile">
               <div class="header-mobile__wrap-item">
                 {% block headerMobileMenu %}
-                {{ render(controller('StoreBundle:Menu/MenuItem:mobileHeaderMenu',
-                {
-                  '_route': app.request.get('_route'),
-                  '_route_params': app.request.get('_route_params'),
-                  'uri': app.request.requestUri
-                })) }}
+                  {{ render(controller('StoreBundle:Menu/MenuItem:mobileHeaderMenu',
+                  {
+                    '_route': app.request.get('_route'),
+                    '_route_params': app.request.get('_route_params'),
+                    'uri': app.request.requestUri
+                  })) }}
                 {% endblock %}
               </div>
             </div>

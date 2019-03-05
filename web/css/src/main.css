@@ -382,6 +382,9 @@ body {
   position: relative;
   padding: 0 30px;
 }
+.container_no-padding {
+  padding: 0;
+}
 @media (min-width: 1200px) {
   .container {
     width: 1141px;
@@ -479,8 +482,14 @@ h1 {
   font-size: 36px;
   line-height: 44px;
   font-weight: 500;
-  margin-bottom: 30px;
-  margin-top: 50px;
+  margin-top: 0;
+  margin-bottom: .8em;
+}
+@media (min-width: 1200px) {
+  h1 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
 }
 h2,
 .h2 {
@@ -868,7 +877,7 @@ input[type="text"].input-text {
 }
 .header-mobile .header-menu__item {
   font-size: 2em;
-  padding-top: 1.4em;
+  padding-top: 1.8rem;
 }
 @media (orientation: landscape) {
   .header-mobile .header-menu__item {
@@ -1148,6 +1157,7 @@ header.fixed {
   right: 0;
   top: 0;
   position: absolute;
+  z-index: 10;
   -webkit-transition: all .2s;
   -moz-transition: all .2s;
   -ms-transition: all .2s;
@@ -1181,20 +1191,40 @@ header.fixed {
   z-index: 10;
 }
 header.header-catalog {
-  height: 366px;
+  height: 18rem;
   overflow: hidden;
-  background-color: #0b090a;
+  background-color: #ffffff;
   position: relative;
   padding: 0;
+}
+@media (min-width: 1200px) {
+  header.header-catalog {
+    background-color: #0b090a;
+    height: 366px;
+  }
 }
 header.header-catalog:after {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
-  background: url("../images/catalog-header-bottom.png") center no-repeat;
-  height: 98px;
+  background: url("../images/catalog-header-bottom.png") bottom center no-repeat;
   bottom: -5px;
+  width: 100%;
+  height: 11%;
+  background-size: cover;
+}
+@media (orientation: landscape) {
+  header.header-catalog:after {
+    height: 100%;
+    background-size: auto;
+  }
+}
+@media (min-width: 1200px) {
+  header.header-catalog:after {
+    height: 98px;
+    background-size: contain;
+  }
 }
 header.header-catalog .header-catalog__wrap {
   padding: 37px 50px;
@@ -1292,8 +1322,15 @@ header.header-about:after {
   left: 0;
   right: 0;
   background: url("../images/catalog-header-bottom.png") center no-repeat;
-  height: 98px;
   bottom: -5px;
+  height: 11%;
+  width: 100%;
+  background-size: cover;
+}
+@media (min-width: 1200px) {
+  header.header-about:after {
+    height: 98px;
+  }
 }
 header.header-about .header-catalog__wrap {
   padding: 37px 50px;
@@ -1403,7 +1440,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   background-color: #ffcf40;
 }
 .header-section .header-slider .slick-dots li button {
-  display: block!important;
+  display: block !important;
   position: relative;
   width: 39px !important;
   height: 2px !important;
@@ -1505,7 +1542,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   }
 }
 .first-slide .container p {
-  font-size: 1.5em;
+  font-size: 1.3em;
   line-height: 1.1em;
   font-family: alegreyasans-medium;
   color: #000000;
@@ -1527,13 +1564,22 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   margin: 0 auto;
   margin-top: 120px;
   margin-bottom: 60px;
-  background: url("../images/vocation.png") center no-repeat;
   line-height: 1.1;
   padding: 30px;
   text-align: center;
+  background: url("../images/mobile_title.png") center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+}
+@media (orientation: landscape) {
+  .first-slide__title {
+    background: url("../images/vocation.png") center no-repeat;
+  }
 }
 @media (min-width: 1200px) {
   .first-slide__title {
+    background: url("../images/vocation.png") center no-repeat;
     width: 718px;
     height: 188px;
     padding: 50px 30px 50px 70px;
@@ -1556,7 +1602,12 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   width: 100%;
 }
 .first-slide__image img {
-  width: 100%;
+  width: 90%;
+}
+@media (orientation: landscape) {
+  .first-slide__image img {
+    width: 47%;
+  }
 }
 @media (min-width: 1200px) {
   .first-slide__image {
@@ -1600,6 +1651,12 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 .first-slide__image_right {
   bottom: -20%;
   right: -50%;
+}
+@media (orientation: landscape) {
+  .first-slide__image_right {
+    bottom: -30%;
+    right: -75%;
+  }
 }
 @media (min-width: 1200px) {
   .first-slide__image_right {
@@ -1899,11 +1956,17 @@ h1,
   vertical-align: top;
   width: 100%;
   text-align: center;
-  margin-bottom: 90px;
+  margin-bottom: 2em;
+}
+@media (orientation: landscape) {
+  .product-list .product-item {
+    width: 50%;
+  }
 }
 @media (min-width: 1200px) {
   .product-list .product-item {
     width: 370px;
+    margin-bottom: 90px;
   }
 }
 .product-list .product-item__twig {
@@ -2508,7 +2571,7 @@ h1,
 }
 .tour__image {
   width: 100%;
-  margin-bottom: 45px ;
+  margin-bottom: 45px;
   display: block;
 }
 @media (min-width: 1200px) {
@@ -3086,10 +3149,20 @@ footer.low .footer-aside {
   padding-bottom: 215px;
 }
 .catalog-section h1 {
-  padding-bottom: 50px;
+  padding-bottom: 0.5em;
+}
+@media (min-width: 1200px) {
+  .catalog-section h1 {
+    padding-bottom: 50px;
+  }
 }
 .catalog-section .product-filter {
-  padding-bottom: 150px;
+  padding-bottom: 3em;
+}
+@media (min-width: 1200px) {
+  .catalog-section .product-filter {
+    padding-bottom: 150px;
+  }
 }
 .layer {
   width: 1000px;
@@ -4094,6 +4167,12 @@ body .delivery-info__message {
 .product-filter .product-filter-group {
   display: inline-block;
   vertical-align: top;
+  width: 100%;
+}
+@media (min-width: 1200px) {
+  .product-filter .product-filter-group {
+    width: auto;
+  }
 }
 .product-filter__row {
   display: block;
@@ -4201,13 +4280,33 @@ body .delivery-info__message {
   border-bottom: none;
 }
 .product-filter__item {
-  width: 178px;
   display: inline-block;
   vertical-align: top;
-  margin: 0 50px;
-  margin-bottom: 10px;
-  margin-top: 10px;
   position: relative;
+  width: 100%;
+  margin-top: -2px;
+  max-height: 43px;
+}
+.product-filter__item .product-filter__link {
+  height: 43px;
+}
+@media (orientation: landscape) {
+  .product-filter__item {
+    width: 178px;
+    margin: 0;
+    margin: 0 .8em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+}
+@media (min-width: 1200px) {
+  .product-filter__item {
+    width: 178px;
+    margin: 0;
+    margin: 0 50px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
 }
 .product-filter__item .product-filter__filter {
   display: none;
