@@ -43,6 +43,10 @@ a {
     position: relative;
     padding: 0 1em;
 
+    @media(orientation: landscape) {
+      width: 70%;
+    }
+
     @media(min-width: @min_width) {
       width: 650px;
       margin: 0 auto;
@@ -73,6 +77,10 @@ a {
     padding: 0 1em;
     margin-bottom: 1em;
 
+    @media(orientation: landscape) {
+      width: 70%;
+    }
+
     @media(min-width: @min_width) {
       width: 630px;
       font-size: 45px;
@@ -100,6 +108,10 @@ a {
       @media(min-width: @min_width) {
         font-size: 20px;
       }
+    }
+
+    @media(orientation: landscape) {
+      width: 70%;
     }
 
     @media(min-width: @min_width) {
@@ -1059,6 +1071,7 @@ header {
     background-color: @c_black;
     //background-color: @c_white;
 
+
     @media(min-width: @min_width){
       height: 550px;
     }
@@ -1068,15 +1081,19 @@ header {
       position: absolute;
       left: 0;
       right: 0;
-      background: url("../images/catalog-header-bottom.png") center no-repeat;
+      background: url("../images/catalog-header-bottom.png") bottom center no-repeat;
       bottom: -5px;
       height: 11%;
       width: 100%;
       background-size: cover;
 
+      @media (orientation: landscape) {
+        height: 100%;
+        background-size: auto;
+      }
+
       @media(min-width: @min_width){
         height: 98px;
-
       }
     }
 
@@ -3004,14 +3021,15 @@ h1, .popular-products__title {
 footer {
   background: url("../images/footer_bg.png") top no-repeat;
   background-position-x: -40em;
-
   width: 100%;
   height: auto;
   position: relative;
-  //margin-top: -105px;
   margin-top: -210px;
-  //padding-top: 260px;
   padding-top: 7em;
+
+  @media(orientation: landscape) {
+    padding-top: 11em;
+  }
 
   @media(orientation: portrait) {
     background-position-x: -515px;
@@ -5126,7 +5144,6 @@ body .delivery-info {
   padding-top: 0;
   padding-bottom: 0;
   margin-bottom: 60px;
-
   z-index: 1;
   background-color: @c_white;
   position: relative;
@@ -5163,7 +5180,6 @@ body .delivery-info {
       -ms-transform: translateX(-50%);
       -o-transform: translateX(-50%);
       transform: translateX(-50%);
-
       background: url("../images/crown.png") center no-repeat;
       width: 80px;
       height: 57px;
@@ -5207,6 +5223,10 @@ body .delivery-info {
       color: #000000;
     }
 
+    @media(orientation: landscape) {
+      width: 70%;
+    }
+
     @media(min-width: @min_width) {
       font-size: 25px;
       font-family: alegreyasans-medium;
@@ -5223,14 +5243,18 @@ body .delivery-info {
 //section-wt-chesee
 .section-wt-chesee {
   background-color: @rc_yellow;
-  padding-top: 114px;
-  padding-bottom: 140px;
   position: relative;
   overflow: visible;
   padding-bottom: 8em;
+  padding-top: 2em;
+
+  @media(orientation: landscape) {
+    padding-bottom: 5em;
+  }
 
   @media(min-width: @min_width) {
     padding-bottom: 140px;
+    padding-top: 114px;
   }
 
   &__image {
@@ -5283,6 +5307,11 @@ body .delivery-info {
     margin: 0 auto;
     margin-top: -8em;
 
+    @media(orientation: landscape) {
+      margin-top: -6em;
+      margin-bottom: 1em;
+    }
+
     img {
       width: 100%;
     }
@@ -5291,6 +5320,11 @@ body .delivery-info {
       display: block;
       width: 100%;
       margin-left: -.4em;
+
+      @media(orientation: landscape) {
+        width: 45%;
+        margin: 0 auto;
+      }
     }
     .desktop-chesee { display: none }
 
@@ -5425,10 +5459,14 @@ body .delivery-info {
         position: absolute;
         top: 155px;
         left: -190px;
-
         background: url("../images/good-food.png") center no-repeat;
         width: 102px;
         height: 159px;
+        display: none;
+
+        @media(min-width: @min_width) {
+          display: block;
+        }
       }
     }
   }
@@ -5437,10 +5475,19 @@ body .delivery-info {
     //background: url("../images/about-good-food.png") top no-repeat;
     margin: -1em auto;
 
+    @media (orientation: landscape) {
+      margin: -5em auto;
+    }
+
     img {
       width: 120%;
       margin-left: -5%;
       display: block;
+
+      @media (orientation: landscape) {
+        width: 100%;
+        margin: 0;
+      }
     }
 
     @media (min-width: 2000px) {
@@ -5553,6 +5600,8 @@ body .delivery-info {
 
     @media(orientation: landscape) {
       display: block;
+      width: 70%;
+      margin: 0 auto;
     }
 
     @media(min-width: @min_width) {
@@ -6451,6 +6500,10 @@ body .delivery-info {
     text-align: center;
     font-size: 45px;
     margin-bottom: 40px;
+
+    @media(orientation: landscape) {
+      margin-bottom: .5em;
+    }
   }
 
   .section-one-eye-slider {
@@ -6517,6 +6570,10 @@ body .delivery-info {
   //padding-bottom: 150px;
   position: relative;
   overflow: visible;
+
+  @media(orientation: landscape) {
+    padding-top: 2em;
+  }
 
   @media(min-width: @min_width) {
     padding-top: 100px;
@@ -6740,6 +6797,12 @@ body .delivery-info {
       margin-top: 105px;
       width: 195%;
       margin-left: -18%;
+
+      @media(orientation: landscape) {
+        margin-top: -30px;
+        width: 180%;
+        margin-left: 0;
+      }
 
       @media(min-width: @min_width) {
         margin-left: 75px;

@@ -533,6 +533,11 @@ a {
   position: relative;
   padding: 0 1em;
 }
+@media (orientation: landscape) {
+  .about-stage__sub-text {
+    width: 70%;
+  }
+}
 @media (min-width: 1200px) {
   .about-stage__sub-text {
     width: 650px;
@@ -562,6 +567,11 @@ a {
   padding: 0 1em;
   margin-bottom: 1em;
 }
+@media (orientation: landscape) {
+  .about-stage__title {
+    width: 70%;
+  }
+}
 @media (min-width: 1200px) {
   .about-stage__title {
     width: 630px;
@@ -589,6 +599,11 @@ a {
 @media (min-width: 1200px) {
   .about-stage__text p {
     font-size: 20px;
+  }
+}
+@media (orientation: landscape) {
+  .about-stage__text {
+    width: 70%;
   }
 }
 @media (min-width: 1200px) {
@@ -1363,11 +1378,17 @@ header.header-about:after {
   position: absolute;
   left: 0;
   right: 0;
-  background: url("../images/catalog-header-bottom.png") center no-repeat;
+  background: url("../images/catalog-header-bottom.png") bottom center no-repeat;
   bottom: -5px;
   height: 11%;
   width: 100%;
   background-size: cover;
+}
+@media (orientation: landscape) {
+  header.header-about:after {
+    height: 100%;
+    background-size: auto;
+  }
 }
 @media (min-width: 1200px) {
   header.header-about:after {
@@ -3016,6 +3037,11 @@ footer {
   position: relative;
   margin-top: -210px;
   padding-top: 7em;
+}
+@media (orientation: landscape) {
+  footer {
+    padding-top: 11em;
+  }
 }
 @media (orientation: portrait) {
   footer {
@@ -4685,6 +4711,11 @@ body .delivery-info__message {
   font-family: alegreyasans-regular;
   color: #000000;
 }
+@media (orientation: landscape) {
+  .section-about-history__text {
+    width: 70%;
+  }
+}
 @media (min-width: 1200px) {
   .section-about-history__text {
     font-size: 25px;
@@ -4697,15 +4728,20 @@ body .delivery-info__message {
 }
 .section-wt-chesee {
   background-color: #ffcf40;
-  padding-top: 114px;
-  padding-bottom: 140px;
   position: relative;
   overflow: visible;
   padding-bottom: 8em;
+  padding-top: 2em;
+}
+@media (orientation: landscape) {
+  .section-wt-chesee {
+    padding-bottom: 5em;
+  }
 }
 @media (min-width: 1200px) {
   .section-wt-chesee {
     padding-bottom: 140px;
+    padding-top: 114px;
   }
 }
 .section-wt-chesee__image {
@@ -4753,6 +4789,12 @@ body .delivery-info__message {
   margin: 0 auto;
   margin-top: -8em;
 }
+@media (orientation: landscape) {
+  .section-customer-happiness__image_left {
+    margin-top: -6em;
+    margin-bottom: 1em;
+  }
+}
 .section-customer-happiness__image_left img {
   width: 100%;
 }
@@ -4760,6 +4802,12 @@ body .delivery-info__message {
   display: block;
   width: 100%;
   margin-left: -0.4em;
+}
+@media (orientation: landscape) {
+  .section-customer-happiness__image_left .mobile-chesee {
+    width: 45%;
+    margin: 0 auto;
+  }
 }
 .section-customer-happiness__image_left .desktop-chesee {
   display: none;
@@ -4883,14 +4931,31 @@ body .delivery-info__message {
   background: url("../images/good-food.png") center no-repeat;
   width: 102px;
   height: 159px;
+  display: none;
+}
+@media (min-width: 1200px) {
+  .section-good-food .about-stage__title:after {
+    display: block;
+  }
 }
 .section-good-food__bg {
   margin: -1em auto;
+}
+@media (orientation: landscape) {
+  .section-good-food__bg {
+    margin: -5em auto;
+  }
 }
 .section-good-food__bg img {
   width: 120%;
   margin-left: -5%;
   display: block;
+}
+@media (orientation: landscape) {
+  .section-good-food__bg img {
+    width: 100%;
+    margin: 0;
+  }
 }
 @media (min-width: 2000px) {
   .section-good-food__bg {
@@ -4993,6 +5058,8 @@ body .delivery-info__message {
 @media (orientation: landscape) {
   .section-how-cook__image {
     display: block;
+    width: 70%;
+    margin: 0 auto;
   }
 }
 @media (min-width: 1200px) {
@@ -5698,6 +5765,11 @@ body .delivery-info__message {
   font-size: 45px;
   margin-bottom: 40px;
 }
+@media (orientation: landscape) {
+  .section-one-eye__title {
+    margin-bottom: .5em;
+  }
+}
 .section-one-eye .section-one-eye-slider {
   overflow: hidden;
   max-height: 600px;
@@ -5744,6 +5816,11 @@ body .delivery-info__message {
   padding-top: 4em;
   position: relative;
   overflow: visible;
+}
+@media (orientation: landscape) {
+  .section-photo-production {
+    padding-top: 2em;
+  }
 }
 @media (min-width: 1200px) {
   .section-photo-production {
@@ -5920,6 +5997,13 @@ body .delivery-info__message {
   margin-top: 105px;
   width: 195%;
   margin-left: -18%;
+}
+@media (orientation: landscape) {
+  .section-choose__image img {
+    margin-top: -30px;
+    width: 180%;
+    margin-left: 0;
+  }
 }
 @media (min-width: 1200px) {
   .section-choose__image img {
