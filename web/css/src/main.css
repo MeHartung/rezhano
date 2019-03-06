@@ -3015,12 +3015,12 @@ footer {
   height: auto;
   position: relative;
   margin-top: -210px;
-  padding-top: 6em;
+  padding-top: 7em;
 }
 @media (orientation: portrait) {
   footer {
-    background-position-x: -18em;
-    background-size: cover;
+    background-position-x: -515px;
+    background-size: 100em;
   }
 }
 @media (min-width: 1200px) {
@@ -5852,7 +5852,7 @@ body .delivery-info__message {
   padding-top: 50px;
   white-space: nowrap;
   overflow: visible;
-  padding-bottom: 6em;
+  padding-bottom: 7em;
 }
 @media (min-width: 1200px) {
   .section-choose {
