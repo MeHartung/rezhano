@@ -32,16 +32,23 @@ a {
 .about-stage {
 
   &__sub-text {
-    width: 650px;
+    width: 100%;
     margin: 0 auto;
     color: #a3a3a3;
     font-family: alegreyasans-mediumitalic;
-    font-size: 20px;
+    font-size: 1em;
     display: block;
     white-space: normal;
     text-align: center;
-
     position: relative;
+    padding: 0 1em;
+
+    @media(min-width: @min_width) {
+      width: 650px;
+      margin: 0 auto;
+      font-size: 20px;
+      padding: 0;
+    }
 
     &:after {
       content: '—';
@@ -57,29 +64,48 @@ a {
   }
 
   &__title {
-    width: 650px;
+    width: 100%;
     margin: 0 auto;
     font-family: Catorze27style1-bold;
-    font-size: 45px;
+    font-size: 2rem;
     color: @c_black;
     text-align: center;
+    padding: 0 1em;
+    margin-bottom: 1em;
 
-    margin-bottom: 50px
+    @media(min-width: @min_width) {
+      width: 630px;
+      font-size: 45px;
+      padding: 0;
+      max-width: 630px;
+      margin-bottom: 50px;
+    }
   }
 
   &__text {
     text-align: left;
     font-family: alegreyasans-regular;
-    font-size: 20px;
+    font-size: 1.2rem;
     color: @c_black;
     margin: 0 auto;
-    width: 650px;
+    width: 100%;
+    padding: 0 1em;
 
     p {
       font-family: alegreyasans-regular;
-      font-size: 20px;
+      font-size: 1.2rem;
       color: @c_black;
       margin-bottom: 13px;
+
+      @media(min-width: @min_width) {
+        font-size: 20px;
+      }
+    }
+
+    @media(min-width: @min_width) {
+      width: 650px;
+      padding: 0;
+      font-size: 20px;
     }
   }
 }
@@ -88,7 +114,7 @@ section {
   overflow: hidden;
 
   p {
-    font-size: 8vw;
+    font-size: 2rem;
 
     @media (min-width: @min_width) {
       font-size: 45px;
@@ -1025,12 +1051,17 @@ header {
   }
 
   &.header-about {
-    height: 550px;
     background-color: #0b090a;
     position: relative;
     padding: 0;
+    height: 18rem;
+    overflow: hidden;
+    background-color: @c_black;
+    //background-color: @c_white;
 
-    //overflow: hidden;
+    @media(min-width: @min_width){
+      height: 550px;
+    }
 
     &:after {
       content: '';
@@ -1051,13 +1082,18 @@ header {
 
     .header-catalog__wrap {
       padding: 37px 50px;
-
       background: url("../images/about-header-bg.png") center no-repeat;
       height: 535px;
       margin-top: -70px;
       max-width: 1850px;
       margin: 0 auto;
-      background-position-y: -160px;
+      background-position-y: -2em;
+      background-size: contain;
+
+      @media(min-width: @min_width) {
+        background-position-y: -160px;
+        background-size: auto;
+      }
 
       .header-menu-wrap {
         position: absolute;
@@ -1199,7 +1235,10 @@ header {
         display: inline-block;
 
         img {
-          display: none;
+          //display: none;
+          opacity: 0;
+          height: auto;
+          width: 100%;
         }
 
         .container {
@@ -1217,7 +1256,7 @@ header {
 
           .header-section__image {
             margin: 0 auto;
-            margin-top: 220px;
+            margin-top: 10em;
             display: block;
             //height: 130%;
             height: auto;
@@ -1226,18 +1265,25 @@ header {
             @media (min-width: @min_width) {
               width: auto;
               height: auto;
+              margin-top: 220px;
             }
           }
 
           img {
             display: block;
+            opacity: 1;
             margin: 0 auto;
-
             width: 100%;
             max-width: 100%;
+            margin-bottom: 2em;
+
+            @media(orientation: landscape) {
+              max-width: 70%;
+            }
 
             @media (min-width: @min_width) {
               width: auto;
+              margin-bottom: 0;
             }
           }
         }
@@ -1247,12 +1293,17 @@ header {
 
   &__image {
     //background: url("../images/header-section-image.png") top no-repeat;
-    width: 578px;
-    height: 290px;
+    //width: 578px;
+    //height: 290px;
+    margin-top: 10em;
+    //margin-left: -54px;
+    margin-bottom: 2em;
 
-    margin-top: 220px;
-    margin-left: -54px;
-    margin-bottom: 20px;
+    @media (min-width: @min_width) {
+      width: auto;
+      height: auto;
+      margin-top: 220px;
+    }
   }
 
   &__text {
@@ -1329,7 +1380,7 @@ header {
 
     @media(orientation: landscape) {
       background: url("../images/vocation.png") center no-repeat;
-
+      background-size: contain;
     }
 
     @media (min-width: @min_width) {
@@ -1538,6 +1589,10 @@ header {
       position: relative;
       margin: 0 auto;
 
+      @media(orientation: landscape) {
+        max-width: 70%;
+      }
+
       @media (min-width: @min_width) {
         width: 500px;
         margin: 0;
@@ -1685,15 +1740,16 @@ header {
 }
 
 h1, .popular-products__title {
-  font-size: 5rem;
+  font-size: 3rem;
   font-family: Catorze27style1-bold;
   display: block;
   text-align: center;
-  padding-top: 45px;
-  padding-bottom: 115px;
+  padding-bottom: 2em;
 
   @media (min-width: @min_width) {
     font-size: 65px;
+    padding-top: 45px;
+    padding-bottom: 115px;
   }
 }
 
@@ -2197,7 +2253,7 @@ h1, .popular-products__title {
   }
 
   &__text {
-    font-size: 8vw;
+    font-size: 2rem;
 
     @media (min-width: @min_width) {
       font-size: 45px;
@@ -2217,12 +2273,16 @@ h1, .popular-products__title {
 .choice {
   background: url("../images/choice-section-bg1.png") top no-repeat;
   background-size: cover;
-  padding-top: 160px;
+  padding-top: 5em;
   padding-bottom: 250px;
   margin-top: -82px;
   white-space: nowrap;
   text-align: center;
   position: relative;
+
+  @media (min-width: @min_width) {
+    padding-top: 160px;
+  }
 
   &__title {
     color: @c_white;
@@ -2288,6 +2348,12 @@ h1, .popular-products__title {
       display: block;
     }
 
+    @media(orientation: landscape) {
+      width: 70%;
+      margin: 0 auto;
+      margin-top: 85px;
+    }
+
     @media (min-width: @min_width) {
 
       img {
@@ -2304,6 +2370,12 @@ h1, .popular-products__title {
     img {
       width: 100%;
       display: block;
+    }
+
+    @media(orientation: landscape) {
+      width: 70%;
+      margin: 0 auto;
+      margin-top: 85px;
     }
 
     @media (min-width: @min_width) {
@@ -2343,24 +2415,28 @@ h1, .popular-products__title {
     content: '';
     position: absolute;
     background: url("../images/wholesale-section-top.png") center no-repeat;
-    width: 100%;
+    width: 102%;
     height: 148px;
     top: -147px;
-
     left: 50%;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
+
+    @media (min-width: @min_width) {
+      width: 100%;
+    }
   }
 
   &__image {
-    width: 120%;
+    width: 100%;
     display: inline-block;
-    vertical-align: top;
-    margin-left: -10%;
-    margin-top: 10px;
+    margin: 0 auto;
+    //vertical-align: top;
+    //margin-left: -10%;
+    //margin-top: 10px;
     margin-bottom: -22%;
 
     @media (min-width: @min_width) {
@@ -2526,9 +2602,17 @@ h1, .popular-products__title {
     // background-size: contain;
     display: block;
 
+    @media(orientation: landscape) {
+      width: 70%;
+      margin: 0 auto;
+      margin-bottom: 45px;
+    }
+
     @media (min-width: @min_width) {
       width: 497px;
       height: 341px;
+      margin: 0;
+      margin-bottom: 45px;
     }
   }
 
@@ -2566,12 +2650,18 @@ h1, .popular-products__title {
 //
 .notes {
   position: relative;
-  padding-top: 100px;
   padding-bottom: 90px;
   overflow: initial;
   margin-bottom: 215px;
-
   text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  @media (min-width: @min_width) {
+    padding-top: 100px;
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .notes-slider {
     width: 471px;
@@ -2750,9 +2840,13 @@ h1, .popular-products__title {
   &__text {
 
     p {
-      font-size: 20px;
+      font-size: 1.2rem;
       font-family: alegreyasans-regular;
       color: @c_black;
+
+      @media (min-width: @min_width) {
+        font-size: 20px;
+      }
     }
   }
 
@@ -2909,7 +3003,7 @@ h1, .popular-products__title {
 //
 footer {
   background: url("../images/footer_bg.png") top no-repeat;
-  background-position-x: -740px;
+  background-position-x: -40em;
 
   width: 100%;
   height: auto;
@@ -2917,7 +3011,21 @@ footer {
   //margin-top: -105px;
   margin-top: -210px;
   //padding-top: 260px;
-  padding-top: 160px;
+  padding-top: 6em;
+
+  @media(orientation: portrait) {
+    background-position-x: -18em;
+    background-size: cover;
+  }
+
+  @media(min-width: @min_width) {
+    //background-position: center;
+    padding-top: 160px;
+  }
+
+  .container {
+    background-color: #101010;
+  }
 
   .header-logo {
     display: inline-block;
@@ -2926,16 +3034,23 @@ footer {
     width: 226px;
     height: 45px;
     position: absolute;
-    left: 0;
-    top: 37px;
+    //left: 0;
+    top: 0;
+    zoom: 80%;
 
     @media (min-width: @min_width) {
       left: 50px;
+      zoom: normal;
+      top: 37px;
     }
   }
 
   .footer-wrap {
-    padding-top: 115px;
+    padding-top: 3em;
+
+    @media (min-width: @min_width) {
+      padding-top: 115px;
+    }
 
     .footer-links {
       display: none;
@@ -3091,7 +3206,11 @@ footer {
     position: relative;
     text-align: right;
 
-    margin-top: 45px;
+    margin-top: 1.2em;
+
+    @media(min-width: @min_width) {
+      margin-top: 45px;
+    }
 
     &__copyright {
       font-size: 15px;
@@ -4828,12 +4947,29 @@ body .delivery-info {
 .error-page {
   background-color: @c_black;
   text-align: center;
-  padding-top: 90px;
-  padding-bottom: 288px;
+  padding-top: 5em;
+  padding-bottom: 15em;
+
+  @media(min-width: @min_width) {
+    padding-top: 90px;
+    padding-bottom: 288px;
+  }
 
   &__image {
     display: inline-block;
     margin-bottom: 38px;
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+
+    @media(min-width: @min_width) {
+
+      img {
+        width: auto;
+      }
+    }
   }
 
   &__message {
@@ -4999,6 +5135,12 @@ body .delivery-info {
     width: 265px;
     margin: 0 auto;
     margin-bottom: 54px;
+
+    @media(min-width: @min_width) {
+      width: 265px;
+      margin: 0 auto;
+      margin-bottom: 54px;
+    }
   }
 
   &__photo-image {
@@ -5039,15 +5181,21 @@ body .delivery-info {
   }
 
   &__title {
-    padding-top: 18px;
-    padding-bottom: 66px;
+    padding-top: 1em;
+    padding-bottom: .2em;
+
+    @media(min-width: @min_width) {
+      padding-top: 18px;
+      padding-bottom: 66px;
+    }
   }
 
   &__text {
-    font-size: 25px;
+    font-size: 1em;
     font-family: alegreyasans-medium;
-    line-height: 36px;
-    width: 860px;
+    line-height: 1.2em;
+    width: 100%;
+    padding: 0 1.6em;
     margin: 0 auto;
     margin-bottom: 50px;
     text-align: center;
@@ -5057,6 +5205,15 @@ body .delivery-info {
       font-size: 20px;
       font-family: alegreyasans-regular;
       color: #000000;
+    }
+
+    @media(min-width: @min_width) {
+      font-size: 25px;
+      font-family: alegreyasans-medium;
+      line-height: 36px;
+      width: 860px;
+      margin: 0 auto;
+      margin-bottom: 50px;
     }
   }
 }
@@ -5070,7 +5227,11 @@ body .delivery-info {
   padding-bottom: 140px;
   position: relative;
   overflow: visible;
-  padding-bottom: 140px;
+  padding-bottom: 8em;
+
+  @media(min-width: @min_width) {
+    padding-bottom: 140px;
+  }
 
   &__image {
     position: absolute;
@@ -5080,9 +5241,14 @@ body .delivery-info {
     background: url("../images/wtf-chesee.png") center no-repeat;
     width: 184px;
     height: 174px;
-
     top: 246px;
     right: 125px;
+
+    display: none;
+
+    @media(min-width: @min_width) {
+      display: block;
+    }
   }
 
   .about-stage__title {
@@ -5092,24 +5258,59 @@ body .delivery-info {
 
 // section-customer-happiness
 .section-customer-happiness {
-  padding-top: 80px;
+  padding-top: 0;
   padding-bottom: 80px;
   position: relative;
   overflow: visible;
   z-index: 1;
 
+  @media(min-width: @min_width) {
+    padding-top: 80px;
+  }
+
   &__image {
-    position: absolute;
+    position: relative;
+
+    @media(min-width: @min_width) {
+      position: absolute;
+    }
   }
 
   &__image_left {
-    background: url("../images/wtf-fir-chesee.png") center no-repeat;
-    width: 424px;
-    height: 490px;
-    top: -314px;
-    left: -157px;
+    //background: url("../images/wtf-fir-chesee.png") center no-repeat;
+    width: 65%;
+    display: block;
+    margin: 0 auto;
+    margin-top: -8em;
+
+    img {
+      width: 100%;
+    }
+
+    .mobile-chesee {
+      display: block;
+      width: 100%;
+      margin-left: -.4em;
+    }
+    .desktop-chesee { display: none }
+
+    @media(min-width: @min_width) {
+      width: 424px;
+      height: 490px;
+      top: -314px;
+      left: -157px;
+      margin-top: 0;
+
+      .mobile-chesee { display: none }
+      .desktop-chesee { display: block }
+    }
 
     .image-name {
+      display: none;
+
+      @media(min-width: @min_width) {
+        display: block;
+      }
 
       &__arrow {
         background: url("../images/icons/arrow-wtf.png") center no-repeat;
@@ -5140,6 +5341,12 @@ body .delivery-info {
   }
 
   &__image_right {
+    display: none;
+
+    @media(min-width: @min_width) {
+      display: block;
+    }
+
     background: url("../images/wtf-ricotta-chesee.png") center no-repeat;
     width: 444px;
     height: 417px;
@@ -5188,8 +5395,12 @@ body .delivery-info {
 //section-good-food
 .section-good-food {
   background-color: #555555;
-  padding-top: 110px;
+  padding-top: 3em;
   position: relative;
+
+  @media(min-width: @min_width) {
+    padding-top: 110px;
+  }
 
   &__image {
     position: absolute;
@@ -5224,16 +5435,24 @@ body .delivery-info {
 
   &__bg {
     //background: url("../images/about-good-food.png") top no-repeat;
-    margin: 0 auto;
-    margin-top: -110px;
+    margin: -1em auto;
 
     img {
-      width: 100%;
+      width: 120%;
+      margin-left: -5%;
       display: block;
     }
 
     @media (min-width: 2000px) {
       margin-top: -383px;
+      margin: 0 auto;
+      margin-top: -110px;
+
+      img {
+        width: 100%;
+        display: block;
+        margin-left: 0;
+      }
     }
   }
 }
@@ -5241,22 +5460,34 @@ body .delivery-info {
 //section-do-good
 .section-do-good {
   background-color: @rc_yellow;
-  padding-top: 150px;
+  padding-top: 3em;
   padding-bottom: 35px;
   position: relative;
   overflow: visible;
   z-index: 1;
 
+  @media(min-width: @min_width) {
+    padding-top: 150px;
+  }
+
   &:after {
     content: '';
     position: absolute;
-    top: -87px;
+    top: -28px;
     left: 0;
     right: 0;
-
     background: url("../images/about-wtf-top.png") center no-repeat;
-    height: 90px;
+    height: 30px;
     display: block;
+    background-size: cover;
+    background-position-x: -12em;
+
+    @media(min-width: @min_width) {
+      height: 90px;
+      background-size: auto;
+      background-position-x: center;
+      top: -87px;
+    }
   }
 
   &:before {
@@ -5265,10 +5496,14 @@ body .delivery-info {
     bottom: -70px;
     left: 0;
     right: 0;
-
     background: url("../images/about-wtf-bottom.png") center no-repeat;
     height: 75px;
     display: block;
+    background-position-x: -57em;
+
+    @media(min-width: @min_width) {
+      background-position-x: center;
+    }
   }
 
   .about-stage {
@@ -5282,7 +5517,15 @@ body .delivery-info {
     }
 
     &__title {
-      margin-bottom: 113px;
+      margin-bottom: 2.5em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @media(min-width: @min_width) {
+        margin-bottom: 113px;
+      }
     }
   }
 }
@@ -5291,17 +5534,45 @@ body .delivery-info {
 .section-how-cook {
   background: url("../images/section_bg.png") center no-repeat;
   background-size: cover;
-  padding-top: 140px;
-  padding-bottom: 70px;
+  padding-top: 6em;
+  padding-bottom: 3em;
   position: relative;
+
+  @media(min-width: @min_width) {
+    padding-top: 140px;
+    padding-bottom: 70px;
+  }
 
   &__title {
     margin-bottom: 80px;
   }
 
   &__image {
+    display: none;
+    margin: 0 auto;
+
+    @media(orientation: landscape) {
+      display: block;
+    }
+
+    @media(min-width: @min_width) {
+      display: block;
+    }
+  }
+
+  &__image-mobile {
     display: block;
     margin: 0 auto;
+    width: 70%;
+    padding: 0 1em;
+
+    @media(orientation: landscape) {
+      display: none;
+    }
+
+    @media(min-width: @min_width) {
+      display: none;
+    }
   }
 
   .about-stage {
@@ -6242,10 +6513,15 @@ body .delivery-info {
 
 //section-photo-production
 .section-photo-production {
-  padding-top: 100px;
-  padding-bottom: 150px;
+  padding-top: 4em;
+  //padding-bottom: 150px;
   position: relative;
   overflow: visible;
+
+  @media(min-width: @min_width) {
+    padding-top: 100px;
+    padding-bottom: 150px;
+  }
 
   //&:after {
   //  content: '';
@@ -6300,6 +6576,11 @@ body .delivery-info {
 
     button.slick-arrow {
       z-index: 2;
+      display: none !important;
+
+      @media(min-width: @min_width) {
+        display: block;
+      }
     }
 
     button.slick-prev {
@@ -6311,7 +6592,11 @@ body .delivery-info {
     }
 
     .slick-dots {
-      bottom: -90px;
+      bottom: 0;
+
+      @media(min-width: @min_width) {
+        bottom: -90px;
+      }
 
       li {
         background-color: @rc_yellow;
@@ -6379,23 +6664,45 @@ body .delivery-info {
   padding-top: 50px;
   white-space: nowrap;
   overflow: visible;
-  padding-bottom: 5px;
-  //margin-bottom: -50px;
+  padding-bottom: 6em;
+
+  @media(min-width: @min_width) {
+    padding-bottom: 5px;
+  }
+
+  .container_no-padding {
+    padding: 0 1em;
+
+    @media(min-width: @min_width) {
+      padding: 0;
+    }
+  }
 
   &__title {
     padding-top: 18px;
-    font-size: 45px;
+    font-size: 1.7em;
     font-family: Catorze27style1-bold;
     color: @c_black;
     text-align: left;
     display: inline-block;
     width: 50%;
     vertical-align: top;
+    white-space: normal;
+
+    @media(min-width: @min_width) {
+      font-size: 45px;
+    }
 
     .section-choose__title-title {
       display: inline-block;
-      margin-left: -30px;
-      margin-bottom: 30px;
+      max-width: 455px;
+      //margin-left: -30px;
+      //margin-bottom: 30px;
+
+      @media(min-width: @min_width) {
+        margin-left: -30px;
+        margin-bottom: 30px;
+      }
 
       a {
         color: @c_black;
@@ -6429,8 +6736,15 @@ body .delivery-info {
     text-align: center;
 
     img {
-      margin-left: 75px;
+      //margin-left: 75px;
       margin-top: 105px;
+      width: 195%;
+      margin-left: -18%;
+
+      @media(min-width: @min_width) {
+        margin-left: 75px;
+        width: auto;
+      }
     }
   }
 

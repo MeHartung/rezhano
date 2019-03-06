@@ -80,7 +80,7 @@
   <section class="section-wt-chesee">
     <div class="section-wt-chesee__image section-wt-chesee__image_right"></div>
     <div class="container container_no-padding">
-      <div class="about-stage__title">{{ hotspot_inline('o_nas_3_title', "С тех пор много раз спрашивали:<br>«Почему сыр?» и ответ прост")}}</div>
+      <div class="about-stage__title">{{ hotspot_inline('o_nas_3_title', "С тех пор много раз спрашивали: «Почему сыр?» и ответ прост")}}</div>
       <div class="about-stage__text">
         {{ hotspot('o_nas_3', "<p>После множества бутербродов с сыром, после почти что сырного клуба у себя дома, сырных конференции, стажировок у французского аффинера Александра Пелесcье, путешествий по Европе и тысячи вкусных кусочков сыра, оттачивались  истинные увлечения. </p><p>Затем, однажды вечером за бутылкой вина, стало понятно, что работа сыроваром сделает жизнь счастливее: можно есть отличный сыр, общаться с довольными клиентами,  путешествовать по миру, продвигать сырную культуру.</p>") }}
       </div>
@@ -90,7 +90,8 @@
   <section class="section-customer-happiness">
 
     <div class="section-customer-happiness__image section-customer-happiness__image_left">
-      <img src="{{ asset('/images/wtf-fir-chesee.png') }}" alt="">
+      <img class="desktop-chesee" src="{{ asset('/images/wtf-fir-chesee.png') }}" alt="">
+      <img class="mobile-chesee" src="{{ asset('/images/mobile/wtf-chesee.png') }}" alt="">
       <div class="image-name">
         <span class="image-name__arrow"></span>
         <span class="image-name__text">Сыр «Режано»</span>
@@ -148,6 +149,7 @@
       <div class="about-stage__title">Как мы варим сыр</div>
 
       <img class="section-how-cook__image" src="{{ asset('/images/how-cook.png') }}"/>
+      <img class="section-how-cook__image-mobile" src="{{ asset('/images/mobile/how-cook.png') }}"/>
 
     </div>
   </section>
@@ -190,7 +192,7 @@
   <section class="section-choose">
     <div class="container container_no-padding container_narrow">
       <div class="section-choose__title">
-        <span class="section-choose__title-title">У нас всегда можно <a href="{{ path('catalog_index') }}">выбрать</a><br> подходящий сыр</span>
+        <span class="section-choose__title-title">У нас всегда можно <a href="{{ path('catalog_index') }}">выбрать</a> подходящий сыр</span>
       </div>
       <div class="section-choose__image">
         <img src="{{ asset('/images/about-chose-more.png') }}">
