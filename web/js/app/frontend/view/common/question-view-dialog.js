@@ -38,7 +38,7 @@ define(function(require){
             <label>\n\
               <input type="checkbox" name="tos" id="question_customer_tos" required="required" class="checkbox" data-validate="tos" data-description="tos" data-describedby="tos-errors" >\n\
               <span class="custom-checkbox__checkbox"></span>\n\
-              <span>Я согласен с условиями <a href="<%= tosUrl %>">передачи информации</a></span>\n\
+              <span class="custom-checkbox__text">Я согласен с условиями <a href="<%= tosUrl %>">передачи информации</a></span>\n\
             </label>\n\
           </div>\n\
           <i class="error-icon">\n\

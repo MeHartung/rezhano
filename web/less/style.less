@@ -3518,7 +3518,6 @@ footer {
 .layer {
   position: absolute;
   background-color: @c_white;
-
   min-height: 100vh;
 
   @media(min-width: @min_width) {
@@ -3846,27 +3845,73 @@ footer {
   }
 
   &.layer-questions {
-    //overflow: hidden;
-    padding: 70px 100px;
-    margin-left: -50px;
+    overflow: scroll;
+    padding: 1em;
+
+    @media(min-width: @min_width) {
+      padding: 70px 100px;
+      margin-left: -50px;
+      overflow: hidden;
+    }
+
+    .question-wrapper {
+      padding-bottom: 1em;
+
+      @media(min-width: @min_width) {
+        padding-bottom: 0;
+      }
+    }
 
     h2 {
       text-align: center;
-      font-size: 66px;
+      font-size: 2.5em;
+      position: relative;
+
+      @media(min-width: @min_width) {
+        font-size: 66px;
+      }
     }
 
     &:before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
+      left: -15%;
       background: url("../images/question-form-img.png") center right no-repeat;
-      width: 182px;
-      height: 300px;
+      width: 50%;
+      height: 50%;
+      background-size: contain;
+
+      @media(orientation: landscape) {
+        top: -16%;
+        left: -6%;
+        width: 25em;
+        height: 25em;
+        background-position-x: left;
+        background-size: auto;
+      }
+
+      @media(min-width: @min_width) {
+        width: 182px;
+        height: 300px;
+        background-size: auto;
+        left: 0;
+      }
     }
 
-    h2 {
-      position: relative;
+    .question-layer-wrap {
+      padding-top: 13em;
+
+      max-width: 35em;
+      margin: 0 auto;
+
+      @media(orientation: landscape) {
+        padding-top: 8em;
+      }
+
+      @media(min-width: @min_width) {
+        padding-top: 0;
+      }
     }
 
     .step-item {
@@ -3915,7 +3960,11 @@ footer {
     }
 
     .input-text__name {
-      margin-right: 25px;
+      margin-right: 0;
+
+      @media(min-width: @min_width) {
+        margin-right: 25px;
+      }
     }
 
     .input-text__email {
@@ -3926,26 +3975,24 @@ footer {
       }
     }
 
-    .input-text__name, .input-text__email {
-      width: 375px;
+    .input-text__name,
+    .input-text__email {
+      width: 100%;
+
+      @media(min-width: @min_width) {
+        width: 375px;
+      }
     }
 
     .input-text__question {
       width: 100%;
-      //border-color: transparent transparent #000 transparent;
-      //height: 41px;
-
-      //.error-icon {
-      //  top: 10px;
-      //}
     }
 
     .question-wrapper {
-      padding: 88px 0 0 0;
-      height: 325px;
 
       @media(min-width: @min_width) {
         padding: 88px 0 0 0;
+        height: 325px;
       }
 
       .step-item {
@@ -5791,7 +5838,7 @@ body .delivery-info {
 .step-item-checkbox {
   position: relative;
   padding-right: 70px;
-  margin-bottom: 3em;
+  margin-bottom: 2em;
 
   @media(min-width: @min_width) {
     margin-bottom: 25px;
@@ -6797,9 +6844,10 @@ body .delivery-info {
     width: 100%;
     margin: 0 auto;
     padding: 0 1em;
-    padding-top: 75px;
+    padding-top: 2em;
     padding-bottom: 4em;
-    min-height: 37em;
+    min-height: 32em;
+
 
     @media(min-width: @min_width) {
       width: 800px;
@@ -6807,6 +6855,17 @@ body .delivery-info {
       padding-bottom: 124px;
       min-height: 700px;
       max-height: 100%;
+    }
+
+    .questions-layer-wrap {
+
+      .question-wrapper {
+        padding-bottom: 1em;
+
+        @media(min-width: @min_width) {
+          padding-bottom: 0;
+        }
+      }
     }
 
     .question-layer-message__text {
@@ -6827,9 +6886,6 @@ body .delivery-info {
       padding-bottom: 0;
     }
 
-    .question-wrapper {
-      padding-top: 50px;
-    }
 
     .custom-checkbox:hover {
 
