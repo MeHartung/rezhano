@@ -25,7 +25,7 @@ a {
 
 .scroll-pane {
   width: 100%;
-  height: 25rem;
+  height: 24.5rem;
   overflow: auto;
 
   @media(min-width: @min_width) {
@@ -3625,8 +3625,16 @@ footer {
       display: block;
       position: relative;
       width: 500px;
-      height: 640px;
+      height: 25em;
       overflow: hidden;
+
+      @media(orientation: landscape) {
+        height: 640px;
+      }
+
+      @media(min-width: @min_width) {
+        height: 640px;
+      }
 
       img {
         height: 100%;
@@ -3816,6 +3824,7 @@ footer {
 
         @media(orientation: portrait) {
           margin: .3em .5em;
+          width: 10em;
         }
 
         @media(min-width: @min_width) {
@@ -4121,17 +4130,8 @@ aside {
 
 .cards-container {
 
-  //-ms-user-select: none;
-  //-moz-user-select: none;
-  //-khtml-user-select: none;
-  //-webkit-user-select: none;
-
   &__container {
     padding-bottom: 56px;
-  }
-
-  &__step {
-
   }
 
   &__step-title {
@@ -4268,10 +4268,10 @@ aside {
             display: none;
             z-index: 1;
 
-            @media(min-width: @min_width) {
+            @media (min-width: @min_width) {
               left: 0;
             }
-            
+
             ul {
               list-style: none;
               padding: 0;
@@ -4325,6 +4325,19 @@ aside {
     white-space: normal;
   }
 
+  &__quantity, &__price {
+    display: none;
+  }
+
+  @media (min-width: @min_width) {
+
+    &__cost, &__remove, &__price, &__controls, &__item, &__quantity {
+      display: inline-block;
+      vertical-align: middle;
+      white-space: normal;
+    }
+  }
+
   &__item {
     //width: 400px;
     width: 590px;
@@ -4363,13 +4376,19 @@ aside {
   &__wrap {
     border-bottom: 2px solid @c_black;
 
-    .cards-container__item,
-    .cards-container__price,
-    .cards-container__cost,
-    .quantity-wrap {
-      display: inline-block;
+    .cards-container__cost {
+      display: none;
     }
 
+    @media (min-width: @min_width) {
+
+      .cards-container__item,
+      .cards-container__price,
+      .cards-container__cost,
+      .quantity-wrap {
+        display: inline-block;
+      }
+    }
     .quantity-wrap {
 
       .quantity-control__input {
@@ -4955,10 +4974,23 @@ body .delivery-info {
 
 .section-in-product {
   padding-top: 59px;
-  padding-bottom: 70px;
 
   @media(min-width: @min_width) {
     padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .main-image {
+    white-space: nowrap;
+    height: 25em;
+
+    @media(orientation: landscape) {
+      height: 640px;
+    }
+
+    @media(min-width: @min_width) {
+      height: auto;
+    }
   }
 
   .container {
@@ -5070,6 +5102,14 @@ body .delivery-info {
     color: #000000;
     display: inline-block;
     vertical-align: middle;
+    line-height: 44px;
+
+    @media(orientation: landscape) {
+
+      @media(max-width: 720px) {
+        display: none;
+      }
+    }
 
     @media(min-width: @min_width) {
       font-size: 21px;
@@ -5082,7 +5122,7 @@ body .delivery-info {
   }
 
   .scroll-pane {
-    height: 25rem;
+    height: 24.5rem;
 
     @media(min-width: @min_width) {
       height: 340px;
@@ -5092,6 +5132,10 @@ body .delivery-info {
   .layer__images {
     width: 100%;
 
+    @media(orientation: landscape) {
+      width: 50%;
+    }
+
     @media(min-width: @min_width) {
       width: 570px;
       height: 713px;
@@ -5100,6 +5144,7 @@ body .delivery-info {
 
   .show-full-image {
     width: 100%;
+    display: inline-block;
 
     @media(min-width: @min_width){
       width: 570px;
@@ -5119,17 +5164,33 @@ body .delivery-info {
 //
 .section-back-to-all {
   background-color: @rc_yellow;
-  padding-top: 45px;
+  padding-top: 1em;
   white-space: nowrap;
   //margin-bottom: -50px;
+  height: 20em;
+
+  @media(min-width: @min_width) {
+    height: auto;
+    padding-top: 45px;
+  }
 
   &__link {
     padding-top: 30px;
 
     a {
-      font-size: 45px;
+      font-size: 2em;
+      line-height: 1;
       font-family: Catorze27style1-bold;
       color: @c_black;
+      display: block;
+      margin: 0 auto;
+
+      @media(min-width: @min_width) {
+        font-size: 45px;
+        line-height: 1.2;
+        display: inline-block;
+        margin: 0;
+      }
 
       &:hover {
         //color: @c_white;
@@ -5143,15 +5204,40 @@ body .delivery-info {
 
     text-align: center;
     display: inline-block;
-    width: 50%;
+    width: 100%;
     vertical-align: top;
+
+    @media(orientation: landscape) {
+      width: 50%;
+    }
+
+    @media(min-width: @min_width) {
+      width: 50%;
+    }
   }
 
   &__image {
-    display: inline-block;
+    display: none;
     width: 50%;
     vertical-align: top;
     text-align: center;
+
+    @media(orientation: landscape) {
+      display: inline-block;
+
+      @media(max-width: 570px) {
+        margin-left: 3em;
+      }
+    }
+
+    @media(min-width: @min_width) {
+      display: inline-block;
+
+      img {
+        width: auto;
+      }
+    }
+
   }
 }
 

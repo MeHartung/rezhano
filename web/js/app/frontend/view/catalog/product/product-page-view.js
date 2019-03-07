@@ -78,7 +78,9 @@ define(function(require){
         this.imageGalleryView.render();
       }
 
-      _self.$('.scroll-pane').jScrollPane();
+      _self.$('.scroll-pane').jScrollPane({
+        autoReinitialise: true
+      });
 
       var $askQuestionLinkView = this.$('a.ask-a-question');
       if ($askQuestionLinkView.length){
