@@ -19,8 +19,11 @@ define(function(require){
           return this;
       },
       show: function(){
-          this.$overlay.stop().fadeIn();
-          this.$el.stop().fadeIn();
+        this.$overlay.stop().fadeIn();
+        this.$el.stop().fadeIn();
+        $('body').css({
+          overflow: 'hidden'
+        });
       },
       close: function () {
          ModalDialog.prototype.close.apply(this, arguments);

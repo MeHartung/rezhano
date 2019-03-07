@@ -545,6 +545,7 @@ input[type="text"].input-text {
   left: 0;
   background-color: fade(@c_black, 95%);
   text-align: center;
+  min-height: 100vh;
 
   .header-menu {
     display: block;
@@ -3518,9 +3519,13 @@ footer {
   position: absolute;
   background-color: @c_white;
 
+  min-height: 100vh;
+
   @media(min-width: @min_width) {
     width: 1000px;
     height: 640px;
+
+    min-height: revert;
   }
 
   &__close {
@@ -3578,10 +3583,10 @@ footer {
 
   &__text {
     padding: 2em;
-
-    @media(orientation: landscape) {
-      height: 100%;
-    }
+    //
+    //@media(orientation: landscape) {
+    //  height: 100%;
+    //}
 
     @media(max-width: 405px) {
       padding-bottom: 4em;
@@ -3821,6 +3826,7 @@ footer {
 
       .button {
         margin: .5em;
+        width: 10em;
 
         @media(orientation: portrait) {
           margin: .3em .5em;
@@ -3829,6 +3835,7 @@ footer {
 
         @media(min-width: @min_width) {
           margin: 0 5px;
+          width: auto;
         }
       }
     }
@@ -4131,7 +4138,11 @@ aside {
 .cards-container {
 
   &__container {
-    padding-bottom: 56px;
+    padding-bottom: 1em;
+
+    @media(min-width: @min_width) {
+      padding-bottom: 56px;
+    }
   }
 
   &__step-title {
@@ -4317,6 +4328,12 @@ aside {
     color: @c_black;
     padding: 15px 0;
     border-bottom: 2px solid @c_black;
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: @min_width) {
+      display: block;
+    }
   }
 
   &__cost, &__remove, &__price, &__controls, &__item, &__quantity {
@@ -4341,10 +4358,13 @@ aside {
   &__item {
     //width: 400px;
     width: 590px;
+
+    flex-grow: 1;
   }
 
   &__price {
     width: 120px;
+    white-space: nowrap;
   }
 
   &__quantity {
@@ -4353,6 +4373,11 @@ aside {
 
   &__cost {
     width: 100px;
+    padding-right: 1em;
+
+    @media(min-width: @min_width) {
+      padding-right: 0;
+    }
   }
 
   @media (min-width: 2000px) {
@@ -4375,8 +4400,15 @@ aside {
 
   &__wrap {
     border-bottom: 2px solid @c_black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .cards-container__cost {
+    @media (min-width: @min_width) {
+      display: block;
+    }
+
+    .cards-container__price {
       display: none;
     }
 
@@ -4389,6 +4421,7 @@ aside {
         display: inline-block;
       }
     }
+
     .quantity-wrap {
 
       .quantity-control__input {
@@ -4398,22 +4431,30 @@ aside {
 
     .cards-container__item {
       padding: 20px 0;
+      display: flex;
+      flex-direction: row;
 
       &-image {
-        width: 125px;
-        height: 125px;
-        display: inline-block;
-        vertical-align: middle;
+        width: 3.5em;
+        height: 3.5em;
+        flex-shrink: 0;
         border-radius: 50%;
         background-color: @c_black;
         position: relative;
+        display: inline-block;
+        vertical-align: middle;
+
+        @media(min-width: @min_width) {
+          width: 125px;
+          height: 125px;
+        }
 
         &.yellow {
           background-color: @rc_yellow;
         }
 
         img {
-          max-width: 150px;
+          max-width: 4.5em;
           display: inline-block;
           position: absolute;
           top: 50%;
@@ -4423,6 +4464,10 @@ aside {
           -ms-transform: translate(-50%, -50%);
           -o-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+
+          @media(min-width: @min_width) {
+            max-width: 150px;
+          }
         }
       }
 
@@ -4433,12 +4478,20 @@ aside {
 
         .item-info__title {
           display: block;
-          font-size: 25px;
+          font-size: 1.1em;
           font-family: Catorze27style1-bold;
           color: @c_black;
           padding-bottom: 5px;
           text-decoration: none;
           max-width: 250px;
+
+          @media(max-width: 330px) {
+            font-size: .9em;
+          }
+
+          @media(min-width: @min_width) {
+            font-size: 25px;
+          }
 
           &:hover {
             color: @rc_yellow;
@@ -4479,10 +4532,20 @@ aside {
       }
     }
 
-    .cards-container__price, .cards-container__cost {
+    .cards-container__price,
+    .cards-container__cost {
       font-size: 20px;
       font-family: alegreyasans-medium;
       color: @c_black;
+    }
+
+    .cards-container__cost {
+      white-space: nowrap;
+      padding-right: 1em;
+
+      @media(min-width: @min_width) {
+        padding-right: 0;
+      }
     }
 
     .cards-container__controls {
@@ -4652,7 +4715,12 @@ aside {
 .section-checkout,
 .section-purchase {
   padding-top: 15px;
-  padding-bottom: 185px;
+  padding-bottom: 5em;
+
+  @media(min-width: @min_width) {
+    padding-top: 15px;
+    padding-bottom: 185px;
+  }
 }
 
 .section-purchase {
@@ -4667,16 +4735,53 @@ aside {
   }
 }
 
+.mobile-info__value {
+  font-family: alegreyasans-regular;
+  //font-size: 30px;
+  font-size: 1em;
+  color: @c_black;
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding-bottom: 1em;
+
+  .mobile-info__cost {
+    font-family: alegreyasans-bold;
+    //font-size: 30px;
+    font-size: 1em;
+    color: @c_black;
+  }
+
+  @media(min-width: @min_width){
+    display: none;
+  }
+}
+
 .section-checkout {
+
 
   h1 {
     margin-bottom: 10px;
+    padding-bottom: .5em;
   }
 
   .button {
     background-color: @rc_yellow;
     color: @c_black;
     border-color: @rc_yellow;
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    @media(orientation: landscape) {
+      width: auto;
+      display: inline-block;
+    }
+
+    @media(min-width: @min_width) {
+      width: auto;
+      display: inline-block;
+    }
 
     &:hover {
       background-color: @rc_yellow-hover;
@@ -4737,31 +4842,80 @@ body .delivery-info {
 /////
 .cheese-card {
   background-color: #e8e8e8;
-  padding-bottom: 170px;
+  padding-top: 2em;
+  padding-bottom: 14.5em;
   overflow: visible;
   position: relative;
 
+  @media(min-width: @min_width) {
+    padding-bottom: 170px;
+  }
+
   &__title {
-    font-size: 30px;
     font-family: Catorze27style1-bold;
     color: @c_black;
-    display: inline-block;
-    max-width: 325px;
-    margin-left: 80px;
+    display: none;
     vertical-align: top;
-    margin-top: 37px;
     position: relative;
 
-    p {
+    &_mobile {
+      display: block;
+
+      @media(orientation: landscape) {
+        margin-left: 15%;
+      }
+    }
+
+    @media(min-width: @min_width) {
+      max-width: 325px;
+      margin-left: 80px;
+      margin-top: 37px;
       font-size: 30px;
+      display: inline-block;
+
+      &_mobile {
+        display: none;
+      }
+    }
+
+    p {
+      font-size: 1.5rem;
+      max-width: 60%;
+
+      @media(orientation: landscape) {
+        max-width: 80%;
+      }
+
+      @media(min-width: @min_width) {
+        max-width: none;
+        font-size: 30px;
+      }
     }
   }
 
   &__image {
     display: inline-block;
     vertical-align: top;
-    margin-top: -51px;
-    margin-left: 111px;
+    position: absolute;
+    top: -3.5em;
+    //width: 75%;
+    width: 16em;
+    left: 41%;
+
+    @media(orientation: landscape) {
+      width: 25em;
+    }
+
+    @media(min-width: @min_width) {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: -51px;
+      margin-left: 111px;
+      left: auto;
+      width: auto;
+      top: auto;
+    }
   }
 
   &__more {
@@ -4916,6 +5070,13 @@ body .delivery-info {
       display: inline-block;
       vertical-align: middle;
       line-height: 44px;
+
+      @media(orientation: landscape) {
+
+        @media(max-width: 720px) {
+          display: none;
+        }
+      }
 
       @media(min-width: @min_width) {
         font-size: 21px;
@@ -7845,8 +8006,13 @@ body .delivery-info {
 }
 
 //28.11 fixed menu all page
-.section-checkout, .section-purchase {
-  margin-top: 105px;
+.section-checkout,
+.section-purchase {
+  margin-top: 5em;
+
+  @media(min-width: @min_width) {
+    margin-top: 105px;
+  }
 }
 
 .ymaps-title {

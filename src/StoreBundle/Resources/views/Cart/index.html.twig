@@ -71,7 +71,11 @@
               {% endfor %}
             </div>
 
-
+            <div class="mobile-info__value">
+                Итого <span class="mobile-info__cost">{{ cart.total|number_format(0, '', ' ') }}
+                    ₽</span>
+              {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
+            </div>
 
             <a href="{{ url('checkout') }}" class="button button_black">
                 <span>Оформить заказ</span>
