@@ -20,3 +20,13 @@ services:
       - '@event_dispatcher'
       - '%moysklad_organisation_id%'
       - '@aw.settings.manager'
+#
+#  aw.moysklad.product_folder.repository:
+#    class: Accurateweb\MoyskladIntegrationBundle\Repository\MoyskladRepository
+#    factory: ['@aw.moysklad', 'getRepository']
+#    arguments: ['MoySklad\Entities\Folders\ProductFolder']
+#
+#  aw.moysklad.product.repository:
+#    class: Accurateweb\MoyskladIntegrationBundle\Repository\MoyskladRepository
+#    factory: ['@aw.moysklad', 'getRepository']
+#    arguments: ['MoySklad\Entities\Products\Product']

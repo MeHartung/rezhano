@@ -3,7 +3,7 @@
 namespace Accurateweb\MoyskladIntegrationBundle\Repository;
 
 use Doctrine\Common\Persistence\ObjectRepository;
-use MoySklad\Components\FilterQuery;
+use Accurateweb\MoyskladIntegrationBundle\Model\FilterQuery;
 use MoySklad\Components\Specs\QuerySpecs\QuerySpecs;
 use MoySklad\Entities\AbstractEntity;
 use MoySklad\MoySklad;
@@ -50,8 +50,22 @@ class MoyskladRepository implements ObjectRepository
 
     foreach ($criteria as $field => $value)
     {
-      $filter
-        ->eq($field, $value);
+      if(preg_match('/^%.+%$/', $value))
+      {
+        $filter->contain($field, preg_replace('/^%(.+)%$/', '$1', $value));
+      }
+      elseif (preg_match('/%$/', $value))
+      {
+        $filter->containLeft($field, preg_replace('/(%)$/', '', $value));
+      }
+      elseif (preg_match('/^%/', $value))
+      {
+        $filter->containRight($field, preg_replace('/^(%)/', '', $value));
+      }
+      else
+      {
+        $filter->eq($field, $value);
+      }
     }
     
     $list = $class::query($this->sklad, QuerySpecs::create([
