@@ -6,24 +6,9 @@ define(function(require){
     <img src="<%= image %>" alt="">\n\
   </a>\n\
 <%});%></div>\
-<div class="layer__text">\n\
+<div class="layer__text ">\n\
     <a href="<%= product_url %>" class="layer__title layer-title"><%= name %></a>\n\
     <div class="layer__text-wrap scroll-pane">\n\
-      <% if (attributes) { %>\n\
-         <% _.each(attributes, function(attr, key) { %>\n\
-           <div class="layer__text-item">\n\
-             <div class="layer__text-title"><%= key %>:</div> \n\
-             <div class="layer__text-text"><%= attr %></div> \n\
-           </div>\n\
-         <%});%>\n\
-      <% } %>\n\
-      <% if (description) { %>\n\
-        <div class="layer__text-item">\n\
-          <div class="layer__text-text" style="margin-top: 15px;display: inline-block;"><%= description %></div> \n\
-        </div>\n\
-      <% } %>\n\
-    </div>\n\
-    <div class="layer__text-wrap layer__text-wrap_mobile">\n\
       <% if (attributes) { %>\n\
          <% _.each(attributes, function(attr, key) { %>\n\
            <div class="layer__text-item">\n\

@@ -3567,7 +3567,6 @@ footer.low .footer-aside {
 @media (orientation: landscape) {
   .layer__images {
     width: 50%;
-    height: 100%;
   }
 }
 @media (min-width: 1200px) {
@@ -4549,7 +4548,6 @@ body .delivery-info__message {
 }
 @media (orientation: landscape) {
   .layer__text-wrap {
-    height: 55%;
     display: block;
     padding: 0;
   }
@@ -4648,7 +4646,6 @@ body .delivery-info__message {
   .section-in-product .layer__container {
     display: block;
     white-space: nowrap;
-    height: 100%;
   }
 }
 @media (min-width: 1200px) {
