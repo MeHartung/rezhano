@@ -1,7 +1,11 @@
 
 .jspPane {
-  width: 335px !important;
+  width: 100%;
   //padding: 0 8px !important;
+
+  @media(min-width: @min_width) {
+    width: 335px !important;
+  }
 }
 
 .jspVerticalBar {
