@@ -61,7 +61,7 @@
         </div>
         <div class="layer__text" title="Без ГМО, без красителей, без консервантов" alt="Без ГМО, без красителей, без консервантов">
           <h2 class="layer__title" itemprop="name">{{ product.name }}</h2>
-          {#<div class="layer__text-wrap scroll-pane">#}
+
           <div class="layer__text-wrap scroll-pane">
             {% if product.productAttributeValuesGrouped | length > 0 %}
                 {% for attribure_name, attribute in product.productAttributeValuesGrouped %}
@@ -77,15 +77,37 @@
                   </div>
                   </div>
                 {% endfor %}
-
             {% endif %}
-
             {% if product.description %}
             <div class="layer__text-item">
               <div class="layer__text-text" style="margin-top: 15px; display: inline-block;">{{ product.description | raw }}</div>
             </div>
             {% endif %}
           </div>
+
+          <div class="layer__text-wrap layer__text-wrap_mobile">
+            {% if product.productAttributeValuesGrouped | length > 0 %}
+              {% for attribure_name, attribute in product.productAttributeValuesGrouped %}
+                <div class="layer__text-item">
+                  <div class="layer__text-title">{{ attribure_name }}:</div>
+                  <div class="layer__text-text">
+                    {#{% spaceless %}#}
+                    {% for val in attribute %}
+                      {#<div class="layer__text-text">это готовое самостоятельное блюдо. Можно посыпать солью, чёрным перцем, сбрызнуть оливковым маслом, и с помощью ломтика хлеба или крекера собирать жидкую начинку. А можно так же, как и Моцареллу —со свежими помидорами и базиликом, или овощами, пожаренными на гриле.</div>#}
+                      {{ val }}{% if loop.last == false %}, {% endif%}
+                    {% endfor %}
+                    {#{% endspaceless %}#}
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% if product.description %}
+              <div class="layer__text-item">
+                <div class="layer__text-text" style="margin-top: 15px; display: inline-block;">{{ product.description | raw }}</div>
+              </div>
+            {% endif %}
+          </div>
+
           <div class="product-item__characteristics" itemprop="offers" itemscope=""
                itemtype="http://schema.org/Offer">
 
