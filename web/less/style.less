@@ -3565,6 +3565,11 @@ footer {
   &__images, &__text {
     vertical-align: top;
 
+    @media(orientation: landscape) {
+      width: 50%;
+      display: inline-block !important;
+    }
+
     @media(min-width: @min_width) {
       width: 50%;
       display: inline-block !important;
@@ -3573,6 +3578,10 @@ footer {
 
   &__text {
     padding: 2em;
+
+    @media(orientation: landscape) {
+      height: 100%;
+    }
 
     @media(max-width: 405px) {
       padding-bottom: 4em;
@@ -3597,10 +3606,13 @@ footer {
 
   &__images {
     width: 100%;
-    //height: auto;
     overflow: hidden;
     position: relative;
 
+    @media(orientation: landscape) {
+      width: 50%;
+      height: 100%;
+    }
 
     @media(min-width: @min_width) {
       width: 500px;
@@ -4019,6 +4031,12 @@ footer {
     .layer__container {
       display: flex;
       flex-flow: column-reverse;
+
+      @media(orientation: landscape) {
+        display: block;
+        white-space: nowrap;
+        height: 100%;
+      }
 
       @media(min-width: @min_width) {
         display: block;
@@ -4762,6 +4780,12 @@ body .delivery-info {
     line-height: 58px;
     margin-bottom: 35px;
 
+    @media(orientation: landscape) {
+      font-size: 2.5rem;
+      margin-bottom: .5rem;
+      line-height: 1.2;
+    }
+
     &:hover {
       color: @rc_yellow;
     }
@@ -4805,6 +4829,10 @@ body .delivery-info {
     white-space: normal;
     vertical-align: top;
 
+    @media(orientation: landscape) {
+      margin-top: 0 !important;
+    }
+
     p {
       font-size: 20px;
       font-family: alegreyasans-regular;
@@ -4823,6 +4851,16 @@ body .delivery-info {
 
     &_mobile {
       display: block;
+    }
+
+    @media(orientation: landscape) {
+      height: 50%;
+      display: block;
+      padding: 0;
+
+      &_mobile {
+        display: none;
+      }
     }
 
     @media(min-width: @min_width) {
