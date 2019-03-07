@@ -4225,6 +4225,14 @@ aside.right {
   display: flex;
   flex-direction: row;
 }
+.cards-container__wrap .cards-container__item .cards-link-wrap {
+  display: flex;
+}
+@media (min-width: 1200px) {
+  .cards-container__wrap .cards-container__item .cards-link-wrap {
+    display: block;
+  }
+}
 .cards-container__wrap .cards-container__item-image {
   width: 3.5em;
   height: 3.5em;

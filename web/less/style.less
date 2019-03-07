@@ -4434,6 +4434,14 @@ aside {
       display: flex;
       flex-direction: row;
 
+      .cards-link-wrap {
+        display: flex;
+
+        @media(min-width: @min_width) {
+          display: block;
+        }
+      }
+
       &-image {
         width: 3.5em;
         height: 3.5em;
