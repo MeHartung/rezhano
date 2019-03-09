@@ -3901,7 +3901,6 @@ footer {
 
     .question-layer-wrap {
       padding-top: 13em;
-
       max-width: 35em;
       margin: 0 auto;
 
@@ -3943,19 +3942,15 @@ footer {
       line-height: 1.2;
       max-height: 100px;
       position: relative;
-      //
       border-color: transparent;
-      //height: 41px;
 
       &:after {
         content: '';
         height: 2px;
         width: 100%;
         background-color: #000;
-
         position: absolute;
         bottom: -5px;
-
       }
     }
 
@@ -4005,7 +4000,6 @@ footer {
     }
 
     .question-wrapper__row {
-      //white-space: nowrap;
 
       @media(min-width: @min_width) {
         white-space: nowrap;
@@ -4019,31 +4013,46 @@ footer {
 
     .question-layer-message {
       text-align: center;
-      margin: 135px 40px;
+      margin: 0;
+      margin-top: 14em;
+
+      @media(min-width: @min_width) {
+        margin: 135px 40px;
+      }
 
       &__text {
-        font-size: 45px;
+        font-size: 2em;
         font-family: Catorze27style1-bold;
         color: @c_black;
-
-        padding-top: 62px;
         display: inline-block;
+        padding-bottom: 3em;
+        padding-top: 3em;
+
+        @media(min-width: @min_width) {
+          font-size: 45px;
+          padding-top: 62px;
+          //padding-bottom: 62px;
+          padding-bottom: 0;
+        }
       }
     }
 
     .question-layer-error {
-      width: 723px;
-      height: 305px;
-
+      width: 100%;
+      height: auto;
       background-color: #f58888;
       position: relative;
+
+      @media(min-width: @min_width) {
+        width: 723px;
+        height: 305px;
+      }
 
       &:after {
         content: '';
         border-style: solid;
         border-width: 22px 0 0 22px;
         border-color: transparent transparent transparent #f58888;
-
         position: absolute;
         top: -20px;
         left: 35px;
@@ -4051,18 +4060,21 @@ footer {
     }
 
     .question-layer-success {
-      width: 723px;
-      height: 305px;
-
+      width: 100%;
+      height: auto;
       background-color: @rc_yellow;
       position: relative;
+
+      @media(min-width: @min_width) {
+        width: 723px;
+        height: 305px;
+      }
 
       &:after {
         content: '';
         border-style: solid;
         border-width: 22px 0 0 22px;
         border-color: transparent transparent transparent @rc_yellow;
-
         position: absolute;
         top: -20px;
         left: 35px;
