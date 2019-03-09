@@ -46,7 +46,7 @@ define(function(require) {
       this.adjustScale();
     },
     render: function () {
-      this.$el.html(templateMobile({
+      this.$el.html(template({
         name: this.model.get('name'),
         quantity: this.formatFloat(this.modelToView(+this.model.get('quantity'))),
         units: this.scale ? this.scale.units : this.units,
