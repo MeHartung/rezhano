@@ -3767,12 +3767,16 @@ footer.low .footer-aside {
 .layer.layer-questions {
   overflow: scroll;
   padding: 1em;
+  min-height: 100%;
+  height: 100%;
 }
 @media (min-width: 1200px) {
   .layer.layer-questions {
     padding: 70px 100px;
     margin-left: -50px;
     overflow: hidden;
+    min-height: 700px;
+    max-height: 100%;
   }
 }
 .layer.layer-questions .question-wrapper {
