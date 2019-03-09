@@ -4,7 +4,8 @@
 define(function(require){
   var CommonView = require('view/common/common-view'),
     CheckoutForm = require('view/checkout/form'),
-    TotalsPanelView = require('view/cart/cart-totals-panel');
+    TotalsPanelView = require('view/cart/cart-totals-panel'),
+    MobileTotalsPanelView = require('view/cart/cart-totals-panel-mobile');
 
   return CommonView.extend({
     initialize: function(options) {
@@ -22,6 +23,10 @@ define(function(require){
         model: this.order,
       });
 
+      this.mobileTotalsPanelView = new MobileTotalsPanelView({
+        model: this.order,
+      });
+
       this.listenTo( this.checkoutForm, 'enableShipping', this.enableShipping);
       this.listenTo( this.checkoutForm, 'disableShipping', this.disableShipping);
 
@@ -35,6 +40,10 @@ define(function(require){
 
       this.totalsPanelView.setElement(this.$('.cards-container__payment-info-wrap'));
       this.totalsPanelView.render();
+
+      this.mobileTotalsPanelView.setElement(this.$('.mobile-payment-info-wrap'));
+      this.mobileTotalsPanelView.render();
+
       return this;
     },
     onWindowScroll: function () {

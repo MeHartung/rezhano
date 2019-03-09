@@ -177,6 +177,10 @@ define(function(require){
     close: function () {
       this.remove();
       ModalDialog.prototype.close.apply(this, arguments);
+
+      $('body').css({
+        'overflow': 'auto'
+      });
     },
     onNameChange: function (e) {
       this.model.set('fio', $(e.currentTarget).val());

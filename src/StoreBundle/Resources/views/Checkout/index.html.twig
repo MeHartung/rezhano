@@ -3,28 +3,28 @@
 {% form_theme form with _self %}
 
 {% block form_errors %}
-    {% spaceless %}
-        {% if errors|length > 0 %}
-            <ul class="error-list">
-                {% for error in errors %}
-                    <li>{{ error.message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endspaceless %}
+  {% spaceless %}
+    {% if errors|length > 0 %}
+      <ul class="error-list">
+        {% for error in errors %}
+          <li>{{ error.message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endspaceless %}
 {% endblock form_errors %}
 
 
 {% block _checkout_customer_type_block_widget %}
-    {% for child in form %}
-        <div class="custom-radio">
-            <label>
-                {{ form_widget(child, {'attr': {'class': 'radio'}}) }}
-                <span class="custom-radio__radio"></span>
-                <span>{{ child.vars.label }}</span>
-            </label>
-        </div>
-    {% endfor %}
+  {% for child in form %}
+    <div class="custom-radio">
+      <label>
+        {{ form_widget(child, {'attr': {'class': 'radio'}}) }}
+        <span class="custom-radio__radio"></span>
+        <span>{{ child.vars.label }}</span>
+      </label>
+    </div>
+  {% endfor %}
 {% endblock %}
 {#{% block stylesheets %}#}
   {#{{ parent() }}#}
@@ -408,304 +408,318 @@
 {#{% endblock %}#}
 
 {% block main %}
-    <section class="section-purchase">
+  <section class="section-purchase">
 
-        <div class="container">
-            <h1>Оформление заказа</h1>
-            <div class="center_no-left cards-container__center_no-left">
-                {% block sidebar %}
-                    <aside class="right">
-                        <div class="cards-container__payment-info">
-                            <div class="cards-container__payment-info-wrap">
-                                {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
-                                {% for item in order.orderItems %}
-                                    <div class="payment-info__product">
-                                        <span class="payment-info__product-name">{{ item.product.name }}</span>
-                                        <span class="payment-info__product-value">{{ item.quantity }}
-                                          {# {{ item.product.units }} #}
-                                            × {{ item.product.measuredPartPrice | price }}</span>
-                                    </div>
-                                {% endfor %}
+    <div class="container">
+      <h1>Оформление заказа</h1>
+      <div class="center_no-left cards-container__center_no-left">
+        {% block sidebar %}
+          <aside class="right">
+            <div class="cards-container__payment-info">
+              <div class="cards-container__payment-info-wrap">
+                {#<span class="payment-info__title">В заказе 2 товара и 1 услуга:</span>#}
+                {% for item in order.orderItems %}
+                  <div class="payment-info__product">
+                    <span class="payment-info__product-name">{{ item.product.name }}</span>
+                    <span class="payment-info__product-value">{{ item.quantity }}
+                      {# {{ item.product.units }} #}
+                      × {{ item.product.measuredPartPrice | price }}</span>
+                  </div>
+                {% endfor %}
 
-                                {#<span class="payment-info__discount">#}
-                                {#Скидка 10%#}
-                                {#</span>#}
+                {#<span class="payment-info__discount">#}
+                {#Скидка 10%#}
+                {#</span>#}
 
-                                <div class="payment-info__value">
-                                    Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}
-                                        ₽</span>
-                                    {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
-                                </div>
-                            </div>
-                            <div class="submessage" style="color: #a5a5a5; font-size: 17px; font-family: alegreyasans-regular;">
-                                {{ hotspot_inline('checkout_sidebar_submessage', "Цена может измениться")}}
-                            </div>
-                        </div>
-                        {#<a href="{{ path('checkout_shipping') }}" class="button button_black">#}
-                        {#<span>оформить в один клик</span>#}
-                        {#</a>#}
-                    </aside>
-                {% endblock %}
-                <div class="section-wrap">
-                    {{ form_start(form, { attr: { id: "checkoutForm", name: "checkoutForm", 'novalidate': 'novalidate'} }) }}
-                    {{ form_errors(form) }}
-                    <div class="cards-container__step cards-container__order">
-                        <div class="cards-container__step-title">
-                            <span class="step-title__number">1</span>ваши данные
-                        </div>
+                <div class="payment-info__value">
+                  Итого <span class="payment-info__cost">{{ cart.total|number_format(0, '', ' ') }}
+                    ₽</span>
+                  {#<span class="payment-info__value_fraction">{{ "%02d"|format((cart.total-cart.total|round(0))*100) }}</span> ₽</вшм>#}
+                </div>
+              </div>
+              <div class="submessage" style="color: #a5a5a5; font-size: 17px; font-family: alegreyasans-regular;">
+                {{ hotspot_inline('checkout_sidebar_submessage', "Цена может измениться") }}
+              </div>
+            </div>
+            {#<a href="{{ path('checkout_shipping') }}" class="button button_black">#}
+            {#<span>оформить в один клик</span>#}
+            {#</a>#}
+          </aside>
+        {% endblock %}
+        <div class="section-wrap">
+          {{ form_start(form, { attr: { id: "checkoutForm", name: "checkoutForm", 'novalidate': 'novalidate'} }) }}
+          {{ form_errors(form) }}
+          <div class="cards-container__step cards-container__order">
+            <div class="cards-container__step-title">
+              <span class="step-title__number">1</span>ваши данные
+            </div>
 
-                        <div class="cards-container__step-container">
-                            {#<div class="step-item">
-                                {{ form_widget( form.customerType, {'attr': {'class': 'radio'}}) }}
+            <div class="cards-container__step-container">
+              {#<div class="step-item">
+                  {{ form_widget( form.customerType, {'attr': {'class': 'radio'}}) }}
 
-                                #}{#                <div class="custom-radio">
-                                                  <label>
-                                                    <input type="radio" class="radio" name="radio-group"
-                                                           value="{{ constant('StoreBundle\\Entity\\Store\\Order\\Order::CUSTOMER_TYPE_INDIVIDUAL') }}">
-                                                    <span class="custom-radio__radio"></span>
-                                                    <span>Частное лицо</span>
-                                                  </label>
-                                                </div>
+                  #}{#                <div class="custom-radio">
+                                    <label>
+                                      <input type="radio" class="radio" name="radio-group"
+                                             value="{{ constant('StoreBundle\\Entity\\Store\\Order\\Order::CUSTOMER_TYPE_INDIVIDUAL') }}">
+                                      <span class="custom-radio__radio"></span>
+                                      <span>Частное лицо</span>
+                                    </label>
+                                  </div>
 
-                                                <div class="custom-radio">
-                                                  <label>
-                                                    <input type="radio" class="radio" name="radio-group"
-                                                           value="{{ constant('StoreBundle\\Entity\\Store\\Order\\Order::CUSTOMER_TYPE_LEGAL') }}">
-                                                    <span class="custom-radio__radio"></span>
-                                                    <span>Юридическое лицо</span>
-                                                  </label>
-                                                </div>
-                                                <div id="">
+                                  <div class="custom-radio">
+                                    <label>
+                                      <input type="radio" class="radio" name="radio-group"
+                                             value="{{ constant('StoreBundle\\Entity\\Store\\Order\\Order::CUSTOMER_TYPE_LEGAL') }}">
+                                      <span class="custom-radio__radio"></span>
+                                      <span>Юридическое лицо</span>
+                                    </label>
+                                  </div>
+                                  <div id="">
 
-                                                </div>#}{#
-                            </div>#}
+                                  </div>#}{#
+              </div>#}
 
-                            <div class="step-item step-item-input{% if (form.customer_first_name.vars.errors|length) %} error{% endif %}">
-                                {#<input class="input-text" type="text" placeholder="ФИО">#}
-                                {{ form_widget(form.customer_first_name, {'attr': {'placeholder': 'ФИО', 'class': 'input-text', 'data-validate':'name', 'data-description':'name', 'data-describedby': 'name-errors'}}) }}
-                                <i class="error-icon">
+              <div class="step-item step-item-input{% if (form.customer_first_name.vars.errors|length) %} error{% endif %}">
+                {#<input class="input-text" type="text" placeholder="ФИО">#}
+                {{ form_widget(form.customer_first_name, {'attr': {'placeholder': 'ФИО', 'class': 'input-text', 'data-validate':'name', 'data-description':'name', 'data-describedby': 'name-errors'}}) }}
+                <i class="error-icon">
                   <span class="error-icon__message" id="name-errors">
                     {{ form_errors(form.customer_first_name) }}
                   </span>
-                                </i>
-                            </div>
+                </i>
+              </div>
 
-                            <div class="step-item step-item-input{% if (form.customer_phone.vars.errors|length) %} error{% endif %}">
-                                {#<input class="input-text" type="text" placeholder="Телефон">#}
-                                {{ form_widget(form.customer_phone, {'attr': {'placeholder': 'Телефон', 'class': 'input-text', 'data-validate':'phone', 'data-description':'phone', 'data-describedby': 'phone-errors'}}) }}
-                                <i class="error-icon">
+              <div class="step-item step-item-input{% if (form.customer_phone.vars.errors|length) %} error{% endif %}">
+                {#<input class="input-text" type="text" placeholder="Телефон">#}
+                {{ form_widget(form.customer_phone, {'attr': {'placeholder': 'Телефон', 'class': 'input-text', 'data-validate':'phone', 'data-description':'phone', 'data-describedby': 'phone-errors'}}) }}
+                <i class="error-icon">
                   <span class="error-icon__message" id="phone-errors">
                     {{ form_errors(form.customer_phone) }}
                   </span>
-                                </i>
-                            </div>
-                            <div class="step-item step-item-input{% if (form.customer_email.vars.errors|length) %} error{% endif %}">
-                                {{ form_widget(form.customer_email, {'attr': {'placeholder': 'Эл. почта', 'class': 'input-text', 'data-validate':'email', 'data-description':'email', 'data-describedby': 'email-errors'}}) }}
-                                <i class="error-icon">
+                </i>
+              </div>
+              <div class="step-item step-item-input{% if (form.customer_email.vars.errors|length) %} error{% endif %}">
+                {{ form_widget(form.customer_email, {'attr': {'placeholder': 'Эл. почта', 'class': 'input-text', 'data-validate':'email', 'data-description':'email', 'data-describedby': 'email-errors'}}) }}
+                <i class="error-icon">
                   <span class="error-icon__message" id="email-errors">
                     {{ form_errors(form.customer_email) }}
                   </span>
-                                </i>
-                            </div>
-                        </div>
-                    </div>
+                </i>
+              </div>
+            </div>
+          </div>
 
-                    <div class="cards-container__step cards-container__order">
-                        <div class="cards-container__step-title">
-                            <span class="step-title__number">2</span>получение заказа
-                        </div>
+          <div class="cards-container__step cards-container__order">
+            <div class="cards-container__step-title">
+              <span class="step-title__number">2</span>получение заказа
+            </div>
 
-                        <div class="cards-container__step-container shipping-panel">
+            <div class="cards-container__step-container shipping-panel">
 
-                            <div class="step-item {% if (form.shipping_city_name.vars.errors|length) %} error{% endif %}">
+              <div class="step-item {% if (form.shipping_city_name.vars.errors|length) %} error{% endif %}">
               <span class="step-item__title">
                 Город получения
               </span>
 
-                                <div class="custom-select">
-                                    {{ form_widget(form.shipping_city_name) }} {# , {'attr': {'class': 'custom-select' }} #}
-                                    {#                <label for="">
-                                                      <select name="" id="">
-                                                        <option value="Екатеринбург">Екатеринбург</option>
-                                                        <option value="Москва">Москва</option>
-                                                        <option value="Санкт-Петербург">Санкт-Петербург</option>
-                                                      </select>
-                                                    </label>#}
-                                </div>
+                <div class="custom-select">
+                  {{ form_widget(form.shipping_city_name) }} {# , {'attr': {'class': 'custom-select' }} #}
+                  {#                <label for="">
+                                    <select name="" id="">
+                                      <option value="Екатеринбург">Екатеринбург</option>
+                                      <option value="Москва">Москва</option>
+                                      <option value="Санкт-Петербург">Санкт-Петербург</option>
+                                    </select>
+                                  </label>#}
+                </div>
 
-                            </div>
+              </div>
 
-                            <div class="step-item {% if (form.shippingMethod.vars.errors|length) %} error{% endif %}">
+              <div class="step-item {% if (form.shippingMethod.vars.errors|length) %} error{% endif %}">
                 <span class="step-item__title">
                   Способ получения
                 </span>
-                                <div class="shipping-method-list">
-                                    {% for child in form.shippingMethod %}
-                                        <div class="custom-radio">
-                                            <label>
-                                                {{ form_widget(child, { attr: { 'class': 'radio'} }) }}
-                                                {{ child.vars.value | render_shipping_label | raw }}
-                                                {{ child.vars.value | render_shipping_info(cart.total) | raw }}
-                                            </label>
-                                            {#<span class="delivery-info">#}
-                                            {#/  от 250 ₽ <span class="delivery-info__message">#}
-                                            {#Кстати, при заказе сыров от 1500₽ мы сделаем доставку бесплатно#}
-                                            {#</span>#}
-                                            {#</span>#}
-                                        </div>
-                                    {% endfor %}
-                                </div>
+                <div class="shipping-method-list">
+                  {% for child in form.shippingMethod %}
+                    <div class="custom-radio">
+                      <label>
+                        {{ form_widget(child, { attr: { 'class': 'radio'} }) }}
+                        {{ child.vars.value | render_shipping_label | raw }}
+                        {{ child.vars.value | render_shipping_info(cart.total) | raw }}
+                      </label>
+                      {#<span class="delivery-info">#}
+                      {#/  от 250 ₽ <span class="delivery-info__message">#}
+                      {#Кстати, при заказе сыров от 1500₽ мы сделаем доставку бесплатно#}
+                      {#</span>#}
+                      {#</span>#}
+                    </div>
+                  {% endfor %}
+                </div>
 
-                                <div class="another-city-text" style="display: none">
-                                    {{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}
-                                </div>
+                <div class="another-city-text" style="display: none">
+                  {{ hotspot_inline('another_city', 'Оператор свяжется с Вами для уточнения данных о доставке.') }}
+                </div>
 
-                                {#{{ form_widget(form.shippingMethod) }}#}
+                {#{{ form_widget(form.shippingMethod) }}#}
 
-                                {#<div class="custom-radio">
-                                  <label>
-                                    <input type="radio" class="radio" name="radio-delivery">
-                                    <span class="custom-radio__radio"></span>
-                                    <span>Курьером</span>
-                                  </label>
+                {#<div class="custom-radio">
+                  <label>
+                    <input type="radio" class="radio" name="radio-delivery">
+                    <span class="custom-radio__radio"></span>
+                    <span>Курьером</span>
+                  </label>
 
-                                  <span class="delivery-info">
-                                    /  от 250 ₽ <span class="delivery-info__message">
-                                      Кстати, при заказе сыров от 1500₽ мы сделаем доставку бесплатно
-                                    </span>
-                                  </span>
-                                </div>
+                  <span class="delivery-info">
+                    /  от 250 ₽ <span class="delivery-info__message">
+                      Кстати, при заказе сыров от 1500₽ мы сделаем доставку бесплатно
+                    </span>
+                  </span>
+                </div>
 
-                                <div class="custom-radio">
-                                  <label>
-                                    <input type="radio" class="radio" name="radio-delivery">
-                                    <span class="custom-radio__radio"></span>
-                                    <span>Самовывоз с <span class="shipment-address">Красноармейской, 68</span></span>
-                                  </label>
-                                </div>
-                              </div>#}
+                <div class="custom-radio">
+                  <label>
+                    <input type="radio" class="radio" name="radio-delivery">
+                    <span class="custom-radio__radio"></span>
+                    <span>Самовывоз с <span class="shipment-address">Красноармейской, 68</span></span>
+                  </label>
+                </div>
+              </div>#}
 
-                            </div>
-                            <div class="step-item step-item-input step-item-input_biggest{% if (form.shipping_address.vars.errors|length) %} error{% endif %}"
-                                 id="shipping-address-input">
-                                {{ form_widget(form.shipping_address, {'attr': {'placeholder': 'Адрес', 'class': 'input-text', 'data-conditional':'address', 'data-description':'address', 'data-describedby': 'address-errors'}}) }}
-                                <i class="error-icon">
+              </div>
+              <div class="step-item step-item-input step-item-input_biggest{% if (form.shipping_address.vars.errors|length) %} error{% endif %}"
+                   id="shipping-address-input">
+                {{ form_widget(form.shipping_address, {'attr': {'placeholder': 'Адрес', 'class': 'input-text', 'data-conditional':'address', 'data-description':'address', 'data-describedby': 'address-errors'}}) }}
+                <i class="error-icon">
                     <span class="error-icon__message" id="address-errors">
                       {{ form_errors(form.shipping_address) }}
                     </span>
-                                </i>
-                            </div>
-                        </div>
+                </i>
+              </div>
+            </div>
 
 
-                        <div class="cards-container__step cards-container__order cards-container__step-payment">
-                            <div class="cards-container__step-title">
-                                <span class="step-title__number">3</span>оплата заказа
-                            </div>
+            <div class="cards-container__step cards-container__order cards-container__step-payment">
+              <div class="cards-container__step-title">
+                <span class="step-title__number">3</span>оплата заказа
+              </div>
 
-                            <div class="cards-container__step-container">
+              <div class="cards-container__step-container">
 
-                                {#<div class="step-item step-item-input step-item-input_350 step-item-card-number">#}
-                                {#<input class="input-text" type="text" placeholder="Введите номер карты">#}
-                                {#<a href="" class="button button_black">#}
-                                {#<span>Применить</span>#}
-                                {#</a>#}
-                                {#<div class="help-inline" data-error=""></div>#}
-                                {#<div class="help-block"></div>#}
-                                {#</div>#}
+                {#<div class="step-item step-item-input step-item-input_350 step-item-card-number">#}
+                {#<input class="input-text" type="text" placeholder="Введите номер карты">#}
+                {#<a href="" class="button button_black">#}
+                {#<span>Применить</span>#}
+                {#</a>#}
+                {#<div class="help-inline" data-error=""></div>#}
+                {#<div class="help-block"></div>#}
+                {#</div>#}
 
 
-                                <div class="step-item">
-                                    {% for payment in form.payment_method %}
-                                        <div class="custom-radio">
-                                            <label>
-                                                {#<input type="radio" class="radio" name="radio-delivery">#}
-                                                {{ form_widget(payment, {'attr': {'class': 'radio'}}) }}
-                                                {{ payment.vars.value | render_payment_label | raw }}
-                                            </label>
-                                            {{ payment.vars.value | render_payment_info | raw }}
-                                        </div>
-                                    {% endfor %}
+                <div class="step-item">
+                  {% for payment in form.payment_method %}
+                    <div class="custom-radio">
+                      <label>
+                        {#<input type="radio" class="radio" name="radio-delivery">#}
+                        {{ form_widget(payment, {'attr': {'class': 'radio'}}) }}
+                        {{ payment.vars.value | render_payment_label | raw }}
+                      </label>
+                      {{ payment.vars.value | render_payment_info | raw }}
+                    </div>
+                  {% endfor %}
 
-                                    {# если выбран другой город #}
+                  {# если выбран другой город #}
 
-                                    {#                  <input type="radio" class="radio" name="radio-delivery">
-                                                      <span class="custom-radio__radio"></span>
-                                                      <span>При получении</span>
-                                                    </label>
-                                                    <span class="delivery-info">
-                                                      /  Наличными, банковской картой
-                                                    </span>
-                                                  </div>#}
+                  {#                  <input type="radio" class="radio" name="radio-delivery">
+                                    <span class="custom-radio__radio"></span>
+                                    <span>При получении</span>
+                                  </label>
+                                  <span class="delivery-info">
+                                    /  Наличными, банковской картой
+                                  </span>
+                                </div>#}
 
-                                    {#<div class="custom-radio">
-                                      <label>
-                                        <input type="radio" class="radio" name="radio-delivery">
-                                        <span class="custom-radio__radio"></span>
-                                        <span>Онлайн</span>
-                                      </label>
-                                      <span class="delivery-info">
-                                        /  Картами Visa, MasterCard, Мир, Apple Pay
-                                      </span>
-                                    </div>#}
-                                    <div class="help-inline"></div>
-                                    <div class="help-block"></div>
-                                </div>
+                  {#<div class="custom-radio">
+                    <label>
+                      <input type="radio" class="radio" name="radio-delivery">
+                      <span class="custom-radio__radio"></span>
+                      <span>Онлайн</span>
+                    </label>
+                    <span class="delivery-info">
+                      /  Картами Visa, MasterCard, Мир, Apple Pay
+                    </span>
+                  </div>#}
+                  <div class="help-inline"></div>
+                  <div class="help-block"></div>
+                </div>
 
-                                <div class="step-item">
-                                    <div class="form-comment">
+                <div class="step-item step-item_mobile">
+                  <div class="cards-container__step-title">
+                    <span class="step-title__number">4</span>состав заказа
+                  </div>
+
+                  <div class="mobile-payment-info-wrap">
+
+                  </div>
+
+                </div>
+
+                <div class="step-item">
+                  <div class="form-comment">
                     <span class="step-item__title">
                       Комментарий к заказу
                     </span>
-                                        <label>
-                                            {#<textarea name="" id="" cols="30" rows="5"></textarea>#}
-                                            {{ form_widget(form.customer_comment, {'attrs': {'cols':"30", 'rows':"100"}}) }}
-                                        </label>
+                    <label>
+                      {#<textarea name="" id="" cols="30" rows="5"></textarea>#}
+                      {{ form_widget(form.customer_comment, {'attrs': {'cols':"30", 'rows':"100"}}) }}
+                    </label>
 
-                                    </div>
-                                </div>
+                  </div>
+                </div>
 
-                            </div>
-                        </div>
+              </div>
+            </div>
 
-                        <div class="step-item step-item-checkbox">
-                            <div class="custom-checkbox font-alegreya" name="tos">
-                                <label>
-                                    {# <input  name="tos" class="checkbox" type="checkbox">#}
-                                    {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox', 'data-validate':'personal-agreement', 'data-description':'personal-agreement', 'data-describedby': 'personal-agreement-errors'}}) }}
-                                    <span class="custom-checkbox__checkbox"></span>
-                                    <span>Я ознакомился и согласен с <a href="{% if termsOfServiceArticle %}{{ path('article_show', { slug: termsOfServiceArticle.slug }) }}{% else %}#{% endif %}" target="_blank">правилами продажи</a> и <a
-                                                href="{% if personalDataPolicyArticle %}{{ path('article_show', { slug: personalDataPolicyArticle.slug }) }}{% else %}#{% endif %}"  target="_blank">политикой обработки персональных данных</a>
+            <div class="step-item step-item-checkbox">
+              <div class="custom-checkbox font-alegreya" name="tos">
+                <label>
+                  {# <input  name="tos" class="checkbox" type="checkbox">#}
+                  {{ form_widget(form.tos_agreement, {'attr': {'class': 'checkbox', 'data-validate':'personal-agreement', 'data-description':'personal-agreement', 'data-describedby': 'personal-agreement-errors'}}) }}
+                  <span class="custom-checkbox__checkbox"></span>
+                  <span>Я ознакомился и согласен с <a
+                            href="{% if termsOfServiceArticle %}{{ path('article_show', { slug: termsOfServiceArticle.slug }) }}{% else %}#{% endif %}"
+                            target="_blank">правилами продажи</a> и <a
+                            href="{% if personalDataPolicyArticle %}{{ path('article_show', { slug: personalDataPolicyArticle.slug }) }}{% else %}#{% endif %}"
+                            target="_blank">политикой обработки персональных данных</a>
                   </span>
-                                </label>
-                            </div>
+                </label>
+              </div>
 
-                            {#<div class="custom-checkbox font-alegreya">
-                              <label>
-                                #}{# <input  name="tos" class="checkbox" type="checkbox">#}{#
-                               #}{# {{ form_widget(form.personalInformationAgreement, {'attr': {'class': 'checkbox'}}) }}#}{#
-                                <span class="custom-checkbox__checkbox"></span>
-                                <span>Я ознакомился и согласен с <a href="">условиями обработки персональных данных</a>
-                            </span>
-                              </label>
-                            </div>#}
-                            <i class="error-icon">
+              {#<div class="custom-checkbox font-alegreya">
+                <label>
+                  #}{# <input  name="tos" class="checkbox" type="checkbox">#}{#
+                 #}{# {{ form_widget(form.personalInformationAgreement, {'attr': {'class': 'checkbox'}}) }}#}{#
+                  <span class="custom-checkbox__checkbox"></span>
+                  <span>Я ознакомился и согласен с <a href="">условиями обработки персональных данных</a>
+              </span>
+                </label>
+              </div>#}
+              <i class="error-icon">
                     <span class="error-icon__message" id="personal-agreement-errors">
                       {{ form_errors(form.tos_agreement) }}
                     </span>
-                            </i>
-                        </div>
-
-                        <button type="submit" id="checkout_submit" name="checkout[submit]"
-                                class="button button_yellow-yellow">
-                            <span>сделать заказ</span>
-                        </button>
-
-                        {% do form.submit.setRendered %}
-                        {{ form_end(form) }}
-                    </div>
-                </div>
+              </i>
             </div>
+
+            <button type="submit" id="checkout_submit" name="checkout[submit]"
+                    class="button button_yellow-yellow">
+              <span>сделать заказ</span>
+            </button>
+
+            {% do form.submit.setRendered %}
+            {{ form_end(form) }}
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 {% endblock %}

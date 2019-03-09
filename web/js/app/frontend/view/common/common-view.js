@@ -21,7 +21,8 @@ define(function(require){
       'click .button-question': 'onQuestionClick',
       'click .footer-maps__link' : 'onAddressClick',
       'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
-      'click .cmn-toggle-switch' : 'onShowMobileMenu'
+      'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .homepage_top' : 'scrollTopHomePage'
     },
     initialize: function(options){
       this.options = $.extend({
@@ -177,6 +178,10 @@ define(function(require){
     onQuestionClick: function (e) {
       e.preventDefault();
 
+      $('body').css({
+        'overflow': 'hidden'
+      });
+
       this.questionDialogView = new QuestionDialogView({
 
       });
@@ -224,6 +229,13 @@ define(function(require){
       $(e.currentTarget).parent().find('.header-mobile').toggleClass('active');
       $('body').toggleClass('no-scroll');
 
+    },
+    scrollTopHomePage: function (e) {
+      e.preventDefault();
+
+      $("html, body").animate({
+        scrollTop: 0
+      }, 500)
     }
   });
 });
