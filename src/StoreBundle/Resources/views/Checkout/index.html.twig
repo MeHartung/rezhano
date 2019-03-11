@@ -665,13 +665,14 @@
 
                 <div class="step-item">
                   <div class="form-comment">
-                    <span class="step-item__title">
-                      Комментарий к заказу
-                    </span>
-                    <label>
+                    {#<span class="step-item__title">#}
+                      {#Комментарий к заказу#}
+                    {#</span>#}
+                    {#<label>#}
                       {#<textarea name="" id="" cols="30" rows="5"></textarea>#}
-                      {{ form_widget(form.customer_comment, {'attrs': {'cols':"30", 'rows':"100"}}) }}
-                    </label>
+                      {#{{ form_widget(form.customer_comment, {'attrs': {'cols':"30", 'rows':"100"}}) }}#}
+                      {{ form_widget(form.customer_comment, {'attrs': {'cols':"30", 'rows':"1"}}) }}
+                    {#</label>#}
 
                   </div>
                 </div>

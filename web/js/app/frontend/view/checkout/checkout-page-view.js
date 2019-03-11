@@ -8,6 +8,9 @@ define(function(require){
     MobileTotalsPanelView = require('view/cart/cart-totals-panel-mobile');
 
   return CommonView.extend({
+    events: {
+      'keydown .input-textarea' : 'autosizeR',
+    },
     initialize: function(options) {
       CommonView.prototype.initialize.apply(this, arguments);
 
@@ -75,6 +78,13 @@ define(function(require){
     disableShipping: function () {
       this.shippingCost = false;
       this.order.set('shippingCost', this.shippingCost )
-    }
+    },
+    autosizeR: function (e){
+      var el = e.currentTarget;
+      setTimeout(function(){
+        el.style.cssText = 'height:auto; padding:0';
+        el.style.cssText = 'height:' + (el.scrollHeight+4) + 'px';
+      },0);
+    },
   })
 });

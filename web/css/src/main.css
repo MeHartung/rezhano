@@ -747,6 +747,7 @@ input[type="text"].input-text {
   font-size: 21px;
   font-family: Catorze27style1-medium;
   margin-top: 2px;
+  white-space: normal;
 }
 .custom-radio span a {
   text-decoration: none;
@@ -3267,6 +3268,22 @@ footer .footer-wrap {
 footer .footer-wrap .footer-links {
   display: none;
 }
+footer .button-question-wrap_mobile {
+  display: inline-block;
+}
+@media (min-width: 1200px) {
+  footer .button-question-wrap_mobile {
+    display: none;
+  }
+}
+footer .button-question-wrap_desktop {
+  display: none;
+}
+@media (min-width: 1200px) {
+  footer .button-question-wrap_desktop {
+    display: inline-block;
+  }
+}
 footer .footer-contacts {
   display: none;
   vertical-align: top;
@@ -3840,6 +3857,7 @@ footer.low .footer-aside {
     overflow: hidden;
     min-height: 700px;
     max-height: 100%;
+    height: 640px;
   }
 }
 .layer.layer-questions .question-wrapper {
@@ -3886,6 +3904,8 @@ footer.low .footer-aside {
     height: 300px;
     background-size: auto;
     left: 0;
+    top: 0;
+    background-position-x: right;
   }
 }
 .layer.layer-questions .question-layer-wrap {
@@ -3901,6 +3921,7 @@ footer.low .footer-aside {
 @media (min-width: 1200px) {
   .layer.layer-questions .question-layer-wrap {
     padding-top: 0;
+    max-width: 100%;
   }
 }
 .layer.layer-questions .step-item {
@@ -4305,6 +4326,18 @@ aside.right {
 }
 .cards-container__step-container .step-item .custom-checkbox {
   margin-bottom: 25px;
+}
+.cards-container__step-container .step-item .form-comment {
+  position: relative;
+}
+.cards-container__step-container .step-item .form-comment:after {
+  height: 2px;
+  background-color: #000;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  content: '';
+  position: absolute;
 }
 .cards-container__step-container .custom-radio {
   margin-bottom: 25px;
@@ -6664,7 +6697,15 @@ body .delivery-info__message {
   margin-bottom: 25px;
 }
 .cards-container__order .cards-container__step-payment .cards-container__step-container .step-item textarea {
-  min-height: 120px;
+  line-height: 1.2;
+  max-height: 100px;
+  position: relative;
+  border-color: transparent;
+  background-color: #fff;
+  font-size: 17px;
+  width: 99%;
+  padding: 0;
+  margin: 3px 5px;
 }
 .map-wrapper h3 {
   font-size: 30px;

@@ -12,9 +12,15 @@
 
         <div class="footer-maps__item">
         {{ store.name }}
-        <span class="footer-maps__link" data-address="{{ store.fullAddress}}">{{ store.address }}</span>
+          <span class="footer-maps__link" data-address="{{ store.fullAddress}}">{{ store.address }}</span>
         </div>
     {% endfor %}
+
+  <div class="button-question-wrap button-question-wrap_desktop">
+    <a href="{{ path('question') }}" class="button button-question">
+      <span>задать вопрос</span>
+    </a>
+  </div>
 
     <div class="footer-contacts_mobile">
       <div class="footer-contacts" style="display: inline-block;">
@@ -40,7 +46,7 @@
         </div>
       </div>
 
-      <div class="button-question-wrap">
+      <div class="button-question-wrap button-question-wrap_mobile">
         <a href="{{ path('question') }}" class="button button-question">
           <span>задать вопрос</span>
         </a>

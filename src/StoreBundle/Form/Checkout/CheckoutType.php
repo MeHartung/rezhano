@@ -156,7 +156,8 @@ class CheckoutType extends AbstractType
       ])
       ->add('customer_comment', TextareaType::class, [
         'label' => false,
-        'required' => false
+        'required' => false,
+        'attr' => ['class' => 'input-textarea', 'rows' => '1', 'placeholder' => 'Комментарий к заказу']
       ])
       ->add('payment_method', EntityType::class, [
         'class' => PaymentMethod::class,
