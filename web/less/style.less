@@ -937,7 +937,6 @@ header {
   right: 0;
   top: 0;
   position: absolute;
-
   z-index: 10;
 
   @media only screen and (max-width: 320px) {
@@ -968,6 +967,15 @@ header {
   -o-transition: all .2s;
   transition: all .2s;
   z-index: 10;
+}
+
+.header__mobile {
+  top:-60px;
+  -webkit-transition: top .2s;
+  -moz-transition: top .2s;
+  -ms-transition: top .2s;
+  -o-transition: top .2s;
+  transition: top .2s;
 }
 
 header {
@@ -1528,10 +1536,6 @@ header {
     position: absolute;
     width: 100%;
 
-    img {
-      width: 90%;
-    }
-
     @media (orientation: landscape) {
 
       img {
@@ -1574,7 +1578,6 @@ header {
           position: absolute;
           bottom: -15px;
           right: 61px;
-
           -webkit-transform: rotate(-90deg);
           -moz-transform: rotate(-90deg);
           -ms-transform: rotate(-90deg);
@@ -1588,18 +1591,35 @@ header {
       bottom: -20%;
       right: -50%;
 
+      img {
+        width: 90%;
+      }
+
       @media (orientation: landscape) {
         bottom: -30%;
         right: -75%;
+
+        img {
+          width: 47%;
+        }
+      }
+
+      @media (min-width: @min_mobile) {
+        bottom: -30%;
+        right: -75%;
+
+        img {
+          width: 47%;
+        }
       }
 
       @media (min-width: @min_width) {
         right: -208px;
         bottom: 66px;
-      }
 
-      img {
-
+        img {
+          width: auto;
+        }
       }
 
       .image-name {
@@ -1613,7 +1633,6 @@ header {
           background: url("../images/icons/first-slide-arrow_2.png") center no-repeat;
           width: 51px;
           height: 207px;
-
           position: absolute;
           top: -58px;
           left: 145px;
@@ -1623,11 +1642,9 @@ header {
           font-size: 15px;
           font-family: alegreyasans-regular;
           color: #868686;
-
           position: absolute;
           top: -122px;
           left: 147px;
-
           -webkit-transform: rotate(-90deg);
           -moz-transform: rotate(-90deg);
           -ms-transform: rotate(-90deg);
@@ -1667,6 +1684,11 @@ header {
     display: block;
     padding-bottom: 15px;
     margin-top: 15px;
+
+    //@media (min-width: @min_mobile) {
+    //  width: 70%;
+    //  margin: 0 auto;
+    //}
 
     @media (min-width: @min_width) {
       position: absolute;
@@ -2493,6 +2515,10 @@ h1, .popular-products__title {
       margin-top: 85px;
     }
 
+    @media(min-width: @min_mobile) {
+      width: 70%;
+    }
+
     @media (min-width: @min_width) {
       width: 50%;
       display: inline-block;
@@ -2517,6 +2543,10 @@ h1, .popular-products__title {
       width: 70%;
       margin: 0 auto;
       margin-top: 85px;
+    }
+
+    @media(min-width: @min_mobile) {
+      width: 70%;
     }
 
     @media (min-width: @min_width) {
