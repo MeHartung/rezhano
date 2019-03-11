@@ -118,6 +118,10 @@ define(function(require){
         },
         invalid: function(event, options){
           self.isInvalid = true;
+
+          $("html, body").animate({
+            scrollTop: self.$('.step-item.error').offset().top - 100
+          }, 500)
         },
         valid: function(event, options){
           self.isInvalid = false;
