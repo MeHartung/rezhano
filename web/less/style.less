@@ -3921,7 +3921,7 @@ footer {
     @media(min-width: @min_width) {
       padding: 70px 100px;
       margin-left: -50px;
-      overflow: hidden;
+      overflow: visible;
       min-height: 700px;
       max-height: 100%;
       height: 640px;
@@ -4326,13 +4326,17 @@ aside {
           height: 40px;
           background-color: @c_white;
           position: absolute;
-          top: 16px;
+          top: 10px;
           right: 13px;
           -webkit-transform: rotate(30deg);
           -moz-transform: rotate(30deg);
           -ms-transform: rotate(30deg);
           -o-transform: rotate(30deg);
           transform: rotate(30deg);
+
+          @media(min-width: @min_width){
+            top: 16px;
+          }
         }
       }
     }
@@ -4437,8 +4441,9 @@ aside {
             padding: 5px;
             width: 200px;
             background-color: @c_white;
-            font-family: Catorze27style1-medium;
-            font-size: 21px;
+            //font-family: Catorze27style1-medium;
+            font-family: alegreyasans-regular;
+            font-size: 17px;
             position: absolute;
             top: 30px;
             left: -11em;
@@ -7029,6 +7034,7 @@ body .delivery-info {
       padding-bottom: 124px;
       min-height: 700px;
       max-height: 100%;
+      overflow: visible;
     }
 
     .questions-layer-wrap {
@@ -8301,6 +8307,18 @@ body .delivery-info {
 
   .error-icon__message {
     white-space: normal;
+  }
+
+  &_payment {
+    margin-bottom: 0 !important;
+  }
+
+  &_comment {
+    padding: 0 1em;
+
+    @media(min-width: @min_width){
+      padding: 0;
+    }
   }
 }
 

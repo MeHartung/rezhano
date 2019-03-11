@@ -58,8 +58,6 @@ define(function(require){
         total: Number(this.model.get('subtotal') )+ Number(this.model.get('shipping_cost'))
       }));
 
-      console.log(this.model)
-
       this.cartProductListView.setElement(this.$('.payment-info__product-wrap')).render();
 
       return this;

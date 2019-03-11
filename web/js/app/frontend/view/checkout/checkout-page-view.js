@@ -10,6 +10,7 @@ define(function(require){
   return CommonView.extend({
     events: {
       'keydown .input-textarea' : 'autosizeR',
+      'click .button-question': 'onQuestionClick',
     },
     initialize: function(options) {
       CommonView.prototype.initialize.apply(this, arguments);
