@@ -708,7 +708,7 @@ h2 {
   }
 }
 textarea {
-  width: 100%;
+  width: 97%;
   resize: none;
   border: 2px solid #191919;
   background-color: #ffffff;
@@ -718,6 +718,8 @@ textarea {
   line-height: 28px;
   padding: 3px 5px;
   outline: none;
+  padding: 0;
+  margin: 3px 5px;
 }
 input[type="password"].input-text,
 input[type="text"].input-text {
@@ -3940,6 +3942,7 @@ footer.low .footer-aside {
   height: 2px;
   width: 100%;
   background-color: #000;
+  left: 0;
   position: absolute;
   bottom: -5px;
 }
@@ -6555,6 +6558,8 @@ body .delivery-info__message {
     min-height: 700px;
     max-height: 100%;
     overflow: visible;
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 .section-write .layer-questions .questions-layer-wrap .question-wrapper {

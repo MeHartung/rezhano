@@ -11,6 +11,7 @@ define(function(require){
     events: {
       'keydown .input-textarea' : 'autosizeR',
       'click .button-question': 'onQuestionClick',
+      'click .cmn-toggle-switch' : 'onShowMobileMenu'
     },
     initialize: function(options) {
       CommonView.prototype.initialize.apply(this, arguments);

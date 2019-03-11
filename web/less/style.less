@@ -225,19 +225,21 @@ h2 {
 /// custom inputs
 
 textarea {
-  width: 100%;
+  //width: 100%;
+  width: 97%;
   resize: none;
   border: 2px solid @c_brand_black;
   background-color: @c_white;
-
   font-size: 17px;
   font-family: alegreyasans-light;
   color: @c_brand_black;
-
   line-height: 28px;
   padding: 3px 5px;
-
   outline: none;
+
+  //
+  padding: 0;
+  margin: 3px 5px;
 }
 
 input[type="password"].input-text,
@@ -4008,10 +4010,9 @@ footer {
         height: 2px;
         width: 100%;
         background-color: #000;
-
+        left: 0;
         position: absolute;
         bottom: -5px;
-
       }
     }
 
@@ -7040,6 +7041,8 @@ body .delivery-info {
       min-height: 700px;
       max-height: 100%;
       overflow: visible;
+      padding-right: 0;
+      padding-left: 0;
     }
 
     .questions-layer-wrap {

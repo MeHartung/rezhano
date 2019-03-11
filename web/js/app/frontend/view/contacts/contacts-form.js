@@ -168,7 +168,7 @@ define(function(require){
       var el = e.currentTarget;
       setTimeout(function(){
         el.style.cssText = 'height:auto; padding:0';
-        el.style.cssText = 'height:' + (el.scrollHeight+10) + 'px';
+        el.style.cssText = 'height:' + (el.scrollHeight+4) + 'px';
       },0);
     },
     onNameChange: function (e) {
