@@ -2957,6 +2957,15 @@ h1,
 .notes .notes-slider .notes__text {
   display: none;
 }
+.notes .notes-slider .notes__text p a {
+  color: #000000;
+  font-size: 21px;
+  font-family: Catorze27style1-medium;
+  outline: none;
+}
+.notes .notes-slider .notes__text p a:hover {
+  color: #ffbf02;
+}
 .notes .notes-slider .notes__text:first-child {
   display: block;
 }
@@ -2980,7 +2989,7 @@ h1,
 }
 @media (min-width: 1200px) {
   .notes .notes-slider .slick-dots {
-    left: 20px;
+    left: 0;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
@@ -3152,6 +3161,7 @@ h1,
   .notes .notes__text p,
   .notes .notes-slider {
     width: 457px;
+    padding: 0;
   }
 }
 @media (min-width: 2000px) {
@@ -3215,6 +3225,8 @@ h1,
 @media (min-width: 1200px) {
   .notes__go-instagram {
     margin-left: 0;
+    margin: 15px 0;
+    display: inline-block;
   }
 }
 footer {

@@ -2866,6 +2866,17 @@ h1, .popular-products__title {
     .notes__text {
       display: none;
 
+      p a {
+        color: @c_black;
+        font-size: 21px;
+        font-family: Catorze27style1-medium;
+        outline: none;
+
+        &:hover {
+          color: @rc_yellow-hover;
+        }
+      }
+
       &:first-child {
         display: block;
       }
@@ -2893,7 +2904,8 @@ h1, .popular-products__title {
       margin: 24px 0;
 
       @media (min-width: @min_width) {
-        left: 20px;
+        //left: 20px;
+        left: 0;
         -webkit-transform: translateX(0);
         -moz-transform: translateX(0);
         -ms-transform: translateX(0);
@@ -3084,6 +3096,7 @@ h1, .popular-products__title {
 
     @media (min-width: @min_width) {
       width: 457px;
+      padding: 0;
     }
 
     @media (min-width: 2000px) {
@@ -3169,7 +3182,6 @@ h1, .popular-products__title {
       &:after {
         content: "";
         background: url("../images/icons/instagram-white.png") center no-repeat;
-
         -webkit-transition: background .2s;
         -moz-transition: background .2s;
         -ms-transition: background .2s;
@@ -3181,6 +3193,8 @@ h1, .popular-products__title {
 
   @media (min-width: @min_width) {
     margin-left: 0;
+    margin: 15px 0;
+    display: inline-block;
   }
 }
 
