@@ -1933,7 +1933,10 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 @media (min-width: 1200px) {
   .advantages .advantages-item__wrap {
     padding-top: 0%;
-    min-height: 860px;
+    min-height: 720px;
+  }
+  .advantages .advantages-item__wrap:last-child {
+    min-height: 920px;
   }
 }
 .advantages .advantages-image_mobile {
