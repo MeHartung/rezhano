@@ -4592,8 +4592,8 @@ aside.right {
   padding: 5px;
   width: 200px;
   background-color: #ffffff;
-  font-family: Catorze27style1-medium;
-  font-size: 21px;
+  font-family: alegreyasans-regular;
+  font-size: 17px;
   position: absolute;
   top: 30px;
   left: -11em;
@@ -4797,6 +4797,12 @@ body .delivery-info__message {
   color: #ffcf40;
   font-family: alegreyasans-regular;
   font-size: 17px;
+  display: block;
+}
+@media (min-width: 1200px) {
+  body .delivery-info__message {
+    display: inline-block;
+  }
 }
 .cheese-card {
   background-color: #e8e8e8;
@@ -6926,6 +6932,11 @@ body .delivery-info__message {
 }
 .section-details .col-right {
   margin-top: 10px;
+}
+@media (min-width: 1200px) {
+  .section-details .col-right {
+    margin-top: 0;
+  }
 }
 .section-reviews {
   background: url(../images/section_bg.png) center no-repeat;

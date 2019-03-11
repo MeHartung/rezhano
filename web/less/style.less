@@ -4774,8 +4774,8 @@ aside {
     padding: 5px;
     width: 200px;
     background-color: @c_white;
-    font-family: Catorze27style1-medium;
-    font-size: 21px;
+    font-family: alegreyasans-regular;
+    font-size: 17px;
     position: absolute;
     top: 30px;
     left: -11em;
@@ -5027,6 +5027,11 @@ body .delivery-info {
     color: @rc_yellow;
     font-family: alegreyasans-regular;
     font-size: 17px;
+    display: block;
+
+    @media(min-width: @min_width){
+      display: inline-block;
+    }
   }
 }
 
@@ -7497,6 +7502,9 @@ body .delivery-info {
 
   .col-right {
     margin-top: 10px;
+    @media(min-width: @min_width) {
+      margin-top: 0;
+    }
   }
 }
 
