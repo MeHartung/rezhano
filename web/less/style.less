@@ -6981,13 +6981,17 @@ body .delivery-info {
     }
 
     .question-layer-message__text {
-      font-size: 45px;
+      font-size: 2em;
       font-family: Catorze27style1-bold;
       color: #000000;
       padding-top: 170px;
       display: block;
       text-align: center;
       margin: 0 auto;
+
+      @media(min-width: @min_width) {
+        font-size: 45px;
+      }
     }
 
     .button_black:hover {
