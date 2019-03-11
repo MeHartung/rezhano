@@ -3333,22 +3333,52 @@ footer .footer-social .footer-social__item {
   margin-right: 8px;
 }
 footer .footer-social .footer-social__facebook {
-  background-position: 0 0;
+  background: url("../images/svg/social-03.svg") center no-repeat;
+  -webkit-transition: background 500ms;
+  -moz-transition: background 500ms;
+  -ms-transition: background 500ms;
+  -o-transition: background 500ms;
+  transition: background 500ms;
 }
 footer .footer-social .footer-social__facebook:hover {
-  background-position: 0 39px;
+  background: url("../images/svg/social-06.svg") center no-repeat;
+  -webkit-transition: background 500ms;
+  -moz-transition: background 500ms;
+  -ms-transition: background 500ms;
+  -o-transition: background 500ms;
+  transition: background 500ms;
 }
 footer .footer-social .footer-social__vkontakte {
-  background-position: 90px 0;
+  background: url("../images/svg/social-02.svg") center no-repeat;
+  -webkit-transition: background 500ms;
+  -moz-transition: background 500ms;
+  -ms-transition: background 500ms;
+  -o-transition: background 500ms;
+  transition: background 500ms;
 }
 footer .footer-social .footer-social__vkontakte:hover {
-  background-position: 90px 39px;
+  background: url("../images/svg/social-05.svg") center no-repeat;
+  -webkit-transition: background 500ms;
+  -moz-transition: background 500ms;
+  -ms-transition: background 500ms;
+  -o-transition: background 500ms;
+  transition: background 500ms;
 }
 footer .footer-social .footer-social__instagram {
-  background-position: 39px 0;
+  background: url("../images/svg/social-01.svg") center no-repeat;
+  -webkit-transition: background 500ms;
+  -moz-transition: background 500ms;
+  -ms-transition: background 500ms;
+  -o-transition: background 500ms;
+  transition: background 500ms;
 }
 footer .footer-social .footer-social__instagram:hover {
-  background-position: 39px 39px;
+  background: url("../images/svg/social-04.svg") center no-repeat;
+  -webkit-transition: background 500ms;
+  -moz-transition: background 500ms;
+  -ms-transition: background 500ms;
+  -o-transition: background 500ms;
+  transition: background 500ms;
 }
 footer .footer-links {
   display: inline-block;
@@ -3450,7 +3480,7 @@ footer .footer-aside__link.link_frukt {
 }
 footer .footer-aside__link.link_frukt:after {
   content: '';
-  background: url("../images/icons/frukt.png");
+  background: url("../images/svg/frukt-logo-01.svg") center no-repeat;
   width: 69px;
   height: 9px;
   position: absolute;
@@ -3458,7 +3488,7 @@ footer .footer-aside__link.link_frukt:after {
   right: 0;
 }
 footer .footer-aside__link.link_frukt:hover:after {
-  background: url("../images/icons/frukt-hover.png");
+  background: url("../images/svg/frukt-logo-02.svg") center no-repeat;
 }
 footer.low {
   background: #000000;
@@ -3506,22 +3536,52 @@ footer.low .footer-aside {
   margin-right: 8px;
 }
 .contacts-social .footer-social__facebook {
-  background-position: -5px -5px;
+  background: url("../images/svg/social-03_black.svg") center no-repeat;
+  -webkit-transition: background 300ms;
+  -moz-transition: background 300ms;
+  -ms-transition: background 300ms;
+  -o-transition: background 300ms;
+  transition: background 300ms;
 }
 .contacts-social .footer-social__facebook:hover {
-  background-position: -5px 119px;
+  background: url("../images/svg/social-06.svg") center no-repeat;
+  -webkit-transition: background 300ms;
+  -moz-transition: background 300ms;
+  -ms-transition: background 300ms;
+  -o-transition: background 300ms;
+  transition: background 300ms;
 }
 .contacts-social .footer-social__vkontakte {
-  background-position: 124px -5px;
+  background: url("../images/svg/social-02_black.svg") center no-repeat;
+  -webkit-transition: background 300ms;
+  -moz-transition: background 300ms;
+  -ms-transition: background 300ms;
+  -o-transition: background 300ms;
+  transition: background 300ms;
 }
 .contacts-social .footer-social__vkontakte:hover {
-  background-position: -72px -67px;
+  background: url("../images/svg/social-05.svg") center no-repeat;
+  -webkit-transition: background 300ms;
+  -moz-transition: background 300ms;
+  -ms-transition: background 300ms;
+  -o-transition: background 300ms;
+  transition: background 300ms;
 }
 .contacts-social .footer-social__instagram {
-  background-position: 56px -5px;
+  background: url("../images/svg/social-01_black.svg") center no-repeat;
+  -webkit-transition: background 300ms;
+  -moz-transition: background 300ms;
+  -ms-transition: background 300ms;
+  -o-transition: background 300ms;
+  transition: background 300ms;
 }
 .contacts-social .footer-social__instagram:hover {
-  background-position: -140px -67px;
+  background: url("../images/svg/social-04.svg") center no-repeat;
+  -webkit-transition: background 300ms;
+  -moz-transition: background 300ms;
+  -ms-transition: background 300ms;
+  -o-transition: background 300ms;
+  transition: background 300ms;
 }
 .catalog-section {
   padding-bottom: 215px;

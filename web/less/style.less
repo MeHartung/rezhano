@@ -3313,26 +3313,54 @@ footer {
     }
 
     .footer-social__facebook {
-      background-position: 0 0;
+      //background-position: 0 0;
+      //
+      //&:hover {
+      //  background-position: 0 39px;
+      //}
+      background: url("../images/svg/social-03.svg") center no-repeat;
+      .transition(500ms, background);
 
       &:hover {
-        background-position: 0 39px;
+        //background-position: -140px -67px;
+        background: url("../images/svg/social-06.svg") center no-repeat;
+        .transition(500ms, background);
       }
+
     }
 
     .footer-social__vkontakte {
-      background-position: 90px 0;
+      //background-position: 90px 0;
+      //
+      //&:hover {
+      //  background-position: 90px 39px;
+      //}
+
+
+      background: url("../images/svg/social-02.svg") center no-repeat;
+      .transition(500ms, background);
 
       &:hover {
-        background-position: 90px 39px;
+        //background-position: -140px -67px;
+        background: url("../images/svg/social-05.svg") center no-repeat;
+        .transition(500ms, background);
       }
     }
 
     .footer-social__instagram {
-      background-position: 39px 0;
+      //background-position: 39px 0;
+      //
+      //&:hover {
+      //  background-position: 39px 39px;
+      //}
+
+      background: url("../images/svg/social-01.svg") center no-repeat;
+      .transition(500ms, background);
 
       &:hover {
-        background-position: 39px 39px;
+        //background-position: -140px -67px;
+        background: url("../images/svg/social-04.svg") center no-repeat;
+        .transition(500ms, background);
       }
     }
   }
@@ -3456,7 +3484,7 @@ footer {
 
         &:after {
           content: '';
-          background: url("../images/icons/frukt.png");
+          background: url("../images/svg/frukt-logo-01.svg") center no-repeat;
           width: 69px;
           height: 9px;
           position: absolute;
@@ -3467,7 +3495,7 @@ footer {
         &:hover {
 
           &:after {
-            background: url("../images/icons/frukt-hover.png");
+            background: url("../images/svg/frukt-logo-02.svg") center no-repeat;
           }
         }
       }
@@ -3537,27 +3565,58 @@ footer {
   }
 
   .footer-social__facebook {
-    background-position: -5px -5px;
+    //background-position: -5px -5px;
+    //
+    //&:hover {
+    //  background-position: -5px 119px;
+    //}
+
+    background: url("../images/svg/social-03_black.svg") center no-repeat;
+    .transition(300ms, background);
 
     &:hover {
-      background-position: -5px 119px;
+      //background-position: -140px -67px;
+      background: url("../images/svg/social-06.svg") center no-repeat;
+      .transition(300ms, background);
     }
   }
 
   .footer-social__vkontakte {
-    background-position: 124px -5px;
+    //background-position: 124px -5px;
+    //
+    //&:hover {
+    //  background-position: -72px -67px;
+    //}
+
+    background: url("../images/svg/social-02_black.svg") center no-repeat;
+    .transition(300ms, background);
 
     &:hover {
-      background-position: -72px -67px;
+      //background-position: -140px -67px;
+      background: url("../images/svg/social-05.svg") center no-repeat;
+      .transition(300ms, background);
     }
   }
 
   .footer-social__instagram {
-    background-position: 56px -5px;
+    //background-position: 56px -5px;
+    //background: url("../images/svg/social-01.svg") center no-repeat;
+
+    //&:hover {
+      //background-position: -140px -67px;
+      //background: url("../images/svg/social-04.svg") center no-repeat;
+
+    //}
+
+    background: url("../images/svg/social-01_black.svg") center no-repeat;
+    .transition(300ms, background);
 
     &:hover {
-      background-position: -140px -67px;
+      //background-position: -140px -67px;
+      background: url("../images/svg/social-04.svg") center no-repeat;
+      .transition(300ms, background);
     }
+
   }
 }
 
