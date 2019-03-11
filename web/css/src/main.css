@@ -3851,6 +3851,7 @@ footer.low .footer-aside {
   padding: 1em;
   min-height: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 @media (min-width: 1200px) {
   .layer.layer-questions {
