@@ -85,7 +85,7 @@
             <img src="{{ asset('images/details-phone-ico.png') }}" alt="">
           </span>
             <span class="col-title">Чтобы узнать подробности — просто позвоните нам</span>
-            <span class="col-text">{{ excursionPhone.phone }}</span>
+            <a href="tel:{{ excursionPhone.phone }}"><span class="col-text">{{ excursionPhone.phone }}</span></a>
           </div>
         {% endif %}
         <div class="col-right">
