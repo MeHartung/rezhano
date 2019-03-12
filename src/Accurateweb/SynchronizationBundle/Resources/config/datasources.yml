@@ -45,8 +45,7 @@ services:
       - {}
       - ~
       - "@doctrine.orm.default_entity_manager"
-      - '%moysklad_username%'
-      - '%moysklad_password%'
+      - '@aw.moysklad'
       - '%kernel.root_dir%'
       - '@event_dispatcher'
       - '@accurateweb.slugifier.yandex'
