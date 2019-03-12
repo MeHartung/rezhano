@@ -7702,9 +7702,6 @@ body .delivery-info__message {
 .step-item_payment {
   margin-bottom: 0 !important;
 }
-.step-item_comment {
-  padding: 0 1em;
-}
 @media (min-width: 1200px) {
   .step-item_comment {
     padding: 0;

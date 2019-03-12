@@ -1,25 +1,30 @@
-<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%" style="padding-top: 30px">
     <tbody>
     <tr align="left">
-        <th>&nbsp;</th>
-        <th align="left">Артикул</th>
-        <th align="left">Кол-во</th>
-        <th align="left">Название товара</th>
-        <th align="right">Цена</th>
-        <th align="right">Скидка</th>
-        <th align="right">Всего</th>
+        <th style="width: 125px; border-bottom: 2px solid #cccccc;">&nbsp;</th>
+        {#<th align="left">Артикул</th>#}
+        <th align="left" style="color: #cccccc; font-size: 14px; font-weight: 100; width: 190px; border-bottom: 2px solid #cccccc;"><p style="margin-bottom: 12px;">название</p></th>
+        <th align="center" style="color: #cccccc; font-size: 14px; font-weight: 100; width: 125px; border-bottom: 2px solid #cccccc;"><p style="margin-bottom: 12px;">вес/кол-во</p></th>
+        <th align="right" style="color: #cccccc; font-size: 14px; font-weight: 100; width: 90px; border-bottom: 2px solid #cccccc;"><p style="margin-bottom: 12px;">цена</p></th>
+        {#<th align="right">Скидка</th>#}
+        {#<th align="right">Всего</th>#}
     </tr>
     {% for item in items %}
-        <tr valign="top">
-            <td><a href="{{ url('product', { slug: item.product.slug }) }}"><img width="100" src=""></a></td>
-            <td align="left">{{ item.product.sku }}</td>
-            <td align="left">{{ item.quantity }}</td>
-            <td align="left">
-                <a href="{{ url('product', { slug: item.product.slug }) }}" target="_blank">{{ item.product.name }}</a>
+        <tr valign="top" style="border-bottom: 2px solid #cccccc;">
+            <td style="vertical-align: middle; width: 125px; height: 95px; border-bottom: 2px solid #cccccc;">
+                <a href="{{ url('product', { slug: item.product.slug }) }}" style="position: relative; display: block;">
+                    <img src="{{ asset('/images/mail/product-bg.png') }}" alt="" style="position: absolute; top: -11px; left: 8px;">
+                    <img width="80" src="{{ item.product.thumbnailUrl('catalog_prev') }}" style="position: relative; z-index: 1;">
+                </a>
             </td>
-            <td align="right">{{ item.price }} руб</td>
-            <td align="right">&nbsp;</td>
-            <td align="right">{{ item.cost }} руб</td>
+            {#<td align="left">{{ item.product.sku }}</td>#}
+            <td style="vertical-align: middle; width: 190px; border-bottom: 2px solid #cccccc;" align="left">
+                <a style="color: #000; text-decoration: none; font-size: 14px;" href="{{ url('product', { slug: item.product.slug }) }}" target="_blank">{{ item.product.name }}</a>
+            </td>
+            <td align="center" style="font-size: 14px; vertical-align: middle; width: 125px; border-bottom: 2px solid #cccccc;">{{ item.quantity }} {{ item.product.units }}</td>
+            {#<td align="right">{{ item.price }} руб</td>#}
+            {#<td align="right">&nbsp;</td>#}
+            <td align="right" style="font-size: 14px; vertical-align: middle; width: 90px; border-bottom: 2px solid #cccccc;">{{ item.cost }} ₽</td>
         </tr>
     {% endfor %}
 

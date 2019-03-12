@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "64b7f9558bb7cc9b9f37f1dac397bde6",
@@ -39,7 +39,7 @@
                 "source": "https://github.com/accurateweb/content-hotspot-bundle/tree/development",
                 "issues": "https://github.com/accurateweb/content-hotspot-bundle/issues"
             },
-            "time": "2018-09-14T12:27:46+00:00"
+            "time": "2018-09-14 12:27:46"
         },
         {
             "name": "accurateweb/email-template-bundle",
@@ -68,7 +68,7 @@
                 "source": "https://github.com/accurateweb/email-template-bundle/tree/master",
                 "issues": "https://github.com/accurateweb/email-template-bundle/issues"
             },
-            "time": "2017-11-13T19:10:11+00:00"
+            "time": "2017-11-13 19:10:11"
         },
         {
             "name": "beberlei/DoctrineExtensions",
@@ -1138,12 +1138,12 @@
             "version": "v2.6.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/doctrine2.git",
+                "url": "https://github.com/doctrine/orm.git",
                 "reference": "87ee409783a4a322b5597ebaae558661404055a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/87ee409783a4a322b5597ebaae558661404055a7",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/87ee409783a4a322b5597ebaae558661404055a7",
                 "reference": "87ee409783a4a322b5597ebaae558661404055a7",
                 "shasum": ""
             },
@@ -3160,6 +3160,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2018-02-15T05:27:38+00:00"
         },
         {
@@ -3564,7 +3565,7 @@
                 "symfony",
                 "tree"
             ],
-            "time": "2017-06-14T16:30:58+00:00"
+            "time": "2017-06-14 16:30:58"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
