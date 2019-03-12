@@ -6864,7 +6864,7 @@ body .delivery-info__message {
 .section-excursion .section-excursion__title:after {
   content: '';
   position: absolute;
-  bottom: 35px;
+  bottom: 0;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -6879,6 +6879,7 @@ body .delivery-info__message {
 @media (min-width: 1200px) {
   .section-excursion .section-excursion__title:after {
     background-size: auto;
+    bottom: 35px;
   }
 }
 @media (min-width: 1200px) {
