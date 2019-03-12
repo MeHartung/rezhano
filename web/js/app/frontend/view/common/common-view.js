@@ -163,7 +163,7 @@ define(function(require){
       var $headerMenu = $('.header__fixed');
       var headerMenuHeight = $('.header__fixed').height();
       var $html = $('html');
-      var lastScrollTop = 0;
+      var lastScrollTop = 5;
 
       $(window).scroll(function (event) {
         if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
@@ -175,7 +175,7 @@ define(function(require){
           }
           lastScrollTop = st;
 
-          if ( $(this).scrollTop()>4 ) {
+          if ( $(this).scrollTop()>2 ) {
             $headerMenu.addClass('fixed');
           } else if ( $(this).scrollTop()<headerMenuHeight) {
             $headerMenu.removeClass('fixed');
@@ -183,7 +183,7 @@ define(function(require){
 
         } else {
           // if ( $(this).scrollTop()>headerMenuHeight ) {
-          if ( $(this).scrollTop()>4 ) {
+          if ( $(this).scrollTop()>2 ) {
             $headerMenu.addClass('fixed');
           } else if ( $(this).scrollTop()<headerMenuHeight) {
             $headerMenu.removeClass('fixed');
