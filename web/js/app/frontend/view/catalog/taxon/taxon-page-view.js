@@ -11,6 +11,11 @@ define(function(require){
       Filter = require('model/catalog/filter/filter');
 
   return CommonView.extend({
+    events: {
+      'click .button-question': 'onQuestionClick',
+      'click .footer-maps__link' : 'onAddressClick',
+      'click .cmn-toggle-switch' : 'onShowMobileMenu'
+    },
     initialize: function(options){
       var self = this;
 

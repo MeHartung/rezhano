@@ -2211,6 +2211,11 @@ h1,
 .product-list .product-item__twig {
   width: 366px;
 }
+@media (orientation: landscape) {
+  .product-list .product-item__twig {
+    width: 49%;
+  }
+}
 .product-list .product-item__label {
   display: inline-block;
   width: 93px;
