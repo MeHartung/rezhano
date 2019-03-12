@@ -175,7 +175,7 @@ define(function(require){
           }
           lastScrollTop = st;
 
-          if ( $(this).scrollTop()>2 ) {
+          if ( $(this).scrollTop()>4 ) {
             $headerMenu.addClass('fixed');
           } else if ( $(this).scrollTop()<headerMenuHeight) {
             $headerMenu.removeClass('fixed');
@@ -183,7 +183,7 @@ define(function(require){
 
         } else {
           // if ( $(this).scrollTop()>headerMenuHeight ) {
-          if ( $(this).scrollTop()>2 ) {
+          if ( $(this).scrollTop()>4 ) {
             $headerMenu.addClass('fixed');
           } else if ( $(this).scrollTop()<headerMenuHeight) {
             $headerMenu.removeClass('fixed');
