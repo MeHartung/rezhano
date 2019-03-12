@@ -1707,16 +1707,21 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   }
 }
 .header-section__text {
-  font-size: 24px;
   font-family: alegreyasans-regular;
   color: #ffffff;
   margin: 0 auto;
   display: block;
   margin-bottom: 25px;
   max-height: 200px;
-  max-width: 50%;
   line-height: 1.2;
   white-space: normal;
+  font-size: 1.2rem;
+}
+@media (min-width: 1200px) {
+  .header-section__text {
+    max-width: 50%;
+    font-size: 24px;
+  }
 }
 .first-slide {
   background: url("../images/first-slide1.png") left no-repeat;
@@ -1775,6 +1780,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   background-size: contain;
   width: 100%;
   height: 100%;
+  position: relative;
 }
 @media (orientation: landscape) {
   .first-slide__title {
@@ -2628,8 +2634,10 @@ h1,
   display: block;
 }
 .choice__everyday img {
-  width: 100%;
+  width: 90%;
   display: block;
+  margin: 0 auto;
+  margin-top: 2em;
 }
 @media (orientation: landscape) {
   .choice__everyday {
@@ -2651,6 +2659,7 @@ h1,
   .choice__everyday img {
     width: 550px;
     height: 385px;
+    margin: 0;
   }
 }
 .choice__gourmet {
@@ -2658,8 +2667,10 @@ h1,
   display: block;
 }
 .choice__gourmet img {
-  width: 100%;
+  width: 78%;
   display: block;
+  margin: 0 auto;
+  margin-top: 2em;
 }
 @media (orientation: landscape) {
   .choice__gourmet {
@@ -2681,6 +2692,7 @@ h1,
   .choice__gourmet img {
     width: 550px;
     height: 385px;
+    margin: 0;
   }
 }
 @media (min-width: 2000px) {
