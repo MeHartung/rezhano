@@ -976,7 +976,8 @@ input[type="text"].input-text {
     padding-top: 0.2em;
   }
 }
-.header-mobile .header-menu__item:after {
+.header-mobile .header-menu__item:after,
+.header-mobile .header-menu__item:before {
   display: none;
 }
 .header {
@@ -5838,6 +5839,9 @@ body .delivery-info__message {
   color: #000000;
 }
 @media (orientation: landscape) {
+  .section-about-history__text {
+    width: 70%;
+  }
 }
 @media (min-width: 1200px) {
   .section-about-history__text {
