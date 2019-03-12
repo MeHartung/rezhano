@@ -6858,13 +6858,13 @@ body .delivery-info__message {
 .section-excursion .section-excursion__title {
   position: relative;
   padding-bottom: .2em;
-  margin-bottom: 20px;
+  margin-bottom: 3rem;
   padding-top: 15px;
 }
 .section-excursion .section-excursion__title:after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2rem;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -6885,6 +6885,7 @@ body .delivery-info__message {
 @media (min-width: 1200px) {
   .section-excursion .section-excursion__title {
     padding-bottom: 115px;
+    margin-bottom: 20px;
   }
 }
 .section-excursion__text {
