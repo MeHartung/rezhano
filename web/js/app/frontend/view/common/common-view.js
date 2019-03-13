@@ -163,7 +163,7 @@ define(function(require){
       var $headerMenu = $('.header__fixed');
       var headerMenuHeight = $('.header__fixed').height();
       var $html = $('html');
-      var lastScrollTop = 0;
+      var lastScrollTop = 5;
 
       $(window).scroll(function (event) {
         if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
