@@ -2224,6 +2224,12 @@ h1,
     width: 49%;
   }
 }
+@media (min-width: 1200px) {
+  .product-list .product-item__twig {
+    width: 370px;
+    margin-bottom: 90px;
+  }
+}
 .product-list .product-item__label {
   display: inline-block;
   width: 93px;
