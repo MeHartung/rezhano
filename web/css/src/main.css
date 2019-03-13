@@ -1319,6 +1319,7 @@ header.header-catalog {
   header.header-catalog {
     background-color: #0b090a;
     height: 366px;
+    overflow: hidden;
   }
 }
 header.header-catalog:after {
