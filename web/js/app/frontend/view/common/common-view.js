@@ -163,15 +163,15 @@ define(function(require){
       var $headerMenu = $('.header__fixed');
       var headerMenuHeight = $('.header__fixed').height();
       var $html = $('html');
-      var lastScrollTop = 5;
-
+      var st = $(this).scrollTop();
       if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) && st <= 0 ) {
 
-        $(document).on("touchstart", function (event) {
+        $(window).on("touchstart", function (event) {
           console.log("touchstart");
           if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
+            // var st = $(this).scrollTop();
+            var lastScrollTop = 5;
             var st = $(this).scrollTop();
-
             if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) && st <= 0 ) {
               setTimeout(function () {
                 window.scrollTo(0,0);
@@ -205,8 +205,9 @@ define(function(require){
       } else {
         $(window).scroll(function (event) {
           if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
+            // var st = $(this).scrollTop();
+            var lastScrollTop = 5;
             var st = $(this).scrollTop();
-
             // if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) && st <= 0 ) {
             //   setTimeout(function () {
             //     window.scrollTo(0,0);
