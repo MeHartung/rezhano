@@ -954,6 +954,7 @@ input[type="text"].input-text {
   text-align: center;
   min-height: 100vh;
   z-index: 1001;
+  overflow: scroll;
 }
 .header-mobile.active {
   display: block;
@@ -3886,6 +3887,7 @@ footer.low .footer-aside {
   height: auto;
   padding: 2em;
   padding-top: 3em;
+  overflow: scroll;
 }
 @media (min-width: 1200px) {
   .layer.add-to-cart-layer {
