@@ -166,38 +166,41 @@ define(function(require){
       // this.st = $(this).scrollTop();
       this.lastScrollTop = 5;
 
-      $(window).scroll(function (event) {
-        self.st = $(this).scrollTop();
+        $(window).scroll(function (event) {
+          self.st = $(this).scrollTop();
 
-        if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
+          if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
 
-          if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) && self.st <= 0 ) {
-            setTimeout(function () {
-              window.scrollTo(0,0);
-            }, 500);
-          }
+            if (self.st <= 0 ) {
+              setTimeout(function () {
+                window.scrollTo(0,0);
+                $headerMenu.removeClass('fixed');
+                $headerMenu.removeClass('header__mobile');
+              }, 500);
+            }
 
-          if (self.st > self.lastScrollTop){
-            $headerMenu.addClass('header__mobile');
+            if (self.st > self.lastScrollTop){
+              $headerMenu.addClass('header__mobile');
+            } else {
+              $headerMenu.removeClass('header__mobile');
+            }
+            self.lastScrollTop = self.st;
+
+            if ( $(this).scrollTop()>2 ) {
+              $headerMenu.addClass('fixed');
+            } else if ( $(this).scrollTop()<headerMenuHeight) {
+              $headerMenu.removeClass('fixed');
+            }
+
           } else {
-            $headerMenu.removeClass('header__mobile');
+            if ($(this).scrollTop() > 2) {
+              $headerMenu.addClass('fixed');
+            } else if ($(this).scrollTop() < headerMenuHeight) {
+              $headerMenu.removeClass('fixed');
+            }
           }
-          self.lastScrollTop = self.st;
+        });
 
-          if ( $(this).scrollTop()>2 ) {
-            $headerMenu.addClass('fixed');
-          } else if ( $(this).scrollTop()<headerMenuHeight) {
-            $headerMenu.removeClass('fixed');
-          }
-
-        } else {
-          if ( $(this).scrollTop()>2 ) {
-            $headerMenu.addClass('fixed');
-          } else if ( $(this).scrollTop()<headerMenuHeight) {
-            $headerMenu.removeClass('fixed');
-          }
-        }
-      });
 
       return this;
     },

@@ -1300,7 +1300,7 @@ header.fixed {
 }
 header.header-catalog {
   height: 18rem;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1001;
   background-color: #ffffff;
   position: relative;
@@ -1425,7 +1425,7 @@ header.header-excursion {
   background-color: #0b090a;
   position: relative;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1001;
 }
 @media (min-width: 1200px) {
