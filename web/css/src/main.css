@@ -1262,16 +1262,6 @@ header.fixed {
   -o-transition: all .2s;
   transition: all .2s;
 }
-@media only screen and (max-width: 320px) {
-  .header__fixed {
-    position: fixed;
-  }
-}
-@media only screen and (min-width: 321px) and (max-width: 768px) {
-  .header__fixed {
-    position: fixed;
-  }
-}
 @media (min-width: 1200px) {
   .header__fixed {
     padding: 30px 50px;
@@ -1290,6 +1280,7 @@ header.fixed {
 }
 .header__mobile {
   top: -60px;
+  position: absolute !important;
   -webkit-transition: top .2s;
   -moz-transition: top .2s;
   -ms-transition: top .2s;

@@ -946,12 +946,12 @@ header {
   position: absolute;
   z-index: 10;
 
-  @media only screen and (max-width: 320px) {
-    position: fixed;
-  }
-  @media only screen and (min-width: 321px) and (max-width: 768px) {
-    position: fixed;
-  }
+  //@media only screen and (max-width: 320px) {
+  //  position: fixed;
+  //}
+  //@media only screen and (min-width: 321px) and (max-width: 768px) {
+  //  position: fixed;
+  //}
 
   @media (min-width: @min_width) {
     padding: 30px 50px;
@@ -978,6 +978,7 @@ header {
 
 .header__mobile {
   top:-60px;
+  position: absolute !important;
   -webkit-transition: top .2s;
   -moz-transition: top .2s;
   -ms-transition: top .2s;
