@@ -3650,6 +3650,9 @@ footer.low .footer-aside {
   background-color: #ffffff;
   min-height: 100vh;
   -webkit-overflow-scrolling: touch;
+  top: -70px;
+  padding-bottom: 70px;
+  transform: translateY(70px);
   padding: 2em;
   padding-top: 3em;
 }
@@ -3658,6 +3661,9 @@ footer.low .footer-aside {
     width: 1000px;
     height: 640px;
     min-height: 640px;
+    top: auto;
+    padding-bottom: 0;
+    transform: none;
   }
 }
 .layer__close {

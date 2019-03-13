@@ -3704,11 +3704,19 @@ footer {
   min-height: 100vh;
   -webkit-overflow-scrolling: touch;
 
+  top: -70px;
+  padding-bottom: 70px;
+  transform: translateY(70px);
+
   @media(min-width: @min_width) {
     width: 1000px;
     height: 640px;
 
     min-height: 640px;
+
+    top: auto;
+    padding-bottom: 0;
+    transform: none;
   }
 
   &__close {
