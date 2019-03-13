@@ -192,7 +192,7 @@ define(function(require){
             } else {
               $headerMenu.removeClass('header__mobile');
             }
-            self.lastScrollTop = st;
+            self.lastScrollTop = self.st;
 
             if ( $(this).scrollTop()>2 ) {
               $headerMenu.addClass('fixed');
