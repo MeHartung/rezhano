@@ -13,7 +13,7 @@
         <tr valign="top" style="border-bottom: 2px solid #cccccc;">
             <td style="vertical-align: middle; width: 125px; height: 95px; border-bottom: 2px solid #cccccc;">
                 <a href="{{ url('product', { slug: item.product.slug }) }}" style="position: relative; display: block;">
-                    <img src="{{ asset('/images/mail/product-bg.png') }}" alt="" style="position: absolute; top: -11px; left: 8px;">
+                    {#<img src="{{ asset('/images/mail/product-bg.png') }}" alt="" style="position: absolute; top: -11px; left: 8px;">#}
                     <img width="80" src="{{ item.product.thumbnailUrl('catalog_prev') }}" style="position: relative; z-index: 1;">
                 </a>
             </td>
