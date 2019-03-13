@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "64b7f9558bb7cc9b9f37f1dac397bde6",
+    "content-hash": "7402fbe2cf65244a94b229268d47ef67",
     "packages": [
         {
             "name": "accurateweb/content-hotspot-bundle",
@@ -43,16 +43,16 @@
         },
         {
             "name": "accurateweb/email-template-bundle",
-            "version": "dev-master",
+            "version": "dev-development",
             "source": {
                 "type": "git",
                 "url": "https://github.com/accurateweb/email-template-bundle.git",
-                "reference": "5d3095899f8285a27a138d755f3e48fcb16eceaf"
+                "reference": "7c9ef07de096f10d6f8bfc5f609cb4a53a53bbf7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/accurateweb/email-template-bundle/zipball/5d3095899f8285a27a138d755f3e48fcb16eceaf",
-                "reference": "5d3095899f8285a27a138d755f3e48fcb16eceaf",
+                "url": "https://api.github.com/repos/accurateweb/email-template-bundle/zipball/7c9ef07de096f10d6f8bfc5f609cb4a53a53bbf7",
+                "reference": "7c9ef07de096f10d6f8bfc5f609cb4a53a53bbf7",
                 "shasum": ""
             },
             "suggest": {
@@ -65,10 +65,10 @@
                 }
             },
             "support": {
-                "source": "https://github.com/accurateweb/email-template-bundle/tree/master",
+                "source": "https://github.com/accurateweb/email-template-bundle/tree/development",
                 "issues": "https://github.com/accurateweb/email-template-bundle/issues"
             },
-            "time": "2017-11-13T19:10:11+00:00"
+            "time": "2019-01-17T08:40:24+00:00"
         },
         {
             "name": "beberlei/DoctrineExtensions",
