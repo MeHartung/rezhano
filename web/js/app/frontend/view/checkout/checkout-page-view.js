@@ -11,7 +11,10 @@ define(function(require){
     events: {
       'keydown .input-textarea' : 'autosizeR',
       'click .button-question': 'onQuestionClick',
-      'click .cmn-toggle-switch' : 'onShowMobileMenu'
+      'click .footer-maps__link' : 'onAddressClick',
+      'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
+      'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .homepage_top' : 'scrollTopHomePage'
     },
     initialize: function(options) {
       CommonView.prototype.initialize.apply(this, arguments);
