@@ -955,6 +955,8 @@ input[type="text"].input-text {
   min-height: 100vh;
   z-index: 1001;
   overflow: scroll;
+  width: auto;
+  height: auto;
 }
 .header-mobile.active {
   display: block;
@@ -3300,6 +3302,7 @@ footer .header-logo {
   position: absolute;
   top: 0;
   zoom: 80%;
+  z-index: 1;
 }
 @media (min-width: 1200px) {
   footer .header-logo {
