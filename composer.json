@@ -45,7 +45,7 @@
         "beberlei/DoctrineExtensions": "^1.0",
         "pixassociates/sortable-behavior-bundle": "^1.1",
         "redcode/tree-bundle": "dev-master",
-        "accurateweb/email-template-bundle": "dev-master",
+        "accurateweb/email-template-bundle": "dev-development",
         "phpunit/phpunit": "7.0.*",
         "twig/twig": "2.*",
         "accurateweb/content-hotspot-bundle": "dev-development",
