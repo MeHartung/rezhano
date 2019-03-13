@@ -168,13 +168,21 @@ define(function(require){
       // this.st = $(this).scrollTop();
       this.lastScrollTop = 5;
 
-      if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) && self.st <= 0 ) {
+      if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) ) {
+        $(window).on("touchend", function (event) {
+          var endY = event.touches[0].pageY;
+          if (endY <= 0) {
+            setTimeout(function () {
+              window.scrollTo(0,0);
+            }, 200);
+          }
+        });
 
         $(window).on("touchstart", function (event) {
           if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
             self.st = $(this).scrollTop();
             // console.log(self.st, self.lastScrollTop);
-            if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) && self.st <= 0 ) {
+            if (self.st <= 0 ) {
               setTimeout(function () {
                 window.scrollTo(0,0);
               }, 200);
@@ -228,9 +236,6 @@ define(function(require){
           }
         });
       }
-
-
-
 
       return this;
     },
