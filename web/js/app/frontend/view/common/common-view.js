@@ -170,8 +170,11 @@ define(function(require){
           var st = $(this).scrollTop();
 
           if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) && st <= 0 ) {
-            window.scrollTo(0,0)
-            // console.log('scrollTo 0')
+            setTimeout(function () {
+              window.scrollTo(0,0);
+              console.log('scrollTo 0');
+
+            }, 200);
           }
           console.log(st, lastScrollTop, $html);
           if (st > lastScrollTop){
