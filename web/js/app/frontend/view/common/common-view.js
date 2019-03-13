@@ -169,11 +169,16 @@ define(function(require){
           self.st = $(this).scrollTop();
 
           if (self.st <= 0 ) {
-            setTimeout(function () {
-              window.scrollTo(0,0);
+            // setTimeout(function () {
+              // window.scrollTo(0,0);
+
+              $("html, body").animate({
+                scrollTop: 0
+              }, 500)
+
               // $headerMenu.removeClass('fixed');
               // $headerMenu.removeClass('header__mobile');
-            }, 500);
+            // }, 500);
           }
         });
         $(window).scroll(function (event) {
