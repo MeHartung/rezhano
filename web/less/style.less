@@ -5217,19 +5217,31 @@ body .delivery-info {
       }
     }
 
-    p {
-      font-size: 1.5rem;
-      max-width: 60%;
+    font-size: 1.5rem;
+    max-width: 60%;
 
-      @media(orientation: landscape) {
-        max-width: 80%;
-      }
-
-      @media(min-width: @min_width) {
-        max-width: none;
-        font-size: 30px;
-      }
+    @media(orientation: landscape) {
+      max-width: 80%;
     }
+
+    @media(min-width: @min_width) {
+      max-width: none;
+      font-size: 30px;
+    }
+
+    //p {
+    //  font-size: 1.5rem;
+    //  max-width: 60%;
+    //
+    //  @media(orientation: landscape) {
+    //    max-width: 80%;
+    //  }
+    //
+    //  @media(min-width: @min_width) {
+    //    max-width: none;
+    //    font-size: 30px;
+    //  }
+    //}
   }
 
   &__image {
@@ -5239,7 +5251,7 @@ body .delivery-info {
     top: -3.5em;
     //width: 75%;
     width: 16em;
-    left: 41%;
+    left: 50%;
 
     @media(orientation: landscape) {
       width: 25em;

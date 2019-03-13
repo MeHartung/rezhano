@@ -4937,6 +4937,8 @@ body .delivery-info__message {
   display: none;
   vertical-align: top;
   position: relative;
+  font-size: 1.5rem;
+  max-width: 60%;
 }
 .cheese-card__title_mobile {
   display: block;
@@ -4958,17 +4960,13 @@ body .delivery-info__message {
     display: none;
   }
 }
-.cheese-card__title p {
-  font-size: 1.5rem;
-  max-width: 60%;
-}
 @media (orientation: landscape) {
-  .cheese-card__title p {
+  .cheese-card__title {
     max-width: 80%;
   }
 }
 @media (min-width: 1200px) {
-  .cheese-card__title p {
+  .cheese-card__title {
     max-width: none;
     font-size: 30px;
   }
@@ -4979,7 +4977,7 @@ body .delivery-info__message {
   position: absolute;
   top: -3.5em;
   width: 16em;
-  left: 41%;
+  left: 50%;
 }
 @media (orientation: landscape) {
   .cheese-card__image {
