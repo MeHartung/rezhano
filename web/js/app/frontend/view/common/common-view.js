@@ -160,6 +160,8 @@ define(function(require){
         }).render();
       });
 
+
+
       var $headerMenu = $('.header__fixed');
       var headerMenuHeight = $('.header__fixed').height();
       var $html = $('html');
