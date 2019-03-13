@@ -165,19 +165,29 @@ define(function(require){
       var $html = $('html');
       // this.st = $(this).scrollTop();
       this.lastScrollTop = 5;
+        $(window).on("touchend", function (e) {
+          self.st = $(this).scrollTop();
 
+          if (self.st <= 0 ) {
+            setTimeout(function () {
+              window.scrollTo(0,0);
+              // $headerMenu.removeClass('fixed');
+              // $headerMenu.removeClass('header__mobile');
+            }, 500);
+          }
+        });
         $(window).scroll(function (event) {
           self.st = $(this).scrollTop();
 
           if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
 
-            if (self.st <= 0 ) {
-              setTimeout(function () {
-                window.scrollTo(0,0);
-                $headerMenu.removeClass('fixed');
-                $headerMenu.removeClass('header__mobile');
-              }, 500);
-            }
+            // if (self.st <= 0 ) {
+            //   setTimeout(function () {
+            //     window.scrollTo(0,0);
+            //     $headerMenu.removeClass('fixed');
+            //     $headerMenu.removeClass('header__mobile');
+            //   }, 500);
+            // }
 
             if (self.st > self.lastScrollTop){
               $headerMenu.addClass('header__mobile');

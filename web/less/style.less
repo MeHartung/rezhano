@@ -661,6 +661,14 @@ button, a.button {
   height: 44px;
   line-height: 1.2;
 
+  @media(max-width: 350px){
+    font-size: 1rem;
+  }
+
+  //@media(min-width: @min_width){
+  //  font-size: 21px;
+  //}
+
   span {
     line-height: 18px;
     display: inline-block;
@@ -3742,10 +3750,10 @@ footer {
   }
 
   &__close {
-    background: url("../images/icons/close-black.png") center no-repeat;
-    background-size: contain;
-    width: 34px;
-    height: 34px;
+    background: url("../images/icons/close-black_mobile.png") center no-repeat;
+    //background-size: contain;
+    width: 50px;
+    height: 50px;
     position: absolute;
     top: 1em;
     right: 1em;
@@ -3756,6 +3764,7 @@ footer {
     -o-transition: background-size .2s;
     transition: background-size .2s;
     z-index: 1;
+
 
     &:hover {
       background-size: 90%;

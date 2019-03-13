@@ -1029,6 +1029,12 @@ a.button {
   height: 44px;
   line-height: 1.2;
 }
+@media (max-width: 350px) {
+  button,
+  a.button {
+    font-size: 1rem;
+  }
+}
 button span,
 a.button span {
   line-height: 18px;
@@ -3673,10 +3679,9 @@ footer.low .footer-aside {
   }
 }
 .layer__close {
-  background: url("../images/icons/close-black.png") center no-repeat;
-  background-size: contain;
-  width: 34px;
-  height: 34px;
+  background: url("../images/icons/close-black_mobile.png") center no-repeat;
+  width: 50px;
+  height: 50px;
   position: absolute;
   top: 1em;
   right: 1em;
