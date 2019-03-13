@@ -168,16 +168,9 @@ define(function(require){
       // this.st = $(this).scrollTop();
       this.lastScrollTop = 5;
 
-      if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) ) {
-        $(window).on("touchend", function (event) {
-          var endY = event.touches[0].pageY;
-          if (endY <= 0) {
-            setTimeout(function () {
-              window.scrollTo(0,0);
-            }, 200);
-          }
-        });
-
+      // if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) ) {
+      if ($html.hasClass('mobile') || $html.hasClass('tablet')) {
+          // console.log(true)
         $(window).on("touchstart", function (event) {
           if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
             self.st = $(this).scrollTop();
@@ -185,7 +178,7 @@ define(function(require){
             if (self.st <= 0 ) {
               setTimeout(function () {
                 window.scrollTo(0,0);
-              }, 200);
+              }, 500);
             }
             if (self.st > self.lastScrollTop){
               $headerMenu.addClass('header__mobile');
