@@ -1,5 +1,11 @@
 {% extends "::base.html.twig" %}
 
+{% block metas %}
+    <title>{{ story.title }} &mdash; Сырные заметки Интернет-магазина Режано</title>
+    <meta name="description" content="{{ story.previewText }}">
+    <meta name="keywords" content="{{ metaKeywords() }}">
+{% endblock %}
+
 {% block main %}
 
     <section class="section-article">

@@ -222,12 +222,13 @@
                                 {# не надо выводить ссылку, если нет текста и/или заголовка #}
                                 {% if story.text %}
                                     <p>
-                                        <a title="{{ story.title }}"
+                                        <a class="button button_black"
+                                           title="Читать полностью"
                                            href="{{ path('cheese_story_show', {'slug': story.slug}) }}"
                                            target="_blank"
                                            rel="noopener"
                                            tabindex="0">
-                                            {{ story.title }}
+                                            <span>Читать полностью</span>
                                         </a>
                                     </p>
                                 {% endif %}
