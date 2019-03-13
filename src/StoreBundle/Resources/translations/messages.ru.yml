@@ -1,0 +1,147 @@
+About Us Gallery List: Галерея
+Action: Действия
+Address: Адрес
+Announce: Анонс
+Answer: Ответ
+Answer At: Ответ дан
+Article List: Список статей
+Availability Decision Manager Id: Доступность
+Background: Цвет подолжки
+Brand: Бренд
+Brand List: Бренды
+Checkout At: Оформлен
+Checkout State Id: Статус оформления
+Checkout State Name: Статус оформления
+City: Город
+Club Price: Клубная цена
+Contact Phone Create: Новый контактный номер телефона
+Contact Phone List: Контактные номера телефонов
+Cost: Стоимость
+Count Step: Шаг изменения количества
+Created At: Создан
+Customer Comment: Комментарий покупателя
+Customer Email: Email заказчика
+Customer First Name: Имя заказчика
+Customer Full Name: ФИО закачика
+Customer Last Name: Фамилия заказчика
+Customer Name: Имя покупателя
+Customer Phone: Телефон заказчика
+Customer Question List: Вопросы покупателей
+Date End: Дата окончания
+Date Start: Дата начала
+Description: Описание
+Document List: Документы
+Document Number: Номер документа
+Email Template List: Список шаблонов Email
+Enabled: Включен
+Fee: 'Комиссия   '
+Fee Calculator Id: Комиссия
+File: Файл
+Fio: ФИО
+Firstname: Имя
+Hit: Лучшие предложения
+Is Footer Display: Отображать в футере
+Is Free Delivery: Бесплатная доставка
+Is Header Display: Отображать в шапке
+Is Purchasable: В продаже
+Lastname: Фамилия
+Latitude: Широта
+Length: Длина, м
+Longitude: Долгота
+Measured: Весовой товар
+Menu Item List: Список пунктов меню
+Middlename: Отчество
+Min Count: Минимальное количество для заказа
+Multiplier: Множитель
+Name: Имя
+News List: Список новостей
+Notification Template: Шаблон уведомления
+Novice: Новинка
+Old Price: Старая цена
+Order Admin Status: Статус заказа
+Order List: Список заказов
+Order Payment Status Create: Создать статус оплаты
+Order Payment Status List: Список статусов оплаты
+Order Status List: Список статусов заказа
+Order Status Reason Create: Создать примечание к статусу заказа
+Order Status Reason List: Список примечаний к статусам заказов
+Order Status Transition Notification Template List: Уведомления о смене заказов
+Package: Вес единицы товара
+Parent: Родитель
+Partner Create: Добавить партнёра
+Partner List: Список партнёров
+Payment Method: Способ оплаты
+Payment Method List: Список способов доставки
+Payment Status: Статус оплаты
+Phone: Телефон
+Plain Password: Пароль
+Preorder: Предзаказ
+Price: Цена
+Product: Товар
+Product Attribute: Свойство товара
+Product Attribute List: Список свойств товаров
+Product Attribute Value List: Список атрибутов товаров
+Product Attribute Values Create: Создать свойство товара
+Product Attribute Values List: Список значений свойств товара
+Product Attributes: Аттрибуты товара
+Product Attributes Create: Создать атрибут товара
+Product Attributes List: Список атрибутов товара
+Product List: Список товаров
+Product Type: Тип товара
+Product Type List: Список типов товаров
+Product Types Create: Создать тип товара
+Product Types List: Спиоск типов товара
+Publication Allowed: Разрешена публикация
+Published: Опубликован
+Published At: Опубликован
+Purchase Price: Закупочная цена
+Quantity: Количество
+Question: Вопрос
+ROLE_ADMIN: Администратор
+ROLE_ENTREPRENEUR: Индивидуальный предприниматель
+ROLE_INDIVIDUAL: Физическое лицо
+ROLE_JURIDICAL: Юридическое лицо
+Reserved Value: Зарезервировано
+Roles: Роли
+Sale: Распродажа
+Setting List: Список настроек
+Shipping Address: Адрес доставки
+Shipping City Name: Город доставки
+Shipping Cost: Цена доставки
+Shipping Method: Способ доставки
+Shipping Method Id: Способ доставки
+Shipping Postcode: Почтовый индекс
+Short Description: Краткое описание
+Show Registration: Отображать на странице регистрации
+Sku: Артикул
+Slug: Алиас
+Special Offer Create: Создать новую акцию
+Special Offer List: Список акций
+Status: Статус выполнения
+Stocks: Наличие
+Store Create: Добавление точки реализации
+Store List: Точки реализации
+Subtotal: Промежуточный итог
+Taxon List: Разделы каталога
+Taxons: Разделы каталога
+Teaser Image File: Изображение
+Text: Текст
+Title: Заголовок
+Total: Итого
+Type: Тип
+Unit Weight: Вес условной единицы товара
+Units: Ед. измерения
+Updated At: Обновлён
+User List: Список пользователей
+Value: Значение
+Value Type: Тип свойства
+Volume: Объем, м. куб.
+Warehouse: Склад
+Warehouse List: Склады
+Weight: Вес, кг
+Wholesale Price: Оптовая цена
+Width: Ширина, м
+Work Time: Время работы
+order_checkout_success: Заказ %documentNumber% успешно оформлен.
+Cheese Story List: Список Сырных заметок
+Preview Text: Текст в превью

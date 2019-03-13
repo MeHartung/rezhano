@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <img class="advantages-image_mobile" src="{{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}"/>
-                        <div class="advantages-image" 
+                        <div class="advantages-image"
                             style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat;
                               width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;
                               height: {{ image_height(promoBanner, 'homepage-promo-banner/teaser') }}px">
@@ -155,13 +155,13 @@
         <div class="container container_no-padding container_2000">
             <h2 class="choice__title">Сложный выбор?</h2>
 
-            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "8"}) }}" 
+            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "8"}) }}"
                 class="choice__link choice__everyday">
-                <img src="{{ asset('/images/choice-everyday.png') }}" class="">    
+                <img src="{{ asset('/images/choice-everyday.png') }}" class="">
             </a>
-            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "7"}) }}" 
+            <a href="{{ url('taxon', { slug: 'syr', "f[pav_4][]": "7"}) }}"
             class="choice__link choice__gourmet">
-                <img src="{{ asset('/images/choice-gourmet.png') }}" class="">    
+                <img src="{{ asset('/images/choice-gourmet.png') }}" class="">
             </a>
         </div>
     </section>
@@ -218,7 +218,19 @@
                     <div class="notes-slider">
                         {% for story in cheeseStories %}
                             <div class="notes__text">
-                                {{ story.text | raw }}
+                                {{ story.previewText | raw }}
+                                {# не надо выводить ссылку, если нет текста и/или заголовка #}
+                                {% if story.text %}
+                                    <p>
+                                        <a title="{{ story.title }}"
+                                           href="{{ path('cheese_story_show', {'id': story.id}) }}"
+                                           target="_blank"
+                                           rel="noopener"
+                                           tabindex="0">
+                                            {{ story.title }}
+                                        </a>
+                                    </p>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>
