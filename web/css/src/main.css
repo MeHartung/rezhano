@@ -3694,14 +3694,6 @@ footer.low .footer-aside {
   transition: background-size 0.2s;
   z-index: 1;
 }
-.layer__close:hover {
-  background-size: 90%;
-  -webkit-transition: background-size 0.2s;
-  -moz-transition: background-size 0.2s;
-  -ms-transition: background-size 0.2s;
-  -o-transition: background-size 0.2s;
-  transition: background-size 0.2s;
-}
 @media (min-width: 1200px) {
   .layer__close {
     background: url("../images/icons/close.png") center no-repeat;
@@ -3710,6 +3702,14 @@ footer.low .footer-aside {
     top: -40px;
     right: -42px;
     background-size: auto;
+  }
+  .layer__close:hover {
+    background-size: 90%;
+    -webkit-transition: background-size 0.2s;
+    -moz-transition: background-size 0.2s;
+    -ms-transition: background-size 0.2s;
+    -o-transition: background-size 0.2s;
+    transition: background-size 0.2s;
   }
 }
 .layer__images,

@@ -3767,16 +3767,6 @@ footer {
     transition: background-size .2s;
     z-index: 1;
 
-
-    &:hover {
-      background-size: 90%;
-      -webkit-transition: background-size .2s;
-      -moz-transition: background-size .2s;
-      -ms-transition: background-size .2s;
-      -o-transition: background-size .2s;
-      transition: background-size .2s;
-    }
-
     @media(min-width: @min_width) {
       background: url("../images/icons/close.png") center no-repeat;
       width: 34px;
@@ -3784,6 +3774,15 @@ footer {
       top: -40px;
       right: -42px;
       background-size: auto;
+
+      &:hover {
+        background-size: 90%;
+        -webkit-transition: background-size .2s;
+        -moz-transition: background-size .2s;
+        -ms-transition: background-size .2s;
+        -o-transition: background-size .2s;
+        transition: background-size .2s;
+      }
     }
   }
 
