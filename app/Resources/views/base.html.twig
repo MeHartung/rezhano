@@ -20,7 +20,11 @@
   {% block stylesheets %}
     {#<link rel="stylesheet" href="{{ asset('/js/vendor/slick/slick-theme.css') }}">#}
     <link rel="stylesheet" href="{{ asset('/js/vendor/slick/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    {% if app.environment != 'dev' %}
+      {{ get_versioned_stylesheets()|raw }}
+    {% else %}
+      <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    {% endif %}
   {% endblock %}
 
   {% block head_javascripts %}
@@ -206,7 +210,7 @@
 
 {% block javascripts %}
   {% if app.environment != 'dev' %}
-  {{ get_versioned_javascripts()|raw }}
+    {{ get_versioned_javascripts()|raw }}
   {% else %}
   <script type="text/javascript">window.require = {waitSeconds: 600};</script>
   <script src="{{ asset('js/vendor/requirejs/require.js') }}" data-main="/js/app/frontend/app.js"></script>

@@ -954,6 +954,9 @@ input[type="text"].input-text {
   text-align: center;
   min-height: 100vh;
   z-index: 1001;
+  overflow: scroll;
+  width: auto;
+  height: auto;
 }
 .header-mobile.active {
   display: block;
@@ -1025,6 +1028,12 @@ a.button {
   display: inline-block;
   height: 44px;
   line-height: 1.2;
+}
+@media (max-width: 350px) {
+  button,
+  a.button {
+    font-size: 1rem;
+  }
 }
 button span,
 a.button span {
@@ -1300,7 +1309,7 @@ header.fixed {
 }
 header.header-catalog {
   height: 18rem;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1001;
   background-color: #ffffff;
   position: relative;
@@ -1310,6 +1319,7 @@ header.header-catalog {
   header.header-catalog {
     background-color: #0b090a;
     height: 366px;
+    overflow: hidden;
   }
 }
 header.header-catalog:after {
@@ -1425,7 +1435,7 @@ header.header-excursion {
   background-color: #0b090a;
   position: relative;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1001;
 }
 @media (min-width: 1200px) {
@@ -3299,6 +3309,7 @@ footer .header-logo {
   position: absolute;
   top: 0;
   zoom: 80%;
+  z-index: 1;
 }
 @media (min-width: 1200px) {
   footer .header-logo {
@@ -3669,10 +3680,9 @@ footer.low .footer-aside {
   }
 }
 .layer__close {
-  background: url("../images/icons/close-black.png") center no-repeat;
-  background-size: contain;
-  width: 34px;
-  height: 34px;
+  background: url("../images/icons/close-black_mobile.png") center no-repeat;
+  width: 50px;
+  height: 50px;
   position: absolute;
   top: 1em;
   right: 1em;
@@ -3684,14 +3694,6 @@ footer.low .footer-aside {
   transition: background-size 0.2s;
   z-index: 1;
 }
-.layer__close:hover {
-  background-size: 90%;
-  -webkit-transition: background-size 0.2s;
-  -moz-transition: background-size 0.2s;
-  -ms-transition: background-size 0.2s;
-  -o-transition: background-size 0.2s;
-  transition: background-size 0.2s;
-}
 @media (min-width: 1200px) {
   .layer__close {
     background: url("../images/icons/close.png") center no-repeat;
@@ -3700,6 +3702,14 @@ footer.low .footer-aside {
     top: -40px;
     right: -42px;
     background-size: auto;
+  }
+  .layer__close:hover {
+    background-size: 90%;
+    -webkit-transition: background-size 0.2s;
+    -moz-transition: background-size 0.2s;
+    -ms-transition: background-size 0.2s;
+    -o-transition: background-size 0.2s;
+    transition: background-size 0.2s;
   }
 }
 .layer__images,
@@ -3886,6 +3896,7 @@ footer.low .footer-aside {
   height: auto;
   padding: 2em;
   padding-top: 3em;
+  overflow: scroll;
 }
 @media (min-width: 1200px) {
   .layer.add-to-cart-layer {

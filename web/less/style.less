@@ -26,6 +26,8 @@ main {
   overflow: hidden;
   height: 100%;
   position: relative;
+
+  //pointer-events: none;
 }
 
 .scroll-pane {
@@ -555,6 +557,9 @@ input[type="text"].input-text {
   text-align: center;
   min-height: 100vh;
   z-index: 1001;
+  overflow: scroll;
+  width: auto;
+  height: auto;
 
   .header-menu {
     display: block;
@@ -657,6 +662,14 @@ button, a.button {
   display: inline-block;
   height: 44px;
   line-height: 1.2;
+
+  @media(max-width: 350px){
+    font-size: 1rem;
+  }
+
+  //@media(min-width: @min_width){
+  //  font-size: 21px;
+  //}
 
   span {
     line-height: 18px;
@@ -1002,13 +1015,15 @@ header {
   &.header-catalog {
     //height: 550px;
     height: 18rem;
-    overflow: hidden;
+    overflow: visible;
     z-index: 1001;
     background-color: @c_white;
+
 
     @media(min-width: @min_width) {
       background-color: #0b090a;
       height: 366px;
+      overflow: hidden;
     }
 
     position: relative;
@@ -1132,7 +1147,7 @@ header {
     background-color: #0b090a;
     position: relative;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
     z-index: 1001;
 
     @media(min-width: @min_width) {
@@ -3290,6 +3305,7 @@ footer {
     //left: 0;
     top: 0;
     zoom: 80%;
+    z-index: 1;
 
     @media (min-width: @min_width) {
       left: 50px;
@@ -3738,10 +3754,10 @@ footer {
   }
 
   &__close {
-    background: url("../images/icons/close-black.png") center no-repeat;
-    background-size: contain;
-    width: 34px;
-    height: 34px;
+    background: url("../images/icons/close-black_mobile.png") center no-repeat;
+    //background-size: contain;
+    width: 50px;
+    height: 50px;
     position: absolute;
     top: 1em;
     right: 1em;
@@ -3753,15 +3769,6 @@ footer {
     transition: background-size .2s;
     z-index: 1;
 
-    &:hover {
-      background-size: 90%;
-      -webkit-transition: background-size .2s;
-      -moz-transition: background-size .2s;
-      -ms-transition: background-size .2s;
-      -o-transition: background-size .2s;
-      transition: background-size .2s;
-    }
-
     @media(min-width: @min_width) {
       background: url("../images/icons/close.png") center no-repeat;
       width: 34px;
@@ -3769,6 +3776,15 @@ footer {
       top: -40px;
       right: -42px;
       background-size: auto;
+
+      &:hover {
+        background-size: 90%;
+        -webkit-transition: background-size .2s;
+        -moz-transition: background-size .2s;
+        -ms-transition: background-size .2s;
+        -o-transition: background-size .2s;
+        transition: background-size .2s;
+      }
     }
   }
 
@@ -3976,6 +3992,7 @@ footer {
     height: auto;
     padding: 2em;
     padding-top: 3em;
+    overflow: scroll;
 
     @media(min-width: @min_width) {
       height: auto;
@@ -5228,20 +5245,6 @@ body .delivery-info {
       max-width: none;
       font-size: 30px;
     }
-
-    //p {
-    //  font-size: 1.5rem;
-    //  max-width: 60%;
-    //
-    //  @media(orientation: landscape) {
-    //    max-width: 80%;
-    //  }
-    //
-    //  @media(min-width: @min_width) {
-    //    max-width: none;
-    //    font-size: 30px;
-    //  }
-    //}
   }
 
   &__image {
