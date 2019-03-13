@@ -25,25 +25,26 @@
         {% if banners|length %}
             <div class="header-slider">
                 <div class="header-slider__wrap">
-                    {% for banner in banners  %}
-                    <div class="header-slider__item" >
+                    {% for banner in banners %}
+                        <div class="header-slider__item">
 
-                        <img class="header-slider__teaser" src="{{ image_url(banner, 'homepage-banner/teaser') }}" alt="">
+                            <img class="header-slider__teaser" src="{{ image_url(banner, 'homepage-banner/teaser') }}"
+                                 alt="">
 
-                        <div class="container">
-                            <div class="header-section__image">
-                                <img src="{{ image_url(banner, 'homepage-banner/text') }}" alt="">
+                            <div class="container">
+                                <div class="header-section__image">
+                                    <img src="{{ image_url(banner, 'homepage-banner/text') }}" alt="">
+                                </div>
+                                <div class="header-section__text">
+                                    {{ banner.text|raw }}
+                                </div>
+                                {% if (banner.url and banner.buttonLabel) %}
+                                    <a class="button" href="{{ banner.url }}">
+                                        <span>{{ banner.buttonLabel }}</span>
+                                    </a>
+                                {% endif %}
                             </div>
-                            <div class="header-section__text">
-                              {{ banner.text|raw }}
-                            </div>
-                            {% if (banner.url and banner.buttonLabel) %}
-                                <a class="button" href="{{ banner.url }}">
-                                    <span>{{ banner.buttonLabel }}</span>
-                                </a>
-                            {% endif %}
                         </div>
-                    </div>
                     {% endfor %}
                 </div>
             </div>
@@ -81,15 +82,16 @@
     </section>
 
     {% if promoBanners|length %}
-    <section class="advantages">
-        {#<div class="container">#}
+        <section class="advantages">
+            {#<div class="container">#}
             {% for i,promoBanner in promoBanners %}
                 {% if (image_exists(promoBanner, 'homepage-promo-banner/teaser')) %}
                     <div class="advantages-item__wrap  {% if 0 != i%2 %}advantages-item__wrap_left{% endif %}">
                         <div class="container">
                             <div class="advantages-step">
                                 <div class="advantages-text">
-                                    <img class="advantages-text__image" src="{{ image_url(promoBanner, 'homepage-promo-banner/text') }}"/>
+                                    <img class="advantages-text__image"
+                                         src="{{ image_url(promoBanner, 'homepage-promo-banner/text') }}"/>
                                     <span class="advantages-text__text">{{ promoBanner.text|raw }}</span>
                                     <a href="{{ promoBanner.url }}" class="button">
                                         <span>{{ promoBanner.buttonText }}</span>
@@ -97,15 +99,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="advantages-image" style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat;
-                              width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;height: {{ image_height(promoBanner, 'homepage-promo-banner/teaser') }}px">
+                        <div class="advantages-image"
+                             style="background: url({{ image_url(promoBanner, 'homepage-promo-banner/teaser') }}) center no-repeat;
+                                     width: {{ image_width(promoBanner, 'homepage-promo-banner/teaser') }}px;height: {{ image_height(promoBanner, 'homepage-promo-banner/teaser') }}px">
                         </div>
                     </div>
 
                 {% endif %}
             {% endfor %}
-        {#</div>#}
-    </section>
+            {#</div>#}
+        </section>
     {% endif %}
 
     {% if bestOffers|length %}
@@ -177,7 +180,8 @@
                 <h2 class="partners__title">Наши партнёры</h2>
                 <div class="partners-wrap">
                     {% for partner in partners %}
-                        <span class="partner-item" style=" background: url('{{ image_url(partner) }}') center no-repeat; background-size: contain; min-width: 310px; height: 83px;"></span>
+                        <span class="partner-item"
+                              style=" background: url('{{ image_url(partner) }}') center no-repeat; background-size: contain; min-width: 310px; height: 83px;"></span>
                     {% endfor %}
                 </div>
             </div>
@@ -210,8 +214,21 @@
                     <div class="notes-slider">
                         {% for story in cheeseStories %}
                             <div class="notes__text">
-                                {{ story.text | raw }}
+                                {{ story.previewText | raw }}
+                                {# не надо выводить ссылку, если нет текста и/или заголовка #}
+                                {% if story.text %}
+                                    <p>
+                                        <a title="{{ story.title }}"
+                                           href="{{ path('cheese_story_show', {'id': story.id}) }}"
+                                           target="_blank"
+                                           rel="noopener"
+                                           tabindex="0">
+                                            {{ story.title }}
+                                        </a>
+                                    </p>
+                                {% endif %}
                             </div>
+
                         {% endfor %}
                     </div>
 
@@ -220,7 +237,7 @@
                         <span class="notes-image-gallery__text-aside">Анна — хозяйка сыроварни</span>
                     </div>
                 </div>
-                {% if setting('instagram_link')  %}
+                {% if setting('instagram_link') %}
                     <a href="{{ setting('instagram_link') }}" class="notes__go-instagram">
                         <span>ещё больше интересного здесь</span>
                         <i class="icon-instagram"></i>
@@ -231,19 +248,19 @@
     {% endif %}
 
     {#{% if app.user and viewedProducts and viewedProducts|length %}#}
-        {#<section class="last-viewed-panel">#}
-            {#<div class="container">#}
-                {#<div class="section-title">#}
-                    {#<span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>#}
-                {#</div>#}
+    {#<section class="last-viewed-panel">#}
+    {#<div class="container">#}
+    {#<div class="section-title">#}
+    {#<span class="section-title__text section-title__text_aside-line">Последние просмотренные</span>#}
+    {#</div>#}
 
-                {#<div class="section-wrap">#}
-                    {#{% for product in viewedProducts %}#}
-                        {#{{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}#}
-                    {#{% endfor %}#}
-                {#</div>#}
+    {#<div class="section-wrap">#}
+    {#{% for product in viewedProducts %}#}
+    {#{{  include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage, "options": { "narrow": true } }) }}#}
+    {#{% endfor %}#}
+    {#</div>#}
 
-            {#</div>#}
-        {#</section>#}
+    {#</div>#}
+    {#</section>#}
     {#{% endif %}#}
 {% endblock %}

@@ -30,7 +30,11 @@ class HomepageController extends Controller
       $viewedProducts = $this->getUser()->getViewedProductList()->getProducts(6);
     }
     
-    $cheeseStories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findBy([],['position' => 'ASC']);
+    $cheeseStories = $this
+      ->getDoctrine()
+      ->getRepository('StoreBundle:Text\CheeseStory')
+      ->findBy(['published' => true],['position' => 'ASC']);
+    
     $partners = $this->getDoctrine()->getRepository('StoreBundle:Text\Partner')->findBy([],['position' => 'ASC']);
     //Промо-баннеры с преимуществами сыроварни
     $promoBanners = $this->getDoctrine()->getRepository('StoreBundle:Text\PromoBanner')
