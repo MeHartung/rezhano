@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CheeseStoryController extends Controller
 {
@@ -36,8 +37,26 @@ class CheeseStoryController extends Controller
       return new JsonResponse($result, 200);
     }
     
-    return $this->render('@App/CheeseStory/index.html.twig', [
+    return $this->render('@Store/CheeseStory/index.html.twig', [
       'stories' => $stories
+    ]);
+  }
+  
+  /**
+   * @param $id int|string
+   * @return Response
+   */
+  public function showAction($id) : Response
+  {
+    $story = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->find($id);
+    
+    if(!$story || !$story->isPublished())
+    {
+      throw new NotFoundHttpException("Заметка с id $id не найдена!");
+    }
+    
+    return $this->render('@Store/CheeseStory/show.html.twig', [
+      'story' => $story
     ]);
   }
 }

@@ -37,9 +37,18 @@ class CheeseStory implements ImageAwareInterface
   private $title;
   
   /**
+   * Текст в списке
+   *
    * @var string|null
    * @ORM\Column(type="text")
    * @Assert\NotBlank(message="Поле не может быть пустым")
+   */
+  private $previewText;
+  
+  /**
+   * @var string|null
+   * @ORM\Column(type="text", nullable=true)
+   * @ Assert\NotBlank(message="Поле не может быть пустым")
    */
   private $text;
   
@@ -63,6 +72,12 @@ class CheeseStory implements ImageAwareInterface
    * @ORM\Column(type="json_array", nullable=true)
    */
   private $teaserImageOptions;
+  
+  /**
+   * @var boolean
+   * @ORM\Column(type="boolean", options={"default": 1})
+   */
+  private $published;
   
   /**
    * @return int|null
@@ -222,6 +237,38 @@ class CheeseStory implements ImageAwareInterface
   public function setTitle(?string $title): void
   {
     $this->title = $title;
+  }
+  
+  /**
+   * @return null|string
+   */
+  public function getPreviewText(): ?string
+  {
+    return $this->previewText;
+  }
+  
+  /**
+   * @param null|string $previewText
+   */
+  public function setPreviewText(?string $previewText): void
+  {
+    $this->previewText = $previewText;
+  }
+  
+  /**
+   * @return bool
+   */
+  public function isPublished(): ?bool
+  {
+    return $this->published;
+  }
+  
+  /**
+   * @param bool $published
+   */
+  public function setPublished(?bool $published): void
+  {
+    $this->published = $published;
   }
   
   public function __toString()
