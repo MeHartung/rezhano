@@ -223,7 +223,7 @@
                                 {% if story.text %}
                                     <p>
                                         <a title="{{ story.title }}"
-                                           href="{{ path('cheese_story_show', {'id': story.id}) }}"
+                                           href="{{ path('cheese_story_show', {'slug': story.slug}) }}"
                                            target="_blank"
                                            rel="noopener"
                                            tabindex="0">

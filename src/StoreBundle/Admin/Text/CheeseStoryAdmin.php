@@ -52,6 +52,7 @@ class CheeseStoryAdmin extends AbstractAdmin
     $subject = $this->getSubject();
     $form
       ->add('title')
+      ->add('slug')
       ->add('previewText', TinyMceType::class, [
         'help' => 'Текст в слайдере на главной'
       ])

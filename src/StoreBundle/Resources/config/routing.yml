@@ -276,7 +276,7 @@ customer_question_success:
 #  defaults: { _controller: StoreBundle:Text\CheeseStory:index }
 
 cheese_story_show:
-  path: /syrnye-zametki/{id}
+  path: /syrnye-zametki/{slug}
   defaults: { _controller: StoreBundle:Text\CheeseStory:show }
 
 question:

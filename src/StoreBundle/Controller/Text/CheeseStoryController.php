@@ -43,16 +43,18 @@ class CheeseStoryController extends Controller
   }
   
   /**
-   * @param $id int|string
+   * @param $slug int|string
    * @return Response
    */
-  public function showAction($id) : Response
+  public function showAction($slug) : Response
   {
-    $story = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->find($id);
+    $story = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findOneBy([
+      'slug' => $slug
+    ]);
     
     if(!$story || !$story->isPublished())
     {
-      throw new NotFoundHttpException("Заметка с id $id не найдена!");
+      throw new NotFoundHttpException("Заметка с slug $slug не найдена!");
     }
     
     return $this->render('@Store/CheeseStory/show.html.twig', [
