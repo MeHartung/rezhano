@@ -160,75 +160,44 @@ define(function(require){
         }).render();
       });
 
-
-
       var $headerMenu = $('.header__fixed');
       var headerMenuHeight = $('.header__fixed').height();
       var $html = $('html');
       // this.st = $(this).scrollTop();
       this.lastScrollTop = 5;
 
-      // if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) ) {
-      if ($html.hasClass('mobile') || $html.hasClass('tablet')) {
-          // console.log(true)
-        $(window).on("touchstart", function (event) {
-          if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
-            self.st = $(this).scrollTop();
-            // console.log(self.st, self.lastScrollTop);
-            if (self.st <= 0 ) {
-              setTimeout(function () {
-                window.scrollTo(0,0);
-              }, 500);
-            }
-            if (self.st > self.lastScrollTop){
-              $headerMenu.addClass('header__mobile');
-            } else {
-              $headerMenu.removeClass('header__mobile');
-            }
-            self.lastScrollTop = self.st;
+      $(window).scroll(function (event) {
+        self.st = $(this).scrollTop();
 
-            if ( $(this).scrollTop()>2 ) {
-              $headerMenu.addClass('fixed');
-            } else if ( $(this).scrollTop()<headerMenuHeight) {
-              $headerMenu.removeClass('fixed');
-            }
+        if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
 
-          } else {
-            if ( $(this).scrollTop()>2 ) {
-              $headerMenu.addClass('fixed');
-            } else if ( $(this).scrollTop()<headerMenuHeight) {
-              $headerMenu.removeClass('fixed');
-            }
+          if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) && self.st <= 0 ) {
+            setTimeout(function () {
+              window.scrollTo(0,0);
+            }, 500);
           }
-        });
-      } else {
 
-        $(window).scroll(function (event) {
-          self.st = $(this).scrollTop();
-          if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
-            // console.log(self.st, self.lastScrollTop);
-            if (self.st > self.lastScrollTop){
-              $headerMenu.addClass('header__mobile');
-            } else {
-              $headerMenu.removeClass('header__mobile');
-            }
-            self.lastScrollTop = self.st;
-
-            if ( $(this).scrollTop()>2 ) {
-              $headerMenu.addClass('fixed');
-            } else if ( $(this).scrollTop()<headerMenuHeight) {
-              $headerMenu.removeClass('fixed');
-            }
-
+          if (self.st > self.lastScrollTop){
+            $headerMenu.addClass('header__mobile');
           } else {
-            if ( $(this).scrollTop()>2 ) {
-              $headerMenu.addClass('fixed');
-            } else if ( $(this).scrollTop()<headerMenuHeight) {
-              $headerMenu.removeClass('fixed');
-            }
+            $headerMenu.removeClass('header__mobile');
           }
-        });
-      }
+          self.lastScrollTop = self.st;
+
+          if ( $(this).scrollTop()>2 ) {
+            $headerMenu.addClass('fixed');
+          } else if ( $(this).scrollTop()<headerMenuHeight) {
+            $headerMenu.removeClass('fixed');
+          }
+
+        } else {
+          if ( $(this).scrollTop()>2 ) {
+            $headerMenu.addClass('fixed');
+          } else if ( $(this).scrollTop()<headerMenuHeight) {
+            $headerMenu.removeClass('fixed');
+          }
+        }
+      });
 
       return this;
     },
