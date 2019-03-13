@@ -173,7 +173,7 @@ define(function(require){
             window.scrollTo(0,0)
             // console.log('scrollTo 0')
           }
-          // console.log(st, lastScrollTop, $html);
+          console.log(st, lastScrollTop, $html);
           if (st > lastScrollTop){
             $headerMenu.addClass('header__mobile');
           } else {
