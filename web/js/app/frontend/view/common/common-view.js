@@ -168,6 +168,12 @@ define(function(require){
       $(window).scroll(function (event) {
         if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
           var st = $(this).scrollTop();
+
+          if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) && st <= 0 ) {
+            window.scrollTo(0,0)
+            // console.log('scrollTo 0')
+          }
+          // console.log(st, lastScrollTop, $html);
           if (st > lastScrollTop){
             $headerMenu.addClass('header__mobile');
           } else {
