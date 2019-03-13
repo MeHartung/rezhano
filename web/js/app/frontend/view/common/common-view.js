@@ -287,8 +287,8 @@ define(function(require){
       $(e.currentTarget).toggleClass('active');
       $(e.currentTarget).parent().find('.header-mobile').toggleClass('active');
 
-      // var bTop = $('body').offset().top;
-      // console.log(bTop);
+      var bTop = $('body');
+      console.log(bTop, $('body').position());
       $('body').toggleClass('no-scroll');
 
     },
