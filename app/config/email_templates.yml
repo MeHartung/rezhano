@@ -2,7 +2,6 @@ aw_email_templating:
   templating:
     loader: aw_email_templating.template.loader.doctrine
     entity: StoreBundle\Entity\Messaging\EmailTemplate
-    images_as_attachment: true
   email_templates:
     checkout:
       description: 'Уведомление покупателю об успешном оформлении заказа'
