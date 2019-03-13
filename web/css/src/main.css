@@ -520,6 +520,7 @@ main {
   overflow: hidden;
   height: 100%;
   position: relative;
+  pointer-events: none;
 }
 .scroll-pane {
   width: 100%;
