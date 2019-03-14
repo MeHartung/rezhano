@@ -3903,6 +3903,7 @@ footer.low .footer-aside {
     height: auto;
     padding: 25px 50px;
     min-height: auto;
+    overflow: hidden;
   }
 }
 .layer.add-to-cart-layer .layer__container {
