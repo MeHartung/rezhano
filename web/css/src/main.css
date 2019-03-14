@@ -1431,6 +1431,7 @@ header.header-contacts .header-catalog__wrap {
   header.header-contacts .header-catalog__wrap {
     background-position-y: -195px;
     background-size: cover;
+    width: 100%;
   }
 }
 header.header-contacts .header-catalog__wrap .header-menu-wrap {
