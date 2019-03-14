@@ -2,8 +2,8 @@ services:
   aw.moysklad:
     class: Accurateweb\MoyskladIntegrationBundle\Model\MoyskladManager
     arguments:
-      - '%moysklad_username%'
-      - '%moysklad_password%'
+      - '@store.setting.moy_sklad_login'
+      - '@store.setting.moy_sklad_password'
     public: false
 
   moysklad.order.checkout.moysklad_queue:

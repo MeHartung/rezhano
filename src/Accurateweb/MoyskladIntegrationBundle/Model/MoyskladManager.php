@@ -3,6 +3,7 @@
 namespace Accurateweb\MoyskladIntegrationBundle\Model;
 
 use Accurateweb\MoyskladIntegrationBundle\Repository\MoyskladRepository;
+use Accurateweb\SettingBundle\Model\Setting\SettingInterface;
 use MoySklad\MoySklad;
 
 class MoyskladManager
@@ -10,9 +11,9 @@ class MoyskladManager
   private $sklad;
   private $repositories;
 
-  public function __construct ($username, $password)
+  public function __construct (SettingInterface $username, SettingInterface$password)
   {
-    $this->sklad = MoySklad::getInstance($username, $password);
+    $this->sklad = MoySklad::getInstance($username->getValue(), $password->getValue());
     $this->repositories = array();
   }
 
