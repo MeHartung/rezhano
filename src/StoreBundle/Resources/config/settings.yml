@@ -245,3 +245,24 @@ services:
         - ~
       tags:
         - { name: aw.setting }
+
+    store.setting.moy_sklad_login:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+       - '@aw.settings.storage'
+       - 'moy_sklad_login'
+       - 'Логин от МС'
+       - '%moysklad_username%'
+      tags:
+        - { name: aw.setting }
+
+    store.setting.moy_sklad_password:
+      class: Accurateweb\SettingBundle\Model\Setting\PasswordSetting
+      arguments:
+       - '@aw.settings.storage'
+       - 'moy_sklad_password'
+       - 'Пароль от МС'
+       - '%moysklad_password%'
+       - '%encrypt_key%'
+      tags:
+        - { name: aw.setting }

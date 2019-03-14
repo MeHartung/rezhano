@@ -15,8 +15,8 @@ services:
       - {}
       - ~
       - "@doctrine.orm.default_entity_manager"
-      - '%moysklad_username%'
-      - '%moysklad_password%'
+      - '@store.setting.moy_sklad_login'
+      - '@store.setting.moy_sklad_password'
       - '%kernel.root_dir%'
       - '@event_dispatcher'
       - '@accurateweb.slugifier.yandex'
@@ -45,8 +45,8 @@ services:
       - {}
       - ~
       - "@doctrine.orm.default_entity_manager"
-      - '%moysklad_username%'
-      - '%moysklad_password%'
+      - '@store.setting.moy_sklad_login'
+      - '@store.setting.moy_sklad_password'
       - '%kernel.root_dir%'
       - '@event_dispatcher'
       - '@accurateweb.slugifier.yandex'
@@ -60,8 +60,8 @@ services:
       - {}
       - ~
       - "@doctrine.orm.default_entity_manager"
-      - '%moysklad_username%'
-      - '%moysklad_password%'
+      - '@store.setting.moy_sklad_login'
+      - '@store.setting.moy_sklad_password'
       - '%kernel.root_dir%'
       - '@event_dispatcher'
       - '@accurateweb.slugifier.yandex'
