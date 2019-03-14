@@ -516,6 +516,9 @@ a {
 main {
   z-index: 1000;
 }
+.msg-notice {
+  display: none !important;
+}
 .no-scroll {
   overflow: hidden;
   height: 100%;
@@ -3681,11 +3684,11 @@ footer.low .footer-aside {
 }
 .layer__close {
   background: url("../images/icons/close-black_mobile.png") center no-repeat;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   position: absolute;
-  top: 1em;
-  right: 1em;
+  top: 0;
+  right: 0;
   cursor: pointer;
   -webkit-transition: background-size 0.2s;
   -moz-transition: background-size 0.2s;
@@ -3903,7 +3906,7 @@ footer.low .footer-aside {
     height: auto;
     padding: 25px 50px;
     min-height: auto;
-    overflow: hidden;
+    overflow: initial;
   }
 }
 .layer.add-to-cart-layer .layer__container {
@@ -3943,6 +3946,8 @@ footer.low .footer-aside {
 .layer.add-to-cart-layer .buttons {
   margin-top: 0;
   text-align: center;
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: constant(safe-area-inset-bottom);
 }
 @media (min-width: 1200px) {
   .layer.add-to-cart-layer .buttons {
@@ -4216,11 +4221,11 @@ footer.low .footer-aside {
   }
 }
 .layer.quick-view .layer__text {
-  padding-top: 3em;
+  padding-top: 4em;
 }
 @media (orientation: landscape) {
   .layer.quick-view .layer__text {
-    padding-top: 1em;
+    padding-top: 2em;
   }
 }
 @media (min-width: 1200px) {
@@ -4941,6 +4946,7 @@ body .delivery-info__message {
 @media (min-width: 1200px) {
   .cheese-card {
     padding-bottom: 170px;
+    padding-top: 0;
   }
 }
 .cheese-card__title {
@@ -4960,6 +4966,11 @@ body .delivery-info__message {
     margin-left: 15%;
   }
 }
+@media (orientation: landscape) {
+  .cheese-card__title {
+    max-width: 80%;
+  }
+}
 @media (min-width: 1200px) {
   .cheese-card__title {
     max-width: 325px;
@@ -4971,15 +4982,7 @@ body .delivery-info__message {
   .cheese-card__title_mobile {
     display: none;
   }
-}
-@media (orientation: landscape) {
-  .cheese-card__title {
-    max-width: 80%;
-  }
-}
-@media (min-width: 1200px) {
-  .cheese-card__title {
-    max-width: none;
+  .cheese-card__title p {
     font-size: 30px;
   }
 }

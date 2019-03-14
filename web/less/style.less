@@ -22,6 +22,10 @@ main {
   z-index: 1000;
 }
 
+.msg-notice {
+  display: none !important;
+}
+
 .no-scroll {
   overflow: hidden;
   height: 100%;
@@ -3756,11 +3760,11 @@ footer {
   &__close {
     background: url("../images/icons/close-black_mobile.png") center no-repeat;
     //background-size: contain;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     position: absolute;
-    top: 1em;
-    right: 1em;
+    top: 0;
+    right: 0;
     cursor: pointer;
     -webkit-transition: background-size .2s;
     -moz-transition: background-size .2s;
@@ -3998,7 +4002,7 @@ footer {
       height: auto;
       padding: 25px 50px;
       min-height: auto;
-      overflow: hidden;
+      overflow: initial;
     }
 
     .layer__container {
@@ -4045,6 +4049,10 @@ footer {
     .buttons {
       margin-top: 0;
       text-align: center;
+
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-bottom: constant(safe-area-inset-bottom);
+
 
       @media(min-width: @min_width) {
         margin-top: 50px;
@@ -4336,10 +4344,10 @@ footer {
     }
 
     .layer__text {
-      padding-top: 3em;
+      padding-top: 4em;
 
       @media(orientation: landscape) {
-        padding-top: 1em;
+        padding-top: 2em;
       }
 
       @media(min-width: @min_width) {
@@ -5206,6 +5214,7 @@ body .delivery-info {
 
   @media(min-width: @min_width) {
     padding-bottom: 170px;
+    padding-top: 0;
   }
 
   &__title {
@@ -5214,6 +5223,8 @@ body .delivery-info {
     display: none;
     vertical-align: top;
     position: relative;
+    font-size: 1.5rem;
+    max-width: 60%;
 
     &_mobile {
       display: block;
@@ -5221,6 +5232,10 @@ body .delivery-info {
       @media(orientation: landscape) {
         margin-left: 15%;
       }
+    }
+
+    @media(orientation: landscape) {
+      max-width: 80%;
     }
 
     @media(min-width: @min_width) {
@@ -5233,18 +5248,10 @@ body .delivery-info {
       &_mobile {
         display: none;
       }
-    }
 
-    font-size: 1.5rem;
-    max-width: 60%;
-
-    @media(orientation: landscape) {
-      max-width: 80%;
-    }
-
-    @media(min-width: @min_width) {
-      max-width: none;
-      font-size: 30px;
+      p {
+        font-size: 30px;
+      }
     }
   }
 
