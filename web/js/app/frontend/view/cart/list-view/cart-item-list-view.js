@@ -25,6 +25,11 @@ define(function(require){
 
   return ListView.extend({
     //tagName: 'table',
+    initialize: function () {
+      ListView.prototype.initialize.apply(this, arguments);
+
+      console.log(this)
+    },
     itemView: CartCartItemListItemView,
     template: template,
     container: '.cards-container__container',
@@ -34,6 +39,11 @@ define(function(require){
         checkoutUrl : urlPrefix + '/checkout',
         total: Number(ObjectCache.Cart.total).toCurrencyString('')
       };
+    },
+    render: function(){
+      ListView.prototype.render.apply(this, arguments);
+
+      return this;
     }
   });
 });

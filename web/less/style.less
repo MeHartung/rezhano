@@ -2061,6 +2061,13 @@ h1, .popular-products__title {
     text-align: center;
     margin-bottom: 2em;
 
+    @media(orientation: portrait) {
+
+      @media(max-width: 350px) {
+        width: 80%;
+      }
+    }
+
     @media(orientation: landscape) {
       width: 50%;
 
@@ -2075,6 +2082,13 @@ h1, .popular-products__title {
     }
 
     &__twig {
+
+      @media(orientation: portrait) {
+
+        @media(max-width: 350px) {
+          width: 80%;
+        }
+      }
 
       @media (orientation: landscape) {
         width: 49%;
@@ -2128,6 +2142,14 @@ h1, .popular-products__title {
         -ms-transform: translate(-50%, -50%);
         -o-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+
+        @media(max-width: 350px) {
+          max-height: 160px;
+        }
+
+        @media(min-width: @min_width) {
+          max-height: 192px;
+        }
       }
 
       &:hover {
@@ -2208,7 +2230,6 @@ h1, .popular-products__title {
         font-size: 21px;
         font-family: Catorze27style1-semibold;
         color: @c_black;
-
         display: inline-block;
         vertical-align: sub;
         margin-right: 5px;
@@ -2219,14 +2240,21 @@ h1, .popular-products__title {
         font-family: Catorze27style1-medium;
         color: @c_black;
         text-align: center;
-
         border: none;
         box-shadow: none;
         outline: none;
         width: 60px;
-
         display: inline-block;
         vertical-align: sub;
+
+        @media(max-width: 350px) {
+          font-size: 1em;
+        }
+
+        @media(min-width: @min_width) {
+          font-size: 25px;
+        }
+
       }
 
       .controls-item {
@@ -2239,7 +2267,6 @@ h1, .popular-products__title {
         font-family: Catorze27style1-semibold;
         color: @c_black;
         cursor: pointer;
-
         display: inline-block;
         vertical-align: middle;
 
@@ -3396,6 +3423,10 @@ footer {
 
   .footer-social {
 
+    @media(max-width: 380px) {
+      zoom: 80%;
+    }
+
     .footer-social__item {
       width: 39px;
       height: 39px;
@@ -4050,6 +4081,10 @@ footer {
       line-height: 1em;
       font-family: Catorze27style1-bold;
       color: @c_black;
+
+      @media(max-width: 350px) {
+        font-size: 2em;
+      }
 
       @media(min-width: @min_width) {
         font-size: 65px;
@@ -6237,12 +6272,12 @@ body .delivery-info {
   }
 
   &__text {
-    font-size: 20px;
+    font-size: 18px;
     font-family: alegreyasans-regular;
     color: #000000;
 
     p {
-      font-size: 20px;
+      font-size: 18px;
       font-family: alegreyasans-regular;
       color: #000000;
     }
@@ -6260,12 +6295,12 @@ body .delivery-info {
   }
 
   &__text {
-    font-size: 20px;
+    font-size: 18px;
     font-family: alegreyasans-regular;
     color: #000000;
 
     p {
-      font-size: 20px;
+      font-size: 18px;
       font-family: alegreyasans-regular;
       color: #000000;
     }
@@ -8299,6 +8334,14 @@ body .delivery-info {
     vertical-align: top;
     white-space: normal;
 
+    @media(max-width: 380px) {
+      font-size: 1.4em;
+    }
+
+    @media(max-width: 360px) {
+      font-size: 1.1em;
+    }
+
     @media(min-width: @min_width) {
       font-size: 45px;
     }
@@ -8350,6 +8393,10 @@ body .delivery-info {
       margin-top: 105px;
       width: 195%;
       margin-left: -18%;
+
+      @media(max-width: 380px) {
+        margin-top: 52px;
+      }
 
       @media(orientation: landscape) {
         margin-top: -30px;
