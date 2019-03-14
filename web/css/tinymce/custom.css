@@ -6,3 +6,58 @@
     padding-left: 8px;
     padding-right: 25px;
 }
+
+.section-cheeseStory {
+    padding-top: 140px;
+    margin-bottom: 160px
+}
+
+.step-item_mobile {
+    display: block
+}
+
+@media (min-width: 1200px) {
+    .step-item {
+        display: block
+    }
+
+    .step-item_mobile {
+        display: none
+    }
+}
+
+.step-item .error-icon {
+    display: none
+}
+
+.step-item.error .error-icon {
+    display: block
+}
+
+.section-article {
+    padding-bottom: 200px
+}
+
+.section-article__title {
+    padding-bottom: 45px;
+    font-family: Catorze27style1-bold;
+    font-size: 65px;
+    padding-top: 45px;
+    display: block;
+    text-align: center;
+}
+
+.section-article__text,
+.section-article__text p {
+    font-size: 18px;
+    font-family: alegreyasans-regular;
+    color: #000
+}
+
+.section-cheeseStory__text,
+.section-cheeseStory__text p {
+    font-size: 18px;
+    font-family: alegreyasans-regular;
+    color: #000
+}
+

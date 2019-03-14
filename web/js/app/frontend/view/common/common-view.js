@@ -149,7 +149,6 @@ define(function(require){
           el: this.$('.header-menu__input')
         });
       }
-      // this.citySelectLinkView.setElement(this.$('#cityselection')).render();
 
       this.userPanelView.setElement(this.$('.header-panel__sign')).render();
 
@@ -163,36 +162,12 @@ define(function(require){
       var $headerMenu = $('.header__fixed');
       var headerMenuHeight = $('.header__fixed').height();
       var $html = $('html');
-      // this.st = $(this).scrollTop();
       this.lastScrollTop = 5;
-        // $(window).on("touchend", function (e) {
-        //   self.st = $(this).scrollTop();
-        //
-        //   if (self.st <= 0 ) {
-        //     // setTimeout(function () {
-        //       // window.scrollTo(0,0);
-        //
-        //       $("html, body").animate({
-        //         scrollTop: 0
-        //       }, 500)
-        //
-        //       // $headerMenu.removeClass('fixed');
-        //       // $headerMenu.removeClass('header__mobile');
-        //     // }, 500);
-        //   }
-        // });
+
       $(window).scroll(function (event) {
         self.st = $(this).scrollTop();
 
         if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
-
-          // if (self.st <= 0 ) {
-          //   setTimeout(function () {
-          //     window.scrollTo(0,0);
-          //     $headerMenu.removeClass('fixed');
-          //     $headerMenu.removeClass('header__mobile');
-          //   }, 500);
-          // }
 
           if (self.st > self.lastScrollTop){
             $headerMenu.addClass('header__mobile');

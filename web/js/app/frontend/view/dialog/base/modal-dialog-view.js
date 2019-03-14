@@ -34,12 +34,6 @@ define(function(require){
       
       $('body').append(this.$overlay);
 
-      // $(window).on('hashchange', function (event) {
-      //   if(window.location.hash != "#modal") {
-      //     self.close()
-      //   }
-      // });
-
       $(window).on('scroll.modaldialog'+this.cid, $.proxy(this.onWindowScroll, this));
     },
     show: function(){
