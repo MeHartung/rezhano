@@ -2948,6 +2948,10 @@ h1, .popular-products__title {
         &:hover {
           color: @rc_yellow-hover;
         }
+
+        &.button:hover {
+          color: @c_black;
+        }
       }
 
       &:first-child {
@@ -3222,23 +3226,23 @@ h1, .popular-products__title {
     top: -16px;
     right: -50px;
 
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: url("../images/icons/instagram-white.png") center no-repeat;
+      opacity: 0;
+    }
+
     &:after {
       content: "";
       background: url("../images/icons/instagram.png") center no-repeat;
       position: absolute;
-      //top: 50%;
-      //left: 50%;
-      //-webkit-transform: translate(-50%, -50%);
-      //-moz-transform: translate(-50%, -50%);
-      //-ms-transform: translate(-50%, -50%);
-      //-o-transform: translate(-50%, -50%);
-      //transform: translate(-50%, -50%);
       top: 15px;
       left: 16px;
-
       width: 32px;
       height: 32px;
-
       -webkit-transition: background .2s;
       -moz-transition: background .2s;
       -ms-transition: background .2s;
@@ -3409,6 +3413,16 @@ footer {
       background: url("../images/svg/social-03.svg") center no-repeat;
       .transition(500ms, background);
 
+
+      &:after {
+        content: '';
+        background: url("../images/svg/social-06.svg") center no-repeat;
+        position: absolute;
+        top:0;
+        left:0;
+        opacity: 0;
+      }
+
       &:hover {
         //background-position: -140px -67px;
         background: url("../images/svg/social-06.svg") center no-repeat;
@@ -3428,6 +3442,15 @@ footer {
       background: url("../images/svg/social-02.svg") center no-repeat;
       .transition(500ms, background);
 
+      &:after {
+        content: '';
+        background: url("../images/svg/social-05.svg") center no-repeat;
+        position: absolute;
+        top:0;
+        left:0;
+        opacity: 0;
+      }
+
       &:hover {
         //background-position: -140px -67px;
         background: url("../images/svg/social-05.svg") center no-repeat;
@@ -3444,6 +3467,15 @@ footer {
 
       background: url("../images/svg/social-01.svg") center no-repeat;
       .transition(500ms, background);
+
+      &:after {
+        content: '';
+        background: url("../images/svg/social-04.svg") center no-repeat;
+        position: absolute;
+        top:0;
+        left:0;
+        opacity: 0;
+      }
 
       &:hover {
         //background-position: -140px -67px;
@@ -5407,13 +5439,13 @@ body .delivery-info {
   &__text-wrap {
     //max-height: 310px;
     outline: none;
-    display: block;
-    //display: none;
+    //display: block;
+    display: none;
     padding-bottom: 1em;
 
     &_mobile {
-      //display: block;
-      display: none;
+      display: block;
+      //display: none;
     }
 
     @media(orientation: landscape) {
@@ -6213,6 +6245,56 @@ body .delivery-info {
       font-size: 20px;
       font-family: alegreyasans-regular;
       color: #000000;
+    }
+  }
+}
+
+// section-cheeseStory
+.section-cheeseStory {
+  padding-top: 140px;
+  padding-bottom: 200px;
+  margin-bottom: 160px;
+
+  &__title {
+    padding-bottom: 45px;
+  }
+
+  &__text {
+    font-size: 20px;
+    font-family: alegreyasans-regular;
+    color: #000000;
+
+    p {
+      font-size: 20px;
+      font-family: alegreyasans-regular;
+      color: #000000;
+    }
+  }
+
+  .cheeseStory-navi {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+
+      .button-arrow {
+        display: inline-block;
+        margin-top: -1px;
+
+        @media(max-width: 502px) {
+          margin-top: -6px;
+          font-size: 2rem;
+        }
+      }
+
+      .button-text {
+
+        @media(max-width: 502px) {
+          display: none;
+        }
+
+      }
     }
   }
 }

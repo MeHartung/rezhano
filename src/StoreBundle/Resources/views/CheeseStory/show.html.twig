@@ -8,7 +8,7 @@
 
 {% block main %}
 
-    <section class="section-article">
+    <section class="section-cheeseStory">
         <div class="container">
             {#<div class="section-title">#}
             {#<div class="breadcrumbs">#}
@@ -25,6 +25,16 @@
                 {{ story.text|raw }}
             </div>
             {#</div>#}
+
+            <div class="cheeseStory-navi">
+                <a href="" class="button button_black">
+                    <span class="button-arrow">⬅</span> <span class="button-text" >предыдущая заметка</span>
+                </a>
+                <a href="" class="button button_black">
+                    <span class="button-text">следующая заметка</span> <span class="button-arrow">⮕</span>
+                </a>
+            </div>
+
         </div>
     </section>
 

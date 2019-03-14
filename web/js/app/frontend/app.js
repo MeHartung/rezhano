@@ -54,7 +54,7 @@ require([
   var router = new Router();
 
   Backbone.history.start({
-    hashChange: false,
+    hashChange: true,
     pushState: true
   });
 
