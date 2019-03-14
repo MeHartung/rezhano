@@ -9,14 +9,17 @@ use StoreBundle\Media\Text\CheeseStoryImage;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use StoreBundle\Media\Text\UnprocessedImage;
+use StoreBundle\Sluggable\SluggableInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class CheeseStory
  * @ORM\Table(name="cheese_stories")
  * @ORM\Entity()
+ * @UniqueEntity(fields={"slug"})
  */
-class CheeseStory implements ImageAwareInterface
+class CheeseStory implements ImageAwareInterface, SluggableInterface
 {
   /**
    * @var integer|null
@@ -78,6 +81,12 @@ class CheeseStory implements ImageAwareInterface
    * @ORM\Column(type="boolean", options={"default": 1})
    */
   private $published;
+  
+  /**
+   * @var string
+   * @ORM\Column(type="string", unique=true)
+   */
+  private $slug;
   
   /**
    * @return int|null
@@ -224,7 +233,7 @@ class CheeseStory implements ImageAwareInterface
   }
   
   /**
-   * @return null|string
+   * @return string
    */
   public function getTitle(): ?string
   {
@@ -269,6 +278,27 @@ class CheeseStory implements ImageAwareInterface
   public function setPublished(?bool $published): void
   {
     $this->published = $published;
+  }
+  
+  /**
+   * @return string
+   */
+  public function getSlug(): ?string
+  {
+    return $this->slug;
+  }
+  
+  /**
+   * @param string $slug
+   */
+  public function setSlug($slug): void
+  {
+    $this->slug = $slug;
+  }
+  
+  public function getSlugSource()
+  {
+    return $this->getTitle();
   }
   
   public function __toString()
