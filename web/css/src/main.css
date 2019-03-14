@@ -3906,7 +3906,7 @@ footer.low .footer-aside {
   }
 }
 .layer.add-to-cart-layer .layer__container {
-  height: 85%;
+  height: 80%;
 }
 @media (min-width: 1200px) {
   .layer.add-to-cart-layer .layer__container {

@@ -24,6 +24,9 @@ define(function(require){
         $('body').css({
           overflow: 'hidden'
         });
+        if ( $('html').hasClass('mobile') ||$('html').hasClass('tablet') ) {
+          window.location.hash = "modal";
+        }
       },
       close: function () {
          ModalDialog.prototype.close.apply(this, arguments);
