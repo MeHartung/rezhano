@@ -46,6 +46,7 @@ class UserAdmin extends AbstractAdmin
 
     $form
       ->tab('Основное')
+      ->with('Данные пользователя')
       ->add('email', null, [
       #  'disabled' => !$is_edit
       ])
@@ -62,20 +63,21 @@ class UserAdmin extends AbstractAdmin
       ])
       ->add('phone')
       ->add('enabled')
+      ->end()
+      ->with('Роли')
+      ->add('admin', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', [
+        'label' => 'Администратор',
+      ])
+      ->add('operator', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', [
+        'label' => 'Оператор',
+      ])
+      ->end()
       /*->add('city', null, [
         'required' => false,
       ])*/
-      ->add('roles', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
-        'expanded' => true,
-        'multiple' => true,
-        'choices' => [
-          'Администратор' => User::ROLE_ADMIN,
-        ]
-      ])
      /* ->add('contragentStatus', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
         'choices' => User::getAvailableContragentStatuses()
       ])*/
-      ->end()
       ->end();
 /*      ->tab('Компания')
         ->add('company', 'StoreBundle\Form\User\CompanyFormType', [

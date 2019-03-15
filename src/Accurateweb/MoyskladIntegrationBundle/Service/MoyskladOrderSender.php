@@ -52,6 +52,8 @@ class MoyskladOrderSender
   const ATTRIBUTE_PDF = '68be641e-7063-11e8-9107-5048000ea93e'; //PDF link
   const ATTRIBUTE_NO_PAYMENT = '97e6eea6-7065-11e8-9107-5048000ed3a1'; //Без оплаты boolean
   const ATTRIBUTE_WARRANTY = '3a64a28b-706b-11e8-9107-5048000f3e98'; //Страхование boolean*/
+  const ATTRIBUTE_DELIVERY_ADDRESS = '1578a4e6-368a-11e9-9ff4-34e800100a66'; //Адрес доставки
+//  const ATTRIBUTE_DELIVERY_ADDRESS = '841cfebe-40b2-11e9-9109-f8fc0002f82b'; //Адрес доставки
 
   private $sklad;
   private $eventDispatcher;
@@ -126,12 +128,17 @@ class MoyskladOrderSender
      * @var EntityList $attributes
      */
     $attributes = $meta->attributes;
+
     foreach ($attributes as $attribute)
     {
       switch ($attribute->id)
       {
         case self::ATTRIBUTE_STORE_ORDER_NUM:
           $attribute->value = $order->getDocumentNumber();
+          $customerOrderCreation->addAttribute($attribute);
+          break;
+        case self::ATTRIBUTE_DELIVERY_ADDRESS:
+          $attribute->value = $contragentAddres;
           $customerOrderCreation->addAttribute($attribute);
           break;
       }
