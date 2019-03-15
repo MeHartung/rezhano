@@ -51,6 +51,7 @@ services:
       - '@event_dispatcher'
       - '@accurateweb.slugifier.yandex'
       - '@logger'
+      - '@aw.moysklad'
     tags:
       - { name: 'aw.datasource' }
 
