@@ -49,7 +49,7 @@ define(function(require){
       this.totalsPanelView.setElement(this.$('.cards-container__payment-info-wrap'));
       this.totalsPanelView.render();
 
-      this.mobileTotalsPanelView.setElement(this.$('.mobile-payment-info-wrap'));
+      this.mobileTotalsPanelView.setElement(this.$('.mobile-payment-info-wrapper'));
       this.mobileTotalsPanelView.render();
 
       return this;

@@ -4,9 +4,11 @@ namespace StoreBundle\Synchronization\FromMoySklad\Model\Datasource;
 
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
 use Accurateweb\SettingBundle\Model\Setting\SettingInterface;
+use Accurateweb\MoyskladIntegrationBundle\Model\MoyskladManager;
 use Accurateweb\SlugifierBundle\Model\SlugifierInterface;
 use Accurateweb\SynchronizationBundle\Model\Datasource\Base\BaseDataSource;
 use Doctrine\ORM\EntityManagerInterface;
+use MoySklad\Entities\Folders\ProductFolder;
 use MoySklad\Entities\Products\Product;
 use MoySklad\Exceptions\RequestFailedException;
 use MoySklad\Lists\EntityList;
@@ -21,6 +23,7 @@ class MoySkladSource extends BaseDataSource
     $em, $moySkladLogin, $moySkladPassword,
     $kernelRootDir, $dispatcher, $slugifierYandex,
     $logger;
+  protected $moyskladManager;
   
   /**
    * Поддериживаемые директории товаров (в терминологии моего склада группы - это папки)
@@ -45,14 +48,15 @@ class MoySkladSource extends BaseDataSource
                               EntityManagerInterface $entityManager,
                               SettingInterface $moySkladLogin, SettingInterface $moySkladPassword,
                               $kernelRootDir, EventDispatcherInterface $dispatcher,
-                              SlugifierInterface $sluggable, LoggerInterface $logger)
+                              SlugifierInterface $sluggable, LoggerInterface $logger,
+                              MoyskladManager $moyskladManager)
   {
     parent::__construct($options);
     $this->em = $entityManager;
     
     $this->moySkladLogin = $moySkladLogin->getValue();
     $this->moySkladPassword = $moySkladPassword->getValue();
-    
+    $this->moyskladManager = $moyskladManager;
     $this->kernelRootDir = $kernelRootDir;
     $this->dispatcher = $dispatcher;
     
@@ -80,7 +84,16 @@ class MoySkladSource extends BaseDataSource
       );
       return null;
     }
-    
+
+    $folders = $this->getFolders();
+    $folderNames = [];
+
+    foreach ($folders as $folder)
+    {
+      $folderNames[] = $folder->name;
+    }
+
+
     /**
      * Все товары с моего склада
      *
@@ -170,7 +183,7 @@ class MoySkladSource extends BaseDataSource
       {
         continue;
       }
-      
+  
       try
       {
         $folderData = $sklad->getClient()->get($folderDataHref);
@@ -209,8 +222,8 @@ class MoySkladSource extends BaseDataSource
         );
         continue;
       }
-  
-      if(!in_array($folderData->name, $this->supportFolders))
+
+      if(!in_array($folderData->name, $folderNames))
       {
         continue;
       }
@@ -346,6 +359,44 @@ class MoySkladSource extends BaseDataSource
   public function put($from, $to)
   {
   
+  }
+
+  /**
+   * @return ProductFolder[]
+   */
+  private function getFolders()
+  {
+    $folders = [];
+    $folderRepository = $this->moyskladManager->getRepository('MoySklad\Entities\Folders\ProductFolder');
+
+    foreach ($this->supportFolders as $supportFolder)
+    {
+      $folder = $folderRepository->findOneBy(['name' => $supportFolder]);
+
+      if ($folder)
+      {
+        $folders[] = $folder;
+
+        foreach ($this->getSubFolders($folder) as $subFolder)
+        {
+          $folders[] = $subFolder;
+        }
+      }
+    }
+
+    return $folders;
+  }
+
+  /**
+   * @param $folder
+   * @return ProductFolder[]
+   */
+  private function getSubFolders(ProductFolder $folder)
+  {
+    $folderRepository = $this->moyskladManager->getRepository('MoySklad\Entities\Folders\ProductFolder');
+    $folders = $folderRepository->findBy(['pathName' => sprintf('%s%%', $folder->fields->name)]);
+
+    return $folders;
   }
   
 }

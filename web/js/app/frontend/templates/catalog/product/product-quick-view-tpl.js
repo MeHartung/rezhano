@@ -23,6 +23,21 @@ define(function(require){
         </div>\n\
       <% } %>\n\
     </div>\n\
+    <div class="layer__text-wrap layer__text-wrap_mobile">\n\
+      <% if (attributes) { %>\n\
+         <% _.each(attributes, function(attr, key) { %>\n\
+           <div class="layer__text-item">\n\
+             <div class="layer__text-title"><%= key %>:</div> \n\
+             <div class="layer__text-text"><%= attr %></div> \n\
+           </div>\n\
+         <%});%>\n\
+      <% } %>\n\
+      <% if (description) { %>\n\
+        <div class="layer__text-item">\n\
+          <div class="layer__text-text" style="margin-top: 15px;display: inline-block;"><%= description %></div> \n\
+        </div>\n\
+      <% } %>\n\
+    </div>\n\
     <div class="product-item__characteristics">\n\
       <% if (package) { %>\n\
         <span class="product-item__quantity"><%= package %> <%= units %> / </span>\n\

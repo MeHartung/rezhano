@@ -47,6 +47,7 @@ class User extends BaseUser
   const ROLE_ENTREPRENEUR = 'ROLE_ENTREPRENEUR';
 
   const ROLE_ADMIN = 'ROLE_ADMIN';
+  const ROLE_OPERATOR = 'ROLE_OPERATOR';
   /**
    * @var int
    *
@@ -533,6 +534,57 @@ class User extends BaseUser
   public function setPlainPassword($plainPassword): void
   {
     $this->plainPassword = $plainPassword;
+  }
+
+  /**
+   * @param boolean $admin
+   * @return $this
+   */
+  public function setAdmin($admin)
+  {
+    if ($admin)
+    {
+      $this->addRole(self::ROLE_ADMIN);
+    }
+    else
+    {
+      $this->removeRole(self::ROLE_ADMIN);
+    }
+
+    return $this;
+  }
+
+  /**
+   * @return bool
+   */
+  public function isAdmin()
+  {
+    return $this->hasRole(self::ROLE_ADMIN);
+  }
+  /**
+   * @param boolean $operator
+   * @return $this
+   */
+  public function setOperator($operator)
+  {
+    if ($operator)
+    {
+      $this->addRole(self::ROLE_OPERATOR);
+    }
+    else
+    {
+      $this->removeRole(self::ROLE_OPERATOR);
+    }
+
+    return $this;
+  }
+
+  /**
+   * @return bool
+   */
+  public function isOperator()
+  {
+    return $this->hasRole(self::ROLE_OPERATOR);
   }
 
 }

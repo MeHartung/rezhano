@@ -22,6 +22,10 @@ main {
   z-index: 1000;
 }
 
+.msg-notice {
+  display: none !important;
+}
+
 .no-scroll {
   overflow: hidden;
   height: 100%;
@@ -137,7 +141,11 @@ section {
   overflow: hidden;
 
   p {
-    font-size: 2rem;
+    font-size: 1.8rem;
+
+    @media(max-width: 350px) {
+      font-size: 1.1rem;
+    }
 
     @media (min-width: @min_width) {
       font-size: 45px;
@@ -1128,6 +1136,7 @@ header {
       @media(min-width: @min_width) {
         background-position-y: -195px;
         background-size: cover;
+        width: 100%;
       }
 
       .header-menu-wrap {
@@ -2057,6 +2066,13 @@ h1, .popular-products__title {
     text-align: center;
     margin-bottom: 2em;
 
+    @media(orientation: portrait) {
+
+      @media(max-width: 350px) {
+        width: 80%;
+      }
+    }
+
     @media(orientation: landscape) {
       width: 50%;
 
@@ -2071,6 +2087,13 @@ h1, .popular-products__title {
     }
 
     &__twig {
+
+      @media(orientation: portrait) {
+
+        @media(max-width: 350px) {
+          width: 80%;
+        }
+      }
 
       @media (orientation: landscape) {
         width: 49%;
@@ -2124,6 +2147,14 @@ h1, .popular-products__title {
         -ms-transform: translate(-50%, -50%);
         -o-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+
+        @media(max-width: 350px) {
+          max-height: 160px;
+        }
+
+        @media(min-width: @min_width) {
+          max-height: 192px;
+        }
       }
 
       &:hover {
@@ -2204,7 +2235,6 @@ h1, .popular-products__title {
         font-size: 21px;
         font-family: Catorze27style1-semibold;
         color: @c_black;
-
         display: inline-block;
         vertical-align: sub;
         margin-right: 5px;
@@ -2215,14 +2245,21 @@ h1, .popular-products__title {
         font-family: Catorze27style1-medium;
         color: @c_black;
         text-align: center;
-
         border: none;
         box-shadow: none;
         outline: none;
         width: 60px;
-
         display: inline-block;
         vertical-align: sub;
+
+        @media(max-width: 350px) {
+          font-size: 1em;
+        }
+
+        @media(min-width: @min_width) {
+          font-size: 25px;
+        }
+
       }
 
       .controls-item {
@@ -2235,7 +2272,6 @@ h1, .popular-products__title {
         font-family: Catorze27style1-semibold;
         color: @c_black;
         cursor: pointer;
-
         display: inline-block;
         vertical-align: middle;
 
@@ -2944,6 +2980,10 @@ h1, .popular-products__title {
         &:hover {
           color: @rc_yellow-hover;
         }
+
+        &.button:hover {
+          color: @c_black;
+        }
       }
 
       &:first-child {
@@ -3218,23 +3258,23 @@ h1, .popular-products__title {
     top: -16px;
     right: -50px;
 
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: url("../images/icons/instagram-white.png") center no-repeat;
+      opacity: 0;
+    }
+
     &:after {
       content: "";
       background: url("../images/icons/instagram.png") center no-repeat;
       position: absolute;
-      //top: 50%;
-      //left: 50%;
-      //-webkit-transform: translate(-50%, -50%);
-      //-moz-transform: translate(-50%, -50%);
-      //-ms-transform: translate(-50%, -50%);
-      //-o-transform: translate(-50%, -50%);
-      //transform: translate(-50%, -50%);
       top: 15px;
       left: 16px;
-
       width: 32px;
       height: 32px;
-
       -webkit-transition: background .2s;
       -moz-transition: background .2s;
       -ms-transition: background .2s;
@@ -3388,6 +3428,10 @@ footer {
 
   .footer-social {
 
+    @media(max-width: 380px) {
+      zoom: 80%;
+    }
+
     .footer-social__item {
       width: 39px;
       height: 39px;
@@ -3404,6 +3448,16 @@ footer {
       //}
       background: url("../images/svg/social-03.svg") center no-repeat;
       .transition(500ms, background);
+
+
+      &:after {
+        content: '';
+        background: url("../images/svg/social-06.svg") center no-repeat;
+        position: absolute;
+        top:0;
+        left:0;
+        opacity: 0;
+      }
 
       &:hover {
         //background-position: -140px -67px;
@@ -3424,6 +3478,15 @@ footer {
       background: url("../images/svg/social-02.svg") center no-repeat;
       .transition(500ms, background);
 
+      &:after {
+        content: '';
+        background: url("../images/svg/social-05.svg") center no-repeat;
+        position: absolute;
+        top:0;
+        left:0;
+        opacity: 0;
+      }
+
       &:hover {
         //background-position: -140px -67px;
         background: url("../images/svg/social-05.svg") center no-repeat;
@@ -3440,6 +3503,15 @@ footer {
 
       background: url("../images/svg/social-01.svg") center no-repeat;
       .transition(500ms, background);
+
+      &:after {
+        content: '';
+        background: url("../images/svg/social-04.svg") center no-repeat;
+        position: absolute;
+        top:0;
+        left:0;
+        opacity: 0;
+      }
 
       &:hover {
         //background-position: -140px -67px;
@@ -3756,11 +3828,11 @@ footer {
   &__close {
     background: url("../images/icons/close-black_mobile.png") center no-repeat;
     //background-size: contain;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     position: absolute;
-    top: 1em;
-    right: 1em;
+    top: 0;
+    right: 0;
     cursor: pointer;
     -webkit-transition: background-size .2s;
     -moz-transition: background-size .2s;
@@ -3991,17 +4063,22 @@ footer {
     width: auto;
     height: auto;
     padding: 2em;
-    padding-top: 3em;
+    padding-top: 4em;
     overflow: scroll;
+
+    @media(orientation: landscape) {
+      padding-top: 3em;
+    }
 
     @media(min-width: @min_width) {
       height: auto;
       padding: 25px 50px;
       min-height: auto;
+      overflow: initial;
     }
 
     .layer__container {
-      height: 85%;
+      height: 80%;
 
       @media(min-width: @min_width) {
         height: 100%;
@@ -4013,6 +4090,10 @@ footer {
       line-height: 1em;
       font-family: Catorze27style1-bold;
       color: @c_black;
+
+      @media(max-width: 350px) {
+        font-size: 2em;
+      }
 
       @media(min-width: @min_width) {
         font-size: 65px;
@@ -4044,6 +4125,11 @@ footer {
     .buttons {
       margin-top: 0;
       text-align: center;
+
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-bottom: constant(safe-area-inset-bottom);
+
+
 
       @media(min-width: @min_width) {
         margin-top: 50px;
@@ -4335,10 +4421,10 @@ footer {
     }
 
     .layer__text {
-      padding-top: 3em;
+      padding-top: 4em;
 
       @media(orientation: landscape) {
-        padding-top: 1em;
+        padding-top: 2em;
       }
 
       @media(min-width: @min_width) {
@@ -4364,6 +4450,19 @@ footer {
   }
 }
 
+.iphone.mobile {
+
+  .layer.add-to-cart-layer {
+
+    .layer__container {
+      height: 75%;
+    }
+
+    .buttons {
+      padding-bottom: 1em;
+    }
+  }
+}
 
 @media(max-width: @min_width) {
 
@@ -5205,6 +5304,7 @@ body .delivery-info {
 
   @media(min-width: @min_width) {
     padding-bottom: 170px;
+    padding-top: 0;
   }
 
   &__title {
@@ -5213,6 +5313,8 @@ body .delivery-info {
     display: none;
     vertical-align: top;
     position: relative;
+    font-size: 1.5rem;
+    max-width: 60%;
 
     &_mobile {
       display: block;
@@ -5220,6 +5322,10 @@ body .delivery-info {
       @media(orientation: landscape) {
         margin-left: 15%;
       }
+    }
+
+    @media(orientation: landscape) {
+      max-width: 80%;
     }
 
     @media(min-width: @min_width) {
@@ -5232,18 +5338,10 @@ body .delivery-info {
       &_mobile {
         display: none;
       }
-    }
 
-    font-size: 1.5rem;
-    max-width: 60%;
-
-    @media(orientation: landscape) {
-      max-width: 80%;
-    }
-
-    @media(min-width: @min_width) {
-      max-width: none;
-      font-size: 30px;
+      p {
+        font-size: 30px;
+      }
     }
   }
 
@@ -5254,7 +5352,7 @@ body .delivery-info {
     top: -3.5em;
     //width: 75%;
     width: 16em;
-    left: 50%;
+    left: 41%;
 
     @media(orientation: landscape) {
       width: 25em;
@@ -5385,13 +5483,13 @@ body .delivery-info {
   &__text-wrap {
     //max-height: 310px;
     outline: none;
-    display: block;
-    //display: none;
+    //display: block;
+    display: none;
     padding-bottom: 1em;
 
     &_mobile {
-      //display: block;
-      display: none;
+      display: block;
+      //display: none;
     }
 
     @media(orientation: landscape) {
@@ -6183,14 +6281,64 @@ body .delivery-info {
   }
 
   &__text {
-    font-size: 20px;
+    font-size: 18px;
     font-family: alegreyasans-regular;
     color: #000000;
 
     p {
-      font-size: 20px;
+      font-size: 18px;
       font-family: alegreyasans-regular;
       color: #000000;
+    }
+  }
+}
+
+// section-cheeseStory
+.section-cheeseStory {
+  padding-top: 140px;
+  padding-bottom: 200px;
+  margin-bottom: 160px;
+
+  &__title {
+    padding-bottom: 45px;
+  }
+
+  &__text {
+    font-size: 18px;
+    font-family: alegreyasans-regular;
+    color: #000000;
+
+    p {
+      font-size: 18px;
+      font-family: alegreyasans-regular;
+      color: #000000;
+    }
+  }
+
+  .cheeseStory-navi {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+
+      .button-arrow {
+        display: inline-block;
+        margin-top: -1px;
+
+        @media(max-width: 502px) {
+          margin-top: -6px;
+          font-size: 2rem;
+        }
+      }
+
+      .button-text {
+
+        @media(max-width: 502px) {
+          display: none;
+        }
+
+      }
     }
   }
 }
@@ -7365,6 +7513,16 @@ body .delivery-info {
     width: 100%;
     height: 100%;
   }
+
+  .layer__close {
+    top: -.8em;
+    right: -.8em;
+
+    @media(min-width: @min_width){
+      top: -40px;
+      right: -42px;
+    }
+  }
 }
 
 //
@@ -8195,6 +8353,14 @@ body .delivery-info {
     vertical-align: top;
     white-space: normal;
 
+    @media(max-width: 380px) {
+      font-size: 1.4em;
+    }
+
+    @media(max-width: 360px) {
+      font-size: 1.1em;
+    }
+
     @media(min-width: @min_width) {
       font-size: 45px;
     }
@@ -8246,6 +8412,10 @@ body .delivery-info {
       margin-top: 105px;
       width: 195%;
       margin-left: -18%;
+
+      @media(max-width: 380px) {
+        margin-top: 52px;
+      }
 
       @media(orientation: landscape) {
         margin-top: -30px;

@@ -79,8 +79,9 @@ define(function (require) {
       var sort = filter.get('sort'),
           val = this.model.get('value');
 
-      val = 'object' === typeof val && val.length ? val[0] : null;
-
+      val = val !== null ? 'object' === typeof val &&
+      val.length ?
+      val[0] : null : null;
         var newSort = {
           column: val,
           order: 'rank' === val ? 'asc' : 'desc',//element.data("order-direction-next"),
