@@ -965,6 +965,7 @@ input[type="text"].input-text {
   overflow: scroll;
   width: auto;
   height: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .header-mobile.active {
   display: block;
@@ -4003,6 +4004,7 @@ footer.low .footer-aside {
   padding: 2em;
   padding-top: 4em;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 @media (orientation: landscape) {
   .layer.add-to-cart-layer {
