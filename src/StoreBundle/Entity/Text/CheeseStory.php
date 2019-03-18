@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class CheeseStory
  * @ORM\Table(name="cheese_stories")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="StoreBundle\Repository\Text\CheeseStoryRepository")
  * @UniqueEntity(fields={"slug"})
  */
 class CheeseStory implements ImageAwareInterface, SluggableInterface

@@ -1,0 +1,17 @@
+p {
+    font-size: 18px;
+    font-family: alegreyasans-regular;
+    color: #000
+}
+
+a {
+    color: #000;
+    font-size: 21px;
+    font-family: Catorze27style1-medium;
+    outline: 0;
+    text-decoration: none;
+}
+a:hover {
+    color: #ffbf02;
+    text-decoration: none;
+}

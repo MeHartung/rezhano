@@ -1,8 +1,8 @@
 {% extends "::base.html.twig" %}
 
 {% block metas %}
-    <title>{{ story.title }} &mdash; Сырные заметки Интернет-магазина Режано</title>
-    <meta name="description" content="{{ story.previewText }}">
+    <title>{{ storyCollection.current.title }} &mdash; Сырные заметки Интернет-магазина Режано</title>
+    <meta name="description" content="{{ storyCollection.current.previewText }}">
     <meta name="keywords" content="{{ metaKeywords() }}">
 {% endblock %}
 
@@ -20,19 +20,29 @@
             {#</div>#}
             {#<div class="center_no-left cards-container__center_no-left">#}
 
-            <h1 class="section-article__title">{{ story.title }}</h1>
+            <h1 class="section-article__title">{{ storyCollection.current.title }}</h1>
             <div class="section-article__text">
-                {{ story.text|raw }}
+                {{ storyCollection.current.text|raw }}
             </div>
             {#</div>#}
 
             <div class="cheeseStory-navi">
-                <a href="" class="button button_black">
-                    <span class="button-arrow">⬅</span> <span class="button-text" >предыдущая заметка</span>
-                </a>
-                <a href="" class="button button_black">
-                    <span class="button-text">следующая заметка</span> <span class="button-arrow">⮕</span>
-                </a>
+                {% if storyCollection.past %}
+                    <a href="{{ path('cheese_story_show', {'slug': storyCollection.past.slug }) }}"
+                       class="button button_black">
+                        <span class="button-arrow">⬅</span> <span class="button-text">предыдущая заметка</span>
+                    </a>
+                {% else %}
+                    <a class="button button_black" style="visibility: hidden">
+                        <span class="button-arrow">⬅</span> <span class="button-text">предыдущая заметка</span>
+                    </a>
+                {% endif %}
+                {% if storyCollection.next %}
+                    <a href="{{ path('cheese_story_show', {'slug': storyCollection.next.slug }) }}"
+                       class="button button_black">
+                        <span class="button-text">следующая заметка</span> <span class="button-arrow">⮕</span>
+                    </a>
+                {% endif %}
             </div>
 
         </div>

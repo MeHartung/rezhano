@@ -21,10 +21,12 @@ class TinyMceType extends AbstractType
   public function configureOptions (OptionsResolver $resolver)
   {
     $resolver->setDefined(['custom_buttons']);
+    $resolver->setDefined(['custom_css']);
   }
 
   public function buildView (FormView $view, FormInterface $form, array $options)
   {
     $view->vars['custom_buttons'] = isset($options['custom_buttons'])?$options['custom_buttons']:[];
+    $view->vars['custom_css'] = isset($options['custom_css'])?$options['custom_css']:[];
   }
 }
