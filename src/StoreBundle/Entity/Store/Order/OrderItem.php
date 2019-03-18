@@ -146,7 +146,7 @@ class OrderItem implements ShippableInterface
 
   public function getFormattedQuantity()
   {
-    return $this->formatFloat($this->getQuantity());
+    return rtrim($this->formatFloat($this->getQuantity()), '0');
   }
   
   /**
