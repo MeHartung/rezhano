@@ -168,14 +168,15 @@ define(function(require){
         self.st = $(this).scrollTop();
 
         if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
-
-          // if (self.st > self.lastScrollTop){
-          //   $headerMenu.addClass('header__mobile');
-          // } else {
-          //   $headerMenu.removeClass('header__mobile');
-          // }
-          // self.lastScrollTop = self.st;
-
+          var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+          if(!iOS) {
+            if (self.st > self.lastScrollTop){
+              $headerMenu.addClass('header__mobile');
+            } else {
+              $headerMenu.removeClass('header__mobile');
+            }
+            self.lastScrollTop = self.st;
+          }
           if ( $(this).scrollTop() > 2 ) {
             $headerMenu.addClass('fixed');
           } else if ( $(this).scrollTop() < headerMenuHeight) {
@@ -183,11 +184,11 @@ define(function(require){
           }
 
         } else {
-        //   if ($(this).scrollTop() > 2) {
-        //     $headerMenu.addClass('fixed');
-        //   } else if ($(this).scrollTop() < headerMenuHeight) {
-        //     $headerMenu.removeClass('fixed');
-        //   }
+          if ($(this).scrollTop() > 2) {
+            $headerMenu.addClass('fixed');
+          } else if ($(this).scrollTop() < headerMenuHeight) {
+            $headerMenu.removeClass('fixed');
+          }
         }
       });
 
