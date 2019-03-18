@@ -27,6 +27,7 @@
             {#</div>#}
 
             <div class="cheeseStory-navi">
+
                 {% if storyCollection.past %}
                     <a href="{{ path('cheese_story_show', {'slug': storyCollection.past.slug }) }}"
                        class="button button_black">
@@ -37,9 +38,14 @@
                         <span class="button-arrow">⬅</span> <span class="button-text">предыдущая заметка</span>
                     </a>
                 {% endif %}
+
                 {% if storyCollection.next %}
                     <a href="{{ path('cheese_story_show', {'slug': storyCollection.next.slug }) }}"
                        class="button button_black">
+                        <span class="button-text">следующая заметка</span> <span class="button-arrow">⮕</span>
+                    </a>
+                {% else %}
+                    <a class="button button_black" style="visibility: hidden">
                         <span class="button-text">следующая заметка</span> <span class="button-arrow">⮕</span>
                     </a>
                 {% endif %}
