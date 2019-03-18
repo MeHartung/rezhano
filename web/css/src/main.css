@@ -1300,6 +1300,13 @@ header.fixed {
   transition: all .2s;
   z-index: 10;
 }
+@supports ((position:sticky) or (position:-webkit-sticky)) {
+  .header__fixed.fixed .nav,
+  .header__fixed.fixed .nav_fix {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
 .header__mobile {
   top: -60px;
   position: absolute !important;
@@ -1308,6 +1315,13 @@ header.fixed {
   -ms-transition: top .2s;
   -o-transition: top .2s;
   transition: top .2s;
+}
+@supports ((position:sticky) or (position:-webkit-sticky)) {
+  .header__mobile .nav,
+  .header__mobile .nav_fix {
+    position: -webkit-sticky;
+    position: sticky;
+  }
 }
 .header-image-wrap {
   height: 18rem;
