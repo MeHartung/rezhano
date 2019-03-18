@@ -33,6 +33,9 @@ class CheeseStoryAdmin extends AbstractAdmin
     #$text = substr($this->getSubject()->getText(), 0, 50);
     $list
       ->add('title')
+      ->add('published', null, [
+        'editable' => true
+      ])
       #->add('__toString', null, ['label' => 'Текст'])
       ->add('_action', null, array(
           'actions' => array(

@@ -3,6 +3,8 @@
 namespace StoreBundle\Controller\Text;
 
 use StoreBundle\DataAdapter\Text\CheeseStoryAdapter;
+use StoreBundle\Model\Navigate\SortableEntityNavigate;
+use StoreBundle\Model\Text\CheeseStoryNavigate;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,17 +50,19 @@ class CheeseStoryController extends Controller
    */
   public function showAction($slug) : Response
   {
-    $story = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findOneBy([
-      'slug' => $slug
-    ]);
-    
+    $repository = $this->getDoctrine()->getManager()->getRepository('StoreBundle:Text\CheeseStory');
+
+    $story = $repository->findOneBy(['slug' => $slug]);
+
     if(!$story || !$story->isPublished())
     {
       throw new NotFoundHttpException("Заметка с slug $slug не найдена!");
     }
     
+    $storyCollection = new CheeseStoryNavigate($repository, $story);
+    
     return $this->render('@Store/CheeseStory/show.html.twig', [
-      'story' => $story
+      'storyCollection' => $storyCollection
     ]);
   }
 }
