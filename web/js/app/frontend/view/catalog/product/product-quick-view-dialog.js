@@ -10,11 +10,17 @@ define(function(require){
           this.contentView = new ProductQuickView(_.extend({}, options, {
               model: this.model
           }));
+          this.prevUrl =  window.location.pathname;
       },
       render: function(){
+        var self = this;
           ModalDialog.prototype.render.apply(this, arguments);
 
           this.contentView.setElement(this.$('.layer__container')).render();
+
+        $(window).on('popstate', function (event) {
+            self.close()
+        });
 
           return this;
       },
@@ -24,16 +30,20 @@ define(function(require){
         $('body').css({
           overflow: 'hidden'
         });
-        if ( $('html').hasClass('mobile') ||$('html').hasClass('tablet') ) {
-          window.location.hash = "modal";
-        }
+
+        var productUrl = this.model.get('url');
+
+        setTimeout(function () {
+          Backbone.history.navigate(productUrl, {trigger:true});
+
+        }, 100);
       },
       close: function () {
          ModalDialog.prototype.close.apply(this, arguments);
-
         $('body').css({
           overflow: 'auto'
         });
+        Backbone.history.navigate(this.prevUrl, {trigger:true});
       }
    });
 });

@@ -127,6 +127,7 @@ define(function(require){
         this.productQuickViewDialog.render().$el.appendTo($('body'));
       }
       this.productQuickViewDialog.open();
+
     },
     onCartItemAdd: function () {
       this.quantityWidget.model.set({ quantity: this.model.get('min_count') });
