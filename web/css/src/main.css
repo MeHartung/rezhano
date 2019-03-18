@@ -3677,6 +3677,15 @@ footer.low .footer-aside {
   -ms-transition: background 300ms;
   -o-transition: background 300ms;
   transition: background 300ms;
+  position: relative;
+}
+.contacts-social .footer-social__facebook:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background: url("../images/svg/social-06.svg") center no-repeat;
 }
 .contacts-social .footer-social__facebook:hover {
   background: url("../images/svg/social-06.svg") center no-repeat;
@@ -3693,6 +3702,15 @@ footer.low .footer-aside {
   -ms-transition: background 300ms;
   -o-transition: background 300ms;
   transition: background 300ms;
+  position: relative;
+}
+.contacts-social .footer-social__vkontakte:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background: url("../images/svg/social-05.svg") center no-repeat;
 }
 .contacts-social .footer-social__vkontakte:hover {
   background: url("../images/svg/social-05.svg") center no-repeat;
@@ -3709,6 +3727,15 @@ footer.low .footer-aside {
   -ms-transition: background 300ms;
   -o-transition: background 300ms;
   transition: background 300ms;
+  position: relative;
+}
+.contacts-social .footer-social__instagram:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background: url("../images/svg/social-04.svg") center no-repeat;
 }
 .contacts-social .footer-social__instagram:hover {
   background: url("../images/svg/social-04.svg") center no-repeat;

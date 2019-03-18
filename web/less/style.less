@@ -3721,58 +3721,63 @@ footer {
   }
 
   .footer-social__facebook {
-    //background-position: -5px -5px;
-    //
-    //&:hover {
-    //  background-position: -5px 119px;
-    //}
-
     background: url("../images/svg/social-03_black.svg") center no-repeat;
     .transition(300ms, background);
+    position: relative;
+
+    &:after {
+      content:'';
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      background: url("../images/svg/social-06.svg") center no-repeat;
+    }
 
     &:hover {
-      //background-position: -140px -67px;
       background: url("../images/svg/social-06.svg") center no-repeat;
       .transition(300ms, background);
     }
   }
 
   .footer-social__vkontakte {
-    //background-position: 124px -5px;
-    //
-    //&:hover {
-    //  background-position: -72px -67px;
-    //}
-
     background: url("../images/svg/social-02_black.svg") center no-repeat;
     .transition(300ms, background);
+    position: relative;
+
+    &:after {
+      content:'';
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      background: url("../images/svg/social-05.svg") center no-repeat;
+    }
 
     &:hover {
-      //background-position: -140px -67px;
       background: url("../images/svg/social-05.svg") center no-repeat;
       .transition(300ms, background);
     }
   }
 
   .footer-social__instagram {
-    //background-position: 56px -5px;
-    //background: url("../images/svg/social-01.svg") center no-repeat;
-
-    //&:hover {
-      //background-position: -140px -67px;
-      //background: url("../images/svg/social-04.svg") center no-repeat;
-
-    //}
-
     background: url("../images/svg/social-01_black.svg") center no-repeat;
     .transition(300ms, background);
+    position: relative;
+
+    &:after {
+      content:'';
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      background: url("../images/svg/social-04.svg") center no-repeat;
+    }
 
     &:hover {
-      //background-position: -140px -67px;
       background: url("../images/svg/social-04.svg") center no-repeat;
       .transition(300ms, background);
     }
-
   }
 }
 
