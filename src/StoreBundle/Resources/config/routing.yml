@@ -14,6 +14,10 @@ taxon:
   path:      /catalog/{slug}
   defaults: { _controller: StoreBundle:Catalog/Taxonomy:taxon }
 
+taxon_quick:
+  path:      /catalog/{slug}/{id}
+  defaults: { _controller: StoreBundle:Catalog/Taxonomy:taxon }
+
 product:
   path:     /products/{slug}
   defaults: { _controller: StoreBundle:Catalog/Product:show }

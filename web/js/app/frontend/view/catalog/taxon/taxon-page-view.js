@@ -18,7 +18,6 @@ define(function(require){
     },
     initialize: function(options){
       var self = this;
-
       CommonView.prototype.initialize.apply(this, arguments);
 
       this.filter = new Filter(ObjectCache.Filter);
@@ -49,7 +48,6 @@ define(function(require){
     },
     render: function(){
       CommonView.prototype.render.apply(this, arguments);
-
       this.productListView.setElement(this.$('#product-listview')).render();
       this.productFilterView.setElement(this.$('.product-filter-group')).render();
       this.productPagerView.setElement(this.$('.pagination')).render();
