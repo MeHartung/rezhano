@@ -169,25 +169,25 @@ define(function(require){
 
         if ( $html.hasClass('mobile') || $html.hasClass('tablet') ) {
 
-          if (self.st > self.lastScrollTop){
-            $headerMenu.addClass('header__mobile');
-          } else {
-            $headerMenu.removeClass('header__mobile');
-          }
-          self.lastScrollTop = self.st;
+          // if (self.st > self.lastScrollTop){
+          //   $headerMenu.addClass('header__mobile');
+          // } else {
+          //   $headerMenu.removeClass('header__mobile');
+          // }
+          // self.lastScrollTop = self.st;
 
-          if ( $(this).scrollTop()>2 ) {
+          if ( $(this).scrollTop() > 2 ) {
             $headerMenu.addClass('fixed');
-          } else if ( $(this).scrollTop()<headerMenuHeight) {
+          } else if ( $(this).scrollTop() < headerMenuHeight) {
             $headerMenu.removeClass('fixed');
           }
 
         } else {
-          if ($(this).scrollTop() > 2) {
-            $headerMenu.addClass('fixed');
-          } else if ($(this).scrollTop() < headerMenuHeight) {
-            $headerMenu.removeClass('fixed');
-          }
+        //   if ($(this).scrollTop() > 2) {
+        //     $headerMenu.addClass('fixed');
+        //   } else if ($(this).scrollTop() < headerMenuHeight) {
+        //     $headerMenu.removeClass('fixed');
+        //   }
         }
       });
 
