@@ -30,13 +30,11 @@ class CheeseStoryAdmin extends AbstractAdmin
   
   protected function configureListFields(ListMapper $list)
   {
-    #$text = substr($this->getSubject()->getText(), 0, 50);
     $list
       ->add('title')
       ->add('published', null, [
         'editable' => true
       ])
-      #->add('__toString', null, ['label' => 'Текст'])
       ->add('_action', null, array(
           'actions' => array(
             'edit' => null,
@@ -51,16 +49,16 @@ class CheeseStoryAdmin extends AbstractAdmin
   
   public function configureFormFields(FormMapper $form)
   {
-    /** @var CheeseStory $subject */
-    $subject = $this->getSubject();
     $form
       ->add('title')
       ->add('slug')
       ->add('previewText', TinyMceType::class, [
-        'help' => 'Текст в слайдере на главной'
+        'help' => 'Текст в слайдере на главной',
+        'custom_css' => '/css/tinymce/cheese-story.css'
       ])
       ->add('text', TinyMceType::class,  [
-        'help' => 'Чтобы можно было перейти на страницу заметки, поле должно быть заполнено'
+        'help' => 'Чтобы можно было перейти на страницу заметки, поле должно быть заполнено',
+        'custom_css' => '/css/tinymce/cheese-story.css'
       ])
       ->add('published')
     #  ->add('teaserImageFile', ImageType::class, array(

@@ -20,7 +20,7 @@
         filemanager_title: "Файловый менеджер" ,
         filemanager_access_key: "83a2de51cdff498a8c68c04a44d49045",
         external_plugins: { "filemanager" : "/fm/plugin.min.js"},
-        content_css: '/css/tinymce/custom.css',
+        content_css: {% if form.vars.custom_css %} '{{ form.vars.custom_css }}' {% else %} '/css/tinymce/custom.css' {% endif %},
         setup: function (editor) {
           {% for name, attrs in form.vars.custom_buttons %}
           editor.addButton('{{ name }}', {

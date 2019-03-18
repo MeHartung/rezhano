@@ -55,8 +55,6 @@ class SortableEntityNavigate
   }
   
   /**
-   * Текущая заметка
-   *
    * @return mixed
    */
   public function getCurrent()
