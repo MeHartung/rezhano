@@ -5115,7 +5115,7 @@ body .delivery-info__message {
   display: none;
   vertical-align: top;
   position: relative;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   max-width: 43%;
 }
 @media (max-width: 350px) {
@@ -5137,7 +5137,7 @@ body .delivery-info__message {
 }
 @media (orientation: landscape) {
   .cheese-card__title {
-    max-width: 35%;
+    max-width: 30%;
   }
   .cheese-card__title p {
     font-size: 1.4rem;
