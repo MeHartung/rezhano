@@ -3,6 +3,7 @@ define(function(require){
        ProductQuickView = require('view/catalog/product/product-quick-view');
 
    return ModalDialog.extend({
+
       className: 'layer quick-view',
       initialize: function(options){
           ModalDialog.prototype.initialize.apply(this, arguments);
@@ -25,6 +26,7 @@ define(function(require){
           return this;
       },
       show: function(){
+        ModalDialog.prototype.show.apply(this, arguments);
         this.$overlay.stop().fadeIn();
         this.$el.stop().fadeIn();
         $('body').css({

@@ -22,6 +22,7 @@ define(function(require){
       'click .footer-maps__link' : 'onAddressClick',
       'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
       'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .cmn-toggle-switch__close' : 'onHideMobileMenu',
       'click .homepage_top' : 'scrollTopHomePage'
     },
     initialize: function(options){
@@ -243,15 +244,16 @@ define(function(require){
       })
     },
     onShowMobileMenu: function (e) {
-      e.preventDefault();
-
-      $(e.currentTarget).toggleClass('active');
-      $(e.currentTarget).parent().find('.header-mobile').toggleClass('active');
-
-      var bTop = $('body');
-      // console.log(bTop, $(this).scrollTop());
-      $('body').toggleClass('no-scroll');
-
+      $('.cmn-toggle-switch__htx').addClass('cmn-toggle-switch__close active');
+      $('.cmn-toggle-switch__htx').parent().find('.header-mobile').addClass('active');
+      $('body').addClass('no-scroll');
+    },
+    onHideMobileMenu: function () {
+      $('.cmn-toggle-switch__htx').removeClass('cmn-toggle-switch__close active');
+      $('.cmn-toggle-switch__htx').parent().find('.header-mobile').removeClass('active');
+      $('body').css({
+        overflow: 'auto'
+      });
     },
     scrollTopHomePage: function (e) {
       e.preventDefault();

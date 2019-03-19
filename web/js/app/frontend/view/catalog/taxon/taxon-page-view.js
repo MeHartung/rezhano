@@ -14,7 +14,8 @@ define(function(require){
     events: {
       'click .button-question': 'onQuestionClick',
       'click .footer-maps__link' : 'onAddressClick',
-      'click .cmn-toggle-switch' : 'onShowMobileMenu'
+      'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .cmn-toggle-switch__close' : 'onHideMobileMenu',
     },
     initialize: function(options){
       var self = this;

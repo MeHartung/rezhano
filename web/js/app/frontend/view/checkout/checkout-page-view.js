@@ -14,6 +14,7 @@ define(function(require){
       'click .footer-maps__link' : 'onAddressClick',
       'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
       'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .cmn-toggle-switch__close' : 'onHideMobileMenu',
       'click .homepage_top' : 'scrollTopHomePage'
     },
     initialize: function(options) {
