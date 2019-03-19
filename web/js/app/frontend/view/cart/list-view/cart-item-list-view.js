@@ -16,7 +16,7 @@ define(function(require){
   </div>\
   <div class="cards-container__container"></div>\
   <div class="mobile-info__value">\
-    Итого <span class="mobile-info__cost"><%= total %> ₽</span>\
+    Итого <span class="mobile-info__cost" data-cost="<%= totalCost %>"><%= total %> ₽</span>\
   </div>\
   <a href="<%= checkoutUrl %>" class="button button_black">\
     <span>Оформить заказ</span>\n\
@@ -28,11 +28,7 @@ define(function(require){
     initialize: function () {
       ListView.prototype.initialize.apply(this, arguments);
 
-      // console.log(this)
-      //
-      // this.cost = Number(ObjectCache.Cart.total).toCurrencyString('');
-      //
-      // this.listenTo(this.cost, )
+      this.cost = Number(ObjectCache.Cart.total).toCurrencyString('');
     },
     itemView: CartCartItemListItemView,
     template: template,
@@ -41,7 +37,8 @@ define(function(require){
     _templateData: function(){
       return {
         checkoutUrl : urlPrefix + '/checkout',
-        total: Number(ObjectCache.Cart.total).toCurrencyString('')
+        total: Number(ObjectCache.Cart.total).toCurrencyString(''),
+        totalCost: Number.parseInt(ObjectCache.Cart.total)
       };
     },
     render: function(){

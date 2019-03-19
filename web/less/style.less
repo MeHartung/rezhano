@@ -4135,10 +4135,14 @@ footer {
     }
 
     .add-to-cart-layer__product-name {
-      font-size: 40px;
+      font-size: 2em;
       font-family: Catorze27style1-bold;
       color: #000000;
       display: inline-block;
+
+      @media(min-width: @min_width){
+        font-size: 40px;
+      }
 
       &:hover {
         color: @rc_yellow;

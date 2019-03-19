@@ -25,7 +25,7 @@ define(function(require){
 '  <a class="controls-item controls-item__reduce quantity-control quantity-control__up"></a>\n' +
 '</div>\n' +
 '<div class="cards-container__cost">\n' +
-'  <div class="total-value">\n' +
+'  <div class="total-value" data-removeCost="<%= cost %>">\n' +
 '    <span class="total-value__payment"><% if (cost) { %><%= cost.toCurrencyString() %><% } %></span>\n' +
 '  </div>\n' +
 '</div>'+
@@ -87,7 +87,11 @@ define(function(require){
         }
       });
 
-      // $('.mobile-info__value .mobile-info__cost')
+      var cost = $('.mobile-info__value .mobile-info__cost').data('cost');
+      var removeCost = $(this.$el.find('.total-value')).data('removecost');
+      var totalCost = Number(cost-removeCost).toCurrencyString('');
+
+      $('.mobile-info__value .mobile-info__cost').html(totalCost+ ' ₽');
     },
     onQuantityChanged: function(){
       this.$('.total-value__payment').html(this.model.cost().toCurrencyString());

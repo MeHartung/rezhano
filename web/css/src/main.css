@@ -4069,10 +4069,15 @@ footer.low .footer-aside {
   }
 }
 .layer.add-to-cart-layer .add-to-cart-layer__product-name {
-  font-size: 40px;
+  font-size: 2em;
   font-family: Catorze27style1-bold;
   color: #000000;
   display: inline-block;
+}
+@media (min-width: 1200px) {
+  .layer.add-to-cart-layer .add-to-cart-layer__product-name {
+    font-size: 40px;
+  }
 }
 .layer.add-to-cart-layer .add-to-cart-layer__product-name:hover {
   color: #ffcf40;
