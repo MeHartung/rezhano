@@ -5111,6 +5111,7 @@ body .delivery-info__message {
 @media (max-width: 350px) {
   .cheese-card__title {
     font-size: 1.1rem;
+    max-width: 43%;
   }
 }
 .cheese-card__title_mobile {
