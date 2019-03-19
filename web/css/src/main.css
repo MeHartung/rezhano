@@ -5122,9 +5122,15 @@ body .delivery-info__message {
     margin-left: 15%;
   }
 }
+.cheese-card__title p {
+  font-size: 1.4rem;
+}
 @media (orientation: landscape) {
   .cheese-card__title {
-    max-width: 80%;
+    max-width: 35%;
+  }
+  .cheese-card__title p {
+    font-size: 1.4rem;
   }
 }
 @media (min-width: 1200px) {
