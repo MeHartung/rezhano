@@ -5103,6 +5103,11 @@ body .delivery-info__message {
   font-size: 1.5rem;
   max-width: 60%;
 }
+@media (max-width: 350px) {
+  .cheese-card__title {
+    font-size: 1.1rem;
+  }
+}
 .cheese-card__title_mobile {
   display: block;
 }

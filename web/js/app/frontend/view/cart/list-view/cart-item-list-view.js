@@ -28,7 +28,11 @@ define(function(require){
     initialize: function () {
       ListView.prototype.initialize.apply(this, arguments);
 
-      console.log(this)
+      // console.log(this)
+      //
+      // this.cost = Number(ObjectCache.Cart.total).toCurrencyString('');
+      //
+      // this.listenTo(this.cost, )
     },
     itemView: CartCartItemListItemView,
     template: template,

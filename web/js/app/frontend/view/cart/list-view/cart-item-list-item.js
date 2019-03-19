@@ -86,6 +86,8 @@ define(function(require){
           }
         }
       });
+
+      // $('.mobile-info__value .mobile-info__cost')
     },
     onQuantityChanged: function(){
       this.$('.total-value__payment').html(this.model.cost().toCurrencyString());
