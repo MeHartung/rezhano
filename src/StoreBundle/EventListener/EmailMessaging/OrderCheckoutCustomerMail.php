@@ -88,6 +88,7 @@ class OrderCheckoutCustomerMail
       'shipping_cost' => $order->getShippingCost(),
       'fee' => $order->getFee(),
       'total' => $order->getTotal(),
+      'social_items'   => $this->twig->render('@Store/Email/Checkout/social_items.html.twig'),
       'order_items' => $this->twig->render('@Store/Email/Checkout/order_items.html.twig', array(
         'items' => $order->getOrderItems()
       )),

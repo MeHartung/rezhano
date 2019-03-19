@@ -5,7 +5,7 @@ services:
         -
           name: sonata.admin
           manager_type: orm
-          group: homepage
+          group: text
           label: Сырные заметки
       arguments:
         - null
@@ -97,3 +97,20 @@ services:
         - null
         - StoreBundle\Entity\Text\ContactPhone
         - ~
+
+    aw_email_template_admin.email_template:
+      class: StoreBundle\Admin\Store\Notification\EmailTemplateAdmin
+      tags:
+          -
+            name: sonata.admin
+            manager_type: orm
+            group: %aw_email_template_admin.email_template_group%
+            label: %aw_email_template_admin.email_template_label%
+            label_catalogue: PropelEmailTemplateAdminBundle
+      arguments:
+          - null
+          - %aw_email_template_admin.class%
+          - SonataAdminBundle:CRUD
+      calls:
+          - [setModelManager, ['@aw_email_template_admin.model_manager'] ]
+          - [setTemplate, [edit, AccuratewebEmailTemplateBundle:EmailTemplateAdmin:edit.html.twig]]

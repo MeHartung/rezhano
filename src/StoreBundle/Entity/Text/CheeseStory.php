@@ -9,14 +9,17 @@ use StoreBundle\Media\Text\CheeseStoryImage;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use StoreBundle\Media\Text\UnprocessedImage;
+use StoreBundle\Sluggable\SluggableInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class CheeseStory
  * @ORM\Table(name="cheese_stories")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="StoreBundle\Repository\Text\CheeseStoryRepository")
+ * @UniqueEntity(fields={"slug"})
  */
-class CheeseStory implements ImageAwareInterface
+class CheeseStory implements ImageAwareInterface, SluggableInterface
 {
   /**
    * @var integer|null
@@ -37,9 +40,18 @@ class CheeseStory implements ImageAwareInterface
   private $title;
   
   /**
+   * Текст в списке
+   *
    * @var string|null
    * @ORM\Column(type="text")
    * @Assert\NotBlank(message="Поле не может быть пустым")
+   */
+  private $previewText;
+  
+  /**
+   * @var string|null
+   * @ORM\Column(type="text", nullable=true)
+   * @ Assert\NotBlank(message="Поле не может быть пустым")
    */
   private $text;
   
@@ -63,6 +75,18 @@ class CheeseStory implements ImageAwareInterface
    * @ORM\Column(type="json_array", nullable=true)
    */
   private $teaserImageOptions;
+  
+  /**
+   * @var boolean
+   * @ORM\Column(type="boolean", options={"default": 1})
+   */
+  private $published;
+  
+  /**
+   * @var string
+   * @ORM\Column(type="string", unique=true)
+   */
+  private $slug;
   
   /**
    * @return int|null
@@ -209,7 +233,7 @@ class CheeseStory implements ImageAwareInterface
   }
   
   /**
-   * @return null|string
+   * @return string
    */
   public function getTitle(): ?string
   {
@@ -222,6 +246,59 @@ class CheeseStory implements ImageAwareInterface
   public function setTitle(?string $title): void
   {
     $this->title = $title;
+  }
+  
+  /**
+   * @return null|string
+   */
+  public function getPreviewText(): ?string
+  {
+    return $this->previewText;
+  }
+  
+  /**
+   * @param null|string $previewText
+   */
+  public function setPreviewText(?string $previewText): void
+  {
+    $this->previewText = $previewText;
+  }
+  
+  /**
+   * @return bool
+   */
+  public function isPublished(): ?bool
+  {
+    return $this->published;
+  }
+  
+  /**
+   * @param bool $published
+   */
+  public function setPublished(?bool $published): void
+  {
+    $this->published = $published;
+  }
+  
+  /**
+   * @return string
+   */
+  public function getSlug(): ?string
+  {
+    return $this->slug;
+  }
+  
+  /**
+   * @param string $slug
+   */
+  public function setSlug($slug): void
+  {
+    $this->slug = $slug;
+  }
+  
+  public function getSlugSource()
+  {
+    return $this->getTitle();
   }
   
   public function __toString()

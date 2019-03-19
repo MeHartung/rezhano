@@ -1,26 +1,31 @@
 /**
  * Created by Денис on 06.06.2017.
  */
-define(function(require){
+define(function (require) {
   var Backbone = require('backbone'),
-      $ = require('jquery'),
-      AddToCartSuccessLayerView = require('view/cart/add-to-cart-success-layer-view'),
-      AddToCartInvalidLayerView = require('view/cart/add-to-cart-invalid-layer-view'),
-      CartWidgetView = require('view/cart/widget'),
-      CatalogSearchFormView = require('view/catalog/search/catalog-search-form-view'),
-      //CitySelectLinkView = require('view/common/header/city-select-link'),
-      UserPanelView = require('view/user/user-panel-view'),
-      //Location = require('model/geography/location')
-      MapViewDialog = require('view/common/map-view-dialog'),
-      QuestionDialogView = require('view/common/question-view-dialog');
+    $ = require('jquery'),
+    AddToCartSuccessLayerView = require('view/cart/add-to-cart-success-layer-view'),
+    AddToCartInvalidLayerView = require('view/cart/add-to-cart-invalid-layer-view'),
+    CartWidgetView = require('view/cart/widget'),
+    CatalogSearchFormView = require('view/catalog/search/catalog-search-form-view'),
+    //CitySelectLinkView = require('view/common/header/city-select-link'),
+    UserPanelView = require('view/user/user-panel-view'),
+    //Location = require('model/geography/location')
+    MapViewDialog = require('view/common/map-view-dialog'),
+    QuestionDialogView = require('view/common/question-view-dialog');
+
+  var device = require('current-device').default;
 
   return Backbone.View.extend({
     events: {
       'click .button-question': 'onQuestionClick',
-      'click .footer-maps__link' : 'onAddressClick',
-      'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay'
+      'click .footer-maps__link': 'onAddressClick',
+      'click .section-see-works__video-play-overlay': 'onAboutVideoPlay',
+      'click .cmn-toggle-switch': 'onShowMobileMenu',
+      'click .cmn-toggle-switch__close': 'onHideMobileMenu',
+      'click .homepage_top': 'scrollTopHomePage'
     },
-    initialize: function(options){
+    initialize: function (options) {
       this.options = $.extend({
         cartWidget: true,
         search: false
@@ -34,7 +39,7 @@ define(function(require){
       this.addToCartSuccessLayer = null;
       this.addToCartInvalidLayerView = null;
 
-      if (this.options.cartWidget){
+      if (this.options.cartWidget) {
         this.cartWidget = new CartWidgetView({
           model: this.cart,
           el: $('.header-controls__cart')
@@ -50,13 +55,15 @@ define(function(require){
         cssEase: 'linear'
       });
 
-      $('#oneEyeSlider').on('init', function (e, slick) {}).slick({
+      $('#oneEyeSlider').on('init', function (e, slick) {
+      }).slick({
         dots: true,
         infinite: true,
         centerPadding: '120px'
       });
 
-      $('#productionSlider').on('init', function (e, slick) {}).slick({
+      $('#productionSlider').on('init', function (e, slick) {
+      }).slick({
         dots: true,
         infinite: true,
         centerPadding: '120px'
@@ -77,8 +84,8 @@ define(function(require){
       this.listenTo(this.cart, 'item:add', this.onCartItemAdded);
       this.listenTo(this.cart, 'item:invalid', this.onCartItemInvalid);
     },
-    onCartItemAdded: function(model, quantity){
-      if (this.addToCartSuccessLayer){
+    onCartItemAdded: function (model, quantity) {
+      if (this.addToCartSuccessLayer) {
         this.addToCartSuccessLayer.dispose();
         this.addToCartSuccessLayer = null;
       }
@@ -105,9 +112,9 @@ define(function(require){
         }
       });
     },
-    onAddressClick: function(e) {
+    onAddressClick: function (e) {
       var self = this;
-      var currentStore = self.stores.where({fullAddress:$(e.currentTarget).attr('data-address')})[0];
+      var currentStore = self.stores.where({fullAddress: $(e.currentTarget).attr('data-address')})[0];
       this.mapViewDialog = new MapViewDialog({
         model: new Backbone.Model({
           address: $(e.currentTarget).attr('data-address'),
@@ -119,7 +126,7 @@ define(function(require){
       this.mapViewDialog.open();
     },
     onCartItemInvalid: function (item, product) {
-      if (this.addToCartInvalidLayerView){
+      if (this.addToCartInvalidLayerView) {
         this.addToCartInvalidLayerView.dispose();
         this.addToCartInvalidLayerView = null;
       }
@@ -133,7 +140,7 @@ define(function(require){
       this.addToCartInvalidLayerView.render();
       this.addToCartInvalidLayerView.open();
     },
-    render: function(){
+    render: function () {
       var self = this;
 
       if (this.options.cartWidget) {
@@ -145,7 +152,6 @@ define(function(require){
           el: this.$('.header-menu__input')
         });
       }
-      // this.citySelectLinkView.setElement(this.$('#cityselection')).render();
 
       this.userPanelView.setElement(this.$('.header-panel__sign')).render();
 
@@ -158,13 +164,42 @@ define(function(require){
 
       var $headerMenu = $('.header__fixed');
       var headerMenuHeight = $('.header__fixed').height();
+      var $html = $('html');
+      this.lastScrollTop = 5;
 
-      $(window).scroll(function () {
-        if ( $(this).scrollTop()>headerMenuHeight-40 ) {
-          $headerMenu.addClass('fixed');
+      $(window).scroll(function (event) {
+        self.st = $(this).scrollTop();
+        if ($html.hasClass('mobile') || $html.hasClass('tablet')) {
+          /*
+           * На iOS в Safari можно промотать страницу до отрицательных значений scrollTop, при этом
+           * верхняя часть страницы отображается белой. Типа инерционности. Этот случай нужно рассматривать,
+           * как если бы страница была промотана в начало и показывать header
+           */
+          if (self.st <= headerMenuHeight) {
+            $headerMenu.removeClass('header__mobile');
+          }
+          else {
+            if (self.st > self.lastScrollTop) {
+              $headerMenu.addClass('header__mobile');
+            } else if (self.st < self.lastScrollTop) {
+              $headerMenu.removeClass('header__mobile');
+            }
+          }
 
-        } else if ( $(this).scrollTop()<headerMenuHeight) {
-          $headerMenu.removeClass('fixed');
+          self.lastScrollTop = self.st;
+
+          if ($(this).scrollTop() > 2) {
+            $headerMenu.addClass('fixed');
+          } else if ($(this).scrollTop() < headerMenuHeight) {
+            $headerMenu.removeClass('fixed');
+          }
+
+        } else {
+          if ($(this).scrollTop() > 2) {
+            $headerMenu.addClass('fixed');
+          } else if ($(this).scrollTop() < headerMenuHeight) {
+            $headerMenu.removeClass('fixed');
+          }
         }
       });
 
@@ -173,9 +208,11 @@ define(function(require){
     onQuestionClick: function (e) {
       e.preventDefault();
 
-      this.questionDialogView = new QuestionDialogView({
-
+      $('body').css({
+        'overflow': 'hidden'
       });
+
+      this.questionDialogView = new QuestionDialogView({});
       this.questionDialogView.render().$el.appendTo($('body'));
 
       this.questionDialogView.open();
@@ -188,9 +225,8 @@ define(function(require){
         this.playAboutVideo = true;
         this.$('.section-see-works__video video').get(0).play();
         this.$('.section-see-works__video').addClass('show-controls');
-        this.$('.section-see-works__video video').prop("controls","controls");
+        this.$('.section-see-works__video video').prop("controls", "controls");
         this.$('.section-see-works__video-play').fadeOut();
-
 
 
         this.$('.section-see-works__video-play-overlay').css('z-index', 0)
@@ -212,6 +248,26 @@ define(function(require){
 
         self.$('.section-see-works__video-play-overlay').css('z-index', 3)
       })
+    },
+
+    onShowMobileMenu: function (e) {
+      $('.cmn-toggle-switch__htx').addClass('cmn-toggle-switch__close active');
+      $('.cmn-toggle-switch__htx').parent().find('.header-mobile').addClass('active');
+      $('body').addClass('no-scroll');
+    },
+    onHideMobileMenu: function () {
+      $('.cmn-toggle-switch__htx').removeClass('cmn-toggle-switch__close active');
+      $('.cmn-toggle-switch__htx').parent().find('.header-mobile').removeClass('active');
+      $('body').css({
+        overflow: 'auto'
+      });
+    },
+    scrollTopHomePage: function (e) {
+      e.preventDefault();
+
+      $("html, body").animate({
+        scrollTop: 0
+      }, 500)
     }
-  });
+  })
 });

@@ -54,6 +54,7 @@ class MoyskladOrderSender
   const ATTRIBUTE_WARRANTY = '3a64a28b-706b-11e8-9107-5048000f3e98'; //Страхование boolean*/
   const ATTRIBUTE_DELIVERY_ADDRESS = '1578a4e6-368a-11e9-9ff4-34e800100a66'; //Адрес доставки
 //  const ATTRIBUTE_DELIVERY_ADDRESS = '841cfebe-40b2-11e9-9109-f8fc0002f82b'; //Адрес доставки
+  const ATTRIBUTE_PHONE_NUMBER = 'bdb131e9-4583-11e9-9107-50480012cbf0'; //Контактный номер телефона
 
   private $sklad;
   private $eventDispatcher;
@@ -139,6 +140,10 @@ class MoyskladOrderSender
           break;
         case self::ATTRIBUTE_DELIVERY_ADDRESS:
           $attribute->value = $contragentAddres;
+          $customerOrderCreation->addAttribute($attribute);
+          break;
+        case self::ATTRIBUTE_PHONE_NUMBER:
+          $attribute->value = $order->getCustomerPhone();
           $customerOrderCreation->addAttribute($attribute);
           break;
       }

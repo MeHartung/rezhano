@@ -1,0 +1,17 @@
+<td align="right" target="_blank" style="padding: 25px 0 30px 35px;" valign="top">
+  {% if setting('facebook_link')  %}
+      <a href="{{ setting('facebook_link') }}" style="font-size: 0; display: inline-block; margin-left: 12px;">
+          <img width="36" src="/images/mail/face.png" alt="">
+      </a>
+  {% endif %}
+  {% if setting('vk_link')  %}
+    <a href="{{ setting('vk_link') }}" target="_blank" style="font-size: 0; display: inline-block; margin-left: 12px;">
+        <img width="36" src="/images/mail/vk.png" alt="">
+    </a>
+  {% endif %}
+  {% if setting('instagram_link')  %}
+    <a href="{{ setting('instagram_link') }}" target="_blank" style="font-size: 0; display: inline-block; margin-left: 12px;">
+        <img width="36" src="/images/mail/insta.png" alt="">
+    </a>
+  {% endif %}
+</td>

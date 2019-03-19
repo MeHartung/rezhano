@@ -1,11 +1,17 @@
 
 .jspPane {
-  width: 335px !important;
+  width: 100%;
   //padding: 0 8px !important;
+  left:0 !important;
+
+  @media(min-width: @min_width) {
+    width: 335px !important;
+  }
 }
 
 .jspVerticalBar {
   width: 8px;
+  background: #e9ebee !important;
 
   .jspTrack {
     background: #e9ebee !important;
@@ -14,4 +20,8 @@
   .jspDrag {
     background: #c1c1c1 !important;
   }
+}
+
+.jspHorizontalBar {
+  display: none;
 }

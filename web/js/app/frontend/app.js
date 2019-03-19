@@ -28,6 +28,7 @@ requirejs.config({
     "cleave": "/js/vendor/cleave/cleave",
     "cleave-phone": "/js/vendor/cleave/cleave-phone.ru",
     "sinon": "/js/vendor/sinon/sinon",
+    'current-device': '/js/vendor/current-device.min',
     "ymaps": "https://api-maps.yandex.ru/2.1/?lang=ru_RU"
   },
   map: {
@@ -53,7 +54,7 @@ require([
   var router = new Router();
 
   Backbone.history.start({
-    hashChange: false,
+    hashChange: true,
     pushState: true
   });
 

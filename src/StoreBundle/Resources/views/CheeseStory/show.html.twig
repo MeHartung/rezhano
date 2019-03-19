@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+
+{% block metas %}
+    <title>{{ storyCollection.current.title }} &mdash; Сырные заметки Интернет-магазина Режано</title>
+    <meta name="description" content="{{ storyCollection.current.previewText }}">
+    <meta name="keywords" content="{{ metaKeywords() }}">
+{% endblock %}
+
+{% block main %}
+
+    <section class="section-cheeseStory">
+        <div class="container">
+            {#<div class="section-title">#}
+            {#<div class="breadcrumbs">#}
+            {#<a href="{{ url('homepage') }}" class="breadcrumbs__item">Главная страница</a>#}
+            {#<span class="breadcrumbs__divide"></span>#}
+            {#<a class="breadcrumbs__item breadcrumbs__item_active">Статьи</a>#}
+            {#</div>#}
+            {#<span class="section-title__text section-title__text_in-product">{{ article.title }}</span>#}
+            {#</div>#}
+            {#<div class="center_no-left cards-container__center_no-left">#}
+
+            <h1 class="section-article__title">{{ storyCollection.current.title }}</h1>
+            <div class="section-article__text">
+                {{ storyCollection.current.text|raw }}
+            </div>
+            {#</div>#}
+
+            <div class="cheeseStory-navi">
+
+                {% if storyCollection.past %}
+                    <a href="{{ path('cheese_story_show', {'slug': storyCollection.past.slug }) }}"
+                       class="button button_black">
+                        <span class="button-arrow">⬅</span> <span class="button-text">предыдущая заметка</span>
+                    </a>
+                {% else %}
+                    <a class="button button_black" style="visibility: hidden">
+                        <span class="button-arrow">⬅</span> <span class="button-text">предыдущая заметка</span>
+                    </a>
+                {% endif %}
+
+                {% if storyCollection.next %}
+                    <a href="{{ path('cheese_story_show', {'slug': storyCollection.next.slug }) }}"
+                       class="button button_black">
+                        <span class="button-text">следующая заметка</span> <span class="button-arrow">⮕</span>
+                    </a>
+                {% else %}
+                    <a class="button button_black" style="visibility: hidden">
+                        <span class="button-text">следующая заметка</span> <span class="button-arrow">⮕</span>
+                    </a>
+                {% endif %}
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

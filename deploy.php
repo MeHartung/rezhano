@@ -34,7 +34,7 @@ host('192.168.1.4')
     ->user('deployer')
     ->set('deploy_path', '/var/www/sites/rezhano')
     ->set('bin/php', '/usr/bin/php71')
-    ->set('branch', 'development');
+    ->set('branch', 'development_mobile');
 
 host('beta.rezhano.ru')
   ->stage('prod-beta')

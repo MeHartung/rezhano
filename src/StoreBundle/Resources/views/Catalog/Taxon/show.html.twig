@@ -44,15 +44,32 @@
           <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
             {% if cart.orderItems|length %}
               <span class="header-controls__notice">
-            <span class="notice-count">{{ cart.orderItems|length }}</span>
-          </span>
+                <span class="notice-count">{{ cart.orderItems|length }}</span>
+              </span>
             {% endif %}
           </a>
+
+          <button class="cmn-toggle-switch cmn-toggle-switch__htx">
+            <span></span>
+          </button>
+          <div class="header-mobile">
+            <div class="header-mobile__wrap-item">
+              {% block headerMobileMenu %}
+                {{ render(controller('StoreBundle:Menu/MenuItem:mobileHeaderMenu',
+                {
+                  '_route': app.request.get('_route'),
+                  '_route_params': app.request.get('_route_params'),
+                  'uri': app.request.requestUri
+                })) }}
+              {% endblock %}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-
-    <div class="header-catalog__wrap">
+    <div class="header-image-wrap">
+      <div class="header-catalog__wrap"></div>
     </div>
   </header>
 {% endblock header %}

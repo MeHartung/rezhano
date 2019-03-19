@@ -7,10 +7,15 @@ define(function(require){
 
   return CommonView.extend({
     events: {
-      'click .maps-link' : 'onAddressClick'
+      'click .maps-link' : 'onAddressClick',
+      'click .button-question': 'onQuestionClick',
+      'click .footer-maps__link' : 'onAddressClick',
+      'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
+      'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .cmn-toggle-switch__close' : 'onHideMobileMenu',
     },
     initialize: function(options){
-      CommonView.prototype.initialize.apply(this, [options]);
+      CommonView.prototype.initialize.apply(this, arguments);
       this.mapViewDialog = null;
 
       // var q = new Question();
@@ -24,6 +29,8 @@ define(function(require){
 
     },
     render: function(){
+      CommonView.prototype.render.apply(this, arguments);
+
       this.questionForm.setElement(this.$('#contactsQuestionForm'));
       this.questionForm.render();
 

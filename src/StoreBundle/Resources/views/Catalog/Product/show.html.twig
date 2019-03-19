@@ -33,6 +33,55 @@
   {{ product|client_model('product') }}
 {% endblock %}
 
+{% block header %}
+  <header style="" class="header__fixed {% block header_class %}header{% endblock %}">
+    <div class="header-menu-wrap">
+      <a class="header-logo {% if app.request.get('_route') == 'homepage' %} homepage_top {% endif %}" title="Режано"
+         {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
+      {% block headerMenu %}
+        {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu',
+        {
+          '_route': app.request.get('_route'),
+          '_route_params': app.request.get('_route_params'),
+          'uri': app.request.requestUri
+        })) }}
+      {% endblock %}
+      <div class="header-controls">
+
+        <a href="" class="header-controls__item header-controls__cabinet">
+              <span class="header-controls__notice">
+                <span class="notice-count">1</span>
+              </span>
+        </a>
+        <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
+          {% if cart.orderItems|length %}
+            <span class="header-controls__notice">
+                  <span class="notice-count">{{ cart.orderItems|length }}</span>
+                </span>
+          {% endif %}
+        </a>
+
+        <button class="cmn-toggle-switch cmn-toggle-switch__htx cmn-toggle-switch__product">
+          <span></span>
+        </button>
+        <div class="header-mobile">
+          <div class="header-mobile__wrap-item">
+            {% block headerMobileMenu %}
+              {{ render(controller('StoreBundle:Menu/MenuItem:mobileHeaderMenu',
+              {
+                '_route': app.request.get('_route'),
+                '_route_params': app.request.get('_route_params'),
+                'uri': app.request.requestUri
+              })) }}
+            {% endblock %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+{% endblock header %}
+
 {% block main %}
 
   <section class="section-in-product" itemscope="" itemtype="http://schema.org/Product">
@@ -61,7 +110,7 @@
         </div>
         <div class="layer__text" title="Без ГМО, без красителей, без консервантов" alt="Без ГМО, без красителей, без консервантов">
           <h2 class="layer__title" itemprop="name">{{ product.name }}</h2>
-          {#<div class="layer__text-wrap scroll-pane">#}
+
           <div class="layer__text-wrap scroll-pane">
             {% if product.productAttributeValuesGrouped | length > 0 %}
                 {% for attribure_name, attribute in product.productAttributeValuesGrouped %}
@@ -77,15 +126,37 @@
                   </div>
                   </div>
                 {% endfor %}
-
             {% endif %}
-
             {% if product.description %}
             <div class="layer__text-item">
               <div class="layer__text-text" style="margin-top: 15px; display: inline-block;">{{ product.description | raw }}</div>
             </div>
             {% endif %}
           </div>
+
+          <div class="layer__text-wrap layer__text-wrap_mobile">
+            {% if product.productAttributeValuesGrouped | length > 0 %}
+              {% for attribure_name, attribute in product.productAttributeValuesGrouped %}
+                <div class="layer__text-item">
+                  <div class="layer__text-title">{{ attribure_name }}:</div>
+                  <div class="layer__text-text">
+                    {#{% spaceless %}#}
+                    {% for val in attribute %}
+                      {#<div class="layer__text-text">это готовое самостоятельное блюдо. Можно посыпать солью, чёрным перцем, сбрызнуть оливковым маслом, и с помощью ломтика хлеба или крекера собирать жидкую начинку. А можно так же, как и Моцареллу —со свежими помидорами и базиликом, или овощами, пожаренными на гриле.</div>#}
+                      {{ val }}{% if loop.last == false %}, {% endif%}
+                    {% endfor %}
+                    {#{% endspaceless %}#}
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% if product.description %}
+              <div class="layer__text-item">
+                <div class="layer__text-text" style="margin-top: 15px; display: inline-block;">{{ product.description | raw }}</div>
+              </div>
+            {% endif %}
+          </div>
+
           <div class="product-item__characteristics" itemprop="offers" itemscope=""
                itemtype="http://schema.org/Offer">
 

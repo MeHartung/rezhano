@@ -24,10 +24,27 @@
           <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
             {% if cart.orderItems|length %}
               <span class="header-controls__notice">
-            <span class="notice-count">{{ cart.orderItems|length }}</span>
-          </span>
+                <span class="notice-count">{{ cart.orderItems|length }}</span>
+              </span>
             {% endif %}
           </a>
+
+          <button class="cmn-toggle-switch cmn-toggle-switch__htx">
+            <span></span>
+          </button>
+          <div class="header-mobile">
+            <div class="header-mobile__wrap-item">
+              {% block headerMobileMenu %}
+                {{ render(controller('StoreBundle:Menu/MenuItem:mobileHeaderMenu',
+                {
+                  '_route': app.request.get('_route'),
+                  '_route_params': app.request.get('_route_params'),
+                  'uri': app.request.requestUri
+                })) }}
+              {% endblock %}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -48,15 +65,15 @@
       <div class="contacts-section__wrap">
         <div class="contacts-section__col-left">
           {% if leftPhone %}
-          <div class="col-item">
-            <span class="col-title">{{ leftPhone.title?:leftPhone.name }}</span>
-            <span class="col-text"><a href="tel:{{ leftPhone.phone }}">{{ leftPhone.phone }}</a></span>
-          </div>
+            <div class="col-item col-item_tel">
+              <span class="col-title">{{ leftPhone.title?:leftPhone.name }}</span>
+              <span class="col-text"><a href="tel:{{ leftPhone.phone }}">{{ leftPhone.phone }}</a></span>
+            </div>
           {% endif %}
 
           {% for i, store in stores %}
             {% if i is even %}
-            <div class="col-item">
+            <div class="col-item col-item_map">
               <span class="col-title">{{ store.name }}</span>
               <span class="col-text">{{ store.address }}</span>
 
@@ -72,29 +89,29 @@
             {% endif %}
           {% endfor %}
 
-        {% if stores|length is even and (setting('facebook_link') or setting('vk_link') or setting('instagram_link')) %}
-          <div class="col-item">
-            <span class="col-title">Тут мы публикуем много всего интересного</span>
-            <div class="contacts-social">
-                {% if setting('facebook_link') %}<a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook"></a>{% endif %}
-                {% if setting('vk_link') %}<a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte"></a>{% endif %}
-                {% if setting('instagram_link') %}<a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram"></a>{% endif %}
-            </div>
-          </div>
-        {% endif %}
-
-        </div>
-        <div class="contacts-section__col-right">
-            {% if rightPhone %}
-              <div class="col-item">
-                <span class="col-title">{{ rightPhone.title?:rightPhone.name }}</span>
-                <span class="col-text"><a href="tel:{{ rightPhone.phone }}">{{ rightPhone.phone }}</a></span>
+          {% if stores|length is even and (setting('facebook_link') or setting('vk_link') or setting('instagram_link')) %}
+            <div class="col-item col-item_social">
+              <span class="col-title">Тут мы публикуем много всего интересного</span>
+              <div class="contacts-social">
+                  {% if setting('facebook_link') %}<a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook"></a>{% endif %}
+                  {% if setting('vk_link') %}<a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte"></a>{% endif %}
+                  {% if setting('instagram_link') %}<a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram"></a>{% endif %}
               </div>
-            {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="contacts-section__col-right">
+          {% if rightPhone %}
+            <div class="col-item col-item__tel">
+              <span class="col-title">{{ rightPhone.title?:rightPhone.name }}</span>
+              <span class="col-text"><a href="tel:{{ rightPhone.phone }}">{{ rightPhone.phone }}</a></span>
+            </div>
+          {% endif %}
 
           {% for i, store in stores %}
             {% if i is odd %}
-            <div class="col-item">
+            <div class="col-item col-item_map">
               <span class="col-title">{{ store.name }}</span>
               <span class="col-text">{{ store.address }}</span>
 
@@ -110,22 +127,34 @@
             {% endif %}
           {% endfor %}
 
-            {% if stores|length is odd and (setting('facebook_link') or setting('vk_link') or setting('instagram_link')) %}
-              <div class="col-item">
+          {% if stores|length is odd and (setting('facebook_link') or setting('vk_link') or setting('instagram_link')) %}
+            <div class="col-item col-item_social">
+              <span class="col-title">Тут мы публикуем много всего интересного</span>
+              <div class="contacts-social">
+                  {% if setting('facebook_link') %}<a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook"></a>{% endif %}
+                  {% if setting('vk_link') %}<a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte"></a>{% endif %}
+                  {% if setting('instagram_link') %}<a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram"></a>{% endif %}
+              </div>
+            </div>
+          {% endif %}
+
+          {#  #}
+            {% if stores|length and (setting('facebook_link') or setting('vk_link') or setting('instagram_link')) %}
+              <div class="col-item col-item_social-mobile ">
                 <span class="col-title">Тут мы публикуем много всего интересного</span>
                 <div class="contacts-social">
-                    {% if setting('facebook_link') %}<a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook"></a>{% endif %}
-                    {% if setting('vk_link') %}<a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte"></a>{% endif %}
-                    {% if setting('instagram_link') %}<a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram"></a>{% endif %}
+                  {% if setting('facebook_link') %}<a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook"></a>{% endif %}
+                  {% if setting('vk_link') %}<a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte"></a>{% endif %}
+                  {% if setting('instagram_link') %}<a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram"></a>{% endif %}
                 </div>
               </div>
             {% endif %}
-
+          {#  #}
           {% if setting('contact_email') %}
-          <div class="col-item">
-            <span class="col-title">Наша почта</span>
-            <a href="mailto:{{ setting('contact_email') }}" class="col-text col-link">{{ setting('contact_email') }}</a>
-          </div>
+            <div class="col-item col-item_email">
+              <span class="col-title">Наша почта</span>
+              <a href="mailto:{{ setting('contact_email') }}" class="col-text col-link">{{ setting('contact_email') }}</a>
+            </div>
           {% endif %}
 
         </div>

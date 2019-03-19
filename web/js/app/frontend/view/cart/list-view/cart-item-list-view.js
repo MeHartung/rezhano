@@ -15,19 +15,36 @@ define(function(require){
     <div class="cards-container__remove cards-container__remove_header"><span>Удалить</span></div>\
   </div>\
   <div class="cards-container__container"></div>\
-  <a href="<%= checkoutUrl %>" class="button button_black"><span>Оформить заказ</span>\n\</a>\
-     ');
+  <div class="mobile-info__value">\
+    Итого <span class="mobile-info__cost" data-cost="<%= totalCost %>"><%= total %> ₽</span>\
+  </div>\
+  <a href="<%= checkoutUrl %>" class="button button_black">\
+    <span>Оформить заказ</span>\n\
+  </a>\n\
+  ');
 
   return ListView.extend({
     //tagName: 'table',
+    initialize: function () {
+      ListView.prototype.initialize.apply(this, arguments);
+
+      this.cost = Number(ObjectCache.Cart.total).toCurrencyString('');
+    },
     itemView: CartCartItemListItemView,
     template: template,
     container: '.cards-container__container',
     emptyView: CartCartItemListEmptyView,
     _templateData: function(){
       return {
-        checkoutUrl : urlPrefix + '/checkout'
+        checkoutUrl : urlPrefix + '/checkout',
+        total: Number(ObjectCache.Cart.total).toCurrencyString(''),
+        totalCost: Number.parseInt(ObjectCache.Cart.total)
       };
+    },
+    render: function(){
+      ListView.prototype.render.apply(this, arguments);
+
+      return this;
     }
   });
 });

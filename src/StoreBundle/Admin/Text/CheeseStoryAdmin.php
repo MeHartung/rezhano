@@ -5,6 +5,7 @@ namespace StoreBundle\Admin\Text;
 
 
 use Accurateweb\MediaBundle\Form\ImageType;
+use Sonata\CoreBundle\Form\Type\BooleanType;
 use StoreBundle\Entity\Text\CheeseStory;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -29,10 +30,11 @@ class CheeseStoryAdmin extends AbstractAdmin
   
   protected function configureListFields(ListMapper $list)
   {
-    #$text = substr($this->getSubject()->getText(), 0, 50);
     $list
       ->add('title')
-      #->add('__toString', null, ['label' => 'Текст'])
+      ->add('published', null, [
+        'editable' => true
+      ])
       ->add('_action', null, array(
           'actions' => array(
             'edit' => null,
@@ -47,11 +49,18 @@ class CheeseStoryAdmin extends AbstractAdmin
   
   public function configureFormFields(FormMapper $form)
   {
-    /** @var CheeseStory $subject */
-    $subject = $this->getSubject();
     $form
       ->add('title')
-      ->add('text', TinyMceType::class)
+      ->add('slug')
+      ->add('previewText', TinyMceType::class, [
+        'help' => 'Текст в слайдере на главной',
+        'custom_css' => '/css/tinymce/cheese-story.css'
+      ])
+      ->add('text', TinyMceType::class,  [
+        'help' => 'Чтобы можно было перейти на страницу заметки, поле должно быть заполнено',
+        'custom_css' => '/css/tinymce/cheese-story.css'
+      ])
+      ->add('published')
     #  ->add('teaserImageFile', ImageType::class, array(
     #    'required' => $subject->getTeaser() === null
     #  ));

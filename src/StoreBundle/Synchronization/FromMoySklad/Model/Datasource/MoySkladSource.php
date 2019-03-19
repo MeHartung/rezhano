@@ -3,6 +3,7 @@
 namespace StoreBundle\Synchronization\FromMoySklad\Model\Datasource;
 
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
+use Accurateweb\SettingBundle\Model\Setting\SettingInterface;
 use Accurateweb\MoyskladIntegrationBundle\Model\MoyskladManager;
 use Accurateweb\SlugifierBundle\Model\SlugifierInterface;
 use Accurateweb\SynchronizationBundle\Model\Datasource\Base\BaseDataSource;
@@ -19,7 +20,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 class MoySkladSource extends BaseDataSource
 {
   private
-    $em,
+    $em, $moySkladLogin, $moySkladPassword,
     $kernelRootDir, $dispatcher, $slugifierYandex,
     $logger;
   protected $moyskladManager;
@@ -45,15 +46,17 @@ class MoySkladSource extends BaseDataSource
    */
   public function __construct(array $options = array(), $to,
                               EntityManagerInterface $entityManager,
-                              MoyskladManager $moyskladManager,
+                              SettingInterface $moySkladLogin, SettingInterface $moySkladPassword,
                               $kernelRootDir, EventDispatcherInterface $dispatcher,
-                              SlugifierInterface $sluggable, LoggerInterface $logger)
+                              SlugifierInterface $sluggable, LoggerInterface $logger,
+                              MoyskladManager $moyskladManager)
   {
     parent::__construct($options);
     $this->em = $entityManager;
     
+    $this->moySkladLogin = $moySkladLogin->getValue();
+    $this->moySkladPassword = $moySkladPassword->getValue();
     $this->moyskladManager = $moyskladManager;
-
     $this->kernelRootDir = $kernelRootDir;
     $this->dispatcher = $dispatcher;
     
@@ -71,7 +74,7 @@ class MoySkladSource extends BaseDataSource
   {
     try
     {
-      $sklad = $this->moyskladManager->getSklad();
+      $sklad = MoySklad::getInstance($this->moySkladLogin, $this->moySkladPassword);
     } catch (\Exception $exception)
     {
       #$this->logger->addError('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
@@ -129,6 +132,11 @@ class MoySkladSource extends BaseDataSource
     
     if ($moySkladProducts->count() === 0)
     {
+      $this->dispatcher->dispatch(
+        'aw.sync.order_event.message',
+        new GenericEvent('Товаров не найдено!')
+      );
+      
       return;
     }
   

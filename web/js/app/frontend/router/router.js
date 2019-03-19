@@ -26,7 +26,7 @@ define(function(require){
 
 
   return Backbone.Router.extend({
-    defaultPageAction: function(View){
+    defaultPageAction: function(View, id){
       var cart = new Cart(ObjectCache.Cart || {}),
           user = new User(ObjectCache.User || {});
 
@@ -34,6 +34,7 @@ define(function(require){
         cart: cart,
         user: user,
         el: jQuery('body'),
+        id: id
       });
 
       jQuery(function() {
@@ -42,6 +43,9 @@ define(function(require){
     },
     productListAction: function(){
       this.defaultPageAction(TaxonPageView);
+    },
+    productListQuickAction: function(slug, id){
+      this.defaultPageAction(TaxonPageView, id);
     },
     productPageAction: function(){
       this.defaultPageAction(ProductPageView);
@@ -99,7 +103,7 @@ define(function(require){
       if (routePrefix.length > 1){
         this.route(routePrefix.slice(0, -1), this.homepageAction);
       }
-
+      //
       this.route(routePrefix + 'catalog/:slug', this.productListAction);
       this.route(routePrefix + 'search', this.productListAction);
       this.route(routePrefix + 'products/:slug', this.productPageAction);

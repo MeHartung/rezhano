@@ -47,7 +47,9 @@ define(function (require) {
       }));
 
       $(function () {
-        _self.$('.scroll-pane').jScrollPane();
+        _self.$('.scroll-pane').jScrollPane({
+          autoReinitialise: true
+        });
         _self.$('.layer__images').slick({
           dots: false,
           arrows: true,

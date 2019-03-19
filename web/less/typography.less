@@ -1,9 +1,9 @@
 // Typography
 body {
-    font-family: @font-family-base;
-    font-size: @fs-base;
-    line-height: @lh-base;
-    color: @c_text;
+  font-family: @font-family-base;
+  font-size: @fs-base;
+  line-height: @lh-base;
+  color: @c_text;
 }
 
 p {
@@ -21,29 +21,37 @@ a {
   text-decoration: underline;
 
   &:hover {
-      color: @link-color;
-      text-decoration: none;
-    }
+    color: @link-color;
+    text-decoration: none;
+  }
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    display:block;
-    font-weight: normal;
+  display: block;
+  font-weight: normal;
 
-    &:first-child { margin-top: 0; }
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 h1 {
-    font-size: @fs-h1;
-    line-height: @fs-h1 + 8;
-    font-weight: 500;
-    margin-bottom: 30px;
+  font-size: @fs-h1;
+  line-height: @fs-h1 + 8;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: .8em;
+
+  @media (min-width: @min_width) {
     margin-top: 50px;
+    margin-bottom: 30px;
+  }
 }
+
 h2, .h2 {
-    font-size: @fs-h2;
-    line-height: @fs-h2 + 6;
-    font-weight: normal;
-    margin-top: 40px;
-    margin-bottom: 35px;
+  font-size: @fs-h2;
+  line-height: @fs-h2 + 6;
+  font-weight: normal;
+  margin-top: 40px;
+  margin-bottom: 35px;
 }

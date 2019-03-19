@@ -34,7 +34,6 @@ define(function(require){
       
       $('body').append(this.$overlay);
 
-
       $(window).on('scroll.modaldialog'+this.cid, $.proxy(this.onWindowScroll, this));
     },
     show: function(){

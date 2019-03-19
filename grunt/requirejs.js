@@ -22,6 +22,7 @@ module.exports = {
         "prettyphoto": "../../../js/vendor/prettyphoto/js/jquery.prettyPhoto",
         "sinon": "../../../js/vendor/sinon/sinon",
         "main": "../../../js/main",
+        'current-device': '../../../js/vendor/current-device.min',
         "ymaps": "https://api-maps.yandex.ru/2.1/?lang=ru_RU"
       },
       "map": {

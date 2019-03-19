@@ -19,15 +19,32 @@
           <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
             {% if cart.orderItems|length %}
               <span class="header-controls__notice">
-            <span class="notice-count">{{ cart.orderItems|length }}</span>
-          </span>
+                <span class="notice-count">{{ cart.orderItems|length }}</span>
+              </span>
             {% endif %}
           </a>
+
+          <button class="cmn-toggle-switch cmn-toggle-switch__htx">
+            <span></span>
+          </button>
+          <div class="header-mobile">
+            <div class="header-mobile__wrap-item">
+              {% block headerMobileMenu %}
+                {{ render(controller('StoreBundle:Menu/MenuItem:mobileHeaderMenu',
+                {
+                  '_route': app.request.get('_route'),
+                  '_route_params': app.request.get('_route_params'),
+                  'uri': app.request.requestUri
+                })) }}
+              {% endblock %}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-
-    <div class="header-catalog__wrap">
+    <div class="header-image-wrap">
+      <div class="header-catalog__wrap"></div>
     </div>
   </header>
 {% endblock header %}
@@ -42,19 +59,19 @@
       </div>
 
       {% if teasers|length %}
-      <div class="section-excursion__steps">
-        {% for teaser in teasers %}
-        <div class="section-excursion__step-item">
-          <div class="step-item__image">
-            {% if image_exists(teaser) %}
-            <img src="{{ image_url(teaser) }}" alt="">
-            {% endif %}
-          </div>
-          <div class="step-item__title">{{ teaser.title }}</div>
-          <div class="step-item__text">{{ teaser.description|raw }}</div>
+        <div class="section-excursion__steps">
+          {% for teaser in teasers %}
+            <div class="section-excursion__step-item">
+              <div class="step-item__image">
+                {% if image_exists(teaser) %}
+                  <img src="{{ image_url(teaser) }}" alt="">
+                {% endif %}
+              </div>
+              <div class="step-item__title">{{ teaser.title }}</div>
+              <div class="step-item__text">{{ teaser.description|raw }}</div>
+            </div>
+          {% endfor %}
         </div>
-        {% endfor %}
-      </div>
       {% endif %}
     </div>
   </section>
@@ -63,13 +80,13 @@
     <div class="container container_no-padding">
       <div class="col-wrap">
         {% if excursionPhone %}
-        <div class="col-left">
+          <div class="col-left">
           <span class="col-image">
             <img src="{{ asset('images/details-phone-ico.png') }}" alt="">
           </span>
-          <span class="col-title">Чтобы узнать подробности — просто позвоните нам</span>
-          <span class="col-text">{{ excursionPhone.phone }}</span>
-        </div>
+            <span class="col-title">Чтобы узнать подробности — просто позвоните нам</span>
+            <a href="tel:{{ excursionPhone.phone }}"><span class="col-text">{{ excursionPhone.phone }}</span></a>
+          </div>
         {% endif %}
         <div class="col-right">
            <span class="col-image">
@@ -85,48 +102,48 @@
   </section>
 
   {% if testimonials|length %}
-  <section class="section-reviews">
-    <div class="container container_no-padding">
-      <h2 class="section-reviews__title">Отзывы наших посетителей</h2>
+    <section class="section-reviews">
+      <div class="container container_no-padding">
+        <h2 class="section-reviews__title">Отзывы наших посетителей</h2>
 
-      <div class="reviews-sliders-wrap">
-        <div class="reviews-sliders" id="reviewsSliders">
-          {% for slide in testimonials %}
+        <div class="reviews-sliders-wrap">
+          <div class="reviews-sliders" id="reviewsSliders">
+            {% for slide in testimonials %}
               {% if image_exists(slide) %}
-              <div class="reviews-sliders__item">
-                <img src="{{ image_url(slide) }}" alt="">
-              </div>
+                <div class="reviews-sliders__item">
+                  <img class="reviews-sliders-image" src="{{ image_url(slide) }}" alt="">
+                </div>
               {% endif %}
-          {% endfor %}
+            {% endfor %}
+          </div>
         </div>
+        <div class="section-reviews__bg-left"></div>
+        <div class="section-reviews__bg-right"></div>
       </div>
-      <div class="section-reviews__bg-left"></div>
-      <div class="section-reviews__bg-right"></div>
-    </div>
-  </section>
+    </section>
   {% endif %}
 
   {% if banners|length %}
-  <section class="section-one-eye">
-    <div class="container container_no-padding">
-      <h2 class="section-one-eye__title">Одним глазком, на то, что вас ждёт</h2>
+    <section class="section-one-eye">
+      <div class="container container_no-padding">
+        <h2 class="section-one-eye__title">Одним глазком на то, что вас ждёт</h2>
 
-      <div class="section-one-eye-slider" id="oneEyeSlider">
+        <div class="section-one-eye-slider" id="oneEyeSlider">
 
-        {% for banner in banners %}
+          {% for banner in banners %}
             {% if image_exists(banner) %}
-            <div class="section-one-eye-slider__item">
-              <div class="section-one-eye-slider__item-image">
-                <img src="{{ image_url(banner) }}" alt="">
+              <div class="section-one-eye-slider__item">
+                <div class="section-one-eye-slider__item-image">
+                  <img class="section-one-eye-slider__image" src="{{ image_url(banner) }}" alt="">
+                </div>
               </div>
-            </div>
-          {% endif %}
-        {% endfor %}
+            {% endif %}
+          {% endfor %}
+
+        </div>
 
       </div>
-
-    </div>
-  </section>
+    </section>
   {% endif %}
 
   <section class="section-cooked">

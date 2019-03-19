@@ -82,6 +82,9 @@ define(function(require){
     onAddToCartButtonClick: function(e){
       e.preventDefault();
 
+      $('body').css({
+        overflow: 'hidden'
+      });
       var self = this,
         productId = $(e.currentTarget).data('product-id'),
         cart = this.cart,
@@ -123,10 +126,8 @@ define(function(require){
         });
         this.productQuickViewDialog.render().$el.appendTo($('body'));
       }
-      $('body').css({
-        overflow: 'hidden'
-      });
       this.productQuickViewDialog.open();
+
     },
     onCartItemAdd: function () {
       this.quantityWidget.model.set({ quantity: this.model.get('min_count') });

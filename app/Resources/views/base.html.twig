@@ -2,8 +2,10 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
   <meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
 
   {% block metas %}
     <title>{{ metaTitle() }}</title>
@@ -13,11 +15,16 @@
   {% endblock %}
 
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+  {#<link rel="apple-touch-icon" href="img/iphone_icon.png" /> 57х57 #}
 
   {% block stylesheets %}
     {#<link rel="stylesheet" href="{{ asset('/js/vendor/slick/slick-theme.css') }}">#}
     <link rel="stylesheet" href="{{ asset('/js/vendor/slick/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    {% if app.environment != 'dev' %}
+      {{ get_versioned_stylesheets()|raw }}
+    {% else %}
+      <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    {% endif %}
   {% endblock %}
 
   {% block head_javascripts %}
@@ -29,9 +36,14 @@
       if(navigator.userAgent.indexOf('Mac') > 0) {
         document.getElementsByTagName('html')[0].className = 'mac-os';
       }
+
+      window.addEventListener("orientationchange", function() {
+        // Выводим числовое значение ориентации
+//        alert($(window).width());
+      }, false);
     </script>
 
-    {% include '@ContentHotspot/Asset/content_hotspot.html.twig' with {'jquery': false, 'tinymce': true} %}
+    {#{% include '@ContentHotspot/Asset/content_hotspot.html.twig' with {'jquery': false, 'tinymce': true} %}#}
     {% if app.user %}
       {{ app.user|client_model('user') }}
       {{ app.user.favoriteProductList.products|client_model_collection('product', 'FavoriteProducts') }}
@@ -42,12 +54,12 @@
     {% endif %}
   {% endblock %}
 
-  {% block webcounters %}
-      <!-- Yandex.Metrika counter -->
-      <script type="text/javascript" >
-          (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-              m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-          (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+  {#{% block webcounters %}#}
+      {#<!-- Yandex.Metrika counter -->#}
+      {#<script type="text/javascript" >#}
+          {#(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};#}
+              {#m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})#}
+          {#(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");#}
 
           ym(51955718, "init", {
               id:51955718,
@@ -67,9 +79,9 @@
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', 'UA-132706891-1');
-      </script>
-  {% endblock %}
+          {#gtag('config', 'UA-132706891-1');#}
+      {#</script>#}
+  {#{% endblock %}#}
 </head>
 <body>
 {% block body %}
@@ -81,7 +93,7 @@
     {% block header %}
       <header style="" class="header__fixed {% block header_class %}header{% endblock %}">
         <div class="header-menu-wrap">
-          <a class="header-logo" title="Режано"
+          <a class="header-logo {% if app.request.get('_route') == 'homepage' %} homepage_top {% endif %}" title="Режано"
              {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
           {% block headerMenu %}
             {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu',
@@ -92,6 +104,7 @@
                 })) }}
           {% endblock %}
           <div class="header-controls">
+
             <a href="" class="header-controls__item header-controls__cabinet">
               <span class="header-controls__notice">
                 <span class="notice-count">1</span>
@@ -104,6 +117,23 @@
                 </span>
               {% endif %}
             </a>
+
+            <button class="cmn-toggle-switch cmn-toggle-switch__htx">
+              <span></span>
+            </button>
+            <div class="header-mobile">
+              <div class="header-mobile__wrap-item">
+                {% block headerMobileMenu %}
+                  {{ render(controller('StoreBundle:Menu/MenuItem:mobileHeaderMenu',
+                  {
+                    '_route': app.request.get('_route'),
+                    '_route_params': app.request.get('_route_params'),
+                    'uri': app.request.requestUri
+                  })) }}
+                {% endblock %}
+              </div>
+            </div>
+
           </div>
         </div>
       </header>
@@ -180,7 +210,7 @@
 
 {% block javascripts %}
   {% if app.environment != 'dev' %}
-  {{ get_versioned_javascripts()|raw }}
+    {{ get_versioned_javascripts()|raw }}
   {% else %}
   <script type="text/javascript">window.require = {waitSeconds: 600};</script>
   <script src="{{ asset('js/vendor/requirejs/require.js') }}" data-main="/js/app/frontend/app.js"></script>

@@ -38,6 +38,8 @@ class ProxyQuery extends \Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery
 
     foreach ($settings as $setting)
     {
+      if($this->entityManager->find('StoreBundle:Setting', $setting->getName())) continue;
+      
       $config = new Setting();
       $config->setName($setting->getName());
       $config->setValue($setting->getValue());

@@ -3,6 +3,7 @@
 namespace StoreBundle\Synchronization\FromMoySklad\Model\Datasource;
 
 use Accurateweb\MoyskladIntegrationBundle\Exception\MoyskladException;
+use Accurateweb\SettingBundle\Model\Setting\SettingInterface;
 use Accurateweb\SlugifierBundle\Model\SlugifierInterface;
 use Accurateweb\SynchronizationBundle\Model\Datasource\Base\BaseDataSource;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,15 +38,15 @@ class MoySkladSourceBundles extends BaseDataSource
    */
   public function __construct(array $options = array(), $to,
                               EntityManagerInterface $entityManager,
-                              string $moySkladLogin, string $moySkladPassword,
+                              SettingInterface $moySkladLogin, SettingInterface $moySkladPassword,
                               $kernelRootDir, EventDispatcherInterface $dispatcher,
                               SlugifierInterface $sluggable, LoggerInterface $logger)
   {
     parent::__construct($options);
     $this->em = $entityManager;
     
-    $this->moySkladLogin = $moySkladLogin;
-    $this->moySkladPassword = $moySkladPassword;
+    $this->moySkladLogin = $moySkladLogin->getValue();
+    $this->moySkladPassword = $moySkladPassword->getValue();
     
     $this->kernelRootDir = $kernelRootDir;
     $this->dispatcher = $dispatcher;

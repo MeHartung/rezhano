@@ -1,42 +1,60 @@
 {% extends 'base.html.twig' %}
 
  {% block header %}
-     <header style="" class="{% block header_class %}header{% endblock %} black-bg">
-         <div class="header-menu-wrap">
-             <a class="header-logo" title="Режано"
-                {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
-           {% block headerMenu %}
-             {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
-           {% endblock %}
-             <div class="header-controls">
-                 <a href="" class="header-controls__item header-controls__cabinet">
+   <header style="" class="{% block header_class %}header{% endblock %} black-bg header__fixed">
+     <div class="header-menu-wrap">
+       <a class="header-logo" title="Режано"
+          {% if app.request.get('_route') != 'homepage' %}href="{{ path('homepage') }}"{% endif %}></a>
+       {% block headerMenu %}
+         {{ render(controller('StoreBundle:Menu/MenuItem:headerMenu')) }}
+       {% endblock %}
+       <div class="header-controls">
+         <a href="" class="header-controls__item header-controls__cabinet">
            <span class="header-controls__notice">
              <span class="notice-count">1</span>
            </span>
-                 </a>
-                 <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
-                   {% if cart.orderItems|length %}
-                       <span class="header-controls__notice">
+         </a>
+         <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
+           {% if cart.orderItems|length %}
+             <span class="header-controls__notice">
                <span class="notice-count">{{ cart.orderItems|length }}</span>
              </span>
-                   {% endif %}
-                 </a>
-             </div>
+           {% endif %}
+         </a>
+
+         <button class="cmn-toggle-switch cmn-toggle-switch__htx">
+           <span></span>
+         </button>
+         <div class="header-mobile">
+           <div class="header-mobile__wrap-item">
+             {% block headerMobileMenu %}
+               {{ render(controller('StoreBundle:Menu/MenuItem:mobileHeaderMenu',
+               {
+                 '_route': app.request.get('_route'),
+                 '_route_params': app.request.get('_route_params'),
+                 'uri': app.request.requestUri
+               })) }}
+             {% endblock %}
+           </div>
          </div>
-     </header>
+
+       </div>
+     </div>
+   </header>
  {% endblock header %}
 
 {% block main %}
-    <div class="error-page error-page_500">
-        <div class="container">
-            <div class="error-page__image">
-                <img src="{{ asset('/images/500.png') }}" alt="">
-            </div>
-            <div class="error-page__message">
-                <p class="error-page__text">
-                    Упс, ошибка сервера. Попробуйте зайти к нам в <a href="{{ url('catalog_index') }}" class="error-page__link">магазин</a>, либо зайдите немного попозже
-                </p>
-            </div>
-        </div>
+  <div class="error-page error-page_500">
+    <div class="container">
+      <div class="error-page__image">
+        <img src="{{ asset('/images/500.png') }}" alt="">
+      </div>
+      <div class="error-page__message">
+        <p class="error-page__text">
+          Упс, ошибка сервера. Попробуйте зайти к нам в <a href="{{ url('catalog_index') }}" class="error-page__link">магазин</a>,
+          либо зайдите немного попозже
+        </p>
+      </div>
     </div>
+  </div>
 {% endblock %}

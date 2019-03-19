@@ -32,20 +32,20 @@ define(function(require){
       // this.lastVisitedView.render();
       //
       $(function () {
-        self. $('.header-slider__wrap').slick({
-          autoplay: true,
-          autoplaySpeed: 5000,
-          infinite: true,
-          fade: true,
-          cssEase: 'linear',
-          dots: true,
-          arrows: false
-        });
-
-        self.$('.notes-slider').slick({
-          dots: true,
-          arrows: true
-        });
+        // self.$('.header-slider__wrap').slick({
+        //   autoplay: true,
+        //   autoplaySpeed: 5000,
+        //   infinite: true,
+        //   fade: true,
+        //   cssEase: 'linear',
+        //   dots: true,
+        //   arrows: false
+        // });
+        //
+        // self.$('.notes-slider').slick({
+        //   dots: true,
+        //   arrows: true
+        // });
 
         // var $headerMenu = $('header');
         // var headerMenuHeight = $('header').height();

@@ -50,3 +50,11 @@
   color: @c_black;
   vertical-align: sub;
 }
+
+.transition(@time: 200, @prop: background) {
+  -webkit-transition: @prop @time;
+  -moz-transition: @prop @time;
+  -ms-transition: @prop @time;
+  -o-transition: @prop @time;
+  transition: @prop @time;
+}

@@ -2,6 +2,7 @@ aw_email_templating:
   templating:
     loader: aw_email_templating.template.loader.doctrine
     entity: StoreBundle\Entity\Messaging\EmailTemplate
+    images_as_attachment: true
   email_templates:
     checkout:
       description: 'Уведомление покупателю об успешном оформлении заказа'
@@ -18,101 +19,183 @@ aw_email_templating:
         fee: { description: "Комиссия" }
         total: { description: "Стоимость заказа" }
         order_items: { description: "Состав заказа" }
+        social_items: { description: "Ссылки на социальные сети" }
       defaults:
         subject: "Заказ в Интернет-магазине Режано"
         body: |
-          <table style="width: 100%%; min-width: 700px; background: #f6f6f6;" border="0" cellspacing="0" cellpadding="0" align="center">
-          <tbody>
-          <tr align="center">
-          <td align="center">
-          <table style="width: 700px; background-color: #dbdbdb; color: #ffffff; font-family: Arial, Helvetica, sans-serif;" border="0" cellspacing="0" cellpadding="0" align="center">
-          <tbody>
-          <tr>
-          <td style="padding: 30px 0 30px 20px; color: #ffffff;" valign="top" width="285">
-          <p style="margin: 0; font-size: 24px; color: #4e3174;"><span style="color: #ff0000;">Ваш заказ</span></p>
-          <p style="margin: 0; font-size: 30px; font-weight: bold; color: #4e3174;"><span style="color: #ff0000;">%%order_number%%</span></p>
-          <p style="margin: 0; font-size: 24px; color: #4e3174;"><span style="color: #ff0000;">принят!</span></p>
-          <p>&nbsp;</p>
-          </td>
-          <td style="vertical-align: bottom; padding: 0;" align="center" valign="bottom" width="215">&nbsp;</td>
-          </tr>
-          </tbody>
-          </table>
-          <table style="width: 500px; font-family: Arial, Helvetica, sans-serif;" border="0" cellspacing="0" cellpadding="0">
-          <tbody>
-          <tr>
-          <td>
-          <table style="border: 1px solid lightgrey; margin: 5px; padding: 5px; width: 700px;" border="0" cellspacing="1" cellpadding="1" align="center" bgcolor="#fff">
-          <tbody>
-          <tr>
-          <td>
-          <p><span style="background-color: #ffffff;">&nbsp;</span></p>
-          <table style="width: 100%%;" border="0" cellspacing="2" cellpadding="2">
-          <tbody>
-          <tr class="sectiontableheader" bgcolor="#cccccc">
-          <td class="Stil2" colspan="2"><strong>&nbsp;</strong></td>
-          </tr>
-          <tr class="sectiontableheader" bgcolor="#cccccc">
-          <td class="Stil2" colspan="2"><strong class="Stil2">Информация о покупателе</strong></td>
-          </tr>
-          <tr class="Stil1">
-          <td>Покупатель:</td>
-          <td>%%customer_name%%</td>
-          </tr>
-          <tr class="Stil1">
-          <td>Контактный телефон:</td>
-          <td>%%customer_phone%%</td>
-          </tr>
-          <tr class="Stil1">
-          <td>Адрес доставки:&nbsp;</td>
-          <td>%%shipping_address%%</td>
-          </tr>
-          <tr class="Stil2" bgcolor="#cccccc">
-          <td colspan="2"><strong>Ваш заказ</strong></td>
-          </tr>
-          <tr>
-          <td colspan="2">%%order_items%%</td>
-          </tr>
-          <tr class="sectiontableheader" bgcolor="#cccccc">
-          <td colspan="2">&nbsp;</td>
-          </tr>
-          <tr>
-          <td colspan="2">&nbsp;</td>
-          </tr>
-          <tr class="sectiontableheader" bgcolor="#cccccc">
-          <td><strong class="Stil2">Способ оплаты</strong></td>
-          <td><strong class="Stil2">Способ доставки</strong></td>
-          </tr>
-          <tr>
-          <td>%%payment_method%%</td>
-          <td>%%shipping_method%%</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>&nbsp;</p>
-          </td>
-          </tr>
-          </tbody>
-          </table>
-          </td>
-          </tr>
-          <tr>
-          <td>&nbsp;</td>
-          </tr>
-          <tr>
-          <td>
-          <table style="width: 100%%; background-color: #dfe4e8; color: #000000; font-family: Arial, Helvetica, sans-serif;" border="0" cellspacing="0" cellpadding="20" align="left">
-          <tbody>
-          </tbody>
-          </table>
-          </td>
-          </tr>
-          </tbody>
-          </table>
-          </td>
-          </tr>
-          </tbody>
-          </table>
+                <table style="width: 100%%; min-width: 700px; background: #fff;" border="0" cellspacing="0" cellpadding="0"
+                align="center">
+                <tbody>
+                <tr align="center">
+                <td align="center">
+                <table style="padding-top: 20px; width: 600px; background-color: #f3f3f3; color: #ffffff; font-family: Arial, Helvetica, sans-serif;" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tbody>
+                <tr>
+                <img src="/images/mail/header.png" style="margin-bottom: -20px"/>
+                </tr>
+                <tr>
+                <td style="padding: 30px 35px 0 35px; color: #ffffff;" valign="top" width="532">
+                <p style="margin: 0; font-size: 24px; color: #000; margin-bottom: 5px;"><span style="color: #000;">Спасибо, мы получили ваш заказ!</span>
+                </p>
+                <p style="margin: 0; font-size: 14px; color: #000; margin-bottom: 5px;"><span style="color: #000;">В ближайшее рабочее время с вами свяжется наш менеджер</span>
+                </p>
+                <p style="margin: 0; font-size: 14px; font-weight: bold; color: #000; margin-bottom: 5px;"><span
+                style="color: #000;">№ заказ %%order_number%% </span></p>
+                %%order_items%%
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                <table style="width: 600px; background-color: #f3f3f3; color: #ffffff; font-family: Arial, Helvetica, sans-serif;"
+                border="0" cellspacing="0" cellpadding="0" align="center">
+                <tbody>
+                <tr>
+                <td style="padding: 30px 35px 30px 35px; color: #ffffff;" valign="top" width="532">
+                <p style="margin: 0; font-size: 14px; font-weight: bold; color: #000; margin-bottom: 5px;"><span
+                style="color: #000;">Итого: %%total%%</span></p>
+                <p style="margin: 0; font-size: 14px; color: #000; margin-bottom: 5px; width: 520px;"><span
+                style="color: #000; line-height: 21px;">окончательная цена заказа может немного измениться, ведь каждый кусочек
+                бережно отрезается в ручную, и вес может отличаться.</span>
+                </p>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                <table
+                style="margin-top: 11px; margin-bottom: 11px; width: 600px; background-color: #f3f3f3; color: #ffffff; font-family: Arial, Helvetica, sans-serif;"
+                border="0" cellspacing="0" cellpadding="0" align="center">
+                <tbody>
+                <tr>
+                <td style="padding: 30px 35px 30px 35px; color: #ffffff;" valign="top" width="532">
+                <p style="margin: 0; font-size: 14px; font-weight: bold; color: #000; margin-bottom: 5px;"><span
+                style="color: #000;">Данные покупателя</span></p>
+                <table style="width: 100%%; border-collapse: collapse">
+                <tbody>
+                <tr class="Stil1" style="margin: 0; font-size: 14px; color: #000;">
+                <td width="96" style="padding: 0;">
+                <p>ФИО:</p>
+                </td>
+                <td style="padding: 0;"><p style="margin-bottom: 5px;">%%customer_name%%</p></td>
+                </tr>
+                <tr class="Stil1" style="margin: 0; font-size: 14px; color: #000;">
+                <td width="96" style="padding: 0;"><p>Адрес:&nbsp;</p></td>
+                <td style="padding: 0;"><p style="margin-bottom: 5px;">%%shipping_address%%</p></td>
+                </tr>
+                <tr class="Stil1" style="margin: 0; font-size: 14px; color: #000;">
+                <td width="96" style="padding: 0;"><p>Телефон:</p></td>
+                <td style="padding: 0;"><p style="margin-bottom: 5px;">%%customer_phone%%</p></td>
+                </tr>
+                <tr class="Stil1" style="margin: 0; font-size: 14px; color: #000;">
+                <td width="96" style="padding: 0;"><p>E-mail:</p></td>
+                <td style="padding: 0;"><p style="margin-bottom: 5px;">%%customer_email%%</p></td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                <table
+                style="margin-top: 11px; width: 600px; background-color: #f3f3f3; color: #ffffff; font-family: Arial, Helvetica, sans-serif;"
+                border="0" cellspacing="0" cellpadding="0" align="center">
+                <tbody>
+                <tr>
+                <td style="padding: 30px 35px 30px 35px; color: #ffffff;" valign="top" width="532">
+                <p style="margin: 0; font-size: 14px; color: #000; margin-bottom: 25px; width: 520px; line-height: 21px">
+                <span style="color: #000;">Проверьте, пожалуйста, состав заказа и данные получателя. Если вдруг вы заметили какую-то ошибку, обязательно напишите или позвоните мне!</span>
+                </p>
+                <table style="width: 100%%; border-collapse: collapse">
+                <tbody>
+                <tr>
+                <td style="vertical-align: top; padding: 0;">
+                <table style="width: 100%%;">
+                <tbody>
+                <tr>
+                <td style="margin-bottom: 3px;">
+                <p style="margin: 0; font-size: 14px; font-weight: bold; color: #000; margin-bottom: 5px;"><span
+                style="color: #000;">Юля Лещикова</span></p>
+                </td>
+                </tr>
+                <tr class="Stil1" style="margin: 0; font-size: 14px; color: #000;">
+                <td width="96" style="padding: 0; margin-bottom: 3px;">
+                <p style="margin-bottom: 5px;">Ваш сырный менеджер</p>
+                </td>
+                </tr>
+                <tr class="Stil1" style="margin: 0; font-size: 14px; color: #000;">
+                <td width="96" style="padding: 0; margin-bottom: 3px;">
+                <p style="margin-bottom: 5px;">info@rezhano.ru&nbsp;</p>
+                </td>
+                </tr>
+                <tr class="Stil1" style="margin: 0; font-size: 14px; color: #000;">
+                <td width="96" style="padding: 0; margin-bottom: 3px;">
+                <p style="margin-bottom: 5px;">Телефоне: +7 (902) 234-32-32</p>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                <td align="right">
+                <img width="104" src="/images/mail/manager.png" alt="">
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                <table style="width: 600px; background-color: #ffffff; color: #ffffff; font-family: Arial, Helvetica, sans-serif;"
+                border="0" cellspacing="0" cellpadding="0" align="center">
+                <tbody>
+                <tr>
+                <td>
+                <table>
+                <tbody>
+                <tr>
+                <td style="width: 60%%">
+                <table>
+                <tr>
+                <td style="padding: 25px 35px 30px 35px; color: #ffffff;" valign="top">
+                <p style="margin: 0; font-size: 14px; color: #000; margin-bottom: 5px;"><span
+                style="color: #000; line-height: 21px;">Наша почта: info@rezhano.ru</span></p>
+                <p style="margin: 0; font-size: 14px; color: #000; margin-bottom: 5px;"><span
+                style="color: #000; line-height: 21px;">+7 (343) 207-76-66 — по всем вопросам</span></p>
+                <p style="margin: 0; font-size: 14px; color: #000; margin-bottom: 5px;"><a
+                href="https://rezhano.ru/"><span style="color: #000; line-height: 21px;">www.rezhano.ru</span></a>
+                </p>
+                </td>
+                </tr>
+                </table>
+                </td>
+                <td style="width: 40%%" valign="top">
+                <table align="right">
+                <tr>
+                %%social_items%%
+                </tr>
+                </table>
+                </td>
+                </tr>
+                <tr>
+                <td style="padding: 0 35px 30px 35px;">
+                <p style="margin: 0; font-size: 14px; color: #000; margin-bottom: 5px;"><span
+                style="color: #b2b2b2; line-height: 21px;">© Сыроварня «Режано»</span></p>
+                </td>
+                <td style="padding: 0 0 30px 35px;" align="right">
+                <a href="https://rezhano.ru/" target="_blank">
+                <img src="/images/svg/logo-mail.svg" alt="" width="131">
+                </a>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
 
     checkout_operator:
       description: 'Уведомление оператору об успешном оформлении заказа'

@@ -159,7 +159,7 @@ define(function (require) {
       // this.loaderNotice.css({top: $(document).scrollTop(), left: 0})
       //                 .position({my: 'left center', at: 'right center', of: $sectionFilter});
 
-      this.loaderMessage.html('Загрузка... <img class="found-layer__loader" src="/images/ajax-loader-gpn.gif" alt="">');
+      this.loaderMessage.html('Загрузка... <img class="found-layer__loader" src="" alt="">');
       if (null !== this.loaderDisplayTimer) {
         clearTimeout(this.loaderDisplayTimer);
         this.loaderDisplayTimer = null;

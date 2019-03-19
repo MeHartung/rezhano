@@ -19,6 +19,11 @@ define(function(require){
     events: {
       'click .nn_tabs_tab': 'onTabHeaderClick',
       'click .button-buy_in-product': 'onAddToCartButtonClick',
+      'click .button-question': 'onQuestionClick',
+      'click .footer-maps__link' : 'onAddressClick',
+      'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
+      'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .cmn-toggle-switch__close' : 'onHideMobileMenu',
     },
     initialize: function(options) {
       CommonView.prototype.initialize.apply(this, arguments);
@@ -74,7 +79,9 @@ define(function(require){
         this.imageGalleryView.render();
       }
 
-      _self.$('.scroll-pane').jScrollPane();
+      _self.$('.scroll-pane').jScrollPane({
+        autoReinitialise: true
+      });
 
       var $askQuestionLinkView = this.$('a.ask-a-question');
       if ($askQuestionLinkView.length){

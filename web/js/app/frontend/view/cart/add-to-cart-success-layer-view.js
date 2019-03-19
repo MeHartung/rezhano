@@ -105,7 +105,9 @@ define(function(require){
     },
     close: function(){
       ModalDialogView.prototype.close.apply(this, arguments);
-
+      $('body').css({
+        overflow: 'auto'
+      });
       this.dispose();
     },
     show: function(){

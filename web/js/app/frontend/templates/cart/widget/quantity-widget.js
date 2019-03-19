@@ -2,7 +2,7 @@ define(function(require){
   return '\
 <span class="controls-title"></span>\
 <% if (showButtons) { %><a class="controls-item controls-item__increase quantity-control quantity-control__down" href="#"></a><% } %>\n\
-<input class="custom-input quantity-control__input" type="text" value="<%= quantity %>" placeholder="1">\n\
+<input class="custom-input quantity-control__input" type="text" value="<%= quantity %>" placeholder="1" readonly>\n\
 <% if (units) { %>\
   <span class="quantity-widget__units"><%= units %></span>\n\
 <% } %>\

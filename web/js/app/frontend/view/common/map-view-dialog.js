@@ -68,29 +68,41 @@ define(function(require){
         iconImageOffset:[-25, -67]
       };
 
+      var shopMode = this.store.workTime !== null ? this.store.workTime : '';
+      var shopPhone = this.store.phone !== null ? this.store.phone : '';
+
       var baloonContent = !this.store ? ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>') :
         ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>' +
-          '<span class="ymaps-text">'+ this.store.phone +'</span>' +
-          '<span class="ymaps-text">'+ this.store.workTime +'</span>');
+          '<span class="ymaps-text">'+ shopPhone +'</span>' +
+          '<span class="ymaps-text">'+ shopMode +'</span>');
 
       var address = this.model.get('address');
-      ymaps.geocode( address.toString() ).then(
-        function (res) {
-          var geoObj = res.geoObjects.get(0),
-            bounds = geoObj.properties.get('boundedBy');
-          var placemark = new ymaps.Placemark(geoObj.geometry.getCoordinates(), {balloonContent: baloonContent}, mapIcon, {draggable: false});
-          this.myMap = new ymaps.Map("map", {
-            center: geoObj.geometry.getCoordinates(),
-            zoom: 7
-          });
-          this.myMap.geoObjects.add(placemark);
-          placemark.balloon.open();
-          this.myMap.setBounds(bounds, {
-            zoomMargin: [50],
-            checkZoomRange: true
-          });
-        }
-      );
+
+      var myMap = new ymaps.Map('map', {
+        center: [56.82867848093701,60.6064061781684],
+        zoom: 9
+      });
+
+      ymaps.geocode(address.toString(), {
+        results: 1
+      }).then(function (res) {
+        var firstGeoObject = res.geoObjects.get(0),
+          coords = firstGeoObject.geometry.getCoordinates(),
+          bounds = firstGeoObject.properties.get('boundedBy');
+
+        myMap.geoObjects.add(firstGeoObject);
+
+        var placemark = new ymaps.Placemark(coords, {balloonContent: baloonContent}, mapIcon, {draggable: false});
+
+        myMap.geoObjects.add(placemark);
+
+        myMap.setBounds(bounds, {
+          checkZoomRange: true
+        }).then(function () {
+          placemark.balloon.open()
+        });
+      });
+
     }
   });
 });

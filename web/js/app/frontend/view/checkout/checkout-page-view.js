@@ -4,9 +4,19 @@
 define(function(require){
   var CommonView = require('view/common/common-view'),
     CheckoutForm = require('view/checkout/form'),
-    TotalsPanelView = require('view/cart/cart-totals-panel');
+    TotalsPanelView = require('view/cart/cart-totals-panel'),
+    MobileTotalsPanelView = require('view/cart/cart-totals-panel-mobile');
 
   return CommonView.extend({
+    events: {
+      'keydown .input-textarea' : 'autosizeR',
+      'click .button-question': 'onQuestionClick',
+      'click .footer-maps__link' : 'onAddressClick',
+      'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
+      'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .cmn-toggle-switch__close' : 'onHideMobileMenu',
+      'click .homepage_top' : 'scrollTopHomePage'
+    },
     initialize: function(options) {
       CommonView.prototype.initialize.apply(this, arguments);
 
@@ -19,6 +29,10 @@ define(function(require){
         model: this.order
       });
       this.totalsPanelView = new TotalsPanelView({
+        model: this.order,
+      });
+
+      this.mobileTotalsPanelView = new MobileTotalsPanelView({
         model: this.order,
       });
 
@@ -35,6 +49,10 @@ define(function(require){
 
       this.totalsPanelView.setElement(this.$('.cards-container__payment-info-wrap'));
       this.totalsPanelView.render();
+
+      this.mobileTotalsPanelView.setElement(this.$('.mobile-payment-info-wrapper'));
+      this.mobileTotalsPanelView.render();
+
       return this;
     },
     onWindowScroll: function () {
@@ -66,6 +84,13 @@ define(function(require){
     disableShipping: function () {
       this.shippingCost = false;
       this.order.set('shippingCost', this.shippingCost )
-    }
+    },
+    autosizeR: function (e){
+      var el = e.currentTarget;
+      setTimeout(function(){
+        el.style.cssText = 'height:auto; padding:0';
+        el.style.cssText = 'height:' + (el.scrollHeight+4) + 'px';
+      },0);
+    },
   })
 });

@@ -38,7 +38,7 @@ define(function(require){
             <label>\n\
               <input type="checkbox" name="tos" id="question_customer_tos" required="required" class="checkbox" data-validate="tos" data-description="tos" data-describedby="tos-errors" >\n\
               <span class="custom-checkbox__checkbox"></span>\n\
-              <span>Я согласен с условиями <a href="<%= tosUrl %>">передачи информации</a></span>\n\
+              <span class="custom-checkbox__text">Я согласен с условиями <a href="<%= tosUrl %>">передачи информации</a></span>\n\
             </label>\n\
           </div>\n\
           <i class="error-icon">\n\
@@ -75,6 +75,7 @@ define(function(require){
       'change #question_customer_text' : 'onTextChange',
       'change #question_customer_tos' : 'onTosChange',
       'keydown .input-textarea' : 'autosizeR',
+      'keydown #question_customer_phone' : 'changeLengthPhone'
     },
     initialize: function(options){
       ModalDialog.prototype.initialize.apply(this, arguments);
@@ -86,6 +87,7 @@ define(function(require){
       this.tosArticle = new Backbone.Model(ObjectCache.TosArticle || {});
     },
     render: function(){
+      var self = this;
       $.validateExtend({
         phone: {
           required: true,
@@ -111,7 +113,20 @@ define(function(require){
         tosUrl: tosUrl,
       }));
 
-      this.$('#question_customer_phone').inputmask('+7 (999) 999-99-99');
+      this.$('#question_customer_phone').inputmask({
+        mask:'+7 (999) 999-99-99',
+        onBeforeWrite: function (event, buffer, caretPos, opts) {
+          var inputVal = self.$('#question_customer_phone').inputmask('unmaskedvalue');
+          if (inputVal.toString().length >=11 && inputVal.toString().substr(0, 1) === '8') {
+            $('#question_customer_phone').val(inputVal.toString().substr(1))
+          }
+        },
+        onBeforePaste: function (pastedValue, opts) {
+          if (pastedValue.length >=11 && pastedValue.toString().substr(0, 1) === '8') {
+            return pastedValue.toString().substr(1);
+          }
+        }
+      });
       this.initValidation();
 
       return this;
@@ -177,6 +192,10 @@ define(function(require){
     close: function () {
       this.remove();
       ModalDialog.prototype.close.apply(this, arguments);
+
+      $('body').css({
+        'overflow': 'auto'
+      });
     },
     onNameChange: function (e) {
       this.model.set('fio', $(e.currentTarget).val());
@@ -203,6 +222,12 @@ define(function(require){
     },
     onTosChange: function (e) {
       this.model.set('tos', $(e.currentTarget).val());
+    },
+    changeLengthPhone: function () {
+      var inputVal = $('#question_customer_phone').inputmask('unmaskedvalue');
+      if (inputVal.toString().length >=10 && inputVal.toString().substr(0, 1) === '8') {
+        $('#question_customer_phone').val(inputVal.toString().substr(1))
+      }
     },
     onSubmit: function (e) {
       $('.submit-loader-wrap').show();
