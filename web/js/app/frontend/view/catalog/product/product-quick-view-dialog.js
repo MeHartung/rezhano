@@ -30,12 +30,11 @@ define(function(require){
         $('body').css({
           overflow: 'hidden'
         });
-
+        //
         var productUrl = this.model.get('url');
 
         setTimeout(function () {
-          Backbone.history.navigate(productUrl, {trigger:true});
-
+          Backbone.history.navigate(productUrl, {trigger:false});
         }, 100);
       },
       close: function () {
@@ -43,7 +42,7 @@ define(function(require){
         $('body').css({
           overflow: 'auto'
         });
-        Backbone.history.navigate(this.prevUrl, {trigger:true});
+        Backbone.history.navigate(this.prevUrl, {trigger:false});
       }
    });
 });

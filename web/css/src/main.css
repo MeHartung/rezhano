@@ -3293,6 +3293,11 @@ h1,
   margin: 0 auto;
   margin-left: -15px;
 }
+@media (max-width: 350px) {
+  .notes__go-instagram {
+    font-size: 18px;
+  }
+}
 .notes__go-instagram span {
   z-index: 1;
   position: relative;
@@ -3622,6 +3627,11 @@ footer .footer-aside__link {
   line-height: 15px;
   display: block;
   margin-top: 3px;
+}
+@media (max-width: 350px) {
+  footer .footer-aside__link {
+    font-size: 12px;
+  }
 }
 @media (min-width: 1200px) {
   footer .footer-aside__link {

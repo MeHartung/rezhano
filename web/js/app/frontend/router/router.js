@@ -105,7 +105,6 @@ define(function(require){
       }
       //
       this.route(routePrefix + 'catalog/:slug', this.productListAction);
-      // this.route(routePrefix + 'catalog/:slug#:id', this.productListQuickAction);
       this.route(routePrefix + 'search', this.productListAction);
       this.route(routePrefix + 'products/:slug', this.productPageAction);
       this.route(routePrefix + 'cart', this.cartAction);
