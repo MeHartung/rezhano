@@ -1720,7 +1720,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 @media (min-width: 1200px) {
   .header-section .header-slider__wrap .header-slider__item .header-section__image-text {
     margin: 0;
-    width: 578px;
+    width: 535px;
     height: auto;
   }
 }
