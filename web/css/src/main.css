@@ -1693,15 +1693,16 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 }
 .header-section .header-slider__wrap .header-slider__item {
   display: inline-block;
-  margin-top: -55px;
-  margin-bottom: 75px;
+  margin-top: -145px;
+  margin-bottom: 170px;
 }
 .header-section .header-slider__wrap .header-slider__item .header-slider__teaser {
   opacity: 0;
+  display: none;
 }
 .header-section .header-slider__wrap .header-slider__item img {
   height: auto;
-  width: 100%;
+  width: 70%;
 }
 .header-section .header-slider__wrap .header-slider__item .container {
   text-align: center;
