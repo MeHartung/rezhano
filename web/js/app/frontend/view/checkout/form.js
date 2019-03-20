@@ -14,6 +14,9 @@ define(function(require){
   require('vendor/inputmask/jquery.inputmask');
 
   return Backbone.View.extend({
+    events: {
+      'keydown #checkout_customer_phone' : 'changeLengthPhone'
+    },
     initialize: function (options) {
 
       this.shippingMethodsCollection = new ShippingMethodCollection(this.model.get('shipping_methods'));
@@ -59,9 +62,28 @@ define(function(require){
       this.shippingPanel.setElement(this.$('.shipping-panel'));
       this.shippingPanel.render();
 
-      this.$('#checkout_customer_phone').inputmask('+7 (999) 999-99-99');
+      this.$('#checkout_customer_phone').inputmask({
+        mask:'+7 (999) 999-99-99',
+        onBeforeWrite: function (event, buffer, caretPos, opts) {
+          var inputVal = self.$('#checkout_customer_phone').inputmask('unmaskedvalue');
+          if (inputVal.toString().length >=11 && inputVal.toString().substr(0, 1) === '8') {
+            $('#checkout_customer_phone').val(inputVal.toString().substr(1))
+          }
+        },
+        onBeforePaste: function (pastedValue, opts) {
+          if (pastedValue.length >=11 && pastedValue.toString().substr(0, 1) === '8') {
+            return pastedValue.toString().substr(1);
+          }
+        }
+      });
       this.initValidation();
       return this;
+    },
+    changeLengthPhone: function () {
+      var inputVal = $('#checkout_customer_phone').inputmask('unmaskedvalue');
+      if (inputVal.toString().length >=10 && inputVal.toString().substr(0, 1) === '8') {
+        $('#checkout_customer_phone').val(inputVal.toString().substr(1))
+      }
     },
     initValidation: function () {
       var self = this;
