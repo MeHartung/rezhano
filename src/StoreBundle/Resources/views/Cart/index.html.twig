@@ -53,8 +53,8 @@
 
                       <div class="quantity-widget quantity-wrap product-item__controls cards-container__quantity">
                           <a class="controls-item controls-item__increase quantity-control quantity-control__down"></a>
-                          <input class="custom-input quantity-control__input" value="{{ item.formattedQuantity }}" type="text" readonly>
-                          <span class="quantity-widget__units">{{ item.product.units }}</span>
+                          <input class="custom-input quantity-control__input" value="{{ item.measuredQuantity }}" type="text" readonly>
+                          <span class="quantity-widget__units">{{ item.units }}</span>
                           <a class="controls-item controls-item__reduce quantity-control quantity-control__up"></a>
                         {#<span class="quantity-balance">всего {{ item.product.availableStock }} шт.</span>#}
                       </div>
