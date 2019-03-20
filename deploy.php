@@ -50,7 +50,7 @@ host('rezhano.beget.tech')
   ->user('rezhano')
   ->set('deploy_path', '/home/r/rezhano/rezhano.ru')
   ->set('bin/php', '/usr/local/bin/php7.2')
-  ->set('branch', 'development')
+  ->set('branch', 'master')
   ->set('http_user', 'rezhano')
   ->set('keep_releases', 3);
 
