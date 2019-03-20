@@ -324,7 +324,12 @@ class OrderItem implements ShippableInterface
     
     if(!$this->getProduct()->getProductType())
     {
-      return $this->getProduct()->getUnits();
+      if($this->getProduct()->getUnits())
+      {
+        return $this->getProduct()->getUnits();
+      }
+      return 'шт';
+      
     }
   
     if($this->getProduct()->getProductType()->getMeasured() === true)
