@@ -71,7 +71,7 @@ define(function(require){
         } else {
           this.$('.cards-container__payment-info').css({
               position: "absolute",
-              top: 0
+              top: max-20
             });
         }
       } else {
