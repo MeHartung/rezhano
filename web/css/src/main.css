@@ -1597,7 +1597,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 }
 .header-section .header-slider {
   position: relative;
-  top: -135px;
+  top: -155px;
 }
 .header-section .header-slider__teaser {
   position: absolute;
@@ -1690,22 +1690,54 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 }
 .header-section .header-slider__wrap {
   white-space: nowrap;
+  margin-top: 110px;
 }
 .header-section .header-slider__wrap .header-slider__item {
   display: inline-block;
   margin-top: -55px;
-  margin-bottom: 75px;
+  margin-bottom: 90px;
 }
 .header-section .header-slider__wrap .header-slider__item .header-slider__teaser {
   opacity: 0;
   display: none;
 }
+@media (min-width: 1200px) {
+  .header-section .header-slider__wrap .header-slider__item .header-slider__teaser {
+    width: 1100px;
+    bottom: 60px;
+    display: block !important;
+    opacity: 1;
+  }
+}
 .header-section .header-slider__wrap .header-slider__item img {
   height: auto;
   width: 70%;
 }
+.header-section .header-slider__wrap .header-slider__item .header-section__image-text {
+  display: block;
+  margin: 0 auto;
+}
+@media (min-width: 1200px) {
+  .header-section .header-slider__wrap .header-slider__item .header-section__image-text {
+    margin: 0;
+    width: 578px;
+    height: auto;
+  }
+}
 .header-section .header-slider__wrap .header-slider__item .container {
   text-align: center;
+}
+@media (min-width: 1200px) {
+  .header-section .header-slider__wrap .header-section__image {
+    margin-top: 190px;
+    width: 578px;
+    height: 290px;
+    margin-left: -54px;
+    margin-bottom: 20px;
+  }
+}
+.header-section .header-slider__wrap.slick-initialized {
+  margin-top: 0;
 }
 .header-section .header-slider__wrap.slick-initialized .header-slider__item {
   margin-top: 0;
@@ -1713,6 +1745,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 }
 .header-section .header-slider__wrap.slick-initialized .header-slider__item .header-slider__teaser {
   display: none;
+  bottom: 0;
 }
 .header-section .header-slider__wrap.slick-initialized .header-slider__item .header-section__image {
   margin: 0 auto;
@@ -1749,7 +1782,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   }
 }
 .header-section__image {
-  margin-top: 10em;
+  margin-top: 5em;
   margin-bottom: 2em;
 }
 @media (min-width: 1200px) {
