@@ -293,4 +293,55 @@ class OrderItem implements ShippableInterface
 
     return $number;
   }
+  
+  /**
+   * @return float|int|string
+   */
+  public function getMeasuredQuantity()
+  {
+    if(!$this->getProduct()->getProductType())
+    {
+      return $this->getFormattedQuantity();
+    }
+    
+    if($this->getProduct()->getProductType()->getMeasured() === true && $this->getQuantity() < 1)
+    {
+      return $this->getFormattedQuantity() * $this->getProduct()->getMultiplier();
+    }
+    
+    return $this->getFormattedQuantity();
+  }
+  
+  /**
+   * @return string
+   */
+  public function getUnits()
+  {
+    if(!$this->getProduct())
+    {
+      return '';
+    }
+    
+    if(!$this->getProduct()->getProductType())
+    {
+      if($this->getProduct()->getUnits())
+      {
+        return $this->getProduct()->getUnits();
+      }
+      return 'шт';
+      
+    }
+  
+    if($this->getProduct()->getProductType()->getMeasured() === true)
+    {
+      if($this->getQuantity() < 1 && $this->getProduct()->getMultiplier() === 1000)
+      {
+        return 'г';
+      }
+      
+      return 'кг';
+    }
+  
+    return 'шт';
+  }
 }

@@ -60,15 +60,19 @@ define(function(require){
       var max = $('.section-purchase').height();
       if(scroll > 205) {
         this.$('.cards-container__payment-info').css({
-          position: "fixed",
+          position: "relative",
           top: 95
         });
         if(scroll < max) {
-        } else {
           this.$('.cards-container__payment-info').css({
             position: "fixed",
             top: 95
           });
+        } else {
+          this.$('.cards-container__payment-info').css({
+              position: "absolute",
+              top: max-20
+            });
         }
       } else {
         this.$('.cards-container__payment-info').css({

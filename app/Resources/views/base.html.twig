@@ -43,7 +43,7 @@
       }, false);
     </script>
 
-    {#{% include '@ContentHotspot/Asset/content_hotspot.html.twig' with {'jquery': false, 'tinymce': true} %}#}
+    {% include '@ContentHotspot/Asset/content_hotspot.html.twig' with {'jquery': false, 'tinymce': true} %}
     {% if app.user %}
       {{ app.user|client_model('user') }}
       {{ app.user.favoriteProductList.products|client_model_collection('product', 'FavoriteProducts') }}

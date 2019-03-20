@@ -3,6 +3,7 @@
 
 namespace StoreBundle\Synchronization\FromMoySklad\Model\Datasource;
 
+use Accurateweb\SettingBundle\Model\Setting\SettingInterface;
 use Accurateweb\SlugifierBundle\Model\SlugifierInterface;
 use Accurateweb\SynchronizationBundle\Model\Datasource\Base\BaseDataSource;
 use Accurateweb\SynchronizationBundle\Model\Subject\MoySkladImageSubject;
@@ -32,14 +33,14 @@ class MoySkladProductImageDataSource extends BaseDataSource
    */
   public function __construct($options = array(), $to,
                               EntityManagerInterface $entityManager,
-                              string $moySkladLogin, string $moySkladPassword,
+                              SettingInterface $moySkladLogin, SettingInterface $moySkladPassword,
                               $kernelRootDir, EventDispatcherInterface $dispatcher)
   {
     parent::__construct($options);
     $this->em = $entityManager;
     
-    $this->moySkladLogin = $moySkladLogin;
-    $this->moySkladPassword = $moySkladPassword;
+    $this->moySkladLogin = $moySkladLogin->getValue();
+    $this->moySkladPassword = $moySkladPassword->getValue();
     
     $this->kernelRootDir = $kernelRootDir;
     $this->dispatcher = $dispatcher;
