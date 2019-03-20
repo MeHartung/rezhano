@@ -1570,7 +1570,8 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
     if($this->getMeasured()) {
       return $this->getPrice();
     }
-    return round($this->getPrice() / $this->getMultiplier() * $this->getUnitWeight(), 2);
+    # REZHANO-167 - вырезаны копейки из цен
+    return round($this->getPrice() / $this->getMultiplier() * $this->getUnitWeight(), 0);
   }
   
   /**
@@ -1580,7 +1581,8 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
    */
   function getMeasuredPartPrice()
   {
-    return round($this->getPrice() / $this->getMultiplier() * $this->getUnitWeight(), 2);
+    # REZHANO-167 - вырезаны копейки из цен
+    return round($this->getPrice() / $this->getMultiplier() * $this->getUnitWeight(), 0);
   }
   
 }
