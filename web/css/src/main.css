@@ -731,6 +731,7 @@ textarea {
   line-height: 28px;
   padding: 3px 5px;
   outline: none;
+  -webkit-appearance: none;
   padding: 0;
   margin: 3px 5px;
 }
@@ -749,6 +750,7 @@ input[type="text"].input-text {
   line-height: 28px;
   padding: 3px 5px;
   position: relative;
+  -webkit-appearance: none;
 }
 .custom-radio {
   position: relative;
@@ -965,6 +967,7 @@ input[type="text"].input-text {
   overflow: scroll;
   width: auto;
   height: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .header-mobile.active {
   display: block;
@@ -1297,14 +1300,27 @@ header.fixed {
   transition: all .2s;
   z-index: 10;
 }
+@supports ((position:sticky) or (position:-webkit-sticky)) {
+  .header__fixed.fixed .nav,
+  .header__fixed.fixed .nav_fix {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
 .header__mobile {
   top: -60px;
-  position: absolute !important;
-  -webkit-transition: top .2s;
-  -moz-transition: top .2s;
-  -ms-transition: top .2s;
-  -o-transition: top .2s;
-  transition: top .2s;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
+}
+@supports ((position:sticky) or (position:-webkit-sticky)) {
+  .header__mobile .nav,
+  .header__mobile .nav_fix {
+    position: -webkit-sticky;
+    position: sticky;
+  }
 }
 .header-image-wrap {
   height: 18rem;
@@ -1677,14 +1693,23 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 }
 .header-section .header-slider__wrap .header-slider__item {
   display: inline-block;
+  margin-top: -55px;
+  margin-bottom: 75px;
+}
+.header-section .header-slider__wrap .header-slider__item .header-slider__teaser {
+  opacity: 0;
+  display: none;
 }
 .header-section .header-slider__wrap .header-slider__item img {
-  opacity: 0;
   height: auto;
-  width: 100%;
+  width: 70%;
 }
 .header-section .header-slider__wrap .header-slider__item .container {
   text-align: center;
+}
+.header-section .header-slider__wrap.slick-initialized .header-slider__item {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .header-section .header-slider__wrap.slick-initialized .header-slider__item .header-slider__teaser {
   display: none;
@@ -1889,7 +1914,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   right: -50%;
 }
 .first-slide__image_right img {
-  width: 90%;
+  width: 75%;
 }
 @media (orientation: landscape) {
   .first-slide__image_right {
@@ -3268,6 +3293,11 @@ h1,
   margin: 0 auto;
   margin-left: -15px;
 }
+@media (max-width: 350px) {
+  .notes__go-instagram {
+    font-size: 18px;
+  }
+}
 .notes__go-instagram span {
   z-index: 1;
   position: relative;
@@ -3597,6 +3627,11 @@ footer .footer-aside__link {
   line-height: 15px;
   display: block;
   margin-top: 3px;
+}
+@media (max-width: 350px) {
+  footer .footer-aside__link {
+    font-size: 12px;
+  }
 }
 @media (min-width: 1200px) {
   footer .footer-aside__link {
@@ -4003,6 +4038,7 @@ footer.low .footer-aside {
   padding: 2em;
   padding-top: 4em;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 @media (orientation: landscape) {
   .layer.add-to-cart-layer {
@@ -4043,10 +4079,15 @@ footer.low .footer-aside {
   }
 }
 .layer.add-to-cart-layer .add-to-cart-layer__product-name {
-  font-size: 40px;
+  font-size: 2em;
   font-family: Catorze27style1-bold;
   color: #000000;
   display: inline-block;
+}
+@media (min-width: 1200px) {
+  .layer.add-to-cart-layer .add-to-cart-layer__product-name {
+    font-size: 40px;
+  }
 }
 .layer.add-to-cart-layer .add-to-cart-layer__product-name:hover {
   color: #ffcf40;
@@ -4433,6 +4474,11 @@ aside.right {
   font-family: Catorze27style1-bold;
   color: #000000;
   position: relative;
+}
+@media (max-width: 350px) {
+  .cards-container__step-title {
+    font-size: 1.5rem;
+  }
 }
 @media (min-width: 1200px) {
   .cards-container__step-title {
@@ -5074,8 +5120,15 @@ body .delivery-info__message {
   display: none;
   vertical-align: top;
   position: relative;
-  font-size: 1.5rem;
-  max-width: 60%;
+  font-size: 1.4rem;
+  max-width: 43%;
+  z-index: 1;
+}
+@media (max-width: 350px) {
+  .cheese-card__title {
+    font-size: 1.1rem;
+    max-width: 43%;
+  }
 }
 .cheese-card__title_mobile {
   display: block;
@@ -5085,9 +5138,15 @@ body .delivery-info__message {
     margin-left: 15%;
   }
 }
+.cheese-card__title p {
+  font-size: 1.4rem;
+}
 @media (orientation: landscape) {
   .cheese-card__title {
-    max-width: 80%;
+    max-width: 30%;
+  }
+  .cheese-card__title p {
+    font-size: 1.4rem;
   }
 }
 @media (min-width: 1200px) {

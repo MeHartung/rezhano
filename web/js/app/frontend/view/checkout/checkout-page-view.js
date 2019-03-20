@@ -14,6 +14,7 @@ define(function(require){
       'click .footer-maps__link' : 'onAddressClick',
       'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
       'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .cmn-toggle-switch__close' : 'onHideMobileMenu',
       'click .homepage_top' : 'scrollTopHomePage'
     },
     initialize: function(options) {
@@ -59,15 +60,19 @@ define(function(require){
       var max = $('.section-purchase').height();
       if(scroll > 205) {
         this.$('.cards-container__payment-info').css({
-          position: "fixed",
+          position: "relative",
           top: 95
         });
         if(scroll < max) {
-        } else {
           this.$('.cards-container__payment-info').css({
             position: "fixed",
             top: 95
           });
+        } else {
+          this.$('.cards-container__payment-info').css({
+              position: "absolute",
+              top: max-20
+            });
         }
       } else {
         this.$('.cards-container__payment-info').css({

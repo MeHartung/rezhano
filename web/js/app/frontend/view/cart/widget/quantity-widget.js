@@ -37,7 +37,6 @@ define(function(require){
       this.options = $.extend({
         showButtons: true
       }, options);
-      
       this.model.on('change:quantity', this.onQuantityChanged, this);
       this.inputTimer = null;
       this.previousValue = this.model.get('quantity').toString();

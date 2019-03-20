@@ -77,6 +77,7 @@ define(function(require){
       'change #question_customer_text' : 'onTextChange',
       'change #question_customer_tos' : 'onTosChange',
       'keydown .input-textarea' : 'autosizeR',
+      'keydown #question_customer_phone' : 'changeLengthPhone'
     },
     initialize: function(options){
       CommonView.prototype.initialize.apply(this, arguments);
@@ -113,12 +114,31 @@ define(function(require){
         tosUrl: tosUrl
       }));
 
-      this.$('#question_customer_phone').inputmask('+7 (999) 999-99-99');
+      this.$('#question_customer_phone').inputmask({
+        mask:'+7 (999) 999-99-99',
+        onBeforeWrite: function (event, buffer, caretPos, opts) {
+          var inputVal = self.$('#question_customer_phone').inputmask('unmaskedvalue');
+          if (inputVal.toString().length >=11 && inputVal.toString().substr(0, 1) === '8') {
+            $('#question_customer_phone').val(inputVal.toString().substr(1))
+          }
+        },
+        onBeforePaste: function (pastedValue, opts) {
+          if (pastedValue.length >=11 && pastedValue.toString().substr(0, 1) === '8') {
+            return pastedValue.toString().substr(1);
+          }
+        }
+      });
       this.initValidation();
 
       // this._restorePosition();
 
       return this;
+    },
+    changeLengthPhone: function () {
+      var inputVal = $('#question_customer_phone').inputmask('unmaskedvalue');
+      if (inputVal.toString().length >=10 && inputVal.toString().substr(0, 1) === '8') {
+        $('#question_customer_phone').val(inputVal.toString().substr(1))
+      }
     },
     initValidation: function () {
       var self = this;

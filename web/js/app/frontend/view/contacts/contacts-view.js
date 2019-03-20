@@ -11,7 +11,8 @@ define(function(require){
       'click .button-question': 'onQuestionClick',
       'click .footer-maps__link' : 'onAddressClick',
       'click .section-see-works__video-play-overlay' : 'onAboutVideoPlay',
-      'click .cmn-toggle-switch' : 'onShowMobileMenu'
+      'click .cmn-toggle-switch' : 'onShowMobileMenu',
+      'click .cmn-toggle-switch__close' : 'onHideMobileMenu',
     },
     initialize: function(options){
       CommonView.prototype.initialize.apply(this, arguments);
