@@ -36,7 +36,7 @@ class MoyskladOrderSender
   # составной товар из МС
   const PRODUCT_TYPE_BUNDLE = 'bundle';
   
-  const ATTRIBUTE_STORE_ORDER_NUM = 'cea238d58-2706-11e9-9109-f8fc000e93ad'; //Номер заказа на стороне ИМ
+  const ATTRIBUTE_STORE_ORDER_NUM = 'ea238d58-2706-11e9-9109-f8fc000e93ad'; //Номер заказа на стороне ИМ
   # это всё пока не надо
   /*  const ATTRIBUTE_ORDER_NUM = 'ac2633f9-6f98-11e8-9109-f8fc00013baa'; //Номер заказа ИМ string
   const ATTRIBUTE_CDEK_ORDER_NUM = 'ac263d50-6f98-11e8-9109-f8fc00013bab'; //Номер заказа СДЭК string
