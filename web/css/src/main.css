@@ -4474,6 +4474,11 @@ aside.right {
   color: #000000;
   position: relative;
 }
+@media (max-width: 350px) {
+  .cards-container__step-title {
+    font-size: 1.5rem;
+  }
+}
 @media (min-width: 1200px) {
   .cards-container__step-title {
     font-size: 46px;
