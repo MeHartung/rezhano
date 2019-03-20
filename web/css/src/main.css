@@ -5150,7 +5150,7 @@ body .delivery-info__message {
 .cheese-card__title {
   font-family: Catorze27style1-bold;
   color: #000000;
-  display: none;
+  display: inline-block;
   vertical-align: top;
   position: relative;
   font-size: 1.4rem;
@@ -5163,11 +5163,8 @@ body .delivery-info__message {
     max-width: 43%;
   }
 }
-.cheese-card__title_mobile {
-  display: block;
-}
 @media (orientation: landscape) {
-  .cheese-card__title_mobile {
+  .cheese-card__title {
     margin-left: 15%;
   }
 }
@@ -5188,10 +5185,6 @@ body .delivery-info__message {
     margin-left: 80px;
     margin-top: 37px;
     font-size: 30px;
-    display: inline-block;
-  }
-  .cheese-card__title_mobile {
-    display: none;
   }
   .cheese-card__title p {
     font-size: 30px;
