@@ -93,9 +93,24 @@
             <div class="col-item col-item_social">
               <span class="col-title">Тут мы публикуем много всего интересного</span>
               <div class="contacts-social">
-                  {% if setting('facebook_link') %}<a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook"></a>{% endif %}
-                  {% if setting('vk_link') %}<a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte"></a>{% endif %}
-                  {% if setting('instagram_link') %}<a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram"></a>{% endif %}
+                  {% if setting('facebook_link') %}
+                    <a href="{{ setting('facebook_link') }}" target="_blank" class="footer-social__item footer-social__facebook">
+                      <img src="{{ asset('images/svg/social-03_black.svg') }}" alt="">
+                      <img class="hover-social" src="{{ asset('images/svg/social-06.svg') }}" alt="" style="opacity: 0;">
+                    </a>
+                  {% endif %}
+                  {% if setting('vk_link') %}
+                    <a href="{{ setting('vk_link') }}" target="_blank" class="footer-social__item footer-social__vkontakte">
+                      <img src="{{ asset('images/svg/social-02_black.svg') }}" alt="">
+                      <img class="hover-social" src="{{ asset('images/svg/social-05.svg') }}" alt="" style="opacity: 0;">
+                    </a>
+                  {% endif %}
+                  {% if setting('instagram_link') %}
+                    <a href="{{ setting('instagram_link') }}" target="_blank" class="footer-social__item footer-social__instagram">
+                      <img src="{{ asset('images/svg/social-01_black.svg') }}" alt="">
+                      <img class="hover-social" src="{{ asset('images/svg/social-04.svg') }}" alt="" style="opacity: 0;">
+                    </a>
+                  {% endif %}
               </div>
             </div>
           {% endif %}

@@ -3505,84 +3505,30 @@ footer {
       margin-right: 8px;
     }
 
-    .footer-social__facebook {
-      //background-position: 0 0;
-      //
-      //&:hover {
-      //  background-position: 0 39px;
-      //}
-      background: url("../images/svg/social-06.svg") center no-repeat;
-      background: url("../images/svg/social-03.svg") center no-repeat;
-      .transition(500ms, background);
-
-
-      &:after {
-        content: '';
-        background: url("../images/svg/social-06.svg") center no-repeat;
-        position: absolute;
-        top:0;
-        left:0;
-        opacity: 0;
-      }
-
-      &:hover {
-        //background-position: -140px -67px;
-        background: url("../images/svg/social-06.svg") center no-repeat;
-        .transition(500ms, background);
-      }
-
-    }
-
-    .footer-social__vkontakte {
-      //background-position: 90px 0;
-      //
-      //&:hover {
-      //  background-position: 90px 39px;
-      //}
-
-      background: url("../images/svg/social-05.svg") center no-repeat;
-      background: url("../images/svg/social-02.svg") center no-repeat;
-      .transition(500ms, background);
-
-      &:after {
-        content: '';
-        background: url("../images/svg/social-05.svg") center no-repeat;
-        position: absolute;
-        top:0;
-        left:0;
-        opacity: 0;
-      }
-
-      &:hover {
-        //background-position: -140px -67px;
-        background: url("../images/svg/social-05.svg") center no-repeat;
-        .transition(500ms, background);
-      }
-    }
-
+    .footer-social__facebook,
+    .footer-social__vkontakte,
     .footer-social__instagram {
-      //background-position: 39px 0;
-      //
-      //&:hover {
-      //  background-position: 39px 39px;
-      //}
-      background: url("../images/svg/social-01.svg") center no-repeat,
-                  url("../images/svg/social-04.svg") center no-repeat;
-      .transition(500ms, background);
+      background: transparent;
+      position: relative;
 
-      &:after {
-        content: '';
-        background: url("../images/svg/social-04.svg") center no-repeat;
+      img {
         position: absolute;
-        top:0;
-        left:0;
-        opacity: 0;
+        top: 0;
+        left: 0;
+        .transition(300ms, opacity);
       }
 
       &:hover {
-        //background-position: -140px -67px;
-        background: url("../images/svg/social-04.svg") center no-repeat;
-        .transition(500ms, background);
+        img {
+          opacity: 0;
+          .transition(300ms, opacity);
+        }
+
+        .hover-social {
+          opacity: 1 !important;
+          .transition(200ms, opacity);
+        }
+
       }
     }
   }
@@ -3790,66 +3736,30 @@ footer {
     margin-right: 8px;
   }
 
-  .footer-social__facebook {
-    background: url("../images/svg/social-06.svg") center no-repeat;
-    background: url("../images/svg/social-03_black.svg") center no-repeat;
-    .transition(300ms, background);
-    position: relative;
-
-    &:after {
-      content:'';
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      background: url("../images/svg/social-06.svg") center no-repeat;
-    }
-
-    &:hover {
-      background: url("../images/svg/social-06.svg") center no-repeat;
-      .transition(300ms, background);
-    }
-  }
-
-  .footer-social__vkontakte {
-    background: url("../images/svg/social-05.svg") center no-repeat;
-    background: url("../images/svg/social-02_black.svg") center no-repeat;
-    .transition(300ms, background);
-    position: relative;
-
-    &:after {
-      content:'';
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      background: url("../images/svg/social-05.svg") center no-repeat;
-    }
-
-    &:hover {
-      background: url("../images/svg/social-05.svg") center no-repeat;
-      .transition(300ms, background);
-    }
-  }
-
+  .footer-social__facebook,
+  .footer-social__vkontakte,
   .footer-social__instagram {
-    background: url("../images/svg/social-04.svg") center no-repeat;
-    background: url("../images/svg/social-01_black.svg") center no-repeat;
-    .transition(300ms, background);
+    background: transparent;
     position: relative;
 
-    &:after {
-      content:'';
+    img {
       position: absolute;
       top: 0;
       left: 0;
-      opacity: 0;
-      background: url("../images/svg/social-04.svg") center no-repeat;
+      .transition(300ms, opacity);
     }
 
     &:hover {
-      background: url("../images/svg/social-04.svg") center no-repeat;
-      .transition(300ms, background);
+      img {
+        opacity: 0;
+        .transition(300ms, opacity);
+      }
+
+      .hover-social {
+        opacity: 1 !important;
+        .transition(200ms, opacity);
+      }
+
     }
   }
 }
