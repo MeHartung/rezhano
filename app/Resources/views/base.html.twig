@@ -43,6 +43,12 @@
       }, false);
     </script>
 
+    <script type="text/javascript">
+      $(document).ready(function(){
+        try{document.execCommand('BackgroundImageCache', false, true);}catch(e){}
+      });
+    </script>
+
     {% include '@ContentHotspot/Asset/content_hotspot.html.twig' with {'jquery': false, 'tinymce': true} %}
     {% if app.user %}
       {{ app.user|client_model('user') }}
