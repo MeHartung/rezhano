@@ -8110,6 +8110,36 @@ body .delivery-info__message {
   -webkit-transition-delay: 0, 0.3s;
   transition-delay: 0, 0.3s;
 }
+.article-list-item {
+  margin-top: 40px;
+}
+.article-list-item:first-child {
+  margin-top: 0;
+}
+.article-list-item__header {
+  font-size: 40px;
+  font-family: Catorze27style1-bold;
+  color: #000000;
+  display: inline-block;
+  text-align: center;
+  padding-bottom: 15px;
+}
+.article-list-item__header:hover {
+  color: #ffcf40;
+}
+.article-list-item__header:hover .product-item__image {
+  background-color: #ffcf40;
+}
+.article-list-item__text {
+  font-size: 18px;
+  font-family: alegreyasans-regular;
+  color: #000000;
+}
+.article-list-item__text p {
+  font-size: 18px;
+  font-family: alegreyasans-regular;
+  color: #000000;
+}
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
   width: 24px;

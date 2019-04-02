@@ -1,14 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-
-
-    <div>
-        {% for story in stories %}
-            <h1> {{ story.title }} </h1>
-            <div class="text"> {{ story.text | raw }} </div>
-        {% endfor %}
+{% block main %}
+<section class="section-cheeseStory">
+    <div class="container">
+        <h1 class="section-article__title">Сырные заметки</h1>
+        <div class="article-list">
+            {% for story in stories %}
+                <div class="article-list-item">
+                    <a class="article-list-item__header" href="{{ url('cheese_story_show', { slug: story.slug }) }}">{{ story.title }}</a>
+                    <div class="article-list-item__text">
+                        {{ story.previewText | raw }}
+                        {% if story.text %}
+                            <p>
+                                <a class="button button_black"
+                                   title="Читать полностью"
+                                   href="{{ path('cheese_story_show', {'slug': story.slug}) }}"
+                                        {#target="_blank"#}
+                                   rel="noopener"
+                                   tabindex="0">
+                                    <span>Читать полностью</span>
+                                </a>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-
+</section>
 
 {% endblock %}

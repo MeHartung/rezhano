@@ -275,9 +275,9 @@ customer_question_success:
   defaults: { _controller: StoreBundle:Text\Question:success }
 
 # роут на данный момент не нужен и список заметок не свёрстан
-#cheese_story:
-#  path: /syrnye-zametki
-#  defaults: { _controller: StoreBundle:Text\CheeseStory:index }
+cheese_story_list:
+  path: /syrnye-zametki
+  defaults: { _controller: StoreBundle:Text\CheeseStory:index }
 
 cheese_story_show:
   path: /syrnye-zametki/{slug}

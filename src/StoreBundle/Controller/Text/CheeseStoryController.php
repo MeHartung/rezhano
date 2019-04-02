@@ -19,7 +19,9 @@ class CheeseStoryController extends Controller
    */
   public function indexAction(Request $request)
   {
-    $stories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findBy([], [
+    $stories = $this->getDoctrine()->getRepository('StoreBundle:Text\CheeseStory')->findBy([
+      'published' => true,
+    ], [
       'position' => 'ASC'
     ]);
     
