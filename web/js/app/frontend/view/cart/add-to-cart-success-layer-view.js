@@ -19,8 +19,8 @@ define(function(require){
           </div>\
         </div>\
         <div class="buttons">\
-          <a class="button button_black" href="<%= urlPrefix %>/cart">Перейти в корзину</a>\
-          <a class="button button_black continue-shopping" href="#">Продолжить покупки</a>\
+          <a class="button button_black button_yellow-yellow" href="<%= urlPrefix %>/cart"><span>Перейти в корзину</span></a>\
+          <a class="button button_black continue-shopping" href="#"><span>Продолжить покупки</span></a>\
         </div>\
 <!--<div class="layer__close"></div>\-->\
 <!-- <div class="layer__in"> -->\
