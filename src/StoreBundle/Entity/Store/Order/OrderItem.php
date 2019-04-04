@@ -328,7 +328,7 @@ class OrderItem implements ShippableInterface
       {
         return $this->getProduct()->getUnits();
       }
-      return 'шт';
+      return 'шт.';
       
     }
   
@@ -342,6 +342,6 @@ class OrderItem implements ShippableInterface
       return 'кг';
     }
   
-    return 'шт';
+    return 'шт.';
   }
 }
