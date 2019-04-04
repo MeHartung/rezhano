@@ -46,7 +46,7 @@ define(function(require){
     </div>\n\
     <div class="product-item__info">\n\
         <% if (isPurchasable) { %> \n\
-          <a class="addtocart-button button button_black button_add-to-cart button-buy_in-product button_yellow-yellow" data-product-id="<%= productId %>">\n\
+          <a class="addtocart-button button button_black button_add-to-cart button-buy_in-product " data-product-id="<%= productId %>">\n\
             <span>В корзину</span>\n\
           </a> \
           <span class="product-item__controls-title">количество</span>\n\

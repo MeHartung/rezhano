@@ -28,7 +28,7 @@ define(function(){
   <span class="product-item__price"><%= price %></span>\
   </div>\
   <% if (isPurchasable) { %>\
-    <a class="addtocart-button button button_black button_add-to-cart button-buy_in-product button_yellow-yellow" data-product-id="<%= id %>"><span>В корзину</span></a>\
+    <a class="addtocart-button button button_black button_add-to-cart button-buy_in-product" data-product-id="<%= id %>"><span>В корзину</span></a>\
     <div class="controls-wrap">\n\
        <span class="controls-title">количество</span>\n\
        <div class="product-item__controls quantity-widget quantity-wrap">\n\
