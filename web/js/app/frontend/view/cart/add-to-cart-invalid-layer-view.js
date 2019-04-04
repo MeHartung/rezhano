@@ -71,7 +71,7 @@ define(function(require){
           min = modul > 0.0001 ? options.quantity - modul : this.minQuantity,
           max = modul > 0.0001 ? min + this.step : options.quantity;
 
-      this.units = 'шт';
+      this.units = 'шт.';
 
       this.validQuantity = this.formatFloat(min);
       this.nextValidQuantity = this.formatFloat(max);

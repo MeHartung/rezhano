@@ -22,7 +22,7 @@ define(function(require) {
   return ListItemView.extend({
     className: 'product-item',
     defaults: {
-      units: 'шт'
+      units: 'шт.'
     },
     initialize: function(options){
       ListItemView.prototype.initialize.apply(this, arguments);

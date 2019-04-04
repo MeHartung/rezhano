@@ -63,7 +63,7 @@ define(function(require){
     initialize: function(options){
       this.quantity = options.quantity;
 
-      this.units = 'шт';
+      this.units = 'шт.';
       this.scale = null;
 
       this.adjustScale();
@@ -84,7 +84,7 @@ define(function(require){
 
     },
     render: function(){
-      var units = 'шт';
+      var units = 'шт.';
       if (this.model.get('product').isMeasured) {
         units = this.model.get('product').units ? this.model.get('product').units : '';
       }

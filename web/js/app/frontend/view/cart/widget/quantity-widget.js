@@ -25,7 +25,7 @@ define(function(require){
       min: 1,
       max: null,
       step: 1,
-      units: 'шт'
+      units: 'шт.'
     },
     events:{
       // 'keydown  .quantity-control__input': 'onCartActionsQuantityInputKeydown',
