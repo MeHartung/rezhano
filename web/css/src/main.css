@@ -1579,7 +1579,7 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
   right: 30px;
 }
 .header-section {
-  background: url("../images/section_bg.jpg") center no-repeat;
+  background: #000000 url("../images/section_bg.jpg") center no-repeat;
   background-size: cover;
   height: 100%;
   padding-top: 121px;
