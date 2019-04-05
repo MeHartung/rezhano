@@ -116,10 +116,13 @@
             <div class="container container_no-padding">
                 <span class="popular-products__title">Популярные сыры</span>
 
-                    <div class="product-items">
-                      {% for item in bestOffers %}
-                        {% include '@Store/Catalog/Product/product_card.html.twig' with {'product': item} %}
-                      {% endfor %}
+                    <div class="product-items__wrap">
+                        <div class="product-items">
+                          {% for item in bestOffers %}
+                            {% include '@Store/Catalog/Product/product_card.html.twig' with {'product': item} %}
+                          {% endfor %}
+                        </div>
+
                     </div>
 
                 <div class="popular-products__show-more">

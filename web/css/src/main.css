@@ -2296,6 +2296,11 @@ h1,
   padding-top: 45px;
   padding-bottom: 115px;
 }
+.product-list .product-items__wrap {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
 .product-list .product-items {
   display: flex;
   flex-flow: wrap;
