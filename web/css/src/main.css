@@ -2291,7 +2291,7 @@ h1,
   vertical-align: top;
   width: 100%;
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 4em;
 }
 @media (orientation: portrait) and (max-width: 350px) {
   .product-list .product-item {
