@@ -1835,16 +1835,23 @@ header.header-about .header-catalog__wrap .header-menu-wrap {
 }
 @media (min-width: 1200px) {
   .first-slide {
-    margin-top: -195px;
+    margin-top: -295px;
     overflow: hidden;
     background: url("../images/first-slide1.png") center no-repeat;
     height: 1329px;
     width: auto;
-    background-size: auto;
+    background-size: auto 1100px;
     padding-top: 181px;
-    margin-bottom: -160px;
+    margin-bottom: -250px;
     padding-bottom: 0;
     background-position-x: center;
+  }
+}
+@media (min-width: 2000px) {
+  .first-slide {
+    margin-top: -195px;
+    margin-bottom: -160px;
+    background-size: auto;
   }
 }
 .first-slide .container p {
