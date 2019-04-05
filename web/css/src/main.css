@@ -2924,8 +2924,15 @@ h1,
   overflow: visible;
   z-index: 1;
 }
-.partners__title {
-  margin-bottom: 50px;
+@media (orientation: portrait) {
+  .partners__title {
+    margin-bottom: 30px;
+  }
+}
+@media (orientation: landscape) {
+  .partners__title {
+    margin-bottom: 50px;
+  }
 }
 @media (min-width: 1200px) {
   .partners__title {
@@ -2968,6 +2975,12 @@ h1,
   .partners .partners-wrap .partner-item {
     min-width: 100% !important;
     margin: 0 auto !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+@media (max-width: 1200px) and (orientation: landscape) {
+  .partners .partners-wrap .partner-item {
+    margin-bottom: 2rem !important;
   }
 }
 @media (min-width: 1200px) {

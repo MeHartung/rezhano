@@ -2843,7 +2843,14 @@ h1, .popular-products__title {
   z-index: 1;
 
   &__title {
-    margin-bottom: 50px;
+
+    @media(orientation: portrait) {
+      margin-bottom: 30px;
+    }
+
+    @media(orientation: landscape) {
+      margin-bottom: 50px;
+    }
 
     @media (min-width: @min_width) {
       margin-bottom: 85px;
@@ -2880,6 +2887,11 @@ h1, .popular-products__title {
       @media (max-width: @min_width) {
         min-width: 100% !important;
         margin: 0 auto !important;
+        margin-bottom: 1.5rem !important;
+
+        @media(orientation: landscape) {
+          margin-bottom: 2rem !important;
+        }
       }
 
       @media (min-width: @min_width) {
