@@ -983,7 +983,11 @@ input[type="text"].input-text {
 }
 @media (orientation: landscape) {
   .header-mobile .header-menu {
-    padding-top: 10%;
+    padding-top: 17%;
+    height: 70%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
   }
 }
 .header-mobile .header-menu__item {
@@ -992,13 +996,17 @@ input[type="text"].input-text {
 }
 @media (orientation: landscape) {
   .header-mobile .header-menu__item {
-    font-size: 1.5em;
     padding-top: 0.2em;
   }
 }
 .header-mobile .header-menu__item:after,
 .header-mobile .header-menu__item:before {
   display: none;
+}
+@media (orientation: landscape) {
+  .header-mobile__wrap-item {
+    height: 100%;
+  }
 }
 .header {
   background: #191919;

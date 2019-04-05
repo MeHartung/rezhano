@@ -570,12 +570,17 @@ input[type="text"].input-text {
   width: auto;
   height: auto;
   -webkit-overflow-scrolling: touch;
+
   .header-menu {
     display: block;
     padding-top: 30%;
 
     @media (orientation: landscape) {
-      padding-top: 10%;
+      padding-top: 17%;
+      height: 70%;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
     }
 
     &__item {
@@ -583,13 +588,20 @@ input[type="text"].input-text {
       padding-top: 1.8rem;
 
       @media (orientation: landscape) {
-        font-size: 1.5em;
+        //font-size: 1.5em;
         padding-top: 0.2em;
       }
 
       &:after, &:before {
         display: none;
       }
+    }
+  }
+
+  &__wrap-item {
+
+    @media (orientation: landscape) {
+     height: 100%;
     }
   }
 }
