@@ -2369,7 +2369,6 @@ h1,
 }
 .product-list .product-item__image img {
   display: inline-block;
-  max-height: 192px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2386,7 +2385,8 @@ h1,
 }
 @media (min-width: 1200px) {
   .product-list .product-item__image img {
-    max-height: 192px;
+    width: auto;
+    min-height: 234px;
   }
 }
 .product-list .product-item__image:hover {

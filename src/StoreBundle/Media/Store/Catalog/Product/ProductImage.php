@@ -23,7 +23,7 @@ class ProductImage extends Image
     return array(
       new ThumbnailDefinition('catalog_prev', new FilterChain(array(
         array(
-          'id' => 'resize', 'options' => array('size' => 'x192'),
+          'id' => 'resize', 'options' => array('size' => 'x230'),
         )
       ))),
       new ThumbnailDefinition('160x160', new FilterChain(array(
