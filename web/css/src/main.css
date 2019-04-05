@@ -2369,6 +2369,8 @@ h1,
 }
 .product-list .product-item__image img {
   display: inline-block;
+  width: auto;
+  min-height: 234px;
   position: absolute;
   top: 50%;
   left: 50%;
