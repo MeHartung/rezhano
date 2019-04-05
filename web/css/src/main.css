@@ -1221,7 +1221,7 @@ header .header-controls {
 header .header-controls__item {
   display: inline-block;
   vertical-align: top;
-  height: 21px;
+  height: 22px;
   margin: 0 10px;
   position: relative;
   z-index: 1;
@@ -1259,15 +1259,17 @@ header .header-controls__cabinet {
 header .header-controls__cabinet:hover {
   background-position: -65px -5px;
 }
-header .header-controls__cart {
-  background-image: url("../images/icons/sprite-rezhano-controls.png");
-  background-repeat: no-repeat;
-  width: 22px;
-  height: 19px;
-  background-position: -5px -5px;
+header .header-controls__cart .img-basket-1 {
+  display: block;
 }
-header .header-controls__cart:hover {
-  background-position: -5px -34px;
+header .header-controls__cart .img-basket-2 {
+  display: none;
+}
+header .header-controls__cart:hover .img-basket-1 {
+  display: none;
+}
+header .header-controls__cart:hover .img-basket-2 {
+  display: block;
 }
 header.fixed {
   background-color: #101010;

@@ -15,6 +15,15 @@
            </span>
          </a>
          <a href="{{ url('cart_index') }}" class="header-controls__item header-controls__cart">
+           <svg class="img-basket-1" width="22" height="22" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">
+             <use xlink:href="#img-basket-1"></use>
+           </svg>
+
+           <svg class="img-basket-2" width="22" height="22" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">
+             <use xlink:href="#img-basket-2"></use>
+           </svg>
+
+
            {% if cart.orderItems|length %}
              <span class="header-controls__notice">
                <span class="notice-count">{{ cart.orderItems|length }}</span>

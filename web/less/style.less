@@ -882,7 +882,7 @@ header {
     &__item {
       display: inline-block;
       vertical-align: top;
-      height: 21px;
+      height: 22px;
       margin: 0 10px;
       position: relative;
       z-index: 1;
@@ -948,16 +948,36 @@ header {
     }
 
     &__cart {
-      background-image: url("../images/icons/sprite-rezhano-controls.png");
-      background-repeat: no-repeat;
+      //background-image: url("../images/icons/sprite-rezhano-controls.png");
+      //background-repeat: no-repeat;
+      //
+      //width: 22px;
+      //height: 19px;
+      //background-position: -5px -5px;
+      //
+      //&:hover {
+      //  background-position: -5px -34px;
+      //}
 
-      width: 22px;
-      height: 19px;
-      background-position: -5px -5px;
+      .img-basket-1 {
+        display: block;
+      }
+
+      .img-basket-2 {
+        display: none;
+      }
 
       &:hover {
-        background-position: -5px -34px;
+
+        .img-basket-1 {
+          display: none;
+        }
+
+        .img-basket-2 {
+          display: block;
+        }
       }
+
     }
   }
 
