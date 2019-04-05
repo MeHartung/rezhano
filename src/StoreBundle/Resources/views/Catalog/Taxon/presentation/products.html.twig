@@ -162,9 +162,9 @@
 
 </div>
 
-<div class="product-list" id="product-listview">
+<div class="product-list">
   <div class="product-items__wrap">
-    <div class="product-items">
+    <div class="product-items" id="product-listview">
     {% for product in products %}
         {{ include('StoreBundle:Catalog/Product:product_card.html.twig', { "product": product, "image": product.mainImage }) }}
     {% endfor %}
