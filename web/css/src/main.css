@@ -4465,6 +4465,11 @@ aside.right {
   float: right;
   vertical-align: top;
 }
+.mac-os .cards-container__step-title:before {
+  content: '';
+  position: absolute;
+  top: 36%;
+}
 .cards-container__container {
   padding-bottom: 1em;
 }
