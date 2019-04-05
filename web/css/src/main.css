@@ -2296,6 +2296,11 @@ h1,
   padding-top: 45px;
   padding-bottom: 115px;
 }
+.product-list .product-items {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: left;
+}
 .product-list .product-item {
   display: inline-block;
   vertical-align: top;
@@ -2339,7 +2344,7 @@ h1,
 }
 @media (min-width: 1200px) {
   .product-list .product-item__twig {
-    width: 370px;
+    width: 368px;
     margin-bottom: 90px;
   }
 }

@@ -116,11 +116,11 @@
             <div class="container container_no-padding">
                 <span class="popular-products__title">Популярные сыры</span>
 
-                <div class="product-items">
-                    {% for item in bestOffers %}
+                    <div class="product-items">
+                      {% for item in bestOffers %}
                         {% include '@Store/Catalog/Product/product_card.html.twig' with {'product': item} %}
-                    {% endfor %}
-                </div>
+                      {% endfor %}
+                    </div>
 
                 <div class="popular-products__show-more">
                     <a href="{{ url("taxon", { slug: "syr" }) }}" class="button button_black">
