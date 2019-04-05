@@ -1405,6 +1405,7 @@ header.header-contacts {
   position: relative;
   padding: 0;
   overflow: hidden;
+  z-index: 1001;
 }
 @media (min-width: 1200px) {
   header.header-contacts {
