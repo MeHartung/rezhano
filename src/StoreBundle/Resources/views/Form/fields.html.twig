@@ -19,6 +19,7 @@
         external_filemanager_path:"/fm/",
         filemanager_title: "Файловый менеджер" ,
         filemanager_access_key: "83a2de51cdff498a8c68c04a44d49045",
+        relative_urls: false,
         external_plugins: { "filemanager" : "/fm/plugin.min.js"},
         content_css: {% if form.vars.custom_css %} '{{ form.vars.custom_css }}' {% else %} '/css/tinymce/custom.css' {% endif %},
         setup: function (editor) {

@@ -8,7 +8,6 @@
 
 namespace StoreBundle\Repository\Store\Catalog\Taxonomy;
 
-use StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 use Gedmo\Exception\UnexpectedValueException;
 use Gedmo\Exception\InvalidArgumentException;
@@ -32,7 +31,7 @@ class ExtendedNestedTreeRepository extends NestedTreeRepository
      * @return bool
      * @throws \Exception
      */
-    public function moveAsNextSiblingOf(Taxon $node, Taxon $sibling, Taxon $parent)
+    public function moveAsNextSiblingOf($node, $sibling, $parent)
     {
         if (empty($node)) {
             throw new InvalidArgumentException('The target node need to be specified.');
