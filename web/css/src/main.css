@@ -3135,6 +3135,7 @@ h1,
 @media (min-width: 1200px) {
   .notes .notes-slider {
     max-height: 340px;
+    margin-bottom: 15px;
   }
 }
 .notes .notes-slider .notes__text {
