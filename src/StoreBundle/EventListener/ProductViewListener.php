@@ -60,7 +60,8 @@ class ProductViewListener
       $productListProduct->setCreatedAt(new \DateTime());
       $this->entityManager->persist($productListProduct);
     }
-    else
+    # иначе есть риск получаить 500, а не 404
+    elseif($product)
     {
       $productListProduct = new ProductListProduct();
       $productListProduct->setProductList($list);

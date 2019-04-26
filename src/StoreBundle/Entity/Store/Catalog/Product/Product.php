@@ -13,6 +13,7 @@ use Accurateweb\MediaBundle\Model\Media\ImageInterface;
 use Accurateweb\MediaBundle\Model\Media\MediaInterface;
 use Accurateweb\MediaBundle\Model\Thumbnail\ImageThumbnail;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use StoreBundle\Entity\Store\Brand\Brand;
 use StoreBundle\Entity\Store\Catalog\Product\Attributes\ProductAttribute;
@@ -852,7 +853,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
     return $this->taxons;
   }
 
-  public function setTaxons(ArrayCollection $taxons=null)
+  public function setTaxons(Collection $taxons=null)
   {
     $this->taxons = $taxons;
   }
@@ -898,7 +899,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
    * @param ArrayCollection $images
    * @return $this
    */
-  public function setImages(ArrayCollection $images)
+  public function setImages(Collection $images)
   {
     $this->images = $images;
     return $this;
@@ -1584,5 +1585,4 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
     # REZHANO-167 - вырезаны копейки из цен
     return round($this->getPrice() / $this->getMultiplier() * $this->getUnitWeight(), 0);
   }
-  
 }
