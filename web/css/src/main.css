@@ -2296,6 +2296,11 @@ h1,
   padding-top: 45px;
   padding-bottom: 115px;
 }
+.product-list .product-items__wrap {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
 .product-list .product-items {
   display: flex;
   flex-flow: wrap;
@@ -3130,6 +3135,7 @@ h1,
 @media (min-width: 1200px) {
   .notes .notes-slider {
     max-height: 340px;
+    margin-bottom: 15px;
   }
 }
 .notes .notes-slider .notes__text {
@@ -3170,6 +3176,7 @@ h1,
 }
 @media (min-width: 1200px) {
   .notes .notes-slider .slick-dots {
+    position: relative;
     left: 0;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
@@ -4459,6 +4466,11 @@ aside.right {
   margin-right: -298px;
   float: right;
   vertical-align: top;
+}
+.mac-os .cards-container__step-title:before {
+  content: '';
+  position: absolute;
+  top: 36%;
 }
 .cards-container__container {
   padding-bottom: 1em;

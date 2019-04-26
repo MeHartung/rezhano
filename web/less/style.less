@@ -2150,6 +2150,12 @@ h1, .popular-products__title {
     padding-bottom: 115px;
   }
 
+  .product-items__wrap {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+  }
+
   .product-items {
       display: flex;
       flex-flow: wrap;
@@ -3077,6 +3083,7 @@ h1, .popular-products__title {
 
     @media (min-width: @min_width) {
       max-height: 340px;
+      margin-bottom: 15px;
     }
 
     .notes__text {
@@ -3125,6 +3132,7 @@ h1, .popular-products__title {
 
       @media (min-width: @min_width) {
         //left: 20px;
+        position: relative;
         left: 0;
         -webkit-transform: translateX(0);
         -moz-transform: translateX(0);
@@ -4576,6 +4584,18 @@ aside {
   }
 }
 
+
+.mac-os .cards-container {
+
+  &__step-title {
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 36%;
+    }
+  }
+}
 // cards container
 
 .cards-container {

@@ -9,13 +9,13 @@ define(function(require){
   require('lib/string');
 
   var template = _.template('\
-    <% if (quantity) { %>\
     <svg class="img-basket-1" width="22" height="22" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">\
     <use xlink:href="#img-basket-1"></use>\
     </svg>\
     <svg class="img-basket-2" width="22" height="22" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">\
     <use xlink:href="#img-basket-2"></use>\
     </svg>\
+        <% if (quantity) { %>\
       <span class="header-controls__notice">\n' +
 '         <span class="notice-count"><%= quantity %></span>\n' +
 '     </span>' +
