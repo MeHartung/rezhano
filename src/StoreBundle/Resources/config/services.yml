@@ -1080,10 +1080,10 @@ services:
         - { name: doctrine.event_listener, event: postPersist }
         - { name: doctrine.event_listener, event: postUpdate }
 
-#    store.product.voter.publication_allowed:
-#      class: StoreBundle\Resolver\Product\PublicationAllowedPublicationResolver
-#      tags:
-#        - { name: product.publication.resolver }
+    store.product.voter.publication_allowed:
+      class: StoreBundle\Resolver\Product\PublicationAllowedPublicationResolver
+      tags:
+        - { name: product.publication.resolver }
 
 #    store.product.voter.stock:
 #      class: StoreBundle\Resolver\Product\ProductStockPublicationResolver

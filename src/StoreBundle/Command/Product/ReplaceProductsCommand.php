@@ -147,8 +147,9 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       
       $oldProduct->setName($oldName . '(архивный)');
       $oldProduct->setSlug(null);
-      $oldProduct->setPublished(false);
       $oldProduct->setPublicationAllowed(false);
+      $oldProduct->setPublished(false);
+      
       $output->writeln("$oldName=>$newName was transformed. New id: {$newProduct->getId()}");
       
       $em->persist($newProduct);
@@ -201,6 +202,12 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       $fs = new Filesystem();
       $fs->copy($rootDir . '/../web/uploads/' . $oldTeaser, $rootDir . '/../web/uploads/' . $path);
       $fs->copy($rootDir . '/../var/uploads/' . $oldTeaser, $rootDir . '/../var/uploads/' . $path);
+      
+      # путь до папки с превью у старого товара
+      $fullOldPathWithoutExt = str_replace($ext, '', $fullPath);
+      
+      $fs->mirror($rootDir . '/../web/uploads/' . $fullOldPathWithoutExt,
+        $rootDir . '/../web/uploads/' . $fullPathWithoutExt);
       
       return $path;
     }
