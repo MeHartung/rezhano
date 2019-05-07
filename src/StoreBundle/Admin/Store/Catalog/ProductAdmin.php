@@ -36,6 +36,7 @@ class ProductAdmin extends AbstractAdmin
     $list
       ->add('sku')
       ->add('name')
+      ->add('moySkladName')
       ->add('productType', null)
       ->add('brand')
       ->add('price', 'text', [
@@ -80,6 +81,9 @@ class ProductAdmin extends AbstractAdmin
       ->tab('Основные')
       ->add('sku', TextType::class)
       ->add('name', TextType::class)
+      ->add('moySkladName', null, [
+        'disabled' => true
+      ])
       ->add('slug', TextType::class, [
         'help' => 'Если оставить пустым, то будет сгенерирован автоматически.'
       ])
@@ -222,6 +226,7 @@ class ProductAdmin extends AbstractAdmin
     $filter->add('sku')
            ->add('brand')
            ->add('name')
+           ->add('moySkladName')
            ->add('slug')
            ->add('productType')
            ->add('taxons')
