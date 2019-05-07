@@ -170,16 +170,15 @@ class ReplaceProductsCommand extends ContainerAwareCommand
         }
       } catch (\Exception $exception)
       {
-        $output->writeln('Error: ' . $exception->getMessage());
-        continue;
+        $output->writeln('Не удалось перенсти тизер товара: ' . $exception->getMessage());
       }
+      
       try
       {
         $newProduct->setImages($this->copyGallery($oldProduct, $newProduct, $output));
       } catch (\Exception $exception)
       {
-        $output->writeln($exception->getMessage());
-        break;
+        $output->writeln('Не удалось перенсти галерею товара: ' . $exception->getMessage());
       }
       
       # скопирует все значения кроме имени и слага из старого товара
