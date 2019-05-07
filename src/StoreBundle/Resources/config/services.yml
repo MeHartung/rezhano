@@ -1257,3 +1257,9 @@ services:
     store.order.total_calculator:
       class: StoreBundle\Service\Order\TotalCalculator
       arguments: ['@store.price.manager']
+
+    store.product.pre_not_found:
+      class: StoreBundle\EventListener\Product\RedirectToNewProductListener
+      arguments: ['@doctrine.orm.entity_manager', '@router']
+      tags:
+        - { name: kernel.event_listener, event: pre_http_not_found, method: onNotFoundHttpException }

@@ -5,6 +5,7 @@ namespace StoreBundle\Command\Product;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use StoreBundle\Entity\SEO\ProductRedirectRule;
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Media\Store\Catalog\Product\ProductImage;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -164,7 +165,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       {
         $path = $this->copyMainImage($newProduct, $oldProduct);
         
-        if ($path)
+        if ($path !== null)
         {
           $newProduct->setTeaserImageFile($path);
         }
@@ -214,21 +215,33 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       }
     }
     
-    $htaccessData = [];
-    
     foreach ($slugMap as $item)
     {
-      $htaccessData[] = sprintf('RedirectMatch 301 ^/products/%s products/%s', $item['from'], $item['to']);
+      $redirectRule = new ProductRedirectRule();
+      $redirectRule->setSlugFrom($item['from']);
+      $redirectRule->setSlugTo($item['to']);
+      
+      $em->persist($redirectRule);
+      $output->writeln(sprintf('RedirectMatch 301 ^/products/%s /products/%s', $item['from'], $item['to']));
     }
     
-    if (count($htaccessData))
-    {
-      $htaccessDataPath = $this->getContainer()->getParameter('kernel.root_dir') . '/../var/uploads/htaccess_data.txt';
-      file_put_contents($htaccessDataPath, implode("\n", $htaccessData));
-      $output->writeln('htaccessData in ' . $htaccessDataPath);
-    }
-    
-    $output->writeln(implode("\n", $htaccessData));
+    $em->flush();
+    /* этот код не нужен, т.к. исп. событие pre_http_not_found
+    $htaccessData = [];
+     
+     foreach ($slugMap as $item)
+     {
+       $htaccessData[] = sprintf('RedirectMatch 301 ^/products/%s /products/%s', $item['from'], $item['to']);
+     }
+     
+     if (count($htaccessData))
+     {
+       $htaccessDataPath = $this->getContainer()->getParameter('kernel.root_dir') . '/../var/uploads/htaccess_data.txt';
+       file_put_contents($htaccessDataPath, implode("\n", $htaccessData));
+       $output->writeln('htaccessData in ' . $htaccessDataPath);
+     }
+     
+     $output->writeln(implode("\n", $htaccessData));*/
   }
   
   /**

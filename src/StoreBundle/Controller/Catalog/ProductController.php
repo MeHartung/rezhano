@@ -7,10 +7,12 @@ namespace StoreBundle\Controller\Catalog;
 
 
 use StoreBundle\Entity\Store\Catalog\Product\ProductQuestion;
+use StoreBundle\Event\ProductNotFoundEvent;
 use StoreBundle\Form\Catalog\Product\ProductQuestionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ProductController extends Controller
@@ -26,7 +28,7 @@ class ProductController extends Controller
   {
     return $this->redirectToRoute('catalog_index', array(), 301);
   }
-
+  
   /**
    * Контроллер страницы товара
    *
@@ -36,38 +38,44 @@ class ProductController extends Controller
   public function showAction($slug)
   {
     $product = $this->getDoctrine()
-                    ->getRepository('StoreBundle:Store\Catalog\Product\Product')
-                    ->findOneBy(array('slug' => $slug));
-
+      ->getRepository('StoreBundle:Store\Catalog\Product\Product')
+      ->findOneBy(array('slug' => $slug));
+    
     if (!$product)
     {
+      $changedEvent = $this->get('event_dispatcher')->dispatch('pre_http_not_found', new ProductNotFoundEvent($slug));
+      
+      if ($changedEvent->getResponse() instanceof Response)
+      {
+        return $changedEvent->getResponse();
+      }
+      
       throw $this->createNotFoundException(sprintf('Товар "%s" не найден', $slug));
     }
-
+    
     if (!$this->isGranted('publication', $product))
     {
       throw $this->createNotFoundException(sprintf('Товар "%s" снят с публикации', $slug));
     }
-
     
-    if($product->getTaxons()->count() === 0)
+    
+    if ($product->getTaxons()->count() === 0)
     {
       throw $this->createNotFoundException(sprintf('Товар "%s" не найден', $slug));
     }
     
     $taxon = $product->getTaxons()->first();
     $productAttributeValues = $product->getProductAttributeValues();
-
+    
     if (!empty($productAttributeValues) && count($productAttributeValues))
     {
       $productAttributeValues = $productAttributeValues->toArray();
       $productAttributeValueChunks = array_chunk($productAttributeValues, ceil(count($productAttributeValues) / 2));
-    }
-    else
+    } else
     {
       $productAttributeValueChunks = [];
     }
-
+    
     return $this->render('StoreBundle:Catalog\Product:show.html.twig', array(
       'product' => $product,
       'productAttributeValueChunks' => $productAttributeValueChunks,
@@ -75,31 +83,31 @@ class ProductController extends Controller
       'stockManager' => $this->get('aw.logistic.stock.manager'),
     ));
   }
-
+  
   public function restGetAction($slug)
   {
     $product = $this->getDoctrine()
       ->getRepository('StoreBundle:Store\Catalog\Product\Product')
       ->findOneBy(array('slug' => $slug));
-
+    
     if (!$product)
     {
       throw $this->createNotFoundException(sprintf('Товар "%s" не найден', $slug));
     }
-
+    
     $imageUrl = null;
     $mainImage = $product->getMainImage();
-
+    
     if ($mainImage)
     {
       $mainImageResource = $this->get('aw.media.manager')->getMediaStorage($mainImage)->retrieve($mainImage);
-
+      
       if ($mainImageResource)
       {
         $imageUrl = $mainImageResource->getUrl();
       }
     }
-
+    
     $adapter = $this->get('store.factory.product_client_adapter')->getModelAdapter($product);
     $productJson = $adapter->getClientModelValues();
 
@@ -114,10 +122,10 @@ class ProductController extends Controller
 //      'image' => $imageUrl,
 //      'description_short' => $product->getShortDescription()
 //    );
-
+    
     return new JsonResponse($productJson);
   }
-
+  
   /**
    * Контроллер действия "Задать вопрос по этому товару"
    */
@@ -126,30 +134,30 @@ class ProductController extends Controller
     $product = $this->getDoctrine()
       ->getRepository('StoreBundle:Store\Catalog\Product\Product')
       ->findOneBy(array('slug' => $slug));
-
+    
     if (!$product)
     {
       $this->createNotFoundException(sprintf('Товар "%s" не найден', $slug));
     }
-
+    
     $questionData = json_decode($request->getContent(), true);
-
+    
     $question = new ProductQuestion();
     $question->setProduct($product);
-
+    
     $form = $this->createForm(ProductQuestionType::class, $question);
-
+    
     $form->submit($questionData);
-
+    
     if ($form->isSubmitted() && $form->isValid())
     {
       $questionData = $form->getData();
-
+      
       $em = $this->getDoctrine()->getManager();
-
+      
       $em->persist($questionData);
       $em->flush();
-
+      
       $operatorEmail = $this->getParameter('operator_email');
       if ($operatorEmail)
       {
@@ -164,15 +172,15 @@ class ProductController extends Controller
             'customer_email' => $question->getEmail(),
             'question' => $question->getText()
           ));
-
+        
         $this->get('mailer')->send($email);
       }
-
+      
       return new JsonResponse();
     }
-
+    
     return new JsonResponse(null, 400);
   }
-
-
+  
+  
 }
