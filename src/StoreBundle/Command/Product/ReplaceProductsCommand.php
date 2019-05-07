@@ -17,7 +17,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class ReplaceProductsCommand extends ContainerAwareCommand
 {
   private $map = [
-    'Бреби' => 'Сыр РЕЖАНО Буррата вес (Россия)',
+    'Бреби' => 'Сыр РЕЖАНО Бреби',
     'Буррата ' => 'Сыр РЕЖАНО Буррата вес (Россия)',
     'Буше' => 'Сыр РЕЖАНО Буше десерт с бел плес 45-60%  вес (Россия)',
     'Буше с инжиром' => '',

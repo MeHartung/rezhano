@@ -88,7 +88,7 @@ class MoySkladSourceBundles extends BaseDataSource
     {
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
-        new GenericEvent((sprintf('%s.', $e->getMessage())))
+        new GenericEvent(sprintf('[%s]%s. %s', $e->getCode(), $e->getMessage(), $e->getInfo()))
       );
       $this->logger->error(sprintf('[%s]%s. %s', $e->getCode(), $e->getMessage(), $e->getInfo()));
       
@@ -101,7 +101,7 @@ class MoySkladSourceBundles extends BaseDataSource
       );
       
       $this->logger->error(sprintf('[%s]%s. %s', $e->getCode(), $e->getMessage(), $e->getDump()));
-      
+      return null;
     } catch (\Exception $exception)
     {
       $this->logger->error('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());

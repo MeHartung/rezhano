@@ -119,7 +119,7 @@ class MoySkladSource extends BaseDataSource
       );
       
       $this->logger->error(sprintf('[%s]%s. %s', $e->getCode(), $e->getMessage(), $e->getDump()));
-      
+      return null;
     } catch (\Exception $exception)
     {
       $this->logger->error('Products list not uploaded from MoySklad:' . "\n" .  $exception->getMessage() . "\n" . 'Trace: ' . "\n" . $exception->getTraceAsString());
