@@ -70,7 +70,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       
       if ($newName === '' && $oldProduct)
       {
-        $oldProduct->setName($oldName . '(архивный)');
+        $oldProduct->setName($oldName . ' (архивный)');
         $oldProduct->setSlug(null);
         $oldProduct->setPublished(false);
         $oldProduct->setPublicationAllowed(false);
@@ -145,7 +145,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       $newProduct->setProductAttributeValues($oldProduct->getProductAttributeValues());
       $newProduct->setProductType($oldProduct->getProductType());
       
-      $oldProduct->setName($oldName . '(архивный)');
+      $oldProduct->setName($oldName . ' (архивный)');
       $oldProduct->setSlug(null);
       $oldProduct->setPublicationAllowed(false);
       $oldProduct->setPublished(false);
