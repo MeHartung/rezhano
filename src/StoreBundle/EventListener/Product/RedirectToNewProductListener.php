@@ -45,7 +45,6 @@ class RedirectToNewProductListener
     
     $url = $this->router->generate('product', ['slug' => $redirectRule->getSlugTo()], RouterInterface::ABSOLUTE_URL);
     $event->setResponse(new RedirectResponse($url, 301));
-    return new RedirectResponse($url, 301);
   }
   
 }
