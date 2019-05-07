@@ -76,6 +76,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
         $oldProduct->setPublicationAllowed(false);
         
         $em->persist($oldProduct);
+        $output->writeln("Product {$oldProduct->getId()} unpublished");
         continue;
       }
       
