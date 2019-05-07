@@ -30,17 +30,17 @@ class ReplaceProductsCommand extends ContainerAwareCommand
     ],
     'Буше' => [
       'search' => 'Сыр РЕЖАНО Буше десерт с бел плес 45-60%  вес (Россия)',
-      'new' => 'Режано Буше десерт с бел плес'
+      'new' => 'Режано Буше десерт с белой плесенью'
     ],
     'Буше с инжиром' => '',
     'Дрим блю' => [
       'search' => 'Сыр РЕЖАНО Дрим блю мяг с голуб плес 45-60% в/у вес (Россия)',
-      'new' => 'Режано Дрим блю мяг с голуб плес'
+      'new' => 'Режано Дрим блю мягкий с голубой плеснью'
     ],
     'Зерно на экскурсии' => '',
     'Камамбер' => [
       'search' => 'Сыр РЕЖАНО Камамбер мяг с бел плес 45-60% в вес (Россия)',
-      'new' => 'Режано Камамбер мяг с бел плес'
+      'new' => 'Режано Камамбер мягкий с белой плесенью'
     ],
     'Капра' => [
       'search' => 'Сыр РЕЖАНО Мантова',
@@ -72,7 +72,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
     ],
     'Монтазио 2 месяца' => [
       'search' => 'Сыр РЕЖАНО Монтазио п/тв с мягк вкус 47% в/у вес (Россия)',
-      'new' => 'Режано Монтазио п/тв с мягк вкус'
+      'new' => 'Режано Монтазио полутвердый с мягким вкусом'
     ],
     'Монте Блун' => [
       'search' => 'Сыр РЕЖАНО Монте блун',
@@ -84,7 +84,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
     ],
     'Режано 6 месяцев' => [
       'search' => 'Сыр РЕЖАНО Честер тв пикантный 47% в/у вес (Россия)',
-      'new' => 'Режано Честер тв пикантный'
+      'new' => 'Режано Честер твердый пикантный'
     ],
     'Рикотта' => [
       'search' => 'Сыр РЕЖАНО Рикотта вес (Россия)',
@@ -222,7 +222,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       $redirectRule->setSlugTo($item['to']);
       
       $em->persist($redirectRule);
-      $output->writeln(sprintf('RedirectMatch 301 ^/products/%s /products/%s', $item['from'], $item['to']));
+      $output->writeln(sprintf('Add rule for redirect: /products/%s => /products/%s', $item['from'], $item['to']));
     }
     
     $em->flush();
