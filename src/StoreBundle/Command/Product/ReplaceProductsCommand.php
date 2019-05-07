@@ -72,6 +72,9 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       {
         $oldProduct->setName($oldName . '(архивный)');
         $oldProduct->setSlug(null);
+        $oldProduct->setPublished(false);
+        $oldProduct->setPublicationAllowed(false);
+        
         $em->persist($oldProduct);
         continue;
       }
@@ -143,6 +146,8 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       
       $oldProduct->setName($oldName . '(архивный)');
       $oldProduct->setSlug(null);
+      $oldProduct->setPublished(false);
+      $oldProduct->setPublicationAllowed(false);
       $output->writeln("$oldName=>$newName was transformed. New id: {$newProduct->getId()}");
       
       $em->persist($newProduct);
