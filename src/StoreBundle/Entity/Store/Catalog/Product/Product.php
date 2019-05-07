@@ -371,6 +371,13 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
    */
   private $multiplier;
   
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(type="string", length=255, nullable=true)
+   */
+  private $moySkladName;
+  
   public function __construct()
   {
     $this->taxons = new ArrayCollection();
@@ -1585,4 +1592,21 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
     # REZHANO-167 - вырезаны копейки из цен
     return round($this->getPrice() / $this->getMultiplier() * $this->getUnitWeight(), 0);
   }
+  
+  /**
+   * @return null|string
+   */
+  public function getMoySkladName(): ?string
+  {
+    return $this->moySkladName;
+  }
+  
+  /**
+   * @param null|string $moySkladName
+   */
+  public function setMoySkladName(?string $moySkladName): void
+  {
+    $this->moySkladName = $moySkladName;
+  }
+  
 }

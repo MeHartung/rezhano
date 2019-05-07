@@ -16,32 +16,100 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class ReplaceProductsCommand extends ContainerAwareCommand
 {
+  private $productMap = [];
+  
   private $map = [
-    'Бреби' => 'Сыр РЕЖАНО Бреби',
-    'Буррата ' => 'Сыр РЕЖАНО Буррата вес (Россия)',
-    'Буше' => 'Сыр РЕЖАНО Буше десерт с бел плес 45-60%  вес (Россия)',
+    'Бреби' => [
+      'search' => 'Сыр РЕЖАНО Бреби',
+      'new' => 'Режано Бреби'
+    ],
+    'Буррата ' => [
+      'search' => 'Сыр РЕЖАНО Буррата вес (Россия)',
+      'new' => 'Режано Буррата'
+    ],
+    'Буше' => [
+      'search' => 'Сыр РЕЖАНО Буше десерт с бел плес 45-60%  вес (Россия)',
+      'new' => 'Режано Буше десерт с бел плес'
+    ],
     'Буше с инжиром' => '',
-    'Дрим блю' => 'Сыр РЕЖАНО Дрим блю мяг с голуб плес 45-60% в/у вес (Россия)',
+    'Дрим блю' => [
+      'search' => 'Сыр РЕЖАНО Дрим блю мяг с голуб плес 45-60% в/у вес (Россия)',
+      'new' => 'Режано Дрим блю мяг с голуб плес'
+    ],
     'Зерно на экскурсии' => '',
-    'Камамбер' => 'Сыр РЕЖАНО Камамбер мяг с бел плес 45-60% в вес (Россия)',
-    'Капра' => 'Сыр РЕЖАНО Мантова',
-    'Качотта без добавок' => 'Сыр РЕЖАНО 40% в/у вес (Россия)',
-    'Качотта в итальянских травах' => 'Сыр РЕЖАНО в итальянских травах 40% в/у вес (Россия)',
-    'Качотта с паприкой' => 'Сыр РЕЖАНО с паприкой 40% в/у вес (Россия)',
-    'Качотта с прованскими травами' => 'Сыр РЕЖАНО с прованскими травами 40% в/у вес (Россия)',
-    'Качотта с розовым перцем' => 'Сыр РЕЖАНО с розовым перцем 40% в/у вес (Россия)',
-    'Качотта с сушеным томатом' => 'Сыр РЕЖАНО с томатом 40% в/у вес (Россия)',
-    'Монтазио 2 месяца' => 'Сыр РЕЖАНО Монтазио п/тв с мягк вкус 47% в/у вес (Россия)',
-    'Монте Блун' => 'Сыр РЕЖАНО Монте блун',
-    'Моцарелла' => 'Сыр РЕЖАНО Моцарелла вес (Россия)',
-    'Режано 6 месяцев' => 'Сыр РЕЖАНО Честер тв пикантный 47% в/у вес (Россия)',
-    'Рикотта' => 'Сыр РЕЖАНО Рикотта вес (Россия)',
-    'Скаморца' => 'Сыр РЕЖАНО Скаморца 45% в/у вес (Россия)',
-    'Стинки' => 'Сыр РЕЖАНО Стинки 38% в/у вес (Россия)',
-    'Страчателла' => 'Сыр РЕЖАНО Страчателла вес (Россия)',
-    'Тревизо' => 'Сыр РЕЖАНО Тревизо',
+    'Камамбер' => [
+      'search' => 'Сыр РЕЖАНО Камамбер мяг с бел плес 45-60% в вес (Россия)',
+      'new' => 'Режано Камамбер мяг с бел плес'
+    ],
+    'Капра' => [
+      'search' => 'Сыр РЕЖАНО Мантова',
+      'new' => 'Режано Мантова'
+    ],
+    'Качотта без добавок' => [
+      'search' => 'Сыр РЕЖАНО 40% в/у вес (Россия)',
+      'new' => 'Режано'
+    ],
+    'Качотта в итальянских травах' => [
+      'search' => 'Сыр РЕЖАНО в итальянских травах 40% в/у вес (Россия)',
+      'new' => 'Режано в итальянских травах'
+    ],
+    'Качотта с паприкой' => [
+      'search' => 'Сыр РЕЖАНО с паприкой 40% в/у вес (Россия)',
+      'new' => 'Режано с паприкой'
+    ],
+    'Качотта с прованскими травами' => [
+      'search' => 'Сыр РЕЖАНО с прованскими травами 40% в/у вес (Россия)',
+      'new' => 'Режано с прованскими травами'
+    ],
+    'Качотта с розовым перцем' => [
+      'search' => 'Сыр РЕЖАНО с розовым перцем 40% в/у вес (Россия)',
+      'new' => 'Режано с розовым перцем'
+    ],
+    'Качотта с сушеным томатом' => [
+      'search' => 'Сыр РЕЖАНО с томатом 40% в/у вес (Россия)',
+      'new' => 'Режано с томатом'
+    ],
+    'Монтазио 2 месяца' => [
+      'search' => 'Сыр РЕЖАНО Монтазио п/тв с мягк вкус 47% в/у вес (Россия)',
+      'new' => 'Режано Монтазио п/тв с мягк вкус'
+    ],
+    'Монте Блун' => [
+      'search' => 'Сыр РЕЖАНО Монте блун',
+      'new' => 'Режано Монте блун'
+    ],
+    'Моцарелла' => [
+      'search' => 'Сыр РЕЖАНО Моцарелла вес (Россия)',
+      'new' => 'Режано Моцарелла'
+    ],
+    'Режано 6 месяцев' => [
+      'search' => 'Сыр РЕЖАНО Честер тв пикантный 47% в/у вес (Россия)',
+      'new' => 'Режано Честер тв пикантный'
+    ],
+    'Рикотта' => [
+      'search' => 'Сыр РЕЖАНО Рикотта вес (Россия)',
+      'new' => 'Режано Рикотта'
+    ],
+    'Скаморца' => [
+      'search' => 'Сыр РЕЖАНО Скаморца 45% в/у вес (Россия)',
+      'new' => 'Режано Скаморца'
+    ],
+    'Стинки' => [
+      'search' => 'Сыр РЕЖАНО Стинки 38% в/у вес (Россия)',
+      'new' => 'Режано Стинки'
+    ],
+    'Страчателла' => [
+      'search' => 'Сыр РЕЖАНО Страчателла вес (Россия)',
+      'new' => 'Режано Страчателла'
+    ],
+    'Тревизо' => [
+      'search' => 'Сыр РЕЖАНО Тревизо',
+      'new' => 'Режано Тревизо'
+    ],
     'Шемудин' => '',
-    'Азоло' => 'Сыр РЕЖАНО Азоло'
+    'Азоло' => [
+      'search' => 'Сыр РЕЖАНО Азоло',
+      'new' => 'Режано Азоло'
+    ],
   ];
   
   public function configure()
@@ -55,30 +123,13 @@ class ReplaceProductsCommand extends ContainerAwareCommand
     $doctrine = $this->getContainer()->get('doctrine');
     $em = $doctrine->getManager();
     
-    /** @var string $newName */
-    foreach ($this->map as $oldName => $newName)
+    /** @var string $newData */
+    foreach ($this->map as $oldName => $newData)
     {
       /** @var Product $oldProduct */
       $oldProduct = $em->getRepository(Product::class)->findOneBy([
         'name' => $oldName
       ]);
-      
-      /** @var Product $newProduct */
-      $newProduct = $em->getRepository(Product::class)->findOneBy([
-        'name' => $newName
-      ]);
-      
-      if ($newName === '' && $oldProduct)
-      {
-        $oldProduct->setName($oldName . ' (архивный)');
-        $oldProduct->setSlug(null);
-        $oldProduct->setPublished(false);
-        $oldProduct->setPublicationAllowed(false);
-        
-        $em->persist($oldProduct);
-        $output->writeln("Product {$oldProduct->getId()} unpublished");
-        continue;
-      }
       
       if (!$oldProduct)
       {
@@ -86,9 +137,26 @@ class ReplaceProductsCommand extends ContainerAwareCommand
         continue;
       }
       
+      # если не массив, то снимаем старый товар с публикации
+      if (!is_array($newData) && $oldProduct)
+      {
+        $oldProduct = $this->unpublishProduct($oldProduct);
+        $em->persist($oldProduct);
+        $output->writeln("Product {$oldProduct->getId()} unpublished");
+        continue;
+      }
+      
+      $newName = $newData['new'];
+      $searchName = $newData['search'];
+      
+      /** @var Product $newProduct */
+      $newProduct = $em->getRepository(Product::class)->findOneBy([
+        'name' => $searchName
+      ]);
+      
       if (!$newProduct)
       {
-        $output->writeln('New product ' . $newName . ' not found');
+        $output->writeln('New product ' . $searchName . ' not found');
         continue;
       }
       
@@ -102,8 +170,8 @@ class ReplaceProductsCommand extends ContainerAwareCommand
         }
       } catch (\Exception $exception)
       {
-        $output->writeln($exception->getMessage());
-        break;
+        $output->writeln('Error: ' . $exception->getMessage());
+        continue;
       }
       try
       {
@@ -114,41 +182,12 @@ class ReplaceProductsCommand extends ContainerAwareCommand
         break;
       }
       
-      $newProduct->setName($oldProduct->getName());
-      $newProduct->setDescription($oldProduct->getDescription());
-      $newProduct->setStocks($oldProduct->getStocks());
-      $newProduct->setTaxons($oldProduct->getTaxons());
-      $newProduct->setSlug($oldProduct->getSlug());
-      $newProduct->setPrice($oldProduct->getPrice());
-      $newProduct->setMultiplier($oldProduct->getMultiplier());
-      $newProduct->setBundle($oldProduct->getName());
-      $newProduct->setUnitWeight($oldProduct->getUnitWeight());
-      $newProduct->setPackage($oldProduct->getPackage());
-      $newProduct->setSku($oldProduct->getSku());
-      $newProduct->setWeight($oldProduct->getWeight());
-      $newProduct->setUnits($oldProduct->getUnits());
-      $newProduct->setBrand($oldProduct->getBrand());
-      $newProduct->setHeight($oldProduct->getHeight());
-      $newProduct->setInStock($oldProduct->getInStock());
-      $newProduct->setHit($oldProduct->isHit());
-      $newProduct->setPublished($oldProduct->isPublished());
-      $newProduct->setPackage($oldProduct->getPackage());
-      $newProduct->setIsFreeDelivery($oldProduct->isFreeDelivery());
-      $newProduct->setWithGift($oldProduct->isWithGift());
-      $newProduct->setPublicationAllowed($oldProduct->isPublicationAllowed());
-      $newProduct->setPurchasePrice($oldProduct->getPurchasePrice());
-      $newProduct->setVolume($oldProduct->getVolume());
-      $newProduct->setNovice($oldProduct->isNovice());
-      $newProduct->setOldPrice($oldProduct->getOldPrice());
-      $newProduct->setShortDescription($oldProduct->getShortDescription());
-      $newProduct->setSale($oldProduct->isSale());
-      $newProduct->setProductAttributeValues($oldProduct->getProductAttributeValues());
-      $newProduct->setProductType($oldProduct->getProductType());
-      
-      $oldProduct->setName($oldName . ' (архивный)');
-      $oldProduct->setSlug(null);
-      $oldProduct->setPublicationAllowed(false);
-      $oldProduct->setPublished(false);
+      # скопирует все значения кроме имени и слага из старого товара
+      $newProduct = $this->copyFromProductToProduct($oldProduct, $newProduct, $newName, $searchName);
+      # до того, как изменим старый товар, нужно запомнить его слаг
+      $this->addDataToProductsMap($oldProduct, $newProduct);
+      # снимем старый товар с публикации и поменяем слаг
+      $oldProduct = $this->unpublishProduct($oldProduct);
       
       $output->writeln("$oldName=>$newName was transformed. New id: {$newProduct->getId()}");
       
@@ -157,6 +196,97 @@ class ReplaceProductsCommand extends ContainerAwareCommand
     }
     
     $em->flush();
+    
+    $slugMap = [];
+    foreach ($this->productMap as $data)
+    {
+      $product = $em->find(Product::class, $data['new_id']);
+      if (!$product)
+      {
+        continue;
+      }
+      
+      if ($product->getSlug() !== $data['old_slug'])
+      {
+        $slugMap[$data['new_id']] = [
+          'from' => $data['old_slug'],
+          'to' => $product->getSlug(),
+        ];
+      }
+    }
+    
+    $htaccessData = [];
+    
+    foreach ($slugMap as $item)
+    {
+      $htaccessData[] = sprintf('RedirectMatch 301 ^/products/%s products/%s', $item['from'], $item['to']);
+    }
+    
+    if (count($htaccessData))
+    {
+      $htaccessDataPath = $this->getContainer()->getParameter('kernel.root_dir') . '/../var/uploads/htaccess_data.txt';
+      file_put_contents($htaccessDataPath, implode("\n", $htaccessData));
+      $output->writeln('htaccessData in ' . $htaccessDataPath);
+    }
+    
+    $output->writeln(implode("\n", $htaccessData));
+  }
+  
+  /**
+   * @param Product $oldProduct
+   * @param Product $newProduct
+   * @return void
+   */
+  private function addDataToProductsMap(Product $oldProduct, Product $newProduct)
+  {
+    $this->productMap[] = [
+      'old_slug' => $oldProduct->getSlug(), # слаг старого товара
+      'new_id' => $newProduct->getId() #  id товара, для которого нужно этот слаг применить
+    ];
+  }
+  
+  /**
+   * @param Product $oldProduct
+   * @param Product $newProduct
+   * @param string $newName - новое имя
+   * @param string $msName - имя товара в МС
+   * @return Product
+   */
+  private function copyFromProductToProduct(Product $oldProduct, Product $newProduct, $newName, $msName)
+  {
+    $newProduct->setName($newName);
+    $newProduct->setMoySkladName($msName);
+    $newProduct->setSlug(null);
+    $newProduct->setDescription($oldProduct->getDescription());
+    $newProduct->setStocks($oldProduct->getStocks());
+    $newProduct->setTaxons($oldProduct->getTaxons());
+    $newProduct->setPrice($oldProduct->getPrice());
+    $newProduct->setMultiplier($oldProduct->getMultiplier());
+    $newProduct->setBundle($oldProduct->getName());
+    $newProduct->setUnitWeight($oldProduct->getUnitWeight());
+    $newProduct->setPackage($oldProduct->getPackage());
+    $newProduct->setSku($oldProduct->getSku());
+    $newProduct->setWeight($oldProduct->getWeight());
+    $newProduct->setUnits($oldProduct->getUnits());
+    $newProduct->setBrand($oldProduct->getBrand());
+    $newProduct->setHeight($oldProduct->getHeight());
+    $newProduct->setInStock($oldProduct->getInStock());
+    $newProduct->setHit($oldProduct->isHit());
+    $newProduct->setPublished($oldProduct->isPublished());
+    $newProduct->setPackage($oldProduct->getPackage());
+    $newProduct->setIsFreeDelivery($oldProduct->isFreeDelivery());
+    $newProduct->setWithGift($oldProduct->isWithGift());
+    $newProduct->setPublicationAllowed($oldProduct->isPublicationAllowed());
+    $newProduct->setPurchasePrice($oldProduct->getPurchasePrice());
+    $newProduct->setVolume($oldProduct->getVolume());
+    $newProduct->setNovice($oldProduct->isNovice());
+    $newProduct->setOldPrice($oldProduct->getOldPrice());
+    $newProduct->setShortDescription($oldProduct->getShortDescription());
+    $newProduct->setSale($oldProduct->isSale());
+    $newProduct->setProductAttributeValues($oldProduct->getProductAttributeValues());
+    $newProduct->setProductType($oldProduct->getProductType());
+    
+    return $newProduct;
   }
   
   /**
@@ -263,5 +393,19 @@ class ReplaceProductsCommand extends ContainerAwareCommand
     }
     
     return $cloned_images;
+  }
+  
+  /**
+   * @param Product $oldProduct
+   * @return Product
+   */
+  private function unpublishProduct(Product $oldProduct)
+  {
+    $oldProduct->setName($oldProduct->getName() . ' (архивный)');
+    $oldProduct->setSlug(null);
+    $oldProduct->setPublished(false);
+    $oldProduct->setPublicationAllowed(false);
+    
+    return $oldProduct;
   }
 }
