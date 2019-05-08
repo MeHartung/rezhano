@@ -5,15 +5,16 @@ namespace StoreBundle\Command\Product;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\DBAL\Driver\Connection;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\QueryBuilder;
 use StoreBundle\Entity\SEO\ProductRedirectRule;
 use StoreBundle\Entity\Store\Catalog\Product\Product;
 use StoreBundle\Media\Store\Catalog\Product\ProductImage;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
 
 class ReplaceProductsCommand extends ContainerAwareCommand
@@ -319,7 +320,11 @@ class ReplaceProductsCommand extends ContainerAwareCommand
   public function configure()
   {
     $this
-      ->setName('products:replace');
+      ->setName('products:replace')
+      ->addOption('remove-old-rules',
+        'ror',
+        InputOption::VALUE_OPTIONAL,
+        '', false);
   }
   
   public function execute(InputInterface $input, OutputInterface $output)
@@ -387,6 +392,16 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       
       # скопирует все значения кроме имени и слага из старого товара
       $newProduct = $this->copyFromProductToProduct($oldProduct, $newProduct, $newName, $newData);
+      
+      $oldRank = $oldProduct->getProductRank();
+      
+      $rank = $newProduct->getProductRank();
+      $rank->setNbBuy($oldRank->getNbBuy());
+      $rank->setNbCart($oldRank->getNbCart());
+      $rank->setNbViews($oldRank->getNbViews());
+      $rank->setNbFavorites($oldRank->getNbFavorites());
+      $em->persist($rank);
+      
       # до того, как изменим старый товар, нужно запомнить его слаг
       $this->addDataToProductsMap($oldProduct, $newProduct);
       # снимем старый товар с публикации и поменяем слаг
@@ -421,6 +436,13 @@ class ReplaceProductsCommand extends ContainerAwareCommand
     
     foreach ($slugMap as $item)
     {
+      if ($input->getOption('remove-old-rules') === 'true')
+      {
+        /** @var Connection $con */
+        $con = $this->getContainer()->get('doctrine')->getConnection();
+        $con->query('TRUNCATE product_redirect_rules')->execute();
+      }
+      
       $redirectRule = new ProductRedirectRule();
       $redirectRule->setSlugFrom($item['from']);
       $redirectRule->setSlugTo($item['to']);
@@ -474,7 +496,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
   private function copyFromProductToProduct(Product $oldProduct, Product $newProduct, $newName, $slugData)
   {
     $newProduct->setName($newName);
-    $newProduct->setSlug($this->processSlug($newName, $oldProduct->getShortDescription()));
+    $newProduct->setSlug($this->processSlug($newName, $oldProduct->getShortDescription(), $oldProduct->getId()));
     $newProduct->setDescription($oldProduct->getDescription());
     $newProduct->setStocks($oldProduct->getStocks());
     $newProduct->setTaxons($oldProduct->getTaxons());
@@ -503,6 +525,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
     $newProduct->setSale($oldProduct->isSale());
     $newProduct->setProductAttributeValues($oldProduct->getProductAttributeValues());
     $newProduct->setProductType($oldProduct->getProductType());
+    $newProduct->setRank($oldProduct->getRank());
     
     return $newProduct;
   }
@@ -514,18 +537,25 @@ class ReplaceProductsCommand extends ContainerAwareCommand
    *
    * @param string $name
    * @param string $shortDescription
+   * @param int $oldProductId - id товара-родителя, у которого точно такой же slug
    * @return string
    */
-  private function processSlug($name, $shortDescription): ?string
+  private function processSlug($name, $shortDescription, $oldProductId): ?string
   {
     $repo = $this->getContainer()->get('doctrine')->getManager()->getRepository(Product::class);
     $slugService = $this->getContainer()->get('accurateweb.slugifier.yandex');
     
     $slug = $slugService->slugify($name);
     
-    $products = $repo->findBy([
-      'slug' => $slug
-    ]);
+    /** @var QueryBuilder $qb */
+    $qb = $repo->createQueryBuilder('p');
+    $products = $qb
+      ->where('p.slug = :slug')
+      ->andWhere('p.id <> :id')
+      ->setParameter('slug', $slug)
+      ->setParameter('id', $oldProductId)
+      ->getQuery()->getResult();
+    
     
     if (count($products) === 0)
     {
