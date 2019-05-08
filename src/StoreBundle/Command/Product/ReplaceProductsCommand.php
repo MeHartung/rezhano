@@ -209,94 +209,110 @@ class ReplaceProductsCommand extends ContainerAwareCommand
   private $map = [
     '00092' => [
       'search' => '27333',
-      'new' => 'Режано Бреби'
+      'new' => 'Бреби',
     ],
     '00020 ' => [
       'search' => '00533',
-      'new' => 'Режано Буррата'
+      'new' => 'Буррата'
     ],
     '00034' => [
       'search' => '23317',
-      'new' => 'Режано Буше'
+      'new' => 'Буше'
     ],
     '27000010028090' => '',
     '03144' => [
       'search' => '23333',
-      'new' => 'Режано Дрим блю'
+      'new' => 'Дрим блю'
     ],
     '2700001002462' => '',
     '00032' => [
       'search' => '23319',
-      'new' => 'Режано Камамбер'
+      'new' => 'Камамбер'
     ],
     '00091' => [
       'search' => '25455',
-      'new' => 'Режано Мантова'
+      'new' => 'Мантова'
     ],
     '00004' => [
       'search' => '23326',
-      'new' => 'Режано'
+      'new' => 'Режано',
+      'slug_source' => 'Режано Без добавок'
     ],
     '00002' => [
       'search' => '29433',
-      'new' => 'Режано в итальянских травах'
+      'new' => 'Режано',
+      'slug_source' => 'Режано в итальянских травах'
     ],
     '00006' => [
       'search' => '23328',
-      'new' => 'Режано с паприкой'
+      'new' => 'Режано',
+      'slug_source' => 'Режано с паприкой',
     ],
     '00008' => [
       'search' => '23329',
-      'new' => 'Режано с прованскими травами'
+      'new' => 'Режано',
+      'slug_source' => 'Режано с прованскими травами',
     ],
     '00007' => [
       'search' => '23324',
-      'new' => 'Режано с розовым перцем'
+      'new' => 'Режано',
+      'slug_source' => 'Режано с розовым перцем',
     ],
     '27000010027818' => [
       'search' => '23330',
-      'new' => 'Режано с томатом'
+      'new' => 'Режано',
+      'slug_source' => 'Режано с томатом',
     ],
     '00017' => [
       'search' => '23332',
-      'new' => 'Режано Монтазио'
+      'new' => 'Монтазио',
+      'slug_source' => 'Режано Монтазио',
     ],
     '00015' => [
       'search' => '28333',
-      'new' => 'Режано Монте блун'
+      'new' => 'Монте Блун',
+      'slug_source' => 'Режано Монте блун',
     ],
     '00013' => [
       'search' => '00532',
-      'new' => 'Режано Моцарелла'
+      'new' => 'Моцарелла',
+      'slug_source' => 'Режано Моцарелла'
     ],
     '00012' => [
       'search' => '23318',
-      'new' => 'Режано Честер'
+      'new' => 'Честер',
+      'slug_source' => 'Режано Честер',
     ],
     '00025' => [
       'search' => '00531',
-      'new' => 'Режано Рикотта'
+      'new' => 'Рикотта',
+      'slug_source' => 'Режано Рикотта',
     ],
     '00009' => [
       'search' => '23323',
-      'new' => 'Режано Скаморца'
+      'new' => 'Скаморца',
+      'slug_source' => 'Скаморца',
     ],
     '00677' => [
       'search' => '23331',
-      'new' => 'Режано Стинки'
+      'new' => 'Стинки',
+      'slug_source' => 'Режано Стинки',
     ],
     '00019' => [
       'search' => '00535',
-      'new' => 'Режано Страчателла'
+      'new' => 'Страчателла',
+      'slug_source' => 'Режано Страчателла'
     ],
     '00016' => [
       'search' => '25334',
-      'new' => 'Режано Тревизо'
+      'new' => 'Тревизо',
+      'slug_source' => 'Режано Тревизо',
     ],
     '00026' => '',
     '00022' => [
       'search' => '23536',
-      'new' => 'Режано Азоло'
+      'new' => 'Азоло',
+      'slug_source' => 'Режано Азоло',
     ],
   ];
   
@@ -370,7 +386,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       }
       
       # скопирует все значения кроме имени и слага из старого товара
-      $newProduct = $this->copyFromProductToProduct($oldProduct, $newProduct, $newName);
+      $newProduct = $this->copyFromProductToProduct($oldProduct, $newProduct, $newName, $newData);
       # до того, как изменим старый товар, нужно запомнить его слаг
       $this->addDataToProductsMap($oldProduct, $newProduct);
       # снимем старый товар с публикации и поменяем слаг
@@ -455,10 +471,10 @@ class ReplaceProductsCommand extends ContainerAwareCommand
    * @param string $newName - новое имя
    * @return Product
    */
-  private function copyFromProductToProduct(Product $oldProduct, Product $newProduct, $newName)
+  private function copyFromProductToProduct(Product $oldProduct, Product $newProduct, $newName, $slugData)
   {
     $newProduct->setName($newName);
-    $newProduct->setSlug(null);
+    $newProduct->setSlug($this->processSlug($newName, $oldProduct->getShortDescription()));
     $newProduct->setDescription($oldProduct->getDescription());
     $newProduct->setStocks($oldProduct->getStocks());
     $newProduct->setTaxons($oldProduct->getTaxons());
@@ -489,6 +505,34 @@ class ReplaceProductsCommand extends ContainerAwareCommand
     $newProduct->setProductType($oldProduct->getProductType());
     
     return $newProduct;
+  }
+  
+  /**
+   * https://jira.accurateweb.ru/browse/REZHANO-196
+   * У сыров с одинаковыми названиями в slug нужно подмешивать краткое описание.
+   * И только после этого уже пусть нумеруются.
+   *
+   * @param string $name
+   * @param string $shortDescription
+   * @return string
+   */
+  private function processSlug($name, $shortDescription): ?string
+  {
+    $repo = $this->getContainer()->get('doctrine')->getManager()->getRepository(Product::class);
+    $slugService = $this->getContainer()->get('accurateweb.slugifier.yandex');
+    
+    $slug = $slugService->slugify($name);
+    
+    $products = $repo->findBy([
+      'slug' => $slug
+    ]);
+    
+    if (count($products) === 0)
+    {
+      return $slug;
+    }
+    
+    return $slugService->slugify($name . ' ' . $shortDescription);
   }
   
   /**
