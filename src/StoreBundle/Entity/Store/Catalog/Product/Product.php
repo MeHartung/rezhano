@@ -310,8 +310,17 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
    *
    * @var string
    * @ORM\Column(type="string", unique=true)
+   * @deprecated Нужно перенести всё на поле $importKey
    */
   private $externalCode;
+  
+  /**
+   * Guid товара в Моём Складе
+   *
+   * @ var string
+   * @ ORM\Column(type="string", length=128, unique=true)
+   */
+  private $importKey;
   
   /**
    * @var float

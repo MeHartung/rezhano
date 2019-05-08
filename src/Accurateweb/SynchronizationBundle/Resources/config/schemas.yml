@@ -30,6 +30,7 @@ services:
       - { tableName: products, columns: {
                                           external_code: { type: VARCHAR, size: 255 },
                                           name: { type: VARCHAR, size: 1000},
+                                          moy_sklad_name: { type: VARCHAR, size: 1000},
                                           price: { type: DECIMAL, size: 10},
                                           wholesale_price: { type: DECIMAL, size: 10},
                                           purchase_price: { type: DECIMAL, size: 10},
@@ -56,6 +57,7 @@ services:
       - { tableName: products, columns: {
                                           external_code: { type: VARCHAR, size: 255 },
                                           name: { type: VARCHAR, size: 1000},
+                                          moy_sklad_name: { type: VARCHAR, size: 1000},
                                           price: { type: DECIMAL, size: 10},
                                           wholesale_price: { type: DECIMAL, size: 10},
                                           purchase_price: { type: DECIMAL, size: 10},

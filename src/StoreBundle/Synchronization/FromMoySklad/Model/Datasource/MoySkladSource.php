@@ -333,7 +333,10 @@ class MoySkladSource extends BaseDataSource
         }
   
       }
-     
+  
+      # всегда обновляем имя в МС
+      $moySkladProductsAsArray[$key]['moy_sklad_name'] = $product->name;
+      
       $this->dispatcher->dispatch(
         'aw.sync.order_event.message',
         new GenericEvent("Product {$folderData->name}/{$product->name} was loaded from MoySklad.")
