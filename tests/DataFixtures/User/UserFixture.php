@@ -15,7 +15,8 @@ class UserFixture extends Fixture
       ->setEmail('admin@accurateweb.ru')
       ->setUsername('admin')
       ->setEnabled(true)
-      ->setPlainPassword('123')
+      ->setPlainPassword('123');
+    $user
       ->setFirstName('Админ')
       ->setLastName('Админов')
       ->setMiddleName('Михайлович')

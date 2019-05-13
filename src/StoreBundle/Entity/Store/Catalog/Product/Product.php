@@ -1266,10 +1266,12 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   
   /**
    * @param string $externalCode
+   * @return $this
    */
-  public function setExternalCode(string $externalCode): void
+  public function setExternalCode(string $externalCode): self
   {
     $this->externalCode = $externalCode;
+    return $this;
   }
   
   /**
@@ -1342,10 +1344,12 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
 
   /**
    * @param integer $package
+   * @return $this
    */
-  public function setPackage($package)
+  public function setPackage($package): self
   {
     $this->package = $package;
+    return $this;
   }
 
   /**
@@ -1524,10 +1528,12 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   
   /**
    * @param bool $bundle
+   * @return $this
    */
-  public function setBundle(?bool $bundle): void
+  public function setBundle(?bool $bundle): self
   {
     $this->bundle = $bundle;
+    return $this;
   }
   
   /**
@@ -1556,10 +1562,12 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   
   /**
    * @param int|null $multiplier
+   * @return $this
    */
-  public function setMultiplier(?int $multiplier): void
+  public function setMultiplier(?int $multiplier): self
   {
     $this->multiplier = $multiplier;
+    return $this;
   }
   
   /**
@@ -1572,10 +1580,12 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   
   /**
    * @param float $unitWeight
+   * @return $this
    */
-  public function setUnitWeight(?float $unitWeight): void
+  public function setUnitWeight(?float $unitWeight): self
   {
     $this->unitWeight = $unitWeight;
+    return $this;
   }
   
   /**

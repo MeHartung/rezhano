@@ -212,7 +212,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       'search' => '27333',
       'new' => 'Бреби',
     ],
-    '00020 ' => [
+    '00020' => [
       'search' => '00533',
       'new' => 'Буррата'
     ],
@@ -351,7 +351,7 @@ class ReplaceProductsCommand extends ContainerAwareCommand
       {
         $oldProduct = $this->unpublishProduct($oldProduct);
         $em->persist($oldProduct);
-        $output->writeln("Product {$oldProduct->getId()} unpublished");
+        $output->writeln("Product {$oldProduct->getMoySkladName()}({$oldProduct->getExternalCode()}) unpublished");
         continue;
       }
       
