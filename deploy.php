@@ -52,7 +52,7 @@ host('rezhano.beget.tech')
   ->set('bin/php', '/usr/local/bin/php7.2')
   ->set('branch', 'master')
   ->set('http_user', 'rezhano')
-  ->set('keep_releases', 3);
+  ->set('keep_releases', 2);
 
 /*host('94.130.148.164')
     ->stage('prod')
