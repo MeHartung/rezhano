@@ -145,4 +145,5 @@ Work Time: Время работы
 order_checkout_success: Заказ %documentNumber% успешно оформлен.
 Cheese Story List: Список Сырных заметок
 Preview Text: Текст в превью
-Moy Sklad Name: Имя в МС
+Moy Sklad Name: Наименование в МС
+External Code: Код товара в МС

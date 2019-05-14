@@ -54,7 +54,6 @@ class PaymentMethodFixture extends Fixture
       ->setPosition(3)
       ->setAvailabilityDecisionManagerId('d2eb7c63-dd58-44a3-9520-8749d72e1e16')
       ->setFeeCalculatorId('56bbfffe-a97e-4ad5-ada5-7a3749fc8a15')
-      ->setType(PaymentMethod::ALFA_TYPE_GUID)
     ;
 
     $creditTinkoff = new PaymentMethod();
@@ -65,7 +64,6 @@ class PaymentMethodFixture extends Fixture
       ->setPosition(3)
       ->setAvailabilityDecisionManagerId('d2eb7c63-dd58-44a3-9520-8749d72e1e16')
       ->setFeeCalculatorId('56bbfffe-a97e-4ad5-ada5-7a3749fc8a15')
-      ->setType(PaymentMethod::TINKOFF_TYPE_GUID)
     ;
 
     $manager->persist($cash);

@@ -84,6 +84,9 @@ class ProductAdmin extends AbstractAdmin
       ->add('moySkladName', null, [
         'disabled' => true
       ])
+      ->add('externalCode', null, [
+        'disabled' => true
+      ])
       ->add('slug', TextType::class, [
         'help' => 'Если оставить пустым, то будет сгенерирован автоматически.'
       ])
@@ -231,6 +234,7 @@ class ProductAdmin extends AbstractAdmin
            ->add('productType')
            ->add('taxons')
            ->add('publicationAllowed')
+           ->add('externalCode')
             ;
   }
 

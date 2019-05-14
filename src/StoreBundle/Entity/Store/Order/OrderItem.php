@@ -304,7 +304,7 @@ class OrderItem implements ShippableInterface
       return $this->getFormattedQuantity();
     }
     
-    if($this->getProduct()->getProductType()->getMeasured() === true && $this->getQuantity() < 1)
+    if($this->getProduct()->getProductType()->getMeasured() === true && ($this->getQuantity() < 1))
     {
       return $this->getFormattedQuantity() * $this->getProduct()->getMultiplier();
     }
