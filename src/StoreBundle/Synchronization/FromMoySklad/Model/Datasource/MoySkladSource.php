@@ -270,7 +270,7 @@ class MoySkladSource extends BaseDataSource
           'wholesale_price' => $wholesalePrice,  # оптовая
           'price' => $salePrice,
           'purchase_price' => $product->buyPrice->value/100,
-          'slug' => $this->slugifierYandex->slugify($product->name),
+          'slug' =>  $productDb->getSlug(),
           'created_at' => $now->format('Y-m-d H:i:s'),
           'is_with_gift' => 0,
           'is_publication_allowed' => (int)$productDb->isPublicationAllowed(),
