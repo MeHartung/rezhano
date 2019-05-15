@@ -255,7 +255,7 @@ class MoySkladSource extends BaseDataSource
         }
       }
       # если есть такой товар, то не трогать:
-      # Наименование, описание, краткое описание, артикул, вес и условный вес
+      # Наименование, публикацию, описание, краткое описание, артикул, вес и условный вес
       if(in_array($product->code, $foundInDbProductsCodes) === true)
       {
         $productDb = $this->em->getRepository('StoreBundle:Store\Catalog\Product\Product')->findOneBy(
@@ -273,8 +273,8 @@ class MoySkladSource extends BaseDataSource
           'slug' => $this->slugifierYandex->slugify($product->name),
           'created_at' => $now->format('Y-m-d H:i:s'),
           'is_with_gift' => 0,
-          'is_publication_allowed' => 1,
-          'published' => 1,
+          'is_publication_allowed' => (int)$productDb->isPublicationAllowed(),
+          'published' => (int)$productDb->isPublished(),
           'total_stock' => 100,
           'reserved_stock' => 10,
           'is_free_delivery' => 0,
@@ -297,8 +297,8 @@ class MoySkladSource extends BaseDataSource
           'slug' => $this->slugifierYandex->slugify($product->name),
           'created_at' => $now->format('Y-m-d H:i:s'),
           'is_with_gift' => 0,
-          'is_publication_allowed' => 1,
-          'published' => 1,
+          'is_publication_allowed' => 0,
+          'published' => 0,
           'total_stock' => 100,
           'reserved_stock' => 10,
           'is_free_delivery' => 0,
