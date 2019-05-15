@@ -297,7 +297,7 @@ class MoySkladSource extends BaseDataSource
           'slug' => $this->slugifierYandex->slugify($product->name),
           'created_at' => $now->format('Y-m-d H:i:s'),
           'is_with_gift' => 0,
-          'is_publication_allowed' => 0,
+          'is_publication_allowed' => 1,
           'published' => 0,
           'total_stock' => 100,
           'reserved_stock' => 10,
