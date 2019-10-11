@@ -186,8 +186,8 @@ services:
        arguments: [~, StoreBundle\Entity\Menu\MenuItem, 'StoreBundle:Admin/Menu/MenuItemAdmin', 'name']
        tags:
          - {name: sonata.admin, manager_type: orm, group: text, label: "Меню"}
-       calls:
-         - [setModelManager, ['@nested_set.model_manager'] ]
+#       calls:
+#         - [setModelManager, ['@nested_set.model_manager'] ]
 
     main.admin.news:
         class: StoreBundle\Admin\Text\NewsAdmin

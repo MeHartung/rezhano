@@ -255,7 +255,8 @@ api_admin_cancel_status:
 
 redcode_tree_data:
     path:     /tree/data
-    defaults: { _controller: StoreBundle:Admin\Product\ProductTaxonomyAdmin:index }
+#    defaults: { _controller: StoreBundle:Admin\Product\ProductTaxonomyAdmin:index }
+    defaults: { _controller: RedCodeTreeBundle:TreeAdmin:treeData }
 
 favorites:
   path: /favorites

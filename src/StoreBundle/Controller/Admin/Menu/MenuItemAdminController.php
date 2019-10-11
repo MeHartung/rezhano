@@ -7,9 +7,9 @@
  */
 namespace StoreBundle\Controller\Admin\Menu;
 
-//use RedCode\TreeBundle\Controller\TreeAdminController;
+use RedCode\TreeBundle\Controller\TreeAdminController;
 
-use StoreBundle\Controller\Admin\TreeAdmin\TreeAdminController;
+//use StoreBundle\Controller\Admin\TreeAdmin\TreeAdminController;
 
 class MenuItemAdminController extends TreeAdminController
 {
