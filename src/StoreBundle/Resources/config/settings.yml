@@ -266,3 +266,13 @@ services:
        - '%encrypt_key%'
       tags:
         - { name: aw.setting }
+
+    store.setting.yamap_token:
+      class: Accurateweb\SettingBundle\Model\Setting\StringSetting
+      arguments:
+       - '@aw.settings.storage'
+       - 'yamap_token'
+       - 'Токен yandex maps'
+       - ~
+      tags:
+        - { name: aw.setting }
