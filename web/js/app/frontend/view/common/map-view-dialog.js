@@ -67,9 +67,8 @@ define(function(require){
         iconImageSize: [52, 67],
         iconImageOffset:[-25, -67]
       };
-
-      var shopMode = this.store.workTime !== null ? this.store.workTime : '';
-      var shopPhone = this.store.phone !== null ? this.store.phone : '';
+      var shopMode = this.store ? this.store.workTime !== null ? this.store.workTime : '' : '';
+      var shopPhone = this.store ? this.store.phone !== null ? this.store.phone : '' : '';
 
       var baloonContent = !this.store ? ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>') :
         ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>' +

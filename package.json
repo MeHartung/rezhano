@@ -1,7 +1,7 @@
 {
   "name": "gpn_nvi",
   "version": "2.0.0",
-  "description": "Интернет-магазин ГПН НВИ",
+  "description": "Интернет-магазин Режано",
   "devDependencies": {
     "autoprefixer": "^7.1.1",
     "grunt": "^0.4.5",
