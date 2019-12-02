@@ -3705,7 +3705,7 @@ footer .footer-aside__link.link_frukt:hover:after {
   background: url("../images/svg/frukt-logo-02.svg") center no-repeat;
 }
 footer.low {
-  background: #000000;
+  background: #101010;
   padding: 0;
   margin: 0;
 }

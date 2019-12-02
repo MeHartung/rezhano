@@ -23,8 +23,7 @@ module.exports = {
         "sinon": "../../../js/vendor/sinon/sinon",
         "main": "../../../js/main",
         'current-device': '../../../js/vendor/current-device.min',
-        // "ymaps": "https://api-maps.yandex.ru/2.1/?lang=ru_RU"
-        "ymaps": "https://api-maps.yandex.ru/2.0-stable/?apikey="
+        "ymaps": "https://api-maps.yandex.ru/2.1/?lang=ru_RU"
       },
       "map": {
           "jquery-checkbox": {

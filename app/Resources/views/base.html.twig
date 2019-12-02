@@ -28,7 +28,7 @@
   {% endblock %}
 
   {% block head_javascripts %}
-    <script type="text/javascript">urlPrefix = '{{ app.request.getBaseURL() }}';yamap_token='{{ setting('yamap_token') }}';</script>
+    <script type="text/javascript">urlPrefix = '{{ app.request.getBaseURL() }}'; yamap_token='{{ setting('yamap_token') }}';</script>
     <script type="text/javascript" src="{{ asset('js/vendor/jquery/jquery-3.2.1.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/vendor/jquery.daterange/jquery.daterange.js') }}"></script>
 
@@ -36,11 +36,6 @@
       if(navigator.userAgent.indexOf('Mac') > 0) {
         document.getElementsByTagName('html')[0].className = 'mac-os';
       }
-
-      window.addEventListener("orientationchange", function() {
-        // Выводим числовое значение ориентации
-//        alert($(window).width());
-      }, false);
     </script>
 
     <script type="text/javascript">

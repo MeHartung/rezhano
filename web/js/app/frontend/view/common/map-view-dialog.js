@@ -1,4 +1,4 @@
-define(function(require){
+define(function (require) {
   var ModalDialog = require('view/dialog/base/modal-dialog-view');
 
   require('ymaps');
@@ -15,14 +15,14 @@ define(function(require){
     events: {
       'click .layer__close': 'onCloseButtonClick'
     },
-    initialize: function(options){
+    initialize: function (options) {
       ModalDialog.prototype.initialize.apply(this, arguments);
       this.address = options.address;
 
       this.myMap = null;
       this.store = this.model.get('store');
     },
-    render: function(){
+    render: function () {
       // ModalDialog.prototype.render.apply(this, arguments);
       var self = this;
       this.$el.html(template({
@@ -33,7 +33,7 @@ define(function(require){
       this.store = this.model.get('store');
       return this;
     },
-    show: function(){
+    show: function () {
       this.$overlay.stop().fadeIn();
       this.$el.stop().fadeIn();
     },
@@ -65,43 +65,54 @@ define(function(require){
         iconLayout: 'default#image',
         iconImageHref: '/images/icons/map-tick.png',
         iconImageSize: [52, 67],
-        iconImageOffset:[-25, -67]
+        iconImageOffset: [-25, -67]
       };
       var shopMode = this.store ? this.store.workTime !== null ? this.store.workTime : '' : '';
       var shopPhone = this.store ? this.store.phone !== null ? this.store.phone : '' : '';
 
-      var baloonContent = !this.store ? ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>') :
-        ('<h4 class="ymaps-title">'+ this.model.get('address') +'</h4>' +
-          '<span class="ymaps-text">'+ shopPhone +'</span>' +
-          '<span class="ymaps-text">'+ shopMode +'</span>');
+      var baloonContent = !this.store ? ('<h4 class="ymaps-title">' + this.model.get('address') + '</h4>') :
+        ('<h4 class="ymaps-title">' + this.model.get('address') + '</h4>' +
+          '<span class="ymaps-text">' + shopPhone + '</span>' +
+          '<span class="ymaps-text">' + shopMode + '</span>');
 
       var address = this.model.get('address');
 
-      var myMap = new ymaps.Map('map', {
-        center: [56.82867848093701,60.6064061781684],
-        zoom: 9
-      });
+      var myMap,
+          bounds,
+          geocodeCoord,
+          firstGeoObject;
+     /*
+      * Для работы геодекодера 2.1 нужен отдельный сервис, с уникальным ключом. Ключ вставляется в настройках.
+      */
+      $.ajax('https://geocode-maps.yandex.ru/1.x/?format=json&apikey=' + yamap_token + '&geocode=' + address.toString(), {
+        method: 'GET'
+      })
+        .then(function (res) {
+          firstGeoObject = res.response.GeoObjectCollection.featureMember[0].GeoObject;
+          bounds = firstGeoObject.boundedBy;
+          geocodeCoord = res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
 
-      ymaps.geocode(address.toString(), {
-        results: 1
-      }).then(function (res) {
-        var firstGeoObject = res.geoObjects.get(0),
-          coords = firstGeoObject.geometry.getCoordinates(),
-          bounds = firstGeoObject.properties.get('boundedBy');
+          myMap = new ymaps.Map('map', {
+            center: geocodeCoord,
+            zoom: 9
+          });
 
-        myMap.geoObjects.add(firstGeoObject);
+          var placemarksCollection = new ymaps.GeoObjectCollection({}, {
+            draggable: false
+          });
+          var placemark = new ymaps.Placemark( [geocodeCoord[1], geocodeCoord[0] ], {balloonContent: baloonContent}, mapIcon, {draggable: false});
+          placemarksCollection.add(placemark);
+          myMap.geoObjects.add(placemarksCollection);
 
-        var placemark = new ymaps.Placemark(coords, {balloonContent: baloonContent}, mapIcon, {draggable: false});
-
-        myMap.geoObjects.add(placemark);
-
-        myMap.setBounds(bounds, {
-          checkZoomRange: true
-        }).then(function () {
-          placemark.balloon.open()
+          myMap.setBounds(placemarksCollection.getBounds(), {
+            checkZoomRange: true
+          }).then(function () {
+            placemark.balloon.open()
+          });
+        })
+        .catch(function (err) {
+          console.log(err)
         });
-      });
-
     }
   });
 });
