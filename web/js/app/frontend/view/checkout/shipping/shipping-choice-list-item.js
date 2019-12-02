@@ -1,13 +1,13 @@
-/* 
+/*
  *  @author Denis N. Ragozin <dragozin at accurateweb.ru>
  */
 define(function(require){
   var Backbone = require('backbone'),
       ListItemView = require('view/base/list-item-view'),
     MapViewDialog = require('view/common/map-view-dialog');
-  
+
   var template = _.template(require('templates/checkout/shipping/shipping-choice-list-item'));
-  
+
   return ListItemView.extend({
     className: 'custom-radio',
     events: {
@@ -33,7 +33,7 @@ define(function(require){
         recipient_address: this.model.get('options').recipient_address_required,
         showHelp: this.model.get('help') && this.cart.get('total') < 1000
       }));
-
+console.log(this.model)
       return this;
     },
     dispose: function(){
