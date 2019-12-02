@@ -20,7 +20,8 @@ add('shared_dirs', [
   'var/cdekcatalogue',
   'var/sphinx',
   'var/uploads',
-  'web/uploads'
+  'web/uploads',
+  'var/synchronization',
 ]);
 
 // Writable dirs by web server 
