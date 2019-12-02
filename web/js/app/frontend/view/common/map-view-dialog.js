@@ -84,35 +84,60 @@ define(function (require) {
      /*
       * Для работы геодекодера 2.1 нужен отдельный сервис, с уникальным ключом. Ключ вставляется в настройках.
       */
-      $.ajax('https://geocode-maps.yandex.ru/1.x/?format=json&apikey=' + yamap_token + '&geocode=' + address.toString(), {
-        method: 'GET'
-      })
-        .then(function (res) {
-          firstGeoObject = res.response.GeoObjectCollection.featureMember[0].GeoObject;
-          bounds = firstGeoObject.boundedBy;
-          geocodeCoord = res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
 
-          myMap = new ymaps.Map('map', {
-            center: geocodeCoord,
-            zoom: 9
-          });
+     console.log(this.store)
 
-          var placemarksCollection = new ymaps.GeoObjectCollection({}, {
-            draggable: false
-          });
-          var placemark = new ymaps.Placemark( [geocodeCoord[1], geocodeCoord[0] ], {balloonContent: baloonContent}, mapIcon, {draggable: false});
-          placemarksCollection.add(placemark);
-          myMap.geoObjects.add(placemarksCollection);
-
-          myMap.setBounds(placemarksCollection.getBounds(), {
-            checkZoomRange: true
-          }).then(function () {
-            placemark.balloon.open()
-          });
+      if (!this.store.latitude && !this.store.longitutude) {
+        $.ajax('https://geocode-maps.yandex.ru/1.x/?format=json&apikey=' + yamap_token + '&geocode=' + address.toString(), {
+          method: 'GET'
         })
-        .catch(function (err) {
-          console.log(err)
+          .then(function (res) {
+            firstGeoObject = res.response.GeoObjectCollection.featureMember[0].GeoObject;
+            bounds = firstGeoObject.boundedBy;
+            geocodeCoord = res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
+
+            myMap = new ymaps.Map('map', {
+              center: geocodeCoord,
+              zoom: 9
+            });
+
+            var placemarksCollection = new ymaps.GeoObjectCollection({}, {
+              draggable: false
+            });
+            var placemark = new ymaps.Placemark([geocodeCoord[1], geocodeCoord[0]], {balloonContent: baloonContent}, mapIcon, {draggable: false});
+            placemarksCollection.add(placemark);
+            myMap.geoObjects.add(placemarksCollection);
+
+            myMap.setBounds(placemarksCollection.getBounds(), {
+              checkZoomRange: true
+            }).then(function () {
+              placemark.balloon.open()
+            });
+
+          })
+          .catch(function (err) {
+            console.log(err)
+          });
+      } else {
+
+        myMap = new ymaps.Map('map', {
+          center: [ this.store.latitude, this.store.longitude],
+          zoom: 9
         });
+
+        var placemarksCollection = new ymaps.GeoObjectCollection({}, {
+          draggable: false
+        });
+        var placemark = new ymaps.Placemark([this.store.latitude, this.store.longitude], {balloonContent: baloonContent}, mapIcon, {draggable: false});
+        placemarksCollection.add(placemark);
+        myMap.geoObjects.add(placemarksCollection);
+
+        myMap.setBounds(placemarksCollection.getBounds(), {
+          checkZoomRange: true
+        }).then(function () {
+          placemark.balloon.open()
+        });
+      }
     }
   });
 });
