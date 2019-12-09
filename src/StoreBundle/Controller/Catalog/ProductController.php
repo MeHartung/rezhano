@@ -158,7 +158,10 @@ class ProductController extends Controller
       $em->persist($questionData);
       $em->flush();
       
-      $operatorEmail = $this->getParameter('operator_email');
+//      $operatorEmail = $this->getParameter('operator_email');
+      $operatorEmail = $this->get('aw.settings.manager')->getValue('operator_email');
+
+
       if ($operatorEmail)
       {
         $email = $this->get('aw_email_templating.template.factory')->createMessage(

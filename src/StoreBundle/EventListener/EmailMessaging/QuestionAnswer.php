@@ -10,6 +10,7 @@ namespace StoreBundle\EventListener\EmailMessaging;
 
 
 use Accurateweb\EmailTemplateBundle\Email\Factory\EmailFactory;
+use Accurateweb\SettingBundle\Model\Manager\SettingManagerInterface;
 use Psr\Log\LoggerInterface;
 use StoreBundle\Event\QuestionAnswerEvent;
 
@@ -19,26 +20,25 @@ class QuestionAnswer
   private $emailFactory;
   private $mailerFrom;
   private $mailerSenderName;
-  private $operatorEmail;
   private $logger;
-  
+  private $settingManager;
+
   /**
    * OrderCheckoutOperatorMail constructor.
    * @param \Swift_Mailer $mailer
    * @param EmailFactory $emailFactory
    * @param $mailerFrom string
    * @param $mailerSenderName string
-   * @param $operatorEmail string
    * @param LoggerInterface $logger
    */
   public function __construct (\Swift_Mailer $mailer, EmailFactory $emailFactory, $mailerFrom,
-                               $mailerSenderName, $operatorEmail, LoggerInterface $logger)
+                               $mailerSenderName, LoggerInterface $logger, SettingManagerInterface $settingManager)
   {
     $this->mailer = $mailer;
     $this->emailFactory = $emailFactory;
     $this->mailerFrom = $mailerFrom;
     $this->mailerSenderName = $mailerSenderName;
-    $this->operatorEmail = $operatorEmail;
+    $this->settingManager = $settingManager;
     $this->logger = $logger;
   }
   

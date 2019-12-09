@@ -64,7 +64,8 @@ class MoyskladOrderSendCommand extends ContainerAwareCommand
 
         try
         {
-          $from = $this->getContainer()->getParameter('operator_email');
+//          $from = $this->getContainer()->getParameter('operator_email');
+          $from = $this->getContainer()->get('aw.settings.manager')->getValue('operator_email');
           $to = $this->getContainer()->getParameter('service_desc_email');
           $email = $this->getContainer()->get('aw_email_templating.template.factory')->createMessage(
             'moysklad_order_failed',

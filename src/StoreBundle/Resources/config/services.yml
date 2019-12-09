@@ -932,8 +932,8 @@ services:
         - '@aw_email_templating.template.factory'
         - '%mailer_from%'
         - '%mailer_sender_name%'
-        - '%operator_email%'
         - '@logger'
+        - '@aw.settings.manager'
       tags:
         - { name: kernel.event_listener, event: store.order.checkout, method: onCheckout }
 
@@ -962,8 +962,8 @@ services:
         - '@aw_email_templating.template.factory'
         - '%mailer_from%'
         - '%mailer_sender_name%'
-        - '%operator_email%'
         - '@logger'
+        - '@aw.settings.manager'
       tags:
         - { name: kernel.event_listener, event: 'customer_question.create', method: 'onCreate' }
         - { name: kernel.event_listener, event: 'customer_question.message', method: 'onNewMessage' }
@@ -975,8 +975,8 @@ services:
         - '@aw_email_templating.template.factory'
         - '%mailer_from%'
         - '%mailer_sender_name%'
-        - '%operator_email%'
         - '@logger'
+        - '@aw.settings.manager'
       tags:
         - { name: kernel.event_listener, event: 'question.answer', method: 'onUpdate' }
 
