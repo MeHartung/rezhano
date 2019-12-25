@@ -8191,6 +8191,15 @@ body .delivery-info__message {
   font-family: alegreyasans-regular;
   color: #000000;
 }
+.token-empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Catorze27style1-bold;
+  color: #000;
+  font-size: 25px;
+}
 .user-icon {
   background: url("../images/cabinet.png") no-repeat;
   width: 24px;

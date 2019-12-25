@@ -5,7 +5,11 @@ define(function (require) {
 
   var template = _.template('\
     <div class="layer__close"></div>\n\
+   <% if (yamap_token.length) { %>\
     <div class="map-wrapper" id="map"></div>\n\
+    <% } else { %>\
+      <span class="token-empty"><%= tokenEmptyMessage %></span>\
+    <% } %>\
   ');
 
   return ModalDialog.extend({
@@ -27,7 +31,8 @@ define(function (require) {
       var self = this;
       this.$el.html(template({
         address: this.model.get('address'),
-        city: this.model.get('city') ? this.model.get('city') : ''
+        city: this.model.get('city') ? this.model.get('city') : '',
+        tokenEmptyMessage: 'Не удалось загрузить карту.'
       }));
 
       this.store = this.model.get('store');
@@ -58,7 +63,10 @@ define(function (require) {
       ModalDialog.prototype.close.apply(this, arguments);
     },
     initMap: function () {
-      this.preparePlacemarks();
+
+      if (yamap_token.length) {
+        this.preparePlacemarks();
+      }
     },
     preparePlacemarks: function () {
       var mapIcon = {
