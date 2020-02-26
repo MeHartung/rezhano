@@ -92,7 +92,7 @@ define(function (require) {
      /*
       * Для работы геодекодера 2.1 нужен отдельный сервис, с уникальным ключом. Ключ вставляется в настройках.
       */
-      if (!this.store || !this.store.latitude || !this.store.longitutude) {
+      if (!this.store || !this.store.latitude || !this.store.longitude) {
         $.ajax('https://geocode-maps.yandex.ru/1.x/?format=json&apikey=' + yamap_token + '&geocode=' + address.toString(), {
           method: 'GET'
         })
