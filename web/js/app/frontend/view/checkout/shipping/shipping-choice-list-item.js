@@ -33,7 +33,7 @@ define(function(require){
         recipient_address: this.model.get('options').recipient_address_required,
         showHelp: this.model.get('help') && this.cart.get('total') < 1000
       }));
-console.log(this.model)
+
       return this;
     },
     dispose: function(){

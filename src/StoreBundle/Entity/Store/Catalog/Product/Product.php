@@ -295,7 +295,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
 
   /**
    * @var integer
-   * @ORM\Column(type="float")
+   * @ORM\Column(type="float", name="`rank`")
    */
   private $rank=0;
 
@@ -336,7 +336,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   
   /**
    * @var ArrayCollection
-   * @ORM\ManyToMany(targetEntity="StoreBundle\Entity\Store\Catalog\Product\Product", inversedBy="id")
+   * @ORM\ManyToMany(targetEntity="StoreBundle\Entity\Store\Catalog\Product\Product")
    */
   private $relatedProducts;
 

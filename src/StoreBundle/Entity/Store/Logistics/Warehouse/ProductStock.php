@@ -26,7 +26,7 @@ class ProductStock extends BaseProductStock
   protected $id;
   /**
    * @var Warehouse
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Logistics\Warehouse\Warehouse", cascade={"persist"})
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Logistics\Warehouse\Warehouse", cascade={"persist"}, inversedBy="productStocks")
    * @ORM\JoinColumn(name="warehouse_id",onDelete="CASCADE", nullable=false)
    */
   protected $warehouse;

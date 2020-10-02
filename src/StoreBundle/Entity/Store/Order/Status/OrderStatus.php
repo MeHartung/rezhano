@@ -58,7 +58,7 @@ class OrderStatus
   /**
    * @var OrderStatusType
    *
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\Status\OrderStatusType", inversedBy="id")
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\Status\OrderStatusType")
    */
   private $type;
 

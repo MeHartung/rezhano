@@ -14,7 +14,7 @@ class PresentationOptions implements \ArrayAccess
   /**
    * @var Taxon
    * @ORM\Id()
-   * @ORM\OneToOne(targetEntity="StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon", cascade={"persist"})
+   * @ORM\OneToOne(targetEntity="StoreBundle\Entity\Store\Catalog\Taxonomy\Taxon", cascade={"persist"}, inversedBy="presentationOptions")
    * @ORM\JoinColumn(name="taxon_id")
    */
   private $taxon;

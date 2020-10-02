@@ -31,7 +31,7 @@ class OrderPaymentStatus
 
   /**
    * @var OrderPaymentStatusType
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\PaymentStatus\OrderPaymentStatusType", inversedBy="id")
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\PaymentStatus\OrderPaymentStatusType")
    */
   private $type;
 
