@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7402fbe2cf65244a94b229268d47ef67",
+    "content-hash": "3dacf5ccd0a00931c11197c513d46939",
     "packages": [
         {
             "name": "accurateweb/content-hotspot-bundle",
@@ -47,12 +47,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/accurateweb/email-template-bundle.git",
-                "reference": "7c9ef07de096f10d6f8bfc5f609cb4a53a53bbf7"
+                "reference": "df9fabf65548b67fce930b60df6740897bc6bbae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/accurateweb/email-template-bundle/zipball/7c9ef07de096f10d6f8bfc5f609cb4a53a53bbf7",
-                "reference": "7c9ef07de096f10d6f8bfc5f609cb4a53a53bbf7",
+                "url": "https://api.github.com/repos/accurateweb/email-template-bundle/zipball/df9fabf65548b67fce930b60df6740897bc6bbae",
+                "reference": "df9fabf65548b67fce930b60df6740897bc6bbae",
                 "shasum": ""
             },
             "suggest": {
@@ -68,7 +68,7 @@
                 "source": "https://github.com/accurateweb/email-template-bundle/tree/development",
                 "issues": "https://github.com/accurateweb/email-template-bundle/issues"
             },
-            "time": "2019-01-17T08:40:24+00:00"
+            "time": "2020-10-02T12:52:47+00:00"
         },
         {
             "name": "beberlei/DoctrineExtensions",
@@ -3024,6 +3024,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2018-02-01T13:16:43+00:00"
         },
         {
@@ -4180,6 +4181,7 @@
                 "configuration",
                 "distribution"
             ],
+            "abandoned": true,
             "time": "2017-08-25T16:55:44+00:00"
         },
         {
@@ -4632,6 +4634,7 @@
             "keywords": [
                 "sonata"
             ],
+            "abandoned": true,
             "time": "2018-02-23T16:42:24+00:00"
         },
         {
@@ -5818,6 +5821,7 @@
                 "i18n",
                 "text"
             ],
+            "abandoned": true,
             "time": "2017-06-08T18:19:53+00:00"
         },
         {
@@ -5987,6 +5991,7 @@
                 "code",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-code",
             "time": "2017-10-20T15:21:32+00:00"
         },
         {
@@ -6041,6 +6046,7 @@
                 "events",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-eventmanager",
             "time": "2017-07-11T19:17:22+00:00"
         }
     ],
@@ -6456,5 +6462,6 @@
         "php": ">=7.1",
         "ext-intl": "^1.1"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
