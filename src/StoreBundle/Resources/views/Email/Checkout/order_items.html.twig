@@ -21,6 +21,7 @@
             <td style="vertical-align: middle; width: 190px; border-bottom: 2px solid #cccccc;" align="left">
                 <a style="color: #000; text-decoration: none; font-size: 14px;" href="{{ url('product', { slug: item.product.slug }) }}" target="_blank">{{ item.product.name }}</a>
                 {% if item.product.shortDescription %}
+                    <br>
                     <span style="color: #cccccc; text-decoration: none; font-size: 12px;">{{ item.product.shortDescription }}</span>
                 {% endif %}
             </td>
