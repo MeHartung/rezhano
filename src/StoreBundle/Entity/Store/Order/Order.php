@@ -183,7 +183,7 @@ class Order implements ClientApplicationModelAdapterInterface
   
   /**
    * @var \StoreBundle\Entity\Store\Shipping\ShippingMethod
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Shipping\ShippingMethod", inversedBy="id")
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Shipping\ShippingMethod")
    */
   private $shippingMethod;
 
@@ -196,8 +196,7 @@ class Order implements ClientApplicationModelAdapterInterface
   /**
    * @var PaymentMethod
    *
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Payment\Method\PaymentMethod",
-   *                inversedBy="id", cascade={"persist"})
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Payment\Method\PaymentMethod", cascade={"persist"})
    *
    */
   private $paymentMethod;
@@ -219,7 +218,7 @@ class Order implements ClientApplicationModelAdapterInterface
   /**
    * @var OrderStatus
    *
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\Status\OrderStatus", inversedBy="id")
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\Status\OrderStatus")
    */
   private $orderStatus;
 
@@ -259,8 +258,7 @@ class Order implements ClientApplicationModelAdapterInterface
   /**
    * @var string
    *
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\PaymentStatus\OrderPaymentStatus",
-   *                inversedBy="id", cascade={"persist", "remove"})
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\PaymentStatus\OrderPaymentStatus", cascade={"persist", "remove"})
    */
   private $paymentStatus;
 

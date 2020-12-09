@@ -116,7 +116,7 @@ class User extends BaseUser
 
   /**
    * @var CdekCity|null
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Logistics\Delivery\Cdek\CdekCity", inversedBy="users")
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Logistics\Delivery\Cdek\CdekCity")
    * @ORM\JoinColumn(nullable=true, name="city_id", onDelete="SET NULL")
    */
   private $city;

@@ -33,7 +33,7 @@ class OrderStatusHistory
 
   /**
    * @var $order Order
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\Order", inversedBy="orderStatus",
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Store\Order\Order", inversedBy="orderStatusHistory",
    *                cascade={"persist", "remove"})
    * @ORM\JoinColumn(onDelete="CASCADE")
    */
@@ -54,7 +54,7 @@ class OrderStatusHistory
 
   /**
    * @var User
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\User\User", inversedBy="id")
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\User\User")
    */
   private $user;
 

@@ -14,7 +14,7 @@ class FavoriteProductList extends ProductList
 {
   /**
    * @var User
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\User\User")
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\User\User", inversedBy="favoriteProductLists")
    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
    */
   protected $user;

@@ -30,7 +30,7 @@ abstract class Notification
   /**
    * @var User
    *
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\User\User")
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\User\User", inversedBy="notifications")
    * @ORM\JoinColumn(name="user_id")
    */
   protected $user;

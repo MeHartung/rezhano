@@ -14,7 +14,7 @@ class ProductListProduct
 {
   /**
    * @var ProductList
-   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Catalog\ProductList\ProductList")ProductViewListener
+   * @ORM\ManyToOne(targetEntity="StoreBundle\Entity\Catalog\ProductList\ProductList", inversedBy="productListProducts")
    * @ORM\JoinColumn(name="product_list_id")
    * @ORM\Id()
    */
