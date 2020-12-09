@@ -395,12 +395,13 @@ aw_email_templating:
       variables:
         customer_name: { description: "ФИО клиента" }
         customer_email: { description: "Email клиента" }
+        customer_phone: { description: "Телефон клиента" }
         question: { description: "Текст вопроса" }
       defaults:
         subject: "Вопрос от клиента %%customer_name%%"
         body: |
-          От %%customer_name%% (%%customer_email%%) получен вопрос.
-
+          От %%customer_name%% (%%customer_email%%) получен вопрос. <br>
+          Номер телефона: %%customer_phone%% <br>
           Текст вопроса: «%%question%%».
 
     question_answer:

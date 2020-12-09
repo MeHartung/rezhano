@@ -50,6 +50,7 @@ class QuestionController extends Controller
               array(
                 'customer_name' => $question->getFio(),
                 'customer_email' => $question->getEmail(),
+                'customer_phone' => $question->getPhone(),
                 'question' => $question->getText()
               ));
 
