@@ -1259,7 +1259,7 @@ class Product implements SluggableInterface, ImageAwareInterface//, StockableInt
   /**
    * @return string
    */
-  public function getExternalCode(): string
+  public function getExternalCode(): ?string
   {
     return $this->externalCode;
   }

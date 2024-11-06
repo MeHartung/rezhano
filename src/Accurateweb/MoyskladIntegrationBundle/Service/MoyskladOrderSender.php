@@ -223,6 +223,7 @@ class MoyskladOrderSender
   protected function getOrCreateContragentByEmail($email, $fullName, $phone='', $actualAddress='',
                                                   $customerType = Order::CUSTOMER_TYPE_INDIVIDUAL)
   {
+
     $repository = $this->sklad->getRepository('MoySklad\\Entities\\Counterparty');
     $contragent = $repository
       ->findOneBy(['email' => $email]);
